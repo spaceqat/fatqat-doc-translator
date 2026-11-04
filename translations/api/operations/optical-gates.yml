@@ -1,0 +1,48 @@
+- id: 095ab408027488e6
+  en: Optical gates
+  zh: ''
+  status: pending
+- id: 58361384ac5f822e
+  en: These gates act on optical modes, where level `n` is the photon number. They run on [`ModeRegister`][fatqat.ModeRegister] slots under [`LOSimulator`](../simulators/linear-optics.md), and on fixed-dimension [`QuantumRegister`][fatqat.QuantumRegister] slots, where level `d - 1` is the largest photon number. Both gates keep the total photon number.
+  zh: ''
+  status: pending
+- id: 1c86f71a32dac445
+  en: '| Constructor | Targets | Action |'
+  zh: ''
+  status: pending
+- id: fb419dc4d9db3c92
+  en: '| [`PhaseShifter`][fatqat.operations.PhaseShifter] `(phi)` | One mode or view | `\|n> -> exp(i*n*phi)\|n>`. On a dimension-2 target it is `Phase(phi)`. |'
+  zh: ''
+  status: pending
+- id: 42555206fb424666
+  en: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | Two modes `(mode_0, mode_1)`, or two views | Mixes the modes with reflectivity `sin(theta)**2`; `theta=pi/4` is a 50:50 splitter. |'
+  zh: ''
+  status: pending
+- id: aec12b984fa4ba45
+  en: Angles are numbers in radians or [`Parameter`][fatqat.Parameter] values to bind before execution.
+  zh: ''
+  status: pending
+- id: 6825bd331ce46a6c
+  en: Beam splitter definition
+  zh: ''
+  status: pending
+- id: 99b528ec05df1e0e
+  en: With annihilation operators $a_0$ and $a_1$ of the two targets,
+  zh: ''
+  status: pending
+- id: 4c8dfd4083c84b95
+  en: On one photon, in the ordered basis $\lvert 1, 0\rangle, \lvert 0, 1\rangle$, it acts as
+  zh: ''
+  status: pending
+- id: 6104f6bc2e28d3e3
+  en: For a dual-rail qubit with $\lvert 0\rangle = \lvert 1, 0\rangle$ and $\lvert 1\rangle = \lvert 0, 1\rangle$, `BeamSplitter(a / 2, -pi / 2)` acts as `RX(a)` and `BeamSplitter(a / 2)` acts as `RY(a)`.
+  zh: ''
+  status: pending
+- id: 89645198ddad3fa6
+  en: Truncation
+  zh: ''
+  status: pending
+- id: 95679ad4e81b0b75
+  en: A finite cutoff keeps both gates unitary. `PhaseShifter` is always exact. `BeamSplitter` is exact while its two modes hold at most `cutoff` photons in total (`d - 1` on dimension-`d` targets); beyond that, its result is an approximation.
+  zh: ''
+  status: pending
