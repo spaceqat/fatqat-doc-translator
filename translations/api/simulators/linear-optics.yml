@@ -1,0 +1,36 @@
+- id: 24a37eaf20a2a41e
+  en: LOSimulator
+  zh: LOSimulator
+  status: machine
+- id: 9ac80e2eeb6f6fcc
+  en: '[`LOSimulator`][fatqat.simulator.LOSimulator] is a [`Simulator`](../simulator.md) for Programs with optical modes. It runs, returns results, and handles noise and sweeps like `Simulator`, except as listed below. For a worked example, see [Simulate linear optics](../../guide/linear-optics.md).'
+  zh: '[`LOSimulator`][fatqat.simulator.LOSimulator] 是用于含光学模式的 Program 的 [`Simulator`](../simulator.md)。除下列区别外，其执行、结果返回、噪声处理和参数扫描均与 `Simulator` 相同。完整示例见[模拟线性光学](../../guide/linear-optics.md)。'
+  status: machine
+- id: bb075b3e25ea22b6
+  en: '**Differences from `Simulator`**'
+  zh: '**与 `Simulator` 的区别**'
+  status: machine
+- id: 48db188c37d058f6
+  en: '| Topic | `LOSimulator` |'
+  zh: '| 项目 | `LOSimulator` |'
+  status: machine
+- id: f0815e455eeb8172
+  en: '| Registers | Also accepts [`ModeRegister`][fatqat.ModeRegister] and [`CountRegister`][fatqat.CountRegister]; `Simulator` rejects them |'
+  zh: '| Registers | 还接受 [`ModeRegister`][fatqat.ModeRegister] 和 [`CountRegister`][fatqat.CountRegister]；`Simulator` 不接受这两种类型 |'
+  status: machine
+- id: 7ccd76781c55737a
+  en: '| Methods | Adds `"fixed_photon_state"`, the default |'
+  zh: '| 方法 | 新增 `"fixed_photon_state"`，并将其作为默认方法 |'
+  status: machine
+- id: c2be93767fa5a52f
+  en: '| `simulation_config` | Adds `"cutoff"` |'
+  zh: '| `simulation_config` | 新增 `"cutoff"` |'
+  status: machine
+- id: ee698140cfa0afbf
+  en: '| [`Estimator`][fatqat.Estimator] | On a mode, accepts [`NumberOperator`][fatqat.observable.NumberOperator] and [`Projector`][fatqat.observable.Projector] up to level `cutoff`; Pauli operators raise at any cutoff |'
+  zh: '| [`Estimator`][fatqat.Estimator] | 对模式接受最高至 `cutoff` 能级的 [`NumberOperator`][fatqat.observable.NumberOperator] 和 [`Projector`][fatqat.observable.Projector]；无论截断值为多少，Pauli 算符都会报错 |'
+  status: machine
+- id: f325511225173275
+  en: '| Noise selectors | Select modes by device label; a `ModeRegister` reference is not supported |'
+  zh: '| 噪声选择器 | 按设备标签选择模式；不支持 `ModeRegister` 引用 |'
+  status: machine

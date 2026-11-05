@@ -282,3 +282,11 @@
   en: Study repetition-code and surface-code memories, parity checks, and decoding with syndrome histories or information about atom loss.
   zh: '研究重复码与表面码存储实验、奇偶校验，以及利用综合征历史或原子丢失信息进行译码。'
   status: machine
+- id: 20fe5776b5d3cf0f
+  en: Linear optics simulation
+  zh: 线性光学模拟
+  status: machine
+- id: 291e656731600b18
+  en: Linear optics
+  zh: 线性光学
+  status: machine

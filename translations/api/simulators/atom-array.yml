@@ -186,3 +186,7 @@
   en: Occupancy is tracked outside the quantum-state representation. Final statevectors and density matrices still include one qubit subsystem per declared site, whether or not an atom is present. With the default initial state, a never-loaded site is represented by `|0>`, but measuring it returns `2`. These quantum-state exports cannot reveal whether a site is occupied; use measurements and counts, or request `final_classical_state`, for that distinction.
   zh: 站点是否有原子由量子态之外的数据单独记录。最终态矢量和密度矩阵仍为每个声明的站点保留一个量子比特子系统，无论该处是否有原子。使用默认初态时，从未装载原子的站点在量子态中表示为 `|0>`，测量结果却是 `2`。因此，仅查看导出的量子态无法判断站点是否被占据；需要查看测量和计数结果，或启用 `final_classical_state`。
   status: machine
+- id: a91dda99b3da420e
+  en: '| Runtime | Global default (`numba` unless configured); explicit `numpy` or `numba` overrides it |'
+  zh: '| 运行时 | 使用全局默认值，未配置时为 `numba`；显式指定 `numpy` 或 `numba` 可覆盖默认值 |'
+  status: machine

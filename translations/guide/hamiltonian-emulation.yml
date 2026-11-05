@@ -81,7 +81,7 @@
 - id: e05bbc9366180a3e
   en: '`RX` remains an ordinary Program operation. At execution time, the emulator''s gate map obtains a pulse recipe from its calibration and binds that recipe to the model''s drive channel. The physical model has two qutrits, so the returned vector covers all $3^2$ basis states, including the second transmon. The Program still declares one two-level qubit. Each transmon''s third physical level lets the result show leakage out of its qubit states, `|0>` and `|1>`.'
   zh: "`RX` 仍是 Program 中的普通量子门。执行时，仿真器的门映射从校准中取得脉冲方案，并将其绑定到模型的驱动通道。物理模型有两个 qutrit，因此返回向量覆盖全部 $3^2$ 个基态，包括第二个 transmon。Program 仍只声明一个二能级量子比特。每个 transmon 的第三个物理能级使结果能够显示从量子比特态 `|0>` 和 `|1>` 中产生的泄漏。"
-  status: machine
+  status: retired
 - id: 45f638a78c961d4a
   en: The three waveform samples above specify a drive over the full 20-unit interval. The emulator interpolates between them, combines the drive with drift and coupling terms, and integrates the physical state. The state covers every level in the physical model throughout the pulse, including levels that the Program did not declare.
   zh: 上面的三个波形采样点定义了覆盖完整 20 个时间单位区间的驱动。仿真器在采样点之间插值，将驱动与漂移、耦合项组合，并对物理态积分。在整个脉冲期间，态始终覆盖物理模型中的每个能级，包括 Program 未声明的能级。
@@ -93,4 +93,8 @@
 - id: a9369d5400c85395
   en: Drift and background continuous noise evolve throughout elapsed time. On an emulator that supports classical conditions, a false condition can skip a control block without deleting its duration, so the model still evolves during the interval. This lets you study the effect of elapsed time even when no control is active.
   zh: "漂移和背景连续噪声在整个仿真时段内持续作用。对于支持经典条件的仿真器，条件为假时会跳过控制信号，但仍保留该控制块的时长，模型也会在这段时间内继续演化。因此，即使没有施加控制，也能研究等待时间的影响。"
+  status: machine
+- id: a1e9e0d780032ee1
+  en: '`RX` remains an ordinary Program operation. At execution time, the emulator''s gate map obtains a pulse recipe from its calibration and binds that recipe to the model''s drive channel. The physical model has two qutrits, so the returned state, a QuTiP ket `Qobj`, covers all $3^2$ basis states, including the second transmon. The Program still declares one two-level qubit. Each transmon''s third physical level lets the result show leakage out of its qubit states, `|0>` and `|1>`.'
+  zh: '`RX` 仍是普通的 Program 操作。执行时，仿真器的门映射从校准数据中取得脉冲方案，并将其绑定到模型的驱动通道。物理模型包含两个三能级量子单元，因此返回的量子态是一个 QuTiP 右矢 `Qobj`，覆盖全部 $3^2$ 个基态，也包括第二个 transmon。Program 仍只声明一个二能级量子比特。每个 transmon 的第三个物理能级使结果能够体现从量子比特态 `|0>` 和 `|1>` 向外的泄漏。'
   status: machine

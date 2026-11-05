@@ -74,3 +74,19 @@
   en: 'Both controls act on every site. The arrangement supplies the distances and the model supplies the signed interaction strength, so changing the spacing can change the dynamics without changing the Program. By default every site pair interacts. Set `simulation_config={"interaction_cutoff": distance}` on a particular `run()` to remove terms beyond that distance; this is a numerical Hamiltonian truncation rather than a blockade radius.'
   zh: '两个控制都作用于每个位点。排布提供距离，模型提供带符号的相互作用强度，因此改变间距可以在不改变 Program 的情况下改变动力学。默认情况下所有位点对都相互作用。在某次特定的 `run()` 上设置 `simulation_config={"interaction_cutoff": distance}` 可以去掉超过该距离的项；这是数值上的哈密顿量截断，而不是阻塞半径。'
   status: machine
+- id: 343e3c2ec0edb89d
+  en: 'To choose individual positions, supply `(x, y)` coordinates for a 2D layout or `(x, y, z)` coordinates for a 3D layout. All sites in an arrangement must use the same number of components, and distances are in micrometres:'
+  zh: 需要自行指定各个位置时，二维布局使用 `(x, y)` 坐标，三维布局使用 `(x, y, z)` 坐标。同一排列中所有站点的坐标分量数必须一致，距离单位为微米：
+  status: machine
+- id: bfcb526c556b4c18
+  en: The factory preserves input order as site order and copies the positions into immutable tuples. Explicit z values select 3D even when every z value is zero. `chain()` and `rectangular()` describe layouts embedded in 2D. Custom coordinates have no declared row count, column count, or uniform spacing; their `rows`, `cols`, and `spacing` attributes are `None`. See the [arrangement API](../api/atom-emulators.md#arrangements-and-program-resources) for input constraints.
+  zh: 工厂方法按输入顺序排列站点，并将位置复制为不可变元组。只要显式提供 z 值，即使全部为零，也会采用三维布局。`chain()` 和 `rectangular()` 描述的是嵌入二维空间的布局。自定义坐标不声明行数、列数或统一间距，因此其 `rows`、`cols` 和 `spacing` 属性均为 `None`。输入约束见[排列 API](../api/atom-emulators.md#arrangements-and-program-resources)。
+  status: machine
+- id: 44a25dd275a963aa
+  en: 'You can give rectangular layouts different x and y spacings, then combine layouts in the order their sites should appear. Labels let you retrieve the site indices belonging to each part:'
+  zh: 矩形布局可以为 x 和 y 方向设置不同间距，再按所需站点顺序组合多个布局。通过标签可以取得各部分的站点索引：
+  status: machine
+- id: f3a256dde7146674
+  en: Combining layouts requires distinct positions and unique group names. A combination containing any 3D layout is 3D. Nested combinations retain their groups with indices adjusted to the final site order. You can also give `combine()` a label for a group covering the entire result.
+  zh: 组合布局中的位置不能重叠，组名不能重复。只要包含一个三维布局，组合结果就是三维。嵌套组合会保留各组，并按最终站点顺序调整索引。还可以为 `combine()` 指定标签，创建覆盖整个结果的组。
+  status: machine

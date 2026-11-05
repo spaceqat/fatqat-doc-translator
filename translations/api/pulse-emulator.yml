@@ -245,7 +245,7 @@
 - id: 22bd6bb7c8988381
   en: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | `(3**m,)` | A pure coherent state, or one seeded trajectory when Lindblad noise can act. |'
   zh: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | `(3**m,)` | 一个纯相干态；或当 Lindblad 噪声可能作用时，一条带种子的轨迹。 |'
-  status: machine
+  status: retired
 - id: 93d8e057b8bc6a27
   en: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | `(3**m, 3**m)` | The exact ensemble state under supported Lindblad evolution. |'
   zh: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | `(3**m, 3**m)` | 受支持的 Lindblad 演化下的精确系综态。 |'
@@ -341,4 +341,12 @@
 - id: 0bcbee8a2f1e6488
   en: Pass supported declarations through `noise=`. The transmon emulator provides the collapse-operator realizations documented in [Pulse emulators](noise/backend-support.md#noise-emulator-support), including [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation], [`PhaseDamping`][fatqat.noise.PhaseDamping], and rate-form [`Depolarizing`][fatqat.noise.Depolarizing]. Transition relaxation takes explicit level-pair coefficients; FATQAT does not insert a harmonic `sqrt(n)` ladder. Depolarization acts on the full three-level space and can populate `|2>`. Rates use inverse nanoseconds and `t_phi` uses nanoseconds. The emulator accepts both background declarations and declarations scoped to ordinary operations. Finite probability forms, `AmplitudeDamping`, `Loss`, qubit-only `ThermalRelaxation`, and nonlocal declarations are rejected.
   zh: 通过 `noise=` 传入支持的声明。transmon 仿真器提供[脉冲仿真器](noise/backend-support.md#noise-emulator-support)中说明的坍缩算符实现，包括 [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation]、[`PhaseDamping`][fatqat.noise.PhaseDamping] 和速率形式的 [`Depolarizing`][fatqat.noise.Depolarizing]。跃迁弛豫需要显式的能级对系数；FATQAT 不会自动插入谐振子 `sqrt(n)` 阶梯。退极化作用于完整的三能级空间，可以使 `|2>` 产生布居。速率单位为纳秒的倒数，`t_phi` 的单位为纳秒。仿真器接受背景声明和限定于普通操作的声明。不接受有限概率形式、`AmplitudeDamping`、`Loss`、仅适用于量子比特的 `ThermalRelaxation`，以及非局域声明。
+  status: machine
+- id: efe2bcb12669b025
+  en: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | `(3**m, 1)` ket | A pure coherent state, or one seeded trajectory when Lindblad noise can act. |'
+  zh: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | `(3**m, 1)` 右矢 | 纯相干态；Lindblad 噪声可能生效时，为按种子生成的一条轨迹。 |'
+  status: machine
+- id: 1464bc3ee54bfcae
+  en: Every method returns a QuTiP `Qobj` whose `dims` list the subsystem dimensions. Call `.full()` for a NumPy array (`.full().ravel()` for a flat statevector).
+  zh: 每种方法都返回 QuTiP `Qobj`，其 `dims` 列出各子系统的维度。调用 `.full()` 可获得 NumPy 数组，调用 `.full().ravel()` 可获得一维态矢量。
   status: machine

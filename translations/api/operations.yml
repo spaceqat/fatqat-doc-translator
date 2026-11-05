@@ -82,3 +82,11 @@
   en: '| [PulseOperation](pulse-control/pulse-operation.md) | Channel-addressed `PulseOperation`—still imported from `fatqat.operations`—with its timing and backend support. |'
   zh: "| [PulseOperation](pulse-control/pulse-operation.md) | 按控制通道寻址的 `PulseOperation`（仍从 `fatqat.operations` 导入），及其时序和后端支持 |"
   status: machine
+- id: c172055c10ef1d92
+  en: '| [Optical gates](operations/optical-gates.md) | Beam splitter and phase shifter on optical modes. |'
+  zh: '| [光学门](operations/optical-gates.md) | 作用于光学模式的分束器和移相器。 |'
+  status: machine
+- id: 6e8cdf38243bf00e
+  en: '[Optical gates](operations/optical-gates.md)'
+  zh: '[光学门](operations/optical-gates.md)'
+  status: machine

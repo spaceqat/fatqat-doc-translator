@@ -1,0 +1,104 @@
+- id: 29bdf6270af416ab
+  en: Simulate linear optics
+  zh: 模拟线性光学
+  status: machine
+- id: 28d325570a2d2bb4
+  en: 'Linear optics computes with photons travelling through optical modes, such as the two output ports of a beam splitter. It differs from qubit circuits in three ways:'
+  zh: 线性光学利用光子在不同光学模式中的传播进行计算；分束器的两个输出端口就是两个模式。它与量子比特电路有三点不同：
+  status: machine
+- id: 78f424eaa240c9bb
+  en: '**A mode holds any number of photons.** Its level `n` is a photon count, not one of two states.'
+  zh: '**一个模式可以容纳任意数量的光子。** 能级 `n` 表示光子数，而不是两个状态之一。'
+  status: machine
+- id: 8765afb750ad701e
+  en: '**Photons are moved, never created.** Beam splitters and phase shifters redistribute photons among modes; the total number that entered stays the same.'
+  zh: '**光子只会转移，不会凭空产生。** 分束器和移相器将光子重新分配到各个模式，输入的总光子数保持不变。'
+  status: machine
+- id: d66be5aca6a75876
+  en: '**Photons are identical.** When two photons could have taken different paths to the same outcome, those paths interfere, and some outcomes disappear.'
+  zh: '**光子是全同粒子。** 当两个光子可以沿不同路径得到相同结果时，这些路径之间会发生干涉，使某些结果完全消失。'
+  status: machine
+- id: ba88fbdb62ec9b5f
+  en: This guide shows all three with the Hong–Ou–Mandel experiment, run on [`LOSimulator`][fatqat.simulator.LOSimulator].
+  zh: 本指南在 [`LOSimulator`][fatqat.simulator.LOSimulator] 上模拟 Hong–Ou–Mandel 实验，展示这三个特点。
+  status: machine
+- id: 4e7747fb51373682
+  en: One photon on a beam splitter
+  zh: 单光子通过分束器
+  status: machine
+- id: 22369d88558515cc
+  en: 'A [`ModeRegister`][fatqat.ModeRegister] holds the modes. Measuring a mode records its photon count in a [`CountRegister`][fatqat.CountRegister]. Build a balanced (50:50) [`BeamSplitter`][fatqat.operations.BeamSplitter] between two modes and count the photons in each output:'
+  zh: '[`ModeRegister`][fatqat.ModeRegister] 保存光学模式。测量模式时，光子数会记录到 [`CountRegister`][fatqat.CountRegister] 中。在两个模式之间放置一个平衡的（50:50）[`BeamSplitter`][fatqat.operations.BeamSplitter]，并对各输出端口的光子计数：'
+  status: machine
+- id: 1412f2452392ed95
+  en: 'Photons enter through the run''s `initial_state`: a [`BasisState`][fatqat.simulator.BasisState] gives the photon count of each mode, and unnamed modes start empty. Send one photon into mode 0:'
+  zh: 通过运行时的 `initial_state` 输入光子：[`BasisState`][fatqat.simulator.BasisState] 指定各模式的光子数，未指定的模式初始为空。向模式 0 输入一个光子：
+  status: machine
+- id: a4be380e501a38f7
+  en: 'Each key lists the counts in register order: `"10"` is the photon in mode 0, `"01"` in mode 1. The photon leaves through either port with probability ½, like a fair coin.'
+  zh: 每个键按寄存器顺序列出光子数：`"10"` 表示光子位于模式 0，`"01"` 表示位于模式 1。光子从任一端口离开的概率均为 ½，就像抛一枚正反面等概率的硬币。
+  status: machine
+- id: ba1b2c723dcb4056
+  en: 'Two photons: Hong–Ou–Mandel interference'
+  zh: 双光子：Hong–Ou–Mandel 干涉
+  status: machine
+- id: 61fe9e48969d77a1
+  en: 'Now send one photon into each input. If the photons behaved like two independent coins, a quarter of the runs would put both in mode 0, a quarter both in mode 1, and half would put one in each mode, `"11"`:'
+  zh: 现在向两个输入端口各送入一个光子。如果两个光子的输出像独立抛硬币一样互不影响，那么四分之一的运行会使两个光子都进入模式 0，四分之一都进入模式 1，剩下的一半则在每个模式中各有一个光子，即 `"11"`：
+  status: machine
+- id: 4c2779c5b49269c4
+  en: The outcome `"11"` never occurs; the photons always leave together. To end in `"11"`, both photons must pass straight through or both must be reflected. Because the photons are identical, these two histories lead to the same final state, so their amplitudes add, and at a 50:50 splitter they cancel exactly.
+  zh: 结果 `"11"` 从未出现，两个光子总是一起离开。要得到 `"11"`，两个光子必须同时透射或同时反射。由于光子是全同粒子，这两条路径对应同一个最终态，因此需要将振幅相加；在 50:50 分束器上，它们恰好完全抵消。
+  status: machine
+- id: 1957dc784598f7d4
+  en: '![Four beam-splitter diagrams show the histories of two photons entering modes 0 and 1. Both photons passing through and both reflecting each end in outcome 11; their amplitudes cos theta squared and minus sin theta squared add to cos 2 theta, which is zero at 50:50. One photon passing and the other reflecting puts both photons in mode 0 or both in mode 1.](../assets/generated/guide/hong-ou-mandel-histories.svg)'
+  zh: '![四幅分束器示意图展示了分别从模式 0 和 1 入射的两个光子的路径。同时透射和同时反射均得到结果 11；两条路径的振幅分别为 cos theta 的平方和负 sin theta 的平方，相加得到 cos 2 theta，在 50:50 时为零。一个光子透射、另一个反射时，两个光子会一起进入模式 0 或模式 1。](../assets/generated/guide/hong-ou-mandel-histories.svg)'
+  status: machine
+- id: 4635efaa3845c7bb
+  en: This is Hong–Ou–Mandel interference, and it has no counterpart for classical particles.
+  zh: 这就是 Hong–Ou–Mandel 干涉，经典粒子没有对应现象。
+  status: machine
+- id: 09be74f349ffead5
+  en: Change the reflectivity
+  zh: 改变反射率
+  status: machine
+- id: ced71eaa53845b66
+  en: The cancellation is exact only for a balanced splitter. `BeamSplitter(theta)` reflects a photon with probability `R = sin(theta)**2`. The two histories that end in `"11"` have amplitudes `cos(theta)**2` and `-sin(theta)**2`, so the coincidence probability is `(1 - 2R)**2`. For distinguishable particles the probabilities would add instead, giving `(1 - R)**2 + R**2`.
+  zh: 只有平衡分束器才能实现完全抵消。`BeamSplitter(theta)` 反射光子的概率为 `R = sin(theta)**2`。得到 `"11"` 的两条路径振幅分别为 `cos(theta)**2` 和 `-sin(theta)**2`，因此同时在两个端口探测到光子的概率（符合概率）为 `(1 - 2R)**2`。如果粒子可区分，则应将概率相加，得到 `(1 - R)**2 + R**2`。
+  status: machine
+- id: ae86e013cbaf7480
+  en: 'An [`Estimator`][fatqat.Estimator] computes the exact probability of `"11"` as the expectation value of [`Projector(1)`][fatqat.observable.Projector] on both modes. Sweep the angle to compare the two:'
+  zh: '[`Estimator`][fatqat.Estimator] 可通过两个模式上 [`Projector(1)`][fatqat.observable.Projector] 乘积的期望值，精确计算 `"11"` 的概率。扫描角度，比较两种情况：'
+  status: machine
+- id: 61683af1d22d3061
+  en: 'A finer sweep traces the full curves:'
+  zh: 增加扫描点的密度，就能绘出完整曲线：
+  status: machine
+- id: 5bb95c691d0519d8
+  en: '![Coincidence probability against reflectivity. For distinguishable particles the curve dips to one half at reflectivity one half; for identical photons it dips to zero there. Both curves equal one at reflectivity zero and one.](../assets/generated/guide/hong-ou-mandel-reflectivity.svg)'
+  zh: '![符合概率随反射率的变化。可区分粒子的曲线在反射率为二分之一时降至二分之一；全同光子的曲线则在该处降至零。当反射率为零或一时，两条曲线的值均为一。](../assets/generated/guide/hong-ou-mandel-reflectivity.svg)'
+  status: machine
+- id: 058c0a2288b58a2e
+  en: At `R = 0` and `R = 1` only one history is possible, so the two cases agree. In between, interference suppresses coincidences, and at `R = 0.5` it removes them completely. In the laboratory, the Hong–Ou–Mandel dip is usually traced at a fixed 50:50 splitter by delaying one photon, which makes the photons partly distinguishable and brings the coincidences back.
+  zh: 在 `R = 0` 和 `R = 1` 时，只有一条路径可能发生，因此两种情况一致。在两者之间，干涉会抑制符合事件，并在 `R = 0.5` 时使其完全消失。实验中通常固定使用 50:50 分束器，通过延迟一个光子来测量 Hong–Ou–Mandel 凹陷：延迟使两个光子变得部分可区分，符合事件便会重新出现。
+  status: machine
+- id: 172f3297c1076246
+  en: Simulate larger interferometers
+  zh: 模拟更大的干涉仪
+  status: machine
+- id: 283ed7a12dd9a492
+  en: 'A statevector stores every combination of photon counts, from `0` to the cutoff in each mode. Twelve modes with four photons would need `5**12`, about 244 million amplitudes or 3.9 GB, although almost all of them stay zero: beam splitters never change the total photon number.'
+  zh: 态矢量保存光子数的所有组合，每个模式从 `0` 到截断值。12 个模式中有 4 个光子时，需要 `5**12` 个振幅，约 2.44 亿个，占 3.9 GB；其中绝大多数始终为零，因为分束器不会改变总光子数。
+  status: machine
+- id: 083de9f8f22ea8b8
+  en: '`LOSimulator`''s default method, `"fixed_photon_state"`, stores only the arrangements of the photons you sent in, 1365 for four photons in twelve modes. All runs in this guide use it. This interferometer mixes neighboring modes in twelve layers:'
+  zh: '`LOSimulator` 的默认方法 `"fixed_photon_state"` 只保存输入光子的可能分布。4 个光子分布在 12 个模式中，只有 1365 种情况。本指南的所有运行均采用该方法。下面的干涉仪分 12 层混合相邻模式：'
+  status: machine
+- id: dc75b0535bdfc44a
+  en: Each amplitude belongs to one arrangement of the four photons. [`fixed_photon_index`][fatqat.simulator.fixed_photon_index] finds the amplitude of an arrangement, given as photon counts in mode order. The probability that the photons leave in the four modes they entered is
+  zh: 每个振幅对应这 4 个光子的一种分布。按模式顺序给出光子数，[`fixed_photon_index`][fatqat.simulator.fixed_photon_index] 就能找到该分布对应的振幅。光子从最初输入的 4 个模式离开的概率为
+  status: machine
+- id: 17f3966500113b69
+  en: The method needs a `BasisState` start and modes only, and it rejects noise. For qubits alongside modes, dense initial states, or noise, choose `LOSimulator("statevector")` or `LOSimulator("density_matrix")`; see [`LOSimulator`][fatqat.simulator.LOSimulator] for the full rules.
+  zh: 该方法要求使用 `BasisState` 初态，程序只能包含模式，且不接受噪声。若要混合量子比特和模式、使用稠密初态或加入噪声，请选择 `LOSimulator("statevector")` 或 `LOSimulator("density_matrix")`；完整规则见 [`LOSimulator`][fatqat.simulator.LOSimulator]。
+  status: machine

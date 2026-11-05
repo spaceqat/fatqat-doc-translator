@@ -1,0 +1,48 @@
+- id: 095ab408027488e6
+  en: Optical gates
+  zh: 光学门
+  status: machine
+- id: 58361384ac5f822e
+  en: These gates act on optical modes, where level `n` is the photon number. They run on [`ModeRegister`][fatqat.ModeRegister] slots under [`LOSimulator`](../simulators/linear-optics.md), and on fixed-dimension [`QuantumRegister`][fatqat.QuantumRegister] slots, where level `d - 1` is the largest photon number. Both gates keep the total photon number.
+  zh: 这些门作用于光学模式，其中能级 `n` 表示光子数。它们既可在 [`LOSimulator`](../simulators/linear-optics.md) 上作用于 [`ModeRegister`][fatqat.ModeRegister] 槽位，也可作用于固定维度的 [`QuantumRegister`][fatqat.QuantumRegister] 槽位；后者的最大光子数为 `d - 1`。两种门都保持总光子数不变。
+  status: machine
+- id: 1c86f71a32dac445
+  en: '| Constructor | Targets | Action |'
+  zh: '| 构造方法 | 作用目标 | 作用 |'
+  status: machine
+- id: fb419dc4d9db3c92
+  en: '| [`PhaseShifter`][fatqat.operations.PhaseShifter] `(phi)` | One mode or view | `\|n> -> exp(i*n*phi)\|n>`. On a dimension-2 target it is `Phase(phi)`. |'
+  zh: '| [`PhaseShifter`][fatqat.operations.PhaseShifter] `(phi)` | 一个模式或视图 | `\|n> -> exp(i*n*phi)\|n>`。在二维目标上等同于 `Phase(phi)`。 |'
+  status: machine
+- id: 42555206fb424666
+  en: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | Two modes `(mode_0, mode_1)`, or two views | Mixes the modes with reflectivity `sin(theta)**2`; `theta=pi/4` is a 50:50 splitter. |'
+  zh: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | 两个模式 `(mode_0, mode_1)`，或两个视图 | 以反射率 `sin(theta)**2` 混合模式；`theta=pi/4` 对应 50:50 分束器。 |'
+  status: machine
+- id: aec12b984fa4ba45
+  en: Angles are numbers in radians or [`Parameter`][fatqat.Parameter] values to bind before execution.
+  zh: 角度可以是以弧度为单位的数值，也可以是执行前需要绑定的 [`Parameter`][fatqat.Parameter]。
+  status: machine
+- id: 6825bd331ce46a6c
+  en: Beam splitter definition
+  zh: 分束器的定义
+  status: machine
+- id: 99b528ec05df1e0e
+  en: With annihilation operators $a_0$ and $a_1$ of the two targets,
+  zh: 设两个目标的湮灭算符为 $a_0$ 和 $a_1$，则
+  status: machine
+- id: 4c8dfd4083c84b95
+  en: On one photon, in the ordered basis $\lvert 1, 0\rangle, \lvert 0, 1\rangle$, it acts as
+  zh: 对于单光子，在有序基 $\lvert 1, 0\rangle, \lvert 0, 1\rangle$ 下，其作用为
+  status: machine
+- id: 6104f6bc2e28d3e3
+  en: For a dual-rail qubit with $\lvert 0\rangle = \lvert 1, 0\rangle$ and $\lvert 1\rangle = \lvert 0, 1\rangle$, `BeamSplitter(a / 2, -pi / 2)` acts as `RX(a)` and `BeamSplitter(a / 2)` acts as `RY(a)`.
+  zh: 对于采用 $\lvert 0\rangle = \lvert 1, 0\rangle$、$\lvert 1\rangle = \lvert 0, 1\rangle$ 编码的双轨量子比特，`BeamSplitter(a / 2, -pi / 2)` 等同于 `RX(a)`，`BeamSplitter(a / 2)` 等同于 `RY(a)`。
+  status: machine
+- id: 89645198ddad3fa6
+  en: Truncation
+  zh: 截断
+  status: machine
+- id: 95679ad4e81b0b75
+  en: A finite cutoff keeps both gates unitary. `PhaseShifter` is always exact. `BeamSplitter` is exact while its two modes hold at most `cutoff` photons in total (`d - 1` on dimension-`d` targets); beyond that, its result is an approximation.
+  zh: 采用有限截断后，两种门仍保持酉性。`PhaseShifter` 始终精确；只要两个模式的总光子数不超过 `cutoff`（对于维度为 `d` 的目标，即 `d - 1`），`BeamSplitter` 也是精确的，超过后则为近似结果。
+  status: machine

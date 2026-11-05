@@ -65,7 +65,7 @@
 - id: 055621ae6dda97a9
   en: '[`measure_all`][fatqat.Program.measure_all] flattens all registers and their members in declaration order and appends one grouped measurement. It requires equal, non-zero quantum and classical counts and matching dimensions at every position. Read [Write quantum computations with Program](../guide/program.md) for a mid-program measurement and feedforward workflow.'
   zh: '[`measure_all`][fatqat.Program.measure_all] 按声明顺序展平所有寄存器及其成员，并追加一次分组测量。它要求量子与经典数量相等且非零，并且每个位置上的维度都要匹配。有关程序中途测量与前馈的工作流，请阅读[使用 Program 编写量子计算](../guide/program.md)。'
-  status: machine
+  status: retired
 - id: c9a1909583cca56e
   en: <a id="program-templates"></a>
   zh: <a id="program-templates"></a>
@@ -209,4 +209,8 @@
 - id: 62ef756a14c66b7c
   en: Backends and other program readers should use this interface instead of depending on FatQat's private instruction representation.
   zh: '后端及其他程序读取方应使用此接口，不应依赖 FatQat 的私有指令表示。'
+  status: machine
+- id: 1777e9698fb5368c
+  en: '[`measure_all`][fatqat.Program.measure_all] appends one grouped measurement of all quantum slots, using the first corresponding classical slots by default or the destinations specified by `outputs`. Read [Write quantum computations with Program](../guide/program.md) for a mid-program measurement and feedforward workflow.'
+  zh: '[`measure_all`][fatqat.Program.measure_all] 将所有量子槽位作为一组，追加一次测量；默认按顺序写入前面的经典槽位，也可通过 `outputs` 指定目标。程序中途测量和前馈的用法见[用 Program 编写量子计算](../guide/program.md)。'
   status: machine

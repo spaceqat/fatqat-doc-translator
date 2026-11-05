@@ -138,3 +138,11 @@
   en: Quantum register containing the selected members.
   zh: "包含所选成员的 QuantumRegister。"
   status: machine
+- id: 5fb7f7fc1d11dfa3
+  en: '| [`ModeRegister`][fatqat.ModeRegister] | Optical modes with no fixed dimension; run on [`LOSimulator`](simulators/linear-optics.md) | Explicit positive `size` |'
+  zh: '| [`ModeRegister`][fatqat.ModeRegister] | 无固定维度的光学模式，在 [`LOSimulator`](simulators/linear-optics.md) 上运行 | 显式指定正的 `size` |'
+  status: machine
+- id: dd214391e66b73ba
+  en: '| [`CountRegister`][fatqat.CountRegister] | Photon counts from measuring a `ModeRegister` | Explicit positive `size` |'
+  zh: '| [`CountRegister`][fatqat.CountRegister] | 测量 `ModeRegister` 得到的光子计数 | 显式指定正的 `size` |'
+  status: machine

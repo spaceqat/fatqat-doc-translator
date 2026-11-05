@@ -78,3 +78,11 @@
   en: '[SCQubitSimulator](sc-qubit.md)'
   zh: '[SCQubitSimulator](sc-qubit.md)'
   status: machine
+- id: 3d99262bfbc113cf
+  en: '| [`LOSimulator`][fatqat.simulator.LOSimulator] | Linear-optical Programs on photon modes | Modes truncated to a per-run photon cutoff |'
+  zh: '| [`LOSimulator`][fatqat.simulator.LOSimulator] | 作用于光子模式的线性光学 Program | 每次运行按光子数截断各模式 |'
+  status: machine
+- id: e91038f7c32db28c
+  en: '[LOSimulator](linear-optics.md)'
+  zh: '[LOSimulator](linear-optics.md)'
+  status: machine

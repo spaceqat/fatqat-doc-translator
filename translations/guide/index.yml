@@ -149,7 +149,7 @@
 - id: 9c7bf88b62eec61a
   en: '[Hardware profiles](hardware-profile-simulation.md) · [Hamiltonian emulation](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
   zh: '[硬件配置](hardware-profile-simulation.md) · [哈密顿量仿真](hamiltonian-emulation.md) · [Transmon](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
-  status: machine
+  status: retired
 - id: 6afa8a1317501315
   en: :material-transit-connection-variant:{ .lg .middle } **Connect and diagnose**
   zh: :material-transit-connection-variant:{ .lg .middle } **互操作与问题诊断**
@@ -161,4 +161,8 @@
 - id: 692fb192bcb3b4d0
   en: Choose the level of detail that answers your question. Direct simulation and physics workflows start from the same backend-independent [`Program`][fatqat.Program]. When mapping and routing are part of the question, author a [`LogicalProgram`][fatqat.LogicalProgram] for the [compiler](compiler.md).
   zh: 选择足以回答问题的细节层级。直接模拟与物理工作流程从同一个后端无关的 [`Program`][fatqat.Program] 出发。当问题涉及映射与路由时，为[编译器](compiler.md)编写 [`LogicalProgram`][fatqat.LogicalProgram]。
+  status: machine
+- id: 0cc09c11dc55235c
+  en: '[Hardware profiles](hardware-profile-simulation.md) · [Linear optics](linear-optics.md) · [Hamiltonian emulation](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
+  zh: '[硬件配置](hardware-profile-simulation.md) · [线性光学](linear-optics.md) · [哈密顿量仿真](hamiltonian-emulation.md) · [Transmon](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
   status: machine

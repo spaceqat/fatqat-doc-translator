@@ -150,3 +150,7 @@
   en: For more sweep options, see the [Simulator API](../api/simulator.md). Continue with [Estimate observables](interpret-results.md) to calculate correlations and understand the uncertainty of sampled estimates.
   zh: "更多扫描选项见[Simulator API](../api/simulator.md)。继续阅读[估计可观测量](interpret-results.md)，学习计算关联并理解采样估计的不确定度。"
   status: machine
+- id: c45fefffd021a124
+  en: To use NumPy for matrix simulation throughout a script or notebook, set the default before creating simulators. The initial default is Numba.
+  zh: 若希望整个脚本或笔记本都使用 NumPy 进行矩阵模拟，请在创建模拟器前设置默认运行时。初始默认值为 Numba。
+  status: machine

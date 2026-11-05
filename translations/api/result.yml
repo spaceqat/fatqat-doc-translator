@@ -106,3 +106,7 @@
   en: '| `"classical_state"` | [`get_classical_state`][fatqat.Result.get_classical_state] | A state-method simulator run with `result_config={"final_classical_state": True}` |'
   zh: '| `"classical_state"` | [`get_classical_state`][fatqat.Result.get_classical_state] | 使用量子态演化方法运行模拟器，并设置 `result_config={"final_classical_state": True}` |'
   status: machine
+- id: 98b1d973ff452cda
+  en: Pulse emulators return `Qobj` values from `get_statevector`, `get_density_matrix`, and `get_unitary`; simulators return NumPy arrays.
+  zh: 脉冲仿真器的 `get_statevector`、`get_density_matrix` 和 `get_unitary` 返回 `Qobj`，模拟器则返回 NumPy 数组。
+  status: machine
