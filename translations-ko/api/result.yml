@@ -1,0 +1,92 @@
+- id: 6e7d50e84f4731ef
+  en: Result
+  ko: Result
+  status: machine
+- id: 0beb54758ab7d057
+  en: A [`Result`][fatqat.Result] contains only the fields produced by one run. Inspect `available_data` when a field is optional, then use its accessor. An unavailable accessor raises [`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError] instead of returning `None`.
+  ko: '[`Result`][fatqat.Result]에는 한 번의 실행에서 생성된 필드만 담깁니다. 선택적 필드는 먼저 `available_data`를 확인한 뒤 접근 메서드로 읽으세요. 없는 필드를 읽으면 `None` 대신 [`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError]가 발생합니다.'
+  status: machine
+- id: 3b7a454557263109
+  en: '**Result fields**'
+  ko: '**결과 필드**'
+  status: machine
+- id: 40369ad6f52e64a0
+  en: '| Field | Accessor | Produced by |'
+  ko: '| 필드 | 접근 메서드 | 생성 조건 |'
+  status: machine
+- id: 233d89ec76db9dfc
+  en: '| `"counts"` | [`get_counts`][fatqat.Result.get_counts] or [`get_counts_as_tuples`][fatqat.Result.get_counts_as_tuples] | A backend run with measurement counts |'
+  ko: '| `"counts"` | [`get_counts`][fatqat.Result.get_counts] 또는 [`get_counts_as_tuples`][fatqat.Result.get_counts_as_tuples] | 측정 counts를 반환하는 백엔드 실행 |'
+  status: machine
+- id: 4fb9b5bc156f9d91
+  en: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | A statevector run with final-state output enabled |'
+  ko: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | 최종 상태 출력을 켠 상태 벡터 실행 |'
+  status: machine
+- id: f297810ede9611c0
+  en: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | A density-matrix run with final-state output enabled |'
+  ko: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | 최종 상태 출력을 켠 밀도 행렬 실행 |'
+  status: machine
+- id: cd02fa05eeac25a1
+  en: '| `"unitary"` | [`get_unitary`][fatqat.Result.get_unitary] | A unitary run with final-state output enabled |'
+  ko: '| `"unitary"` | [`get_unitary`][fatqat.Result.get_unitary] | 최종 상태 출력을 켠 유니터리 실행 |'
+  status: machine
+- id: f685fd710727d4a6
+  en: '| `"superop"` | [`get_superop`][fatqat.Result.get_superop] | A super-operator run with final-state output enabled |'
+  ko: '| `"superop"` | [`get_superop`][fatqat.Result.get_superop] | 최종 상태 출력을 켠 초연산자 실행 |'
+  status: machine
+- id: 802d880cb8bddaca
+  en: '| `"classical_state"` | [`get_classical_state`][fatqat.Result.get_classical_state] | A state-method simulator run with `result_config={"final_classical_state": True}` |'
+  ko: '| `"classical_state"` | [`get_classical_state`][fatqat.Result.get_classical_state] | `result_config={"final_classical_state": True}`를 지정한 상태 방법 시뮬레이터 실행 |'
+  status: machine
+- id: 9ba33e6a0ef5dc20
+  en: '| `"expectation"` and `"standard_error"` | [`get_expectation`][fatqat.Result.get_expectation] and [`get_standard_error`][fatqat.Result.get_standard_error] | An [`Estimator`][fatqat.Estimator] run |'
+  ko: '| `"expectation"`과 `"standard_error"` | [`get_expectation`][fatqat.Result.get_expectation]과 [`get_standard_error`][fatqat.Result.get_standard_error] | [`Estimator`][fatqat.Estimator] 실행 |'
+  status: machine
+- id: 0ccd0b6f582217aa
+  en: '| Backend extension name | [`get_data`][fatqat.Result.get_data] | A backend extension |'
+  ko: '| 백엔드 확장 이름 | [`get_data`][fatqat.Result.get_data] | 백엔드 확장 |'
+  status: machine
+- id: 98b1d973ff452cda
+  en: Pulse emulators return `Qobj` values from `get_statevector`, `get_density_matrix`, and `get_unitary`; simulators return NumPy arrays.
+  ko: 펄스 에뮬레이터의 `get_statevector`, `get_density_matrix`, `get_unitary`는 `Qobj` 값을 반환하고, 시뮬레이터는 NumPy 배열을 반환합니다.
+  status: machine
+- id: 1ddc6eaa4ff2a32f
+  en: '`"final_state"` is a request name, not an available-data name. A produced state or operator uses its concrete representation name from the table. Deterministic unmeasured runs enable method-native output by default. A stochastic pulse-emulator state—caused by measurement, statevector reset, or potentially active statevector Lindblad evolution—must be requested explicitly with `shots=1`.'
+  ko: '`"final_state"`는 요청 이름이며 반환 데이터의 이름이 아닙니다. 생성된 상태나 연산자는 표에 나온 구체적인 표현 이름을 사용합니다. 측정이 없고 결과가 결정적인 실행은 기본적으로 선택한 방법의 출력을 반환합니다. 측정, 상태 벡터 리셋, 작용 가능성이 있는 상태 벡터 Lindblad 시간 진화 때문에 펄스 에뮬레이터의 상태가 확률적이면 `shots=1`로 명시적으로 요청해야 합니다.'
+  status: machine
+- id: 4a0607f4a7e0ae3a
+  en: Ordering and mutable values
+  ko: 순서와 수정 가능한 값
+  status: machine
+- id: 9fcf992034de7df2
+  en: '[`get_counts`][fatqat.Result.get_counts] returns a new dictionary of display strings. Classical slot 0 is on the left, matching tuple position 0 from [`get_counts_as_tuples`][fatqat.Result.get_counts_as_tuples]. Thus tuple `(1, 0)` renders as `"10"`, and `(0, 1)` renders as `"01"`. If any classical dimension is at least 10, commas make multi-digit outcomes unambiguous: `(10, 3)` renders as `"10,3"`.'
+  ko: '[`get_counts`][fatqat.Result.get_counts]는 표시 문자열을 키로 하는 새 딕셔너리를 반환합니다. 고전 슬롯 0은 왼쪽에 표시되며, [`get_counts_as_tuples`][fatqat.Result.get_counts_as_tuples]의 튜플 위치 0과 같습니다. 따라서 튜플 `(1, 0)`은 `"10"`, `(0, 1)`은 `"01"`로 표시됩니다. 고전 차원 중 하나라도 10 이상이면 여러 자릿수의 결과를 구분하기 위해 쉼표를 사용합니다. 예를 들어 `(10, 3)`은 `"10,3"`으로 표시됩니다.'
+  status: machine
+- id: c9200d2e6e622b6d
+  en: Most other accessors return the value stored in the result. Copy arrays or dictionaries before changing them if you need to preserve the original. Metadata from a direct backend run records the normalized `simulation_config` and `result_config`. Backend extensions may add fields. Pulse-emulator metadata records `runtime="qutip"` and a `runtime_details` mapping with `solver` and `solver_options`. A run that invokes multiple solvers reports their names as a tuple. These numerical-runtime details are informational. Keep the model, arrangement, controls, and application metadata alongside a result when they are needed to reproduce a physical run.
+  ko: 그 밖의 접근 메서드는 대부분 결과에 저장된 값을 그대로 반환합니다. 원본을 보존해야 한다면 배열이나 딕셔너리를 수정하기 전에 복사하세요. 백엔드 직접 실행의 메타데이터에는 정규화된 `simulation_config`와 `result_config`가 기록됩니다. 백엔드 확장은 필드를 추가할 수 있습니다. 펄스 에뮬레이터의 메타데이터에는 `runtime="qutip"`와 `solver`, `solver_options`를 담은 `runtime_details` 매핑이 기록됩니다. 솔버를 여러 개 호출한 실행은 그 이름을 튜플로 보고합니다. 이러한 수치 런타임 정보는 참고용입니다. 물리적 실행을 재현하는 데 필요하다면 모델, 원자 배치, 제어, 애플리케이션 메타데이터를 결과와 함께 보관하세요.
+  status: machine
+- id: 9a259a2e36fba14e
+  en: When a result includes a state or operator, `metadata["state_axes"]` lists its physical subsystems from most to least significant. Each entry contains a `device_operand` and its program `register_ref`; `register_ref` is `None` when a physical model contains a subsystem the Program did not address. Position 0 is the most-significant subsystem of a flat basis index. For local dimensions `dims`, position `q` has place value `prod(dims[q + 1:])`. Statevectors, both density-matrix and unitary axes, and the global operator basis of super-operators use this same public order.
+  ko: 결과에 상태나 연산자가 포함되면 `metadata["state_axes"]`는 물리적 부분계를 최상위부터 최하위 순서로 나열합니다. 각 항목에는 `device_operand`와 프로그램의 `register_ref`가 들어갑니다. 물리 모델에 Program이 지정하지 않은 부분계가 있으면 해당 `register_ref`는 `None`입니다. 위치 0이 평탄화된 기저 인덱스의 최상위 부분계입니다. 국소 차원이 `dims`일 때 위치 `q`의 자릿값은 `prod(dims[q + 1:])`입니다. 상태 벡터, 밀도 행렬과 유니터리의 두 축, 초연산자의 전체 연산자 기저는 모두 이 공개 순서를 따릅니다.
+  status: machine
+- id: 31e906f8edf4252a
+  en: A counts-only run zero-fills every declared classical slot that was never written by measurement and emits a standard `UserWarning`. This usually indicates a missing measurement.
+  ko: Counts만 요청한 실행에서는 측정으로 값을 쓰지 않은 모든 선언된 고전 슬롯을 0으로 채우고 표준 `UserWarning`을 발생시킵니다. 보통 측정을 빠뜨렸다는 뜻입니다.
+  status: machine
+- id: d5d026da6b502b00
+  en: For examples of reading states and measurement counts, see [Simulation](../guide/simulation.md). For expectation values and standard errors, see [Estimate observables](../guide/interpret-results.md).
+  ko: 상태와 측정 counts를 읽는 예제는 [시뮬레이션](../guide/simulation.md)을 참고하세요. 기댓값과 표준 오차는 [관측량 추정](../guide/interpret-results.md)에서 다룹니다.
+  status: machine
+- id: 77e311af3bb766d4
+  en: Draw counts
+  ko: 카운트 그리기
+  status: machine
+- id: b070bdd93a992e6c
+  en: 'A result containing counts can draw them directly:'
+  ko: Counts를 포함한 결과에서는 바로 그래프를 그릴 수 있습니다.
+  status: machine
+- id: 7cf6f6278f245f67
+  en: The default `stat="counts"` plots raw occurrences. `stat="frequencies"` divides each value by the total number of shots. FATQAT supplies the default categorical palette and preserves an explicitly configured Matplotlib color cycle and other `rcParams`. `number_to_keep` retains the most frequent outcomes and combines the remainder into an `other` bar.
+  ko: 기본값 `stat="counts"`는 관측 횟수를 그대로 그립니다. `stat="frequencies"`는 각 값을 전체 샷 수로 나눕니다. FATQAT은 기본 범주형 팔레트를 제공하되, 명시적으로 설정한 Matplotlib 색상 순환과 나머지 `rcParams`는 유지합니다. `number_to_keep`은 가장 자주 나타난 결과만 남기고 나머지를 `other` 막대 하나로 합칩니다.
+  status: machine

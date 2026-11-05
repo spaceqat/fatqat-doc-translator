@@ -1,0 +1,92 @@
+- id: 358cc201f87d9dc9
+  en: Operations
+  ko: Operations
+  status: machine
+- id: f00b1754cae1425e
+  en: 'Import `fatqat.operations` as `ops`, then add operations to a program with [`fatqat.Program.add`][fatqat.Program.add]:'
+  ko: '`fatqat.operations`를 `ops`로 가져온 뒤 [`fatqat.Program.add`][fatqat.Program.add]로 프로그램에 연산을 추가합니다.'
+  status: machine
+- id: b4ceafdf1d69d812
+  en: Parameter-free operations such as `ops.H` and `ops.Reset` are ready to use without parentheses. Construct parameterized gates and [`PulseOperation`][fatqat.operations.PulseOperation] values before adding them. Create measurements with [`measure`][fatqat.Program.measure] or [`measure_all`][fatqat.Program.measure_all].
+  ko: '`ops.H`, `ops.Reset`처럼 매개변수가 없는 연산은 괄호 없이 바로 사용할 수 있습니다. 매개변수가 있는 게이트와 [`PulseOperation`][fatqat.operations.PulseOperation] 값은 먼저 생성한 뒤 추가하세요. 측정은 [`measure`][fatqat.Program.measure] 또는 [`measure_all`][fatqat.Program.measure_all]로 만듭니다.'
+  status: machine
+- id: 129153d2965ba22b
+  en: Reference pages
+  ko: 레퍼런스 페이지
+  status: machine
+- id: 9f95e58876b4417e
+  en: '**Operation families**'
+  ko: '**연산 계열**'
+  status: machine
+- id: d98d878da3d15b0e
+  en: '| Page | Contents |'
+  ko: '| 페이지 | 내용 |'
+  status: machine
+- id: 7fe29d99e5b41a50
+  en: '| [Qubit gates](operations/qubit-gates.md) | Fixed and parameterized qubit gates, exact target order, matrices, and constructor reference. |'
+  ko: '| [큐비트 게이트](operations/qubit-gates.md) | 고정 및 매개변수화된 큐비트 게이트, 정확한 대상 순서, 행렬, 생성자 레퍼런스 |'
+  status: machine
+- id: 3d0888892b68be2e
+  en: '| [Qudit gates](operations/qudit-gates.md) | Qudit gates, level constraints, and basis actions. |'
+  ko: '| [큐디트 게이트](operations/qudit-gates.md) | 큐디트 게이트, 준위 제약, 기저 작용 |'
+  status: machine
+- id: f4e94ab63f3c8770
+  en: '| [Measurement and structural operations](operations/structural.md) | Measurement and reset behavior, and compiler barriers. |'
+  ko: '| [측정과 구조적 연산](operations/structural.md) | 측정과 리셋 동작, 컴파일러 barrier |'
+  status: machine
+- id: ec5c8d562e7afc4b
+  en: '| [Atom-array operations](operations/atom-gates.md) | Atom-array occupancy, pairing, and attached-noise constraints. |'
+  ko: '| [원자 배열 연산](operations/atom-gates.md) | 원자 배열의 점유 상태, 쌍 지정, 부착 잡음 제약 |'
+  status: machine
+- id: c172055c10ef1d92
+  en: '| [Optical gates](operations/optical-gates.md) | Beam splitter and phase shifter on optical modes. |'
+  ko: '| [광학 게이트](operations/optical-gates.md) | 광학 모드에 작용하는 빔 스플리터와 위상 시프터. |'
+  status: machine
+- id: cb7fa3d7674e83c2
+  en: '| [PulseOperation](pulse-control/pulse-operation.md) | Channel-addressed `PulseOperation`—still imported from `fatqat.operations`—with its timing and backend support. |'
+  ko: '| [PulseOperation](pulse-control/pulse-operation.md) | `fatqat.operations`에서 가져오는 채널 지정 `PulseOperation`의 시간 규칙과 백엔드 지원 |'
+  status: machine
+- id: 8217d3b80f18392d
+  en: '[Qubit gates](operations/qubit-gates.md)'
+  ko: '[큐비트 게이트](operations/qubit-gates.md)'
+  status: machine
+- id: c61fbe6a8c71a2f7
+  en: '[Qudit gates](operations/qudit-gates.md)'
+  ko: '[큐디트 게이트](operations/qudit-gates.md)'
+  status: machine
+- id: abe68d4981de7224
+  en: '[Measurement and structural operations](operations/structural.md)'
+  ko: '[측정과 구조적 연산](operations/structural.md)'
+  status: machine
+- id: dff7a30ee2ee5df2
+  en: '[Atom-array operations](operations/atom-gates.md)'
+  ko: '[원자 배열 연산](operations/atom-gates.md)'
+  status: machine
+- id: 6e8cdf38243bf00e
+  en: '[Optical gates](operations/optical-gates.md)'
+  ko: '[광학 게이트](operations/optical-gates.md)'
+  status: machine
+- id: 9dc7e90e56b2f263
+  en: Construction
+  ko: 구성
+  status: machine
+- id: c6c4846e2d6ecd30
+  en: For target-based operations, [`add`][fatqat.Program.add] resolves target references, checks arity, and rejects repeated scalar targets. The selected backend checks operation and device support when you submit the program; an unsupported family raises [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]. A direct [`PulseOperation`][fatqat.operations.PulseOperation] follows the channel-addressing rules on [PulseOperation](pulse-control/pulse-operation.md) and is added without targets.
+  ko: 대상을 지정하는 연산에서 [`add`][fatqat.Program.add]는 대상 참조를 해석하고 피연산자 수를 검사하며 중복된 스칼라 대상을 거부합니다. 프로그램을 제출하면 선택한 백엔드가 연산과 장치의 지원 여부를 검사합니다. 지원하지 않는 계열은 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]를 발생시킵니다. 직접 작성한 [`PulseOperation`][fatqat.operations.PulseOperation]은 [PulseOperation](pulse-control/pulse-operation.md)의 채널 지정 규칙을 따르며 대상을 지정하지 않고 추가합니다.
+  status: machine
+- id: e112586e4acd1531
+  en: Most targets are a scalar [`RegisterRef`][fatqat.RegisterRef] or an integer. Use an integer when the program has one quantum register; with multiple registers, index the register you want. Controlled gates use control-first order, and the first local operand is the most-significant digit in the matrices and basis actions on the family pages.
+  ko: 대부분의 대상은 스칼라 [`RegisterRef`][fatqat.RegisterRef] 또는 정수입니다. 프로그램에 양자 레지스터가 하나뿐이면 정수를 사용할 수 있습니다. 레지스터가 여러 개면 원하는 레지스터를 인덱싱하세요. 제어 게이트는 제어 대상을 먼저 나열합니다. 계열별 페이지의 행렬과 기저 작용에서 첫 번째 국소 피연산자가 최상위 숫자에 해당합니다.
+  status: machine
+- id: f7b72fa50fc6eb9f
+  en: Every built-in unitary gate accepts [`RegisterView`](registers.md#fatqat.RegisterView) targets. A unary gate acts on each selected member. A multi-target gate accepts one compatible view per operand and zips their members in order. See [Registers](registers.md) for the compatibility rules and [Write quantum computations with Program](../guide/program.md) for the ordinary construction workflow.
+  ko: 모든 내장 유니터리 게이트는 [`RegisterView`](registers.md#fatqat.RegisterView)를 대상으로 받습니다. 단항 게이트는 선택된 각 원소에 작용합니다. 여러 대상을 받는 게이트는 피연산자마다 호환되는 뷰 하나를 받아 원소들을 순서대로 짝짓습니다. 호환 규칙은 [Registers](registers.md), 일반적인 구성 흐름은 [Program으로 양자 계산 작성](../guide/program.md)을 참고하세요.
+  status: machine
+- id: 3ec8fc994e977af6
+  en: Operation base
+  ko: Operation 기반 클래스
+  status: machine
+- id: 83a7dfd2e4379f90
+  en: Subclassing [`Operation`][fatqat.operations.Operation] defines a new program-level value; it does not register a matrix or pulse realization. See [Matrix implementations](implementation.md) for the custom matrix contract and [Gate realization](pulse-control/gate-realization.md) for pulse realizations.
+  ko: '[`Operation`][fatqat.operations.Operation]을 상속하면 새로운 프로그램 수준 값을 정의할 수 있지만, 행렬이나 펄스 구현이 등록되지는 않습니다. 사용자 정의 행렬 계약은 [행렬 구현](implementation.md), 펄스 구현은 [게이트 구현](pulse-control/gate-realization.md)을 참고하세요.'
+  status: machine

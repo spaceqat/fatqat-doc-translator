@@ -1,0 +1,132 @@
+- id: fb186e87e4fbc4c1
+  en: How to work on an issue
+  ko: 이슈를 해결해 나가는 방법
+  status: machine
+- id: 2dc1253f8d19e221
+  en: 'An interesting issue can be a doorway into a codebase. You do not need to understand all of FatQat to begin. This guide helps you take the next steps: understand the question, explore the relevant code, choose an approach, and share a change you can explain. AI tools are welcome throughout the process.'
+  ko: 흥미로운 이슈는 코드베이스를 알아가는 출발점이 될 수 있습니다. 처음부터 FatQat 전체를 이해할 필요는 없습니다. 이 가이드는 질문을 이해하고, 관련 코드를 살펴보고, 접근 방법을 선택한 뒤, 스스로 설명할 수 있는 변경을 공유하기까지의 과정을 안내합니다. 모든 단계에서 AI 도구를 활용해도 좋습니다.
+  status: machine
+- id: 53ba013c3b6f4c9c
+  en: Give yourself the chance to learn
+  ko: 직접 배울 기회를 놓치지 마세요
+  status: machine
+- id: 1f271391b1cf5abe
+  en: Please resist the temptation to hand an issue to an AI agent and forward its patch straight to GitHub, or simply relay messages between the agent and reviewers. We have access to these tools too. What we value in your contribution is the understanding you develop and the judgment you bring to the design.
+  ko: 이슈를 AI 에이전트에 맡긴 뒤 그 패치를 그대로 GitHub에 올리거나, 에이전트와 리뷰어 사이에서 메시지만 전달하지는 말아 주세요. 저희도 같은 도구를 사용할 수 있습니다. 기여에서 중요하게 생각하는 것은 여러분이 쌓은 이해와 설계에 담은 판단입니다.
+  status: machine
+- id: 4a64172f032825af
+  en: 1. Find a place to start
+  ko: 1. 시작할 곳 찾기
+  status: machine
+- id: fc57dbde72215f0e
+  en: We deliberately leave some issues open for contributors and mark them with the `learning` label. These are opportunities to get to know FatQat by working on a real problem and helping shape its solution. The goal is to learn how FatQat works, why its interfaces are designed as they are, and how the code is structured.
+  ko: 기여자가 참여할 수 있도록 일부 이슈는 의도적으로 열어 두고 `learning` 레이블을 붙입니다. 실제 문제를 해결하고 해법을 함께 만들어 가며 FatQat을 익힐 기회입니다. FatQat의 작동 방식, 인터페이스를 그렇게 설계한 이유, 코드 구조를 배우는 것이 목표입니다.
+  status: machine
+- id: 0f3be5ca99d2a44a
+  en: Choose one that interests you. You can start with limited knowledge of the package and build your understanding as you investigate. Some issues will take time to explore, even when the eventual change is small.
+  ko: 관심이 가는 이슈를 선택하세요. 패키지를 많이 알지 못해도 조사하면서 이해를 넓혀 갈 수 있습니다. 최종 수정은 작더라도 탐색에 시간이 걸리는 이슈도 있습니다.
+  status: machine
+- id: d7d7062829cd1eac
+  en: Begin by reading the issue and its discussion. What is someone trying to accomplish? Try the example if there is one, and ask questions when something is unclear. You do not need a solution yet. You just need a starting point for exploring together.
+  ko: 먼저 이슈와 토론을 읽어 보세요. 사용자는 무엇을 하려 하나요? 예제가 있으면 실행하고, 불명확한 점은 질문하세요. 아직 해답이 없어도 됩니다. 함께 살펴볼 출발점만 있으면 충분합니다.
+  status: machine
+- id: c09ac09aac295b36
+  en: The issue is a starting point for discovery
+  ko: 이슈는 탐색의 출발점입니다
+  status: machine
+- id: e323d28a069c38e2
+  en: Sometimes we open an issue because we have spotted a problem, before we have worked out the right solution. A suggested implementation, including one from a maintainer, is something you can investigate and improve. Finding a better approach is a welcome contribution.
+  ko: 적절한 해결책을 정하기 전에 문제를 발견했다는 이유로 이슈를 여는 경우도 있습니다. 메인테이너가 제안한 구현도 조사하고 개선할 수 있는 하나의 안입니다. 더 나은 방법을 찾는 것도 환영하는 기여입니다.
+  status: machine
+- id: 5a266d9ac1c8d6ea
+  en: 2. Follow the example into the code
+  ko: 2. 예제에서 코드로 따라 들어가기
+  status: machine
+- id: 79f398685f0d8025
+  en: 'Start by asking your AI tool for a small map of the relevant code. A useful first prompt is:'
+  ko: AI 도구에 관련 코드의 구조를 간략히 설명해 달라고 요청해 보세요. 첫 질문은 다음과 같이 할 수 있습니다.
+  status: machine
+- id: 71934947a38f6958
+  en: '> "Help me understand how this example runs. Explain what each component is > responsible for, and point me to related tests and documentation. Let''s > explore before making changes."'
+  ko: '> “이 예제가 어떻게 실행되는지 이해하도록 도와줘. 각 구성 요소가 > 무엇을 책임지는지 설명하고, 관련 테스트와 문서를 알려 줘. > 수정하기 전에 먼저 살펴보자.”'
+  status: machine
+- id: e6699a9de0c3196c
+  en: Open the suggested files and follow one path from the public API to the implementation and back to the result. If a function is confusing, ask the tool to walk through it with an example, then check its explanation against the code.
+  ko: 제안된 파일을 열고 공개 API에서 구현을 거쳐 결과로 돌아오는 경로 하나를 따라가세요. 이해하기 어려운 함수는 도구에 예제로 설명해 달라고 한 뒤 실제 코드와 맞는지 확인하세요.
+  status: machine
+- id: 3cf1f39e6e326660
+  en: As the path becomes clearer, ask **why it was designed this way**. Nearby code, Git history, and earlier discussions can reveal constraints that are easy to miss when looking at one function. They can also show where an old decision no longer fits the current needs.
+  ko: 경로가 명확해지면 **왜 이렇게 설계했는지** 물어보세요. 주변 코드, Git 이력, 이전 토론에서 함수 하나만 볼 때는 놓치기 쉬운 제약을 발견할 수 있습니다. 과거의 결정이 더 이상 현재 요구에 맞지 않는 부분도 드러납니다.
+  status: machine
+- id: 74038f85c9e9bf96
+  en: 'A useful point to pause is when you can tell someone: "This component owns the behavior, these callers depend on it, and this is where the issue appears." You can keep investigating the parts you are still unsure about.'
+  ko: “이 구성 요소가 해당 동작을 맡고, 이 호출자들이 의존하며, 문제가 여기에서 나타납니다”라고 설명할 수 있을 때 잠시 정리해 보세요. 아직 불확실한 부분은 계속 조사하면 됩니다.
+  status: machine
+- id: 7c0f0cc3b501c4cc
+  en: 3. Where would the change belong?
+  ko: 3. 변경은 어디에 들어가야 할까요?
+  status: machine
+- id: 4aac187aed801ccd
+  en: 'Now consider how the solution would fit into what you have learned. Ask your tool to compare approaches with you, and look closely at the trade-offs:'
+  ko: 이제 파악한 구조에 해결책을 어떻게 넣을지 생각해 보세요. 도구와 함께 방법을 비교하고 각각의 장단점을 살펴보세요.
+  status: machine
+- id: 795efc4c6b3285ef
+  en: '**What can we reuse?** Look for existing functionality before adding a second place that does the same job.'
+  ko: '**무엇을 재사용할 수 있나요?** 같은 일을 하는 곳을 하나 더 만들기 전에 기존 기능을 찾아보세요.'
+  status: machine
+- id: 623a818d882ce6ad
+  en: '**Who should own the behavior?** A clear responsibility makes the change easier to follow and helps keep unrelated components independent.'
+  ko: '**누가 이 동작을 책임져야 하나요?** 책임이 명확하면 변경을 이해하기 쉽고 무관한 구성 요소를 독립적으로 유지할 수 있습니다.'
+  status: machine
+- id: 54f590914e77c44f
+  en: '**Will this make future changes harder?** Consider whether a new option, special case, or fallback will make the code harder to understand, test, or extend over time.'
+  ko: '**앞으로의 변경이 어려워지지는 않나요?** 새 옵션, 특수 사례, 대체 동작 때문에 코드의 이해, 테스트, 확장이 점점 어려워지지 않을지 생각해 보세요.'
+  status: machine
+- id: 0a1dfe56d14370e2
+  en: Clear interfaces and focused modules make it easier to understand one part without reconstructing the whole system. This helps both contributors and AI tools, which also work with limited context.
+  ko: 명확한 인터페이스와 역할이 분명한 모듈은 전체 시스템을 다시 파악하지 않아도 한 부분을 이해하게 해 줍니다. 이는 기여자뿐 아니라 제한된 맥락으로 작업하는 AI 도구에도 도움이 됩니다.
+  status: machine
+- id: 811308307580d2e5
+  en: 'Sometimes a seemingly small fix needs increasingly awkward workarounds. For example, passing the same information through several unrelated components may suggest that the responsibility belongs elsewhere. Pause and consider whether a modest restructuring would help. Compare it with a direct fix: what becomes clearer, what else must change, and could existing users be affected? Keep the restructuring focused on the problem.'
+  ko: 작아 보이는 수정에 갈수록 어색한 우회 방법이 필요할 때가 있습니다. 예를 들어 같은 정보를 여러 무관한 구성 요소를 거쳐 전달해야 한다면, 책임을 다른 곳에 두어야 한다는 신호일 수 있습니다. 잠시 멈춰 작은 구조 변경이 도움이 될지 검토하세요. 직접 수정하는 방법과 비교해 무엇이 명확해지는지, 무엇을 함께 바꿔야 하는지, 기존 사용자에게 영향이 있는지 살펴보세요. 구조 변경도 문제 해결에 필요한 범위로 한정합니다.
+  status: machine
+- id: 85256b5fd04a0ff6
+  en: For substantial changes, discuss the direction in the issue before committing to a full implementation. Share what you have learned and invite others to fill in missing context. A small exploratory prototype can help answer a design question and give that discussion concrete evidence.
+  ko: 큰 변경이라면 전체 구현에 들어가기 전에 이슈에서 방향을 논의하세요. 알아낸 내용을 공유하고 다른 사람이 빠진 맥락을 채워 주도록 요청하세요. 작은 탐색용 프로토타입은 설계 질문에 답하고 논의에 구체적인 근거를 제공할 수 있습니다.
+  status: machine
+- id: 10e90e9a2cc9004b
+  en: 4. Try the approach and check the behavior
+  ko: 4. 방법을 시도하고 동작 확인하기
+  status: machine
+- id: fd29905ccf3dec86
+  en: When trying an approach, choose a small example that will help you judge whether it fits. Ask your AI tool to help implement it, then examine and revise the result. Working code is evidence to consider, and the design still needs your judgment.
+  ko: 접근 방법을 시도할 때는 적절성을 판단할 수 있는 작은 예제를 선택하세요. AI 도구의 도움을 받아 구현한 뒤 결과를 살펴보고 수정합니다. 작동하는 코드는 판단 근거이지만, 설계에 대한 판단은 여전히 직접 해야 합니다.
+  status: machine
+- id: 082859de2ea2f08a
+  en: Work in small steps so you can see what each change does. When an agent drafts code, read the diff and trace your example through the changed path. If a decision surprises you, ask why it is needed and explore alternatives. If the implementation becomes awkward, revisit the design before adding more.
+  ko: 각 변경의 효과를 볼 수 있도록 작은 단계로 작업하세요. 에이전트가 코드를 작성하면 diff를 읽고, 바뀐 경로를 따라 예제를 추적하세요. 의외의 결정이 있다면 왜 필요한지 묻고 대안을 검토합니다. 구현이 어색해지면 코드를 더 추가하기 전에 설계부터 다시 살펴보세요.
+  status: machine
+- id: 0f448103e6ca44b9
+  en: Read the tests with the same care. You can ask your tools to help, but check what each test actually demonstrates. Would it catch the behavior going wrong? Would it still pass if the implementation changed while preserving that behavior? Passing tests are useful evidence when they protect the expectations that matter.
+  ko: 테스트도 똑같이 꼼꼼하게 읽으세요. 도구의 도움을 받을 수 있지만, 각 테스트가 실제로 무엇을 입증하는지 확인해야 합니다. 동작이 잘못되면 잡아낼까요? 같은 동작을 유지한 채 구현만 바뀌어도 통과할까요? 중요한 기대 동작을 보호하는 테스트가 통과할 때 유용한 근거가 됩니다.
+  status: machine
+- id: c88084f9704f4caf
+  en: When updating documentation, explain what users can do and what behavior they should expect. Review AI-generated prose for accuracy and clarity, and remove implementation details or development history that do not help users.
+  ko: 문서를 고칠 때는 사용자가 무엇을 할 수 있고 어떤 동작을 기대해야 하는지 설명하세요. AI가 쓴 글의 정확성과 명료성을 검토하고, 사용자에게 도움이 되지 않는 구현 세부 사항이나 개발 이력은 덜어 내세요.
+  status: machine
+- id: b82a4a0361f4bf2d
+  en: 5. Help reviewers follow your reasoning
+  ko: 5. 리뷰어가 판단 근거를 이해하도록 돕기
+  status: machine
+- id: bc47535de3d26225
+  en: A pull request (PR) invites others to examine your change with you. Explain the problem, why you chose this approach, and how you checked it in your own words. Give reviewers enough context to follow your reasoning even if they have not read the issue discussion.
+  ko: PR은 다른 사람과 함께 변경을 살펴보자는 제안입니다. 문제, 이 방법을 선택한 이유, 검증 방법을 자신의 말로 설명하세요. 이슈 토론을 읽지 않은 리뷰어도 논리를 따라갈 수 있도록 충분한 맥락을 제공하세요.
+  status: machine
+- id: c92e50e1b0338636
+  en: Read and edit AI-generated summaries before sharing them. Keep details that help someone assess the change, and cut repetition and lengthy lists that obscure the reasoning. If a summary is too long for you to read carefully, it needs another edit before you ask reviewers to read it.
+  ko: AI가 생성한 요약은 읽고 편집한 뒤 공유하세요. 변경을 판단하는 데 도움이 되는 내용은 남기고, 논리를 가리는 반복이나 긴 나열은 줄입니다. 직접 꼼꼼히 읽기에도 너무 긴 요약이라면 리뷰어에게 읽어 달라고 하기 전에 한 번 더 다듬어야 합니다.
+  status: machine
+- id: 2fe22f5dd3aeba3c
+  en: Review is another chance to learn. A question may uncover a constraint you missed or help you explain a choice more clearly. You can use AI to investigate a comment, then check the answer and respond from your own understanding.
+  ko: 리뷰도 배울 기회입니다. 질문을 통해 놓친 제약을 발견하거나 선택의 이유를 더 명확히 설명할 수 있습니다. AI로 의견을 조사하더라도 답을 확인하고 자신의 이해를 바탕으로 응답하세요.
+  status: machine

@@ -1,0 +1,52 @@
+- id: f98402bf2f521b2d
+  en: ThermalRelaxation
+  ko: ThermalRelaxation
+  status: machine
+- id: bbac5210fe29a8d6
+  en: '[`ThermalRelaxation`][fatqat.noise.ThermalRelaxation] models zero-temperature qubit T1 and T2 relaxation on an emulator. It combines downward population decay with the additional pure dephasing needed to reproduce T2. It is a continuous-time emulator declaration, not a finite simulator channel. Matrix simulators instead use operation-bound probability-form [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] and [`PhaseDamping`][fatqat.noise.PhaseDamping] descriptors.'
+  ko: '[`ThermalRelaxation`][fatqat.noise.ThermalRelaxation]은 에뮬레이터에서 영온 큐비트의 T1·T2 이완을 모델링합니다. 하향 점유 확률 감쇠와 T2를 재현하는 데 필요한 추가 순수 탈위상을 결합합니다. 이는 유한 시뮬레이터 채널이 아니라 연속 시간 에뮬레이터 선언입니다. 행렬 시뮬레이터에서는 대신 확률 형식 [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping]과 [`PhaseDamping`][fatqat.noise.PhaseDamping]을 연산에 연결해 사용합니다.'
+  status: machine
+- id: aa7fb16e3a4b4b82
+  en: Times and rates
+  ko: 시간과 비율
+  status: machine
+- id: 124fa6141bdfdaa7
+  en: '`t1` and `t2` are finite positive values in the same unit; they have no intrinsic unit of their own. When registering the noise with an emulator, use the emulator model''s time unit. Physical consistency requires'
+  ko: '`t1`과 `t2`는 같은 단위를 사용하는 유한한 양수이며, 그 자체에 고정된 단위는 없습니다. 에뮬레이터에 잡음을 등록할 때는 에뮬레이터 모델의 시간 단위를 사용하세요. 물리적으로 일관되려면 다음 조건을 만족해야 합니다.'
+  status: machine
+- id: e6cfa2ffe9bf5c6d
+  en: The derived rates are
+  ko: 이로부터 얻는 비율은 다음과 같습니다.
+  status: machine
+- id: 3d789030f2a6ed20
+  en: '[`ThermalRelaxation.amplitude_rate`][fatqat.noise.ThermalRelaxation.amplitude_rate] returns $\gamma_1$, and [`ThermalRelaxation.pure_dephasing_rate`][fatqat.noise.ThermalRelaxation.pure_dephasing_rate] returns $\gamma_\phi$. The latter is nonnegative under the T2 bound and becomes zero at $T_2=2T_1$.'
+  ko: '[`ThermalRelaxation.amplitude_rate`][fatqat.noise.ThermalRelaxation.amplitude_rate]는 $\gamma_1$을, [`ThermalRelaxation.pure_dephasing_rate`][fatqat.noise.ThermalRelaxation.pure_dephasing_rate]는 $\gamma_\phi$를 반환합니다. 후자는 T2 경계 안에서 비음수이며 $T_2=2T_1$에서 0이 됩니다.'
+  status: machine
+- id: 125b15086e078d78
+  en: For a qubit pulse model, the emulator uses the local Lindblad operators
+  ko: 큐비트 펄스 모델에서 에뮬레이터는 다음 국소 Lindblad 연산자를 사용합니다.
+  status: machine
+- id: c7761915bf8cba35
+  en: 'The second operator is omitted when $\gamma_\phi=0$. This is a local, zero-temperature model: it includes downward relaxation but no thermal excitation or equilibrium-population parameter. Built-in support is limited to background noise on [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator].'
+  ko: $\gamma_\phi=0$이면 두 번째 연산자는 생략합니다. 이는 국소 영온 모델로, 하향 이완만 포함하며 열적 여기나 평형 점유 확률 매개변수는 없습니다. 내장 지원은 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]의 배경 잡음으로 제한됩니다.
+  status: machine
+- id: 37bd756f29254a0a
+  en: Matrix simulators
+  ko: 행렬 시뮬레이터
+  status: machine
+- id: 85b6265b94be1e14
+  en: For a known qubit operation duration $t$, the corresponding finite probabilities are below. The duration must use the same time unit as `t1` and `t2`.
+  ko: 큐비트 연산의 지속 시간 $t$를 알면 다음과 같이 유한 확률을 구할 수 있습니다. 지속 시간은 `t1`, `t2`와 같은 시간 단위를 사용해야 합니다.
+  status: machine
+- id: 25d236453efe350a
+  en: 'Construct the two probability-form descriptors explicitly. The rate-form descriptors provide the public conversion methods:'
+  ko: 두 확률 형식 선언을 명시적으로 만드세요. 비율 형식 선언에는 공개 변환 메서드가 제공됩니다.
+  status: machine
+- id: a995478a353306e9
+  en: Register `damping` and `dephasing` on the relevant operation. For a qubit, their composition gives population decay $e^{-t/T_1}$ and coherence decay $e^{-t/T_2}$.
+  ko: 관련 연산에 `damping`과 `dephasing`을 등록하세요. 큐비트에서 둘을 합성하면 점유 확률은 $e^{-t/T_1}$로, 결맞음은 $e^{-t/T_2}$로 감쇠합니다.
+  status: machine
+- id: 58832dd3cf437848
+  en: For multilevel relaxation, author the physical jump operators explicitly with [`TransitionRelaxation`](transition-relaxation.md) and add any required dephasing separately. See [Simulators](backend-support.md#noise-simulator-support) for simulator support.
+  ko: 다준위 이완에는 [`TransitionRelaxation`](transition-relaxation.md)으로 물리 점프 연산자를 명시적으로 작성하고, 필요한 탈위상은 별도로 추가하세요. 시뮬레이터 지원 범위는 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.
+  status: machine

@@ -1,0 +1,56 @@
+- id: 7740580589bf2102
+  en: AmplitudeDamping
+  ko: AmplitudeDamping
+  status: machine
+- id: 2b3a4f0d7ec880ee
+  en: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] describes conventional qubit decay from $|1\rangle$ to $|0\rangle$. Use `p` for a simulator channel or `rate` for a local Lindblad operator on a compatible emulator.'
+  ko: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping]은 큐비트가 $|1\rangle$에서 $|0\rangle$로 감쇠하는 일반적인 과정을 나타냅니다. 시뮬레이터 채널에는 `p`를, 호환되는 에뮬레이터의 국소 Lindblad 연산자에는 `rate`를 사용하세요.'
+  status: machine
+- id: ca10ac66c1c0364f
+  en: Choose probabilities or rates
+  ko: 확률 또는 비율 선택하기
+  status: machine
+- id: 5aed6fc70d993432
+  en: Supply exactly one scalar `p` or `rate`. A probability must lie in `[0, 1]`; a rate must be finite and nonnegative. The descriptor acts on one qubit and does not accept an iterable. Use [`TransitionRelaxation`](transition-relaxation.md) for an explicitly authored finite-dimensional jump operator.
+  ko: 스칼라 `p` 또는 `rate` 중 정확히 하나를 지정하세요. 확률은 `[0, 1]`에 있어야 하며 비율은 유한한 비음수여야 합니다. 이 선언은 큐비트 하나에 작용하며 반복 가능한 값은 받지 않습니다. 유한 차원 점프 연산자를 명시적으로 작성하려면 [`TransitionRelaxation`](transition-relaxation.md)을 사용하세요.
+  status: machine
+- id: 1a3000eff538f415
+  en: Simulators
+  ko: 시뮬레이터
+  status: machine
+- id: bb298cb61cd29aee
+  en: For probability $p$, the simulator uses
+  ko: 확률이 $p$이면 시뮬레이터는 다음을 사용합니다.
+  status: machine
+- id: 313ddab25b6bfca3
+  en: The channel acts on one selected qubit; use `target_positions` to choose an operand of a multi-operand gate. See [Simulators](backend-support.md#noise-simulator-support) for built-in availability.
+  ko: 채널은 선택한 큐비트 하나에 작용합니다. 여러 피연산자가 있는 게이트에서 하나를 고르려면 `target_positions`를 사용하세요. 내장 지원 범위는 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.
+  status: machine
+- id: 78eacb3d0c241e1d
+  en: Pulse emulators
+  ko: 펄스 에뮬레이터
+  status: machine
+- id: 720a2f3b88368712
+  en: For rate $r$, a compatible pulse backend uses the local Lindblad operator
+  ko: 비율이 $r$이면 호환되는 펄스 백엔드는 다음 국소 Lindblad 연산자를 사용합니다.
+  status: machine
+- id: 8ce020ab4b3d0d10
+  en: Rates are finite, nonnegative, and measured in the inverse of the backend's time unit. See [Pulse emulators](backend-support.md#noise-emulator-support) for each built-in emulator's local dimension, accepted scope, and implementation-map requirements.
+  ko: 비율은 유한한 비음수 값이며 백엔드 시간 단위의 역수로 표현합니다. 내장 에뮬레이터별 국소 차원, 허용 범위, 구현 맵 요구 사항은 [펄스 에뮬레이터](backend-support.md#noise-emulator-support)를 참고하세요.
+  status: machine
+- id: 3e072a550276a389
+  en: Converting between forms
+  ko: 형식 간 변환
+  status: machine
+- id: b94f55dc6fc37459
+  en: The conversion methods apply
+  ko: 변환 메서드는 다음 관계를 적용합니다.
+  status: machine
+- id: 7683a67311c9e3a4
+  en: This is the exact isolated qubit amplitude-damping relation. Applying the resulting channel after a driven operation is not generally equivalent to simultaneous Hamiltonian and Lindblad evolution.
+  ko: 이 관계는 고립된 큐비트의 진폭 감쇠에 대해 정확합니다. 이렇게 얻은 채널을 구동 연산 뒤에 적용하는 것은 일반적으로 해밀토니안과 Lindblad 진화를 동시에 계산하는 것과 같지 않습니다.
+  status: machine
+- id: 0dcb2a289b366526
+  en: Duration must be finite and nonnegative. A probability of 1 has no finite rate, and a nonzero probability cannot be converted to a finite rate at zero duration.
+  ko: 지속 시간은 유한한 비음수여야 합니다. 확률 1에 대응하는 유한한 비율은 없으며, 지속 시간이 0일 때 0이 아닌 확률을 유한한 비율로 변환할 수 없습니다.
+  status: machine

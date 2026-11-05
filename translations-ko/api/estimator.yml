@@ -1,0 +1,116 @@
+- id: a566e72b5d4b124c
+  en: Observables and estimation
+  ko: 관측량과 추정
+  status: machine
+- id: 3c4e36c32357cbcc
+  en: Use [`Estimator`][fatqat.Estimator] to evaluate one or more [`Observable`][fatqat.Observable] values on a backend. The program must be unmeasured and fully bound with no free Parameters.
+  ko: '[`Estimator`][fatqat.Estimator]로 백엔드에서 하나 이상의 [`Observable`][fatqat.Observable] 값을 계산합니다. 측정이 없고 모든 Parameters에 값이 바인딩된 프로그램이어야 합니다.'
+  status: machine
+- id: 021ea6651f894374
+  en: Estimate an observable
+  ko: 관측량 추정
+  status: machine
+- id: 20a31d4ec63acf7d
+  en: For a guided workflow, see [Estimate observables](../guide/interpret-results.md).
+  ko: 단계별 사용법은 [관측량 추정](../guide/interpret-results.md)을 참고하세요.
+  status: machine
+- id: 73fca541df0c0421
+  en: Construct an observable
+  ko: 관측량 구성
+  status: machine
+- id: 4d1be4fea973dd2b
+  en: 'An observable is a sum of real coefficients times products of local operators, each acting on one subsystem:'
+  ko: '관측량은 국소 연산자들을 곱한 뒤 실수 계수를 붙인 항들의 합입니다. 각 국소 연산자는 하나의 부분계에 작용합니다:'
+  status: machine
+- id: 83fbba990d9b135f
+  en: the Pauli operators `X`, `Y`, and `Z`, which act on qubits only;
+  ko: 큐비트에만 작용하는 Pauli 연산자 `X`, `Y`, `Z`;
+  status: machine
+- id: 43ddd0d4221fcfe5
+  en: '[`Projector(level)`][fatqat.observable.Projector], the projector onto one level, with `ZERO` and `ONE` as names for `Projector(0)` and `Projector(1)`;'
+  ko: 한 준위로의 사영 연산자 [`Projector(level)`][fatqat.observable.Projector]. `ZERO`와 `ONE`은 각각 `Projector(0)`, `Projector(1)`의 이름입니다;
+  status: machine
+- id: 3721333e65c553bb
+  en: '[`NumberOperator()`][fatqat.observable.NumberOperator], `diag(0, 1, ..., d-1)` on a subsystem of dimension `d`: the mean level of a qudit, or `ONE` on a qubit.'
+  ko: 차원이 `d`인 부분계에서 `diag(0, 1, ..., d-1)`을 나타내는 [`NumberOperator()`][fatqat.observable.NumberOperator]. 큐디트에서는 평균 준위를, 큐비트에서는 `ONE`을 나타냅니다.
+  status: machine
+- id: 0d8172c0005fad09
+  en: 'A string label gives one letter per subsystem, from `I`, `X`, `Y`, and `Z`. The character at position `q` acts on subsystem `q`, and subsystems past the end of the label carry the identity. `"XI"` means `X(q0) tensor I(q1)`; on the state `|10>`, `<ZI> = -1` and `<IZ> = +1`. These forms are equivalent:'
+  ko: '문자열 라벨은 부분계마다 `I`, `X`, `Y`, `Z` 중 한 글자를 지정합니다. 위치 `q`의 문자가 부분계 `q`에 작용하며, 라벨 끝을 넘어서는 부분계에는 항등 연산자가 적용됩니다. `"XI"`는 `X(q0) tensor I(q1)`을 뜻합니다. 상태 `|10>`에서는 `<ZI> = -1`, `<IZ> = +1`입니다. 다음 표현은 서로 같습니다:'
+  status: machine
+- id: 0eb2b4c3ed32e9f8
+  en: '[`from_sparse`][fatqat.Observable.from_sparse] names each non-identity operator and its subsystem explicitly. A term''s operators can be a letter string such as `"XY"`, one operator object, or a sequence that mixes both. This is also how you write `Projector` and `NumberOperator` operators:'
+  ko: '[`from_sparse`][fatqat.Observable.from_sparse]는 항등이 아닌 각 연산자와 그 부분계를 명시합니다. 한 항의 연산자는 `"XY"` 같은 문자 문자열, 연산자 객체 하나, 또는 두 형식을 섞은 시퀀스로 지정할 수 있습니다. `Projector`와 `NumberOperator`도 이렇게 작성합니다:'
+  status: machine
+- id: 622c863621c52148
+  en: Coefficients must be real.
+  ko: 계수는 실수여야 합니다.
+  status: machine
+- id: 3ef4dc8bfa8ad43a
+  en: 'An observable has no width or subsystem dimensions of its own. The backend checks each local operator against the program: every index must name a program subsystem, Pauli operators need a qubit, and a projector level must be below its subsystem''s dimension. This lets one observable describe qudit programs:'
+  ko: '관측량 자체에는 폭이나 부분계 차원이 정해져 있지 않습니다. 백엔드가 프로그램을 기준으로 각 국소 연산자를 검증합니다. 인덱스는 프로그램의 부분계를 가리켜야 하고, Pauli 연산자는 큐비트에만 적용되며, 사영 준위는 부분계 차원보다 작아야 합니다. 따라서 하나의 관측량으로 큐디트 프로그램도 기술할 수 있습니다:'
+  status: machine
+- id: 479684de59bfab33
+  en: Exact and sampled results
+  ko: 정확한 결과와 샘플링 결과
+  status: machine
+- id: 06f36e9304d929af
+  en: Pass one observable to receive scalar expectation and standard-error values, or a list or tuple to receive arrays in the same order.
+  ko: 관측량 하나를 전달하면 기댓값과 표준 오차를 스칼라로 받습니다. 리스트나 튜플을 전달하면 같은 순서의 배열을 받습니다.
+  status: machine
+- id: 1b56b6f38a0057de
+  en: '`shots=0` computes an exact value. A positive `shots` value samples each nonconstant term independently, and [`get_standard_error`][fatqat.Result.get_standard_error] reports the resulting sample standard error. Constant terms contribute zero standard error; one sample of a nonconstant term has undefined standard error and reports `nan`. Set `simulation_config["seed"]` to reproduce a sampled run.'
+  ko: '`shots=0`이면 정확한 값을 계산합니다. 양의 `shots`에서는 상수항이 아닌 각 항을 독립적으로 샘플링하며 [`get_standard_error`][fatqat.Result.get_standard_error]가 그에 따른 표본 표준 오차를 반환합니다. 상수항의 표준 오차는 0입니다. 비상수항을 한 번만 샘플링하면 표준 오차가 정의되지 않아 `nan`을 반환합니다. 샘플링 실행을 재현하려면 `simulation_config["seed"]`를 설정하세요.'
+  status: machine
+- id: 8cdd28ab39614078
+  en: Configure the simulation method, runtime, and noise on the backend. The Estimator forwards `simulation_config` to the backend and accepts the same keys as its normal `run()` path; see the tables for [matrix simulators](simulator.md#runtime-and-execution) and [the two-level atom emulator](atom-emulators.md#run-configuration-and-results). `result_config` is not accepted.
+  ko: 시뮬레이션 방법, 런타임, 잡음은 백엔드에서 설정합니다. Estimator는 `simulation_config`를 백엔드로 전달하며, 해당 백엔드의 일반 `run()` 경로와 같은 키를 받습니다. [행렬 시뮬레이터](simulator.md#runtime-and-execution)와 [2준위 원자 에뮬레이터](atom-emulators.md#run-configuration-and-results)의 표를 참고하세요. `result_config`는 받지 않습니다.
+  status: machine
+- id: cc396809c6935a1a
+  en: 'Read estimator results with [`get_expectation`][fatqat.Result.get_expectation] and [`get_standard_error`][fatqat.Result.get_standard_error]. Run the backend separately if you also need its final state. Result metadata is compact: backend name, method, runtime, and shots, plus the pulse solver for pulse executions.'
+  ko: 추정 결과는 [`get_expectation`][fatqat.Result.get_expectation]과 [`get_standard_error`][fatqat.Result.get_standard_error]로 읽습니다. 최종 상태도 필요하면 백엔드를 별도로 실행하세요. 결과 메타데이터에는 백엔드 이름, 방법, 런타임, 샷 수만 담기며, 펄스 실행에서는 펄스 솔버도 기록됩니다.
+  status: machine
+- id: d0e248b10a8c7d2f
+  en: Backend support
+  ko: 백엔드 지원 범위
+  status: machine
+- id: a45f5727b71f28ea
+  en: '**Matrix simulators** support every operator, exact and sampled, with a statevector or density-matrix method. Unitary and superoperator methods raise [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] because they produce maps rather than states. For an exact expectation with reset or an applicable stochastic channel, use a density-matrix method; a statevector method can run those programs with positive shots. Programs with carrier loss are rejected.'
+  ko: '**행렬 시뮬레이터**는 상태 벡터 또는 밀도 행렬 방법으로 모든 연산자의 정확 계산과 샘플링을 지원합니다. 유니터리와 초연산자 방법은 상태가 아닌 사상을 만들므로 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]가 발생합니다. 리셋이나 적용 가능한 확률적 채널이 있는 프로그램에서 정확한 기댓값을 구하려면 밀도 행렬 방법을 사용하세요. 상태 벡터 방법도 양의 샷 수로 이러한 프로그램을 실행할 수 있습니다. 캐리어 손실이 있는 프로그램은 지원하지 않습니다.'
+  status: machine
+- id: 04baa45c97f86597
+  en: '**The two-level atom pulse emulator** evaluates observables on its qubit programs with a statevector or density-matrix method. There, `NumberOperator()` equals `ONE`, and only levels 0 and 1 are valid projector levels.'
+  ko: '**2준위 원자 펄스 에뮬레이터**는 큐비트 프로그램에서 상태 벡터나 밀도 행렬 방법으로 관측량을 계산합니다. 여기서는 `NumberOperator()`가 `ONE`과 같고, 사영 연산자의 유효 준위는 0과 1뿐입니다.'
+  status: machine
+- id: 879881d16a619284
+  en: Exact statevector evaluation rejects potentially active Lindblad evolution; use exact density-matrix execution or a positive-shot trajectory run.
+  ko: 정확한 상태 벡터 계산에서는 작용할 가능성이 있는 Lindblad 진화를 허용하지 않습니다. 정확한 밀도 행렬 실행이나 양의 샷 수를 사용하는 궤적 실행을 선택하세요.
+  status: machine
+- id: dacd89d9643cecf8
+  en: Positive-shot evaluation supports the diagonal operators `Z`, `Projector(0)`, `Projector(1)`, and `NumberOperator()`.
+  ko: 양의 샷 수에서는 대각 연산자 `Z`, `Projector(0)`, `Projector(1)`, `NumberOperator()`를 지원합니다.
+  status: machine
+- id: 86eb367f6ecd93d4
+  en: Reset is unsupported.
+  ko: 리셋은 지원하지 않습니다.
+  status: machine
+- id: ba9641070a0beab6
+  en: 'Transmon and three-level atom emulators are rejected: their local dimensions exceed the qubit observable space.'
+  ko: Transmon과 3준위 원자 에뮬레이터는 국소 차원이 큐비트 관측량 공간을 넘으므로 지원하지 않습니다.
+  status: machine
+- id: b35d8307b89e7fad
+  en: '**Readout noise.** Exact evaluation rejects readout-confusion noise, since it has no exact meaning. Positive-shot evaluation applies readout confusion to the measurements. On matrix simulators, a sampled `X` or `Y` is measured after an ideal basis change that gate noise does not affect.'
+  ko: '**판독 잡음.** 판독 혼동 잡음은 정확 계산에 대응하는 의미가 없어 정확 계산에서는 거부됩니다. 양의 샷 수에서는 측정에 판독 혼동을 적용합니다. 행렬 시뮬레이터에서 `X` 또는 `Y`를 샘플링할 때는 게이트 잡음의 영향을 받지 않는 이상적인 기저 변환 후 측정합니다.'
+  status: machine
+- id: 72a7d5d9dd560aef
+  en: Parameter sweeps
+  ko: 매개변수 스윕
+  status: machine
+- id: dc46617b715c12de
+  en: '[`run_sweep`][fatqat.Estimator.run_sweep] evaluates binding rows in input order. Validation errors raise directly; execution errors follow the backend''s error-handling policy. No partial result list is returned. See [Simulate a quantum program](../guide/simulation.md) for a guided parameter sweep; accepted binding shapes and seed behavior are specified here.'
+  ko: '[`run_sweep`][fatqat.Estimator.run_sweep]는 입력 순서대로 바인딩 행을 평가합니다. 검증 오류는 바로 발생하고 실행 오류는 백엔드의 오류 처리 정책을 따릅니다. 부분 결과 목록은 반환하지 않습니다. 매개변수 스윕의 단계별 예제는 [양자 프로그램 시뮬레이션](../guide/simulation.md)을 참고하세요. 허용되는 바인딩 형태와 시드 동작은 여기에서 설명합니다.'
+  status: machine
+- id: 0512da99303af84f
+  en: Detailed reference
+  ko: 상세 레퍼런스
+  status: machine

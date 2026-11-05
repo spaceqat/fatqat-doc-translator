@@ -1,0 +1,29 @@
+terms:
+  qubit: 큐비트
+  qutrit: 큐트릿
+  subsystem: 부분계
+  beam splitter: 빔 스플리터
+  phase shifter: 위상 시프터
+  statevector: 상태 벡터
+  density matrix: 밀도 행렬
+  Hamiltonian: 해밀토니안
+  observable: 관측량
+  expectation value: 기댓값
+  circuit: 회로
+  measurement: 측정
+  noise: 잡음
+  simulator: 시뮬레이터
+  emulator: 에뮬레이터
+  simulation: 시뮬레이션
+  emulation: 에뮬레이션
+  entanglement: 얽힘
+  pulse: 펄스
+  waveform: 파형
+  parameter: 매개변수
+  backend: 백엔드
+  coherence: 결맞음
+  leakage: 누설
+  neutral atom: 중성 원자
+  superconducting: 초전도
+  readout: 판독
+  feedforward: 피드포워드

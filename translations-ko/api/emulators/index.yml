@@ -1,0 +1,16 @@
+- id: 159ef4291565c740
+  en: Emulators
+  ko: 에뮬레이터
+  status: machine
+- id: d10c6c057a325847
+  en: FatQat provides [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) pulse emulators. See [Pulse control](../pulse-control/index.md) for shared control values, or [Simulators](../simulators/index.md) for gate-level simulation. The guided path begins with [Follow a Program into physical dynamics](../../guide/hamiltonian-emulation.md).
+  ko: FatQat은 [transmon](../pulse-emulator.md)과 [중성 원자](../atom-emulators.md) 펄스 에뮬레이터를 제공합니다. 공통 제어 값은 [펄스 제어](../pulse-control/index.md), 게이트 수준 시뮬레이션은 [시뮬레이터](../simulators/index.md)를 참고하세요. 단계별 학습은 [Program에서 물리 동역학까지](../../guide/hamiltonian-emulation.md)에서 시작합니다.
+  status: machine
+- id: 46de0b9132fa953c
+  en: '[Superconducting pulse emulator](../pulse-emulator.md)'
+  ko: '[초전도 펄스 에뮬레이터](../pulse-emulator.md)'
+  status: machine
+- id: a278a2f643790146
+  en: '[Neutral-atom emulators](../atom-emulators.md)'
+  ko: '[중성 원자 에뮬레이터](../atom-emulators.md)'
+  status: machine

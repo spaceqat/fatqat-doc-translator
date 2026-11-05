@@ -1,0 +1,60 @@
+- id: 933c61ba7f9876bb
+  en: FatQat provides a general circuit simulator and two hardware profiles. They use the same run and result API. Choose [`Simulator`][fatqat.simulator.Simulator] for unrestricted gate-level work, or a profile when the program must obey a native gate set, layout, or connectivity rule.
+  ko: FatQat은 범용 회로 시뮬레이터와 두 하드웨어 프로필을 제공합니다. 모두 같은 실행 및 결과 API를 사용합니다. 제약 없는 게이트 수준 작업에는 [`Simulator`][fatqat.simulator.Simulator]를, 네이티브 게이트 집합·배치·연결 규칙을 지켜야 할 때는 프로필을 선택하세요.
+  status: machine
+- id: 9bf34699612b6c6b
+  en: Start with [Choose how much physics to model](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/hardware-profile-simulation.md) for the profile workflow.
+  ko: 실행 수준을 정하려면 [모델링할 물리 수준 선택](../../guide/execution-models.md)을, 프로필 사용 과정을 보려면 [하드웨어 프로필로 Program 검사](../../guide/hardware-profile-simulation.md)를 참고하세요.
+  status: machine
+- id: e5bbaff4b52ca744
+  en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] uses a configurable superconducting coupling graph and accepts `X`, `SX`, virtual `RZ`, and coupled `CZ`. It offers an optional reference noise model.'
+  ko: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]는 설정 가능한 초전도 결합 그래프를 사용하며 `X`, `SX`, 가상 `RZ`, 결합된 `CZ`를 받습니다. 선택적인 참조 잡음 모델도 제공합니다.'
+  status: machine
+- id: 7ce4b36314516f41
+  en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] has no fixed connectivity. Every program site starts empty: `Put` loads atoms, `Loss` removes them, and `Pair` and `Unpair` change which atoms can interact.'
+  ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]에는 고정 연결 관계가 없습니다. 모든 프로그램 사이트는 비어 있는 상태로 시작합니다. `Put`은 원자를 로딩하고 `Loss`는 제거하며, `Pair`와 `Unpair`는 상호작용 가능한 원자 쌍을 바꿉니다.'
+  status: machine
+- id: f1b9253556594d02
+  en: 'The profiles validate the program as written: they do not transpile or route it, and they do not reproduce a named processor. Use the [pulse emulators](../emulators/index.md) when timing or Hamiltonian evolution matters.'
+  ko: 프로필은 작성된 프로그램 그대로를 검증합니다. 트랜스파일이나 라우팅을 수행하지 않으며 특정 프로세서를 재현하지도 않습니다. 타이밍이나 해밀토니안 진화가 중요하면 [펄스 에뮬레이터](../emulators/index.md)를 사용하세요.
+  status: machine
+- id: b423a251c71fdae6
+  en: '**Choose a simulator**'
+  ko: '**시뮬레이터 선택**'
+  status: machine
+- id: 8bc02a041b8d297e
+  en: '| Class | Use it for | Main constraint |'
+  ko: '| 클래스 | 용도 | 주요 제약 |'
+  status: machine
+- id: 88d56b8f26e8c3bd
+  en: '| [`Simulator`][fatqat.simulator.Simulator] | General circuit simulation and custom matrix implementations | No device topology |'
+  ko: '| [`Simulator`][fatqat.simulator.Simulator] | 일반 회로 시뮬레이션과 사용자 정의 행렬 구현 | 장치 토폴로지 없음 |'
+  status: machine
+- id: b541fb30f09be048
+  en: '| [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] | Constrained superconducting native-gate experiments | `X`, `SX`, `RZ`; `CZ` on configured couplings |'
+  ko: '| [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] | 초전도 네이티브 게이트 제약을 반영한 실험 | `X`, `SX`, `RZ`; 설정된 결합의 `CZ` |'
+  status: machine
+- id: d9451617863d6cb6
+  en: '| [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] | Neutral-atom occupancy, loss, and dynamic connectivity | `RX`, `RY`, `RZ`, and paired `CZ` |'
+  ko: '| [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] | 중성 원자의 점유, 손실, 동적 연결 관계 | `RX`, `RY`, `RZ`, 페어링된 `CZ` |'
+  status: machine
+- id: 3d99262bfbc113cf
+  en: '| [`LOSimulator`][fatqat.simulator.LOSimulator] | Linear-optical Programs on photon modes | Modes truncated to a per-run photon cutoff |'
+  ko: '| [`LOSimulator`][fatqat.simulator.LOSimulator] | 광자 모드의 선형광학 Program | 실행마다 광자 절단값으로 모드 제한 |'
+  status: machine
+- id: 650d8b10026d80f7
+  en: '[Simulator](../simulator.md)'
+  ko: '[Simulator](../simulator.md)'
+  status: machine
+- id: c46e1af5bbfcf962
+  en: '[SCQubitSimulator](sc-qubit.md)'
+  ko: '[SCQubitSimulator](sc-qubit.md)'
+  status: machine
+- id: 425f36f4b00a0954
+  en: '[AtomArraySimulator](atom-array.md)'
+  ko: '[AtomArraySimulator](atom-array.md)'
+  status: machine
+- id: e91038f7c32db28c
+  en: '[LOSimulator](linear-optics.md)'
+  ko: '[LOSimulator](linear-optics.md)'
+  status: machine

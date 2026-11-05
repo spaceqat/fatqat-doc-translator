@@ -1,0 +1,76 @@
+- id: 029b3729b776c140
+  en: Follow a Program into physical dynamics
+  ko: Program에서 물리적 시간 변화까지
+  status: machine
+- id: c40ad61ffde9f03d
+  en: A FatQat emulator follows the physical state during timed controls. It accepts a [`Program`][fatqat.Program], builds a physical schedule, and integrates a time-dependent Hamiltonian (and, when requested, Lindblad evolution). Use it to study pulse duration, coupling, leakage, or noise acting continuously over elapsed time. Circuit simulators can include noise channels without resolving this time evolution.
+  ko: FatQat 에뮬레이터는 시간에 맞춰 가해지는 제어 동안의 물리 상태를 추적합니다. [`Program`][fatqat.Program]을 받아 물리적 스케줄을 만들고, 시간 의존 해밀토니안과 요청한 경우 Lindblad 진화를 적분합니다. 펄스 길이, 결합, 누설, 경과 시간 내내 작용하는 잡음을 연구할 때 사용하세요. 회로 시뮬레이터는 이러한 시간 변화를 직접 계산하지 않고도 잡음 채널을 포함할 수 있습니다.
+  status: machine
+- id: 9e82fb5edc155f3b
+  en: 'Two authoring paths meet at that same schedule:'
+  ko: 프로그램을 작성하는 두 가지 방식은 같은 물리적 실행 일정으로 이어집니다.
+  status: machine
+- id: 1cb2f329da8e71d3
+  en: The model supplies the physical levels, units, drift, channels, and coupling. A gate implementation map turns an ordinary gate into calibrated controls. A direct pulse supplies those controls explicitly. The following pages apply this shared workflow to transmons and atoms.
+  ko: 모델은 물리 준위, 단위, 드리프트, 제어 채널, 결합을 정의합니다. 게이트 구현 맵은 일반 게이트를 보정된 제어로 변환하고, 직접 작성한 펄스는 제어를 명시적으로 지정합니다. 이어지는 페이지에서는 이 공통 과정을 Transmon과 원자에 적용합니다.
+  status: machine
+- id: 32e3064eeba6e018
+  en: Run a calibrated gate
+  ko: 보정된 게이트 실행하기
+  status: machine
+- id: ab22e1776ac34659
+  en: 'Use a packaged physical model as a reproducible baseline, then construct its emulator. Here a one-qubit Program is realized on a model containing two three-level transmons:'
+  ko: 재현 가능한 기준으로 패키지에 포함된 물리 모델을 사용하고, 그 모델로 에뮬레이터를 생성합니다. 여기서는 단일 큐비트 Program을 3준위 Transmon 두 개로 구성된 모델에서 실행합니다.
+  status: machine
+- id: a1e9e0d780032ee1
+  en: '`RX` remains an ordinary Program operation. At execution time, the emulator''s gate map obtains a pulse recipe from its calibration and binds that recipe to the model''s drive channel. The physical model has two qutrits, so the returned state, a QuTiP ket `Qobj`, covers all $3^2$ basis states, including the second transmon. The Program still declares one two-level qubit. Each transmon''s third physical level lets the result show leakage out of its qubit states, `|0>` and `|1>`.'
+  ko: '`RX`는 여전히 일반적인 Program 연산입니다. 실행 시 에뮬레이터의 게이트 맵은 보정 데이터에서 펄스 레시피를 가져와 모델의 구동 채널에 연결합니다. 물리 모델에는 큐트릿 두 개가 있으므로 반환되는 상태인 QuTiP ket `Qobj`는 두 번째 transmon까지 포함한 $3^2$개의 모든 기저 상태를 다룹니다. Program에는 여전히 2준위 큐비트 하나만 선언되어 있습니다. 각 transmon의 세 번째 물리 준위 덕분에 큐비트 상태인 `|0>`과 `|1>` 밖으로의 누설을 결과에서 확인할 수 있습니다.'
+  status: machine
+- id: c1aa9ad6278fd40e
+  en: Packaged models and calibrations are reference snapshots. Supply a validated model document and implementation map when the physical system or calibration changes; do not interpret the packaged data as a live-device calibration.
+  ko: 패키지에 포함된 모델과 보정값은 특정 시점의 기준 데이터입니다. 물리 시스템이나 보정값이 바뀌면 검증된 모델 문서와 구현 맵을 제공하세요. 패키지의 데이터를 실제 장치의 현재 보정값으로 해석해서는 안 됩니다.
+  status: machine
+- id: 697dc50b09c3d990
+  en: Add a pulse directly
+  ko: 펄스 직접 추가하기
+  status: machine
+- id: db7917a37985a929
+  en: 'A direct pulse has three pieces: waveform samples, the physical channel they drive, and the duration of the control block. The code below builds them in that order as a [`SampledWaveform`][fatqat.emulator.SampledWaveform], a [`PulseControl`][fatqat.emulator.PulseControl], and finally a [`PulseOperation`][fatqat.operations.PulseOperation]:'
+  ko: 직접 작성하는 펄스는 파형 샘플, 구동할 물리 채널, 제어 블록의 지속 시간으로 구성됩니다. 아래 코드는 이 순서대로 [`SampledWaveform`][fatqat.emulator.SampledWaveform], [`PulseControl`][fatqat.emulator.PulseControl], 마지막으로 [`PulseOperation`][fatqat.operations.PulseOperation]을 만듭니다.
+  status: machine
+- id: d935092160139fc2
+  en: Notice that `direct_program.add(pulse)` has no logical target. The channel already names physical transmon `q0`, and a [`ResourceLayout`][fatqat.ResourceLayout] does not remap that address. The model and channel define the time and value units; the API reference records the exact domains for each emulator.
+  ko: '`direct_program.add(pulse)`에는 논리 대상이 없습니다. 채널에서 이미 물리 Transmon `q0`을 지정했으며, [`ResourceLayout`][fatqat.ResourceLayout]은 이 주소를 다시 매핑하지 않습니다. 시간과 값의 단위는 모델과 채널이 정의합니다. 에뮬레이터별 정확한 값의 범위는 API 참조에 나와 있습니다.'
+  status: machine
+- id: bc074eb4e083958f
+  en: Read a pulse as continuous evolution
+  ko: 펄스를 연속적인 시간 변화로 이해하기
+  status: machine
+- id: 45f638a78c961d4a
+  en: The three waveform samples above specify a drive over the full 20-unit interval. The emulator interpolates between them, combines the drive with drift and coupling terms, and integrates the physical state. The state covers every level in the physical model throughout the pulse, including levels that the Program did not declare.
+  ko: 위의 파형 샘플 세 개는 20단위 전체 구간의 구동을 지정합니다. 에뮬레이터는 샘플 사이를 보간하고, 구동을 드리프트 및 결합 항과 함께 적용해 물리 상태를 적분합니다. 펄스가 지속되는 동안 상태에는 Program에 선언되지 않은 준위까지 포함해 물리 모델의 모든 준위가 들어 있습니다.
+  status: machine
+- id: e428f989cfeba0ac
+  en: 'The next chapter turns this mechanism into a concrete transmon experiment: it compares a calibrated rotation with a direct drive and makes the resulting leakage visible.'
+  ko: 다음 장에서는 이 과정을 Transmon 실험에 적용합니다. 보정된 회전과 직접 구동을 비교하고, 그 결과 발생하는 누설을 확인합니다.
+  status: machine
+- id: eb74b3ff33415145
+  en: Understand scheduling
+  ko: 스케줄링 이해하기
+  status: machine
+- id: 072ebeeb3ecb0bee
+  en: All controls inside one `PulseOperation` share its interval; `start_offset` can move an individual waveform within that interval. Between operations, the schedule preserves source order for blocks that use the same physical resource and may overlap independent blocks. Choose `"ASAP"` or `"ALAP"` through `simulation_config` when that placement matters.
+  ko: 하나의 `PulseOperation` 안에 있는 모든 제어는 해당 연산의 시간 구간을 공유합니다. `start_offset`으로 그 구간 안에서 개별 파형의 위치를 옮길 수 있습니다. 서로 다른 연산 사이에서는 같은 물리 자원을 사용하는 블록의 소스 순서를 유지하며, 독립적인 블록은 겹칠 수 있습니다. 배치 방식이 중요하다면 `simulation_config`에서 `"ASAP"` 또는 `"ALAP"`를 선택하세요.
+  status: machine
+- id: a9369d5400c85395
+  en: Drift and background continuous noise evolve throughout elapsed time. On an emulator that supports classical conditions, a false condition can skip a control block without deleting its duration, so the model still evolves during the interval. This lets you study the effect of elapsed time even when no control is active.
+  ko: 드리프트와 배경 연속 잡음은 경과 시간 전체에 걸쳐 작용합니다. 고전 조건을 지원하는 에뮬레이터에서 조건이 거짓이면 제어 블록을 건너뛰더라도 해당 시간 구간은 남을 수 있으므로, 그동안 모델의 상태는 계속 변합니다. 이를 통해 제어가 활성화되지 않은 동안에도 경과 시간이 미치는 영향을 연구할 수 있습니다.
+  status: machine
+- id: 9e73b4f96f6c735a
+  en: 'The constructor''s `method` selects the mathematical representation and Result accessor: `statevector` (the default), `density_matrix`, or `unitary`. It does not select an internal differential-equation solver.'
+  ko: 생성자의 `method`는 수학적 표현과 Result 접근자를 선택합니다. 선택지는 `statevector`(기본값), `density_matrix`, `unitary`입니다. 내부 미분 방정식 풀이 알고리즘을 선택하는 옵션은 아닙니다.
+  status: machine
+- id: 966d30c7aad11f15
+  en: Continue with [Transmon emulation](transmon-emulation.md) or [Neutral-atom emulation](neutral-atom-emulation.md). For pulse object, schedule, execution-method, and model contracts, use the [pulse-control API](../api/pulse-control/index.md) and [emulator API](../api/emulators/index.md).
+  ko: '[Transmon 에뮬레이션](transmon-emulation.md) 또는 [중성 원자 에뮬레이션](neutral-atom-emulation.md)으로 이어서 읽어보세요. 펄스 객체, 실행 일정, 실행 방식, 모델의 정확한 규약은 [펄스 제어 API](../api/pulse-control/index.md)와 [에뮬레이터 API](../api/emulators/index.md)를 참고하세요.'
+  status: machine

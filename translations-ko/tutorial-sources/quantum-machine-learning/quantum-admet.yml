@@ -1,0 +1,204 @@
+- id: 2a83b1f0ce752b70
+  en: Search quantum circuits for ADMET prediction
+  ko: ADMET 예측을 위한 양자 회로 탐색
+  status: machine
+- id: b4e950b036948a86
+  en: Reimplement the QCS-ADME search, imbalance-aware scoring, regression scoring, and training workflow with FatQat parameter sweeps.
+  ko: FatQat 매개변수 스윕으로 QCS-ADME의 회로 탐색, 불균형을 고려한 점수, 회귀 점수, 학습 과정을 다시 구현합니다.
+  status: machine
+- id: 123656e3d3e00fcc
+  en: Classification and regression search scores for four candidate quantum circuits on synthetic inputs.
+  ko: 합성 입력에서 네 후보 양자 회로의 분류 및 회귀 탐색 점수
+  status: machine
+- id: 8b1874c25ace756c
+  en: Three-qubit circuit selected by the classification search.
+  ko: 분류 탐색에서 선택한 3큐비트 회로
+  status: machine
+- id: 52a6e67c8d3b1cec
+  en: Training mean squared error for the selected classification and regression circuits.
+  ko: 선택한 분류 및 회귀 회로의 학습 평균 제곱 오차
+  status: machine
+- id: 18d57c4273f7e418
+  en: Held-out classification confusion matrix and regression predictions on synthetic inputs.
+  ko: 합성 입력의 홀드아웃 분류 혼동 행렬과 회귀 예측
+  status: machine
+- id: 65853afec1700989
+  en: What ADMET prediction measures
+  ko: ADMET 예측이 다루는 것
+  status: machine
+- id: 9d19a1a6a10d9564
+  en: 'A molecule''s activity against a biological target is only part of its potential as a drug. **ADMET** describes how the body handles a compound and whether it may cause harm:'
+  ko: 생물학적 표적에 대한 활성은 분자가 약물이 될 가능성을 결정하는 요소의 일부입니다. **ADMET**은 몸이 화합물을 어떻게 처리하며 어떤 유해 작용이 있을 수 있는지 나타냅니다.
+  status: machine
+- id: fd073608b54f394f
+  en: '| Property | What it describes |'
+  ko: '| 특성 | 설명 |'
+  status: machine
+- id: f5e5868557757778
+  en: '| **Absorption** | Entry from the administration site into the bloodstream. |'
+  ko: '| **흡수** | 투여 부위에서 혈류로 들어가는 과정. |'
+  status: machine
+- id: a59e034fd51056d1
+  en: '| **Distribution** | Movement from blood into tissues. |'
+  ko: '| **분포** | 혈액에서 조직으로 이동하는 과정. |'
+  status: machine
+- id: 4eed892239313380
+  en: '| **Metabolism** | Chemical transformation of the compound in the body. |'
+  ko: '| **대사** | 체내에서 화합물이 화학적으로 변환되는 과정. |'
+  status: machine
+- id: 0eaaedf9e8c9bf05
+  en: '| **Excretion** | Removal of the compound and its metabolites. |'
+  ko: '| **배설** | 화합물과 그 대사산물이 제거되는 과정. |'
+  status: machine
+- id: 651841743f8e1428
+  en: '| **Toxicity** | Potential harmful effects, such as liver injury. |'
+  ko: '| **독성** | 간 손상 등 잠재적인 유해 작용. |'
+  status: machine
+- id: 02f829a2363ac545
+  en: Predicting these properties from molecular structure helps researchers prioritize candidates before costly experiments. These endpoints require different learning objectives. Blood–brain barrier penetration and drug-induced liver injury are classification examples; drug half-life and clearance require continuous predictions. Unequal class counts can hide poor minority-class performance. Continuous targets instead require preserving degrees of similarity. These two challenges motivate the task-specific circuit scores used below.
+  ko: 분자 구조에서 이런 특성을 예측하면 비용이 큰 실험 전에 후보의 우선순위를 정할 수 있습니다. 특성마다 학습 목표도 다릅니다. 혈액뇌장벽 투과와 약물 유발 간 손상은 분류 문제이며, 약물 반감기와 청소율은 연속값 예측이 필요합니다. 클래스 수가 불균형하면 소수 클래스의 나쁜 성능이 가려질 수 있습니다. 연속 타깃에서는 값 사이의 유사성 정도를 보존해야 합니다. 아래의 과제별 회로 점수는 이 두 문제에서 출발합니다.
+  status: machine
+- id: 685d668d002b7a63
+  en: From molecular features to quantum circuit search
+  ko: 분자 특징에서 양자 회로 탐색으로
+  status: machine
+- id: 7bbf167cb035c04d
+  en: Which circuit should we train when its inputs describe a molecule? The QCS-ADME workflow searches circuit structures before optimizing their weights. It compares the states produced by different inputs with a desired similarity matrix, then combines that score with resistance to simulated noise. Classification asks for similar states within a class; regression asks for similar states when target values are close.
+  ko: 입력이 분자를 설명할 때 어떤 회로를 학습해야 할까요? QCS-ADME는 가중치 최적화 전에 회로 구조를 탐색합니다. 서로 다른 입력이 만드는 상태들을 목표 유사도 행렬과 비교하고, 그 점수를 시뮬레이션 잡음에 대한 내성과 결합합니다. 분류에서는 같은 클래스의 상태가 비슷해야 하고, 회귀에서는 타깃 값이 가까운 입력의 상태가 비슷해야 합니다.
+  status: machine
+- id: 76d3c8dca012b4c6
+  en: This tutorial reimplements that loop with [`Program`][fatqat.Program], [`ParameterVector`][fatqat.ParameterVector], and [`Estimator`][fatqat.Estimator]. You will generate a small candidate pool, score both tasks, train one circuit per task, and evaluate predictions on held-out inputs. Each circuit is built once; features and weights enter as parameter bindings throughout search and training.
+  ko: 이 튜토리얼은 [`Program`][fatqat.Program], [`ParameterVector`][fatqat.ParameterVector], [`Estimator`][fatqat.Estimator]로 그 반복 과정을 구현합니다. 작은 후보 집합을 만들고 두 과제의 점수를 계산한 뒤, 과제별로 회로 하나를 학습하고 따로 남겨 둔 입력에서 예측을 평가합니다. 각 회로는 한 번만 만들며 탐색과 학습 내내 특징과 가중치를 매개변수 바인딩으로 전달합니다.
+  status: machine
+- id: fdf6b1593ce3cd7e
+  en: 'The scientific reference is [*QCS-ADME: Quantum Circuit Search for Drug Property Prediction with Imbalanced Data and Regression Adaptation*](https://arxiv.org/abs/2503.01927) (2026). The paper provides the motivation and search method. The executable formulas below follow the supplied Quantum ADMET reference implementation, including its binary imbalance weighting, one-qubit reduced-state score, regression target weighting, composite ranking, and mean squared training loss. Its binary weighting and reduced-state similarity use implementation-specific conventions, which are specified below.'
+  ko: '과학적 참고문헌은 [*QCS-ADME: Quantum Circuit Search for Drug Property Prediction with Imbalanced Data and Regression Adaptation*](https://arxiv.org/abs/2503.01927) (2026)입니다. 논문은 동기와 탐색 방법을 제시합니다. 아래 실행 가능한 수식은 제공된 Quantum ADMET 기준 구현을 따릅니다. 여기에는 이진 불균형 가중치, 단일 큐비트 축약 상태 점수, 회귀 타깃 가중치, 복합 순위, 평균 제곱 학습 손실이 포함됩니다. 이진 가중치와 축약 상태 유사도는 구현 고유의 규약을 사용하며 아래에서 명시합니다.'
+  status: machine
+- id: 362c29218b1b44b6
+  en: To keep execution small and offline, we use three qubits, four candidates, synthetic inputs, a fixed line of permitted CX edges, and illustrative depolarizing noise. These replace the original study's large candidate pool, ADMET datasets, and device-calibration-driven generation. COBYLA replaces TorchQuantum autodifferentiation and Adam. The results demonstrate the workflow; they are not ADMET benchmark results or a reproduction of the original experiment. The final section shows how to load the project's existing feature arrays without importing TorchQuantum or PennyLane.
+  ko: 작고 오프라인으로 실행하기 위해 큐비트 3개, 후보 4개, 합성 입력, CX가 허용된 고정 선형 연결, 예시 탈분극 잡음을 사용합니다. 이는 원래 연구의 대규모 후보 집합, ADMET 데이터셋, 장치 보정 기반 생성을 대신합니다. TorchQuantum 자동 미분과 Adam 대신 COBYLA를 씁니다. 결과는 절차를 보여 주는 예이며 ADMET 벤치마크나 원래 실험의 재현이 아닙니다. 마지막에는 TorchQuantum이나 PennyLane 없이 프로젝트의 기존 특징 배열을 불러오는 방법을 설명합니다.
+  status: machine
+- id: fc321800a5d1f72b
+  en: Separate training inputs from evaluation inputs
+  ko: 학습 입력과 평가 입력 분리하기
+  status: machine
+- id: 7d9be4cecaf01fa2
+  en: Real ADMET inputs can be prepared molecular descriptors or fingerprints. Here, six synthetic angles stand in for those features. A nonlinear rule creates an imbalanced binary task and a separate continuous target. We generate the training and test examples independently. Search and training use only the training split; the test split is evaluated after both models have been fixed.
+  ko: 실제 ADMET 입력에는 준비된 분자 기술자나 지문을 사용할 수 있습니다. 여기서는 여섯 합성 각도로 특징을 대신합니다. 비선형 규칙으로 불균형 이진 과제와 별도의 연속 타깃을 만듭니다. 학습과 시험 표본은 독립적으로 생성합니다. 탐색과 학습에는 학습 분할만 쓰고, 두 모델을 확정한 뒤 시험 분할을 평가합니다.
+  status: machine
+- id: 0b0860a6ecc5e02f
+  en: Binary labels use the implementation's convention, $-1$ and $+1$. Regression targets lie in $[-1,1]$ because our readout is a single Pauli-Z expectation. No transformation is fitted on the test split.
+  ko: 이진 라벨은 구현의 규약인 $-1$과 $+1$을 사용합니다. 판독이 단일 Pauli-Z 기댓값이므로 회귀 타깃은 $[-1,1]$에 둡니다. 시험 분할로 어떤 변환도 적합하지 않습니다.
+  status: machine
+- id: f0998be32259a65b
+  en: Generate candidates as parameterized programs
+  ko: 매개변수화된 프로그램으로 후보 만들기
+  status: machine
+- id: ad52a4661544a030
+  en: Each candidate consumes every feature once and has the same weight budget. The seed controls feature order, rotation axes, and CX placements. We restrict the two-qubit gates to a bidirectional three-qubit line. An initial Hadamard layer makes an initial RZ encoding observable; subsequent rotations and entanglers mix feature and weight effects.
+  ko: 모든 후보는 각 특징을 한 번씩 사용하고 같은 가중치 수를 갖습니다. 시드가 특징 순서, 회전 축, CX 위치를 결정합니다. 2큐비트 게이트는 양방향 3큐비트 선형 연결로 제한합니다. 초기 Hadamard 층이 첫 RZ 인코딩을 관측 가능하게 만들고, 이후 회전과 얽힘 게이트가 특징과 가중치의 효과를 섞습니다.
+  status: machine
+- id: 867b73fc8845f55f
+  en: The short list of gate specifications also lets us build Clifford decoys with the same gate locations. It belongs to this tutorial, not to FatQat's public API. For device-aware studies, replace the generator with candidates that respect your selected device's gate set, connectivity, and calibration.
+  ko: 간단한 게이트 명세 목록을 사용하면 같은 게이트 위치를 가진 Clifford 대조 회로도 만들 수 있습니다. 이 목록은 튜토리얼의 일부이며 FatQat 공개 API는 아닙니다. 장치를 고려한 연구에서는 선택한 장치의 게이트 집합, 연결 구조, 보정 정보를 따르는 후보 생성기로 바꾸세요.
+  status: machine
+- id: c5c64e0efd03a23e
+  en: '`shots=0` gives exact expectations. The sweep returns one result per input row; it does not require a new circuit construction for each example. The three observables expose the reduced state of qubit 0 through its Bloch vector $r_i=(\langle X_0\rangle,\langle Y_0\rangle,\langle Z_0\rangle)$.'
+  ko: '`shots=0`은 정확한 기댓값을 줍니다. 스윕은 입력 행마다 결과 하나를 반환하므로 표본마다 회로를 다시 만들 필요가 없습니다. 세 관측량은 Bloch 벡터 $r_i=(\langle X_0\rangle,\langle Y_0\rangle,\langle Z_0\rangle)$를 통해 큐비트 0의 축약 상태를 나타냅니다.'
+  status: machine
+- id: 2ad42ab7d256cadf
+  en: Reproduce the task-specific representational scores
+  ko: 과제별 표현 점수 재현하기
+  status: machine
+- id: 3f43d610d4635d36
+  en: For one measured qubit,
+  ko: 측정 큐비트가 하나이면
+  status: machine
+- id: e6d8024d5a452691
+  en: 'The reference implementation squares this overlap for off-diagonal pairs and sets the diagonal to one. We preserve that convention: $S_{ij}=[(1+r_i\cdot r_j)/2]^2$ for $i\ne j$, and $S_{ii}=1$. This is the project''s similarity heuristic, not mixed-state quantum fidelity. The forced diagonal also differs from squared purity for a mixed reduced state. Using the Bloch vectors avoids constructing and partially tracing a full density matrix for every input pair.'
+  ko: 기준 구현은 비대각 쌍의 겹침을 제곱하고 대각 성분은 1로 둡니다. 여기서도 $i\ne j$이면 $S_{ij}=[(1+r_i\cdot r_j)/2]^2$, 대각은 $S_{ii}=1$로 유지합니다. 이는 프로젝트의 유사도 휴리스틱이며 혼합 상태의 양자 충실도가 아닙니다. 강제로 지정한 대각값은 혼합 축약 상태의 순도 제곱과도 다릅니다. Bloch 벡터를 사용하면 입력 쌍마다 전체 밀도 행렬을 만들고 부분 대각합을 취할 필요가 없습니다.
+  status: machine
+- id: 9b2149cdd5325385
+  en: 'For classification, $A_{ij}=1$ when labels match and zero otherwise. Class weights $w_c=N/(2n_c)$ come from the **entire training split**, even though we score a balanced subset. The implementation upweights cross-class pairs by the minority weight $w_m$ and leaves same-class pairs at one. Call this importance matrix $W$. For each sampled weight vector we threshold $S$ at its $W$-weighted mean, including the diagonal, then average the resulting binary matrices to obtain $\bar B$:'
+  ko: 분류에서는 라벨이 같으면 $A_{ij}=1$, 다르면 0입니다. 균형 잡힌 부분집합으로 점수를 계산하더라도 클래스 가중치 $w_c=N/(2n_c)$는 **전체 학습 분할**에서 구합니다. 구현은 서로 다른 클래스 쌍에 소수 클래스 가중치 $w_m$를 주고 같은 클래스 쌍은 1로 둡니다. 이 중요도 행렬을 $W$라 부릅니다. 샘플링한 각 가중치 벡터마다 대각을 포함한 $W$ 가중 평균을 기준으로 $S$를 이진화하고, 그 이진 행렬들을 평균해 $\bar B$를 얻습니다.
+  status: machine
+- id: 6fee52f3ecb9474a
+  en: The weight is squared along with the error, so this score can be negative under severe imbalance. We do not clip it or interpret it as accuracy.
+  ko: 가중치도 오차와 함께 제곱되므로 불균형이 심하면 점수가 음수가 될 수 있습니다. 이를 잘라 내거나 정확도로 해석하지 않습니다.
+  status: machine
+- id: 09e1341753976e8d
+  en: For regression, the desired similarity is $A_{ij}=\exp[-(y_i-y_j)^2/(2\sigma^2)]$. The implementation additionally weights the circuit similarity by $G_{ij}=\exp[-(y_i-y_j)^2/2]$, with fixed bandwidth one, before computing $R_{\rm reg}=1-\operatorname{mean}[(A-G\bar S)^2]$. Both uses of the labels are intentional here. This is a supervised search score computed on training examples, not a predictive kernel to evaluate using unknown test labels. Regression target scaling changes both Gaussian weights and therefore must be recorded when comparing experiments.
+  ko: 회귀의 목표 유사도는 $A_{ij}=\exp[-(y_i-y_j)^2/(2\sigma^2)]$입니다. 구현은 대역폭을 1로 고정한 $G_{ij}=\exp[-(y_i-y_j)^2/2]$로 회로 유사도에 추가 가중치를 준 뒤 $R_{\rm reg}=1-\operatorname{mean}[(A-G\bar S)^2]$를 계산합니다. 라벨을 두 번 사용하는 것은 의도된 동작입니다. 이는 학습 표본에서 계산하는 지도 탐색 점수이며, 알려지지 않은 시험 라벨로 평가할 예측 커널이 아닙니다. 회귀 타깃의 스케일을 바꾸면 두 Gaussian 가중치가 모두 달라지므로 실험을 비교할 때 반드시 기록해야 합니다.
+  status: machine
+- id: 1e897a604f1a1b4c
+  en: Every candidate sees the same examples and sampled weight vectors. This reduces incidental variation between candidates. Four weight samples are a small execution budget, not evidence that the ranking has converged. A research run should examine ranking stability across sample counts and seeds.
+  ko: 모든 후보는 같은 표본과 샘플링된 가중치 벡터를 사용해 우연한 차이를 줄입니다. 가중치 표본 네 개는 실행량을 작게 잡은 선택이지 순위가 수렴했다는 증거가 아닙니다. 연구에서는 표본 수와 시드를 바꾸어 순위의 안정성을 살펴봐야 합니다.
+  status: machine
+- id: ac17b189f2ca01f5
+  en: Add Clifford noise resilience and choose candidates
+  ko: Clifford 잡음 내성 추가와 후보 선택
+  status: machine
+- id: 81360bca32261ff3
+  en: 'For each candidate we replace every one-qubit gate by a random choice from H, S, Z, X, and Y, and retain the CX locations. These are the implementation''s Clifford decoys. We compare their ideal and noisy computational-basis probability distributions using total variation distance:'
+  ko: 각 후보의 단일 큐비트 게이트를 H, S, Z, X, Y 중 무작위 선택으로 바꾸고 CX 위치는 유지합니다. 이것이 구현의 Clifford 대조 회로입니다. 총변동거리로 이상적 계산 기저 확률 분포와 잡음이 있는 분포를 비교합니다.
+  status: machine
+- id: 520b2c3a12253d16
+  en: Here $\alpha=0.25$. The illustrative noise model applies depolarization after each CX. Exact density-matrix probabilities remove shot fluctuations from this small comparison. The CNR value describes these decoys under this noise model; it does not estimate the fidelity of an IBM device.
+  ko: 여기서는 $\alpha=0.25$입니다. 예시 잡음 모델은 각 CX 뒤에 탈분극을 적용합니다. 이 작은 비교에서는 정확한 밀도 행렬 확률을 사용해 샷 변동을 제거합니다. CNR은 이 잡음 모델 아래 대조 회로들의 성질이며 IBM 장치의 충실도 추정값이 아닙니다.
+  status: machine
+- id: 97a38b7658e48c6d
+  en: 'The highest composite score determines which circuit we train for each task. These two tasks need not select the same circuit. As in the implementation, the multiplicative rule has a limitation: when $R$ is negative, reducing CNR makes the product less negative and can improve its rank. Inspect the uncombined scores when using strongly imbalanced data; do not treat this formula as a universally valid noise penalty.'
+  ko: 복합 점수가 가장 높은 회로를 과제별로 학습합니다. 두 과제가 같은 회로를 선택할 필요는 없습니다. 구현과 같은 곱셈 규칙에는 한계가 있습니다. $R$이 음수이면 CNR을 낮출수록 곱이 덜 음수가 되어 순위가 오를 수 있습니다. 불균형이 심한 데이터에서는 결합 전 점수도 살펴보고, 이 공식을 보편적인 잡음 벌점으로 해석하지 마세요.
+  status: machine
+- id: 33533e837b647af3
+  en: Train the selected circuits
+  ko: 선택한 회로 학습하기
+  status: machine
+- id: 556f20d2af89441f
+  en: The prediction is $f_\theta(x)=\langle Z_0\rangle$. We minimize $N^{-1}\sum_i(f_\theta(x_i)-y_i)^2$ for both tasks, preserving the implementation's single-output MSE objective. Imbalance weighting was used in architecture selection; this loss itself is unweighted. A binary prediction is $+1$ for a positive expectation and $-1$ otherwise. Regression uses the expectation directly, so its output is bounded to $[-1,1]$.
+  ko: 예측값은 $f_\theta(x)=\langle Z_0\rangle$입니다. 두 과제 모두 $N^{-1}\sum_i(f_\theta(x_i)-y_i)^2$를 최소화해 구현의 단일 출력 MSE 목적을 유지합니다. 불균형 가중치는 구조 선택에 사용했으며 이 손실 자체에는 가중치가 없습니다. 이진 예측은 기댓값이 양수이면 $+1$, 아니면 $-1$입니다. 회귀는 기댓값을 직접 사용하므로 출력 범위가 $[-1,1]$로 제한됩니다.
+  status: machine
+- id: ddd73d14b29749ea
+  en: COBYLA calls the exact FatQat estimator as a black-box function. The small evaluation budget keeps the tutorial runnable; reaching that budget is not a claim of convergence. We print the optimizer status alongside the loss.
+  ko: COBYLA는 정확한 FatQat 추정기를 블랙박스 함수로 호출합니다. 튜토리얼을 쉽게 실행하도록 평가 횟수를 작게 잡았으며, 그 한도에 도달했다고 수렴한 것은 아닙니다. 손실과 함께 최적화기 상태를 출력합니다.
+  status: machine
+- id: 148e72f9ee7d9a60
+  en: Evaluate held-out predictions
+  ko: 홀드아웃 예측 평가하기
+  status: machine
+- id: f738449587e2bc13
+  en: For classification, compare accuracy with an always-majority prediction and report balanced accuracy, the mean recall of the two classes. A high ordinary accuracy alone can conceal failure on the minority class. For regression, compare mean absolute error with a constant prediction equal to the training median. These are simple checks on whether the fitted circuit learned useful structure in this synthetic exercise.
+  ko: 분류에서는 항상 다수 클래스를 예측하는 기준과 정확도를 비교하고, 두 클래스 재현율의 평균인 균형 정확도를 보고합니다. 일반 정확도만 높으면 소수 클래스의 실패가 가려질 수 있습니다. 회귀에서는 평균 절대 오차를 학습 타깃의 중앙값만 예측하는 상수 기준과 비교합니다. 합성 실험에서 학습된 회로가 유용한 구조를 익혔는지 확인하는 간단한 검사입니다.
+  status: machine
+- id: 3109020d128a18b3
+  en: Search scores and held-out predictive performance measure different things. The score selects an architecture using a small set of untrained states; optimization, data coverage, and readout constraints still determine the trained model's performance. Poor results are informative and should not be hidden by tuning on the test examples.
+  ko: 탐색 점수와 홀드아웃 예측 성능은 다른 것을 측정합니다. 탐색 점수는 학습 전 상태의 작은 집합으로 구조를 고르지만, 학습된 모델의 성능은 최적화, 데이터 범위, 판독 제약에도 달려 있습니다. 나쁜 결과도 정보를 주므로 시험 표본에 맞춰 조정해 숨겨서는 안 됩니다.
+  status: machine
+- id: 1b1220fb5b5e159a
+  en: With the seeds above, classification reaches about 0.58 balanced accuracy, while regression MAE is about 0.69, worse than the constant baseline's 0.48. In this run the selected regression architecture's high search score does not translate into useful predictions. This is a reason to validate the search heuristic on a validation split, rather than assume its ranking predicts generalization.
+  ko: 위 시드에서는 분류의 균형 정확도가 약 0.58이고 회귀 MAE는 약 0.69로, 상수 기준의 0.48보다 나쁩니다. 이번 실행에서는 선택한 회귀 구조의 높은 탐색 점수가 유용한 예측으로 이어지지 않았습니다. 탐색 순위가 일반화 성능을 예측한다고 가정하지 말고 검증 분할에서 휴리스틱을 검증해야 하는 이유입니다.
+  status: machine
+- id: 6767aa0e8a60effa
+  en: Use the existing Quantum ADMET datasets
+  ko: 기존 Quantum ADMET 데이터셋 사용하기
+  status: machine
+- id: 347f6fbcf9c629f7
+  en: The original loader reads `x_train.npy`, `y_train.npy`, `x_test.npy`, and `y_test.npy` from `Elivagar/experiment_data/<dataset>/`, keeps the first 128 input columns, and passes them directly to rotation gates for `angle` encoding. In particular, it does **not** multiply those values by $\pi$. The following loader retains that behavior for one data repetition. It requires finite numeric arrays, matching row counts, binary labels already encoded as $\{-1,+1\}$, or regression targets already scaled to $[-1,1]$. It fails on incompatible data instead of silently changing the experiment.
+  ko: 원래 로더는 `Elivagar/experiment_data/<dataset>/`의 `x_train.npy`, `y_train.npy`, `x_test.npy`, `y_test.npy`를 읽고 입력의 첫 128개 열을 `angle` 인코딩용 회전 게이트에 그대로 전달합니다. 특히 이 값에 $\pi$를 **곱하지 않습니다**. 아래 로더는 데이터를 한 번 넣는 경우에 이 동작을 유지합니다. 유한한 수치 배열, 일치하는 행 수, 이미 $\{-1,+1\}$로 인코딩된 이진 라벨 또는 $[-1,1]$로 스케일된 회귀 타깃이 필요합니다. 호환되지 않으면 실험을 몰래 바꾸지 않고 실패합니다.
+  status: machine
+- id: 9c4c8adde3b481ad
+  en: In a downloaded notebook or script, move this loader above the data setup, replace the synthetic `tasks` assignment with the following, and set `NUM_QUBITS = 7`, `NUM_FEATURES = 128`, and `NUM_WEIGHTS = 32` **before** constructing the parameter vectors and candidate programs. Set `root` to your local checkout. These lines are not executed in the documentation build, which always uses the synthetic example.
+  ko: 내려받은 노트북이나 스크립트에서는 이 로더를 데이터 설정 위로 옮기고 합성 `tasks` 할당을 아래 내용으로 바꾸세요. 매개변수 벡터와 후보 프로그램을 만들기 **전에** `NUM_QUBITS = 7`, `NUM_FEATURES = 128`, `NUM_WEIGHTS = 32`를 설정하고 `root`를 로컬 체크아웃에 맞추세요. 문서 빌드는 항상 합성 예제를 쓰므로 이 줄들은 실행하지 않습니다.
+  status: machine
+- id: 646f39afc8ea6b6d
+  en: Keep the prepared split's provenance and feature-generation procedure with your experiment. This loader does not establish whether upstream descriptor selection or target scaling used only training data. If you regenerate features, fit preprocessing on training molecules and apply the same fitted transformation to validation and test molecules. Preserve the intended molecular split rather than replacing it with a random row split.
+  ko: 준비된 분할의 출처와 특징 생성 절차를 실험과 함께 기록하세요. 이 로더는 상류의 기술자 선택이나 타깃 스케일링이 학습 데이터만 사용했는지 보장하지 않습니다. 특징을 다시 생성한다면 학습 분자에서 전처리를 적합하고 같은 변환을 검증 및 시험 분자에 적용하세요. 의도한 분자 분할을 무작위 행 분할로 바꾸지 마세요.
+  status: machine
+- id: 4b8472795c503ca2
+  en: 'For a larger study, increase the candidate and sampling budgets, select hyperparameters on a separate validation split, and evaluate the test split once. Preserve candidates, seeds, optimized weights, target transforms, and noise settings with the results. Existing TorchQuantum checkpoints and device mappings are not consumed by this tutorial: reusing a particular legacy circuit requires translating its ordered gates and parameter bounds into a `Program` and verifying its outputs before retraining.'
+  ko: 더 큰 연구에서는 후보 수와 샘플링 양을 늘리고 별도의 검증 분할로 하이퍼매개변수를 선택한 뒤 시험 분할을 한 번 평가하세요. 후보, 시드, 최적 가중치, 타깃 변환, 잡음 설정을 결과와 함께 보존하세요. 이 튜토리얼은 기존 TorchQuantum 체크포인트나 장치 매핑을 읽지 않습니다. 특정 기존 회로를 재사용하려면 순서 있는 게이트와 매개변수 범위를 `Program`으로 옮기고 출력을 검증한 뒤 다시 학습해야 합니다.
+  status: machine
+- id: 83b5bcbb76a87626
+  en: Next, use [ideal and noisy simulation](../guide/ideal-and-noisy.md) to evaluate the fitted circuit under the same noise model used for selection, or [the Estimator reference](../api/estimator.md) to introduce sampled expectations. When sampling sweeps, reusing a seed can correlate errors between rows; exact expectations here avoid that issue.
+  ko: 다음으로 [이상적 시뮬레이션과 잡음 시뮬레이션](../guide/ideal-and-noisy.md)을 사용해 선택 때와 같은 잡음 모델에서 학습된 회로를 평가하거나, [Estimator 레퍼런스](../api/estimator.md)를 참고해 샘플링 기댓값을 도입하세요. 샘플링 스윕에서 시드를 재사용하면 행 사이의 오차가 상관될 수 있습니다. 여기서는 정확한 기댓값을 사용해 그 문제를 피합니다.
+  status: machine

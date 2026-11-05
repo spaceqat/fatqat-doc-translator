@@ -1,0 +1,224 @@
+- id: f840c2e5c2d13e69
+  en: Noise model
+  ko: 잡음 모델
+  status: machine
+- id: 871bfe559385ca54
+  en: '[`NoiseModel`][fatqat.NoiseModel] collects noise rules and says where each one applies: on matching operations, throughout pulse time, or when reporting measurements. A model can combine simulator channels, emulator Lindblad operators, carrier loss, and readout confusion. Each backend accepts only the rules it can implement.'
+  ko: '[`NoiseModel`][fatqat.NoiseModel]은 잡음 규칙을 모아 각 규칙이 어디에 적용되는지 지정합니다. 매칭되는 연산, 펄스가 지속되는 동안, 측정값을 보고할 때가 그 적용 범위입니다. 하나의 모델에 시뮬레이터 채널, 에뮬레이터 Lindblad 연산자, 운반체 손실, 판독 혼동을 함께 넣을 수 있습니다. 각 백엔드는 자신이 구현할 수 있는 규칙만 받습니다.'
+  status: machine
+- id: 0e84698742201727
+  en: Build a model
+  ko: 모델 만들기
+  status: machine
+- id: 44c7a0e81e29131a
+  en: This example adds phase damping after every `RX`, amplitude damping to the second operand of every `CZ`, and readout confusion on `q[0]`. Logical targets use references from the program; device-label targets use physical labels defined by the backend.
+  ko: 이 예제는 모든 `RX` 뒤에 위상 감쇠를, 모든 `CZ`의 두 번째 피연산자에 진폭 감쇠를, `q[0]`에 판독 혼동을 추가합니다. 논리 대상은 프로그램의 참조를 사용하고, 장치 레이블 대상은 백엔드가 정의한 물리 레이블을 사용합니다.
+  status: machine
+- id: c51f9e545eaeaef5
+  en: Where noise applies
+  ko: 잡음 적용 범위
+  status: machine
+- id: b632bca81b5aa192
+  en: Pass `operation` for noise tied to a matching operation. A simulator applies a channel or samples loss after the operation; an emulator keeps the matching Lindblad operators active during the pulse. Omit `operation` for background noise; this does not mean “on every gate.” Readout confusion always applies at measurement.
+  ko: 매칭되는 연산에 잡음을 연결하려면 `operation`을 전달하세요. 시뮬레이터는 연산 뒤에 채널을 적용하거나 손실을 샘플링하고, 에뮬레이터는 펄스 동안 매칭되는 Lindblad 연산자를 활성화합니다. 배경 잡음은 `operation`을 생략합니다. 이는 “모든 게이트에 적용”한다는 뜻이 아닙니다. 판독 혼동은 항상 측정 시 적용됩니다.
+  status: machine
+- id: 4796572d4bd078a9
+  en: '**Noise scopes**'
+  ko: '**잡음 범위**'
+  status: machine
+- id: 099be14f1ad0a8d6
+  en: '| Scope | Noise type | `operation` | `targets` | `target_positions` |'
+  ko: '| 범위 | 잡음 타입 | `operation` | `targets` | `target_positions` |'
+  status: machine
+- id: a5903660e729c725
+  en: '| On matching operations | [`Channel`][fatqat.noise.Channel] or [`Loss`][fatqat.noise.Loss] | Required operation instance or subclass | Optional exact ordered target selector | Optional affected positions in the operation''s target order |'
+  ko: '| 매칭되는 연산 | [`Channel`][fatqat.noise.Channel] 또는 [`Loss`][fatqat.noise.Loss] | 연산 인스턴스 또는 하위 클래스 필수 | 선택 사항: 순서까지 정확히 일치하는 대상 선택자 | 선택 사항: 연산의 대상 순서에서 영향을 받을 위치 |'
+  status: machine
+- id: 82cae8ad6ef89a0a
+  en: '| During pulse time (background) | A [`Channel`][fatqat.noise.Channel] that acts on one subsystem | Omitted or `None` | Exactly one logical reference or device label | Must be omitted or `None` |'
+  ko: '| 펄스 시간 중 배경 잡음 | 부분계 하나에 작용하는 [`Channel`][fatqat.noise.Channel] | 생략 또는 `None` | 논리 참조 또는 장치 레이블 정확히 하나 | 생략하거나 `None`이어야 함 |'
+  status: machine
+- id: b7e18b79a0a9ebdf
+  en: '| At measurement (readout) | [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] | Must be omitted | Omitted for universal readout, or one scalar selector | Must be omitted |'
+  ko: '| 측정 시 판독 | [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] | 반드시 생략 | 전체 판독에 적용하려면 생략, 또는 스칼라 선택자 하나 | 반드시 생략 |'
+  status: machine
+- id: a8ccec27d8aa01d9
+  en: For readout confusion, both `operation` and `target_positions` must be absent. Passing either keyword explicitly, even as `None`, is an error.
+  ko: 판독 혼동에서는 `operation`과 `target_positions`를 모두 생략해야 합니다. `None`이라도 키워드를 명시적으로 전달하면 오류입니다.
+  status: machine
+- id: bfc1ef109fe15f59
+  en: Background noise uses local Lindblad operators over elapsed emulator time. [`Loss`][fatqat.noise.Loss], probability-form [`Depolarizing`][fatqat.noise.Depolarizing], and other noise types that do not act on exactly one subsystem cannot be used this way. Background noise remains active regardless of an individual operation's classical condition.
+  ko: 배경 잡음은 에뮬레이터의 경과 시간에 걸쳐 국소 Lindblad 연산자를 사용합니다. [`Loss`][fatqat.noise.Loss], 확률 형식의 [`Depolarizing`][fatqat.noise.Depolarizing], 정확히 하나의 부분계에 작용하지 않는 다른 잡음 타입에는 이 방식을 사용할 수 없습니다. 배경 잡음은 개별 연산의 고전 조건과 무관하게 계속 활성화됩니다.
+  status: machine
+- id: 5fd65f7115e664fd
+  en: '`Barrier`, `Reset`, and direct [`PulseOperation`][fatqat.operations.PulseOperation] controls have no attachable noise boundary. `Put` accepts only [`Loss`][fatqat.noise.Loss]; the loss is applied after loading and models loading inefficiency. See [Backend support](backend-support.md#noise-backend-support) for the scopes and noise forms implemented by each built-in backend.'
+  ko: '`Barrier`, `Reset`, 직접 [`PulseOperation`][fatqat.operations.PulseOperation] 제어에는 잡음을 연결할 연산 경계가 없습니다. `Put`은 [`Loss`][fatqat.noise.Loss]만 받으며, 로딩 뒤에 손실을 적용해 로딩 비효율을 모델링합니다. 내장 백엔드별로 구현된 범위와 잡음 형식은 [백엔드 지원 범위](backend-support.md#noise-backend-support)를 참고하세요.'
+  status: machine
+- id: f5cefb112839555b
+  en: Match operations
+  ko: 연산 매칭
+  status: machine
+- id: 44fb89bf3d6d2fdb
+  en: You may pass either an operation value or an operation class. For example, `operation=ops.X` matches the exported `X` singleton, while `operation=ops.RX` matches every `RX(...)` angle. Parameters do not narrow the match, and registering a base operation class does not include its subclasses.
+  ko: 연산 값 또는 연산 클래스를 전달할 수 있습니다. 예를 들어 `operation=ops.X`는 공개된 `X` 싱글턴에 매칭되고, `operation=ops.RX`는 모든 `RX(...)` 각도에 매칭됩니다. 매개변수로 매칭 범위가 좁아지지는 않으며, 기본 연산 클래스를 등록해도 하위 클래스까지 포함하지는 않습니다.
+  status: machine
+- id: 9713dfc2c21f5a24
+  en: Noise attached to an operation follows its classical condition. If the condition is false, neither the operation nor its noise runs. A simulator applies compatible channels after the operation, in registration order. An emulator keeps compatible Lindblad operators active together during the matching pulse.
+  ko: 연산에 연결한 잡음은 그 연산의 고전 조건을 따릅니다. 조건이 거짓이면 연산과 잡음 모두 실행하지 않습니다. 시뮬레이터는 연산 뒤에 호환되는 채널을 등록 순서로 적용합니다. 에뮬레이터는 매칭되는 펄스 동안 호환되는 Lindblad 연산자를 함께 활성화합니다.
+  status: machine
+- id: cb30739b28612e26
+  en: Match targets
+  ko: 대상 매칭
+  status: machine
+- id: 1cd2fdfbceb2de3d
+  en: '`targets` may use logical [`RegisterRef`][fatqat.RegisterRef] values from the program or hashable device labels accepted by the backend. The run''s [`ResourceLayout`][fatqat.ResourceLayout] maps program references into that device-label space.'
+  ko: '`targets`에는 프로그램의 논리 [`RegisterRef`][fatqat.RegisterRef] 또는 백엔드가 받는 해시 가능한 장치 레이블을 사용할 수 있습니다. 실행의 [`ResourceLayout`][fatqat.ResourceLayout]이 프로그램 참조를 장치 레이블 공간으로 매핑합니다.'
+  status: machine
+- id: 9c13180094b60f1d
+  en: 'The legal device-label set is backend-specific:'
+  ko: 허용되는 장치 레이블 집합은 백엔드마다 다릅니다.
+  status: machine
+- id: d27ecda61b4fb6f8
+  en: '| Built-in backend | Legal device labels |'
+  ko: '| 내장 백엔드 | 허용 장치 레이블 |'
+  status: machine
+- id: 238d82acd6c1b687
+  en: '| Generic [`Simulator`][fatqat.simulator.Simulator] | Labels in the effective resource layout |'
+  ko: '| 범용 [`Simulator`][fatqat.simulator.Simulator] | 실제 적용되는 자원 레이아웃의 레이블 |'
+  status: machine
+- id: b6c97cfca99a7abb
+  en: '| [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] | Labels in the effective resource layout; the program defines the sites |'
+  ko: '| [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] | 실제 적용되는 자원 레이아웃의 레이블; 프로그램이 사이트를 정의함 |'
+  status: machine
+- id: 7498f4e30278bd86
+  en: '| [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] | Every configured device label |'
+  ko: '| [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] | 설정된 모든 장치 레이블 |'
+  status: machine
+- id: 32e380da49eb0915
+  en: '| Pulse emulators | Every label in the configured model or atom arrangement |'
+  ko: '| 펄스 에뮬레이터 | 설정된 모델 또는 원자 배열의 모든 레이블 |'
+  status: machine
+- id: 8b2517c4f6da818e
+  en: '**Accepted `targets` forms**'
+  ko: '**허용되는 `targets` 형식**'
+  status: machine
+- id: 55823303a52ca048
+  en: '| Form | Scope | Meaning and constraints |'
+  ko: '| 형식 | 범위 | 의미와 제약 |'
+  status: machine
+- id: 433ecb4726d605ff
+  en: '| `None` | Operation | Match every operation of the exact class. |'
+  ko: '| `None` | 연산 | 정확히 해당 클래스의 모든 연산에 매칭합니다. |'
+  status: machine
+- id: 8287cd114ed5cdb8
+  en: '| One `RegisterRef` or non-tuple hashable label | Operation | Shorthand for a one-element selector. An operation with a known width must take one target; a variadic operation is checked later. |'
+  ko: '| `RegisterRef` 하나 또는 튜플이 아닌 해시 가능한 레이블 | 연산 | 원소 하나인 선택자의 축약형입니다. 너비를 아는 연산은 대상 하나를 받아야 하며, 가변 너비 연산은 나중에 검사합니다. |'
+  status: machine
+- id: 83d3828a1fd4ec38
+  en: '| Non-empty tuple of `RegisterRef` values | Operation | Exact ordered logical target selector. Its length must equal a known operation width. |'
+  ko: '| 비어 있지 않은 `RegisterRef` 튜플 | 연산 | 순서까지 정확히 일치하는 논리 대상 선택자입니다. 연산 너비를 알면 길이가 그 너비와 같아야 합니다. |'
+  status: machine
+- id: 1051c09bf372cdf3
+  en: '| Non-empty tuple of hashable device labels | Operation | Exact ordered device-label selector. Its length must equal a known operation width. |'
+  ko: '| 비어 있지 않은 해시 가능한 장치 레이블 튜플 | 연산 | 순서까지 정확히 일치하는 장치 레이블 선택자입니다. 연산 너비를 알면 길이가 그 너비와 같아야 합니다. |'
+  status: machine
+- id: 8b34f77a57a5fa6c
+  en: '| One scalar or one-element tuple | Background | Select exactly one logical reference or device label. |'
+  ko: '| 스칼라 하나 또는 원소 하나인 튜플 | 배경 | 논리 참조 또는 장치 레이블 하나를 선택합니다. |'
+  status: machine
+- id: 46ecb0a2db4b025f
+  en: '| `None` | Readout | Select every measured operand. Universal and targeted readout registrations cannot coexist. |'
+  ko: '| `None` | 판독 | 모든 측정 피연산자를 선택합니다. 전체 적용 판독 등록과 대상 지정 판독 등록은 함께 사용할 수 없습니다. |'
+  status: machine
+- id: 70514f414769a128
+  en: '| One `RegisterRef` or non-tuple hashable label | Readout | Select one measured logical reference or device label. Correlated readout is not supported. |'
+  ko: '| `RegisterRef` 하나 또는 튜플이 아닌 해시 가능한 레이블 | 판독 | 측정할 논리 참조 또는 장치 레이블 하나를 선택합니다. 상관 판독은 지원하지 않습니다. |'
+  status: machine
+- id: dc535fa721bfabfe
+  en: 'Lists and [`RegisterView`](../registers.md#fatqat.RegisterView) values are not accepted. A target tuple cannot mix logical references and device labels. FATQAT always treats a tuple as the complete ordered selector, so nest tuple-valued device labels: `targets=(("site", 0),)` selects one such label, and `targets=(("site", 0), ("site", 1))` selects an ordered pair. Readout noise cannot target a tuple-valued device label.'
+  ko: 리스트와 [`RegisterView`](../registers.md#fatqat.RegisterView) 값은 받지 않습니다. 대상 튜플에서 논리 참조와 장치 레이블을 섞을 수 없습니다. FATQAT은 튜플을 항상 순서가 있는 전체 선택자로 취급하므로, 튜플 값의 장치 레이블은 한 번 더 감싸야 합니다. `targets=(("site", 0),)`는 레이블 하나를, `targets=(("site", 0), ("site", 1))`는 순서가 있는 쌍을 선택합니다. 판독 잡음은 튜플 값의 장치 레이블을 대상으로 삼을 수 없습니다.
+  status: machine
+- id: aa43dacf6eb018b4
+  en: The selector order must match the operation's target order in the program. A noise rule targeting `(q[0], q[1])` does not match the same operation on `(q[1], q[0])`. Logical and device-label selectors use the same ordering convention.
+  ko: 선택자의 순서는 프로그램에서 연산의 대상 순서와 같아야 합니다. `(q[0], q[1])`을 대상으로 하는 잡음 규칙은 같은 연산이라도 `(q[1], q[0])`에는 매칭되지 않습니다. 논리 선택자와 장치 레이블 선택자는 같은 순서 규약을 사용합니다.
+  status: machine
+- id: 4d1da42b48bd66de
+  en: Select affected operands
+  ko: 영향받을 피연산자 선택하기
+  status: machine
+- id: adf0959fdac1d783
+  en: After an operation matches, `target_positions` chooses which operands receive the noise. Pass one integer or a nonempty, strictly increasing tuple of nonnegative integers. Positions use zero-based operation order; `None` selects every operand.
+  ko: 연산이 매칭된 뒤에는 `target_positions`로 잡음을 받을 피연산자를 고릅니다. 정수 하나 또는 비어 있지 않고 엄격히 증가하는 비음수 정수 튜플을 전달하세요. 위치는 연산의 피연산자 순서대로 0부터 시작하며, `None`은 모든 피연산자를 선택합니다.
+  status: machine
+- id: 7e78a036f266d3c4
+  en: The number of selected operands must match the number of subsystems the noise type acts on. [`add`][fatqat.NoiseModel.add] checks this immediately when both sizes are known; variadic operations are checked when the program runs.
+  ko: 선택한 피연산자 수는 잡음 타입이 작용하는 부분계 수와 같아야 합니다. 두 크기를 모두 알면 [`add`][fatqat.NoiseModel.add]가 즉시 검사하고, 가변 너비 연산은 프로그램 실행 시 검사합니다.
+  status: machine
+- id: ce28e4e0ea52d4d0
+  en: Combine noise sources
+  ko: 여러 잡음원 함께 사용하기
+  status: machine
+- id: 179c995173e35c98
+  en: '[`add`][fatqat.NoiseModel.add] appends; it never replaces a registration. Different noise types may act on the same operation. The same type may also be used on disjoint targets or operand positions. Background and operation noise are independent, so the same type can appear in both scopes.'
+  ko: '[`add`][fatqat.NoiseModel.add]는 등록을 추가하며 기존 등록을 대체하지 않습니다. 서로 다른 잡음 타입이 같은 연산에 작용할 수 있습니다. 같은 타입도 대상이나 피연산자 위치가 겹치지 않으면 사용할 수 있습니다. 배경 잡음과 연산 잡음은 독립적이므로 같은 타입을 두 범위에 모두 넣을 수 있습니다.'
+  status: machine
+- id: 1e728bdc107c4a52
+  en: FATQAT normally rejects overlapping rules of the same type for the same operation or background scope. A rule for every matching operation overlaps an exact target selector, and selecting every operand overlaps a positional selection.
+  ko: FATQAT은 일반적으로 같은 연산 또는 배경 범위에 같은 타입의 규칙이 겹치면 거부합니다. 매칭되는 모든 연산에 적용하는 규칙은 정확한 대상 선택자와 겹치며, 모든 피연산자 선택은 위치 지정 선택과 겹칩니다.
+  status: machine
+- id: 3dec5af2b96f792a
+  en: '[`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] is the one built-in exception because each registration is an additional authored channel. On a matrix simulator, matching `p` declarations on the same resolved extent are applied sequentially in registration order. On a pulse emulator, matching `rate` declarations become separate collapse operators.'
+  ko: 내장 타입 중 유일한 예외는 [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation]입니다. 각 등록이 별도로 작성한 추가 채널이기 때문입니다. 행렬 시뮬레이터에서는 같은 대상으로 해석되는 `p` 선언을 등록 순서대로 적용합니다. 펄스 에뮬레이터에서는 매칭되는 `rate` 선언이 각각 별도의 붕괴 연산자가 됩니다.
+  status: machine
+- id: 7fee339206646ed3
+  en: Logical and device-label selectors cannot be compared until a resource layout is available. They may therefore both be added, but execution normally raises [`BackendValidationError`][fatqat.errors.BackendValidationError] if the layout makes both select the same noise type and operands for an actual operation. The `TransitionRelaxation` exception above also applies when logical and device selectors resolve to the same extent.
+  ko: 논리 선택자와 장치 레이블 선택자는 자원 레이아웃이 있어야 비교할 수 있습니다. 따라서 둘 다 추가할 수는 있지만, 레이아웃에 따라 실제 연산에서 같은 잡음 타입과 피연산자를 선택하게 되면 보통 실행 시 [`BackendValidationError`][fatqat.errors.BackendValidationError]가 발생합니다. 논리 선택자와 장치 선택자가 같은 대상으로 해석될 때도 위의 `TransitionRelaxation` 예외는 적용됩니다.
+  status: machine
+- id: 2e1183801d3ccc5d
+  en: Readout is unique per measured operand. Duplicate universal or duplicate exact selectors fail during `add`; universal and targeted registrations cannot be mixed. A logical selector and a device-label selector that name the same measured operand are rejected when the program runs.
+  ko: 측정 피연산자 하나에는 판독 규칙 하나만 허용됩니다. 전체 적용 선택자나 정확한 선택자를 중복 등록하면 `add`에서 실패하며, 전체 적용 등록과 대상 지정 등록을 섞을 수도 없습니다. 같은 측정 피연산자를 가리키는 논리 선택자와 장치 레이블 선택자는 프로그램 실행 시 거부됩니다.
+  status: machine
+- id: 64a337ab8a01b8d1
+  en: When validation happens
+  ko: 검증 시점
+  status: machine
+- id: af7b15d1af7c7257
+  en: '**Validation stages**'
+  ko: '**검증 단계**'
+  status: machine
+- id: a6d807fab6af62d4
+  en: '| When | Checks | Typical failure |'
+  ko: '| 시점 | 검사 내용 | 일반적인 실패 |'
+  status: machine
+- id: 6d62a80b3ed8607d
+  en: '| Creating a noise value | Probabilities, rates, matrices, finite values, and type-specific parameter relationships | `TypeError` or `ValueError` from the noise type |'
+  ko: '| 잡음 값 생성 | 확률, 비율, 행렬, 유한한 값, 타입별 매개변수 관계 | 잡음 타입에서 발생하는 `TypeError` 또는 `ValueError` |'
+  status: machine
+- id: 5f7e1ed4b393547e
+  en: '| [`add`][fatqat.NoiseModel.add] | Noise type, operation boundary, target form, known width, position ordering/range, and immediately visible conflicts | `TypeError` or `ValueError`; the failed addition changes nothing |'
+  ko: '| [`add`][fatqat.NoiseModel.add] | 잡음 타입, 연산 경계, 대상 형식, 알려진 너비, 위치 순서와 범위, 즉시 확인 가능한 충돌 | `TypeError` 또는 `ValueError`; 추가에 실패하면 아무것도 바뀌지 않음 |'
+  status: machine
+- id: 2ff1f40f227bd06f
+  en: '| Creating the backend | Whether the configured backend accepts every noise form and scope | [`BackendValidationError`][fatqat.errors.BackendValidationError] |'
+  ko: '| 백엔드 생성 | 설정된 백엔드가 모든 잡음 형식과 범위를 받는지 | [`BackendValidationError`][fatqat.errors.BackendValidationError] |'
+  status: machine
+- id: db46ed8513071d05
+  en: '| Running a program | Whether references belong to the program, device labels belong to the backend''s legal device universe, selectors resolve without conflicts, and dimensions and the chosen execution method are compatible | Usually [`BackendValidationError`][fatqat.errors.BackendValidationError] or [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
+  ko: '| 프로그램 실행 | 참조가 프로그램에 속하는지, 장치 레이블이 백엔드의 허용 집합에 속하는지, 선택자가 충돌 없이 해석되는지, 차원과 선택한 실행 방법이 호환되는지 | 일반적으로 [`BackendValidationError`][fatqat.errors.BackendValidationError] 또는 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
+  status: machine
+- id: 61f5011983f1ebd5
+  en: A legal selector can still match nothing in a run; in that case, it is a no-op. Some checks require a concrete program, resource layout, and execution method.
+  ko: 유효한 선택자라도 한 실행에서 아무것도 매칭하지 않을 수 있습니다. 이 경우 아무 동작도 하지 않습니다. 일부 검사는 구체적인 프로그램, 자원 레이아웃, 실행 방법이 있어야 가능합니다.
+  status: machine
+- id: b65f6e28167e564a
+  en: Validate backend support
+  ko: 백엔드 지원 검증하기
+  status: machine
+- id: c5fb1649261f08b6
+  en: Use [`validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] for a simulator or [`validate_noise_model`][fatqat.emulator.TransmonEmulator.validate_noise_model] for a pulse emulator to validate a candidate model. The method returns `None` when the configured backend accepts the model. Otherwise, it raises [`BackendValidationError`][fatqat.errors.BackendValidationError] whose message includes every model-level rejection reason.
+  ko: 후보 모델을 검증하려면 시뮬레이터의 [`validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] 또는 펄스 에뮬레이터의 [`validate_noise_model`][fatqat.emulator.TransmonEmulator.validate_noise_model]을 사용하세요. 설정한 백엔드가 모델을 받으면 `None`을 반환합니다. 그렇지 않으면 모델 수준의 모든 거부 사유를 메시지에 담은 [`BackendValidationError`][fatqat.errors.BackendValidationError]를 발생시킵니다.
+  status: machine
+- id: a3f076377a0c71d6
+  en: Program- and layout-dependent checks still happen when the model is used.
+  ko: 프로그램과 레이아웃에 의존하는 검사는 모델을 실제로 사용할 때 수행합니다.
+  status: machine

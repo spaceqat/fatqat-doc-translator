@@ -1,0 +1,76 @@
+- id: 368dbd08aeedaf0f
+  en: TransitionRelaxation
+  ko: TransitionRelaxation
+  status: machine
+- id: 8d964a4dc44d98c7
+  en: '[`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] describes exactly one explicitly authored local jump operator. It is independent of hardware kind: the same interface can describe a transmon ladder, one atomic decay branch, or another finite-dimensional relaxation mechanism.'
+  ko: '[`TransitionRelaxation`][fatqat.noise.TransitionRelaxation]은 명시적으로 작성한 국소 점프 연산자 정확히 하나를 나타냅니다. 하드웨어 종류와 독립적이므로 같은 인터페이스로 transmon 사다리, 원자 감쇠 분기 하나, 다른 유한 차원 이완 과정을 표현할 수 있습니다.'
+  status: machine
+- id: e90bd0a91c88ea0f
+  en: Each coefficient key is `(source, destination)`, and one descriptor defines
+  ko: 각 계수의 키는 `(source, destination)`이며, 선언 하나는 다음을 정의합니다.
+  status: machine
+- id: cafd71f5be3baac5
+  en: FATQAT validates nonnegative level indices at construction and checks them against the physical target dimension during backend preparation. Numerical index order does not by itself determine energy order; the caller identifies the physically relaxing source and destination states.
+  ko: FATQAT은 생성 시 준위 인덱스가 비음수인지 확인하고, 백엔드 준비 중 물리 대상 차원과 비교해 검사합니다. 숫자 인덱스의 순서 자체가 에너지 순서를 뜻하지는 않습니다. 물리적으로 이완하는 출발 상태와 도착 상태는 호출자가 지정해야 합니다.
+  status: machine
+- id: d8cfd0647f813492
+  en: Shared and separate jumps
+  ko: 공유 점프와 별도 점프
+  status: machine
+- id: 98837e96b2e95a26
+  en: 'Terms in one descriptor are components of one coherent jump operator. For example, a truncated bosonic lowering operator for a transmon-like model can contain both ladder transitions, while two uncorrelated atom-like decay branches use separate descriptors:'
+  ko: 선언 하나의 각 항은 하나의 결맞음 점프 연산자를 구성합니다. 예를 들어 transmon과 비슷한 모델의 잘린 보손 하강 연산자에는 두 사다리 전이를 함께 넣을 수 있지만, 서로 상관없는 원자형 감쇠 분기 두 개에는 별도 선언을 사용합니다.
+  status: machine
+- id: f5ee9bd697b43f21
+  en: In rate mode, the two atom descriptors become separate collapse operators and dissipators, with no cross terms. In finite mode, they become sequential channel applications in registration order. Putting both atom transitions in one descriptor would instead make them components of one coherent jump and can produce coherence between the destination states.
+  ko: 비율 형식에서 두 원자 선언은 교차 항이 없는 별도의 붕괴 연산자와 소산자가 됩니다. 유한 형식에서는 등록 순서대로 채널을 적용합니다. 반대로 두 원자 전이를 하나의 선언에 넣으면 하나의 결맞음 점프를 구성하므로 도착 상태 사이에 결맞음이 생길 수 있습니다.
+  status: machine
+- id: 81fa261e8ba5005e
+  en: This distinction is explicit. FATQAT does not infer it from labels such as `atom` or `transmon`, and it does not insert harmonic-oscillator coefficients. Supply `1`, `sqrt(2)`, or measured matrix elements directly.
+  ko: 이 구분은 직접 명시해야 합니다. FATQAT은 `atom`이나 `transmon` 같은 레이블로 이를 추론하거나 조화 진동자 계수를 자동으로 넣지 않습니다. `1`, `sqrt(2)`, 측정한 행렬 원소를 직접 지정하세요.
+  status: machine
+- id: adf8d27d0bf6cec5
+  en: 'Coefficient scale is not normalized: rescaling every coefficient by $\alpha\ne0$ and the strength by $1/|\alpha|^2$ leaves the channel or dissipator unchanged, subject to the finite-form bounds below.'
+  ko: 계수 크기는 정규화하지 않습니다. 모든 계수를 $\alpha\ne0$배 하고 세기를 $1/|\alpha|^2$배 하면, 아래의 유한 형식 경계를 만족하는 한 채널이나 소산자는 달라지지 않습니다.
+  status: machine
+- id: 186b7b6ad32dbc67
+  en: Finite channel form
+  ko: 유한 채널 형식
+  status: machine
+- id: bc8b7fd28400fbd4
+  en: Use a scalar `p` in `[0, 1]` for one elementary Kraus-channel application on a matrix simulator.
+  ko: 행렬 시뮬레이터에서 기본 Kraus 채널을 한 번 적용하려면 `[0, 1]` 범위의 스칼라 `p`를 사용하세요.
+  status: machine
+- id: a35a5fd9eb56f63f
+  en: 'Each probability-form declaration resolves independently:'
+  ko: 각 확률 형식 선언은 독립적으로 다음과 같이 해석됩니다.
+  status: machine
+- id: 7d7a34d8d92ab44d
+  en: The operator under the square root must be positive semidefinite. When several declarations match the same target, the simulator applies their channels sequentially in authored (registration) order. For two unit-coefficient branches from the same source level, survival is $(1-p_1)(1-p_2)$ rather than $1-p_1-p_2$, a discrepancy of $p_1p_2$. Destination populations can also depend on registration order, with those differences beginning at second order. Sequential composition therefore agrees with simultaneous independent decay only to first order for small probabilities. Use rate mode on a pulse emulator when accurate continuous competing-decay dynamics matter.
+  ko: 제곱근 안의 연산자는 양의 준정부호여야 합니다. 여러 선언이 같은 대상에 매칭되면 시뮬레이터는 작성한 등록 순서대로 채널을 적용합니다. 같은 출발 준위에서 계수가 1인 분기 두 개의 생존 확률은 $1-p_1-p_2$가 아니라 $(1-p_1)(1-p_2)$이며, 차이는 $p_1p_2$입니다. 도착 상태의 점유 확률도 등록 순서에 따라 달라질 수 있고, 차이는 2차부터 나타납니다. 따라서 순차 합성은 확률이 작을 때 1차까지만 동시 독립 감쇠와 일치합니다. 경쟁하는 연속 감쇠의 정확한 동역학이 중요하면 펄스 에뮬레이터의 비율 형식을 사용하세요.
+  status: machine
+- id: c10715c519f9c6ad
+  en: '`p` is a dimensionless jump strength rather than necessarily the total jump probability. For a basis state $|s\rangle$, the jump probability is'
+  ko: '`p`는 무차원 점프 세기이며 반드시 전체 점프 확률을 뜻하지는 않습니다. 기저 상태 $|s\rangle$의 점프 확률은 다음과 같습니다.'
+  status: machine
+- id: 28792c3b6fcacbb0
+  en: Continuous form
+  ko: 연속 형식
+  status: machine
+- id: fedf6aa4847067df
+  en: Use a finite, nonnegative scalar `rate` on a compatible pulse emulator. One descriptor resolves to
+  ko: 호환되는 펄스 에뮬레이터에서 유한한 비음수 스칼라 `rate`를 사용하세요. 선언 하나는 다음과 같이 해석됩니다.
+  status: machine
+- id: b3833d508a72d676
+  en: Multiple descriptors remain separate collapse operators, so the generator is $\sum_\mu \mathcal D[L_\mu]$, not $\mathcal D[\sum_\mu L_\mu]$. Rates use the inverse of the emulator model's time unit.
+  ko: 여러 선언은 별도의 붕괴 연산자로 유지됩니다. 따라서 생성자는 $\mathcal D[\sum_\mu L_\mu]$가 아니라 $\sum_\mu \mathcal D[L_\mu]$입니다. 비율은 에뮬레이터 모델 시간 단위의 역수를 사용합니다.
+  status: machine
+- id: acf1820208350e72
+  en: The `p` and `rate` forms share the same authored operator convention but are not general finite-time conversions of one another. The finite form is an elementary jump/no-jump channel; continuous evolution may include repeated or cascaded jumps.
+  ko: '`p`와 `rate` 형식은 같은 연산자 작성 규약을 공유하지만, 일반적으로 서로의 유한 시간 변환은 아닙니다. 유한 형식은 기본적인 점프/비점프 채널이고, 연속 진화에는 반복 점프나 연쇄 점프가 포함될 수 있습니다.'
+  status: machine
+- id: f09d8d3805d810dd
+  en: See [Backend support](backend-support.md) for accepted forms and scopes.
+  ko: 허용되는 형식과 범위는 [백엔드 지원 범위](backend-support.md)를 참고하세요.
+  status: machine

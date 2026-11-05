@@ -1,0 +1,104 @@
+- id: e31869f95dabb3f8
+  en: Pulse control
+  ko: 펄스 제어
+  status: machine
+- id: 4c1b4dccb6e49b6e
+  en: Read [Follow a Program into physical dynamics](../../guide/hamiltonian-emulation.md) first for the gate-calibration, direct-control, and scheduling workflow. This section defines the exact pulse objects and validation rules.
+  ko: 게이트 보정, 직접 제어, 스케줄링 과정은 먼저 [Program에서 물리 동역학까지](../../guide/hamiltonian-emulation.md)를 읽어 보세요. 이 절은 펄스 객체와 검증 규칙을 정확히 정의합니다.
+  status: machine
+- id: ddca672ef1110b07
+  en: 'A direct pulse block is built from three values:'
+  ko: '직접 펄스 블록은 세 가지 값으로 구성합니다:'
+  status: machine
+- id: 1002bcc580eea853
+  en: '[SampledWaveform](sampled-waveform.md) holds the samples for one signal.'
+  ko: '[SampledWaveform](sampled-waveform.md)은 신호 하나의 샘플을 담습니다.'
+  status: machine
+- id: 8c7e0ad7d24d183d
+  en: '[PulseControl](pulse-control.md) assigns that signal to a model channel.'
+  ko: '[PulseControl](pulse-control.md)은 신호를 모델 채널에 연결합니다.'
+  status: machine
+- id: a4f7afcf50a571d4
+  en: '[PulseOperation](pulse-operation.md) groups one or more controls into a timed program instruction.'
+  ko: '[PulseOperation](pulse-operation.md)은 하나 이상의 제어를 시간 길이가 있는 프로그램 명령으로 묶습니다.'
+  status: machine
+- id: 920677dd69b700bf
+  en: '`PulseOperation` is imported from `fatqat.operations` and is normally used as `ops.PulseOperation`. `PulseControl` and `SampledWaveform` are in `fatqat.emulator`. Unlike an ordinary gate, a pulse operation is added without targets because its channels already name the physical resources to drive.'
+  ko: '`PulseOperation`은 `fatqat.operations`에서 가져오며 보통 `ops.PulseOperation`으로 사용합니다. `PulseControl`과 `SampledWaveform`은 `fatqat.emulator`에 있습니다. 펄스 연산의 채널은 구동할 물리 자원을 이미 지정하므로 일반 게이트와 달리 대상 없이 추가합니다.'
+  status: machine
+- id: b3f98df09d60e20c
+  en: To implement an ordinary gate with pulses, register a [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] rule that returns a [`PulseDefinition`][fatqat.emulator.PulseDefinition]. See [Gate realization](gate-realization.md).
+  ko: 일반 게이트를 펄스로 구현하려면 [`PulseDefinition`][fatqat.emulator.PulseDefinition]을 반환하는 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] 규칙을 등록하세요. [게이트 구현](gate-realization.md)을 참고하세요.
+  status: machine
+- id: 68e1ca575295bb56
+  en: Validation
+  ko: 검증
+  status: machine
+- id: 8468b8b6bb6372ae
+  en: FatQat checks sample structure and timing when you construct these values. It rejects invalid offsets, non-positive block durations, repeated channels, and controls that extend past the block. A model's channel factory checks its address arguments when you create a channel.
+  ko: FatQat은 값을 생성할 때 샘플 구조와 시간을 검사합니다. 잘못된 오프셋, 양수가 아닌 블록 길이, 중복 채널, 블록을 넘어가는 제어는 거부합니다. 모델의 채널 팩터리는 채널 생성 시 주소 인수를 검사합니다.
+  status: machine
+- id: 6502f12a8c8ecb00
+  en: When a control is used, the emulator checks model compatibility, resource names, real or complex sample requirements, amplitude and duration limits, and channel combinations that cannot run together.
+  ko: 제어를 사용할 때 에뮬레이터가 모델 호환성, 자원 이름, 실수·복소수 샘플 조건, 진폭 및 지속시간 제한, 동시 실행할 수 없는 채널 조합을 검사합니다.
+  status: machine
+- id: eca1741207a5b1bc
+  en: Built-in support
+  ko: 내장 지원
+  status: machine
+- id: 6ac5664265587fe8
+  en: Use the model's time unit for every duration, offset, and sample time. Sample values use the channel's unit and may be restricted to real values.
+  ko: 모든 지속시간, 오프셋, 샘플 시간에는 모델의 시간 단위를 사용하세요. 샘플 값은 채널의 단위를 따르며 실수로 제한될 수 있습니다.
+  status: machine
+- id: ae77a0dff632e233
+  en: '**Direct pulse support**'
+  ko: '**직접 펄스 지원**'
+  status: machine
+- id: 4b1c4d82399781ac
+  en: '| Backend | Channels | Time / sample units | Conditions in `run()` |'
+  ko: '| 백엔드 | 채널 | 시간 / 샘플 단위 | `run()`의 조건 |'
+  status: machine
+- id: 78d5af8aba5cf75a
+  en: '| [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] | `drive(id)` accepts complex values; `detuning(id)` and `exchange(first, second)` require real values. | `ns`, `rad/ns` | Yes |'
+  ko: '| [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] | `drive(id)`는 복소수를, `detuning(id)`와 `exchange(first, second)`는 실수를 받습니다. | `ns`, `rad/ns` | 지원 |'
+  status: machine
+- id: 39d949608c549bc8
+  en: '| [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] | Global `drive()` accepts complex values; global `detuning()` requires real values. | `us`, `rad/us` | No |'
+  ko: '| [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] | 전역 `drive()`는 복소수를, 전역 `detuning()`은 실수를 받습니다. | `us`, `rad/us` | 미지원 |'
+  status: machine
+- id: e5ddb4a22b35152d
+  en: '| [`Simulator`][fatqat.simulator.Simulator] | Direct pulse operations are not supported. | -- | -- |'
+  ko: '| [`Simulator`][fatqat.simulator.Simulator] | 직접 펄스 연산은 지원하지 않습니다. | -- | -- |'
+  status: machine
+- id: 62e744faf05e5cc3
+  en: The [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) pages document model resources and limits.
+  ko: 모델 자원과 제한은 [transmon](../pulse-emulator.md) 및 [중성 원자](../atom-emulators.md) 페이지에 설명되어 있습니다.
+  status: machine
+- id: 6b12634b21e175a4
+  en: <a id="pulse-probability-noise"></a>
+  ko: <a id="pulse-probability-noise"></a>
+  status: machine
+- id: 4d8961598550e3c3
+  en: Continuous-time noise
+  ko: 연속시간 잡음
+  status: machine
+- id: 2d512d6140f104a8
+  en: 'Pulse emulators evolve noise over time, so their family-owned Lindblad realizations use rates or relaxation times. They do not infer a rate from a finite probability. In particular, [`PauliChannel`][fatqat.noise.PauliChannel] remains a discrete Simulator channel: its probabilities do not specify a duration or conversion convention. Use [`Simulator`][fatqat.simulator.Simulator] for discrete Pauli noise, or a rate-form declaration listed for the pulse-emulator family in [Pulse emulators](../noise/backend-support.md#noise-emulator-support).'
+  ko: 펄스 에뮬레이터는 잡음을 시간에 따라 진화시키므로 각 계열의 Lindblad 구현에는 비율이나 이완 시간을 사용합니다. 유한 확률에서 비율을 추론하지 않습니다. 특히 [`PauliChannel`][fatqat.noise.PauliChannel]은 이산 Simulator 채널입니다. 그 확률에는 지속시간이나 변환 규약이 지정되어 있지 않습니다. 이산 Pauli 잡음에는 [`Simulator`][fatqat.simulator.Simulator]를, 펄스 에뮬레이터에는 [펄스 에뮬레이터](../noise/backend-support.md#noise-emulator-support)에 나열된 해당 계열의 비율 형식 선언을 사용하세요.
+  status: machine
+- id: e82ac69fa308ff9f
+  en: '[PulseOperation](pulse-operation.md)'
+  ko: '[PulseOperation](pulse-operation.md)'
+  status: machine
+- id: e401486428759ade
+  en: '[PulseControl](pulse-control.md)'
+  ko: '[PulseControl](pulse-control.md)'
+  status: machine
+- id: 1144a65c10fbdce9
+  en: '[SampledWaveform](sampled-waveform.md)'
+  ko: '[SampledWaveform](sampled-waveform.md)'
+  status: machine
+- id: 959453f771a8926b
+  en: '[Gate realization](gate-realization.md)'
+  ko: '[게이트 구현](gate-realization.md)'
+  status: machine

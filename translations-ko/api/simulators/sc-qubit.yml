@@ -1,0 +1,100 @@
+- id: f7d3974731c10d4f
+  en: SCQubitSimulator
+  ko: SCQubitSimulator
+  status: machine
+- id: 2d46654d9ea48a4b
+  en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] applies the [`Simulator`][fatqat.simulator.Simulator] execution model to a configurable synthetic superconducting coupling graph. Use it when native gates, capacity, and target connectivity matter. It does not transpile, route, schedule, or reproduce a named processor.'
+  ko: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]는 [`Simulator`][fatqat.simulator.Simulator] 실행 모델을 설정 가능한 가상 초전도 결합 그래프에 적용합니다. 네이티브 게이트, 용량, 대상 연결 관계가 중요할 때 사용하세요. 트랜스파일, 라우팅, 스케줄링을 수행하거나 특정 프로세서를 재현하지는 않습니다.'
+  status: machine
+- id: 1d2b7426295b06e8
+  en: '| Default device | `num_qubits=16`; a 4×4 reference coupling graph |'
+  ko: '| 기본 장치 | `num_qubits=16`; 4×4 참조 결합 그래프 |'
+  status: machine
+- id: 3ebbdb4e2335a7f6
+  en: '| Uniform native gates | [`fatqat.operations.X`][fatqat.operations.X], [`fatqat.operations.SX`][fatqat.operations.SX], [`fatqat.operations.RZ`][fatqat.operations.RZ] |'
+  ko: '| 모든 위치의 네이티브 게이트 | [`fatqat.operations.X`][fatqat.operations.X], [`fatqat.operations.SX`][fatqat.operations.SX], [`fatqat.operations.RZ`][fatqat.operations.RZ] |'
+  status: machine
+- id: be34587a33508a5a
+  en: '| Connected native gate | [`fatqat.operations.CZ`][fatqat.operations.CZ] on the supplied couplings |'
+  ko: '| 연결된 네이티브 게이트 | 제공한 결합 위의 [`fatqat.operations.CZ`][fatqat.operations.CZ] |'
+  status: machine
+- id: 49894500914a74ad
+  en: '| Other built-in operations | Measurement and [`fatqat.operations.Reset`][fatqat.operations.Reset] follow the method rules described by [`Simulator`][fatqat.simulator.Simulator] |'
+  ko: '| 기타 내장 연산 | 측정과 [`fatqat.operations.Reset`][fatqat.operations.Reset]은 [`Simulator`][fatqat.simulator.Simulator]에 설명된 방법별 규칙을 따름 |'
+  status: machine
+- id: 84a695fbfb048653
+  en: '| Methods | All methods supported by [`Simulator`][fatqat.simulator.Simulator]; default `statevector` |'
+  ko: '| 방법 | [`Simulator`][fatqat.simulator.Simulator]가 지원하는 모든 방법. 기본값은 `statevector` |'
+  status: machine
+- id: 9afe2d589c7a9bea
+  en: '| Noise | Ideal by default; a built-in reference model is available explicitly |'
+  ko: '| 잡음 | 기본적으로 이상적. 내장 참조 모델을 명시적으로 선택 가능 |'
+  status: machine
+- id: cb640281c3dd2bd3
+  en: Native gates and layout
+  ko: 네이티브 게이트와 배치
+  status: machine
+- id: 60d8948358ff7f9e
+  en: 'The default row-major numbering is:'
+  ko: '기본 행 우선 번호는 다음과 같습니다:'
+  status: machine
+- id: ef6c921560d1380d
+  en: Both operand orders of every coupling are legal, so `CZ` is accepted on device labels `(0, 1)` and `(1, 0)`, but not `(0, 5)` in the default data. The grid is only the default test topology; callers may provide any valid undirected coupling graph.
+  ko: 모든 결합은 두 피연산자 순서를 모두 허용합니다. 따라서 기본 데이터에서 장치 라벨 `(0, 1)`과 `(1, 0)`의 `CZ`는 허용되지만 `(0, 5)`는 허용되지 않습니다. 격자는 기본 시험 토폴로지일 뿐이며, 유효한 무방향 결합 그래프를 자유롭게 제공할 수 있습니다.
+  status: machine
+- id: 009ea4c87b39ba3e
+  en: With the automatic layout, a program maps all quantum registers to device labels `0, 1, ...` in declaration order. A [`GridRegister`][fatqat.GridRegister] is flattened in the same order as any other register; frontend geometry does not define hardware placement. An explicit, complete [`ResourceLayout`][fatqat.ResourceLayout] can place program references differently. Capacity and the qubit-only restriction still apply.
+  ko: 자동 배치는 모든 양자 레지스터를 선언 순서대로 장치 라벨 `0, 1, ...`에 매핑합니다. [`GridRegister`][fatqat.GridRegister]도 다른 레지스터와 같은 순서로 평탄화되며 프런트엔드 기하 구조가 하드웨어 배치를 정하지는 않습니다. 완전하고 명시적인 [`ResourceLayout`][fatqat.ResourceLayout]을 사용하면 프로그램 참조를 다르게 배치할 수 있습니다. 용량과 큐비트 전용 제한은 여전히 적용됩니다.
+  status: machine
+- id: 5a39de36834bda45
+  en: 'The backend executes only programs already written in its native gate set. For example, [`fatqat.operations.CX`][fatqat.operations.CX] is rejected even on neighbouring qubits. Inspect [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map] instead of hard-coding these rules:'
+  ko: '이 백엔드는 네이티브 게이트 집합으로 이미 작성된 프로그램만 실행합니다. 예를 들어 이웃 큐비트에 대한 [`fatqat.operations.CX`][fatqat.operations.CX]도 거부됩니다. 이 규칙들을 코드에 고정하지 말고 [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map]을 확인하세요:'
+  status: machine
+- id: b1825a5fcca4f573
+  en: '`device_operands_for(operation)` returns an empty set for a gate available everywhere and ordered tuples for a connectivity-limited gate.'
+  ko: '`device_operands_for(operation)`은 어디서나 사용할 수 있는 게이트에 빈 집합을, 연결 제약이 있는 게이트에 순서 있는 튜플들을 반환합니다.'
+  status: machine
+- id: 51c8d2a23cdcfa44
+  en: Built-in noise
+  ko: 내장 잡음
+  status: machine
+- id: 3022f53494bdf396
+  en: 'The simulator remains ideal unless a noise model is supplied. To use the built-in profile, request it explicitly:'
+  ko: '잡음 모델을 제공하지 않으면 시뮬레이터는 이상적으로 동작합니다. 내장 프로필은 명시적으로 요청해야 합니다:'
+  status: machine
+- id: 3e07c0fc4f62be5c
+  en: The profile uses `T1 = 60 us` and `T2 = 48 us`. Each call returns a fresh [`NoiseModel`][fatqat.NoiseModel] that you can extend before passing it to the simulator.
+  ko: 프로필은 `T1 = 60 us`, `T2 = 48 us`를 사용합니다. 호출할 때마다 새 [`NoiseModel`][fatqat.NoiseModel]을 반환하므로 시뮬레이터에 전달하기 전에 확장할 수 있습니다.
+  status: machine
+- id: e36a14de3e722e02
+  en: '**Built-in profile**'
+  ko: '**내장 프로필**'
+  status: machine
+- id: 9d4743871d97531e
+  en: '| Operation | Duration | Noise |'
+  ko: '| 연산 | 지속시간 | 잡음 |'
+  status: machine
+- id: 9f342a572239bf97
+  en: '| `X`, `SX` | 20 ns | T1/T2-derived amplitude and phase damping |'
+  ko: '| `X`, `SX` | 20 ns | T1/T2로부터 구한 진폭 및 위상 감쇠 |'
+  status: machine
+- id: 1e03b9158161fd79
+  en: '| `RZ` | 0 ns (virtual) | None |'
+  ko: '| `RZ` | 0 ns(가상) | 없음 |'
+  status: machine
+- id: a39572ad95d9db21
+  en: '| `CZ` | 50 ns | Relaxation on each qubit, followed by joint depolarizing noise with `p = 0.001` |'
+  ko: '| `CZ` | 50 ns | 각 큐비트의 이완 후 `p = 0.001`인 공동 탈분극 잡음 |'
+  status: machine
+- id: 15ec2ec4ac5a537c
+  en: '| Measurement | — | `P(report 1 \| true 0) = 0.02` and `P(report 0 \| true 1) = 0.04` |'
+  ko: '| 측정 | — | `P(report 1 \| true 0) = 0.02`, `P(report 0 \| true 1) = 0.04` |'
+  status: machine
+- id: 19e9419278ad6ba2
+  en: See [Noise](../noise.md) for how the selected simulation method applies this model.
+  ko: 선택한 시뮬레이션 방법이 이 모델을 적용하는 방식은 [잡음](../noise.md)을 참고하세요.
+  status: machine
+- id: ec27ee0287f983d3
+  en: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], and [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] follow the general Simulator API and are included below for a complete class reference.'
+  ko: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model]은 일반 Simulator API를 따릅니다. 전체 클래스 참조를 위해 아래에도 포함했습니다.'
+  status: machine

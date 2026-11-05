@@ -1,0 +1,12 @@
+- id: 2fb4019a35e427e8
+  en: Backend
+  ko: Backend
+  status: machine
+- id: 7f3941d0f5a96e5d
+  en: '[`Backend`][fatqat.Backend] defines a structural interface for custom execution backends: `run(program, **options)` accepts a [`Program`][fatqat.Program] and returns a [`Job`][fatqat.Job] containing a [`Result`][fatqat.Result]. Call `job.result()` to obtain the result. Implementations do not need to inherit from `Backend`.'
+  ko: '[`Backend`][fatqat.Backend]는 사용자 정의 실행 백엔드의 구조적 인터페이스를 정의합니다. `run(program, **options)`는 [`Program`][fatqat.Program]을 받아 [`Result`][fatqat.Result]가 담긴 [`Job`][fatqat.Job]을 반환합니다. 결과는 `job.result()`로 가져옵니다. 구현 클래스가 `Backend`를 상속할 필요는 없습니다.'
+  status: machine
+- id: c1a6266a4160ff48
+  en: 'Each backend defines its own keyword options, defaults, validation, and produced result fields. Import and instantiate the implementation directly, then pass it to code that accepts a `Backend`:'
+  ko: '키워드 옵션, 기본값, 검증 방식, 반환할 결과 필드는 각 백엔드가 정합니다. 구현을 직접 가져와 인스턴스를 만든 다음 `Backend`를 받는 코드에 전달하세요:'
+  status: machine

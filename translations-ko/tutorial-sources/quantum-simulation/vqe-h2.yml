@@ -1,0 +1,148 @@
+- id: c7c4a8bfdc960fb3
+  en: Find the ground-state energy of H₂ with VQE
+  ko: VQE로 H₂의 바닥 상태 에너지 찾기
+  status: machine
+- id: e54b56dfd0b67b54
+  en: Run exact, finite-shot, and noisy VQE loops for molecular hydrogen and make the variational bound and sampling uncertainty explicit.
+  ko: 수소 분자에 대해 정확한 계산, 유한 샷 계산, 잡음이 있는 계산으로 VQE를 실행하고 변분 상한과 표본 추출의 불확실성을 확인합니다.
+  status: machine
+- id: 323bd496a43afb78
+  en: Parameterized two-qubit VQE ansatz
+  ko: 매개변수화된 2큐비트 VQE 변분 회로
+  status: machine
+- id: 2abfa1bd1ad69020
+  en: Exact VQE convergence trace
+  ko: 정확한 VQE의 수렴 추이
+  status: machine
+- id: 94163a7d9e86d1d0
+  en: Finite-shot VQE traces with statistical uncertainty
+  ko: 통계적 불확실성을 표시한 유한 샷 VQE 추이
+  status: machine
+- id: 271fc2ac7c22fcea
+  en: Noiseless and depolarizing-noise VQE energy traces
+  ko: 잡음이 없을 때와 탈분극 잡음이 있을 때의 VQE 에너지 추이
+  status: machine
+- id: 6cffdd317d1dc07e
+  en: 'The variational quantum eigensolver (VQE) estimates the ground-state energy of a Hamiltonian $H$ by making the variational principle $E(\theta) \geq E_0$ do the work: a parameterized circuit prepares $|\psi(\theta)\rangle$, the energy'
+  ko: 변분 양자 고유값 풀이법(VQE)은 변분 원리 $E(\theta) \geq E_0$를 이용해 해밀토니안 $H$의 바닥 상태 에너지를 추정합니다. 매개변수화된 회로로 $|\psi(\theta)\rangle$를 준비하고, 다음 에너지를
+  status: machine
+- id: 6521b6b039748329
+  en: is evaluated on the quantum processor, and a classical optimizer walks $\theta$ downhill. The lowest energy found is an upper bound on the true ground-state energy $E_0$.
+  ko: 양자 프로세서에서 계산한 뒤 고전 최적화기로 에너지가 낮아지는 방향으로 $\theta$를 조정합니다. 찾은 최솟값은 실제 바닥 상태 에너지 $E_0$의 상한입니다.
+  status: machine
+- id: 8803437142be4dba
+  en: 'This tutorial runs the full loop on the smallest interesting chemistry example: molecular hydrogen in the STO-3G basis, reduced to two qubits by qubit tapering (the form used in O''Malley et al., [arXiv:1512.06860](https://arxiv.org/abs/1512.06860)). The Hamiltonian is a sum of five Pauli terms,'
+  ko: 이 튜토리얼에서는 간단하면서도 의미 있는 화학 예제로 전체 과정을 실행합니다. STO-3G 기저의 수소 분자를 큐비트 축약(tapering)으로 2큐비트에 표현합니다(O'Malley 등의 [arXiv:1512.06860](https://arxiv.org/abs/1512.06860)에서 사용한 형태). 해밀토니안은 다섯 Pauli 항의 합입니다.
+  status: machine
+- id: 16dec6792c30bda5
+  en: so the energy is a weighted sum of expectation values — exactly what an Estimator computes against one circuit evaluation.
+  ko: 따라서 에너지는 기댓값의 가중합입니다. Estimator가 한 번의 회로 평가로 계산하는 양이 바로 이것입니다.
+  status: machine
+- id: 5b00ff3de9375c2a
+  en: 'The tutorial source contains three executable acts:'
+  ko: 튜토리얼 소스에는 다음 세 가지 실행 예제가 있습니다.
+  status: machine
+- id: 7e072085a6d67316
+  en: '**Exact VQE** — the energy is evaluated exactly from the statevector, and COBYLA minimizes it. The convergence curve is compared against the exact ground energy, obtained here by dense diagonalization.'
+  ko: '**정확한 VQE** — 상태 벡터에서 에너지를 정확히 계산하고 COBYLA로 최소화합니다. 수렴 곡선은 조밀 행렬 대각화로 구한 정확한 바닥 상태 에너지와 비교합니다.'
+  status: machine
+- id: 5ae0b299e8aa7bae
+  en: '**Finite-shot VQE** — the same loop, but every expectation is estimated from 1024 shots, with the statistical standard error made explicit.'
+  ko: '**유한 샷 VQE** — 같은 반복 과정에서 각 기댓값을 1024회의 샷으로 추정하고, 통계적 표준 오차를 명시적으로 표시합니다.'
+  status: machine
+- id: f0d9187f27f688a5
+  en: '**VQE under noise** — a depolarizing noise model is attached to the simulator, and the energy floor moves up: a two-line summary of why NISQ chemistry is hard.'
+  ko: '**잡음이 있는 VQE** — 시뮬레이터에 탈분극 잡음 모델을 추가하면 도달 가능한 최저 에너지가 높아집니다. NISQ 화학 계산이 어려운 이유를 간단히 보여 줍니다.'
+  status: machine
+- id: a8f123ba36178e9b
+  en: Everything is seeded and runs in seconds on a laptop CPU.
+  ko: 모든 난수에 시드를 지정하며, 노트북 CPU에서 몇 초 안에 실행됩니다.
+  status: machine
+- id: 322017a9a2ae81a2
+  en: The Hamiltonian and its exact spectrum
+  ko: 해밀토니안과 정확한 스펙트럼
+  status: machine
+- id: 6ca765b790ce6169
+  en: 'The five Pauli terms are inlined as data. Pauli strings follow the convention *leftmost character = qubit 0*: `IZ` acts with $Z$ on qubit 1.'
+  ko: 다섯 Pauli 항을 데이터로 직접 정의합니다. Pauli 문자열은 *가장 왼쪽 문자 = 큐비트 0* 규칙을 따릅니다. 따라서 `IZ`는 큐비트 1에 $Z$를 작용시킵니다.
+  status: machine
+- id: 4f8ae938f2309896
+  en: 'The exact ground energy is obtained by dense diagonalization of the 4x4 matrix. It serves two purposes: the reference line on the convergence plots, and a reminder that the variational principle bounds the *lowest* eigenvalue — the other three are printed for context.'
+  ko: 4x4 조밀 행렬을 대각화하여 정확한 바닥 상태 에너지를 구합니다. 이 값은 수렴 그래프의 기준선으로 사용하며, 변분 원리가 *가장 낮은* 고유값의 상한을 준다는 점도 확인할 수 있습니다. 비교를 위해 나머지 세 고유값도 출력합니다.
+  status: machine
+- id: 23f2c885410e9028
+  en: 'The identity term has expectation 1 in every state, so it folds into a constant offset. The optimizer only ever sees the four non-identity expectations:'
+  ko: 항등 항의 기댓값은 모든 상태에서 1이므로 상수 오프셋으로 처리합니다. 최적화기에는 항등 항을 제외한 네 기댓값만 전달합니다.
+  status: machine
+- id: 60fddef08ec73323
+  en: The Hamiltonian as observables
+  ko: 해밀토니안을 관측량으로 표현하기
+  status: machine
+- id: 7920fd66521fc517
+  en: 'Each non-identity Pauli term becomes one `fq.Observable`, built with `from_sparse`: only the non-identity factors are named, as explicit `(pauli, (qubit,), coefficient)` entries. The explicit qubit index sidesteps the string-endianness trap noted above (`IZ` means *Z on qubit 1*). One entry is a product — `("ZZ", (0, 1), 1.0)` is the single term $Z_0 Z_1$, while two entries would sum. Every observable carries coefficient 1.0; the Hamiltonian coefficients live in `COEFFS` and are applied classically, so the energy is `OFFSET` plus the weighted sum of the four expectations.'
+  ko: 항등 항을 제외한 각 Pauli 항을 `from_sparse`로 구성한 하나의 `fq.Observable`로 만듭니다. 항등 인자는 생략하고 `(pauli, (qubit,), coefficient)` 항목으로 필요한 인자만 명시합니다. 큐비트 인덱스를 직접 쓰므로 앞서 본 문자열의 자리 순서 혼동을 피할 수 있습니다(`IZ`는 *큐비트 1의 Z*입니다). 한 항목 안의 인자는 곱으로 결합합니다. 예를 들어 `("ZZ", (0, 1), 1.0)`은 단일 항 $Z_0 Z_1$이고, 항목 두 개를 쓰면 합이 됩니다. 모든 관측량의 계수는 1.0으로 두고 해밀토니안 계수는 `COEFFS`에 저장해 고전적으로 적용합니다. 따라서 에너지는 네 기댓값의 가중합에 `OFFSET`을 더한 값입니다.
+  status: machine
+- id: f1a61aaa1fe53e25
+  en: 'The ansatz: a parameterized template'
+  ko: '변분 회로: 매개변수 템플릿'
+  status: machine
+- id: 15440def4f0678ba
+  en: '`THETA` is a `fq.ParameterVector` of length 4 — a group of named placeholders. `build_template()` assembles the two-qubit ansatz with the placeholders in place of angles: two layers, each applying `RY` on both wires (one parameter each) and closing with `CX` from qubit 0 to qubit 1. The template is built once; binding it returns a new program and never mutates it.'
+  ko: '`THETA`는 길이가 4인 `fq.ParameterVector`, 즉 이름이 있는 자리표시자 모음입니다. `build_template()`은 각도 자리에 이 자리표시자를 넣어 2큐비트 변분 회로를 구성합니다. 두 층 각각에서 두 와이어에 `RY`를 적용하고(각각 매개변수 하나), 큐비트 0에서 큐비트 1로 향하는 `CX`로 마무리합니다. 템플릿은 한 번만 만들며, 값을 대입할 때는 원본을 바꾸지 않고 새 프로그램을 반환합니다.'
+  status: machine
+- id: 47fe1a12dcbf9023
+  en: Because the Hamiltonian is real, its ground state can be chosen real, and four `RY` angles interleaved with an entangler span every real two-qubit state — so this ansatz can reach $E_0$ in principle.
+  ko: 해밀토니안이 실수이므로 바닥 상태도 실수로 선택할 수 있습니다. 얽힘 게이트 사이에 배치한 네 `RY` 각도로 모든 실수 2큐비트 상태를 표현할 수 있어, 이 변분 회로는 원리적으로 $E_0$에 도달할 수 있습니다.
+  status: machine
+- id: 5803a7215a5aa27e
+  en: 'The template draws like any other program: two layers of parameter-bearing `RY` rotations, each closed by the entangler.'
+  ko: 템플릿도 다른 프로그램처럼 그릴 수 있습니다. 매개변수가 있는 `RY` 회전으로 구성된 두 층이며, 각 층은 얽힘 게이트로 끝납니다.
+  status: machine
+- id: ad4a330e76137714
+  en: The exact energy function
+  ko: 정확한 에너지 함수
+  status: machine
+- id: 72986e9eee913a1d
+  en: One energy evaluation binds the template at the current parameters — `Estimator.run` rejects programs that still contain unbound parameters — then evaluates all four observables against a single evolution. With `shots=0`, the Estimator default, the expectations are exact; the energy is their weighted sum plus the identity offset.
+  ko: 에너지를 한 번 평가할 때 현재 매개변수 값을 템플릿에 대입한 뒤, 한 번의 시간 진화로 얻은 상태에서 네 관측량을 모두 계산합니다. `Estimator.run`은 대입되지 않은 매개변수가 남아 있는 프로그램을 거부합니다. Estimator의 기본값인 `shots=0`에서는 기댓값이 정확하며, 에너지는 그 가중합에 항등 항의 오프셋을 더한 값입니다.
+  status: machine
+- id: 72244ea575fa305d
+  en: Optimization
+  ko: 최적화
+  status: machine
+- id: 3f2e45a0b8623001
+  en: COBYLA minimizes the black-box energy from a small random start — no gradients needed. The trace is recorded for the convergence plot.
+  ko: COBYLA는 작은 무작위 초기값에서 시작해 블랙박스 에너지를 최소화하며, 기울기는 필요하지 않습니다. 수렴 그래프를 그리기 위해 평가 이력을 기록합니다.
+  status: machine
+- id: d900bb988a88a50a
+  en: Finite-shot expectations
+  ko: 유한 샷 기댓값
+  status: machine
+- id: de9016c742c9be7d
+  en: 'The same energy, estimated the way hardware would deliver it: every expectation comes from 1024 measurement shots. `shots` is a per-run option, not an estimator property, so the same estimator serves exact and sampled evaluations. An explicit `simulation_config={"seed": ...}` reuses the same randomness at every evaluation, keeping the optimizer''s landscape deterministic. `sampled_std` propagates the per-observable standard errors (`get_standard_error()`) through the weights in quadrature — $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$ — the scale of the error bar on the noisy objective.'
+  ko: '같은 에너지를 실제 하드웨어처럼 추정합니다. 각 기댓값은 1024회의 측정 샷에서 얻습니다. `shots`는 추정기 자체의 속성이 아니라 실행별 옵션이므로, 같은 추정기로 정확한 평가와 표본 기반 평가를 모두 수행할 수 있습니다. `simulation_config={"seed": ...}`를 명시하면 평가마다 같은 난수를 사용하여 최적화기가 보는 목적 함수가 결정적으로 유지됩니다. `sampled_std`는 관측량별 표준 오차(`get_standard_error()`)를 가중치와 함께 제곱합으로 전파합니다. 즉 $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$이며, 잡음이 있는 목적 함수의 오차 막대 크기에 해당합니다.'
+  status: machine
+- id: add004053ba85637
+  en: The same COBYLA run, now optimizing the noisy objective. Note that what matters at the end is the *exact* energy of the point found — the shot noise only steers the search.
+  ko: 이번에는 같은 COBYLA 과정으로 잡음이 있는 목적 함수를 최적화합니다. 최종적으로 중요한 값은 찾은 지점의 *정확한* 에너지입니다. 샷 잡음은 탐색 방향에만 영향을 줍니다.
+  status: machine
+- id: 46118b07138cb7d8
+  en: A depolarizing noise model
+  ko: 탈분극 잡음 모델
+  status: machine
+- id: 56cd44d7fea98e8f
+  en: 'Noise is declared independently of the program: a `fq.NoiseModel` holds physical declarations — here `fq.noise.Depolarizing` after every `RY` ($p = 0.01$) and, more strongly, after every `CX` ($p = 0.05$) — and the same template runs on a density-matrix simulator constructed with that model. A density-matrix Estimator in `shots=0` mode returns the noise-averaged expectation exactly: no sampling is needed to *see* the noise. See [ideal and noisy execution](../guide/ideal-and-noisy.md) for the full workflow.'
+  ko: 잡음은 프로그램과 별도로 선언합니다. `fq.NoiseModel`에 물리적 잡음 규칙을 담는데, 여기서는 모든 `RY` 뒤에 `fq.noise.Depolarizing`을 $p = 0.01$로, 모든 `CX` 뒤에는 더 강한 $p = 0.05$로 적용합니다. 같은 템플릿을 이 모델로 구성한 밀도 행렬 시뮬레이터에서 실행합니다. 밀도 행렬 Estimator의 `shots=0` 모드는 잡음에 대해 평균한 기댓값을 정확히 반환하므로, 잡음의 영향을 *확인*하는 데 표본 추출이 필요하지 않습니다. 전체 과정은 [이상적인 실행과 잡음이 있는 실행](../guide/ideal-and-noisy.md)을 참고하세요.
+  status: machine
+- id: 02f9374ac261d1d1
+  en: 'First, the degradation: the exact-VQE minimum is re-evaluated under noise. Then COBYLA re-optimizes under noise — and recovers essentially nothing: a variational ansatz cannot rotate unital noise away, so the lifted floor is there to stay (it can only be mitigated classically, not optimized away).'
+  ko: 먼저 정확한 VQE로 찾은 최솟값 지점을 잡음이 있는 조건에서 다시 평가해 성능 저하를 확인합니다. 이어서 잡음이 있는 조건에서 COBYLA로 다시 최적화해도 개선은 거의 없습니다. 변분 변분 회로의 회전으로는 항등 보존(unital) 잡음을 제거할 수 없어 높아진 최저 에너지가 그대로 남습니다. 고전적 오차 완화는 가능하지만 최적화만으로 없앨 수는 없습니다.
+  status: machine
+- id: 175956a7ad13988f
+  en: Bigger molecules need a chemistry package to produce the Pauli sum and a physically motivated ansatz (e.g. UCCSD) instead of the hardware-efficient one used here.
+  ko: 더 큰 분자를 다루려면 Pauli 합을 생성하는 화학 패키지가 필요합니다. 여기서 사용한 하드웨어 효율적 변분 회로 대신 UCCSD처럼 물리적 근거가 있는 변분 회로도 사용해야 합니다.
+  status: machine
+- id: 375b62441d724af7
+  en: On larger systems, the bitstrings sampled from the optimized state can be post-processed classically (sample-based quantum diagonalization) — overkill at two qubits, where the sampled subspace is the whole space.
+  ko: 더 큰 계에서는 최적화된 상태에서 추출한 비트열을 고전적으로 후처리할 수 있습니다(표본 기반 양자 대각화). 2큐비트에서는 표본이 이루는 부분공간이 전체 공간이므로 이런 방법을 쓸 필요가 없습니다.
+  status: machine

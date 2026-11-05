@@ -1,0 +1,24 @@
+- id: df292782b26eef5b
+  en: Loss
+  ko: Loss
+  status: machine
+- id: dc241ea4dca13af1
+  en: '[`Loss`][fatqat.noise.Loss] removes physical carriers from an occupancy-aware simulation. It is not amplitude damping: amplitude damping keeps the subsystem in the modeled Hilbert space, while loss marks the carrier absent and discards its quantum correlations.'
+  ko: '[`Loss`][fatqat.noise.Loss]는 점유 상태를 추적하는 시뮬레이션에서 물리적 운반체를 제거합니다. 진폭 감쇠와는 다릅니다. 진폭 감쇠는 부분계를 모델의 힐베르트 공간 안에 유지하지만, 손실은 운반체를 없는 것으로 표시하고 그 양자 상관을 버립니다.'
+  status: machine
+- id: e14bb4ecf9b048e9
+  en: Where loss applies
+  ko: 손실 적용 위치
+  status: machine
+- id: d5bc735ad4b7a07a
+  en: '`p` is the loss probability for each selected carrier that is currently present. FATQAT samples each carrier independently after a matched operation. An operation-wide registration uses the same probability for every operand; use `target_positions` to limit loss to particular operands.'
+  ko: '`p`는 선택된 운반체 중 현재 존재하는 각각의 손실 확률입니다. FATQAT은 매칭되는 연산 뒤에 각 운반체를 독립적으로 샘플링합니다. 연산 전체에 등록하면 모든 피연산자에 같은 확률을 사용합니다. 특정 피연산자에만 손실을 적용하려면 `target_positions`를 사용하세요.'
+  status: machine
+- id: f7500f6c9589f841
+  en: '[`Loss`][fatqat.noise.Loss] can be attached only to matching operations; it cannot be registered as background noise. A condition on the matching operation also controls its loss: a false condition skips the attached loss.'
+  ko: '[`Loss`][fatqat.noise.Loss]는 매칭되는 연산에만 연결할 수 있으며 배경 잡음으로 등록할 수 없습니다. 매칭되는 연산의 조건은 손실에도 적용되므로, 조건이 거짓이면 연결된 손실도 건너뜁니다.'
+  status: machine
+- id: db39bca666b4c5a4
+  en: '`Loss` requires a backend that tracks occupancy. See [backend support](backend-support.md#noise-simulator-support) for supported backends and [the occupancy lifecycle](../simulators/atom-array.md#occupancy-and-loss) for loading, later operations, measurement, and result behavior.'
+  ko: '`Loss`에는 점유 상태를 추적하는 백엔드가 필요합니다. 지원 백엔드는 [백엔드 지원 범위](backend-support.md#noise-simulator-support)를, 로딩·이후 연산·측정·결과 동작은 [점유 수명 주기](../simulators/atom-array.md#occupancy-and-loss)를 참고하세요.'
+  status: machine

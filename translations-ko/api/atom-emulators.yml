@@ -1,0 +1,200 @@
+- id: ba012a8c77dc2e5e
+  en: Neutral-atom emulator
+  ko: 중성 원자 에뮬레이터
+  status: machine
+- id: ed7d514f8879f0ff
+  en: The neutral-atom pulse emulator follows the standard [`Simulator`][fatqat.simulator.Simulator] workflow. Pass a [`Program`][fatqat.Program] to `run()`, then call `job.result()` on the eager [`Job`][fatqat.Job] to get a [`Result`][fatqat.Result]. It is a pulse-resolved physical emulator rather than a mode of [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator].
+  ko: 중성 원자 펄스 에뮬레이터는 표준 [`Simulator`][fatqat.simulator.Simulator] 흐름을 따릅니다. [`Program`][fatqat.Program]을 `run()`에 전달한 뒤, 실행이 완료된 [`Job`][fatqat.Job]에서 `job.result()`를 호출하면 [`Result`][fatqat.Result]를 얻습니다. 펄스 단위로 물리적 동작을 계산하는 에뮬레이터이며, [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]의 실행 모드는 아닙니다.
+  status: machine
+- id: ee1ecfd8b861cb83
+  en: Use [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] for directly authored global controls in the physical `|g>, |r>` model. See [Choose and run a neutral-atom workflow](../guide/neutral-atom-emulation.md) for a complete executable example.
+  ko: 물리적 `|g>, |r>` 모델에서 전역 제어를 직접 작성하려면 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]를 사용하세요. 실행 가능한 전체 예제는 [중성 원자 작업 흐름 선택과 실행](../guide/neutral-atom-emulation.md)을 참고하세요.
+  status: machine
+- id: 9e8b4f9337f41d32
+  en: Arrangements and program resources
+  ko: 원자 배치와 프로그램 자원
+  status: machine
+- id: 248a68bd26987d0e
+  en: 'The backend requires an immutable [`AtomArrangement`][fatqat.emulator.AtomArrangement] with coordinates in micrometres (`distance_unit == "um"`). Use `chain()` or `rectangular()` for a regular layout, or `from_coordinates()` to supply explicit sites:'
+  ko: '이 백엔드에는 좌표 단위가 마이크로미터인(`distance_unit == "um"`) 불변 [`AtomArrangement`][fatqat.emulator.AtomArrangement]가 필요합니다. 규칙적인 배치는 `chain()`이나 `rectangular()`로 만들고, 각 위치를 직접 지정하려면 `from_coordinates()`를 사용하세요:'
+  status: machine
+- id: 7f6928dd52d96ea8
+  en: '`from_coordinates()` accepts a nonempty ordered iterable. Every coordinate must contain two components `(x, y)`, or every coordinate must contain three `(x, y, z)`; mixed dimensions are rejected. Components must be finite `numbers.Real` values, excluding booleans. Negative coordinates are allowed. Strings, mappings, and sets are not accepted as the outer iterable or as individual coordinates. Invalid input, including duplicate positions after conversion to floats, raises `ValueError`.'
+  ko: '`from_coordinates()`는 비어 있지 않은 순서 있는 이터러블을 받습니다. 모든 좌표는 두 성분 `(x, y)` 또는 세 성분 `(x, y, z)`으로 통일해야 하며, 차원을 섞으면 거부합니다. 성분은 불리언을 제외한 유한한 `numbers.Real` 값이어야 합니다. 음수 좌표도 허용합니다. 바깥 이터러블과 개별 좌표 모두 문자열, 매핑, 집합은 사용할 수 없습니다. 실수 변환 후 위치가 중복되는 경우를 포함해 잘못된 입력에는 `ValueError`가 발생합니다.'
+  status: machine
+- id: 10cbc2f0299d675a
+  en: '`coordinates` contains a copy of the input as immutable `(x, y, z)` tuples, with `z=0.0` added to two-component input. Input order defines site indices. `spatial_dimension` records the input dimension, so explicit z components give `3` even when they are all zero. For arrangements created with `from_coordinates()`, `rows`, `cols`, and `spacing` are `None`, even if the coordinates form a regular grid.'
+  ko: '`coordinates`는 입력을 불변 `(x, y, z)` 튜플로 복사하며, 두 성분으로 된 입력에는 `z=0.0`을 추가합니다. 입력 순서가 사이트 인덱스를 결정합니다. `spatial_dimension`은 입력 차원을 기록하므로 z 성분을 명시하면 모두 0이더라도 `3`입니다. `from_coordinates()`로 만든 배치는 좌표가 규칙적인 격자를 이루더라도 `rows`, `cols`, `spacing`이 모두 `None`입니다.'
+  status: machine
+- id: a7d9bb638384c736
+  en: '`rectangular()` accepts a positive finite scalar `spacing` for equal spacing along both axes, or an ordered iterable of two positive finite real values `(x_spacing, y_spacing)` to set each axis separately. Booleans are rejected. The `spacing` attribute stores a scalar as a float and a pair as an immutable tuple of floats, including when both values are equal. Its coordinates are row-major, `(column * x_spacing, row * y_spacing, 0)`. Regular factories retain their row and column counts. Their `spatial_dimension` is `2`, including chains embedded in the xy plane. Spatial dimension is independent of the atom''s number of energy levels.'
+  ko: '`rectangular()`의 `spacing`에는 양의 유한한 스칼라를 넣어 두 축의 간격을 같게 하거나, 양의 유한한 실수 두 개로 된 순서 있는 이터러블 `(x_spacing, y_spacing)`을 넣어 축별 간격을 지정할 수 있습니다. 불리언은 허용하지 않습니다. `spacing` 속성은 스칼라를 실수로, 값 쌍을 불변 실수 튜플로 저장하며, 두 값이 같아도 튜플을 유지합니다. 좌표는 행 우선 순서로 `(column * x_spacing, row * y_spacing, 0)`입니다. 규칙적 배치를 만드는 팩터리는 행과 열 수를 보존합니다. xy 평면에 놓인 사슬을 포함해 `spatial_dimension`은 `2`입니다. 공간 차원과 원자의 에너지 준위 수는 서로 독립적입니다.'
+  status: machine
+- id: 6111f69b0cd9f92c
+  en: Use `AtomArrangement.combine(A, B, C)` to concatenate two or more arrangements in argument order, preserving the site order within each input. The result's `spatial_dimension` is the largest input dimension, so a combination containing any 3D arrangement is 3D. Its `rows`, `cols`, and `spacing` are `None`. Overlapping coordinates or fewer than two inputs raise `ValueError`; non-arrangement inputs raise `TypeError`.
+  ko: '`AtomArrangement.combine(A, B, C)`로 두 개 이상의 배치를 인수 순서대로 이어 붙일 수 있습니다. 각 입력 내부의 사이트 순서는 유지됩니다. 결과의 `spatial_dimension`은 입력 차원의 최댓값이므로 3차원 배치가 하나라도 있으면 결과도 3차원입니다. `rows`, `cols`, `spacing`은 `None`입니다. 좌표가 겹치거나 입력이 두 개 미만이면 `ValueError`, 배치가 아닌 객체를 넣으면 `TypeError`가 발생합니다.'
+  status: machine
+- id: 2e39b95a657aad5e
+  en: Every factory, including `combine()`, accepts a keyword-only `label`, default `None`, to name all of its sites. A label must be a string containing at least one non-whitespace character; it is preserved without stripping spaces. The `label` attribute stores that value, and the read-only `groups` mapping contains group names and immutable tuples of site indices. `group(label)` retrieves one tuple and raises `KeyError` for an unknown name. A combination retains all input groups, adjusting their indices to the new site order; its own optional label adds a group covering every site. This also preserves groups from nested combinations. Invalid labels and duplicate group names raise `ValueError`.
+  ko: '`combine()`을 포함한 모든 팩터리는 전체 사이트에 이름을 붙이는 키워드 전용 인수 `label`을 받으며 기본값은 `None`입니다. 라벨은 공백이 아닌 문자를 하나 이상 포함한 문자열이어야 하고, 공백을 제거하지 않고 그대로 보존합니다. `label` 속성은 이 값을 저장하며 읽기 전용 `groups` 매핑에는 그룹 이름과 불변 사이트 인덱스 튜플이 들어갑니다. `group(label)`은 해당 튜플을 반환하고, 없는 이름에는 `KeyError`를 발생시킵니다. 배치를 합칠 때 모든 입력 그룹을 보존하되 새 사이트 순서에 맞게 인덱스를 조정합니다. 결합 배치 자체에 라벨을 지정하면 모든 사이트를 포함하는 그룹도 추가됩니다. 중첩된 결합의 그룹도 보존합니다. 잘못된 라벨이나 중복 그룹 이름에는 `ValueError`가 발생합니다.'
+  status: machine
+- id: 6c13b91517bf3896
+  en: For any layout, `row_groups` maps each y coordinate to the site indices in that row, and `column_groups` maps each x coordinate to its column's indices. Both mappings are read-only, with keys in first-seen coordinate order and immutable index tuples in site order. Grouping uses exact equality of the stored float coordinates across the entire arrangement. It ignores z, so these groups describe the xy projection of a 3D layout.
+  ko: 어떤 배치에서든 `row_groups`는 각 y 좌표를 해당 행의 사이트 인덱스에, `column_groups`는 각 x 좌표를 해당 열의 인덱스에 대응시킵니다. 두 매핑은 읽기 전용이며, 키는 좌표가 처음 나온 순서, 불변 인덱스 튜플은 사이트 순서를 따릅니다. 전체 배치에 걸쳐 저장된 실수 좌표가 정확히 같은지를 기준으로 묶습니다. z는 무시하므로 3차원 배치에서는 xy 평면으로 투영한 그룹을 나타냅니다.
+  status: machine
+- id: 14be04905930fe1b
+  en: A program must declare exactly one dimension-two quantum resource per site; declaration order binds resources to coordinates. The arrangement describes fixed geometry; it does not track atom loading or loss. `arrangement.num_sites` and `len(arrangement)` both return the site count, which must exactly match the number of quantum resources declared by a pulse program. At the gate level, [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] instead derives its site count from each [`Program`][fatqat.Program] and needs no separate capacity setting.
+  ko: 프로그램은 사이트마다 정확히 하나의 2차원 양자 자원을 선언해야 하며, 선언 순서대로 자원과 좌표가 연결됩니다. 배치는 고정된 기하 구조만 기술하고 원자의 로딩이나 손실은 추적하지 않습니다. `arrangement.num_sites`와 `len(arrangement)`는 모두 사이트 수를 반환하며, 이 수는 펄스 프로그램이 선언한 양자 자원 수와 정확히 일치해야 합니다. 반면 게이트 수준의 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]는 각 [`Program`][fatqat.Program]에서 사이트 수를 정하므로 별도 용량 설정이 필요 없습니다.
+  status: machine
+- id: 067d25d0bd554893
+  en: Run configuration and results
+  ko: 실행 설정과 결과
+  status: machine
+- id: ae39b92e35ae7343
+  en: The `run()` method has the signature `(program, *, shots=1024, resource_layout=None, simulation_config=None, result_config=None)`. The optional layout must still cover every arrangement site exactly once; the default uses declaration order. Validation errors are raised directly from `run()` before a job is returned. A failure after execution starts is represented by a failed job, and `job.result()` raises [`BackendExecutionError`][fatqat.errors.BackendExecutionError].
+  ko: '`run()`의 시그니처는 `(program, *, shots=1024, resource_layout=None, simulation_config=None, result_config=None)`입니다. 선택적으로 지정하는 배치 매핑도 모든 원자 위치를 정확히 한 번씩 포함해야 합니다. 기본값은 선언 순서입니다. 검증 오류는 Job을 반환하기 전에 `run()`에서 바로 발생합니다. 실행 시작 후의 실패는 실패한 Job에 기록되며, `job.result()`가 [`BackendExecutionError`][fatqat.errors.BackendExecutionError]를 발생시킵니다.'
+  status: machine
+- id: 717899110983b6ec
+  en: '`simulation_config` accepts the shared pulse controls plus an Atom2-specific Hamiltonian cutoff:'
+  ko: '`simulation_config`에는 공통 펄스 제어 설정과 Atom2 전용 해밀토니안 거리 제한을 지정할 수 있습니다.'
+  status: machine
+- id: 6b2cab5dcf5316ee
+  en: '**Simulation configuration**'
+  ko: '**시뮬레이션 설정**'
+  status: machine
+- id: 9f6c47f84aa83bb1
+  en: '| Key | Type | Default | Effect and constraints |'
+  ko: '| 키 | 타입 | 기본값 | 효과와 제약 |'
+  status: machine
+- id: 318828da59c4a3d2
+  en: '| `seed` | `int` or `None`; not `bool` | `None` | Random seed for measurement, readout, and statevector trajectory sampling. Integers must be non-negative; `None` chooses a fresh seed. |'
+  ko: '| `seed` | `int` 또는 `None`; `bool` 제외 | `None` | 측정, 판독, 상태 벡터 궤적 샘플링의 난수 시드입니다. 정수는 음수가 아니어야 하며, `None`이면 새 시드를 선택합니다. |'
+  status: machine
+- id: 87a4035114096350
+  en: '| `schedule_mode` | `"ASAP"` or `"ALAP"` | `"ASAP"` | Place operations as early or as late as their dependencies allow. |'
+  ko: '| `schedule_mode` | `"ASAP"` 또는 `"ALAP"` | `"ASAP"` | 의존성이 허용하는 범위에서 연산을 가장 이르게 또는 가장 늦게 배치합니다. |'
+  status: machine
+- id: 3037cfd329cdd8ee
+  en: '| `interaction_cutoff` | finite nonnegative `Real` or `None`; not `bool` | `None` | For this run, retain interaction pairs at or below this distance in the arrangement''s distance unit. `None` keeps all pairs; `0.0` disables pair interactions. |'
+  ko: '| `interaction_cutoff` | 유한한 음이 아닌 `Real` 또는 `None`; `bool` 제외 | `None` | 이번 실행에서 원자 배치의 거리 단위로 이 값 이하인 상호작용 쌍만 유지합니다. `None`은 모든 쌍을 유지하며, `0.0`은 쌍 상호작용을 끕니다. |'
+  status: machine
+- id: 7a940922afc757a5
+  en: '`result_config` accepts only these keys:'
+  ko: '`result_config`에는 다음 키만 사용할 수 있습니다.'
+  status: machine
+- id: b6f17f0e4701f9d5
+  en: '**Result configuration**'
+  ko: '**결과 설정**'
+  status: machine
+- id: acab9d5db1bbed09
+  en: '| `counts` | `bool` or `None` | `None` | `True` requests classical counts, `False` suppresses them, and `None` enables them when measurement exists. Counts require a positive integer `shots` value. |'
+  ko: '| `counts` | `bool` 또는 `None` | `None` | `True`는 고전적 counts를 요청하고 `False`는 생략합니다. `None`이면 측정이 있을 때 반환합니다. Counts를 얻으려면 `shots`가 양의 정수여야 합니다. |'
+  status: machine
+- id: 3e0063173f37c598
+  en: '| `final_state` | `bool` or `None` | `None` | `True` requests the method-native state or operator, `False` suppresses it, and `None` enables deterministic unmeasured output. A stochastic final state requires an explicit request and `shots == 1`. |'
+  ko: '| `final_state` | `bool` 또는 `None` | `None` | `True`는 선택한 방법의 상태 또는 연산자를 요청하고 `False`는 생략합니다. `None`이면 측정이 없고 결정적인 출력을 반환합니다. 확률적인 최종 상태는 명시적으로 요청해야 하며 `shots == 1`이어야 합니다. |'
+  status: machine
+- id: f5bd13f28fc868e5
+  en: Both configuration arguments must be a `dict` or `None`; unknown keys are rejected.
+  ko: 두 설정 인수는 모두 `dict` 또는 `None`이어야 하며, 알 수 없는 키는 허용하지 않습니다.
+  status: machine
+- id: d47662f8c9662496
+  en: Each run starts from the fixed product state `|g>` on every site. The constructor does not accept an `initial_state` argument.
+  ko: 실행은 항상 모든 위치가 `|g>`인 고정된 곱 상태에서 시작합니다. 생성자는 `initial_state` 인수를 받지 않습니다.
+  status: machine
+- id: 25775e19f18f9422
+  en: 'The constructor accepts the case-insensitive values `method="statevector"` (the default), `"density_matrix"`, or `"unitary"`. `"SV"` and `"DM"` are aliases. The read-only `backend.method` property and `result.metadata["method"]` use the canonical full name. A method selects the mathematical representation and its corresponding Result accessor, not an internal solver:'
+  ko: 생성자는 대소문자를 구분하지 않고 `method="statevector"`(기본값), `"density_matrix"`, `"unitary"`를 받습니다. `"SV"`와 `"DM"`도 별칭으로 사용할 수 있습니다. 읽기 전용 속성 `backend.method`와 `result.metadata["method"]`에는 정규화된 전체 이름이 들어갑니다. 이 설정은 내부 솔버가 아니라 수학적 표현과 그에 대응하는 Result 접근 메서드를 선택합니다.
+  status: machine
+- id: a9d077620bb61fd5
+  en: '**Final-state representations**'
+  ko: '**최종 상태 표현**'
+  status: machine
+- id: 996c1fde38aae732
+  en: '| Method | Result accessor | Shape for `N` sites | Interpretation |'
+  ko: '| 방법 | Result 접근 메서드 | 위치 `N`개의 배열 형태 | 의미 |'
+  status: machine
+- id: 89e7eed62b3089c5
+  en: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | `(d**N, 1)` ket | A pure coherent state, or one sampled posterior/trajectory when the execution is stochastic. |'
+  ko: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | `(d**N, 1)` 켓 | 순수한 결맞음 상태. 확률적 실행에서는 샘플링한 하나의 사후 상태 또는 궤적. |'
+  status: machine
+- id: b2d0790c9a35b6fa
+  en: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | `(d**N, d**N)` | The exact ensemble state under supported Lindblad evolution. |'
+  ko: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | `(d**N, d**N)` | 지원되는 Lindblad 시간 진화에 대한 정확한 앙상블 상태입니다. |'
+  status: machine
+- id: 94250457af91b009
+  en: '| `"unitary"` | [`get_unitary`][fatqat.Result.get_unitary] | `(d**N, d**N)` | The complete coherent operator in the canonical terminal frame. |'
+  ko: '| `"unitary"` | [`get_unitary`][fatqat.Result.get_unitary] | `(d**N, d**N)` | 표준 최종 프레임에서의 전체 결맞음 연산자입니다. |'
+  status: machine
+- id: 2f3f13c61a491522
+  en: Here `d=2` for [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]. States and unitaries are QuTiP `Qobj` values whose `dims` list the site dimensions; call `.full()` for a NumPy array (`.full().ravel()` for a flat statevector). The emulators do not expose `superop`. Informational QuTiP solver names and options appear in result `runtime_details`.
+  ko: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]에서는 `d=2`입니다. 상태와 유니터리는 QuTiP `Qobj`이며, `dims`에 사이트별 차원이 담깁니다. NumPy 배열은 `.full()`, 평탄화한 상태 벡터는 `.full().ravel()`로 얻습니다. 이 에뮬레이터들은 `superop`을 제공하지 않습니다. 참고용 QuTiP 솔버 이름과 옵션은 결과의 `runtime_details`에 기록됩니다.'
+  status: machine
+- id: e9ff8069672e7c83
+  en: Results follow arrangement order, with site 0 as the most-significant factor. State and unitary results may still use different documented terminal frames.
+  ko: 결과는 원자 배치 순서를 따르며 위치 0이 최상위 인자입니다. 다만 상태 결과와 유니터리 결과의 최종 프레임은 문서에 명시된 대로 서로 다를 수 있습니다.
+  status: machine
+- id: fbcd864ea91aae3d
+  en: 'Measurement and potentially active Lindblad noise make a retained final state stochastic. In those cases, the default request returns counts when the program contains measurement and otherwise returns metadata only. Request a single seeded final state explicitly with `result_config={"final_state": True}`, `shots=1`, and `simulation_config={"seed": ...}`. Select `method="density_matrix"` for an exact supported Lindblad ensemble.'
+  ko: '측정이나 작용 가능성이 있는 Lindblad 잡음이 있으면 저장되는 최종 상태는 확률적으로 결정됩니다. 이 경우 기본 설정은 프로그램에 측정이 있으면 counts를, 없으면 메타데이터만 반환합니다. 시드가 지정된 최종 상태 하나를 얻으려면 `result_config={"final_state": True}`, `shots=1`, `simulation_config={"seed": ...}`를 명시하세요. 지원되는 Lindblad 앙상블의 정확한 상태를 얻으려면 `method="density_matrix"`를 선택하세요.'
+  status: machine
+- id: 50deee6556c299e3
+  en: For unitary execution, construct the backend with `method="unitary"`, call `run()`, and retrieve the result with [`get_unitary`][fatqat.Result.get_unitary]. Unitary execution rejects measurement, reset, conditions, counts, and potentially active Lindblad evolution. There is no separate public propagator API.
+  ko: 유니터리 실행은 백엔드를 `method="unitary"`로 생성한 뒤 `run()`을 호출하고 [`get_unitary`][fatqat.Result.get_unitary]로 결과를 읽습니다. 이 모드는 측정, 리셋, 조건, 카운트, 작용 가능성이 있는 Lindblad 시간 진화를 허용하지 않습니다. 별도의 공개 전파 연산자 API는 없습니다.
+  status: machine
+- id: 912f602dd9909770
+  en: Two-level atom emulator
+  ko: 2준위 원자 에뮬레이터
+  status: machine
+- id: f8f47a58563d185f
+  en: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] requires an `Atom2LevelModel` and an arrangement. Its global drive and detuning channels act on every site; see [PulseOperation](pulse-control/pulse-operation.md) for how to add a direct pulse block. A terminal measurement may follow the pulse program, and barriers are ignored. The built-in gate map is empty, so ordinary gates require a custom map. Reset, conditions, per-site controls, mid-circuit measurement, and pulses after measurement are not supported.'
+  ko: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]에는 `Atom2LevelModel`과 원자 배치가 필요합니다. 전역 구동 및 디튜닝 채널은 모든 위치에 작용합니다. 직접 작성한 펄스 블록을 추가하는 방법은 [PulseOperation](pulse-control/pulse-operation.md)을 참고하세요. 펄스 프로그램 끝에는 측정을 추가할 수 있으며 barrier는 무시합니다. 내장 게이트 맵은 비어 있으므로 일반 게이트를 사용하려면 사용자 정의 맵이 필요합니다. Reset, 조건, 위치별 제어, 회로 중간 측정, 측정 이후의 펄스는 지원하지 않습니다.'
+  status: machine
+- id: b22b8b950b9c3eaf
+  en: Model and controls
+  ko: 모델과 제어
+  status: machine
+- id: 38f52ec4df7534d9
+  en: The runtime model exposes basis order `("g", "r")`, the pulse time unit, and global control selectors, but it contains no geometry or calibration. Retain the decoded source document when application code needs persisted species data, state labels, signed `C6`, interaction-law metadata, parameter units, or channel bounds. Derive the local dimension as `len(model.basis_order)`.
+  ko: 런타임 모델은 기저 순서 `("g", "r")`, 펄스 시간 단위, 전역 제어 선택자를 제공하지만 기하 구조나 보정 정보는 담지 않습니다. 애플리케이션에서 저장된 원자종 데이터, 상태 라벨, 부호 있는 `C6`, 상호작용 법칙 메타데이터, 매개변수 단위, 채널 범위가 필요하다면 디코딩한 원본 문서를 보관하세요. 국소 차원은 `len(model.basis_order)`로 구합니다.
+  status: machine
+- id: 3eba5ccb267af8ad
+  en: Create instances with [`from_document`][fatqat.emulator.Atom2LevelModel.from_document]; direct construction is not supported.
+  ko: 인스턴스는 [`from_document`][fatqat.emulator.Atom2LevelModel.from_document]로 생성하세요. 직접 생성은 지원하지 않습니다.
+  status: machine
+- id: 3c30a965de457b63
+  en: The global drive accepts a complex [`SampledWaveform`][fatqat.emulator.SampledWaveform]; its values encode amplitude and phase together. The global detuning accepts real samples. Both controls use `rad/us` and apply to every arrangement site. At runtime, read this unit from each selector's `coefficient_unit` property.
+  ko: 전역 구동은 복소수 [`SampledWaveform`][fatqat.emulator.SampledWaveform]을 받으며, 각 값에 진폭과 위상이 함께 담깁니다. 전역 디튜닝은 실수 샘플을 받습니다. 두 제어 모두 단위가 `rad/us`이며 모든 원자 위치에 적용됩니다. 런타임에서는 각 선택자의 `coefficient_unit` 속성으로 이 단위를 확인할 수 있습니다.
+  status: machine
+- id: 7734c31feafdd674
+  en: Interaction cutoff
+  ko: 상호작용 거리 제한
+  status: machine
+- id: 6d502055303ba98a
+  en: 'Set `interaction_cutoff` per run through `simulation_config`. The default `None` keeps every pair and preserves the complete `C6/R^6` Hamiltonian. A finite nonnegative cutoff keeps pairs whose Euclidean distance is at or below that value in `arrangement.distance_unit` (currently micrometres); `0.0` disables pair interactions. For a rectangular arrangement with scalar spacing, `simulation_config={"interaction_cutoff": arrangement.spacing}` keeps only horizontal and vertical nearest pairs. This is a numerical Hamiltonian truncation, not a physical blockade radius. One emulator can therefore be reused to compare several truncations without rebuilding its model or arrangement.'
+  ko: '`simulation_config`를 통해 실행마다 `interaction_cutoff`를 지정합니다. 기본값 `None`은 모든 쌍을 유지해 전체 `C6/R^6` 해밀토니안을 보존합니다. 유한한 음이 아닌 값을 지정하면 유클리드 거리가 그 값 이하인 쌍만 유지하며, 단위는 `arrangement.distance_unit`(현재 마이크로미터)입니다. `0.0`은 쌍 상호작용을 끕니다. 스칼라 간격의 직사각형 배치에서 `simulation_config={"interaction_cutoff": arrangement.spacing}`는 가로와 세로의 최근접 쌍만 유지합니다. 이는 해밀토니안의 수치적 절단이며 물리적인 봉쇄 반경이 아닙니다. 따라서 모델이나 배치를 다시 만들지 않고 같은 에뮬레이터로 여러 절단값을 비교할 수 있습니다.'
+  status: machine
+- id: 5558f6ca0291ac31
+  en: Lindblad noise
+  ko: Lindblad 잡음
+  status: machine
+- id: 4248dfb14cfee1f9
+  en: The built-in forms are listed under [Pulse emulators](noise/backend-support.md#noise-emulator-support). Each background registration names one site; enumerate sites explicitly to apply the same noise at several sites. Rates use inverse microseconds and relaxation times use microseconds. Finite-probability (`p`) forms are not converted into rates from the pulse duration. Binary [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] is a classical report channel applied only to the reported digit after physical collapse, not a Lindblad operator.
+  ko: 내장 잡음 형식은 [펄스 에뮬레이터](noise/backend-support.md#noise-emulator-support)에 정리되어 있습니다. 배경 잡음 등록 하나는 위치 하나를 지정합니다. 여러 위치에 같은 잡음을 적용하려면 위치별로 등록하세요. 잡음률의 단위는 마이크로초의 역수이고, 이완 시간의 단위는 마이크로초입니다. 유한 확률(`p`) 형식을 펄스 길이에 따라 잡음률로 변환하지 않습니다. 이진 [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion]은 물리적 붕괴 이후 보고되는 숫자에만 작용하는 고전적 판독 채널이며 Lindblad 연산자가 아닙니다.
+  status: machine
+- id: 8bf1d31f69757adc
+  en: The emulator provides built-in qubit amplitude damping, explicit transition relaxation, phase damping, qubit thermal relaxation, and depolarizing noise. These forms accept background declarations only; operation-scoped continuous noise is unsupported.
+  ko: 에뮬레이터는 큐비트 진폭 감쇠, 명시적 전이 이완, 위상 감쇠, 큐비트 열적 이완, 탈분극 잡음을 기본 제공합니다. 이 형식들은 배경 잡음 선언만 받으며, 특정 연산에 한정된 연속 잡음은 지원하지 않습니다.
+  status: machine
+- id: b082941e5d4a4016
+  en: With `method="statevector"`, resolved Lindblad noise that can act during a nonzero-duration block uses seeded trajectories. Because the atom emulator accepts background declarations only, a declaration is conservatively considered active whenever a nonzero-duration block exists. Zero-rate declarations are still considered active. Use `method="density_matrix"` for the exact ensemble. A zero-duration measured program samples the initial state without time evolution.
+  ko: '`method="statevector"`에서 길이가 0이 아닌 블록 동안 작용할 수 있는 Lindblad 잡음은 시드가 지정된 궤적으로 계산합니다. 원자 에뮬레이터는 배경 잡음 선언만 받으므로, 길이가 0이 아닌 블록이 하나라도 있으면 해당 선언을 보수적으로 활성 상태로 간주합니다. 잡음률이 0인 선언도 마찬가지입니다. 정확한 앙상블을 구하려면 `method="density_matrix"`를 사용하세요. 길이가 0이고 측정이 있는 프로그램은 시간 진화 없이 초기 상태를 샘플링합니다.'
+  status: machine
+- id: 24143af5af7b3d07
+  en: See [Pulse control](pulse-control/index.md) for direct pulse authoring. For the complete two-level workflow, see [Choose and run a neutral-atom workflow](../guide/neutral-atom-emulation.md).
+  ko: 펄스를 직접 작성하는 방법은 [펄스 제어](pulse-control/index.md)를 참고하세요. 전체 2준위 작업 흐름은 [중성 원자 작업 흐름 선택과 실행](../guide/neutral-atom-emulation.md)에 있습니다.
+  status: machine
+- id: c8e5998f6a3955c2
+  en: API
+  ko: API
+  status: machine

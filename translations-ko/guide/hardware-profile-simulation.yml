@@ -1,0 +1,100 @@
+- id: 063e8d01586c723b
+  en: Test a Program against a hardware profile
+  ko: 하드웨어 프로파일로 Program 검증하기
+  status: machine
+- id: 2f43f1d0990cf16e
+  en: A hardware-profile simulator checks whether a Program obeys a selected device's rules as written. Like the general [`Simulator`][fatqat.simulator.Simulator], it applies circuit operations and can include noise channels. It also enforces a native operation set, placement, connectivity, capacity, and, for atom arrays, occupancy.
+  ko: 하드웨어 프로파일 시뮬레이터는 작성된 Program이 선택한 장치의 규칙을 지키는지 검사합니다. 범용 [`Simulator`][fatqat.simulator.Simulator]처럼 회로 연산을 적용하며 잡음 채널도 포함할 수 있습니다. 여기에 네이티브 연산 집합, 배치, 연결성, 용량을 검사하고, 원자 배열에서는 점유 상태도 검사합니다.
+  status: machine
+- id: 008702b4b9252727
+  en: Use a profile to test choices such as which operations to use and where to place program qubits. The profile validates those choices; you supply the Program and layout.
+  ko: 어떤 연산을 사용할지, 프로그램의 큐비트를 어디에 배치할지 등의 선택을 검증할 때 프로파일을 사용하세요. Program과 레이아웃은 직접 지정하고, 프로파일은 그 선택이 유효한지 확인합니다.
+  status: machine
+- id: c76095c1d6b3f8ed
+  en: Compare circuit behavior
+  ko: 회로 동작 비교하기
+  status: machine
+- id: 0c360f5f16f4c355
+  en: 'The general-purpose simulator can run this Bell Program, which uses `H` and `CX` without specifying device placement:'
+  ko: 범용 시뮬레이터는 장치 배치를 지정하지 않고 `H`와 `CX`를 사용하는 다음 Bell Program을 실행할 수 있습니다.
+  status: machine
+- id: bb7fc621a68e7a9d
+  en: 'Now ask the constrained superconducting profile about the same Program. The profile can report whether it supports `H`, so you do not need to copy its gate table into application code:'
+  ko: 이제 제약이 있는 초전도 프로파일에서 같은 Program을 살펴봅니다. 프로파일에 `H` 지원 여부를 물어볼 수 있으므로 애플리케이션 코드에 게이트 표를 복사해 둘 필요가 없습니다.
+  status: machine
+- id: 9e4c8419e4254a3c
+  en: Submitting `bell` would therefore raise [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]. FatQat does not silently decompose `H` or `CX` into this profile's native operations.
+  ko: 따라서 `bell`을 제출하면 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]가 발생합니다. FatQat은 `H`나 `CX`를 이 프로파일의 네이티브 연산으로 자동 분해하지 않습니다.
+  status: machine
+- id: 99e35bd7fe9ea137
+  en: Make placement explicit
+  ko: 배치를 명시하기
+  status: machine
+- id: 7c4114505c751fc6
+  en: 'Native operations are only half the question. On this 2 x 3 profile, integer device labels are arranged row by row:'
+  ko: 네이티브 연산을 사용한다고 충분한 것은 아닙니다. 이 2 x 3 프로파일의 정수 장치 레이블은 행 순서대로 배치됩니다.
+  status: machine
+- id: 7011c7a69c8943a3
+  en: 'The next Program is native, but placing its two qubits at `0` and `4` asks for a diagonal `CZ` that the grid does not provide:'
+  ko: 다음 Program은 네이티브 연산만 사용하지만, 두 큐비트를 `0`과 `4`에 배치하면 격자가 지원하지 않는 대각선 방향의 `CZ`가 필요합니다.
+  status: machine
+- id: e188fe557e4d245f
+  en: 'Move the second program qubit to the neighbouring device label `1`; the Program itself does not need to change:'
+  ko: 두 번째 프로그램 큐비트를 이웃한 장치 레이블 `1`로 옮기세요. Program 자체는 바꿀 필요가 없습니다.
+  status: machine
+- id: da756325639ec210
+  en: This confirms that the operation set and placement are valid. The profile can also apply noise channels, as the next example shows. Use a physical emulator when the question depends on pulse shapes or how the state evolves during a control.
+  ko: 이 결과는 연산 집합과 배치가 유효함을 확인해 줍니다. 다음 예제처럼 프로파일에 잡음 채널을 적용할 수도 있습니다. 펄스 모양이나 제어 중 상태 변화가 관심사라면 물리 에뮬레이터를 사용하세요.
+  status: machine
+- id: 60aa19096ca566cb
+  en: Add reference noise deliberately
+  ko: 기준 잡음을 목적에 맞게 추가하기
+  status: machine
+- id: a05cef06273fc9cb
+  en: 'The superconducting profile is ideal unless a noise model is passed. Its packaged model is a useful comparison baseline, not a current hardware characterization:'
+  ko: 초전도 프로파일은 잡음 모델을 전달하지 않으면 이상적으로 동작합니다. 패키지에 포함된 모델은 비교 기준으로 유용하지만, 현재 하드웨어의 특성을 측정한 데이터는 아닙니다.
+  status: machine
+- id: bdbe871e6b663591
+  en: Compare runs with and without this model to study its effect on the output. `AtomArraySimulator` has no packaged reference noise model; pass a [`NoiseModel`][fatqat.NoiseModel] of your own when loading, loss, or other effects belong in the experiment.
+  ko: 이 모델을 적용한 실행과 적용하지 않은 실행을 비교하면 출력에 미치는 영향을 알아볼 수 있습니다. `AtomArraySimulator`에는 패키지에 포함된 기준 잡음 모델이 없습니다. 원자 로딩, 손실 등의 효과가 실험에 필요하면 직접 만든 [`NoiseModel`][fatqat.NoiseModel]을 전달하세요.
+  status: machine
+- id: c63e0e1a690961bc
+  en: Track atom occupancy and pairing
+  ko: 원자 점유 상태와 페어링 추적하기
+  status: machine
+- id: fb1f69303ed5d66a
+  en: 'Unlike the superconducting profile, the atom array has no fixed geometry. Program resources define sites that begin empty. `Put` loads the atoms, while `Pair` and `Unpair` reshape the connectivity on which `CZ` is legal:'
+  ko: 초전도 프로파일과 달리 원자 배열에는 고정된 기하 구조가 없습니다. Program 자원이 정의하는 사이트는 처음에 비어 있습니다. `Put`은 원자를 로딩하고, `Pair`와 `Unpair`는 `CZ`를 실행할 수 있는 연결 관계를 바꿉니다.
+  status: machine
+- id: f667081a005d4a8a
+  en: '![Two occupied atoms begin separated, move together when Pair applies with depolarizing noise, remain paired for CZ, and separate again when Unpair applies with depolarizing noise.](../assets/generated/guide/atom-pairing-lifecycle.svg)'
+  ko: '![점유된 두 원자가 떨어진 상태에서 시작해 Pair에 탈분극 잡음이 적용될 때 가까워지고, CZ 동안 짝을 유지한 뒤 Unpair에 탈분극 잡음이 적용될 때 다시 멀어집니다.](../assets/generated/guide/atom-pairing-lifecycle.svg)'
+  status: machine
+- id: c040dfa4d513350e
+  en: The changing distance is a picture of the pairing intent, not a simulated trajectory. `AtomArraySimulator` records no coordinates or movement duration; `Pair` declares that the two occupied sites may execute native `CZ`, and `Unpair` removes that eligibility.
+  ko: 그림의 거리 변화는 페어링의 의미를 보여주며, 시뮬레이션한 이동 경로가 아닙니다. `AtomArraySimulator`는 좌표나 이동 시간을 기록하지 않습니다. `Pair`는 원자가 있는 두 사이트에서 네이티브 `CZ`를 실행할 수 있다고 선언하고, `Unpair`는 그 자격을 해제합니다.
+  status: machine
+- id: ca23cfc884492a91
+  en: 'Pairing is ideal unless you attach a noise assumption. For example, apply a small depolarizing channel independently to each atom whenever either movement instruction occurs:'
+  ko: 잡음 가정을 추가하지 않으면 페어링은 이상적입니다. 예를 들어 두 이동 명령 중 하나가 실행될 때마다 각 원자에 작은 탈분극 채널을 독립적으로 적용할 수 있습니다.
+  status: machine
+- id: f42cf48e24b225ac
+  en: This channel perturbs the quantum state during `Pair` and `Unpair`; it does not remove either atom. Use [`Loss`][fatqat.noise.Loss] instead when movement should change occupancy.
+  ko: 이 채널은 `Pair`와 `Unpair` 중 양자 상태를 교란하지만 원자를 제거하지는 않습니다. 이동으로 점유 상태가 바뀌어야 한다면 [`Loss`][fatqat.noise.Loss]를 사용하세요.
+  status: machine
+- id: 9a47173f4a88d627
+  en: '![An occupied atom undergoes a matched operation, after which Loss either leaves it present with probability one minus p or removes it with probability p; measurement of the empty site returns 2.](../assets/generated/guide/atom-loss-lifecycle.svg)'
+  ko: '![점유된 원자에 조건과 일치하는 연산을 적용한 뒤, Loss가 확률 1-p로 원자를 남겨 두거나 확률 p로 제거합니다. 빈 사이트를 측정하면 2가 반환됩니다.](../assets/generated/guide/atom-loss-lifecycle.svg)'
+  status: machine
+- id: ce3e44b2ed641cd8
+  en: 'Loss can be attached to any supported operation. Here it is sampled after `RX`, so surviving atoms return `1`, while lost atoms return `2`:'
+  ko: 지원되는 어떤 연산에도 손실을 연결할 수 있습니다. 여기서는 `RX` 뒤에 손실을 샘플링하므로 살아남은 원자는 `1`, 사라진 원자는 `2`를 반환합니다.
+  status: machine
+- id: c0f48b6c6ad0f481
+  en: 'Omitting `Pair` before `CZ` is a program error; FatQat does not transport or pair atoms automatically. A missing atom is different: supported gates find nothing to act on, and measurement reports the erasure digit `2`.'
+  ko: '`CZ` 전에 `Pair`를 생략하면 프로그램 오류입니다. FatQat은 원자를 자동으로 이동시키거나 짝짓지 않습니다. 원자가 없는 경우는 다릅니다. 지원되는 게이트는 작용할 대상이 없고, 측정은 소실을 나타내는 숫자 `2`를 보고합니다.'
+  status: machine
+- id: 4f6a2b6e6b6ffde4
+  en: For native gates, program sizing, and method support, use the [hardware-profile API](../api/simulators/index.md). For pulse duration, physical levels, drift, or continuous-time noise, see [Hamiltonian emulation](hamiltonian-emulation.md).
+  ko: 네이티브 게이트, 프로그램 크기, 지원 방법은 [하드웨어 프로파일 API](../api/simulators/index.md)를 참고하세요. 펄스 길이, 물리 준위, 드리프트, 연속 시간 잡음은 [해밀토니안 에뮬레이션](hamiltonian-emulation.md)에서 설명합니다.
+  status: machine

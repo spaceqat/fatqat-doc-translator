@@ -1,0 +1,64 @@
+- id: 2e02f62971ecd7eb
+  en: Depolarizing
+  ko: Depolarizing
+  status: machine
+- id: 98bc968dbd0edf9b
+  en: '[`Depolarizing`][fatqat.noise.Depolarizing] describes uniform mixing with the maximally mixed state. Choose `p` for a simulator channel or `rate` for Lindblad operators on a compatible pulse emulator. Backends do not convert between the two forms.'
+  ko: '[`Depolarizing`][fatqat.noise.Depolarizing]은 최대 혼합 상태와 균일하게 섞이는 과정을 나타냅니다. 시뮬레이터 채널에는 `p`를, 호환되는 펄스 에뮬레이터의 Lindblad 연산자에는 `rate`를 선택하세요. 백엔드는 두 형식을 서로 변환하지 않습니다.'
+  status: machine
+- id: 4cec78aeabd921f3
+  en: Choose a form
+  ko: 형식 선택하기
+  status: machine
+- id: c000071dce8e8eb5
+  en: '**Parameterizations**'
+  ko: '**매개변수 표현**'
+  status: machine
+- id: e67ce2b16d55cf02
+  en: '| Form | Meaning | Applies to | Typical backend |'
+  ko: '| 형식 | 의미 | 적용 대상 | 일반적인 백엔드 |'
+  status: machine
+- id: 985c5974d32bd822
+  en: '| `p` | Complete-depolarization weight for one channel application, in `[0, 1]` | The selected operands | Matrix simulator |'
+  ko: '| `p` | 채널 한 번 적용 시의 완전 탈분극 가중치, `[0, 1]` 범위 | 선택한 피연산자들 | 행렬 시뮬레이터 |'
+  status: machine
+- id: 4a0cc5c07dc57769
+  en: '| `rate` | Finite, nonnegative rate scaling local depolarization Lindblad operators | One subsystem | Lindblad-capable pulse emulator |'
+  ko: '| `rate` | 국소 탈분극 Lindblad 연산자의 크기를 정하는 유한한 비음수 비율 | 부분계 하나 | Lindblad를 지원하는 펄스 에뮬레이터 |'
+  status: machine
+- id: 815bc3233f439f7f
+  en: Exactly one form is required. A rate is measured in the inverse of the selected backend's time unit. For example, a backend whose durations are in microseconds interprets the rate in inverse microseconds.
+  ko: 정확히 한 가지 형식을 지정해야 합니다. 비율은 선택한 백엔드 시간 단위의 역수로 표현합니다. 예를 들어 지속 시간을 마이크로초로 나타내는 백엔드에서는 비율을 마이크로초의 역수로 해석합니다.
+  status: machine
+- id: b04f86b11602aaa0
+  en: For selected operands with combined dimension $d$, probability mode is
+  ko: 선택한 피연산자의 결합 차원이 $d$이면 확률 형식은 다음과 같습니다.
+  status: machine
+- id: 528cb063ebb3a15e
+  en: The channel acts jointly on all selected operands. Applying `Depolarizing(p=...)` to two qubits therefore uses $d=4$; it does not create two independent single-qubit channels. For independent local noise, use `target_positions` or separate registrations.
+  ko: 채널은 선택한 모든 피연산자에 공동으로 작용합니다. 따라서 두 큐비트에 `Depolarizing(p=...)`를 적용하면 $d=4$를 사용하며, 독립적인 단일 큐비트 채널 두 개가 생성되는 것이 아닙니다. 독립적인 국소 잡음에는 `target_positions`를 사용하거나 별도로 등록하세요.
+  status: machine
+- id: c0d7ecf9de6aa514
+  en: Here `p` is the weight of complete depolarization, not the probability of choosing a nonidentity error. For one qubit, the total probability assigned to the nonidentity branches is $3p/4$.
+  ko: 여기서 `p`는 완전 탈분극의 가중치이며, 항등 연산자가 아닌 오류를 선택할 확률이 아닙니다. 큐비트 하나에서 비항등 분기에 할당되는 총 확률은 $3p/4$입니다.
+  status: machine
+- id: 86541c02b48b80ae
+  en: On supported methods, `statevector` samples one Kraus branch per application, `density_matrix` applies the exact Kraus sum, and `superop` constructs the complete channel. See [Simulators](backend-support.md#noise-simulator-support) for restrictions.
+  ko: 지원되는 방법에서 `statevector`는 적용할 때마다 Kraus 분기 하나를 샘플링하고, `density_matrix`는 정확한 Kraus 합을 적용하며, `superop`은 전체 채널을 구성합니다. 제약은 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.
+  status: machine
+- id: fc40518cd4828cf4
+  en: For local dimension $d$, rate mode is normalized so its Lindblad generator is
+  ko: 국소 차원이 $d$일 때 비율 형식은 Lindblad 생성자가 다음과 같도록 정규화됩니다.
+  status: machine
+- id: bf25995c618223cb
+  en: Over duration $t$, the corresponding probability parameter is
+  ko: 지속 시간 $t$에 대응하는 확률 매개변수는 다음과 같습니다.
+  status: machine
+- id: 913941154c67837a
+  en: '[`Depolarizing.as_probability`][fatqat.noise.Depolarizing.as_probability] and [`Depolarizing.as_rate`][fatqat.noise.Depolarizing.as_rate] perform this parameter conversion when you know the duration. A duration must be finite and nonnegative. Probability 1 has no finite rate, and a nonzero probability cannot be converted at zero duration.'
+  ko: 지속 시간을 알면 [`Depolarizing.as_probability`][fatqat.noise.Depolarizing.as_probability]와 [`Depolarizing.as_rate`][fatqat.noise.Depolarizing.as_rate]로 매개변수를 변환할 수 있습니다. 지속 시간은 유한한 비음수여야 합니다. 확률 1에 대응하는 유한한 비율은 없으며, 지속 시간이 0이면 0이 아닌 확률은 변환할 수 없습니다.
+  status: machine
+- id: 37387dcc8d136c6a
+  en: Rate mode requires a registered Lindblad implementation. See [Pulse emulators](backend-support.md#noise-emulator-support) for built-in and custom-map availability.
+  ko: 비율 형식에는 등록된 Lindblad 구현이 필요합니다. 내장 및 사용자 정의 맵 지원 범위는 [펄스 에뮬레이터](backend-support.md#noise-emulator-support)를 참고하세요.
+  status: machine

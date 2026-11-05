@@ -1,0 +1,84 @@
+- id: 1b44e748262b4a4c
+  en: Compare the same Program ideally and noisily
+  ko: 같은 Program의 이상적 실행과 잡음이 있는 실행 비교하기
+  status: machine
+- id: a83fe45d6b81b590
+  en: Attach a [`NoiseModel`][fatqat.NoiseModel] to a simulator to study how errors affect your results. The model specifies which errors occur and where they apply; you can run the same [`Program`][fatqat.Program] with or without it.
+  ko: 시뮬레이터에 [`NoiseModel`][fatqat.NoiseModel]을 연결하면 오류가 결과에 미치는 영향을 살펴볼 수 있습니다. 모델은 어떤 오류가 어디에 적용되는지 지정합니다. 같은 [`Program`][fatqat.Program]을 모델 적용 여부만 달리해 실행할 수 있습니다.
+  status: machine
+- id: 56ffcffd79e25721
+  en: This example compares measurements of a Bell pair before and after adding gate noise and readout errors.
+  ko: 이 예제에서는 게이트 잡음과 판독 오류를 추가하기 전후의 Bell 쌍 측정 결과를 비교합니다.
+  status: machine
+- id: 0dbc48399605c860
+  en: Establish an ideal baseline
+  ko: 이상적 기준 결과 만들기
+  status: machine
+- id: 4e260352eaa9d4a2
+  en: 'Prepare a Bell pair and measure both qubits:'
+  ko: Bell 쌍을 준비하고 두 큐비트를 측정합니다.
+  status: machine
+- id: 610c7d6a5bd6e229
+  en: The two measured bits always agree. Each outcome has exact probability 0.5, but their counts differ slightly because the simulator samples 4,000 shots.
+  ko: 측정된 두 비트는 항상 같습니다. 각 결과의 정확한 확률은 0.5이지만, 시뮬레이터가 4,000회를 샘플링하므로 카운트는 조금 다릅니다.
+  status: machine
+- id: 6b94605643630ccf
+  en: Add gate and readout noise
+  ko: 게이트 잡음과 판독 잡음 추가하기
+  status: machine
+- id: 34b0b23d88ccdee2
+  en: Use `operation=ops.CX` to apply depolarizing noise after each `CX` gate. Here, `p=0.12` mixes 88% of the two-qubit state with 12% of the maximally mixed state, which gives all four computational-basis outcomes equal probability. This acts jointly on the gate's two operands.
+  ko: '`operation=ops.CX`를 지정하면 각 `CX` 게이트 뒤에 탈분극 잡음이 적용됩니다. 여기서 `p=0.12`는 2큐비트 상태의 88%와 최대 혼합 상태의 12%를 섞습니다. 최대 혼합 상태에서는 네 계산 기저 결과의 확률이 모두 같습니다. 이 잡음은 게이트의 두 피연산자에 공동으로 작용합니다.'
+  status: machine
+- id: 3958fc75a81809e7
+  en: 'Add readout confusion to model incorrectly reported bits. In the matrix below, columns identify the true bit and rows identify the reported bit: a true `0` is reported as `1` with probability 0.02, and a true `1` as `0` with probability 0.04. Without a target selector, this applies to each measured qubit.'
+  ko: 잘못 보고된 비트를 모델링하려면 판독 혼동을 추가하세요. 아래 행렬에서 열은 실제 비트, 행은 보고된 비트입니다. 실제 `0`이 `1`로 보고될 확률은 0.02이고, 실제 `1`이 `0`으로 보고될 확률은 0.04입니다. 대상 선택자를 지정하지 않으면 측정되는 모든 큐비트에 적용됩니다.
+  status: machine
+- id: ffd76383c2484ce0
+  en: 'Pass the noise model to another simulator:'
+  ko: 잡음 모델을 다른 시뮬레이터에 전달합니다.
+  status: machine
+- id: ade20d954f414ccd
+  en: The reported bits disagree in about 10.1% of these shots. Gate noise changes the quantum state, while readout confusion changes the reported bits. Both can produce `01` and `10`, so these counts alone do not tell you which error occurred. The unequal readout probabilities also favor reported zeros, shifting the balance between `00` and `11`.
+  ko: 이 샷 중 약 10.1%에서 보고된 두 비트가 다릅니다. 게이트 잡음은 양자 상태를 바꾸고, 판독 혼동은 보고된 비트를 바꿉니다. 둘 다 `01`과 `10`을 만들 수 있으므로 카운트만으로는 어느 오류가 발생했는지 구분할 수 없습니다. 또한 두 판독 오류 확률이 다르므로 0이 더 자주 보고되어 `00`과 `11`의 비율도 달라집니다.
+  status: machine
+- id: b846c737ede73dfa
+  en: '![Side-by-side Bell-state histograms show only zero-zero and one-one ideally, while the noisy run also contains zero-one and one-zero outcomes.](../assets/generated/guide/ideal-and-noisy-1.png)'
+  ko: '![나란히 놓인 Bell 상태 히스토그램에서 이상적 실행에는 00과 11만 나타나지만, 잡음이 있는 실행에는 01과 10도 나타납니다.](../assets/generated/guide/ideal-and-noisy-1.png)'
+  status: machine
+- id: 28561e682e0a4d7b
+  en: Density matrices and sampled trajectories
+  ko: 밀도 행렬과 샘플링한 궤적
+  status: machine
+- id: fd74b89af290d2fb
+  en: The density-matrix method used here calculates the noisy state directly. Measurement counts are still sampled, so repeating a run with a different seed changes the counts.
+  ko: 여기서 사용한 밀도 행렬 방법은 잡음이 있는 상태를 직접 계산합니다. 측정 카운트는 여전히 샘플링하므로, 다른 시드로 실행하면 카운트가 바뀝니다.
+  status: machine
+- id: b6cdf7c55dcf3f4b
+  en: A statevector simulator can also run this noise model. It samples individual noise trajectories, using less memory to represent the state. This is useful for larger circuits where storing a density matrix is too expensive. More shots improve the precision of the sampled distribution.
+  ko: 상태 벡터 시뮬레이터에서도 이 잡음 모델을 실행할 수 있습니다. 개별 잡음 궤적을 샘플링하므로 상태를 표현하는 데 메모리가 덜 필요합니다. 밀도 행렬을 저장하기 부담스러운 큰 회로에 유용합니다. 샷 수를 늘리면 샘플링 분포의 정밀도가 높아집니다.
+  status: machine
+- id: 91880175ee75ad76
+  en: Both methods describe the same noise model and should give statistically consistent measurement frequencies. Use a density matrix when you need the noisy state or an expectation value without sampling noise trajectories.
+  ko: 두 방법은 같은 잡음 모델을 표현하므로 측정 빈도가 통계적으로 일치해야 합니다. 잡음 궤적을 샘플링하지 않고 잡음이 있는 상태나 기댓값을 구하려면 밀도 행렬을 사용하세요.
+  status: machine
+- id: d41dba8651230fe9
+  en: Circuit channels and continuous noise
+  ko: 회로 채널과 연속 잡음
+  status: machine
+- id: 2ff18aadc59bcdf5
+  en: '| Execution level | Noise description | Where it acts |'
+  ko: '| 실행 수준 | 잡음 표현 | 작용 시점 |'
+  status: machine
+- id: 437e184cfeafd1be
+  en: '| Circuit simulator | finite probabilities and channels | at matched operation boundaries |'
+  ko: '| 회로 시뮬레이터 | 유한 확률과 채널 | 선택 조건에 맞는 연산의 경계 |'
+  status: machine
+- id: 240b507c280916de
+  en: '| Physical emulator | rates and relaxation times | throughout elapsed Hamiltonian/Lindblad evolution |'
+  ko: '| 물리 에뮬레이터 | 변화율과 이완 시간 | 해밀토니안/Lindblad 시간 변화의 전체 경과 시간 |'
+  status: machine
+- id: e5f01d7d9052fc44
+  en: Circuit noise probabilities and continuous-time rates require different inputs; FatQat does not convert between them automatically. Move to [Hamiltonian-level emulation](hamiltonian-emulation.md) for pulse duration, idle evolution, leakage, or continuous-time noise. For supported combinations, selectors, and validation rules, see the [noise-backend-support](../api/noise/backend-support.md#noise-backend-support) table and [Noise model API](../api/noise/model.md).
+  ko: 회로 잡음의 확률과 연속 시간 잡음의 비율은 서로 다른 입력이며, FatQat이 자동 변환하지 않습니다. 펄스 길이, 유휴 시간의 상태 변화, 누설, 연속 시간 잡음을 연구하려면 [해밀토니안 수준 에뮬레이션](hamiltonian-emulation.md)을 참고하세요. 지원 조합, 선택자, 검증 규칙은 [백엔드별 잡음 지원](../api/noise/backend-support.md#noise-backend-support) 표와 [잡음 모델 API](../api/noise/model.md)에 설명되어 있습니다.
+  status: machine

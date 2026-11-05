@@ -1,0 +1,64 @@
+- id: d0a05e1da9a268b4
+  en: PauliChannel
+  ko: PauliChannel
+  status: machine
+- id: 45249067ee17d922
+  en: '[`PauliChannel`][fatqat.noise.PauliChannel] represents a stochastic mixture of Pauli-string errors. It is useful for biased or correlated qubit noise that uniform [`Depolarizing`][fatqat.noise.Depolarizing] cannot express.'
+  ko: '[`PauliChannel`][fatqat.noise.PauliChannel]은 Pauli 문자열 오류의 확률적 혼합을 나타냅니다. 균일한 [`Depolarizing`][fatqat.noise.Depolarizing]으로 표현할 수 없는 편향되거나 상관된 큐비트 잡음에 유용합니다.'
+  status: machine
+- id: ede5489964834a51
+  en: Terms
+  ko: 항
+  status: machine
+- id: 09f27571a4665cbd
+  en: 'Pass either a mapping or an iterable of `(string, probability)` pairs. Every string must:'
+  ko: 맵 또는 `(string, probability)` 쌍의 반복 가능한 객체를 전달하세요. 모든 문자열은 다음 조건을 만족해야 합니다.
+  status: machine
+- id: d7578b87868d12b5
+  en: be nonempty;
+  ko: 비어 있지 않아야 합니다.
+  status: machine
+- id: 3ceb2f01bbf964b6
+  en: contain only uppercase `I`, `X`, `Y`, and `Z`;
+  ko: 대문자 `I`, `X`, `Y`, `Z`만 포함해야 합니다.
+  status: machine
+- id: c3670b004025b65e
+  en: have the same width as every other string.
+  ko: 다른 모든 문자열과 길이가 같아야 합니다.
+  status: machine
+- id: 15a9df1e2d069e66
+  en: Each probability is an `int` or `float` other than `bool` and must be finite and in `[0, 1]`. Duplicate strings are an error. Nonidentity probabilities may sum to less than 1; FATQAT assigns the remaining weight to the all-identity string. An explicitly supplied identity term must agree with that implied value. Small floating-point round-off is tolerated.
+  ko: 각 확률은 `bool`을 제외한 `int` 또는 `float`이며, 유한하고 `[0, 1]` 범위에 있어야 합니다. 중복 문자열은 오류입니다. 비항등 확률의 합은 1보다 작아도 됩니다. FATQAT은 남은 가중치를 전체 항등 문자열에 할당합니다. 항등 항을 명시적으로 제공하면 이 계산값과 일치해야 합니다. 작은 부동소수점 반올림 오차는 허용합니다.
+  status: machine
+- id: 2a962cd046b64376
+  en: 'FATQAT consumes the input and stores `PauliChannel.terms` as an immutable tuple. The identity term comes first; the other terms keep their input order:'
+  ko: FATQAT은 입력을 읽어 `PauliChannel.terms`에 불변 튜플로 저장합니다. 항등 항이 먼저 오고, 나머지 항은 입력 순서를 유지합니다.
+  status: machine
+- id: 4b568d7c224c31e2
+  en: After the identity weight has been filled in, the channel is
+  ko: 항등 항의 가중치를 채운 뒤 채널은 다음과 같습니다.
+  status: machine
+- id: 0011ac1dd6d07dfd
+  en: Compatible simulators apply this channel after the matched operation. See [Simulators](backend-support.md#noise-simulator-support) for built-in availability and scope.
+  ko: 호환되는 시뮬레이터는 매칭되는 연산 뒤에 이 채널을 적용합니다. 내장 지원 여부와 범위는 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.
+  status: machine
+- id: a74b73e80c205cdb
+  en: Target order
+  ko: 대상 순서
+  status: machine
+- id: c38c572b72b88980
+  en: 'The string width determines the number of targets, and every target must be a qubit. The first character describes the first target and forms the most-significant tensor factor. For targets `(q0, q1)`:'
+  ko: 문자열 길이가 대상 수를 결정하며 모든 대상은 큐비트여야 합니다. 첫 문자는 첫 대상을 나타내고 최상위 텐서 인자를 이룹니다. 대상이 `(q0, q1)`이면 다음과 같습니다.
+  status: machine
+- id: be659940ef48e72a
+  en: '**Two-qubit ordering**'
+  ko: '**2큐비트 순서**'
+  status: machine
+- id: 7c907406f6b8a059
+  en: '| String | First target `q0` | Second target `q1` |'
+  ko: '| 문자열 | 첫 대상 `q0` | 두 번째 대상 `q1` |'
+  status: machine
+- id: d563afb7a62d0928
+  en: FATQAT checks the target count and qubit dimensions when the program runs.
+  ko: FATQAT은 프로그램 실행 시 대상 수와 큐비트 차원을 검사합니다.
+  status: machine

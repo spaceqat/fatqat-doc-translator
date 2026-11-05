@@ -1,0 +1,88 @@
+- id: cc343a2845b49b3c
+  en: Choose and run a neutral-atom workflow
+  ko: 중성 원자 실행 방식 선택하기
+  status: machine
+- id: 7984d47515a52e46
+  en: 'FatQat offers two neutral-atom execution levels. Choose the least detailed one that still contains the effect you want to study:'
+  ko: FatQat은 두 수준의 중성 원자 실행을 제공합니다. 연구하려는 효과를 포함하면서 가장 단순한 수준을 선택하세요.
+  status: machine
+- id: 305a51a3eb17cf2f
+  en: '**Gate-level array**'
+  ko: '**게이트 수준 배열**'
+  status: machine
+- id: d7fb8ad08e2f9a34
+  en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] adds occupancy and a changing pairing graph to finite qubit gates. Use it for fast loading, loss, and connectivity checks.'
+  ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]는 유한 큐비트 게이트에 점유 상태와 변화하는 페어링 그래프를 추가합니다. 로딩, 손실, 연결성을 빠르게 확인할 때 사용하세요.'
+  status: machine
+- id: 5665407c7117a301
+  en: '**Two physical levels**'
+  ko: '**두 개의 물리 준위**'
+  status: machine
+- id: e86f23c461a2b811
+  en: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] follows $\lvert g\rangle$ and $\lvert r\rangle$. Use it for global drive, detuning, and many-body Rydberg dynamics.'
+  ko: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]는 $\lvert g\rangle$와 $\lvert r\rangle$의 시간 변화를 계산합니다. 전역 구동, 디튜닝, 다체 Rydberg 동역학에 사용하세요.'
+  status: machine
+- id: 15f9e5f79f4b0467
+  en: The atom-array simulator is the profile introduced in [Hardware-profile simulation](hardware-profile-simulation.md); it does not integrate a Hamiltonian. The physical emulator below uses the pulse workflow from [Hamiltonian emulation](hamiltonian-emulation.md).
+  ko: 원자 배열 시뮬레이터는 [하드웨어 프로파일 시뮬레이션](hardware-profile-simulation.md)에서 소개한 프로파일이며, 해밀토니안을 적분하지 않습니다. 아래의 물리 에뮬레이터는 [해밀토니안 에뮬레이션](hamiltonian-emulation.md)의 펄스 작성 과정을 사용합니다.
+  status: machine
+- id: ff611845e5bdbb41
+  en: Describe the sites once
+  ko: 사이트 구성 정의하기
+  status: machine
+- id: 5df0c1bedf249775
+  en: 'The physical emulator uses a fixed set of sites described by an [`AtomArrangement`][fatqat.emulator.AtomArrangement]. Program resources map to those sites in declaration order by default:'
+  ko: 물리 에뮬레이터는 [`AtomArrangement`][fatqat.emulator.AtomArrangement]로 기술한 고정된 사이트 집합을 사용합니다. 기본적으로 Program 자원은 선언 순서대로 사이트에 매핑됩니다.
+  status: machine
+- id: 343e3c2ec0edb89d
+  en: 'To choose individual positions, supply `(x, y)` coordinates for a 2D layout or `(x, y, z)` coordinates for a 3D layout. All sites in an arrangement must use the same number of components, and distances are in micrometres:'
+  ko: 개별 위치를 직접 정하려면 2차원 배치에는 `(x, y)`, 3차원 배치에는 `(x, y, z)` 좌표를 지정하세요. 한 배열의 모든 사이트는 좌표 성분 수가 같아야 하며, 거리는 마이크로미터 단위입니다.
+  status: machine
+- id: bfcb526c556b4c18
+  en: The factory preserves input order as site order and copies the positions into immutable tuples. Explicit z values select 3D even when every z value is zero. `chain()` and `rectangular()` describe layouts embedded in 2D. Custom coordinates have no declared row count, column count, or uniform spacing; their `rows`, `cols`, and `spacing` attributes are `None`. See the [arrangement API](../api/atom-emulators.md#arrangements-and-program-resources) for input constraints.
+  ko: 팩터리는 입력 순서를 사이트 순서로 유지하고 위치를 불변 튜플로 복사합니다. z 값을 명시하면 모두 0이더라도 3차원으로 취급합니다. `chain()`과 `rectangular()`는 2차원 평면에 놓인 배치를 나타냅니다. 사용자 지정 좌표에는 행 수, 열 수, 균일한 간격이 선언되지 않으므로 `rows`, `cols`, `spacing` 속성은 `None`입니다. 입력 제약은 [배열 API](../api/atom-emulators.md#arrangements-and-program-resources)를 참고하세요.
+  status: machine
+- id: 44a25dd275a963aa
+  en: 'You can give rectangular layouts different x and y spacings, then combine layouts in the order their sites should appear. Labels let you retrieve the site indices belonging to each part:'
+  ko: 직사각형 배치의 x와 y 간격을 다르게 지정한 뒤, 사이트가 나타나야 할 순서대로 여러 배치를 합칠 수 있습니다. 레이블을 지정하면 각 부분에 속하는 사이트 인덱스를 가져올 수 있습니다.
+  status: machine
+- id: f3a256dde7146674
+  en: Combining layouts requires distinct positions and unique group names. A combination containing any 3D layout is 3D. Nested combinations retain their groups with indices adjusted to the final site order. You can also give `combine()` a label for a group covering the entire result.
+  ko: 배치를 합치려면 위치가 겹치지 않고 그룹 이름이 서로 달라야 합니다. 3차원 배치가 하나라도 포함되면 결과도 3차원입니다. 중첩된 조합의 그룹도 유지되며 인덱스는 최종 사이트 순서에 맞춰 조정됩니다. `combine()`에 레이블을 주면 전체 결과를 포함하는 그룹도 만들 수 있습니다.
+  status: machine
+- id: 066ab9e43cfb6ac0
+  en: The arrangement is fixed geometry, not an atom-transport instruction. It sets the distances used by Rydberg interactions, and the Program must declare exactly one dimension-two resource per site.
+  ko: 배열 배치는 고정된 기하 구조이며 원자를 이동시키는 명령이 아닙니다. Rydberg 상호작용에 사용할 거리를 결정하며, Program은 사이트마다 정확히 하나의 2차원 자원을 선언해야 합니다.
+  status: machine
+- id: 9a631d1330ed4ba3
+  en: Use a [`ResourceLayout`][fatqat.ResourceLayout] only when you need to override the default declaration-order mapping.
+  ko: 기본 선언 순서 매핑을 바꿔야 할 때만 [`ResourceLayout`][fatqat.ResourceLayout]을 사용하세요.
+  status: machine
+- id: e82691c5e1016476
+  en: Drive the array with the two-level model
+  ko: 2준위 모델로 배열 구동하기
+  status: machine
+- id: ec7297494dfafc6b
+  en: 'The two-level model uses global drive and detuning channels. Its default gate map is empty, so a Program normally contains direct pulse blocks:'
+  ko: 2준위 모델은 전역 구동 및 디튜닝 채널을 사용합니다. 기본 게이트 맵은 비어 있으므로 Program은 보통 직접 작성한 펄스 블록으로 구성됩니다.
+  status: machine
+- id: 5823ac31dd84d4b3
+  en: 'Both controls act on every site. The arrangement supplies the distances and the model supplies the signed interaction strength, so changing the spacing can change the dynamics without changing the Program. By default every site pair interacts. Set `simulation_config={"interaction_cutoff": distance}` on a particular `run()` to remove terms beyond that distance; this is a numerical Hamiltonian truncation rather than a blockade radius.'
+  ko: '두 제어 모두 모든 사이트에 작용합니다. 배열 배치는 거리를 제공하고 모델은 부호를 포함한 상호작용 세기를 제공합니다. 따라서 Program을 바꾸지 않아도 간격을 바꾸면 동역학이 달라질 수 있습니다. 기본적으로 모든 사이트 쌍이 상호작용합니다. 특정 `run()`에서 `simulation_config={"interaction_cutoff": distance}`를 설정하면 그 거리를 넘는 항을 제거할 수 있습니다. 이는 수치 계산을 위한 해밀토니안 절단이며 블로케이드 반경이 아닙니다.'
+  status: machine
+- id: 7a17ea0b2d9ff5e7
+  en: For this short pulse, about 5.4% of the final probability lies outside the all-ground state. That number is a physical consequence of the waveform, detuning, spacing, interaction model, and duration—not a gate label.
+  ko: 이 짧은 펄스에서는 최종 확률의 약 5.4%가 모든 원자가 바닥 상태인 상태 밖에 있습니다. 이 값은 게이트 레이블이 아니라 파형, 디튜닝, 간격, 상호작용 모델, 지속 시간에 따른 물리적 결과입니다.
+  status: machine
+- id: 3eafbe967c041999
+  en: The default method returns the complete two-level statevector. With supported Lindblad noise it follows one seeded trajectory when a final state is explicitly requested; choose `method="density_matrix"` for the exact ensemble. Terminal measurement returns counts. Mid-circuit measurement, reset, conditions, and per-site direct controls are not part of this two-level workflow.
+  ko: 기본 방식은 완전한 2준위 상태 벡터를 반환합니다. 지원되는 Lindblad 잡음이 있을 때 최종 상태를 명시적으로 요청하면 시드가 적용된 궤적 하나를 계산합니다. 정확한 앙상블이 필요하면 `method="density_matrix"`를 선택하세요. 마지막 측정은 카운트를 반환합니다. 회로 중간 측정, 리셋, 조건, 사이트별 직접 제어는 이 2준위 실행 방식에 포함되지 않습니다.
+  status: machine
+- id: a629b94b7c5a42d3
+  en: Continue with a physics study
+  ko: 물리 현상 연구로 이어가기
+  status: machine
+- id: 5478bf9c31bd904b
+  en: Continue with the tutorials for a [PXP revival](../tutorials/pxp-z2-revival.md), [antiferromagnetic chain](../tutorials/antiferromagnetic-chain.md), or [gate-level GHZ preparation](../tutorials/atom-array-ghz8.md). For model schemas, units, channel limits, and noise support, use the [neutral-atom emulator API](../api/atom-emulators.md).
+  ko: '[PXP 상태의 되살아남](../tutorials/pxp-z2-revival.md), [반강자성 사슬](../tutorials/antiferromagnetic-chain.md), [게이트 수준 GHZ 상태 준비](../tutorials/atom-array-ghz8.md) 튜토리얼로 이어서 살펴보세요. 모델 스키마, 단위, 채널 한계, 잡음 지원 범위는 [중성 원자 에뮬레이터 API](../api/atom-emulators.md)를 참고하세요.'
+  status: machine

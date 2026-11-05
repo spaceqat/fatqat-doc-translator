@@ -1,0 +1,100 @@
+- id: f6ec7f0c995bee5f
+  en: Visualization
+  ko: 시각화
+  status: machine
+- id: 0d273ab1177f604c
+  en: Visualize programs and results
+  ko: 프로그램과 결과 시각화하기
+  status: machine
+- id: 7f15acf255570f6a
+  en: FATQAT provides drawing methods on the object that owns the data. A [`Program`][fatqat.Program] draws its circuit or derives a logical interaction summary, while a [`Result`][fatqat.Result] draws the measurement outcomes from one run.
+  ko: FATQAT은 데이터를 소유한 객체에 그리기 메서드를 제공합니다. [`Program`][fatqat.Program]은 회로를 그리거나 논리 상호작용 요약을 만들고, [`Result`][fatqat.Result]는 한 번의 실행에서 얻은 측정 결과를 그립니다.
+  status: machine
+- id: dd47988b226ad49c
+  en: Draw a circuit
+  ko: 회로 그리기
+  status: machine
+- id: dd7b86c63ad6175a
+  en: 'Use [`Program.draw`][fatqat.Program.draw] for a circuit diagram:'
+  ko: 회로도에는 [`Program.draw`][fatqat.Program.draw]를 사용하세요.
+  status: machine
+- id: e17d8f654653d20a
+  en: The default Matplotlib renderer returns a `Figure`. The text renderer returns a string and does not print it. Circuit drawings use one wire per register slot; they do not depict register dimension or hardware connectivity.
+  ko: 기본 Matplotlib 렌더러는 `Figure`를 반환합니다. 텍스트 렌더러는 문자열을 반환하며 직접 출력하지 않습니다. 회로도에는 레지스터 슬롯마다 선이 하나씩 표시되며, 레지스터 차원이나 하드웨어 연결성은 나타내지 않습니다.
+  status: machine
+- id: 82b7b851abc37586
+  en: '![Three-qubit circuit containing H, controlled-X, controlled-Z, and measurement operations.](../assets/generated/guide/visualization-circuit.png)'
+  ko: '![H, controlled-X, controlled-Z, 측정 연산을 포함하는 3큐비트 회로.](../assets/generated/guide/visualization-circuit.png)'
+  status: machine
+- id: 3d2314df491fef4c
+  en: Passing `ax=` embeds the circuit in a Matplotlib layout owned by the caller.
+  ko: '`ax=`를 전달하면 호출자가 만든 Matplotlib 레이아웃 안에 회로를 넣을 수 있습니다.'
+  status: machine
+- id: 214c482f6b8fdaad
+  en: The same composition pattern works for the FATQAT-owned Matplotlib visualizations below.
+  ko: 아래의 FATQAT 자체 Matplotlib 시각화도 같은 방식으로 함께 배치할 수 있습니다.
+  status: machine
+- id: b41a7567e8b288a6
+  en: Draw logical interaction frequency
+  ko: 논리 상호작용 빈도 그리기
+  status: machine
+- id: 8b68046abb818d40
+  en: 'First derive the program''s logical interaction summary, then draw it:'
+  ko: 먼저 프로그램의 논리 상호작용 요약을 만든 뒤 그립니다.
+  status: machine
+- id: 969080f4af347f3e
+  en: Each node represents one logical quantum slot. An edge connects two slots used by a source-level two-target operation, and its label is the number of such operations in the whole program. This is a hardware-independent aggregate. It does not represent atom pairing, physical connectivity, or connectivity at a particular instruction layer.
+  ko: 각 노드는 논리 양자 슬롯 하나를 나타냅니다. 소스 수준에서 두 대상을 사용하는 연산이 있으면 두 슬롯 사이에 간선이 생기며, 레이블은 전체 프로그램에 있는 해당 연산의 수입니다. 이는 하드웨어와 독립적인 집계입니다. 원자 페어링, 물리 연결성, 특정 명령 층의 연결성을 나타내지는 않습니다.
+  status: machine
+- id: 5505ce458432c4f7
+  en: '![Five logical quantum slots connected by edges whose labels and widths show interaction frequency.](../assets/generated/guide/visualization-interactions.png)'
+  ko: '![다섯 논리 양자 슬롯을 연결한 그래프. 간선의 레이블과 두께가 상호작용 빈도를 나타냅니다.](../assets/generated/guide/visualization-interactions.png)'
+  status: machine
+- id: 665344faaed82860
+  en: The repeated interaction between slots 0 and 1 produces the thicker edge labeled `2`; every other edge is labeled `1`.
+  ko: 슬롯 0과 1 사이에서는 상호작용이 반복되므로 `2` 레이블의 두꺼운 간선이 표시됩니다. 나머지 간선의 레이블은 모두 `1`입니다.
+  status: machine
+- id: 0866c16e06101ea6
+  en: Draw measurement outcomes
+  ko: 측정 결과 그리기
+  status: machine
+- id: beb47580243e067e
+  en: 'A result containing counts can draw raw counts or relative frequencies:'
+  ko: 카운트를 포함한 결과는 원시 카운트 또는 상대 빈도로 그릴 수 있습니다.
+  status: machine
+- id: 25045ed989ce293b
+  en: '`number_to_keep` retains the most frequent outcomes and combines the remainder into an `other` bar. See [Result](../api/result.md#draw-counts) for the complete option reference.'
+  ko: '`number_to_keep`는 가장 자주 나온 결과를 남기고 나머지를 `other` 막대로 합칩니다. 전체 옵션은 [Result](../api/result.md#draw-counts)를 참고하세요.'
+  status: machine
+- id: f77c41b4e8b91770
+  en: '![Bell-state measurement frequencies with bars for the zero-zero and one-one outcomes.](../assets/generated/guide/visualization-counts.png)'
+  ko: '![00과 11 결과의 막대로 표시한 Bell 상태 측정 빈도.](../assets/generated/guide/visualization-counts.png)'
+  status: machine
+- id: 1978a84f230517b5
+  en: '`stat="frequencies"` divides each count by the total number of shots; omit it to show raw counts.'
+  ko: '`stat="frequencies"`는 각 카운트를 전체 샷 수로 나눕니다. 생략하면 원시 카운트가 표시됩니다.'
+  status: machine
+- id: 8afec66291caa99f
+  en: Animate a compiled neutral-atom plan
+  ko: 컴파일된 중성 원자 계획 애니메이션
+  status: machine
+- id: 7693d609adfe0d77
+  en: 'A final NA compilation retains its physical `ZonedPlan` in `.output`. Animate that plan with the same architecture used for compilation:'
+  ko: 최종 NA 컴파일 결과는 물리 `ZonedPlan`을 `.output`에 보관합니다. 컴파일에 사용한 아키텍처로 이 계획을 애니메이션으로 만드세요.
+  status: machine
+- id: 5e052b178eb57b61
+  en: The animation shows transfers, atom movements, gate batches, and crosstalk events without changing the plan. Creating it requires Matplotlib; saving MP4 requires FFmpeg on `PATH`. The [compiler guide](compiler.md) shows how to produce `na_compiled` and load `architecture`.
+  ko: 애니메이션은 계획을 바꾸지 않고 전송, 원자 이동, 게이트 배치, 혼선 이벤트를 보여 줍니다. 생성에는 Matplotlib이 필요하고, MP4 저장에는 FFmpeg가 `PATH`에 있어야 합니다. `na_compiled`를 만들고 `architecture`를 불러오는 방법은 [컴파일러 가이드](compiler.md)를 참고하세요.
+  status: machine
+- id: 192e25bbe72a59ae
+  en: Embed, style, and save figures
+  ko: 그림 배치, 스타일 설정, 저장
+  status: machine
+- id: b01afcba7e5e6209
+  en: 'Pass `ax=` to draw into an existing Matplotlib axis:'
+  ko: 기존 Matplotlib 축에 그리려면 `ax=`를 전달하세요.
+  status: machine
+- id: aa06008ce5448be8
+  en: 'FATQAT applies a consistent categorical palette when Matplotlib''s default color cycle is active. An explicitly configured color cycle and other `rcParams` remain in effect, so plots still compose with an application''s own theme. A returned figure can be saved with ordinary Matplotlib APIs:'
+  ko: Matplotlib의 기본 색상 순환을 사용할 때 FATQAT은 일관된 범주형 팔레트를 적용합니다. 명시적으로 설정한 색상 순환과 다른 `rcParams`는 그대로 유지되므로 애플리케이션의 테마와도 함께 사용할 수 있습니다. 반환된 그림은 일반 Matplotlib API로 저장할 수 있습니다.
+  status: machine

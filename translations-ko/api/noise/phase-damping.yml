@@ -1,0 +1,60 @@
+- id: 57e5d0fd920c4eac
+  en: PhaseDamping
+  ko: PhaseDamping
+  status: machine
+- id: 78a21a985e16368d
+  en: '[`PhaseDamping`][fatqat.noise.PhaseDamping] removes coherence without transferring population. Its `p` simulator channel and `rate`/`t_phi` emulator Lindblad operator use different multilevel conventions, so choose the form required by the target backend rather than relying on an implicit conversion.'
+  ko: '[`PhaseDamping`][fatqat.noise.PhaseDamping]은 점유 확률을 이동시키지 않고 결맞음을 제거합니다. 시뮬레이터의 `p` 채널과 에뮬레이터의 `rate`/`t_phi` Lindblad 연산자는 다준위에서 서로 다른 규약을 사용합니다. 자동 변환을 기대하지 말고 대상 백엔드가 요구하는 형식을 선택하세요.'
+  status: machine
+- id: 48224cf2d6dcdd48
+  en: 'Supply exactly one keyword:'
+  ko: 키워드를 정확히 하나 지정하세요.
+  status: machine
+- id: fff0af92ade1d617
+  en: '| Argument | Meaning | Constraint |'
+  ko: '| 인자 | 의미 | 제약 |'
+  status: machine
+- id: 96be8a681edb3080
+  en: '| `p` | Full-dephasing weight for one simulator channel application | Finite real in `[0, 1]` |'
+  ko: '| `p` | 시뮬레이터 채널 한 번 적용 시의 완전 탈위상 가중치 | `[0, 1]` 범위의 유한 실수 |'
+  status: machine
+- id: 03da9307cd531c87
+  en: '| `rate` | Rate scaling the local dephasing Lindblad operator | Finite nonnegative real in inverse time |'
+  ko: '| `rate` | 국소 탈위상 Lindblad 연산자의 크기를 정하는 비율 | 역시간 단위의 유한한 비음수 실수 |'
+  status: machine
+- id: d096f4115e763b42
+  en: '| `t_phi` | Pure-dephasing time, normalized to `rate = 1 / t_phi` | Finite positive real in the backend''s time unit |'
+  ko: '| `t_phi` | 순수 탈위상 시간, `rate = 1 / t_phi`로 정규화됨 | 백엔드 시간 단위의 유한한 양의 실수 |'
+  status: machine
+- id: cb2fe05620ecd5a8
+  en: '`t_phi` is a convenient way to supply a rate. The object stores `rate = 1 / t_phi` rather than keeping `t_phi` as a separate value.'
+  ko: '`t_phi`는 비율을 편리하게 지정하는 방법입니다. 객체는 `t_phi`를 별도 값으로 보관하지 않고 `rate = 1 / t_phi`를 저장합니다.'
+  status: machine
+- id: 9c845c8519872571
+  en: For a target of dimension $d$, probability mode implements
+  ko: 대상 차원이 $d$이면 확률 형식은 다음을 구현합니다.
+  status: machine
+- id: d8534fe0be7d1001
+  en: All populations are unchanged, and every off-diagonal entry is multiplied by $1-p$, regardless of the separation between its two levels. The channel acts on one selected operand.
+  ko: 모든 점유 확률은 그대로이며, 각 비대각 원소에는 두 준위의 간격과 무관하게 $1-p$가 곱해집니다. 채널은 선택한 피연산자 하나에 작용합니다.
+  status: machine
+- id: 9e9e97eecb04c37f
+  en: The `rate` and `t_phi` forms use the local Lindblad operator
+  ko: '`rate`와 `t_phi` 형식은 다음 국소 Lindblad 연산자를 사용합니다.'
+  status: machine
+- id: 71df4cda81135580
+  en: Its effect on coherence between levels j and k is
+  ko: 준위 j와 k 사이의 결맞음에 미치는 영향은 다음과 같습니다.
+  status: machine
+- id: 0e2adae9d9a8e947
+  en: See [Pulse emulators](backend-support.md#noise-emulator-support) for the accepted scopes and implementation-map requirements of each built-in emulator.
+  ko: 내장 에뮬레이터별 허용 범위와 구현 맵 요구 사항은 [펄스 에뮬레이터](backend-support.md#noise-emulator-support)를 참고하세요.
+  status: machine
+- id: ee44cea7115c42fa
+  en: '[`PhaseDamping.as_probability`][fatqat.noise.PhaseDamping.as_probability] uses $p=1-e^{-rt}$, and [`PhaseDamping.as_rate`][fatqat.noise.PhaseDamping.as_rate] uses $r=-\log(1-p)/t$. These relations match a qubit channel and adjacent-level coherence. For larger systems, the two forms differ: the simulator channel damps every coherence uniformly, while Lindblad evolution scales the decay with $(j-k)^2$.'
+  ko: '[`PhaseDamping.as_probability`][fatqat.noise.PhaseDamping.as_probability]는 $p=1-e^{-rt}$를, [`PhaseDamping.as_rate`][fatqat.noise.PhaseDamping.as_rate]는 $r=-\log(1-p)/t$를 사용합니다. 이 관계는 큐비트 채널과 인접 준위의 결맞음에 대응합니다. 더 큰 계에서는 두 형식이 다릅니다. 시뮬레이터 채널은 모든 결맞음을 균일하게 감쇠시키지만 Lindblad 진화에서는 감쇠가 $(j-k)^2$에 비례합니다.'
+  status: machine
+- id: 7d8a79dda8226c57
+  en: Duration must be finite and nonnegative. Probability 1 has no finite rate, and a nonzero probability cannot be converted at zero duration.
+  ko: 지속 시간은 유한한 비음수여야 합니다. 확률 1에 대응하는 유한한 비율은 없으며, 지속 시간이 0이면 0이 아닌 확률은 변환할 수 없습니다.
+  status: machine

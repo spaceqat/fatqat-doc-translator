@@ -1,0 +1,112 @@
+- id: a99af30b2b10aedb
+  en: Build, draw, and run one Program
+  ko: Program 하나를 만들고, 그리고, 실행하기
+  status: machine
+- id: 916ffa564cb77c2f
+  en: In about ten minutes, you will create a Bell pair, draw its circuit, run 1,000 shots, and see why only `00` and `11` appear. The computation will live in a [`Program`][fatqat.Program] from start to finish.
+  ko: 약 10분 동안 Bell 쌍을 만들고 회로를 그린 뒤, 1,000회 실행해 `00`과 `11`만 나오는 이유를 살펴봅니다. 처음부터 끝까지 계산은 하나의 [`Program`][fatqat.Program]에 담깁니다.
+  status: machine
+- id: 703d3d17895537f7
+  en: Install FatQat
+  ko: FatQat 설치하기
+  status: machine
+- id: c6085a3d4e498556
+  en: 'FatQat requires Python 3.12 or later. In a virtual environment, install FatQat:'
+  ko: FatQat에는 Python 3.12 이상이 필요합니다. 가상 환경에서 FatQat을 설치하세요.
+  status: machine
+- id: 3ddc2c50c1a04830
+  en: Install the development version from source
+  ko: 소스에서 개발 버전 설치하기
+  status: machine
+- id: d206a4b8f396cae6
+  en: 'To work with the latest source instead, clone the repository:'
+  ko: 최신 소스로 작업하려면 저장소를 복제하세요.
+  status: machine
+- id: 54c82c9dccbbe4e6
+  en: 'We recommend [uv](https://docs.astral.sh/uv/) for local projects because it records the selected Python minor version in `.python-version`. This keeps the interpreter choice explicit and makes the environment easier to reproduce:'
+  ko: 로컬 프로젝트에는 [uv](https://docs.astral.sh/uv/)를 권장합니다. 선택한 Python 부 버전을 `.python-version`에 기록해 어떤 인터프리터를 사용하는지 명확히 하고 환경을 재현하기 쉽게 해 줍니다.
+  status: machine
+- id: 6327ee6a577e9676
+  en: 'Keep `.python-version` with the project so later `uv` commands select the same Python minor version. If you prefer the standard library tools, create and activate a virtual environment instead:'
+  ko: 이후 `uv` 명령도 같은 Python 부 버전을 선택하도록 `.python-version`을 프로젝트와 함께 보관하세요. 표준 라이브러리 도구를 선호한다면 대신 가상 환경을 만들고 활성화하세요.
+  status: machine
+- id: e14ee7be00d2493f
+  en: 'Then install FatQat with `pip`:'
+  ko: 그런 다음 `pip`로 FatQat을 설치합니다.
+  status: machine
+- id: 44d89952b3679d6b
+  en: Write a Bell-state Program
+  ko: Bell 상태 Program 작성하기
+  status: machine
+- id: 18727e7f56f37dda
+  en: 'A `Program` records quantum and classical resources together with the instructions that act on them. This one prepares two qubits in a Bell state and measures both:'
+  ko: '`Program`은 양자·고전 자원과 그 자원에 작용하는 명령을 함께 기록합니다. 다음 프로그램은 두 큐비트를 Bell 상태로 준비하고 둘 다 측정합니다.'
+  status: machine
+- id: 11ae954fe050c4db
+  en: '`Program(2, 2)` creates two qubits and two classical bits. `H` puts qubit 0 into a superposition, and `CX` uses qubit 0 as its control and qubit 1 as its target. The final instruction writes both quantum outcomes to the classical bits.'
+  ko: '`Program(2, 2)`는 큐비트 두 개와 고전 비트 두 개를 만듭니다. `H`는 큐비트 0을 중첩 상태로 만들고, `CX`는 큐비트 0을 제어, 큐비트 1을 타깃으로 사용합니다. 마지막 명령은 두 양자 측정 결과를 고전 비트에 기록합니다.'
+  status: machine
+- id: 77caa73f37fc6ca9
+  en: 'The Program describes *what* should happen. It has not selected a simulator or performed any evolution yet. FatQat is also extensible: users can define operations and provide the backend implementations that execute them. Built-in operations such as `Put`, `Pair`, and `Unpair` show how `AtomArraySimulator` can represent workflows beyond standard quantum gates.'
+  ko: Program은 *무엇을* 할지 기술합니다. 아직 시뮬레이터를 선택하거나 상태를 변화시키지 않았습니다. FatQat은 확장도 가능합니다. 사용자가 연산을 정의하고 이를 실행할 백엔드 구현을 제공할 수 있습니다. 내장 연산인 `Put`, `Pair`, `Unpair`는 `AtomArraySimulator`가 표준 양자 게이트를 넘어서는 작업을 어떻게 표현하는지 보여 줍니다.
+  status: machine
+- id: 9662224d143b753f
+  en: Inspect the Program
+  ko: Program 살펴보기
+  status: machine
+- id: 5f2d9b02bd0f2b41
+  en: 'Drawing is a native Program capability built on QuTiP-QIP''s circuit drawing tools. FatQat translates the Program''s instructions for that renderer. The default renderer returns a Matplotlib figure that you can display or save:'
+  ko: 회로 그리기는 QuTiP-QIP의 도구를 기반으로 하는 Program의 기본 기능입니다. FatQat은 Program 명령을 렌더러에 맞게 변환합니다. 기본 렌더러는 표시하거나 저장할 수 있는 Matplotlib 그림을 반환합니다.
+  status: machine
+- id: cbdab5ef33e7b372
+  en: '![Bell-state Program with H, controlled-X, and two measurements](../assets/generated/guide/quickstart-circuit.png)'
+  ko: '![H, controlled-X, 두 측정으로 이루어진 Bell 상태 Program](../assets/generated/guide/quickstart-circuit.png)'
+  status: machine
+- id: 569c18b563070e8e
+  en: For a terminal-friendly version, `program.draw("text")` returns a string instead of printing it. Drawing is a view of the recorded instruction structure; it does not run the Program.
+  ko: 터미널에서 볼 때는 `program.draw("text")`를 사용하세요. 직접 출력하지 않고 문자열을 반환합니다. 그림은 기록된 명령 구조를 보여 줄 뿐 Program을 실행하지 않습니다.
+  status: machine
+- id: 958ca26c6a61f02f
+  en: Run it
+  ko: 실행하기
+  status: machine
+- id: d339383b48c80a58
+  en: 'The general-purpose simulator evolves the Program as a quantum circuit. `run()` executes the Program and returns a completed [`Job`][fatqat.Job]. Calling `job.result()` returns a [`Result`][fatqat.Result] containing the requested outputs, or raises the recorded execution error:'
+  ko: 범용 시뮬레이터는 Program을 양자 회로로 실행합니다. `run()`은 Program을 실행한 뒤 완료된 [`Job`][fatqat.Job]을 반환합니다. `job.result()`는 요청한 출력을 담은 [`Result`][fatqat.Result]를 반환하거나, 기록된 실행 오류를 발생시킵니다.
+  status: machine
+- id: d749c83be0090d5a
+  en: 'Each shot ends as either `00` or `11`: the two measured bits agree because the qubits are entangled. Their counts are close rather than exactly equal because measurement samples the state. The fixed seed makes this particular run reproducible. `Result.draw()` provides a built-in chart for these counts, so no custom Matplotlib styling is needed.'
+  ko: 각 샷은 `00` 또는 `11`로 끝납니다. 큐비트가 얽혀 있어 측정한 두 비트가 같기 때문입니다. 측정은 상태를 샘플링하므로 두 카운트는 비슷하지만 정확히 같지는 않습니다. 고정 시드 덕분에 이 실행을 재현할 수 있습니다. `Result.draw()`는 카운트를 그리는 기본 차트를 제공하므로 별도의 Matplotlib 스타일 설정이 필요하지 않습니다.
+  status: machine
+- id: 72dd22c5ff616331
+  en: '![Bell-state measurement counts with nearly equal bars for 00 and 11](../assets/generated/guide/quickstart-counts.png)'
+  ko: '![00과 11의 막대 높이가 거의 같은 Bell 상태 측정 카운트](../assets/generated/guide/quickstart-counts.png)'
+  status: machine
+- id: 7669978ca0e9f0ee
+  en: Read basis indices
+  ko: 기저 인덱스 읽기
+  status: machine
+- id: 5eb1d82357e6870a
+  en: 'Public subsystem 0 is the most-significant factor. The two-qubit basis is `|00>`, `|01>`, `|10>`, `|11>` at flat indices 0 through 3. Consequently, `X(q0)|00>` has its nonzero amplitude at index 2, while `X(q1)|00>` uses index 1. Count strings use the same left-to-right public slot order: measuring those states into `(c0, c1)` produces `"10"` and `"01"`, respectively.'
+  ko: 공개 인터페이스에서 부분계 0은 최상위 인자입니다. 두 큐비트의 기저 `|00>`, `|01>`, `|10>`, `|11>`은 평탄화한 인덱스 0부터 3에 대응합니다. 따라서 `X(q0)|00>`의 0이 아닌 진폭은 인덱스 2에, `X(q1)|00>`의 진폭은 인덱스 1에 있습니다. 카운트 문자열도 공개 슬롯 순서를 왼쪽부터 따릅니다. 이 상태들을 `(c0, c1)`에 측정하면 각각 `"10"`과 `"01"`이 나옵니다.
+  status: machine
+- id: 214c1db17448d168
+  en: 'Keep this `Program`: the next chapters change the backend to explore circuit behavior, hardware constraints, and physical dynamics.'
+  ko: 이 `Program`을 그대로 두세요. 다음 장들에서는 백엔드를 바꿔 가며 회로 동작, 하드웨어 제약, 물리 동역학을 살펴봅니다.
+  status: machine
+- id: 31fbef162594de01
+  en: Continue
+  ko: 다음 단계
+  status: machine
+- id: 918deb61eb6164f5
+  en: '[Write quantum computations with Program](program.md) to use explicit registers, measurements, conditions, parameters, and qudits.'
+  ko: '[Program으로 양자 계산 작성하기](program.md)에서 명시적 레지스터, 측정, 조건, 매개변수, 큐디트를 사용해 보세요.'
+  status: machine
+- id: 39ae5d6787845c3a
+  en: '[Choose how much physics to model](execution-models.md) to compare FatQat''s execution paths.'
+  ko: '[물리 모델링 수준 선택하기](execution-models.md)에서 FatQat의 실행 경로를 비교해 보세요.'
+  status: machine
+- id: 92c7cab94192cc95
+  en: '[Bring Programs to and from OpenQASM and Qiskit](interoperability.md) to connect an existing circuit workflow.'
+  ko: '[OpenQASM 및 Qiskit과 Program 주고받기](interoperability.md)에서 기존 회로 작업과 연결해 보세요.'
+  status: machine

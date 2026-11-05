@@ -1,0 +1,320 @@
+- id: 45002c3050aa3e1d
+  en: Superconducting pulse emulator
+  ko: 초전도 펄스 에뮬레이터
+  status: machine
+- id: e95ed5b74d9a4eb0
+  en: The [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] runs a [`Program`][fatqat.Program] against a three-level transmon model. It evolves sampled controls over the full physical model, and `run()` returns an eager [`Job`][fatqat.Job].
+  ko: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 3준위 transmon 모델에서 [`Program`][fatqat.Program]을 실행합니다. 샘플링된 제어 신호에 따라 전체 물리 모델을 진화시키며, `run()`은 실행이 끝난 [`Job`][fatqat.Job]을 반환합니다.'
+  status: machine
+- id: 4b802a73f4d6d01d
+  en: See [Emulate a superconducting system](../guide/transmon-emulation.md) for a walkthrough covering calibrated gates and direct drive.
+  ko: 보정된 게이트와 직접 구동을 사용하는 과정은 [초전도 시스템 에뮬레이션](../guide/transmon-emulation.md)을 참고하세요.
+  status: machine
+- id: c21a1e0b1c52589f
+  en: Ordinary gates use `gate_implementation_map`. A [`PulseOperation`][fatqat.operations.PulseOperation] contains its own physical channels and does not use that map. See [Pulse control](pulse-control/index.md) for direct pulse authoring.
+  ko: 일반 게이트는 `gate_implementation_map`을 사용합니다. [`PulseOperation`][fatqat.operations.PulseOperation]은 물리 채널을 자체적으로 포함하므로 이 맵을 사용하지 않습니다. 펄스를 직접 작성하는 방법은 [펄스 제어](pulse-control/index.md)를 참고하세요.
+  status: machine
+- id: d63928e8dadaf71f
+  en: Unless a path is shown explicitly, the APIs on this page come from `fatqat.emulator`; the GHz conversion helper comes from `fatqat.emulator.superconducting`.
+  ko: 별도 경로가 표시되지 않은 API는 `fatqat.emulator`에서 가져옵니다. GHz 변환 도우미는 `fatqat.emulator.superconducting`에 있습니다.
+  status: machine
+- id: 11e08633dbaf689d
+  en: Create the emulator
+  ko: 에뮬레이터 생성
+  status: machine
+- id: 235849ba5d3fdf16
+  en: 'Load the packaged model and construct the emulator:'
+  ko: '내장 모델을 불러와 에뮬레이터를 만듭니다:'
+  status: machine
+- id: c6202b8c62922b4e
+  en: 'To use an explicit calibration, build its gate map before constructing the emulator:'
+  ko: '특정 보정값을 사용하려면 에뮬레이터를 만들기 전에 게이트 맵을 구성하세요:'
+  status: machine
+- id: f63560295b3b98bf
+  en: The packaged calibration is a reference configuration for simulation, not a hardware calibration. To customize it, supply a complete calibration document rather than a partial patch.
+  ko: 내장 보정값은 시뮬레이션용 참조 설정이며 실제 하드웨어 보정값이 아닙니다. 수정하려면 일부만 덮어쓰지 말고 완전한 보정 문서를 제공하세요.
+  status: machine
+- id: fe0ba1832e6975ea
+  en: By default, qubits in a [`Program`][fatqat.Program] bind in declaration order to `model.subsystem_ids`. Pass an explicit [`ResourceLayout`][fatqat.ResourceLayout] to `run(resource_layout=...)` to override that binding; its device labels must be model subsystem IDs. Unaddressed transmons remain part of the full physical state and still contribute factors of three to state and operator dimensions. The result's `state_axes` lists every model transmon in model order, most-significant first. Statevectors and both axes of density matrices and unitaries use that order. State and unitary results may still use different documented terminal frames.
+  ko: 기본적으로 [`Program`][fatqat.Program]의 큐비트는 선언 순서대로 `model.subsystem_ids`에 바인딩됩니다. 이를 바꾸려면 `run(resource_layout=...)`에 명시적인 [`ResourceLayout`][fatqat.ResourceLayout]을 전달하세요. 장치 라벨은 모델의 부분계 ID여야 합니다. 지정하지 않은 transmon도 전체 물리 상태에 포함되며 상태와 연산자 차원에 각각 3배의 인자를 더합니다. 결과의 `state_axes`는 모든 모델 transmon을 모델 순서대로, 최상위부터 나열합니다. 상태 벡터와 밀도 행렬·유니터리의 두 축이 모두 이 순서를 사용합니다. 다만 상태와 유니터리 결과는 문서화된 서로 다른 종단 프레임을 사용할 수 있습니다.
+  status: machine
+- id: 9dfc91049197ea28
+  en: '`TransmonEmulator(...)` accepts these optional arguments:'
+  ko: '`TransmonEmulator(...)`는 다음 선택 인수를 받습니다:'
+  status: machine
+- id: 67abc7291d7c8d8f
+  en: '**Constructor options**'
+  ko: '**생성자 옵션**'
+  status: machine
+- id: 28cb936ad021b841
+  en: '| Argument | Meaning |'
+  ko: '| 인수 | 의미 |'
+  status: machine
+- id: 68681d2419563a0b
+  en: '| `method` | Mathematical representation and method-native result field. Accepted case-insensitive values are `"statevector"` (the default), `"density_matrix"`, and `"unitary"`; `"SV"` and `"DM"` are aliases. |'
+  ko: '| `method` | 수학적 표현과 해당 방법의 결과 필드. 대소문자를 구분하지 않고 `"statevector"`(기본값), `"density_matrix"`, `"unitary"`를 받습니다. `"SV"`, `"DM"`은 별칭입니다. |'
+  status: machine
+- id: dd3fcfcd0a31796f
+  en: '| `noise` | A [`NoiseModel`][fatqat.NoiseModel]. `None` means no noise. |'
+  ko: '| `noise` | [`NoiseModel`][fatqat.NoiseModel]. `None`이면 잡음이 없습니다. |'
+  status: machine
+- id: 0ef2508c620744d9
+  en: '| `gate_implementation_map` | A [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] mapping operation families and device labels to pulse definitions. `None` uses the built-in map. |'
+  ko: '| `gate_implementation_map` | 연산 계열과 장치 라벨을 펄스 정의에 연결하는 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap]. `None`이면 내장 맵을 사용합니다. |'
+  status: machine
+- id: af18feebbd6b1f16
+  en: Execution methods
+  ko: 실행 방법
+  status: machine
+- id: 8962a38b946a9853
+  en: '`method` names a mathematical representation, not the internal differential- equation solver. The read-only `backend.method` property always returns the canonical full name, and `result.metadata["method"]` records it.'
+  ko: '`method`는 내부 미분방정식 솔버가 아니라 수학적 표현을 지정합니다. 읽기 전용 `backend.method` 속성은 항상 정식 전체 이름을 반환하며, `result.metadata["method"]`에도 이 이름이 기록됩니다.'
+  status: machine
+- id: 92ba803d6b9927ba
+  en: '**Method-native results**'
+  ko: '**방법별 결과**'
+  status: machine
+- id: 5f37f344fda5a939
+  en: '| Method | Result accessor | Shape for `m` transmons | Meaning |'
+  ko: '| 방법 | 결과 접근자 | transmon `m`개의 형태 | 의미 |'
+  status: machine
+- id: efe2bcb12669b025
+  en: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | `(3**m, 1)` ket | A pure coherent state, or one seeded trajectory when Lindblad noise can act. |'
+  ko: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | `(3**m, 1)` 켓 | 순수한 결맞음 상태. Lindblad 잡음이 작용할 수 있으면 시드로 생성한 궤적 하나. |'
+  status: machine
+- id: 93d8e057b8bc6a27
+  en: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | `(3**m, 3**m)` | The exact ensemble state under supported Lindblad evolution. |'
+  ko: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | `(3**m, 3**m)` | 지원되는 Lindblad 진화의 정확한 앙상블 상태. |'
+  status: machine
+- id: c375621ec09ba9c7
+  en: '| `"unitary"` | [`get_unitary`][fatqat.Result.get_unitary] | `(3**m, 3**m)` | The complete coherent operator. |'
+  ko: '| `"unitary"` | [`get_unitary`][fatqat.Result.get_unitary] | `(3**m, 3**m)` | 전체 결맞음 연산자. |'
+  status: machine
+- id: 1464bc3ee54bfcae
+  en: Every method returns a QuTiP `Qobj` whose `dims` list the subsystem dimensions. Call `.full()` for a NumPy array (`.full().ravel()` for a flat statevector).
+  ko: 모든 방법은 부분계 차원을 `dims`에 담은 QuTiP `Qobj`를 반환합니다. NumPy 배열은 `.full()`, 평탄화한 상태 벡터는 `.full().ravel()`로 얻습니다.
+  status: machine
+- id: 241dbd771c8b957e
+  en: 'All three representations cover the complete physical qutrit model, not just the resources declared by the program. They use the same canonical model basis: terminal virtual-frame changes are composed into every returned state or operator. This does not convert the effective RWA model to a laboratory frame. `result_config` controls whether the method-native value is returned; it does not expose the solver''s internal rotating-frame coordinates. Pulse emulators do not expose `superop` or internal solver names as methods.'
+  ko: 세 표현은 모두 프로그램에 선언된 자원만이 아니라 전체 물리 큐트릿 모델을 포함합니다. 같은 표준 모델 기저를 사용하며, 마지막 가상 프레임 변화가 반환되는 모든 상태와 연산자에 합성됩니다. 그렇다고 유효 RWA 모델이 실험실 프레임으로 변환되는 것은 아닙니다. `result_config`는 방법별 값을 반환할지 결정하며 솔버 내부의 회전 프레임 좌표를 노출하지 않습니다. 펄스 에뮬레이터는 `superop`이나 내부 솔버 이름을 실행 방법으로 제공하지 않습니다.
+  status: machine
+- id: 44504ff05040d8bd
+  en: 'An unmeasured statevector run with potentially active Lindblad noise is stochastic, so the default result request retains metadata only. Request one reproducible trajectory with `result_config={"final_state": True}`, `shots=1`, and a non-negative `simulation_config["seed"]`. Choose `method="density_matrix"` for the exact ensemble instead.'
+  ko: '측정이 없는 상태 벡터 실행에서 Lindblad 잡음이 작용할 가능성이 있으면 실행은 확률적입니다. 따라서 기본 결과 요청은 메타데이터만 남깁니다. 재현 가능한 궤적 하나를 얻으려면 `result_config={"final_state": True}`, `shots=1`, 음이 아닌 `simulation_config["seed"]`를 지정하세요. 정확한 앙상블이 필요하면 `method="density_matrix"`를 선택합니다.'
+  status: machine
+- id: 3188395e78db1205
+  en: Each transmon statevector trajectory is an independent physical evolution, so the cost of a measured trajectory run grows with `shots`. Use `method="density_matrix"` when an exact ensemble result is more useful.
+  ko: 각 transmon 상태 벡터 궤적은 독립적인 물리 진화이므로, 측정이 있는 궤적 실행의 비용은 `shots`에 비례해 늘어납니다. 정확한 앙상블 결과가 더 유용하다면 `method="density_matrix"`를 사용하세요.
+  status: machine
+- id: 04efbb61da2b0d2f
+  en: '`method="unitary"` is available through `run()` and [`get_unitary`][fatqat.Result.get_unitary]; there is no separate public propagator API. Unitary execution rejects measurement, reset, classical conditions, counts, and programs in which resolved Lindblad noise can act during nonzero-duration evolution. The check is deliberately structural: background noise is considered active whenever any nonzero-duration block exists, whereas operation-scoped noise is considered active only when attached to such a block. Conditioned blocks and zero-rate declarations still count as active; unmatched declarations and declarations scoped to zero-duration blocks do not. The check does not analyze reachability, trajectories, jump probability, or internal solver coefficients. Readout-only noise does not affect an unmeasured unitary run.'
+  ko: '`method="unitary"`는 `run()`과 [`get_unitary`][fatqat.Result.get_unitary]로 사용할 수 있으며, 별도의 공개 전파자 API는 없습니다. 유니터리 실행은 측정, 리셋, 고전 조건, 카운트, 그리고 길이가 0이 아닌 진화 중 해석된 Lindblad 잡음이 작용할 수 있는 프로그램을 거부합니다. 이 검사는 의도적으로 구조만 살핍니다. 배경 잡음은 길이가 0이 아닌 블록이 하나라도 있으면 활성 상태로 간주하고, 연산 범위 잡음은 그런 블록에 연결된 경우에만 활성으로 간주합니다. 조건부 블록과 비율이 0인 선언도 활성으로 봅니다. 일치하지 않는 선언과 길이가 0인 블록에만 지정된 선언은 제외합니다. 도달 가능성, 궤적, 점프 확률, 내부 솔버 계수는 분석하지 않습니다. 판독 잡음만 있다면 측정 없는 유니터리 실행에 영향을 주지 않습니다.'
+  status: machine
+- id: 3ceda4af0af1b9b9
+  en: The unitary uses per-subsystem near-resonant rotating frames and may differ from a conventional qubit `RZ` by global phase; compare ideal operators up to global phase.
+  ko: 유니터리는 부분계별 근공명 회전 프레임을 사용하므로 통상적인 큐비트 `RZ`와 전역 위상이 다를 수 있습니다. 이상적 연산자와 비교할 때는 전역 위상 차이를 허용하세요.
+  status: machine
+- id: 00d60e31a4e6b834
+  en: Run
+  ko: 실행
+  status: machine
+- id: 3c0aee9880b80eb6
+  en: '[`run`][fatqat.emulator.TransmonEmulator.run] accepts these `simulation_config` keys:'
+  ko: '[`run`][fatqat.emulator.TransmonEmulator.run]은 다음 `simulation_config` 키를 받습니다:'
+  status: machine
+- id: 2368645ee8fd1731
+  en: '**`simulation_config` keys**'
+  ko: '**`simulation_config` 키**'
+  status: machine
+- id: 06b48a7722ce9495
+  en: '| `seed` | `int` or `None`; not `bool` | `None` | Seed stochastic sampling for measurement, reset, readout, and statevector trajectories. Use a non-negative integer; `None` uses fresh entropy. |'
+  ko: '| `seed` | `int` 또는 `None`; `bool` 제외 | `None` | 측정, 리셋, 판독, 상태 벡터 궤적의 확률적 샘플링 시드. 음이 아닌 정수를 사용하며 `None`은 새로운 엔트로피를 사용합니다. |'
+  status: machine
+- id: 4227703add0e4acb
+  en: '| `schedule_mode` | `"ASAP"` or `"ALAP"` | `"ASAP"` | Place operations as early or as late as possible while preserving dependencies and physical-resource conflicts. |'
+  ko: '| `schedule_mode` | `"ASAP"` 또는 `"ALAP"` | `"ASAP"` | 의존성과 물리 자원 충돌 제약을 유지하면서 연산을 가능한 한 이르게 또는 늦게 배치합니다. |'
+  status: machine
+- id: 44d668b49fe2b6bc
+  en: These are the only two keys for `TransmonEmulator`. Pulse emulators reject the matrix backend's `shot_parallelism`, `kernel_parallelism`, `max_workers`, and `fusion` settings.
+  ko: '`TransmonEmulator`에서 사용할 수 있는 키는 이 두 개뿐입니다. 펄스 에뮬레이터는 행렬 백엔드의 `shot_parallelism`, `kernel_parallelism`, `max_workers`, `fusion` 설정을 거부합니다.'
+  status: machine
+- id: 453ce466b4c8e0b2
+  en: '**`result_config` keys**'
+  ko: '**`result_config` 키**'
+  status: machine
+- id: b720daa9ea717e31
+  en: '| `counts` | `bool` or `None` | `None` | `True` requests sampled classical counts, `False` suppresses them, and `None` enables them when measurement exists. Counts require a positive integer `shots` value. |'
+  ko: '| `counts` | `bool` 또는 `None` | `None` | `True`는 샘플링한 고전 카운트를 요청하고, `False`는 생략합니다. `None`은 측정이 있을 때 활성화합니다. 카운트에는 양의 정수 `shots`가 필요합니다. |'
+  status: machine
+- id: 5cf7951650ce7a07
+  en: Every run begins in the product state with each transmon in physical `|0>`. Pulse emulators do not accept an `initial_state` argument.
+  ko: 모든 실행은 각 transmon이 물리적 `|0>`에 있는 곱 상태에서 시작합니다. 펄스 에뮬레이터는 `initial_state` 인수를 받지 않습니다.
+  status: machine
+- id: 89e449252ec5feeb
+  en: Measurement first samples a physical level, maps `0, 1, 2` to `0, 1, 1`, then applies any classical readout-confusion matrix. Reset prepares physical `|0>`.
+  ko: 측정은 먼저 물리 준위를 샘플링하고 `0, 1, 2`를 `0, 1, 1`로 매핑한 뒤, 고전 판독 혼동 행렬을 적용합니다. 리셋은 물리적 `|0>`을 준비합니다.
+  status: machine
+- id: 2df6d55471785545
+  en: Result metadata includes the effective run and result settings, identifies `runtime="qutip"`, and reports `solver` and `solver_options` inside `runtime_details`. `solver` is one solver name for a uniform run or a tuple of names when execution used multiple solvers. Metadata does not include the model or calibration documents. When a sampled-control run invokes a QuTiP solver, the reported `max_step` is derived separately for each program as half the smallest adjacent interval in its control-waveform grids. It is expressed in the model's native time unit (`ns` for Transmon and `us` for the atom emulators). This keeps narrow controls visible to QuTiP's adaptive solver without assuming a fixed pulse time scale.
+  ko: 결과 메타데이터에는 적용된 실행 및 결과 설정, `runtime="qutip"`, 그리고 `runtime_details` 안의 `solver`와 `solver_options`가 포함됩니다. `solver`는 한 솔버만 사용했다면 이름 하나, 여러 솔버를 사용했다면 이름 튜플입니다. 모델과 보정 문서는 메타데이터에 포함되지 않습니다. 샘플링된 제어 실행에서 QuTiP 솔버를 호출하면, 각 프로그램의 제어 파형 격자에서 가장 작은 인접 시간 간격의 절반을 `max_step`으로 계산해 보고합니다. 단위는 모델의 고유 시간 단위로, Transmon은 `ns`, 원자 에뮬레이터는 `us`입니다. 덕분에 고정된 펄스 시간 척도를 가정하지 않고도 QuTiP 적응형 솔버가 짧은 제어 신호를 놓치지 않습니다.
+  status: machine
+- id: dbc06019f916d74a
+  en: '`run()` raises validation errors before returning a job. If execution fails after a job is returned, `job.result()` raises [`BackendExecutionError`][fatqat.errors.BackendExecutionError].'
+  ko: '`run()`은 Job을 반환하기 전에 검증 오류를 발생시킵니다. Job이 반환된 뒤 실행 실패가 확인되면 `job.result()`에서 [`BackendExecutionError`][fatqat.errors.BackendExecutionError]가 발생합니다.'
+  status: machine
+- id: 804aeeed351171e8
+  en: Physics model and calibration
+  ko: 물리 모델과 보정
+  status: machine
+- id: 69cf67a6f4eb8544
+  en: '`TransmonModel.from_document(...)` accepts a decoded JSON-compatible model mapping; direct model construction is not supported. The [`TransmonCalibration`][fatqat.emulator.TransmonCalibration] constructor separately accepts a decoded calibration mapping. Use `load_model_document("transmon.reference")` for the packaged reference, or `json.load` or another JSON reader for custom documents. Documents must use a supported `format` ID and version. Missing or unknown keys, unsupported versions, non-finite values, and values outside the documented JSON-compatible types are rejected.'
+  ko: '`TransmonModel.from_document(...)`는 디코딩된 JSON 호환 모델 매핑을 받으며 모델의 직접 생성은 지원하지 않습니다. [`TransmonCalibration`][fatqat.emulator.TransmonCalibration] 생성자는 별도로 디코딩된 보정 매핑을 받습니다. 내장 참조 모델은 `load_model_document("transmon.reference")`로, 사용자 문서는 `json.load` 등 JSON 리더로 읽으세요. 문서는 지원되는 `format` ID와 버전을 사용해야 합니다. 누락되거나 알 수 없는 키, 지원하지 않는 버전, 유한하지 않은 값, 문서화된 JSON 호환 타입 밖의 값은 거부됩니다.'
+  status: machine
+- id: bc91da2e9721d999
+  en: Control and frame addresses name model resources. Invalid addresses are reported when you call `run()`.
+  ko: 제어 및 프레임 주소는 모델 자원을 가리킵니다. 잘못된 주소는 `run()`을 호출할 때 보고됩니다.
+  status: machine
+- id: 5b197474f2eec228
+  en: The built-in model contains fixed qutrit transmons and an arbitrary undirected coupling graph. A coupling declares where controlled exchange operations may be driven; it is not a residual always-on exchange Hamiltonian. Frequencies define the implicit resonant carriers.
+  ko: 내장 모델은 고정된 큐트릿 transmon들과 임의의 무방향 결합 그래프로 구성됩니다. 결합은 제어된 교환 연산을 구동할 수 있는 위치를 선언하며, 항상 켜져 있는 잔류 교환 해밀토니안이 아닙니다. 주파수는 암묵적인 공명 반송파를 정의합니다.
+  status: machine
+- id: 86c06503d206674a
+  en: Model documents
+  ko: 모델 문서
+  status: machine
+- id: 4e1ee1d05db07f1d
+  en: Use [`available_model_documents`][fatqat.emulator.available_model_documents] to discover the packaged model IDs and [`load_model_document`][fatqat.emulator.load_model_document] to load one. Create runtime models with [`from_document`][fatqat.emulator.TransmonModel.from_document]; direct construction is not supported.
+  ko: '[`available_model_documents`][fatqat.emulator.available_model_documents]로 내장 모델 ID를 확인하고 [`load_model_document`][fatqat.emulator.load_model_document]로 불러오세요. 런타임 모델은 [`from_document`][fatqat.emulator.TransmonModel.from_document]로 생성하며 직접 생성은 지원하지 않습니다.'
+  status: machine
+- id: 3ae9630f512b9afe
+  en: Retain the decoded source documents when application code needs the persisted model identity, physical parameters, or topology. In a model document, `model` contains the ID and revision, `system.control_edges` contains the coupling graph, and `parameters.subsystems` contains frequencies and anharmonicities. The runtime model exposes ordered device labels through `subsystem_ids`, but it does not expose normalized subsystem or coupling records.
+  ko: 응용 코드에서 저장된 모델 식별 정보, 물리 매개변수 또는 토폴로지가 필요하면 디코딩된 원본 문서를 보관하세요. 모델 문서의 `model`에는 ID와 리비전, `system.control_edges`에는 결합 그래프, `parameters.subsystems`에는 주파수와 비조화도가 담깁니다. 런타임 모델은 `subsystem_ids`로 순서 있는 장치 라벨을 제공하지만 정규화된 부분계 또는 결합 레코드는 노출하지 않습니다.
+  status: machine
+- id: fc66932cb6b42a25
+  en: Generate transmon grid documents
+  ko: transmon 격자 문서 생성
+  status: machine
+- id: f0668168fe4ae9ec
+  en: '[`generate_transmon_grid_documents`][fatqat.emulator.generate_transmon_grid_documents] is a shortcut for setting up a rectangular nearest-neighbor grid. It returns a model document and a matching calibration document, so you can start a simulation without writing either document by hand:'
+  ko: '[`generate_transmon_grid_documents`][fatqat.emulator.generate_transmon_grid_documents]로 직사각형 최근접 격자를 간편하게 설정할 수 있습니다. 모델 문서와 그에 맞는 보정 문서를 함께 반환하므로 직접 문서를 작성하지 않고 시뮬레이션을 시작할 수 있습니다:'
+  status: machine
+- id: 20ba76fe6cb8bde8
+  en: Both values are ordinary JSON-compatible dictionaries. You can edit them or save them with the standard `json` module.
+  ko: 두 값 모두 일반 JSON 호환 딕셔너리입니다. 직접 수정하거나 표준 `json` 모듈로 저장할 수 있습니다.
+  status: machine
+- id: e78c5de64694f54d
+  en: '| `shape` | Grid dimensions as `(rows, columns)`. The grid must contain at least two transmons. |'
+  ko: '| `shape` | `(rows, columns)` 형태의 격자 크기. transmon이 최소 두 개 있어야 합니다. |'
+  status: machine
+- id: 88a4dd6b379184ba
+  en: '| `frequency_groups_ghz` | The two idle-frequency centers in GHz. The generator assigns them in a checkerboard pattern. |'
+  ko: '| `frequency_groups_ghz` | GHz 단위의 두 유휴 주파수 중심값. 생성기가 체커보드 패턴으로 배정합니다. |'
+  status: machine
+- id: 0fef3ef43898451e
+  en: '| `frequency_std_ghz` | Standard deviation of the normally distributed frequency variation in GHz. The default is `0.010`. |'
+  ko: '| `frequency_std_ghz` | 정규분포를 따르는 주파수 변동의 표준편차(GHz). 기본값은 `0.010`입니다. |'
+  status: machine
+- id: 3bb55a3e55765bf2
+  en: '| `anharmonicity_ghz` | Anharmonicity used for every transmon. The default is `-0.22`. |'
+  ko: '| `anharmonicity_ghz` | 모든 transmon에 사용할 비조화도. 기본값은 `-0.22`입니다. |'
+  status: machine
+- id: 461493375fe2d58a
+  en: '| `seed` | Seed for reproducible frequency values. The default is `0`. |'
+  ko: '| `seed` | 주파수 값을 재현하기 위한 시드. 기본값은 `0`입니다. |'
+  status: machine
+- id: 602cc2b10e4ae204
+  en: The generator warns when the requested spread may make the two frequency groups overlap. It also warns if the generated values overlap or reverse the expected ordering on a neighboring pair. These warnings do not stop generation or change the values.
+  ko: 요청한 분산 폭으로 두 주파수 그룹이 겹칠 가능성이 있으면 생성기가 경고합니다. 생성된 값이 겹치거나 이웃 쌍에서 예상 순서가 뒤집혀도 경고합니다. 경고가 발생해도 생성을 중단하거나 값을 바꾸지는 않습니다.
+  status: machine
+- id: 5edf9b9513ac3a74
+  en: The calibration contains fixed analytic starting values. The helper does not run numerical calibration or optimization, start a simulation, or calculate fidelity or leakage. See [Start with a transmon grid](../guide/transmon-emulation.md#start-with-a-transmon-grid) for the complete workflow.
+  ko: 보정 문서에는 고정된 해석적 초기값이 담깁니다. 이 도우미는 수치 보정이나 최적화를 수행하지 않고, 시뮬레이션을 시작하거나 충실도 또는 누설을 계산하지도 않습니다. 전체 과정은 [transmon 격자로 시작하기](../guide/transmon-emulation.md#start-with-a-transmon-grid)를 참고하세요.
+  status: machine
+- id: 9fb6669a77ea48bb
+  en: Units
+  ko: 단위
+  status: machine
+- id: 006708faebd1a981
+  en: 'The runtime model exposes the pulse time coordinate:'
+  ko: '런타임 모델은 펄스 시간 좌표를 제공합니다:'
+  status: machine
+- id: 59b98365f7f66623
+  en: The coordinate for `PulseDefinition.duration` and for each `PulseControl` waveform and `start_offset`.
+  ko: '`PulseDefinition.duration`과 각 `PulseControl` 파형 및 `start_offset`에 사용하는 좌표입니다.'
+  status: machine
+- id: 7fb94c18e14ae1c9
+  en: Model and calibration documents store ordinary frequencies in GHz. Convert document values to angular pulse rates with [`fatqat.emulator.superconducting.angular_rate_from_ghz`][fatqat.emulator.superconducting.angular_rate_from_ghz]. Each control selector exposes its accepted waveform unit through `selector.coefficient_unit`; the built-in drive, detuning, and exchange selectors use `"rad/ns"`.
+  ko: 모델과 보정 문서는 일반 주파수를 GHz로 저장합니다. 문서 값을 각주파수 단위의 펄스 비율로 바꾸려면 [`fatqat.emulator.superconducting.angular_rate_from_ghz`][fatqat.emulator.superconducting.angular_rate_from_ghz]를 사용하세요. 각 제어 선택기는 허용하는 파형 단위를 `selector.coefficient_unit`으로 제공합니다. 내장 drive, detuning, exchange 선택기는 `"rad/ns"`를 사용합니다.
+  status: machine
+- id: c2e55aa63538b696
+  en: Transmon drive samples are the full complex Rabi rate \(\Omega(t)\). The Hamiltonian uses \(\operatorname{Re}\Omega/2\) on the X quadrature and \(\operatorname{Im}\Omega/2\) on the Y quadrature. Detuning and exchange samples are their direct Hamiltonian coefficients.
+  ko: transmon 구동 샘플은 전체 복소 Rabi 비율 \(\Omega(t)\)입니다. 해밀토니안은 X 직교 성분에 \(\operatorname{Re}\Omega/2\), Y 직교 성분에 \(\operatorname{Im}\Omega/2\)를 사용합니다. 디튜닝과 교환 샘플은 해밀토니안 계수로 직접 사용됩니다.
+  status: machine
+- id: 252293010f871e0a
+  en: '`model.basis_order` is `("0", "1", "2")`. Use it to interpret flattened physical results and derive the local dimension as `len(model.basis_order)`.'
+  ko: '`model.basis_order`는 `("0", "1", "2")`입니다. 평탄화된 물리 결과를 해석할 때 이 순서를 사용하고, 국소 차원은 `len(model.basis_order)`로 구하세요.'
+  status: machine
+- id: 94c4a092c8034f37
+  en: The `model.control` namespace selects the Hamiltonian mechanism, while `model.frame(...)` selects a virtual-drive phase. The control-selector methods are also available by name through the `model.available_controls` mapping. Each mapping entry describes a supported control kind, not every fully bound channel instance. Selectors expose `scope`, required `operands`, `coefficient_domain`, and `coefficient_unit` for lightweight inspection. Calling a selector returns a channel address. When you run the program, the emulator checks resource names, declared pairs, waveform type, and values.
+  ko: '`model.control` 네임스페이스는 해밀토니안의 작용 기작을, `model.frame(...)`은 가상 구동 위상을 선택합니다. 제어 선택기 메서드는 `model.available_controls` 매핑에서도 이름으로 찾을 수 있습니다. 각 항목은 완전히 바인딩된 모든 채널 인스턴스가 아니라 지원되는 제어 종류를 설명합니다. 선택기는 간단한 확인을 위해 `scope`, 필수 `operands`, `coefficient_domain`, `coefficient_unit`을 제공합니다. 선택기를 호출하면 채널 주소를 반환합니다. 프로그램을 실행할 때 에뮬레이터가 자원 이름, 선언된 쌍, 파형 타입과 값을 검증합니다.'
+  status: machine
+- id: 655e4212c1bbf7ca
+  en: Calibration recipes
+  ko: 보정 레시피
+  status: machine
+- id: 79ffe0f7b6b5dbe3
+  en: The built-in calibration schema contains `rx_ry`, `iswap`, and per-edge `cz` recipes. [`RZ`][fatqat.operations.RZ] is virtual and has no calibration recipe.
+  ko: 내장 보정 스키마에는 `rx_ry`, `iswap`, 연결별 `cz` 레시피가 있습니다. [`RZ`][fatqat.operations.RZ]는 가상 게이트이므로 보정 레시피가 없습니다.
+  status: machine
+- id: 861951ab82aea6b2
+  en: The public scalar unit accessors `recipe_time_unit`, `recipe_frequency_unit`, and `recipe_dimensionless_unit` describe the stored recipe quantities. They are distinct from the model's pulse coordinate `time_unit` and each control selector's `coefficient_unit`.
+  ko: 공개 스칼라 단위 접근자인 `recipe_time_unit`, `recipe_frequency_unit`, `recipe_dimensionless_unit`은 저장된 레시피 값의 단위를 설명합니다. 이는 모델의 펄스 시간 좌표 `time_unit`이나 제어 선택기의 `coefficient_unit`과 별개입니다.
+  status: machine
+- id: 1aec0e8f05eb8bbf
+  en: Pulse implementation maps
+  ko: 펄스 구현 맵
+  status: machine
+- id: f0222c221f3885f4
+  en: A [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] realizes ordinary gates. The transmon constructor names this capability `gate_implementation_map`; direct controls bypass it. The [`default_transmon_gate_implementation_map`][fatqat.emulator.default_transmon_gate_implementation_map] builder returns a new map containing the built-in `RX`, `RY`, `RZ`, `iSwap`, and `CZ` rules for one model and calibration.
+  ko: '[`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap]은 일반 게이트를 구현합니다. transmon 생성자는 이를 `gate_implementation_map`으로 받으며 직접 제어는 이 맵을 거치지 않습니다. [`default_transmon_gate_implementation_map`][fatqat.emulator.default_transmon_gate_implementation_map]은 한 모델과 보정에 대한 내장 `RX`, `RY`, `RZ`, `iSwap`, `CZ` 규칙을 담은 새 맵을 반환합니다.'
+  status: machine
+- id: c4c9c31ccbac9d64
+  en: A map built by `default_transmon_gate_implementation_map` is tied to the model's subsystem labels, anharmonicities, coupling topology, and selected CZ endpoints. Build a new map after changing any of these values. Model identity, revision, idle frequencies, declaration order, and edge IDs do not require a new map. This compatibility check does not apply to maps written by users.
+  ko: '`default_transmon_gate_implementation_map`으로 만든 맵은 모델의 부분계 라벨, 비조화도, 결합 토폴로지, 선택한 CZ 끝점에 연결됩니다. 이 중 하나라도 바꾸면 맵을 다시 만드세요. 모델 ID, 리비전, 유휴 주파수, 선언 순서, 연결 ID만 바뀐 경우에는 새 맵이 필요 없습니다. 이 호환성 검사는 사용자가 작성한 맵에는 적용되지 않습니다.'
+  status: machine
+- id: 3b6bef749563f4e8
+  en: See [Gate realization](pulse-control/gate-realization.md) for accepted rule forms and errors.
+  ko: 허용되는 규칙 형식과 오류는 [게이트 구현](pulse-control/gate-realization.md)을 참고하세요.
+  status: machine
+- id: f5912ee4b98adf75
+  en: Direct controls
+  ko: 직접 제어
+  status: machine
+- id: b950a45613790ba0
+  en: The same model channels can be used without a gate-realization rule. Drive and detuning resolve one declared transmon; exchange resolves two transmons and their declared coupling. Drive accepts a full complex Rabi-rate envelope for the two quadratures, while detuning and exchange require real values. Pulse times use the model units described above. The current transmon model does not add amplitude or duration limits beyond requiring finite values.
+  ko: 같은 모델 채널을 게이트 구현 규칙 없이도 사용할 수 있습니다. drive와 detuning은 선언된 transmon 하나를, exchange는 transmon 두 개와 선언된 결합을 해석합니다. drive는 두 직교 성분을 위한 전체 복소 Rabi 비율 포락선을 받으며 detuning과 exchange는 실수를 요구합니다. 펄스 시간에는 위의 모델 단위를 사용합니다. 현재 transmon 모델은 값이 유한해야 한다는 조건 외에 진폭이나 지속시간 제한을 두지 않습니다.
+  status: machine
+- id: ef89ea33fcdde777
+  en: See [PulseOperation](pulse-control/pulse-operation.md), [PulseControl](pulse-control/pulse-control.md), and [SampledWaveform](pulse-control/sampled-waveform.md) for construction and timing. `iSwap` is a gate whose built-in realization uses exchange; `iSwap` is not a channel name.
+  ko: 생성 방식과 시간 지정은 [PulseOperation](pulse-control/pulse-operation.md), [PulseControl](pulse-control/pulse-control.md), [SampledWaveform](pulse-control/sampled-waveform.md)을 참고하세요. `iSwap`은 내장 구현에서 exchange를 사용하는 게이트이며, `iSwap`이라는 채널은 없습니다.
+  status: machine
+- id: 0bcbee8a2f1e6488
+  en: Pass supported declarations through `noise=`. The transmon emulator provides the collapse-operator realizations documented in [Pulse emulators](noise/backend-support.md#noise-emulator-support), including [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation], [`PhaseDamping`][fatqat.noise.PhaseDamping], and rate-form [`Depolarizing`][fatqat.noise.Depolarizing]. Transition relaxation takes explicit level-pair coefficients; FATQAT does not insert a harmonic `sqrt(n)` ladder. Depolarization acts on the full three-level space and can populate `|2>`. Rates use inverse nanoseconds and `t_phi` uses nanoseconds. The emulator accepts both background declarations and declarations scoped to ordinary operations. Finite probability forms, `AmplitudeDamping`, `Loss`, qubit-only `ThermalRelaxation`, and nonlocal declarations are rejected.
+  ko: 지원되는 선언을 `noise=`로 전달하세요. transmon 에뮬레이터는 [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation], [`PhaseDamping`][fatqat.noise.PhaseDamping], 비율 형식 [`Depolarizing`][fatqat.noise.Depolarizing] 등 [펄스 에뮬레이터](noise/backend-support.md#noise-emulator-support)에 설명된 붕괴 연산자 구현을 제공합니다. 전이 이완에는 준위 쌍별 계수를 명시하며, FATQAT이 조화적인 `sqrt(n)` 사다리 인자를 추가하지 않습니다. 탈분극은 전체 3준위 공간에 작용하므로 `|2>`의 점유도 생길 수 있습니다. 비율의 단위는 역나노초이며 `t_phi`는 나노초입니다. 배경 선언과 일반 연산에 한정된 선언을 모두 받습니다. 유한 확률 형식, `AmplitudeDamping`, `Loss`, 큐비트 전용 `ThermalRelaxation`, 비국소 선언은 거부됩니다.
+  status: machine
+- id: d8ac1b9feed26c91
+  en: Probability-form channels are not converted to rates. In particular, [`PauliChannel`][fatqat.noise.PauliChannel] remains Simulator-only. See [Continuous-time noise](pulse-control/index.md#pulse-probability-noise). Readout confusion is classical and must use a binary `2 x 2` matrix; construction and `validate_noise_model()` reject larger matrices before a measured run.
+  ko: 확률 형식 채널은 비율로 변환되지 않습니다. 특히 [`PauliChannel`][fatqat.noise.PauliChannel]은 Simulator 전용입니다. [연속시간 잡음](pulse-control/index.md#pulse-probability-noise)을 참고하세요. 판독 혼동은 고전 효과이며 이진 `2 x 2` 행렬을 사용해야 합니다. 생성 시점과 `validate_noise_model()`에서 더 큰 행렬을 거부하므로 측정 실행 전에 오류를 확인할 수 있습니다.
+  status: machine
+- id: 621b8d6e068f96b9
+  en: Call [`validate_noise_model`][fatqat.emulator.TransmonEmulator.validate_noise_model] before running a program to validate its noise model. Program-specific selectors are checked at run time.
+  ko: 프로그램 실행 전에 [`validate_noise_model`][fatqat.emulator.TransmonEmulator.validate_noise_model]로 잡음 모델을 검증하세요. 프로그램에 종속된 선택기는 실행 시 검증됩니다.
+  status: machine
+- id: 4708e41d83bb8266
+  en: Neutral-atom pulse emulator
+  ko: 중성 원자 펄스 에뮬레이터
+  status: machine
+- id: f38b09c990d4b16e
+  en: The two-level atom backend also accepts an optional gate implementation map. It has its own continuous-noise implementations. `Atom2LevelEmulator` has an empty built-in gate map and global direct controls; user-supplied maps can add gate rules. See [Neutral-atom emulator](atom-emulators.md) for its API and [Choose and run a neutral-atom workflow](../guide/neutral-atom-emulation.md) for the complete workflow.
+  ko: 2준위 원자 백엔드도 선택적으로 게이트 구현 맵을 받으며, 자체 연속시간 잡음 구현을 제공합니다. `Atom2LevelEmulator`의 내장 게이트 맵은 비어 있고 직접 제어는 전역적으로 작용합니다. 사용자 맵으로 게이트 규칙을 추가할 수 있습니다. API는 [중성 원자 에뮬레이터](atom-emulators.md), 전체 과정은 [중성 원자 작업 흐름 선택 및 실행](../guide/neutral-atom-emulation.md)을 참고하세요.
+  status: machine

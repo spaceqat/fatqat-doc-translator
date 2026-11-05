@@ -1,0 +1,12 @@
+- id: a0c002f91bf98dba
+  en: Exceptions
+  ko: 예외
+  status: machine
+- id: d604ab54b9d78414
+  en: Catch [`FatqatError`][fatqat.errors.FatqatError] when one handler can recover from any FATQAT error, or catch a subclass when recovery depends on the failure. Invalid argument types and values may instead raise Python's `TypeError` or `ValueError`.
+  ko: 모든 FATQAT 오류를 같은 처리기로 복구할 수 있으면 [`FatqatError`][fatqat.errors.FatqatError]를 잡으세요. 실패 유형에 따라 복구 방법이 다르면 해당 하위 클래스를 잡으세요. 인수 타입이나 값이 잘못된 경우에는 Python의 `TypeError` 또는 `ValueError`가 발생할 수도 있습니다.
+  status: machine
+- id: 43955a547653b894
+  en: '[`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] is a subtype of [`BackendValidationError`][fatqat.errors.BackendValidationError]. A backend normally raises validation errors before `run` returns a job. A later execution failure may be stored on the returned [`Job`][fatqat.Job] and raised by [`result`][fatqat.Job.result].'
+  ko: '[`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]는 [`BackendValidationError`][fatqat.errors.BackendValidationError]의 하위 타입입니다. 백엔드는 보통 `run`이 Job을 반환하기 전에 검증 오류를 발생시킵니다. 이후 실행 중 발생한 실패는 반환된 [`Job`][fatqat.Job]에 저장되었다가 [`result`][fatqat.Job.result] 호출 시 발생할 수 있습니다.'
+  status: machine

@@ -1,0 +1,208 @@
+- id: 33d02eb2e57bf384
+  en: Simulator
+  ko: Simulator
+  status: machine
+- id: 817ff7c038496a24
+  en: '[`Simulator`][fatqat.simulator.Simulator] runs gate-level programs with matrix operations and finite noise channels. It supports qubits, qudits, mixed register dimensions, and custom implementation maps. Programs run as written, without transpilation or routing.'
+  ko: '[`Simulator`][fatqat.simulator.Simulator]는 행렬 연산과 유한 잡음 채널로 게이트 수준 프로그램을 실행합니다. 큐비트, 큐디트, 혼합 레지스터 차원, 사용자 정의 구현 맵을 지원합니다. 프로그램을 변환하거나 라우팅하지 않고 작성된 그대로 실행합니다.'
+  status: machine
+- id: 640495aae22d27e3
+  en: The default implementation map covers FATQAT's built-in matrix gates. State methods also support measurement, reset, and classical conditions. `Barrier` has no numerical effect.
+  ko: 기본 구현 맵은 FATQAT의 내장 행렬 게이트를 포함합니다. 상태 방법은 측정, 리셋, 고전적 조건도 지원합니다. `Barrier`는 수치 계산에 영향을 주지 않습니다.
+  status: machine
+- id: 8696622f344183c4
+  en: Methods
+  ko: 계산 방법
+  status: machine
+- id: f539d48a48407fc0
+  en: 'Method names are case-insensitive. `SV` and `DM` are aliases; the read-only [`Simulator.method`][fatqat.simulator.Simulator.method] property returns the full name. If the program''s Hilbert-space dimension is `D`:'
+  ko: 방법 이름은 대소문자를 구분하지 않습니다. `SV`와 `DM`은 별칭이며 읽기 전용 속성 [`Simulator.method`][fatqat.simulator.Simulator.method]는 전체 이름을 반환합니다. 프로그램의 Hilbert 공간 차원을 `D`라고 하면 다음과 같습니다.
+  status: machine
+- id: c97c80aa7f86c80e
+  en: '| Method | Result | Reset and finite channels | Restrictions |'
+  ko: '| 방법 | 결과 | Reset과 유한 채널 | 제약 |'
+  status: machine
+- id: 1ab58299d3ce77b2
+  en: '| `statevector` / `SV` | `statevector`, shape `(D,)` | Samples one trajectory | A stochastic final state represents one shot |'
+  ko: '| `statevector` / `SV` | `statevector`, 형태 `(D,)` | 궤적 하나를 샘플링 | 확률적인 최종 상태는 한 샷을 나타냄 |'
+  status: machine
+- id: f19d6a5eece96727
+  en: '| `density_matrix` / `DM` | `density_matrix`, shape `(D, D)` | Applies them exactly | Uses more memory than `statevector` |'
+  ko: '| `density_matrix` / `DM` | `density_matrix`, 형태 `(D, D)` | 정확하게 적용 | `statevector`보다 많은 메모리 사용 |'
+  status: machine
+- id: e1a9e6327ca1af6d
+  en: '| `unitary` | `unitary`, shape `(D, D)` | Rejected | Rejects measurement, conditions, counts, and `initial_state` |'
+  ko: '| `unitary` | `unitary`, 형태 `(D, D)` | 허용하지 않음 | 측정, 조건, 카운트, `initial_state`를 허용하지 않음 |'
+  status: machine
+- id: 3b37d75a7e7540a2
+  en: '| `superop` | `superop`, shape `(D**2, D**2)` | Applies them exactly | Rejects measurement, conditions, counts, and `initial_state` |'
+  ko: '| `superop` | `superop`, 형태 `(D**2, D**2)` | 정확하게 적용 | 측정, 조건, 카운트, `initial_state`를 허용하지 않음 |'
+  status: machine
+- id: b7ee71f9225ab7d5
+  en: 'Super-operators use column-stacking vectorization:'
+  ko: 초연산자는 열을 차례로 쌓는 벡터화를 사용합니다.
+  status: machine
+- id: 65b962e676f5ad13
+  en: For a noise-free program, `superop` equals `numpy.kron(unitary.conj(), unitary)`. A unitary contains `4**n` complex entries for `n` qubits, while a super-operator contains `16**n`; use the operator methods only for programs small enough to hold the result.
+  ko: 잡음이 없는 프로그램에서 `superop`는 `numpy.kron(unitary.conj(), unitary)`와 같습니다. 큐비트 `n`개에서 유니터리에는 복소수 원소 `4**n`개가, 초연산자에는 `16**n`개가 들어갑니다. 따라서 결과를 메모리에 담을 수 있을 만큼 작은 프로그램에서만 연산자 방법을 사용하세요.
+  status: machine
+- id: 49b080718d774ff4
+  en: All returned quantum arrays list subsystem 0 as the most-significant factor. For two qubits, `X(q0)|00>` is nonzero at flat index 2, while `X(q1)|00>` is nonzero at index 1. For dimensions `(3, 2)`, digits `(1, 0)` and `(0, 1)` likewise have indices 2 and 1. Ordinary NumPy C-order reshape follows this order.
+  ko: 반환되는 모든 양자 배열은 부분계 0을 최상위 인자로 둡니다. 두 큐비트에서 `X(q0)|00>`의 0이 아닌 성분은 평탄화된 인덱스 2에, `X(q1)|00>`의 성분은 인덱스 1에 있습니다. 차원이 `(3, 2)`일 때도 숫자 `(1, 0)`과 `(0, 1)`의 인덱스는 각각 2와 1입니다. 일반적인 NumPy C 순서 reshape는 이 순서를 따릅니다.
+  status: machine
+- id: dac62152406129ec
+  en: The same basis applies to input states and to operator rows and columns. For an arbitrary state `psi`, a matrix acting on every subsystem satisfies `unitary @ psi == state_out`; density matrices satisfy `unitary @ rho @ unitary.conj().T == rho_out`.
+  ko: 입력 상태와 연산자의 행·열도 같은 기저를 사용합니다. 임의의 상태 `psi`에 대해 모든 부분계에 작용하는 행렬은 `unitary @ psi == state_out`을 만족합니다. 밀도 행렬에서는 `unitary @ rho @ unitary.conj().T == rho_out`입니다.
+  status: machine
+- id: fb278ded7840a962
+  en: Runtime and execution
+  ko: 런타임과 실행
+  status: machine
+- id: 18be36a1dffb0544
+  en: '`runtime` accepts `"numpy"` or `"numba"` (case-insensitive). `None` (default) uses the current simulator default, initially `"numba"`. See [Simulation](../guide/simulation.md) to set the default for a script or notebook.'
+  ko: '`runtime`은 `"numpy"` 또는 `"numba"`를 받으며 대소문자를 구분하지 않습니다. 기본값 `None`은 현재 시뮬레이터 기본값을 사용하며, 초기 기본값은 `"numba"`입니다. 스크립트나 노트북의 기본값을 설정하는 방법은 [시뮬레이션](../guide/simulation.md)을 참고하세요.'
+  status: machine
+- id: 08eacd9ef7ec9459
+  en: '`simulation_config` changes one call to [`Simulator.run`][fatqat.simulator.Simulator.run]. Its string values are case-sensitive.'
+  ko: '`simulation_config`는 [`Simulator.run`][fatqat.simulator.Simulator.run]의 한 번의 호출에 적용됩니다. 문자열 값은 대소문자를 구분합니다.'
+  status: machine
+- id: 972ff86231223e9d
+  en: '| Key | Default | Accepted values and effect |'
+  ko: '| 키 | 기본값 | 허용 값과 효과 |'
+  status: machine
+- id: 496d6a0abe2d7d8e
+  en: '| `seed` | `None` | Use a non-negative `int` or `None`; booleans are rejected. It controls measurement, reset, channel, loss, and readout sampling. A negative value fails when execution starts and follows `error_handling`. |'
+  ko: '| `seed` | `None` | 음이 아닌 `int` 또는 `None`을 사용합니다. 불리언은 허용하지 않습니다. 측정, 리셋, 채널, 손실, 판독 샘플링을 제어합니다. 음수는 실행 시작 시 실패하며 `error_handling`을 따릅니다. |'
+  status: machine
+- id: db74d7e2688e87f7
+  en: '| `shot_parallelism` | `"auto"` | `"auto"`, `"serial"`, `"threads"`, or `"processes"`. Explicit parallel modes require an eligible counts-only, per-shot run with at least two shots and workers. Threads require a compatible Numba statevector run. |'
+  ko: '| `shot_parallelism` | `"auto"` | `"auto"`, `"serial"`, `"threads"`, `"processes"`. 병렬 모드를 명시하려면 counts만 요청하고 샷별로 진화하는 실행이어야 하며, 샷과 작업자가 각각 둘 이상이어야 합니다. 스레드는 호환되는 Numba 상태 벡터 실행이 필요합니다. |'
+  status: machine
+- id: a00238cf51a08981
+  en: '| `kernel_parallelism` | `"auto"` | `"auto"`, `"serial"`, or `"threads"`. Threads require Numba and cannot be requested together with parallel shots. |'
+  ko: '| `kernel_parallelism` | `"auto"` | `"auto"`, `"serial"`, `"threads"`. 스레드는 Numba가 필요하며 샷 병렬화와 동시에 요청할 수 없습니다. |'
+  status: machine
+- id: 9f20f8775b0d3b26
+  en: '| `max_workers` | `None` | `None` or a positive `int`. It caps the selected parallel mode; `1` conflicts with an explicitly parallel request. |'
+  ko: '| `max_workers` | `None` | `None` 또는 양의 `int`. 선택한 병렬 모드의 작업자 수를 제한합니다. `1`은 명시적 병렬 요청과 충돌합니다. |'
+  status: machine
+- id: f2b2f424f2948972
+  en: '| `error_handling` | `"raise"` | `"raise"` or `"capture"`; see the error-handling contract in [`Simulator.run`][fatqat.simulator.Simulator.run]. |'
+  ko: '| `error_handling` | `"raise"` | `"raise"` 또는 `"capture"`. 오류 처리 계약은 [`Simulator.run`][fatqat.simulator.Simulator.run]을 참고하세요. |'
+  status: machine
+- id: 0ea5c426b2c6f649
+  en: '| `fusion` | `False` | A `bool`. `True` combines compatible adjacent operations and is supported by Numba for `unitary` and `superop`. Statevector and density-matrix evolution do not support fusion. |'
+  ko: '| `fusion` | `False` | `bool` 값입니다. `True`이면 호환되는 인접 연산을 합칩니다. Numba의 `unitary`와 `superop`에서 지원합니다. 상태 벡터와 밀도 행렬 진화에서는 fusion을 지원하지 않습니다. |'
+  status: machine
+- id: 9d99d48fc39cb2b3
+  en: Shot parallelism requires counts and independent shot evolution, such as a program with mid-circuit measurement, reset, conditions, or stochastic channels. Programs with only terminal measurement sampling are not eligible. Threaded shots require a Numba statevector run without atom-occupancy operations; processes support other eligible workloads. Automatic selection uses at most one parallel axis. Unsupported explicit choices raise an error.
+  ko: 샷 병렬화에는 카운트 요청과 독립적인 샷별 진화가 필요합니다. 회로 중간 측정, 리셋, 조건, 확률적 채널이 있는 프로그램이 이에 해당합니다. 마지막 측정만 샘플링하는 프로그램에는 사용할 수 없습니다. 스레드 기반 샷 실행은 원자 점유 연산이 없는 Numba 상태 벡터 실행이 필요합니다. 그 밖의 적격 작업은 프로세스를 사용할 수 있습니다. 자동 선택은 최대 하나의 축만 병렬화하며, 지원하지 않는 선택을 명시하면 오류가 발생합니다.
+  status: machine
+- id: 9109f005413231c4
+  en: A fixed `seed` reproduces sampled results when the program, configuration, FatQat version, and execution environment are the same. Different runtimes or parallel modes may produce different samples. Deterministic results are independent of the seed and subject to floating-point tolerances.
+  ko: 프로그램, 설정, FatQat 버전, 실행 환경이 같으면 고정 `seed`로 샘플링 결과를 재현할 수 있습니다. 런타임이나 병렬 모드가 다르면 샘플도 달라질 수 있습니다. 결정적 결과는 시드와 무관하며 부동소수점 허용 오차의 영향을 받습니다.
+  status: machine
+- id: e08d3877f9219ab5
+  en: See [Performance and scaling](../guide/performance.md) for benchmarking guidance.
+  ko: 벤치마크 방법은 [성능과 확장성](../guide/performance.md)을 참고하세요.
+  status: machine
+- id: 10100f31c8586395
+  en: Customize the backend
+  ko: 백엔드 사용자 정의
+  status: machine
+- id: d227fb578b77a38f
+  en: 'The constructor also accepts:'
+  ko: 생성자는 다음 인수도 받습니다.
+  status: machine
+- id: 8137077908f1530c
+  en: '| `implementation_map` | Matrix, channel, and [custom-operation implementations](simulators/custom-operations.md). `None` uses FATQAT''s built-in rules. |'
+  ko: '| `implementation_map` | 행렬, 채널, [사용자 정의 연산 구현](simulators/custom-operations.md). `None`이면 FATQAT 내장 규칙을 사용합니다. |'
+  status: machine
+- id: 6d99e87ea0cfb178
+  en: '| `noise` | A [`NoiseModel`][fatqat.NoiseModel] used by every run. `None` is ideal. |'
+  ko: '| `noise` | 모든 실행에서 사용할 [`NoiseModel`][fatqat.NoiseModel]. `None`이면 이상적 실행입니다. |'
+  status: machine
+- id: fd0fcafbe51b2fcc
+  en: Run inputs and results
+  ko: 실행 입력과 결과
+  status: machine
+- id: 201d48525c7cfdcf
+  en: 'Besides `simulation_config`, [`Simulator.run`][fatqat.simulator.Simulator.run] accepts:'
+  ko: '[`Simulator.run`][fatqat.simulator.Simulator.run]은 `simulation_config` 외에 다음 인수를 받습니다.'
+  status: machine
+- id: 111031020f17d451
+  en: '| Argument | Default | Meaning |'
+  ko: '| 인수 | 기본값 | 의미 |'
+  status: machine
+- id: 93ddbceecea48b3d
+  en: '| `shots` | `1024` | Samples used for counts or a stochastic final state. A deterministic state-only or operator result does not use this value. |'
+  ko: '| `shots` | `1024` | 카운트 또는 확률적인 최종 상태에 사용할 샘플 수입니다. 결정적인 상태 전용 결과나 연산자 결과에서는 사용하지 않습니다. |'
+  status: machine
+- id: 05e5ef5dbc7ce91e
+  en: '| `resource_layout` | `None` | Assigns every program quantum reference to a device label. The generic simulator uses integer labels in declaration order. A supplied layout must be complete, one-to-one, and compatible with the backend. |'
+  ko: '| `resource_layout` | `None` | 프로그램의 모든 양자 참조를 장치 라벨에 연결합니다. 범용 시뮬레이터는 선언 순서의 정수 라벨을 사용합니다. 직접 지정하는 배치 매핑은 빠짐없이 일대일로 대응해야 하며 백엔드와 호환되어야 합니다. |'
+  status: machine
+- id: f8d330e384177d24
+  en: '| `initial_state` | `None` | Quantum array, [`BasisState`][fatqat.simulator.BasisState], or [`EvolutionState`][fatqat.simulator.EvolutionState] supplying quantum and classical data for each shot. `None` selects the ground state. Operator methods reject an initial state. |'
+  ko: '| `initial_state` | `None` | 각 샷의 양자 및 고전 데이터를 제공하는 양자 배열, [`BasisState`][fatqat.simulator.BasisState], [`EvolutionState`][fatqat.simulator.EvolutionState] 중 하나입니다. `None`은 바닥 상태를 선택합니다. 연산자 방법은 초기 상태를 받지 않습니다. |'
+  status: machine
+- id: 0f471bbf31251383
+  en: A `BasisState` names one level per subsystem by register reference, so it does not depend on subsystem order; unnamed subsystems start at level 0. Dense quantum input uses the public most-significant-first basis. `statevector` accepts shape `(D,)`; `density_matrix` accepts `(D,)` or `(D, D)`. Only the quantum shape is checked; you are responsible for normalization and, for density matrices, Hermiticity and positivity.
+  ko: '`BasisState`는 레지스터 참조로 부분계별 준위 하나를 지정하므로 부분계 순서에 의존하지 않습니다. 지정하지 않은 부분계는 준위 0에서 시작합니다. 밀집 양자 입력은 최상위 부분계가 먼저 오는 공개 기저를 사용합니다. `statevector`는 `(D,)`, `density_matrix`는 `(D,)` 또는 `(D, D)` 형태를 받습니다. 양자 배열의 형태만 검사하므로 정규화와 밀도 행렬의 에르미트성·양의 준정부호성은 사용자가 보장해야 합니다.'
+  status: machine
+- id: 064bb1abf781849e
+  en: '`result_config` accepts the keys below. `counts` and `final_state` accept `True`, `False`, or `None`; an omitted or `None` value uses the default shown. `final_classical_state` accepts only `True` or `False`.'
+  ko: '`result_config`는 아래 키를 받습니다. `counts`와 `final_state`는 `True`, `False`, `None`을 받습니다. 생략하거나 `None`을 지정하면 표의 기본값을 사용합니다. `final_classical_state`는 `True`와 `False`만 받습니다.'
+  status: machine
+- id: b3b7a302aaeb905b
+  en: '| Key | Default | Constraint |'
+  ko: '| 키 | 기본값 | 제약 |'
+  status: machine
+- id: 4feddd8c3f790678
+  en: '| `counts` | Enabled when the program measures | Requires an integer `shots > 0` |'
+  ko: '| `counts` | 프로그램에 측정이 있으면 활성화 | 정수 `shots > 0` 필요 |'
+  status: machine
+- id: c9cd3cd0581a597f
+  en: '| `final_state` | Enabled when the method-native state or map is deterministic | A requested stochastic final state requires `shots == 1` |'
+  ko: '| `final_state` | 선택한 방법의 상태나 사상이 결정적이면 활성화 | 확률적인 최종 상태를 요청하려면 `shots == 1` 필요 |'
+  status: machine
+- id: b7792a5a3861b61c
+  en: '| `final_classical_state` | Disabled | Requires `shots == 1` when the final state is stochastic; rejected by `unitary` and `superop` |'
+  ko: '| `final_classical_state` | 비활성화 | 최종 상태가 확률적이면 `shots == 1` 필요. `unitary`와 `superop`에서는 허용하지 않음 |'
+  status: machine
+- id: cfc34ffd9f6593f6
+  en: '`final_classical_state=True` returns one shot''s final [`ClassicalState`][fatqat.simulator.ClassicalState] (register digits and site occupancy) through [`Result.get_classical_state`][fatqat.Result.get_classical_state].'
+  ko: '`final_classical_state=True`이면 한 샷의 최종 [`ClassicalState`][fatqat.simulator.ClassicalState] (레지스터 숫자와 사이트 점유 상태)를 [`Result.get_classical_state`][fatqat.Result.get_classical_state]로 반환합니다.'
+  status: machine
+- id: 8d653153cf00a8e9
+  en: The concrete final-state field is named `statevector`, `density_matrix`, `unitary`, or `superop`. Check `fatqat.Result.available_data` before reading a field that may not have been requested.
+  ko: 최종 상태 필드의 실제 이름은 `statevector`, `density_matrix`, `unitary`, `superop` 중 하나입니다. 요청하지 않았을 수 있는 필드를 읽기 전에는 `fatqat.Result.available_data`를 확인하세요.
+  status: machine
+- id: 49422c53dc3aa925
+  en: '`run()` completes execution before returning a [`Job`][fatqat.Job]. Program and option validation errors raise directly. Execution errors follow `error_handling`, as specified in [`Simulator.run`][fatqat.simulator.Simulator.run]. See [Result](result.md) for available fields, accessors, count ordering, and state-axis metadata.'
+  ko: '`run()`은 실행을 완료한 뒤 [`Job`][fatqat.Job]을 반환합니다. 프로그램과 옵션 검증 오류는 즉시 발생합니다. 실행 오류는 [`Simulator.run`][fatqat.simulator.Simulator.run]에 정의된 `error_handling`을 따릅니다. 사용 가능한 필드, 접근 메서드, 카운트 순서, 상태 축 메타데이터는 [Result](result.md)를 참고하세요.'
+  status: machine
+- id: 3a565e17aba21e5b
+  en: Matrix simulation has no physical timeline. Built-in damping and depolarizing descriptors therefore use their probability form and apply at operation boundaries. [`AmplitudeDamping(p=...)`][fatqat.noise.AmplitudeDamping] is the conventional finite qubit channel. Use [`TransitionRelaxation(p=..., coefficients=...)`](noise/transition-relaxation.md) for one explicit finite-dimensional jump. Matching transition descriptors are applied sequentially in registration order.
+  ko: 행렬 시뮬레이션에는 물리적 시간축이 없습니다. 따라서 내장 감쇠 및 탈분극 기술자는 확률 형식을 사용하고 연산 경계에서 적용됩니다. [`AmplitudeDamping(p=...)`][fatqat.noise.AmplitudeDamping]는 표준 유한 큐비트 채널입니다. 유한 차원 점프 하나를 명시하려면 [`TransitionRelaxation(p=..., coefficients=...)`](noise/transition-relaxation.md)을 사용하세요. 일치하는 전이 기술자는 등록 순서대로 차례로 적용됩니다.
+  status: machine
+- id: 5f397cb9df669fc8
+  en: Rate forms, background sources, and [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation] are rejected. For a known qubit operation duration, add probability-form [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] and [`PhaseDamping`][fatqat.noise.PhaseDamping] descriptors to the relevant operation. Custom descriptors require a matching channel rule. [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] additionally supports atom loss.
+  ko: 잡음률 형식, 배경 잡음원, [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation]은 허용하지 않습니다. 큐비트 연산의 소요 시간을 알고 있다면 관련 연산에 확률 형식의 [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping]와 [`PhaseDamping`][fatqat.noise.PhaseDamping] 기술자를 추가하세요. 사용자 정의 기술자에는 대응하는 채널 규칙이 필요합니다. [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]는 원자 손실도 지원합니다.
+  status: machine
+- id: 95b25aa1a21bc4ec
+  en: '[`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] validates a model without running a program. A method can still impose a stricter rule: for example, `unitary` rejects a finite channel that the backend otherwise recognizes when that channel matches the program. See [Noise](noise.md) for selectors and the support table.'
+  ko: '[`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model]은 프로그램을 실행하지 않고 모델을 검증합니다. 계산 방법에 따라 더 엄격한 규칙을 적용할 수 있습니다. 예를 들어 백엔드가 인식하는 유한 채널이라도 프로그램과 일치하면 `unitary`는 이를 거부합니다. 선택자와 지원 표는 [잡음](noise.md)을 참고하세요.'
+  status: machine
+- id: fdbcace3dc45a825
+  en: Sweeps
+  ko: 스윕
+  status: machine
+- id: 2d38060a434f9a8e
+  en: '[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] runs a program for each row of a parameter batch. It completes before returning a job containing a `list[Result]` in row order. Batch and row validation errors raise directly; execution errors follow `error_handling`. A failed sweep returns no partial result list. A supplied seed is reused for every row, so sampled errors can be correlated.'
+  ko: '[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep]는 매개변수 배치의 각 행에 대해 프로그램을 실행합니다. 실행을 완료한 뒤 행 순서의 `list[Result]`가 담긴 Job을 반환합니다. 배치와 행 검증 오류는 즉시 발생하고 실행 오류는 `error_handling`을 따릅니다. 스윕이 실패하면 일부 결과만 담은 리스트는 반환하지 않습니다. 지정한 시드는 모든 행에서 재사용하므로 샘플링 오차가 상관될 수 있습니다.'
+  status: machine
+- id: 54d13ade4a57fcf1
+  en: See [Simulate a quantum program](../guide/simulation.md) for an example and [`run_sweep`][fatqat.simulator.Simulator.run_sweep] for accepted batch shapes.
+  ko: 예제는 [양자 프로그램 시뮬레이션](../guide/simulation.md), 허용되는 배치 형태는 [`run_sweep`][fatqat.simulator.Simulator.run_sweep]를 참고하세요.
+  status: machine

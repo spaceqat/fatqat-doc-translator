@@ -1,0 +1,36 @@
+- id: 24a37eaf20a2a41e
+  en: LOSimulator
+  ko: LOSimulator
+  status: machine
+- id: 9ac80e2eeb6f6fcc
+  en: '[`LOSimulator`][fatqat.simulator.LOSimulator] is a [`Simulator`](../simulator.md) for Programs with optical modes. It runs, returns results, and handles noise and sweeps like `Simulator`, except as listed below. For a worked example, see [Simulate linear optics](../../guide/linear-optics.md).'
+  ko: '[`LOSimulator`][fatqat.simulator.LOSimulator]는 광학 모드를 포함한 Program을 위한 [`Simulator`](../simulator.md)입니다. 아래 차이점을 제외하면 실행, 결과 반환, 잡음, 스윕을 `Simulator`와 같은 방식으로 처리합니다. 실제 예제는 [선형광학 시뮬레이션](../../guide/linear-optics.md)을 참고하세요.'
+  status: machine
+- id: bb075b3e25ea22b6
+  en: '**Differences from `Simulator`**'
+  ko: '**`Simulator`와의 차이점**'
+  status: machine
+- id: 48db188c37d058f6
+  en: '| Topic | `LOSimulator` |'
+  ko: '| 항목 | `LOSimulator` |'
+  status: machine
+- id: f0815e455eeb8172
+  en: '| Registers | Also accepts [`ModeRegister`][fatqat.ModeRegister] and [`CountRegister`][fatqat.CountRegister]; `Simulator` rejects them |'
+  ko: '| Registers | [`ModeRegister`][fatqat.ModeRegister]와 [`CountRegister`][fatqat.CountRegister]도 허용. `Simulator`는 이 타입들을 거부 |'
+  status: machine
+- id: 7ccd76781c55737a
+  en: '| Methods | Adds `"fixed_photon_state"`, the default |'
+  ko: '| 방법 | `"fixed_photon_state"`를 추가하고 기본값으로 사용 |'
+  status: machine
+- id: c2be93767fa5a52f
+  en: '| `simulation_config` | Adds `"cutoff"` |'
+  ko: '| `simulation_config` | `"cutoff"` 추가 |'
+  status: machine
+- id: ee698140cfa0afbf
+  en: '| [`Estimator`][fatqat.Estimator] | On a mode, accepts [`NumberOperator`][fatqat.observable.NumberOperator] and [`Projector`][fatqat.observable.Projector] up to level `cutoff`; Pauli operators raise at any cutoff |'
+  ko: '| [`Estimator`][fatqat.Estimator] | 모드에서는 `cutoff` 준위까지의 [`NumberOperator`][fatqat.observable.NumberOperator]와 [`Projector`][fatqat.observable.Projector]를 허용. Pauli 연산자는 절단값과 관계없이 오류 발생 |'
+  status: machine
+- id: f325511225173275
+  en: '| Noise selectors | Select modes by device label; a `ModeRegister` reference is not supported |'
+  ko: '| 잡음 선택자 | 장치 라벨로 모드 선택. `ModeRegister` 참조는 미지원 |'
+  status: machine

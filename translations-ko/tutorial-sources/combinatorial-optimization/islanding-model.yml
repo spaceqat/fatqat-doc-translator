@@ -1,0 +1,216 @@
+- id: 50d79336eddf5f74
+  en: Model controlled islanding as a QUBO
+  ko: 제어된 계통 분리를 QUBO로 모델링하기
+  status: machine
+- id: 06dd14c8fd3403cb
+  en: Why splitting a power grid to stop a cascading failure is a combinatorial optimization problem, and how to write it as a QUBO that a quantum optimizer can take.
+  ko: 연쇄 고장을 막기 위한 전력망 분할이 왜 조합 최적화 문제인지 알아보고, 양자 최적화기가 처리할 QUBO로 표현합니다.
+  status: machine
+- id: 0a1509faac762acc
+  en: The cheapest split of the WSCC 9-bus network compared with the split that respects generator coherency
+  ko: WSCC 9모선 망에서 비용이 가장 낮은 분할과 발전기 동조성을 지키는 분할의 비교
+  status: machine
+- id: b4d2b3cccf40b179
+  en: Best feasible two-island split of the 9-bus and 14-bus networks with their cut lines
+  ko: 9모선 및 14모선 망의 최적 실행 가능 2분할과 차단 선로
+  status: machine
+- id: 81d173b0e62ed36f
+  en: A power grid is a machine that has to stay synchronized. Every generator on it spins at the same electrical frequency, held there by the power flowing through the transmission lines. When a large disturbance hits — a line trips, a generator drops out — that balance is disturbed, and if the disturbance is severe enough the machines begin to pull apart from one another. Protective relays see the resulting swings and trip more lines, which makes the swings worse. That runaway is a *cascading failure*, and it is how a local fault becomes a regional blackout.
+  ko: 전력망은 동기 상태를 유지해야 하는 거대한 기계입니다. 모든 발전기는 송전선을 통한 전력 흐름에 의해 같은 전기 주파수로 회전합니다. 선로 차단이나 발전기 탈락 같은 큰 외란이 발생하면 균형이 흔들리고, 충분히 심하면 발전기들이 서로 동기를 잃기 시작합니다. 보호 계전기가 이 동요를 감지해 더 많은 선로를 차단하면 동요는 더욱 커집니다. 이런 폭주가 *연쇄 고장*이며, 국소 고장이 광역 정전으로 번지는 과정입니다.
+  status: machine
+- id: 44e5aa6a6c6c93c2
+  en: '*Controlled islanding* is the last-resort defense: instead of fighting the cascade, the operator deliberately splits the network into separate **islands**, each of which contains enough generation to supply its own load and can run independently until the system is repaired. The cascade stops at the island boundaries.'
+  ko: '*제어된 계통 분리*는 최후의 방어 수단입니다. 운영자는 연쇄 고장을 계속 억제하는 대신 전력망을 의도적으로 독립된 **섬 계통**으로 나눕니다. 각 섬은 자체 부하를 공급할 충분한 발전량을 갖추고, 전체 계통을 복구할 때까지 독립적으로 운전합니다. 연쇄 고장은 섬 경계에서 멈춥니다.'
+  status: machine
+- id: bd43ed2bf22d2525
+  en: The engineering question is *where to cut*, and it has to be answered in seconds.
+  ko: 공학적 질문은 *어디를 끊을 것인가*이며, 수초 안에 답해야 합니다.
+  status: machine
+- id: 401a3bdc95ea6691
+  en: Why this is a combinatorial optimization problem
+  ko: 조합 최적화 문제가 되는 이유
+  status: machine
+- id: 1f57aea6740577c3
+  en: 'Strip away the physics and a network is a weighted graph: **buses** (substations) are the nodes, **transmission lines** are the edges, and each edge carries a weight equal to the power flowing on it. Splitting the grid means assigning every bus to an island, and the lines whose two endpoints land in different islands are the ones that get opened.'
+  ko: 물리를 걷어 내면 전력망은 가중 그래프입니다. **모선**(변전소)은 노드, **송전선**은 간선이며, 간선 가중치는 해당 선로의 전력 흐름입니다. 전력망을 나눈다는 것은 각 모선을 섬에 배정하는 일이고, 양 끝점이 서로 다른 섬에 배정된 선로를 개방합니다.
+  status: machine
+- id: c2c0221acae1a9b7
+  en: 'That gives the shape of the problem:'
+  ko: 문제의 구조는 다음과 같습니다.
+  status: machine
+- id: 5e70b9b88c7afa2c
+  en: '**The cost is the total weight of the cut lines.** Opening a line interrupts the power flowing on it, and that power has to be made up somewhere — by shedding load or by ramping a generator. So the objective is to cut as little power flow as possible.'
+  ko: '**비용은 차단 선로 가중치의 합입니다.** 선로를 개방하면 그 전력 흐름이 끊기므로 부하 차단이나 발전기 출력 증가로 이를 보충해야 합니다. 따라서 끊기는 전력 흐름을 최소화하는 것이 목적입니다.'
+  status: machine
+- id: b10ab1cb5fabadab
+  en: '**The decision is discrete.** A bus is either in island 0 or island 1. There is no useful notion of a bus being 40% in one island.'
+  ko: '**결정은 이산적입니다.** 모선은 섬 0이나 섬 1에 속합니다. 한 섬에 40%만 속한다는 상태는 의미가 없습니다.'
+  status: machine
+- id: 60b565dd49c84725
+  en: '**The choices interact.** Whether a line is cut depends on *two* buses at once, so the cost is not a sum of independent per-bus decisions. This is what makes the problem quadratic rather than linear, and what makes it hard.'
+  ko: '**선택들은 서로 영향을 줍니다.** 선로 차단 여부는 *두* 모선에 동시에 달려 있으므로 비용을 독립적인 모선별 결정의 합으로 쓸 수 없습니다. 이 때문에 문제가 선형이 아니라 이차가 되며 풀기도 어려워집니다.'
+  status: machine
+- id: 10c8f34a7399132e
+  en: Assigning $n$ buses to $k$ islands gives $k^n$ possible assignments. There is no known way to search that space efficiently in general — minimum cut with balance requirements is NP-hard — and the assignment has to be found fast enough to act on. That combination, an exponential discrete search under a hard time budget, is exactly the class of problem quantum optimization is aimed at.
+  ko: $n$개 모선을 $k$개 섬에 배정하는 경우의 수는 $k^n$입니다. 일반적으로 이 공간을 효율적으로 탐색하는 알려진 방법은 없습니다. 균형 조건이 있는 최소 절단은 NP-hard이며, 실제로 조치할 수 있을 만큼 빨리 배정을 찾아야 합니다. 엄격한 시간 제한 아래 지수적으로 커지는 이산 공간을 탐색하는 문제는 양자 최적화가 겨냥하는 문제 유형입니다.
+  status: machine
+- id: 38bff5c3fad887ad
+  en: Constraints are what make it interesting
+  ko: 제약이 문제를 결정합니다
+  status: machine
+- id: 89da1a4ee62f37c9
+  en: 'A pure minimum cut is not a usable answer, because a split that is cheap to make can still be one the grid cannot survive. Four requirements matter:'
+  ko: 단순한 최소 절단만으로는 쓸 만한 답을 얻을 수 없습니다. 분할 비용이 낮더라도 전력망이 그 분할을 견디지 못할 수 있습니다. 중요한 요구 조건은 네 가지입니다.
+  status: machine
+- id: e92cd546a2cc9eaa
+  en: '**Generator coherency.** After a disturbance, generators do not swing randomly: they separate into groups whose members accelerate together and decelerate together. Two generators from *different* groups left inside one island will pull against each other, lose synchronism, and trip the island they were supposed to save. Coherent generators must therefore stay together, and incoherent ones must be separated. This is the requirement that makes controlled islanding different from graph partitioning, and it comes from the dynamics rather than the topology.'
+  ko: '**발전기 동조성.** 외란 뒤 발전기는 무작위로 흔들리지 않고 함께 가속하고 감속하는 그룹으로 나뉩니다. *서로 다른* 그룹의 발전기를 한 섬에 남겨 두면 서로 반대 방향으로 움직이며 동기를 잃고, 살리려던 섬 자체를 탈락시킬 수 있습니다. 따라서 동조 발전기는 함께 두고 비동조 발전기는 분리해야 합니다. 이는 단순한 그래프 분할과 제어된 계통 분리를 구별하는 조건이며, 토폴로지가 아니라 동역학에서 나옵니다.'
+  status: machine
+- id: 07cf849012d98603
+  en: '**Each island must be able to run.** It needs generation, it needs load to absorb that generation, and it needs to be more than a stub.'
+  ko: '**각 섬은 운전할 수 있어야 합니다.** 발전원과 그 발전량을 소비할 부하가 필요하며, 너무 작은 잔여 조각이어서는 안 됩니다.'
+  status: machine
+- id: 7e026ae38b5fae36
+  en: '**Each island must be connected.** A set of buses with no path between them is not an island; it is two islands, one of which may have no generator at all.'
+  ko: '**각 섬은 연결되어야 합니다.** 서로 경로가 없는 모선 집합은 하나의 섬이 아니라 두 섬입니다. 그중 하나에는 발전기가 전혀 없을 수도 있습니다.'
+  status: machine
+- id: f46cf8951e29b3f6
+  en: The identification of coherent groups is a separate problem with its own literature [2]. The search for a splitting strategy that respects them is the problem modeled here, and [3] is a good entry point to the classical approaches. This tutorial takes the coherent groups as given data and asks for the split.
+  ko: 동조 그룹을 식별하는 일은 별도의 연구 주제입니다[2]. 여기서는 주어진 그룹을 지키는 분리 전략을 찾으며, 고전적 접근을 살펴보려면 [3]이 좋은 출발점입니다. 이 튜토리얼은 동조 그룹을 입력 데이터로 받아 분할을 구합니다.
+  status: machine
+- id: 798163e33350c7ad
+  en: Where this tutorial stops
+  ko: 이 튜토리얼의 범위
+  status: machine
+- id: 8ea9c1d05739144d
+  en: By the end you will have a QUBO — a quadratic function of binary variables whose minimum is the split — checked against exhaustive enumeration on two IEEE test systems, plus a clear picture of what the model does and does not capture. Running it on a quantum circuit is the subject of [Split a power grid into islands with QAOA](islanding-qaoa.md).
+  ko: 마지막에는 최소값이 분할을 나타내는 이진 변수의 이차 함수, 즉 QUBO를 얻습니다. 두 IEEE 시험 계통의 전수 조사로 이를 검증하고, 모델이 포착하는 것과 생략하는 것도 살펴봅니다. 양자 회로 실행은 [QAOA로 전력망을 독립 계통으로 나누기](islanding-qaoa.md)에서 다룹니다.
+  status: machine
+- id: 9f067401d638a3b1
+  en: The formulation developed here follows REGRID-QAOA [1], which introduces this coherency-informed model of controlled islanding together with the structured post-processing the companion tutorial uses.
+  ko: 여기서 전개하는 정식화는 REGRID-QAOA [1]을 따릅니다. 이 연구는 동조성을 반영한 계통 분리 모델과 함께 후속 튜토리얼에서 사용할 구조화된 후처리를 제안합니다.
+  status: machine
+- id: 40450be491673288
+  en: The mechanics of QUBOs in general, and of turning one into a FatQat program, are covered in [Solve a QUBO with QAOA](qubo-qaoa.md).
+  ko: 일반적인 QUBO의 원리와 FatQat 프로그램으로 변환하는 방법은 [QAOA로 QUBO 풀기](qubo-qaoa.md)에서 설명합니다.
+  status: machine
+- id: 383a63b0230623e4
+  en: The networks
+  ko: 시험 전력망
+  status: machine
+- id: dbb4c72fb0045991
+  en: Two systems are carried in full here, the WSCC 9-bus and the IEEE 14-bus. Three larger ones appear in the qubit accounting of [Split a power grid into islands with QAOA](islanding-qaoa.md), which is where the width of the model starts to matter. Bus labels are zero-based, so bus 0 is the system's bus 1. Line weights are the steady-state power flows of the reference case, which is what makes the cut weight the power interrupted by the split.
+  ko: 여기서는 WSCC 9모선과 IEEE 14모선 계통을 완전히 포함합니다. 더 큰 세 계통은 [QAOA로 전력망을 독립 계통으로 나누기](islanding-qaoa.md)의 큐비트 수 비교에 등장하며, 그 규모부터 모델 폭이 중요해집니다. 모선 라벨은 0부터 시작하므로 모선 0은 원래 계통의 모선 1입니다. 선로 가중치는 기준 사례의 정상상태 전력 흐름이므로 절단 가중치는 분리로 끊기는 전력량을 뜻합니다.
+  status: machine
+- id: beea59e9d983a659
+  en: The coherency groups are the interesting part of the data. On the 14-bus system, generators 0, 1, and 2 swing together and generators 5 and 7 swing together, so any acceptable split must put `{0, 1, 2}` on one side and `{5, 7}` on the other. That single requirement is what stops the answer from being the cheapest cut in the graph.
+  ko: 데이터에서 특히 중요한 것은 동조 그룹입니다. 14모선 계통에서는 발전기 0, 1, 2가 함께 움직이고 발전기 5, 7이 함께 움직입니다. 따라서 허용되는 분할은 `{0, 1, 2}`를 한쪽, `{5, 7}`을 다른 쪽에 두어야 합니다. 이 조건 하나로도 그래프에서 가장 저렴한 절단이 답이 아닐 수 있습니다.
+  status: machine
+- id: 0e90a8f51085c60a
+  en: The 9-bus system has 512 assignments, which a laptop enumerates instantly. The 39-bus system has more than $4 \times 10^{18}$. Real transmission networks have thousands of buses. Enumeration stops being an option almost immediately, which is why the classical literature reaches for ordered binary decision diagrams, spectral clustering, and submodular relaxations — and why the problem is a candidate for quantum optimization.
+  ko: 9모선 계통에는 배정이 512개여서 노트북으로 즉시 전수 조사할 수 있습니다. 39모선 계통에서는 $4 \times 10^{18}$개가 넘습니다. 실제 송전망은 수천 모선을 가지므로 전수 조사는 금세 불가능해집니다. 고전적 연구가 순서 있는 이진 결정 다이어그램, 스펙트럴 군집화, 부분모듈러 완화 등을 사용하고 이 문제가 양자 최적화의 후보가 되는 이유입니다.
+  status: machine
+- id: ec684a4b673038c0
+  en: Two encodings for the same decision
+  ko: 같은 결정을 표현하는 두 인코딩
+  status: machine
+- id: f0b063015f3c6599
+  en: 'The textbook encoding gives every bus one binary variable per island: $y_{i,g} = 1$ when bus $i$ joins island $g$. It handles any number of islands, but most of its bitstrings are nonsense — a bus can be assigned to two islands, or to none — so it needs a one-hot penalty $\sum_i (\sum_g y_{i,g} - 1)^2$ to forbid them, and it costs $n_\text{buses} \times k$ qubits.'
+  ko: 표준적인 인코딩은 모선마다 각 섬에 대한 이진 변수를 하나씩 둡니다. 모선 $i$가 섬 $g$에 속하면 $y_{i,g} = 1$입니다. 임의의 섬 수를 처리할 수 있지만, 모선이 두 섬에 동시에 속하거나 어디에도 속하지 않는 등 대부분의 비트열은 무의미합니다. 이를 금지하려면 원-핫 벌점 $\sum_i (\sum_g y_{i,g} - 1)^2$가 필요하며, 큐비트는 $n_\text{buses} \times k$개를 사용합니다.
+  status: machine
+- id: b8ea6515e7da8d63
+  en: 'When there are exactly two islands, the one-hot rule says $y_{i,1} = 1 - y_{i,0}$: the second variable carries no information. Keeping one variable per bus, whose value names the island directly, halves the qubit count *and* deletes the penalty, because no bitstring can violate a rule the encoding cannot express. That is the single largest lever available on a near-term device, and it costs nothing. Encodings that push the same idea further, and the reductions that go with them, are the subject of [5] and [6].'
+  ko: 섬이 정확히 두 개이면 원-핫 조건은 $y_{i,1} = 1 - y_{i,0}$이므로 두 번째 변수에는 새 정보가 없습니다. 값 자체가 섬을 나타내는 변수 하나만 모선마다 남기면 큐비트 수가 절반이 되고 벌점도 사라집니다. 인코딩상 표현할 수 없는 위반은 어떤 비트열에서도 일어나지 않기 때문입니다. 가까운 미래의 장치에서 가장 큰 효과를 얻을 수 있는 선택이며 추가 비용도 없습니다. 이 아이디어를 더 확장한 인코딩과 축소 방법은 [5], [6]에서 다룹니다.
+  status: machine
+- id: d5a9730ecc185f17
+  en: 'Both encodings are built below. The rest of the requirements are the same in each: they only differ in how "bus $i$ is in island $g$" is written down.'
+  ko: 아래에서는 두 인코딩을 모두 구성합니다. 나머지 조건은 동일하고, 모선 $i$가 섬 $g$에 속한다는 사실을 쓰는 방식만 다릅니다.
+  status: machine
+- id: b45edceb9af453e9
+  en: What the model actually says
+  ko: 모델이 실제로 의미하는 것
+  status: machine
+- id: e230e625adf3dccd
+  en: With 14 or fewer variables the whole space fits in memory, so the model can be checked exhaustively before any quantum work. That check is worth doing, and on this problem it turns up something important.
+  ko: 변수가 14개 이하이면 전체 공간이 메모리에 들어가므로 양자 계산 전에 모델을 전수 검증할 수 있습니다. 이 문제에서는 그 검증으로 중요한 사실을 발견합니다.
+  status: machine
+- id: ebbb383ede73e0f5
+  en: The energy of a bitstring is only half the story. Decoding it into an island assignment and running the operating checks — including connectivity, which is deliberately *not* in the QUBO — is what says whether the split is usable.
+  ko: 비트열의 에너지만으로는 충분하지 않습니다. 비트열을 섬 배정으로 디코딩한 뒤 운전 조건을 검사해야 분할을 사용할 수 있는지 알 수 있습니다. 의도적으로 QUBO에 *넣지 않은* 연결성도 이때 검사합니다.
+  status: machine
+- id: 6ad969ecc00ac140
+  en: 'On the 9-bus system the QUBO''s ground state is the answer. On the 14-bus system it is not: the cheapest assignment the QUBO knows about leaves an island in two disconnected pieces, and the best *usable* split costs noticeably more.'
+  ko: 9모선 계통에서는 QUBO의 바닥 상태가 답입니다. 14모선 계통에서는 그렇지 않습니다. QUBO가 아는 가장 저렴한 배정은 한 섬을 연결되지 않은 두 조각으로 남기며, 가장 좋은 *사용 가능한* 분할의 비용은 그보다 꽤 높습니다.
+  status: machine
+- id: c3b41426ee055ca1
+  en: This is not a modeling mistake — it is a deliberate trade. Writing connectivity as a quadratic penalty needs auxiliary variables and a great many terms, which buys width and depth on a device that has neither to spare. Checking it after decoding costs nothing. The consequence is that minimizing the QUBO is not the same as solving the problem, and the gap has to be closed somewhere else. That is the job of the postprocessing in [Split a power grid into islands with QAOA](islanding-qaoa.md).
+  ko: 모델링 실수가 아니라 의도한 절충입니다. 연결성을 이차 벌점으로 쓰려면 보조 변수와 많은 항이 필요해 가뜩이나 제한적인 장치에서 큐비트 수와 회로 깊이가 더 늘어납니다. 디코딩 뒤 검사하는 비용은 작습니다. 대신 QUBO 최소화와 실제 문제 해결 사이에 차이가 생기며, 이를 다른 곳에서 해소해야 합니다. [QAOA로 전력망을 독립 계통으로 나누기](islanding-qaoa.md)의 후처리가 그 역할을 합니다.
+  status: machine
+- id: a8bd69b94300bb61
+  en: 'On the 9-bus system the cheapest split tears a coherent group in half, which is precisely the failure the exercise exists to prevent: those two machines would swing apart inside one island and trip it. Keeping them together costs more than twice as much interrupted power. That trade — a worse cut in exchange for a split the grid survives — is why this is a constrained optimization problem and not a minimum-cut computation.'
+  ko: 9모선 계통의 가장 저렴한 분할은 동조 그룹을 둘로 가릅니다. 바로 이 문제에서 막으려는 실패입니다. 두 발전기의 운동이 섬 내부에서 벌어지며 섬을 탈락시킬 수 있습니다. 둘을 함께 유지하려면 끊기는 전력이 두 배 이상 늘어납니다. 더 비싼 절단을 받아들이는 대신 전력망이 견딜 수 있는 분할을 얻는다는 점 때문에, 이는 단순 최소 절단이 아니라 제약 최적화 문제입니다.
+  status: machine
+- id: 198fe236230a8f96
+  en: 'The 14-bus system is bound by a different requirement. There the cheapest split happens to separate the coherent groups correctly, and what makes it unusable is that one of its islands falls into two disconnected pieces. Both systems land on the same lesson from opposite directions: the cheap answer is not the usable one.'
+  ko: 14모선 계통에서는 다른 조건이 발목을 잡습니다. 가장 저렴한 분할이 우연히 동조 그룹을 올바르게 분리하지만, 한 섬이 연결되지 않은 두 조각이어서 사용할 수 없습니다. 두 계통 모두 다른 이유로 같은 결론을 보여 줍니다. 저렴한 답이 곧 사용 가능한 답은 아닙니다.
+  status: machine
+- id: 0a306c490a7e0f04
+  en: Here are the answers the full model gives on each.
+  ko: 전체 모델이 각 계통에서 주는 답은 다음과 같습니다.
+  status: machine
+- id: 05d8b8aafb423038
+  en: What the model is, and what it leaves out
+  ko: 모델에 포함한 것과 생략한 것
+  status: machine
+- id: 958c0ca318977059
+  en: 'The model is now complete enough to hand to an optimizer. It is a quadratic function of binary variables in which:'
+  ko: 이제 최적화기에 넘길 수 있는 모델을 갖췄습니다. 이진 변수의 이차 함수에서
+  status: machine
+- id: 1f5d57a23cfe0e41
+  en: the **objective** is the interrupted power flow;
+  ko: '**목적함수**는 끊기는 전력 흐름입니다.'
+  status: machine
+- id: 96ce255c1d723b64
+  en: '**generator coherency**, **island balance**, and — optionally — generation, load, and minimum size per island are quadratic penalties that vanish exactly when the requirement holds;'
+  ko: '**발전기 동조성**, **섬 균형**, 그리고 선택적으로 섬별 발전원, 부하, 최소 크기는 조건이 충족될 때 정확히 0이 되는 이차 벌점입니다.'
+  status: machine
+- id: 156ee7743fe2361b
+  en: '**connectivity is not represented at all**, and is checked after a candidate is decoded.'
+  ko: '**연결성은 표현하지 않으며**, 후보를 디코딩한 뒤 검사합니다.'
+  status: machine
+- id: bfe7502e162dc0b4
+  en: 'That last point is a deliberate trade, and on the 14-bus system it has teeth: the QUBO''s own minimum is a split whose islands are disconnected, so minimizing the model is not the same as solving the problem. Closing that gap is a postprocessing step rather than a modeling one, and it is where the next tutorial begins.'
+  ko: 마지막 선택은 의도한 절충이며 14모선 계통에서 실제 영향을 미칩니다. QUBO 자체의 최소값은 섬이 연결되지 않은 분할이므로 모델 최소화가 문제 해결과 같지 않습니다. 이 차이는 모델링이 아니라 후처리 단계에서 해소하며, 다음 튜토리얼은 여기서 시작합니다.
+  status: machine
+- id: 155a3f9e155493c3
+  en: '[Split a power grid into islands with QAOA](islanding-qaoa.md) takes this model, maps it onto a circuit, runs it on FatQat''s simulator, and repairs what comes back.'
+  ko: '[QAOA로 전력망을 독립 계통으로 나누기](islanding-qaoa.md)에서는 이 모델을 회로에 매핑하고 FatQat 시뮬레이터로 실행한 뒤 나온 결과를 보정합니다.'
+  status: machine
+- id: 69824d3b0e70ca6a
+  en: References
+  ko: 참고문헌
+  status: machine
+- id: 43d4ce159b0953e5
+  en: 'Y. Jiang, Y. Zhang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "REGRID-QAOA: A Resource-Efficient Hybrid QAOA Framework for Physics-Constrained Power System Islanding", [arXiv:2606.15083](https://arxiv.org/abs/2606.15083) (2026). The coherency-informed formulation this tutorial develops.'
+  ko: 'Y. Jiang, Y. Zhang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "REGRID-QAOA: A Resource-Efficient Hybrid QAOA Framework for Physics-Constrained Power System Islanding", [arXiv:2606.15083](https://arxiv.org/abs/2606.15083) (2026). 이 튜토리얼에서 전개한 동조성 기반 정식화입니다.'
+  status: machine
+- id: 1ecf586556ee4dc4
+  en: H. You, V. Vittal, and X. Wang, "Slow coherency-based islanding", *IEEE Transactions on Power Systems* **19**(1), 483–491 (2004). How coherent generator groups are identified; this tutorial takes them as given data.
+  ko: H. You, V. Vittal, and X. Wang, "Slow coherency-based islanding", *IEEE Transactions on Power Systems* **19**(1), 483–491 (2004). 동조 발전기 그룹의 식별 방법을 다룹니다. 이 튜토리얼에서는 그룹을 주어진 데이터로 받습니다.
+  status: machine
+- id: ba5706c0bbab1656
+  en: K. Sun, D.-Z. Zheng, and Q. Lu, "Splitting strategies for islanding operation of large-scale power systems using OBDD-based methods", *IEEE Transactions on Power Systems* **18**(2), 912–923 (2003). A classical approach to the same search, evaluated on the same IEEE test systems.
+  ko: K. Sun, D.-Z. Zheng, and Q. Lu, "Splitting strategies for islanding operation of large-scale power systems using OBDD-based methods", *IEEE Transactions on Power Systems* **18**(2), 912–923 (2003). 같은 IEEE 시험 계통에서 평가한 동일 탐색 문제의 고전적 접근입니다.
+  status: machine
+- id: 5c6b106dc87510e1
+  en: A. Lucas, "Ising formulations of many NP problems", *Frontiers in Physics* **2**, 5 (2014). The standard catalogue of constraint-to-penalty mappings, and the reference for writing a requirement as a quadratic penalty.
+  ko: A. Lucas, "Ising formulations of many NP problems", *Frontiers in Physics* **2**, 5 (2014). 제약을 벌점으로 바꾸는 대표적 정리이며, 요구 조건을 이차 벌점으로 쓰는 데 참고할 수 있습니다.
+  status: machine
+- id: 30f077b98389f667
+  en: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "PACE-QAOA: Physics-Constrained Quantum Optimization for Qubit-Efficient Power System Islanding", [arXiv:2608.02789](https://arxiv.org/abs/2608.02789) (2026). Compact encodings and Lagrangian constraint handling for qubit-efficient islanding.'
+  ko: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "PACE-QAOA: Physics-Constrained Quantum Optimization for Qubit-Efficient Power System Islanding", [arXiv:2608.02789](https://arxiv.org/abs/2608.02789) (2026). 큐비트 효율적인 계통 분리를 위한 압축 인코딩과 라그랑주 제약 처리를 다룹니다.'
+  status: machine
+- id: 434b3bf9c0125f0b
+  en: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "SPLIT-Q: A Scalable Sequential Quantum Computing Framework for Coherent Controlled Islanding", [arXiv:2608.12711](https://arxiv.org/abs/2608.12711) (2026). Sequential regional QUBOs that keep circuit width independent of network size.'
+  ko: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "SPLIT-Q: A Scalable Sequential Quantum Computing Framework for Coherent Controlled Islanding", [arXiv:2608.12711](https://arxiv.org/abs/2608.12711) (2026). 회로 폭을 망 크기와 무관하게 유지하는 순차 지역 QUBO를 다룹니다.'
+  status: machine

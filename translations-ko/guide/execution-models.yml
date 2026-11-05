@@ -1,0 +1,108 @@
+- id: f180315ca93c1b46
+  en: Choose how much physics to model
+  ko: 물리 현상을 어느 수준까지 모델링할지 선택하기
+  status: machine
+- id: ff997f1d1ae66bca
+  en: Choose a backend according to the question you want to answer. A circuit simulation can test an algorithm, a hardware profile can check device rules, and a physical emulator can resolve what happens while a pulse is applied.
+  ko: 알고 싶은 내용에 맞춰 백엔드를 선택하세요. 회로 시뮬레이션으로 알고리즘을 검증하고, 하드웨어 프로파일로 장치 규칙을 확인하며, 물리 에뮬레이터로 펄스를 가하는 동안의 변화를 살펴볼 수 있습니다.
+  status: machine
+- id: d4929820a595430f
+  en: '| If you want to know… | Use… | FatQat models… |'
+  ko: '| 알고 싶은 내용 | 사용할 모델 | FatQat이 모델링하는 대상 |'
+  status: machine
+- id: 5ab28df054323251
+  en: '| whether a circuit produces the intended result, or how noise channels change it | the general simulator | circuit operations on qubits or qudits, with optional noise channels |'
+  ko: '| 회로가 의도한 결과를 내는지, 잡음 채널이 결과를 어떻게 바꾸는지 | 범용 시뮬레이터 | 큐비트 또는 큐디트의 회로 연산과 선택적 잡음 채널 |'
+  status: machine
+- id: 5d7581d48c9830da
+  en: '| whether a Program uses a device''s supported operations and resources | a hardware-profile simulator | circuit evolution with native-operation, placement, connectivity, capacity, and occupancy checks, plus optional noise |'
+  ko: '| Program이 장치에서 지원하는 연산과 자원을 사용하는지 | 하드웨어 프로파일 시뮬레이터 | 회로의 상태 변화, 네이티브 연산·배치·연결성·용량·점유 상태 검사, 선택적 잡음 |'
+  status: machine
+- id: 052fcfd174480246
+  en: '| how pulse shape, duration, or drift affects the state during execution | a physical emulator | time-dependent evolution of the model''s physical levels under controls, coupling, and compatible continuous noise |'
+  ko: '| 펄스 모양, 길이, 드리프트가 실행 중 상태에 미치는 영향 | 물리 에뮬레이터 | 제어, 결합, 호환되는 연속 잡음에 따른 모델의 물리 준위의 시간 변화 |'
+  status: machine
+- id: 951beefcb985cacd
+  en: 'These are choices for different questions. You can begin with any of them. In particular, studying noise does not by itself require an emulator: both circuit simulators and hardware profiles support noise channels. Use physical emulation when you need to resolve dynamics over elapsed time, such as excitation during a pulse or relaxation during an idle interval.'
+  ko: 각 모델은 서로 다른 질문에 답하기 위한 선택지이며, 어느 것부터 시작해도 됩니다. 특히 잡음을 연구한다고 해서 반드시 에뮬레이터가 필요한 것은 아닙니다. 회로 시뮬레이터와 하드웨어 프로파일 모두 잡음 채널을 지원합니다. 펄스 중의 여기나 유휴 구간의 이완처럼 경과 시간에 따른 동역학을 알아야 할 때 물리 에뮬레이션을 사용하세요.
+  status: machine
+- id: 5353f853279f27bd
+  en: Compare a single-qubit rotation
+  ko: 단일 큐비트 회전 비교하기
+  status: machine
+- id: c25cad9ff4b59211
+  en: 'An ideal `RX(pi/2)` rotation of a qubit initially in `|0>` gives equal probabilities for `0` and `1`. The three backends let you examine this operation under different assumptions:'
+  ko: 초기 상태가 `|0>`인 큐비트에 이상적인 `RX(pi/2)` 회전을 적용하면 `0`과 `1`의 확률이 같아집니다. 세 백엔드에서 서로 다른 가정 아래 이 연산을 살펴볼 수 있습니다.
+  status: machine
+- id: ead641e7cf16d073
+  en: General simulator
+  ko: 범용 시뮬레이터
+  status: machine
+- id: 43a8951cb014fca3
+  en: 'The general [`Simulator`][fatqat.simulator.Simulator] applies the circuit operation without assigning the qubit to a particular device. With no noise model, this run gives the ideal probabilities:'
+  ko: 범용 [`Simulator`][fatqat.simulator.Simulator]는 큐비트를 특정 장치에 배치하지 않고 회로 연산을 적용합니다. 잡음 모델을 지정하지 않으면 이상적인 확률이 나옵니다.
+  status: machine
+- id: 8e2a7685bdbb5b7f
+  en: Hardware profile
+  ko: 하드웨어 프로파일
+  status: machine
+- id: e78d618e931b4f51
+  en: 'A hardware-profile simulator also evolves circuit operations, while checking that they belong to its native set and obey its resource rules. The superconducting profile expresses this rotation as `SX`, which has the same effect as `RX(pi/2)` up to a global phase:'
+  ko: 하드웨어 프로파일 시뮬레이터도 회로 연산에 따른 상태 변화를 계산하면서, 연산이 네이티브 집합에 속하고 자원 규칙을 지키는지 검사합니다. 초전도 프로파일에서는 이 회전을 `SX`로 표현합니다. 이 게이트는 전역 위상을 제외하면 `RX(pi/2)`와 같은 효과를 냅니다.
+  status: machine
+- id: db3159aca15c5cfd
+  en: The probabilities match the general simulator's. This run also checks that `SX` is supported on the selected qubit; it does not model the pulse used to implement it.
+  ko: 확률은 범용 시뮬레이터와 같습니다. 이 실행에서는 선택한 큐비트에서 `SX`가 지원되는지도 확인하지만, 이를 구현하는 펄스는 모델링하지 않습니다.
+  status: machine
+- id: 31aee7daba61b7c2
+  en: Calling `profile.run(program)` with the original `RX(pi/2)` operation would raise [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] because `RX` is not native to this profile.
+  ko: 원래의 `RX(pi/2)` 연산으로 `profile.run(program)`을 호출하면 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]가 발생합니다. `RX`가 이 프로파일의 네이티브 연산이 아니기 때문입니다.
+  status: machine
+- id: b01e4b7435a4d9fc
+  en: Physical emulator
+  ko: 물리 에뮬레이터
+  status: machine
+- id: 9604bc687cbe5e32
+  en: 'The [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] turns `RX` into a pulse using its packaged reference calibration, then integrates the physical state over the pulse''s duration:'
+  ko: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 패키지에 포함된 기준 보정값으로 `RX`를 펄스로 변환하고, 펄스가 지속되는 동안 물리 상태를 적분합니다.'
+  status: machine
+- id: b5d0b180c2c28030
+  en: The Program declares one qubit with two basis states. The reference model contains two physical transmons with three levels each, so the returned state has nine amplitudes. Reshaping it gives populations indexed by the levels of `q0` and `q1`; summing over `q1` leaves the three populations on `q0` shown above.
+  ko: Program은 두 기저 상태를 갖는 큐비트 하나를 선언합니다. 기준 모델에는 각각 3준위인 물리 transmon 두 개가 있으므로 반환되는 상태에는 진폭이 9개 있습니다. 배열의 모양을 바꾸면 `q0`와 `q1`의 준위를 인덱스로 하는 점유 확률을 얻습니다. `q1`에 대해 합하면 위에 표시한 `q0`의 세 준위 점유 확률이 됩니다.
+  status: machine
+- id: ea4c36e4a8340d3e
+  en: Level `|2>` represents leakage out of the qubit's `|0>`, `|1>` subspace. Retaining that physical level does not make the Program a qutrit program. The second transmon also remains in the state even though this Program does not address it. For this reference pulse, the final populations are close to the ideal values and the leakage rounds to zero at this precision. The packaged calibration supplies a reproducible simulation example, not a current hardware characterization.
+  ko: 준위 `|2>`는 큐비트의 `|0>`, `|1>` 부분공간 밖으로의 누설을 나타냅니다. 이 물리 준위를 유지한다고 해서 Program이 큐트릿 프로그램이 되는 것은 아닙니다. Program이 두 번째 transmon을 직접 지정하지 않아도 그 transmon은 상태에 남아 있습니다. 이 기준 펄스의 최종 점유 확률은 이상적인 값에 가깝고, 누설은 표시된 정밀도에서 반올림하면 0입니다. 패키지의 보정값은 재현 가능한 시뮬레이션 예제를 제공하기 위한 것이며, 현재 하드웨어의 특성을 측정한 값은 아닙니다.
+  status: machine
+- id: 003b362bb9868027
+  en: See what happens during a pulse
+  ko: 펄스 도중의 변화 살펴보기
+  status: machine
+- id: 7808e2d7bf722eae
+  en: Equal final probabilities do not show how the state changes during a drive. For a simple time-resolved example, apply a constant drive to `q0` and stop it at successively later times. This is a direct pulse, separate from the shaped reference pulse used for `RX` above. Its fixed Rabi rate is chosen so that an ideal two-level system would reach equal populations after 10 ns.
+  ko: 최종 확률이 같다는 사실만으로는 구동 중 상태가 어떻게 변하는지 알 수 없습니다. 간단한 시간 분해 예제로, `q0`에 일정한 구동을 가하고 중단 시점을 조금씩 늦춰 보겠습니다. 이는 위의 `RX`에 사용한 모양이 조절된 기준 펄스와는 별개의 직접 펄스입니다. 고정 Rabi 주파수는 이상적인 2준위 계에서 10 ns 뒤 두 준위의 점유 확률이 같아지도록 정했습니다.
+  status: machine
+- id: c135078ed931e1d3
+  en: '![A constant drive transfers population from level zero to level one over 10 nanoseconds; a second panel magnifies the small population in leakage level two.](../assets/generated/guide/execution-models-pulse.png)'
+  ko: '![일정한 구동이 10 나노초 동안 준위 0의 점유 확률을 준위 1로 옮깁니다. 두 번째 패널은 누설 준위 2의 작은 점유 확률을 확대해 보여 줍니다.](../assets/generated/guide/execution-models-pulse.png)'
+  status: machine
+- id: 395f79ecf7038b24
+  en: Reproduce this figure
+  ko: 그림 재현하기
+  status: machine
+- id: 0837bc9b7b3982cb
+  en: The left panel shows population moving between the qubit levels. The right panel uses a smaller scale to reveal population in `|2>`. This leakage arises from the driven three-level dynamics, even though no noise model is attached. To compare shaped controls with the calibrated rotation, continue with [Transmon emulation](transmon-emulation.md#drive-the-transmon-directly).
+  ko: 왼쪽 패널은 큐비트 준위 사이에서 점유 확률이 이동하는 모습을 보여 줍니다. 오른쪽 패널은 더 작은 눈금을 사용해 `|2>`의 점유 확률을 보여 줍니다. 잡음 모델을 연결하지 않아도, 구동되는 3준위 계의 동역학 때문에 누설이 발생합니다. 모양을 조절한 제어와 보정된 회전을 비교하려면 [Transmon 에뮬레이션](transmon-emulation.md#drive-the-transmon-directly)을 계속 읽어 보세요.
+  status: machine
+- id: 675c77f83f739082
+  en: Moving between models
+  ko: 모델 간 전환하기
+  status: machine
+- id: 5b360a31e19d782b
+  en: You can reuse a Program when the destination backend supports its operations and resources. Otherwise, express the computation using operations it accepts, as `SX` does for the superconducting profile above. When program resources need specific device locations, a [`ResourceLayout`][fatqat.ResourceLayout] binds them to device labels. [Hardware-profile simulation](hardware-profile-simulation.md) walks through a placement error and its correction.
+  ko: 옮겨 갈 백엔드가 Program의 연산과 자원을 지원하면 그대로 재사용할 수 있습니다. 그렇지 않으면 위의 초전도 프로파일에서 `SX`를 사용한 것처럼, 해당 백엔드가 받는 연산으로 계산을 표현해야 합니다. 프로그램 자원을 장치의 특정 위치에 놓아야 한다면 [`ResourceLayout`][fatqat.ResourceLayout]으로 장치 레이블에 연결합니다. [하드웨어 프로파일 시뮬레이션](hardware-profile-simulation.md)에서 배치 오류와 수정 과정을 살펴볼 수 있습니다.
+  status: machine
+- id: bb4d371d405cf66b
+  en: For circuit evolution and noise channels, see [Simulation](simulation.md) and [Ideal and noisy runs](ideal-and-noisy.md). For calibrated gates and direct controls, see [Hamiltonian emulation](hamiltonian-emulation.md). The [backend noise-support table](../api/noise/backend-support.md#noise-backend-support) helps you choose compatible noise declarations when changing models.
+  ko: 회로의 상태 변화와 잡음 채널은 [시뮬레이션](simulation.md)과 [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md)을 참고하세요. 보정된 게이트와 직접 제어는 [해밀토니안 에뮬레이션](hamiltonian-emulation.md)에서 설명합니다. 모델을 바꿀 때는 [백엔드별 잡음 지원 표](../api/noise/backend-support.md#noise-backend-support)를 보고 호환되는 잡음 선언을 선택하세요.
+  status: machine

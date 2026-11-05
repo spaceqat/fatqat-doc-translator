@@ -1,0 +1,304 @@
+- id: c85e2abef47df895
+  en: Build one FatQat Program and choose the physical detail each quantum study needs.
+  ko: 하나의 FatQat Program으로 양자 계산을 작성하고, 연구에 필요한 물리적 세부 수준을 선택하세요.
+  status: machine
+- id: 0b932ec44b082ffb
+  en: Model and execute quantum programs
+  ko: 양자 프로그램 모델링과 실행
+  status: machine
+- id: edac07faab9cf3aa
+  en: One Program. Three levels of physical detail.
+  ko: 하나의 Program, 세 가지 물리적 세부 수준
+  status: machine
+- id: 0102e01eadefc189
+  en: Write a quantum program once. Use the same Program to explore algorithm behavior, test device constraints, or follow time-dependent physical dynamics.
+  ko: 양자 프로그램을 한 번 작성하고, 같은 Program으로 알고리즘 동작을 살펴보고 장치 제약을 검증하며 시간에 따른 물리적 동역학을 분석하세요.
+  status: machine
+- id: ca2c72dc8e9261ab
+  en: Build your first Program
+  ko: 첫 Program 만들기
+  status: machine
+- id: 0da28eebb3fb7edc
+  en: Compare execution levels
+  ko: 실행 수준 비교하기
+  status: machine
+- id: 74f849ea06bc4af0
+  en: Install from source
+  ko: 소스에서 설치하기
+  status: machine
+- id: f19783800a8e075f
+  en: One FatQat Program runs through general simulation, hardware-profile simulation, or Hamiltonian emulation, with every path returning a Result.
+  ko: 하나의 FatQat Program을 일반 시뮬레이션, 하드웨어 프로파일 시뮬레이션, 해밀토니안 에뮬레이션으로 실행할 수 있습니다. 모든 경로는 Result를 반환합니다.
+  status: machine
+- id: ffca00eca6723b30
+  en: Choose one execution level
+  ko: 실행 수준 선택하기
+  status: machine
+- id: 1dc50fe3f24d08bb
+  en: General simulation
+  ko: 일반 시뮬레이션
+  status: machine
+- id: af4632c2080ff5a0
+  en: states · counts · noise
+  ko: 상태 · 측정 횟수 · 잡음
+  status: machine
+- id: df0d0dbabfe89fbf
+  en: Hardware-profile simulation
+  ko: 하드웨어 프로파일 시뮬레이션
+  status: machine
+- id: 9113801bb8794495
+  en: native gates · connectivity
+  ko: 네이티브 게이트 · 연결 구조
+  status: machine
+- id: d5d3764f60b6281e
+  en: Hamiltonian emulation
+  ko: 해밀토니안 에뮬레이션
+  status: machine
+- id: f3507ef053a39574
+  en: pulses · leakage · dynamics
+  ko: 펄스 · 누설 · 동역학
+  status: machine
+- id: 6ea773ddab137a0e
+  en: Start with one Program, then choose the physical detail at run time.
+  ko: 하나의 Program으로 시작하고, 실행할 때 필요한 물리적 세부 수준을 선택하세요.
+  status: machine
+- id: dc1d0b2c29a59bd3
+  en: Under active development
+  ko: 활발히 개발 중
+  status: machine
+- id: ebb1cef8f27a9148
+  en: FatQat is under active development, and its interfaces may change between releases. **Pin an exact version when reproducibility matters.**
+  ko: FatQat은 활발히 개발 중이며 릴리스 사이에 인터페이스가 바뀔 수 있습니다. **재현성이 중요하다면 정확한 버전을 고정하세요.**
+  status: machine
+- id: 4284a11e8b5078c7
+  en: :material-code-braces-box:{ .lg .middle } **One quantum program**
+  ko: :material-code-braces-box:{ .lg .middle } **하나의 양자 프로그램**
+  status: machine
+- id: 38dc4daaf0b125e5
+  en: Keep gates, measurements, conditions, parameters, qudits, and direct controls in a single `Program`.
+  ko: 게이트, 측정, 조건, 매개변수, 큐디트, 직접 제어를 하나의 `Program`에 담으세요.
+  status: machine
+- id: 3fbcd86c1cba7c94
+  en: :material-tune-variant:{ .lg .middle } **Only the detail you need**
+  ko: :material-tune-variant:{ .lg .middle } **필요한 만큼의 물리적 세부 정보**
+  status: machine
+- id: d6156a793f9a0032
+  en: Start with algorithm behavior, add device constraints when needed, or follow continuous-time dynamics when the physics matters.
+  ko: 알고리즘의 동작부터 살펴보고, 필요하면 장치 제약을 추가하세요. 물리 현상이 중요할 때는 연속 시간 동역학을 분석할 수 있습니다.
+  status: machine
+- id: 55ed68b2b391fd3e
+  en: :material-transit-connection-variant:{ .lg .middle } **One execution workflow**
+  ko: :material-transit-connection-variant:{ .lg .middle } **공통 실행 절차**
+  status: machine
+- id: 3c47a753fb291f4f
+  en: Every backend accepts a `Program` and uses the same `Result` interface, while validating what it can realize.
+  ko: 모든 백엔드는 `Program`을 받아 자신이 실행할 수 있는 연산인지 검증하고, 같은 `Result` 인터페이스를 제공합니다.
+  status: machine
+- id: 8cd95d2368a1e25c
+  en: One workflow, three execution levels
+  ko: 하나의 작업 흐름, 세 가지 실행 수준
+  status: machine
+- id: 8996a60b9917127d
+  en: Every path starts from the same [`Program`][fatqat.Program] and returns familiar `Job` and `Result` objects. Choose the least physical detail that can answer the question in front of you.
+  ko: 모든 경로는 같은 [`Program`][fatqat.Program]에서 시작해 익숙한 `Job`과 `Result` 객체를 반환합니다. 풀려는 문제에 답할 수 있는 범위에서 가장 단순한 물리 모델을 선택하세요.
+  status: machine
+- id: 87698054e77679b1
+  en: :material-chart-box-outline:{ .lg .middle } **General simulation**
+  ko: :material-chart-box-outline:{ .lg .middle } **일반 시뮬레이션**
+  status: machine
+- id: 66d1864241c95678
+  en: Inspect states, counts, and channel noise when algorithm behavior is the question.
+  ko: 알고리즘의 동작을 알아보려면 상태, 측정 횟수, 채널 잡음을 살펴보세요.
+  status: machine
+- id: 81f8576f4b029eca
+  en: '[:octicons-arrow-right-24: Study simulation](guide/simulation.md)'
+  ko: '[:octicons-arrow-right-24: 시뮬레이션 알아보기](guide/simulation.md)'
+  status: machine
+- id: 3d43d9d5abfe7564
+  en: :material-memory:{ .lg .middle } **Hardware-profile simulation**
+  ko: :material-memory:{ .lg .middle } **하드웨어 프로파일 시뮬레이션**
+  status: machine
+- id: c2f6c508cac0629c
+  en: Add native gates and connectivity when device constraints matter.
+  ko: 장치 제약을 고려해야 한다면 네이티브 게이트와 연결 구조를 추가하세요.
+  status: machine
+- id: 1299ad9b9f1f0437
+  en: '[:octicons-arrow-right-24: Model a hardware profile](guide/hardware-profile-simulation.md)'
+  ko: '[:octicons-arrow-right-24: 하드웨어 프로파일 모델링하기](guide/hardware-profile-simulation.md)'
+  status: machine
+- id: 39ab5a00c9c195a3
+  en: :material-sine-wave:{ .lg .middle } **Hamiltonian emulation**
+  ko: :material-sine-wave:{ .lg .middle } **해밀토니안 에뮬레이션**
+  status: machine
+- id: f4ccb86b71180e71
+  en: Follow pulse dynamics, leakage, crosstalk, and non-Markovian effects when physical behavior matters.
+  ko: 물리적 동작이 중요하다면 펄스 동역학, 누설, 누화, 비마르코프 효과를 분석하세요.
+  status: machine
+- id: 0f98f7f7f4b5ad59
+  en: '[:octicons-arrow-right-24: Follow physical dynamics](guide/hamiltonian-emulation.md)'
+  ko: '[:octicons-arrow-right-24: 물리적 동역학 분석하기](guide/hamiltonian-emulation.md)'
+  status: machine
+- id: ee0445a015843c00
+  en: One Grover algorithm, three execution levels
+  ko: 하나의 Grover 알고리즘, 세 가지 실행 수준
+  status: machine
+- id: f120da887dfac25a
+  en: This three-qubit Grover search begins with all eight bit strings equally likely. Two iterations mark `101` and amplify it. The results below show how three execution levels change the outcome as hardware constraints and physical dynamics are introduced.
+  ko: 이 3큐비트 Grover 탐색은 여덟 비트열의 확률이 같은 상태에서 시작합니다. 두 번의 반복으로 `101`을 표시하고 증폭합니다. 아래 결과는 하드웨어 제약과 물리적 동역학을 도입할 때 세 실행 수준에서 결과가 어떻게 달라지는지 보여 줍니다.
+  status: machine
+- id: b170b51d33a291b7
+  en: '![A compact three-qubit Grover search uses fused RY and RZ rotations with four Toffoli gates to amplify 101.](assets/generated/home/grover-circuit.png){ loading=lazy width=1100 height=318 }'
+  ko: '![간결한 3큐비트 Grover 탐색이 융합된 RY 및 RZ 회전과 네 개의 Toffoli 게이트로 101을 증폭합니다.](assets/generated/home/grover-circuit.png){ loading=lazy width=1100 height=318 }'
+  status: machine
+- id: e55b1f00b665bfa1
+  en: :material-chart-box-outline:{ .lg .middle } **General `Simulator`**
+  ko: :material-chart-box-outline:{ .lg .middle } **일반 `Simulator`**
+  status: machine
+- id: 608541444ee76532
+  en: '![The ideal Simulator result gives the target outcome 101 a probability of 94.53 percent.](assets/generated/home/grover-general.png){ loading=lazy width=714 height=515 }'
+  ko: '![이상적인 Simulator에서는 목표 결과 101의 확률이 94.53퍼센트입니다.](assets/generated/home/grover-general.png){ loading=lazy width=714 height=515 }'
+  status: machine
+- id: ed4bfdc92ec8b7c4
+  en: Circuit-level evolution returns `101` with **94.53%** probability.
+  ko: 회로 수준의 시간 진화에서는 **94.53%**의 확률로 `101`을 얻습니다.
+  status: machine
+- id: fa32672227a9ed82
+  en: '![The SCQubitSimulator result gives the target outcome 101 a probability of 81.65 percent with 200-microsecond coherence times and additional CZ depolarizing noise of 0.003 on both edges.](assets/generated/home/grover-sc-profile.png){ loading=lazy width=714 height=515 }'
+  ko: '![SCQubitSimulator에서 결맞음 시간을 200마이크로초로 두고 양쪽 연결에 0.003의 CZ 탈분극 잡음을 추가하면 목표 결과 101의 확률은 81.65퍼센트입니다.](assets/generated/home/grover-sc-profile.png){ loading=lazy width=714 height=515 }'
+  status: machine
+- id: e0dd853dd661f302
+  en: With `T1 = T2 = 200 µs`, we add CZ depolarizing noise with `p = 0.003`. Compiled native-gate simulation then returns `101` with **81.65%** probability.
+  ko: '`T1 = T2 = 200 µs`로 두고 `p = 0.003`의 CZ 탈분극 잡음을 추가합니다. 컴파일된 네이티브 게이트 시뮬레이션에서는 **81.65%**의 확률로 `101`을 얻습니다.'
+  status: machine
+- id: 5727a0b51520e3b5
+  en: '![The three-level TransmonEmulator result gives the target outcome 101 a probability of about 64.05 percent with the same coherence times.](assets/generated/home/grover-transmon.png){ loading=lazy width=714 height=515 }'
+  ko: '![같은 결맞음 시간을 사용한 3준위 TransmonEmulator에서 목표 결과 101의 확률은 약 64.05퍼센트입니다.](assets/generated/home/grover-transmon.png){ loading=lazy width=714 height=515 }'
+  status: machine
+- id: c0722ef9790a984b
+  en: Calibrated pulses, three physical levels, and the same coherence times return `101` with about **64.05%** probability; physical leakage is **0.0649%**. This run realizes the compiled X/SX/RZ/CZ gates with calibrated pulses.
+  ko: 보정된 펄스, 세 물리적 준위, 같은 결맞음 시간을 사용하면 `101`의 확률은 약 **64.05%**이고 물리적 누설은 **0.0649%**입니다. 이 실행에서는 컴파일된 X/SX/RZ/CZ 게이트를 보정된 펄스로 구현합니다.
+  status: machine
+- id: 7b314aaff7ff66e9
+  en: With the fixed routing seed, compilation produces **51 CZ**, **172 SX**, and **383 RZ** gates. These results use the same compiled circuit for both hardware models; the SC noise channels and the Transmon pulse dynamics model different physical effects. The Transmon model also uses 60 ns CZ pulses, while the SC coherence channels use a 50 ns CZ duration. Compilation preserves ideal algorithm behavior, but the gate decomposition and routing affect noisy results.
+  ko: 라우팅 시드를 고정하면 컴파일 결과는 **51개의 CZ**, **172개의 SX**, **383개의 RZ** 게이트입니다. 두 하드웨어 모델은 같은 컴파일된 회로를 사용하지만, SC 잡음 채널과 Transmon 펄스 동역학은 서로 다른 물리적 효과를 모델링합니다. Transmon 모델의 CZ 펄스 길이는 60 ns이며 SC 결맞음 채널의 CZ 지속 시간은 50 ns입니다. 컴파일은 이상적인 알고리즘 동작을 보존하지만, 게이트 분해와 라우팅은 잡음이 있는 결과에 영향을 줍니다.
+  status: machine
+- id: 51ffc6eebdfdbcd9
+  en: Shared algorithm source — `home_grover_program.py`
+  ko: 공통 알고리즘 소스 — `home_grover_program.py`
+  status: machine
+- id: 7cc9bf4b96af55d4
+  en: All three scripts start from the same compact `LogicalProgram` shown above. General simulation runs it directly; the SC and Transmon scripts use `compile_to_sc()` to decompose its Toffoli gates and route the circuit onto the three-site line. The routing seed is fixed for reproducible results. The shared axis helper restores logical qubit order when reading a compiled final state.
+  ko: 세 스크립트는 모두 위에 보인 간결한 `LogicalProgram`에서 시작합니다. 일반 시뮬레이션은 이를 직접 실행하고, SC 및 Transmon 스크립트는 `compile_to_sc()`로 Toffoli 게이트를 분해한 뒤 회로를 세 위치의 선형 연결에 라우팅합니다. 재현성을 위해 라우팅 시드를 고정합니다. 공통 축 헬퍼는 컴파일된 최종 상태를 읽을 때 논리 큐비트 순서를 복원합니다.
+  status: machine
+- id: 3c5e118fd497f10a
+  en: Run each execution model independently
+  ko: 각 실행 모델을 독립적으로 실행하기
+  status: machine
+- id: 68adc938030ac905
+  en: Each tab is a top-to-bottom script. The general script also verifies that ideal compiled execution matches the source state up to a global phase. The Transmon script binds compiled sites to model subsystems and supplies X/SX pulse definitions using its calibrated RX recipe.
+  ko: 각 탭은 위에서 아래로 실행하는 완전한 스크립트입니다. 일반 스크립트는 이상적인 컴파일 실행이 전역 위상을 제외하고 원본 상태와 일치하는지도 검증합니다. Transmon 스크립트는 컴파일된 위치를 모델의 부분계에 연결하고, 보정된 RX 구현으로 X/SX 펄스를 정의합니다.
+  status: machine
+- id: 960c98ad9d1c39bc
+  en: General `Simulator`
+  ko: 일반 `Simulator`
+  status: machine
+- id: e9a2ce2d270e9d64
+  en: Encode hardware behavior when needed
+  ko: 필요할 때 하드웨어 동작 표현하기
+  status: machine
+- id: 6151f40ae62df51e
+  en: Algorithm developers can stay with general simulation. When their work requires more detail, compiler and hardware developers can add device-specific operations to a `Program`. The backend validates when those operations are allowed and tracks their effects.
+  ko: 알고리즘 개발자는 일반 시뮬레이션만으로 작업할 수 있습니다. 더 세밀한 모델이 필요하다면 컴파일러 및 하드웨어 개발자가 장치별 연산을 `Program`에 추가할 수 있습니다. 백엔드는 해당 연산이 허용되는 조건을 검증하고 그 효과를 추적합니다.
+  status: machine
+- id: bbae73316352950c
+  en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] provides one example. Sites begin empty, so `Put` loads the atoms; `Pair` makes native `CZ` available, and `Unpair` removes that connection. Noise attached to these operations can perturb the state or remove an atom from the array.'
+  ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]가 그 예입니다. 각 위치는 비어 있는 상태로 시작하므로 `Put`으로 원자를 적재합니다. `Pair`는 네이티브 `CZ`를 사용할 수 있게 연결하고, `Unpair`는 그 연결을 해제합니다. 이 연산에 붙인 잡음은 상태를 교란하거나 배열에서 원자를 제거할 수 있습니다.'
+  status: machine
+- id: 7a8db953a972dfce
+  en: '![Two occupied atoms begin separated, pair so that CZ becomes legal, and unpair while optional depolarizing noise follows the pairing operations.](assets/generated/guide/atom-pairing-lifecycle.svg){ loading=lazy width=960 height=306 }'
+  ko: '![처음에는 떨어져 있던 두 원자를 쌍으로 묶어 CZ를 허용한 뒤 다시 분리합니다. 선택적으로 쌍 구성 연산 뒤에 탈분극 잡음을 적용할 수 있습니다.](assets/generated/guide/atom-pairing-lifecycle.svg){ loading=lazy width=960 height=306 }'
+  status: machine
+- id: 680d0ffc9139960f
+  en: Occupancy stays explicit while pairing changes which native interactions are legal.
+  ko: 원자 점유 여부를 명시적으로 관리하면서, 쌍 구성에 따라 허용되는 네이티브 상호작용을 바꿉니다.
+  status: machine
+- id: b5a069470af040be
+  en: Run the atom-array Program
+  ko: 원자 배열 Program 실행하기
+  status: machine
+- id: 4893e0adf8bc0ab0
+  en: '[`Loss`][fatqat.noise.Loss] models the second outcome. It removes a present atom after a matched operation. Occupancy is tracked independently for every shot, and measuring an empty site returns the erasure digit `2`.'
+  ko: '[`Loss`][fatqat.noise.Loss]는 원자가 제거되는 경우를 모델링합니다. 일치하는 연산 뒤에 존재하던 원자를 제거합니다. 점유 여부는 각 샷에서 독립적으로 추적하며, 빈 위치를 측정하면 소실을 나타내는 숫자 `2`를 반환합니다.'
+  status: machine
+- id: e512e5a816ce5523
+  en: '![An occupied atom undergoes a matched operation, after which Loss either leaves it present with probability one minus p or removes it with probability p; measurement of the empty site returns 2.](assets/generated/guide/atom-loss-lifecycle.svg){ loading=lazy width=960 height=306 }'
+  ko: '![원자가 있는 위치에서 일치하는 연산을 수행한 뒤 Loss가 1-p의 확률로 원자를 남기거나 p의 확률로 제거합니다. 빈 위치를 측정하면 2를 반환합니다.](assets/generated/guide/atom-loss-lifecycle.svg){ loading=lazy width=960 height=306 }'
+  status: machine
+- id: c36f14b8cf2fc5c9
+  en: Loss is sampled after the matched operation and changes per-shot occupancy.
+  ko: Loss는 일치하는 연산 뒤에 샘플링되며 각 샷의 점유 상태를 바꿉니다.
+  status: machine
+- id: 96345ea52a5340eb
+  en: Simulate atom loss
+  ko: 원자 손실 시뮬레이션
+  status: machine
+- id: 90a0194203d6f466
+  en: '`Loss(p=0.1)` is sampled after `RX`. Surviving atoms return `1`; lost atoms return `2`.'
+  ko: '`RX` 뒤에 `Loss(p=0.1)`을 샘플링합니다. 남아 있는 원자는 `1`, 손실된 원자는 `2`를 반환합니다.'
+  status: machine
+- id: 40d9e61b7aa34a99
+  en: '[:octicons-arrow-right-24: Track occupancy, pairing, and loss](guide/hardware-profile-simulation.md#atom-occupancy-and-pairing)'
+  ko: '[:octicons-arrow-right-24: 점유, 쌍 구성, 원자 손실 추적하기](guide/hardware-profile-simulation.md#atom-occupancy-and-pairing)'
+  status: machine
+- id: 218012b043fe7425
+  en: Explore the documentation
+  ko: 문서 둘러보기
+  status: machine
+- id: c5e08933ff3eaa40
+  en: :material-play-circle-outline:{ .lg .middle } **Quickstart**
+  ko: :material-play-circle-outline:{ .lg .middle } **빠른 시작**
+  status: machine
+- id: 4832b47193f37da9
+  en: Build, draw, and run a first Program.
+  ko: 첫 Program을 만들고, 그려 보고, 실행하세요.
+  status: machine
+- id: cba7377ea31b8410
+  en: '[:octicons-arrow-right-24: Start building](guide/quickstart.md)'
+  ko: '[:octicons-arrow-right-24: 시작하기](guide/quickstart.md)'
+  status: machine
+- id: 3d33e3cf1fc81164
+  en: :material-book-open-page-variant-outline:{ .lg .middle } **User guide**
+  ko: :material-book-open-page-variant-outline:{ .lg .middle } **사용자 가이드**
+  status: machine
+- id: e427a7497f0b4f4c
+  en: Learn concepts and complete workflows.
+  ko: 주요 개념과 전체 작업 흐름을 익히세요.
+  status: machine
+- id: 8ac6769387e04f5e
+  en: '[:octicons-arrow-right-24: Read the guide](guide/index.md)'
+  ko: '[:octicons-arrow-right-24: 가이드 읽기](guide/index.md)'
+  status: machine
+- id: d068bbe6724bdb9e
+  en: :material-flask-outline:{ .lg .middle } **Tutorials**
+  ko: :material-flask-outline:{ .lg .middle } **튜토리얼**
+  status: machine
+- id: 0916d2e97bf78c99
+  en: Explore executable algorithm and physics studies.
+  ko: 직접 실행할 수 있는 알고리즘 및 물리 연구 예제를 살펴보세요.
+  status: machine
+- id: ca8a2b426e416bb0
+  en: '[:octicons-arrow-right-24: Run a tutorial](tutorials/index.md)'
+  ko: '[:octicons-arrow-right-24: 튜토리얼 실행하기](tutorials/index.md)'
+  status: machine
+- id: 4e0c6bcdc65e3454
+  en: :material-format-list-bulleted:{ .lg .middle } **API reference**
+  ko: :material-format-list-bulleted:{ .lg .middle } **API 참조**
+  status: machine
+- id: 7f98c8b333de3c4c
+  en: Find exact signatures and validation contracts.
+  ko: 정확한 함수 시그니처와 검증 규칙을 확인하세요.
+  status: machine
+- id: b242595bbda9459f
+  en: '[:octicons-arrow-right-24: Look up an API](api/index.md)'
+  ko: '[:octicons-arrow-right-24: API 찾아보기](api/index.md)'
+  status: machine

@@ -1,0 +1,132 @@
+- id: 171c680dd29842cb
+  en: Compile and run a logical circuit
+  ko: 논리 회로 컴파일하고 실행하기
+  status: machine
+- id: 46c03a3fde0e3b99
+  en: 'FatQat can prepare the same logical circuit for a superconducting simulator or a neutral-atom simulator. The normal workflow has three steps:'
+  ko: FatQat에서는 같은 논리 회로를 초전도 시뮬레이터나 중성 원자 시뮬레이터에 맞게 준비할 수 있습니다. 기본 과정은 다음 세 단계입니다.
+  status: machine
+- id: fa0f17cc5980da2e
+  en: Build a [`LogicalProgram`][fatqat.LogicalProgram].
+  ko: '[`LogicalProgram`][fatqat.LogicalProgram]을 만듭니다.'
+  status: machine
+- id: 7bcc64b5299f6597
+  en: Compile it for a target.
+  ko: 타깃에 맞게 컴파일합니다.
+  status: machine
+- id: dbf251de08c23f79
+  en: Run the compiled result on the matching simulator.
+  ko: 컴파일 결과를 해당 시뮬레이터에서 실행합니다.
+  status: machine
+- id: 2a9b6d547fb36a37
+  en: Build a circuit
+  ko: 회로 만들기
+  status: machine
+- id: c45e41626076b96f
+  en: 'This Bell-state circuit will be used for both targets:'
+  ko: 두 타깃 모두에 다음 Bell 상태 회로를 사용하겠습니다.
+  status: machine
+- id: 3a35aa51796c2a74
+  en: '`LogicalProgram` uses the same circuit-building interface as [`Program`][fatqat.Program]. You can simulate it directly while developing an algorithm, then compile it when you are ready to run against a hardware profile. Compilation does not modify the circuit, so it can be reused with more than one target.'
+  ko: '`LogicalProgram`은 [`Program`][fatqat.Program]과 같은 회로 작성 인터페이스를 사용합니다. 알고리즘을 개발하는 동안에는 직접 시뮬레이션하고, 하드웨어 프로파일에서 실행할 준비가 되면 컴파일하면 됩니다. 컴파일은 원래 회로를 수정하지 않으므로 여러 타깃에 재사용할 수 있습니다.'
+  status: machine
+- id: a3710729082af1ae
+  en: Run on a superconducting profile
+  ko: 초전도 프로파일에서 실행하기
+  status: machine
+- id: a78b91dd4db9ad90
+  en: 'Describe the device with an [`SCTarget`][fatqat.compiler.SCTarget]: the number of physical qubits and their allowed two-qubit connections. The compiler maps the logical qubits to this topology and adds routing operations where they are needed.'
+  ko: '[`SCTarget`][fatqat.compiler.SCTarget]에 물리 큐비트 수와 허용되는 큐비트 간 연결을 지정해 장치를 정의합니다. 컴파일러는 논리 큐비트를 이 연결 구조에 배치하고, 필요한 곳에 라우팅 연산을 추가합니다.'
+  status: machine
+- id: 2dea8262bfd52d6c
+  en: 'The target describes only the device''s qubits and connections. Choose how to run the result separately: create an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] that provides the qubits and connections the result uses, and select its runtime, simulation method, and noise model there.'
+  ko: 타깃은 장치의 큐비트와 연결만 기술합니다. 실행 방식은 별도로 선택합니다. 컴파일 결과에서 사용하는 큐비트와 연결을 제공하는 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]를 만들고, 여기에서 런타임, 시뮬레이션 방법, 잡음 모델을 선택하세요.
+  status: machine
+- id: bef30853ea8b21ce
+  en: A simulator with more qubits or additional connections can run the same result. If the simulator lacks a qubit or connection that the result uses, `run()` raises an error immediately. The [SCTarget reference](../api/sc-target.md#when-errors-are-raised) lists these errors.
+  ko: 큐비트나 연결이 더 많은 시뮬레이터에서도 같은 결과를 실행할 수 있습니다. 반대로 결과에서 사용하는 큐비트나 연결이 없으면 `run()`이 즉시 오류를 발생시킵니다. 오류 목록은 [SCTarget 참조](../api/sc-target.md#when-errors-are-raised)를 참고하세요.
+  status: machine
+- id: a0eb5c50fd3df5ba
+  en: '`couplings` can describe any valid graph; the topology does not need to be a grid. The current public SC profile uses X, SX, RZ, and CZ as its native gate set. Toffoli (`CCX`) gates are decomposed into one- and two-qubit gates before routing.'
+  ko: '`couplings`에는 유효한 그래프라면 어떤 형태든 지정할 수 있으며, 격자 형태일 필요는 없습니다. 현재 공개된 SC 프로파일의 네이티브 게이트 집합은 X, SX, RZ, CZ입니다. Toffoli (`CCX`) 게이트는 라우팅 전에 단일 큐비트 및 2큐비트 게이트로 분해됩니다.'
+  status: machine
+- id: 5d2ca6e80653c2ea
+  en: 'Code that passes a simulator to the compiler continues to work. The compiler then uses the simulator''s qubits and connections, and also checks the emitted gates against its implementation map:'
+  ko: 컴파일러에 시뮬레이터를 전달하던 기존 코드도 계속 사용할 수 있습니다. 이 경우 컴파일러는 시뮬레이터의 큐비트와 연결을 사용하고, 생성한 게이트가 구현 맵에서 지원되는지도 검사합니다.
+  status: machine
+- id: 00360795314212b8
+  en: Run on a neutral-atom architecture
+  ko: 중성 원자 아키텍처에서 실행하기
+  status: machine
+- id: 029797262a3762f1
+  en: 'For neutral atoms, load an architecture and compile the same circuit with `compile_to_na()`:'
+  ko: 중성 원자의 경우 아키텍처를 불러온 뒤 `compile_to_na()`로 같은 회로를 컴파일합니다.
+  status: machine
+- id: 392f6004b4d80ac7
+  en: The architecture describes the zones and movement constraints used to create the neutral-atom schedule. FatQat also includes `scale_to_100` and `scale_to_500` profiles for larger studies.
+  ko: 아키텍처는 중성 원자 실행 스케줄을 만드는 데 필요한 구역과 이동 제약을 기술합니다. 더 큰 규모의 연구를 위해 `scale_to_100`과 `scale_to_500` 프로파일도 제공됩니다.
+  status: machine
+- id: ca7149bff730f0e3
+  en: 'OpenQASM 2 and OpenQASM 3 can be compiled without first creating a `LogicalProgram`. Choose the function that matches the target:'
+  ko: OpenQASM 2와 OpenQASM 3는 `LogicalProgram`을 먼저 만들지 않고도 컴파일할 수 있습니다. 타깃에 맞는 함수를 선택하세요.
+  status: machine
+- id: c8f4615f9168cb0a
+  en: OpenQASM `U`, `u1`, `u2`, and `u3` gates are converted to rotations supported by the target compilation route.
+  ko: OpenQASM의 `U`, `u1`, `u2`, `u3` 게이트는 선택한 타깃의 컴파일 경로에서 지원하는 회전으로 변환됩니다.
+  status: machine
+- id: 5f23f9c0c51bb6fb
+  en: Inspect a compilation
+  ko: 컴파일 결과 살펴보기
+  status: machine
+- id: 84951bb34d360fda
+  en: 'The default compile functions return a result that is ready for the matching simulator. It also keeps two useful views of the compilation:'
+  ko: 기본 컴파일 함수는 해당 시뮬레이터에서 바로 실행할 수 있는 결과를 반환합니다. 컴파일 과정을 확인할 수 있는 다음 두 정보도 함께 보관합니다.
+  status: machine
+- id: 9b06dadff5471f8d
+  en: '`compiled.output` is the final compiler representation: an `SCNativeProgram` for SC or a `ZonedPlan` for NA.'
+  ko: '`compiled.output`은 컴파일러의 최종 표현입니다. SC에서는 `SCNativeProgram`, NA에서는 `ZonedPlan`입니다.'
+  status: machine
+- id: 76bec3679bda0d83
+  en: '`compiled.route` lists the compiler stages that ran.'
+  ko: '`compiled.route`는 실행된 컴파일러 단계를 나열합니다.'
+  status: machine
+- id: c7570ea5d6cd2685
+  en: Compiled programs keep classical registers in source declaration order, including unused registers and unwritten slots. Measurement order does not change count-key positions. Counts follow the usual [ordering and zero-fill rules](../api/result.md#ordering-and-mutable-values).
+  ko: 컴파일된 프로그램에서도 고전 레지스터는 소스의 선언 순서를 유지합니다. 사용하지 않는 레지스터와 값이 기록되지 않은 슬롯도 포함됩니다. 측정 순서는 카운트 키의 위치에 영향을 주지 않습니다. 카운트에는 일반적인 [순서 및 0 채움 규칙](../api/result.md#ordering-and-mutable-values)이 적용됩니다.
+  status: machine
+- id: b01ab7cc3b816436
+  en: To inspect an earlier representation, pass its IR identifier with `emit`. In that case the compiler returns a [`CompilationResult`][fatqat.compiler.CompilationResult] for inspection rather than a simulator-ready result.
+  ko: 중간 표현을 확인하려면 `emit`에 해당 IR 식별자를 전달하세요. 그러면 시뮬레이터에서 바로 실행할 결과 대신, 내용을 살펴볼 수 있는 [`CompilationResult`][fatqat.compiler.CompilationResult]가 반환됩니다.
+  status: machine
+- id: 428a2368deb026f1
+  en: 'For a neutral-atom compilation, you can animate the resulting schedule:'
+  ko: 중성 원자 컴파일 결과의 스케줄은 애니메이션으로 볼 수 있습니다.
+  status: machine
+- id: 50f9590acd1dc3cc
+  en: Creating the animation requires Matplotlib. Saving it as MP4 also requires FFmpeg on `PATH`.
+  ko: 애니메이션을 만들려면 Matplotlib이 필요합니다. MP4로 저장하려면 FFmpeg도 `PATH`에 있어야 합니다.
+  status: machine
+- id: e7249cd6de860050
+  en: Bind circuit parameters
+  ko: 회로 매개변수 바인딩하기
+  status: machine
+- id: 86921b428627f357
+  en: 'Keep symbolic parameters while building a reusable circuit, then bind numeric values before compiling:'
+  ko: 재사용할 회로를 만들 때는 기호 매개변수를 유지하고, 컴파일하기 전에 수치를 바인딩하세요.
+  status: machine
+- id: 2470267cdd183cc9
+  en: '`assign_parameters()` returns a new `LogicalProgram`; the template remains available for another set of values.'
+  ko: '`assign_parameters()`는 새로운 `LogicalProgram`을 반환합니다. 원래 템플릿은 다른 값으로 다시 사용할 수 있습니다.'
+  status: machine
+- id: 55accdfd7139d443
+  en: Current compiler support
+  ko: 현재 컴파일러 지원 범위
+  status: machine
+- id: 428cf66d8aa00e14
+  en: The compiler currently handles static circuits with numeric parameters. Both targets support I, H, X, Y, Z, S, Sdg, T, Tdg, RX, RY, RZ, Phase, U, U1, U2, U3, CX, CZ, and Swap. The SC route also supports SX and Reset. Measurements belong at the end of the circuit, and each classical slot can receive one measurement result.
+  ko: 현재 컴파일러는 수치 매개변수를 갖는 정적 회로를 처리합니다. 두 타깃 모두 I, H, X, Y, Z, S, Sdg, T, Tdg, RX, RY, RZ, Phase, U, U1, U2, U3, CX, CZ, Swap을 지원합니다. SC 경로는 SX와 Reset도 지원합니다. 측정은 회로 끝에 있어야 하며, 각 고전 슬롯에는 측정 결과를 한 번만 기록할 수 있습니다.
+  status: machine
+- id: c17c784235da0b92
+  en: Other operations available to `LogicalProgram`, including classical conditions, feed-forward, mid-circuit measurement, multi-controlled gates, and qudit gates, can still be used in direct simulation but are not compiled yet. If a circuit uses an operation unavailable on its chosen target, compilation raises a [`PassError`][fatqat.compiler.PassError] that identifies the compiler stage and operation.
+  ko: '`LogicalProgram`에서 사용할 수 있는 고전 조건, 피드포워드, 회로 중간 측정, 다중 제어 게이트, 큐디트 게이트 등의 기능은 직접 시뮬레이션에서는 사용할 수 있지만 아직 컴파일되지 않습니다. 선택한 타깃에서 지원하지 않는 연산이 회로에 있으면, 컴파일러는 해당 단계와 연산을 알려 주는 [`PassError`][fatqat.compiler.PassError]를 발생시킵니다.'
+  status: machine

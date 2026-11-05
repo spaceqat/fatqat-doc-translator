@@ -1,0 +1,52 @@
+- id: 4d7868a4ad8fd849
+  en: OpenQASM
+  ko: OpenQASM
+  status: machine
+- id: 5a5e09e2a0c13fd7
+  en: <a id="fatqat.qasm"></a>
+  ko: <a id="fatqat.qasm"></a>
+  status: machine
+- id: 46ef3e3a6c0586e4
+  en: Use [`from_qasm`][fatqat.qasm.from_qasm] or [`from_qasm_file`][fatqat.qasm.from_qasm_file] to import OpenQASM 2 or 3 into a [`Program`][fatqat.Program], and [`to_qasm`][fatqat.qasm.to_qasm] to export a program. These functions do not require Qiskit. Existing code can continue to use `qasm_to_program` and `program_to_qasm`.
+  ko: '[`from_qasm`][fatqat.qasm.from_qasm] 또는 [`from_qasm_file`][fatqat.qasm.from_qasm_file]로 OpenQASM 2나 3을 [`Program`][fatqat.Program]으로 가져오고, [`to_qasm`][fatqat.qasm.to_qasm]으로 내보낼 수 있습니다. 이 함수들은 Qiskit 없이 동작합니다. 기존 코드는 `qasm_to_program`과 `program_to_qasm`을 계속 사용할 수 있습니다.'
+  status: machine
+- id: 2b24a87e9dc724d0
+  en: Import support
+  ko: 가져오기 지원
+  status: machine
+- id: 0bdb3c61b6f57775
+  en: Imported quantum and classical registers have dimension 2. FATQAT supports scalar operands, equal-sized whole-register operations, measurement, reset, local `gate` definitions, and the built-ins listed by [`from_qasm`][fatqat.qasm.from_qasm]. Barriers are ignored. A condition can guard a gate or reset using whole-register equality or an AND of bit comparisons.
+  ko: 가져온 양자 및 고전 레지스터의 차원은 2입니다. FATQAT은 스칼라 피연산자, 크기가 같은 전체 레지스터 연산, 측정, 리셋, 로컬 `gate` 정의, [`from_qasm`][fatqat.qasm.from_qasm]에 나열된 내장 연산을 지원합니다. 배리어는 무시합니다. 전체 레지스터의 동등 비교나 비트 비교의 AND 조건으로 게이트 또는 리셋을 제어할 수 있습니다.
+  status: machine
+- id: 82bdc9e3a8040ab6
+  en: '`include` statements do not load files. A gate normally supplied by an include must already be built in or defined in a local `gate` block. Other control flow, gate modifiers, declarations, and classical conditions raise [`QASMTranspileError`][fatqat.qasm.QASMTranspileError].'
+  ko: '`include` 문은 파일을 읽지 않습니다. 보통 include로 제공되는 게이트도 이미 내장되어 있거나 로컬 `gate` 블록에 정의되어 있어야 합니다. 그 밖의 제어 흐름, 게이트 수정자, 선언, 고전 조건에는 [`QASMTranspileError`][fatqat.qasm.QASMTranspileError]가 발생합니다.'
+  status: machine
+- id: f993246f036af449
+  en: Export support
+  ko: 내보내기 지원
+  status: machine
+- id: 09b46c2323e4aede
+  en: '[`to_qasm`][fatqat.qasm.to_qasm] emits OpenQASM 3 by default. The program must be fully bound. Use `version=2` only when each condition compares every bit in a single classical register.'
+  ko: '[`to_qasm`][fatqat.qasm.to_qasm]은 기본적으로 OpenQASM 3을 생성합니다. 프로그램의 모든 매개변수가 바인딩되어 있어야 합니다. 각 조건이 하나의 고전 레지스터에 있는 모든 비트를 비교할 때만 `version=2`를 사용하세요.'
+  status: machine
+- id: 1a3d2dace00aec2d
+  en: 'Quantum operands remain positional: `cx q[0], q[1]` keeps q0 as the first operand. OpenQASM whole-register condition integers use the language''s classical weighting, where bit `i` contributes `2**i`. Thus `(c0, c1) = (1, 0)` exports as `if (c == 1)`, while `(0, 1)` exports as `if (c == 2)`. FATQAT count strings still display `c0` first.'
+  ko: 양자 피연산자의 위치 순서는 유지됩니다. `cx q[0], q[1]`에서 q0는 첫 피연산자입니다. OpenQASM의 전체 레지스터 조건 정수는 비트 `i`가 `2**i`의 가중치를 갖는 언어 규칙을 따릅니다. 따라서 `(c0, c1) = (1, 0)`은 `if (c == 1)`로, `(0, 1)`은 `if (c == 2)`로 내보냅니다. FATQAT 카운트 문자열에서는 여전히 `c0`가 먼저 표시됩니다.
+  status: machine
+- id: d0b994a41a019a6a
+  en: Export requires `dim == 2` for every register and scalar operation targets. Supported gates and dimension-2 reductions are listed by [`to_qasm`][fatqat.qasm.to_qasm]. Register names may change to avoid conflicts, and program metadata is omitted.
+  ko: 내보내려면 모든 레지스터가 `dim == 2`이고 연산 대상은 스칼라여야 합니다. 지원되는 게이트와 2차원으로 축약되는 연산은 [`to_qasm`][fatqat.qasm.to_qasm]에 나열되어 있습니다. 충돌을 피하기 위해 레지스터 이름이 바뀔 수 있으며 프로그램 메타데이터는 생략됩니다.
+  status: machine
+- id: c9d43ad372df1a50
+  en: Barrier, direct pulse controls, [`RegisterView`](../registers.md#fatqat.RegisterView) targets, and operations without a QASM representation raise [`QasmExportError`][fatqat.qasm.QasmExportError].
+  ko: Barrier, 직접 펄스 제어, [`RegisterView`](../registers.md#fatqat.RegisterView) 대상, QASM으로 표현할 수 없는 연산에는 [`QasmExportError`][fatqat.qasm.QasmExportError]가 발생합니다.
+  status: machine
+- id: b3772ff5f56d4097
+  en: Catch [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError] to handle either conversion error. Catch [`QASMTranspileError`][fatqat.qasm.QASMTranspileError] to handle translator rejection separately from [`QasmExportError`][fatqat.qasm.QasmExportError], which reports a program that cannot be represented. For compatibility, [`QASMTranspileError`][fatqat.qasm.QASMTranspileError] is also a [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError).
+  ko: 두 변환 오류를 함께 처리하려면 [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError]를 잡으세요. 번역기에서 거부한 입력은 [`QASMTranspileError`][fatqat.qasm.QASMTranspileError]로, 표현할 수 없는 프로그램은 [`QasmExportError`][fatqat.qasm.QasmExportError]로 구분해 처리할 수 있습니다. 호환성을 위해 [`QASMTranspileError`][fatqat.qasm.QASMTranspileError]는 [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)이기도 합니다.
+  status: machine
+- id: 716184e5f6a64e93
+  en: File I/O and text-decoding failures from [`from_qasm_file`][fatqat.qasm.from_qasm_file] use the underlying Python exceptions.
+  ko: '[`from_qasm_file`][fatqat.qasm.from_qasm_file]의 파일 입출력과 텍스트 디코딩 실패에는 해당 Python 예외가 그대로 사용됩니다.'
+  status: machine

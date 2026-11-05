@@ -1,0 +1,48 @@
+- id: f9ae020319d767a3
+  en: Gate realization
+  ko: 게이트 구현
+  status: machine
+- id: 9f5cbf686afafe35
+  en: Pulse control under development
+  ko: 개발 중인 펄스 제어
+  status: machine
+- id: 822ba8cbdf4f8d59
+  en: The pulse control module is under active development. Its interfaces and supported behavior may change between releases. Pin an exact FatQat version when reproducibility matters.
+  ko: 펄스 제어 모듈은 활발히 개발 중이며 릴리스마다 인터페이스와 지원 동작이 바뀔 수 있습니다. 재현성이 중요하면 FatQat 버전을 정확히 고정하세요.
+  status: machine
+- id: da9acabe4b0038b5
+  en: '[`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] maps ordinary gates to pulse definitions. A direct [PulseOperation](pulse-operation.md) already contains its controls and does not use this map.'
+  ko: '[`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap]은 일반 게이트를 펄스 정의에 매핑합니다. 직접 [PulseOperation](pulse-operation.md)은 이미 제어를 포함하므로 이 맵을 사용하지 않습니다.'
+  status: machine
+- id: 4228aeb07c410ffc
+  en: Rules
+  ko: 규칙
+  status: machine
+- id: 8a530d8c478787b8
+  en: A rule is called as `rule(operation, *, device_operands=...)` and must return a [`PulseDefinition`][fatqat.emulator.PulseDefinition]. Register a general rule to handle every ordered device-operand tuple, or register separate rules for specific tuples. A tuple-specific entry may also be a fixed definition or a callable that only accepts `operation`. The tuple contains ordered physical labels such as `("q0", "q1")`, not program register references.
+  ko: 규칙은 `rule(operation, *, device_operands=...)`로 호출되며 [`PulseDefinition`][fatqat.emulator.PulseDefinition]을 반환해야 합니다. 모든 순서 있는 장치 피연산자 튜플을 처리하는 일반 규칙을 등록하거나 특정 튜플에만 적용할 규칙을 따로 등록하세요. 특정 튜플의 항목에는 고정 정의나 `operation`만 받는 호출 가능 객체도 사용할 수 있습니다. 튜플은 프로그램 레지스터 참조가 아니라 `("q0", "q1")` 같은 순서 있는 물리 라벨을 담습니다.
+  status: machine
+- id: d513be446bd35769
+  en: Both modes accept `num_subsystems=None`; device-specific tuples may then have different lengths. Otherwise, each tuple must match the declared target count.
+  ko: 두 모드 모두 `num_subsystems=None`을 허용하며, 이때 장치별 튜플의 길이가 달라도 됩니다. 그 외에는 각 튜플의 길이가 선언된 대상 수와 같아야 합니다.
+  status: machine
+- id: 8775bbb39cb0805e
+  en: Definitions
+  ko: 정의
+  status: machine
+- id: 48153003ccfc894b
+  en: A [`PulseDefinition`][fatqat.emulator.PulseDefinition] contains a duration, a tuple of controls, and optional `PhaseShift` or `PhaseSwap` actions. Conditions and noise remain on the operation in the program.
+  ko: '[`PulseDefinition`][fatqat.emulator.PulseDefinition]은 지속시간, 제어 튜플, 선택적인 `PhaseShift` 또는 `PhaseSwap` 동작을 포함합니다. 조건과 잡음은 프로그램의 연산에 남아 있습니다.'
+  status: machine
+- id: d7e74cff60a094dc
+  en: '`PhaseShift` changes one model frame after the pulse. `PhaseSwap` exchanges two frames. Direct pulse operations do not have post-actions.'
+  ko: '`PhaseShift`는 펄스 후 모델 프레임 하나를 바꾸고, `PhaseSwap`은 두 프레임을 교환합니다. 직접 펄스 연산에는 후속 동작이 없습니다.'
+  status: machine
+- id: 5f94377411a3958a
+  en: The emulator calls and validates a selected rule when the gate is used. Raise [`BackendValidationError`][fatqat.errors.BackendValidationError] to report unsupported operands or parameters. Other exceptions and return values that are not `PulseDefinition` are reported as `PulseImplementationError`.
+  ko: 에뮬레이터는 게이트를 사용할 때 선택한 규칙을 호출하고 검증합니다. 지원하지 않는 피연산자나 매개변수에는 [`BackendValidationError`][fatqat.errors.BackendValidationError]를 발생시키세요. 그 밖의 예외와 `PulseDefinition`이 아닌 반환값은 `PulseImplementationError`로 보고됩니다.
+  status: machine
+- id: d05cc5dc2b2be67a
+  en: The [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) pages show the built-in maps and full workflows.
+  ko: 내장 맵과 전체 과정은 [transmon](../pulse-emulator.md) 및 [중성 원자](../atom-emulators.md) 페이지를 참고하세요.
+  status: machine

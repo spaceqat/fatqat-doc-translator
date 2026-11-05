@@ -1,0 +1,172 @@
+- id: a4e986afb612ab75
+  en: Write quantum computations with Program
+  ko: Program으로 양자 계산 작성하기
+  status: machine
+- id: b9912f2fba2cec5a
+  en: '[`Program`][fatqat.Program] is what you build and pass to every FatQat backend. If you are used to a `Circuit` class, this is FatQat''s broader equivalent: it can contain circuit gates, measurements, classical conditions, symbolic parameters, qubits and qudits, and direct physical controls. A Program records its resources and ordered instructions without deciding how a backend will execute them.'
+  ko: '[`Program`][fatqat.Program]은 직접 작성해 모든 FatQat 백엔드에 전달하는 객체입니다. `Circuit` 클래스에 익숙하다면 그보다 넓은 개념이라고 생각하면 됩니다. 회로 게이트, 측정, 고전 조건, 기호 매개변수, 큐비트와 큐디트, 직접 물리 제어를 모두 담을 수 있습니다. Program은 백엔드의 실행 방식을 정하지 않고 자원과 순서가 있는 명령을 기록합니다.'
+  status: machine
+- id: 946d69fe8e75bd5d
+  en: If you want the compiler to map and route a static gate circuit before it is run, construct a [`LogicalProgram`][fatqat.LogicalProgram] instead. It keeps the same register and authoring model while restricting operations to the device-independent compiler frontend. The [compiler workflow](compiler.md) describes its supported gates and source restrictions.
+  ko: 실행 전에 컴파일러로 정적 게이트 회로를 매핑하고 라우팅하려면 [`LogicalProgram`][fatqat.LogicalProgram]을 만드세요. 레지스터와 작성 방식은 같지만, 연산은 장치 독립적인 컴파일러 프런트엔드의 범위로 제한됩니다. 지원 게이트와 소스 제약은 [컴파일러 사용 과정](compiler.md)에 설명되어 있습니다.
+  status: machine
+- id: e29ef5a5261b411b
+  en: This chapter begins with a small qubit circuit, then introduces registers, feedforward, reusable parameters, mixed local dimensions, drawing, and direct controls.
+  ko: 이 장에서는 작은 큐비트 회로부터 시작해 레지스터, 피드포워드, 재사용 가능한 매개변수, 서로 다른 국소 차원, 회로 그리기, 직접 제어를 살펴봅니다.
+  status: machine
+- id: cc4cc06be2b48a97
+  en: Declare the program's resources
+  ko: 프로그램 자원 선언하기
+  status: machine
+- id: 8d5880aa0cded5d8
+  en: 'For a small program, pass the number of quantum and classical slots directly:'
+  ko: 작은 프로그램에서는 양자 슬롯과 고전 슬롯의 수를 직접 전달하면 됩니다.
+  status: machine
+- id: 68577afbcf2e87fd
+  en: 'As a Program grows, explicit registers give its resources useful names and let it contain more than one quantum or classical register:'
+  ko: Program이 커지면 레지스터를 명시적으로 선언해 자원에 의미 있는 이름을 붙이고, 여러 양자 또는 고전 레지스터를 함께 사용할 수 있습니다.
+  status: machine
+- id: ad276f55bdb12cff
+  en: Indexing a register identifies one of its slots. Explicit references such as `data[0]` remain unambiguous as the Program grows. Use a bare integer only when the Program has a single register of that kind.
+  ko: 레지스터를 인덱싱하면 슬롯 하나를 지정합니다. `data[0]` 같은 명시적 참조는 Program이 커져도 모호하지 않습니다. 정수만 사용하는 것은 해당 종류의 레지스터가 Program에 하나뿐일 때로 한정하세요.
+  status: machine
+- id: 72840607d65bd7c2
+  en: Need rows and columns?
+  ko: 행과 열이 필요한가요?
+  status: machine
+- id: c825f9e5aa4eaaf0
+  en: 'A [`GridRegister`][fatqat.GridRegister] adds row and column views:'
+  ko: '[`GridRegister`][fatqat.GridRegister]는 행과 열 뷰를 제공합니다.'
+  status: machine
+- id: 16933fd1d886d050
+  en: The row view groups several targets for one operation. It describes structure inside the Program, not placement on a physical device. Choose physical placement when executing the Program.
+  ko: 행 뷰는 여러 대상을 하나의 연산으로 묶습니다. 이는 물리 장치의 배치가 아니라 Program 내부의 구조를 나타냅니다. 물리 배치는 Program을 실행할 때 선택합니다.
+  status: machine
+- id: ed8928f7c3a1e60a
+  en: Compose operations in order
+  ko: 연산을 순서대로 구성하기
+  status: machine
+- id: 06bf43c433b8c380
+  en: 'Add operations in the order they should occur:'
+  ko: 실행할 순서대로 연산을 추가하세요.
+  status: machine
+- id: 0836fb5929d57f7b
+  en: Fixed gates such as `H` and `CX` can be added directly. Create a parameterized gate such as `RY` by passing its angle. For an operation with several targets, pass one tuple in operand order. For `CX`, the control comes first and the target second.
+  ko: '`H`, `CX` 같은 고정 게이트는 바로 추가할 수 있습니다. `RY`처럼 매개변수가 있는 게이트는 각도를 전달해 만듭니다. 대상이 여러 개인 연산에는 피연산자 순서대로 하나의 튜플을 전달하세요. `CX`는 제어가 먼저, 타깃이 두 번째입니다.'
+  status: machine
+- id: 71196d79c0fcd8ed
+  en: These few operations illustrate the calling pattern. The [operations API reference](../api/operations.md) lists the complete operation set and exact definitions.
+  ko: 이 몇 가지 연산은 기본 호출 방식을 보여 줍니다. 전체 연산 집합과 정확한 정의는 [연산 API 참조](../api/operations.md)에 있습니다.
+  status: machine
+- id: e1f84b6dc7b78431
+  en: Use mid-circuit measurement and feedforward
+  ko: 회로 중간 측정과 피드포워드 사용하기
+  status: machine
+- id: 297ffd4dc55bd52f
+  en: 'A measurement is an ordered Program instruction, just like a gate. It can end a circuit or store a value that controls a later operation:'
+  ko: 측정도 게이트처럼 순서가 있는 Program 명령입니다. 회로를 끝낼 수도 있고, 이후 연산을 제어할 값을 저장할 수도 있습니다.
+  status: machine
+- id: cca45e87ca4dc475
+  en: 'On each shot, the first measurement writes the result from qubit 0 to classical bit 0. When that value is `1`, `X` flips qubit 1. Reset then returns qubit 0 to `|0>` without changing the stored value. The final measurement writes qubit 1 to classical bit 1, so the two classical bits agree:'
+  ko: 각 샷에서 첫 측정은 큐비트 0의 결과를 고전 비트 0에 기록합니다. 값이 `1`이면 `X`가 큐비트 1을 뒤집습니다. Reset은 저장된 값을 바꾸지 않고 큐비트 0을 `|0>`으로 되돌립니다. 마지막 측정은 큐비트 1의 값을 고전 비트 1에 기록하므로 두 고전 비트가 같아집니다.
+  status: machine
+- id: 4b37fa8dc353bf48
+  en: Not every backend supports this mid-program behavior. If measurement, reset, or classical feedforward is unavailable, the backend rejects the Program rather than silently changing it.
+  ko: 모든 백엔드가 이런 프로그램 중간 동작을 지원하는 것은 아닙니다. 측정, 리셋, 고전 피드포워드를 지원하지 않으면 백엔드는 Program을 몰래 바꾸지 않고 거부합니다.
+  status: machine
+- id: f567a51d74da92a1
+  en: Mid-circuit measurement can make execution dynamic because later operations may depend on a sampled outcome. Estimating the resulting distribution therefore requires repeated shots of the same Program.
+  ko: 회로 중간 측정에서는 이후 연산이 샘플링된 결과에 따라 달라질 수 있으므로 실행이 동적이 됩니다. 따라서 결과 분포를 추정하려면 같은 Program을 여러 샷 반복해야 합니다.
+  status: machine
+- id: fa8f5d62a31ce854
+  en: Reuse a parameterized Program
+  ko: 매개변수가 있는 Program 재사용하기
+  status: machine
+- id: f9dd500b9e2de9ec
+  en: 'A [`Parameter`][fatqat.Parameter] acts as a placeholder for a numeric operation argument. Calling `assign_parameters` returns a new Program, so the original template remains available for other values:'
+  ko: '[`Parameter`][fatqat.Parameter]는 연산의 수치 인자를 대신하는 자리표시자입니다. `assign_parameters`는 새 Program을 반환하므로 원래 템플릿에 다른 값을 계속 사용할 수 있습니다.'
+  status: machine
+- id: e929be41cae0d862
+  en: 'The binding map uses the parameter object, as in `{theta: value}`, rather than its display name. Reuse one object in several gates when they should share a value. Use [`ParameterVector`][fatqat.ParameterVector] for an explicitly ordered group. The [simulation chapter](simulation.md) shows how [`run_sweep`][fatqat.simulator.Simulator.run_sweep] evaluates a batch of parameter values from the same template without rebuilding the Program.'
+  ko: '바인딩 맵의 키는 표시 이름이 아니라 `{theta: value}`처럼 매개변수 객체입니다. 여러 게이트가 같은 값을 공유해야 한다면 같은 객체를 재사용하세요. 순서가 명시된 묶음에는 [`ParameterVector`][fatqat.ParameterVector]를 사용합니다. [시뮬레이션 장](simulation.md)에서는 [`run_sweep`][fatqat.simulator.Simulator.run_sweep]로 Program을 다시 만들지 않고 같은 템플릿에 매개변수 배치를 적용하는 방법을 보여 줍니다.'
+  status: machine
+- id: e00d1e74070af939
+  en: Mix qubits and qutrits
+  ko: 큐비트와 큐트릿 함께 사용하기
+  status: machine
+- id: fb56d7ad0a04cc71
+  en: 'A register''s `dim` gives the number of states available to each slot. With the default `dim=2`, a quantum slot is a qubit and a classical slot is a bit. Setting `dim=3` creates a qutrit or a classical trit. Registers with different dimensions can coexist in one Program:'
+  ko: 레지스터의 `dim`은 각 슬롯에 가능한 상태 수입니다. 기본값 `dim=2`에서는 양자 슬롯이 큐비트이고 고전 슬롯이 비트입니다. `dim=3`이면 큐트릿 또는 고전 트리트가 됩니다. 차원이 다른 레지스터도 하나의 Program에 함께 넣을 수 있습니다.
+  status: machine
+- id: 3bbc771c57608492
+  en: '`X` prepares the qubit in `|1>`, while the dimension-generic `Shift(2)` maps the qutrit from `|0>` to `|2>`. Measurement pairs each quantum slot with a classical slot of the same dimension:'
+  ko: '`X`는 큐비트를 `|1>`로 준비하고, 여러 차원에서 사용할 수 있는 `Shift(2)`는 큐트릿를 `|0>`에서 `|2>`로 옮깁니다. 측정은 각 양자 슬롯을 같은 차원의 고전 슬롯과 짝짓습니다.'
+  status: machine
+- id: a15ce72b4c2f7d39
+  en: Tuple keys list the flattened classical slots in declaration order, making the qubit value `1` and qutrit value `2` explicit. String keys use the same left-to-right order. Each operation determines which local dimensions it accepts, so consult the [qudit operation reference](../api/operations/qudit-gates.md) when you move beyond `Shift`.
+  ko: 튜플 키는 평탄화한 고전 슬롯을 선언 순서로 나열하여 큐비트의 값 `1`과 큐트릿의 값 `2`를 명확히 보여 줍니다. 문자열 키도 왼쪽부터 같은 순서를 따릅니다. 허용하는 국소 차원은 연산마다 다르므로, `Shift` 이외의 연산을 사용할 때는 [큐디트 연산 참조](../api/operations/qudit-gates.md)를 확인하세요.
+  status: machine
+- id: 6f9a0c6ec4a3809b
+  en: Draw a Program
+  ko: Program 그리기
+  status: machine
+- id: 114233a7d9d3616d
+  en: 'Drawing lets you check the instruction order and classical conditions before execution. Under the hood, FatQat adapts the Program to QuTiP-QIP''s circuit-drawing tools. The examples below use this Program:'
+  ko: 그림을 보면 실행 전에 명령 순서와 고전 조건을 확인할 수 있습니다. 내부적으로 FatQat은 Program을 QuTiP-QIP의 회로 그리기 도구에 맞게 변환합니다. 아래 예제는 다음 Program을 사용합니다.
+  status: machine
+- id: 468c50d1e473c32e
+  en: Text renderer
+  ko: 텍스트 렌더러
+  status: machine
+- id: 328396664adf9575
+  en: 'Pass `"text"` to return a terminal-friendly string, then print it:'
+  ko: '`"text"`를 전달하면 터미널에서 읽기 좋은 문자열이 반환됩니다. 이를 출력하세요.'
+  status: machine
+- id: 603cb5f55e365748
+  en: Reproduce this output
+  ko: 이 출력 재현하기
+  status: machine
+- id: 91da30cd46354062
+  en: The condition appears directly on `X`, and the vertical connector shows that classical bit 0 controls whether the gate is applied.
+  ko: 조건은 `X`에 직접 표시되며, 수직 연결선은 고전 비트 0이 게이트 적용 여부를 제어함을 나타냅니다.
+  status: machine
+- id: 28ff495657da7408
+  en: Matplotlib renderer
+  ko: Matplotlib 렌더러
+  status: machine
+- id: 4bce074e37e2af00
+  en: 'With no renderer argument, `draw()` returns a Matplotlib figure:'
+  ko: 렌더러 인자를 생략하면 `draw()`는 Matplotlib 그림을 반환합니다.
+  status: machine
+- id: 05d16ae24c652e8d
+  en: '![Circuit drawing of a two-qubit Program with measurement, classical feedforward, reset, and final measurement.](../assets/generated/guide/program-drawing.png)'
+  ko: '![측정, 고전 피드포워드, 리셋, 최종 측정을 포함한 2큐비트 Program의 회로 그림.](../assets/generated/guide/program-drawing.png)'
+  status: machine
+- id: 0210454e29d89499
+  en: Both renderers show the instructions recorded in the Program, not the result of executing them.
+  ko: 두 렌더러 모두 실행 결과가 아니라 Program에 기록된 명령을 보여 줍니다.
+  status: machine
+- id: 6a9fb2c3cb63f065
+  en: '!!! important'
+  ko: '!!! important'
+  status: machine
+- id: cf783b62e0cac8b7
+  en: The circuit drawing uses one wire per quantum or classical slot and does not display a register's local dimension. Qubit and qutrit wires therefore look the same. Qudit and custom operations appear as labeled boxes. A [`PulseOperation`][fatqat.operations.PulseOperation] cannot be represented by this circuit renderer.
+  ko: 회로 그림은 양자 슬롯과 고전 슬롯마다 선을 하나씩 그리며 레지스터의 국소 차원은 표시하지 않습니다. 따라서 큐비트와 큐트릿의 선은 똑같이 보입니다. 큐디트 연산과 사용자 정의 연산은 레이블이 붙은 상자로 표시됩니다. [`PulseOperation`][fatqat.operations.PulseOperation]은 이 회로 렌더러로 표현할 수 없습니다.
+  status: machine
+- id: 49c1fcef33757eb6
+  en: A Program can also contain direct physical controls. Add them as `PulseOperation` instructions without quantum targets; their control channels identify the physical resources. The [Hamiltonian-emulation chapter](hamiltonian-emulation.md) visualizes these controls as waveforms and timelines instead.
+  ko: Program에는 직접 물리 제어도 넣을 수 있습니다. 양자 대상을 지정하지 않은 `PulseOperation` 명령으로 추가하세요. 제어 채널이 물리 자원을 식별합니다. [해밀토니안 에뮬레이션 장](hamiltonian-emulation.md)에서는 이러한 제어를 회로 대신 파형과 타임라인으로 시각화합니다.
+  status: machine
+- id: bb3faf82be97c5f3
+  en: Understand validation
+  ko: 검증 방식 이해하기
+  status: machine
+- id: 9cc6a277c928a718
+  en: '`Program` validates structure as you build it: references must belong to the Program, each operation must receive the expected number of targets, and measured quantum and classical dimensions must agree. The selected backend then checks whether it supports those operations, dimensions, controls, and classical behavior.'
+  ko: '`Program`은 작성하는 동안 구조를 검증합니다. 참조는 해당 Program에 속해야 하고, 각 연산에 예상된 수의 대상이 전달되어야 하며, 측정하는 양자 차원과 고전 차원이 같아야 합니다. 이후 선택한 백엔드가 해당 연산, 차원, 제어, 고전 동작을 지원하는지 검사합니다.'
+  status: machine
+- id: 7257fdf13a23ce2a
+  en: Continue with [choose how much physics to model](execution-models.md) to see how different backends interpret a Program. Use the [Program API](../api/program.md) when you need exact accepted forms or validation behavior.
+  ko: '[물리 모델링 수준 선택하기](execution-models.md)에서 백엔드마다 Program을 어떻게 해석하는지 살펴보세요. 정확한 입력 형태나 검증 동작이 필요하면 [Program API](../api/program.md)를 참고하세요.'
+  status: machine

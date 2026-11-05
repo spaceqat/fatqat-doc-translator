@@ -1,0 +1,72 @@
+- id: e0f311227e5df258
+  en: Estimate observables
+  ko: 관측량 추정하기
+  status: machine
+- id: d417a73509b9443d
+  en: Use [`Estimator`][fatqat.Estimator] to calculate expectation values, such as spin correlations or energies. Define the quantity with an [`Observable`][fatqat.Observable], then supply a Program and a [compatible simulator or emulator](../api/estimator.md#backend-support). You can calculate the expectation directly from the state or estimate it from a finite number of measurement shots.
+  ko: '[`Estimator`][fatqat.Estimator]로 스핀 상관이나 에너지 같은 기댓값을 계산할 수 있습니다. [`Observable`][fatqat.Observable]로 구할 물리량을 정의한 뒤, Program과 [호환되는 시뮬레이터 또는 에뮬레이터](../api/estimator.md#backend-support)를 지정하세요. 상태에서 직접 기댓값을 계산하거나 유한한 횟수의 측정 샷으로 추정할 수 있습니다.'
+  status: machine
+- id: a013c4a700936969
+  en: 'The examples below use the general-purpose `Simulator` and two Bell states. Adding a `Z` operation to the Bell circuit changes its relative phase while leaving its computational-basis probabilities unchanged:'
+  ko: 아래 예제는 범용 `Simulator`와 두 Bell 상태를 사용합니다. Bell 회로에 `Z` 연산을 추가하면 계산 기저 확률은 그대로인 채 상대 위상만 바뀝니다.
+  status: machine
+- id: 9641ba0b9862ff14
+  en: Both states give `00` or `11` with equal probability. Their state vectors are \((|00\rangle + |11\rangle)/\sqrt{2}\) and \((|00\rangle - |11\rangle)/\sqrt{2}\). To distinguish them, we need to measure in another basis.
+  ko: 두 상태 모두 `00`과 `11`이 같은 확률로 나옵니다. 상태 벡터는 각각 \((|00\rangle + |11\rangle)/\sqrt{2}\)와 \((|00\rangle - |11\rangle)/\sqrt{2}\)입니다. 둘을 구별하려면 다른 기저에서 측정해야 합니다.
+  status: machine
+- id: aa8caaf1b81336c5
+  en: Calculate correlations
+  ko: 상관 계산하기
+  status: machine
+- id: 719106c44b65f4e8
+  en: A Pauli measurement along the X or Z axis has outcomes `+1` and `-1`. For Z, `|0>` corresponds to `+1` and `|1>` to `-1`. `ZZ` measures the product of the two qubits' Z outcomes; `XX` does the same along X. An expectation of `+1` means the outcomes always agree, while `-1` means they are always opposite.
+  ko: X축이나 Z축의 Pauli 측정 결과는 `+1`과 `-1`입니다. Z에서는 `|0>`이 `+1`, `|1>`이 `-1`에 대응합니다. `ZZ`는 두 큐비트의 Z 측정값의 곱을 측정하며, `XX`는 X축에서 같은 역할을 합니다. 기댓값이 `+1`이면 두 결과가 항상 같고, `-1`이면 항상 반대입니다.
+  status: machine
+- id: 4d04ade7f80053a6
+  en: 'Pass a list of observables to calculate both correlations in one request:'
+  ko: 관측량 목록을 전달하면 한 번의 요청으로 두 상관을 계산할 수 있습니다.
+  status: machine
+- id: 96fd6aadd7b6c8a3
+  en: 'The results follow the order `[zz, xx]`. Both states have `ZZ = 1`: their Z outcomes always agree. The `XX` values distinguish them. X outcomes always agree for the original Bell state and are always opposite for the phase-flipped state.'
+  ko: 결과는 `[zz, xx]` 순서로 반환됩니다. 두 상태 모두 `ZZ = 1`이므로 Z 측정값은 항상 같습니다. 둘을 구별하는 것은 `XX` 값입니다. 원래 Bell 상태에서는 X 측정값이 항상 같고, 위상이 뒤집힌 상태에서는 항상 반대입니다.
+  status: machine
+- id: 08d74c6033fdb016
+  en: 'Each tuple in an `Observable` contains a Pauli label and its real coefficient. Labels follow qubit order from left to right, and `I` is the identity: `ZI` measures Z on qubit 0 alone. To calculate a weighted sum, such as an energy, include its terms in the same `Observable`. The [Estimator API](../api/estimator.md#construct-an-observable) describes the other ways to write an observable.'
+  ko: '`Observable`의 각 튜플은 Pauli 레이블과 실수 계수로 이루어집니다. 레이블은 왼쪽부터 큐비트 순서를 따르며, `I`는 항등 연산자입니다. 따라서 `ZI`는 큐비트 0에서만 Z를 측정합니다. 에너지 같은 가중합을 계산하려면 각 항을 같은 `Observable`에 넣으세요. 관측량을 작성하는 다른 방법은 [Estimator API](../api/estimator.md#construct-an-observable)에 설명되어 있습니다.'
+  status: machine
+- id: 775418f71c25fe82
+  en: '`Estimator.run` uses `shots=0` by default, which calculates the expectation directly from the state.'
+  ko: '`Estimator.run`의 기본값은 `shots=0`이며, 상태에서 직접 기댓값을 계산합니다.'
+  status: machine
+- id: afaffc9442ea7089
+  en: Estimate from samples
+  ko: 표본으로 추정하기
+  status: machine
+- id: 0fbd3d9e5cda0e4e
+  en: 'Set `shots` to a positive integer to estimate an expectation from sampled measurements. For `ZI` on the original Bell state, each shot gives `+1` or `-1` with equal probability. The exact expectation is zero, but a finite sample usually gives a small nonzero mean:'
+  ko: '`shots`를 양의 정수로 설정하면 샘플링한 측정값으로 기댓값을 추정합니다. 원래 Bell 상태에서 `ZI`를 측정하면 각 샷에서 `+1`과 `-1`이 같은 확률로 나옵니다. 정확한 기댓값은 0이지만 유한한 표본의 평균은 대개 0에서 조금 벗어납니다.'
+  status: machine
+- id: 9e0ff5b29b234cd7
+  en: For a single observable, `get_expectation()` and `get_standard_error()` each return a scalar. This run gives an estimate of `-0.045` with a standard error of about `0.05`. The standard error describes the expected spread of estimates if you repeated the run with the same number of shots.
+  ko: 관측량이 하나이면 `get_expectation()`과 `get_standard_error()`가 각각 스칼라를 반환합니다. 이 실행의 추정값은 `-0.045`이고 표준 오차는 약 `0.05`입니다. 표준 오차는 같은 샷 수로 실행을 반복할 때 추정값이 얼마나 퍼질 것으로 예상되는지를 나타냅니다.
+  status: machine
+- id: 0de5cbcaafd74856
+  en: 'Increase `shots` for better precision. The plot below shows estimates from 100 to 6,400 shots, with error bars extending one standard error above and below each estimate:'
+  ko: 정밀도를 높이려면 `shots`를 늘리세요. 아래 그래프는 100회부터 6,400회까지의 샷으로 구한 추정값을 보여 줍니다. 오차 막대는 각 추정값에서 위아래로 표준 오차 한 배만큼 뻗어 있습니다.
+  status: machine
+- id: 0b9d3fd6ac59a7f6
+  en: '![Estimates of ZI are plotted against increasing shot counts with one-standard-error bars that shrink around the exact expectation of zero.](../assets/generated/guide/observable-uncertainty.png)'
+  ko: '![샷 수에 따른 ZI 추정값과 표준 오차 한 배의 오차 막대. 샷 수가 증가할수록 정확한 기댓값인 0 주변에서 오차 막대가 줄어듭니다.](../assets/generated/guide/observable-uncertainty.png)'
+  status: machine
+- id: 83ee380ba9821fe1
+  en: Quadrupling the shots roughly halves the standard error. Individual estimates still fluctuate, so a larger sample can give a value farther from zero. The exact value can also fall outside a one-standard-error bar.
+  ko: 샷 수를 네 배로 늘리면 표준 오차는 대략 절반이 됩니다. 그래도 개별 추정값은 변동하므로, 표본이 커졌는데도 값이 0에서 더 멀어질 수 있습니다. 정확한 값이 표준 오차 한 배의 오차 막대 밖에 놓일 수도 있습니다.
+  status: machine
+- id: 0b0418d8a9138516
+  en: Circuit noise can change the expectation itself. Configure noise on the estimator's backend as described in [Ideal and noisy runs](ideal-and-noisy.md). A density-matrix backend can calculate the expectation with noise channels directly; increasing the shot count improves the precision of a sampled estimate of that noisy expectation.
+  ko: 회로 잡음은 기댓값 자체를 바꿀 수 있습니다. [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md)에서 설명한 대로 Estimator의 백엔드에 잡음을 설정하세요. 밀도 행렬 백엔드는 잡음 채널이 있는 기댓값도 직접 계산할 수 있습니다. 이 기댓값을 샘플링으로 추정한다면 샷 수를 늘려 추정 정밀도를 높일 수 있습니다.
+  status: machine
+- id: 040de4c07b00d573
+  en: See the [Estimator API](../api/estimator.md) for supported backends, observable construction, and run options.
+  ko: 지원 백엔드, 관측량 작성법, 실행 옵션은 [Estimator API](../api/estimator.md)를 참고하세요.
+  status: machine

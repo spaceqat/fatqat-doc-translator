@@ -1,0 +1,92 @@
+- id: 484ee9bb6e51e328
+  en: API reference
+  ko: API 레퍼런스
+  status: machine
+- id: ca37bacacdd660c6
+  en: Use this reference to look up FATQAT's public classes, functions, and exceptions. Start with the [Build, draw, and run one Program](../guide/quickstart.md) for an end-to-end workflow.
+  ko: FATQAT의 공개 클래스, 함수, 예외를 찾아볼 때 이 레퍼런스를 사용하세요. 전체 실행 흐름은 [Program 작성, 시각화, 실행](../guide/quickstart.md)부터 살펴보세요.
+  status: machine
+- id: 6fe91b0d0b79509a
+  en: Build programs
+  ko: 프로그램 작성
+  status: machine
+- id: eb7cb9071f67eaa1
+  en: '[Program](program.md)'
+  ko: '[Program](program.md)'
+  status: machine
+- id: 319c69b773f2423e
+  en: '[LogicalProgram](logical-program.md)'
+  ko: '[LogicalProgram](logical-program.md)'
+  status: machine
+- id: f8b5f24857553948
+  en: '[Compiler](compiler.md)'
+  ko: '[Compiler](compiler.md)'
+  status: machine
+- id: 489dbbed9e6c77ba
+  en: '[Registers](registers.md)'
+  ko: '[Registers](registers.md)'
+  status: machine
+- id: 4ee85b525ffd0ec1
+  en: '[Operations](operations.md)'
+  ko: '[Operations](operations.md)'
+  status: machine
+- id: a32cb77d2fe1e4ac
+  en: '[Pulse control](pulse-control/index.md)'
+  ko: '[펄스 제어](pulse-control/index.md)'
+  status: machine
+- id: c464edd7f559fd16
+  en: Run and inspect
+  ko: 실행과 결과 확인
+  status: machine
+- id: ace0363d8aa1505f
+  en: '[Simulators](simulators/index.md)'
+  ko: '[시뮬레이터](simulators/index.md)'
+  status: machine
+- id: 1d0abbf1a8b0c75e
+  en: '[Emulators](emulators/index.md)'
+  ko: '[에뮬레이터](emulators/index.md)'
+  status: machine
+- id: ebca03fb9c57fd70
+  en: '[Noise](noise.md)'
+  ko: '[잡음](noise.md)'
+  status: machine
+- id: 99f87dc5da4b1949
+  en: '[Observables and estimation](estimator.md)'
+  ko: '[관측량과 추정](estimator.md)'
+  status: machine
+- id: cdd1f57e618ef827
+  en: '[Job](job.md)'
+  ko: '[Job](job.md)'
+  status: machine
+- id: 19f99f677fcc50f4
+  en: '[Result](result.md)'
+  ko: '[Result](result.md)'
+  status: machine
+- id: 0ff359fbd68eb0e5
+  en: Integrate and extend
+  ko: 연동과 확장
+  status: machine
+- id: 88faf43201ee8ac5
+  en: '[Backend](backend.md)'
+  ko: '[Backend](backend.md)'
+  status: machine
+- id: 04846f2e25dba217
+  en: '[Interoperability](interoperability/index.md)'
+  ko: '[상호 운용](interoperability/index.md)'
+  status: machine
+- id: 712e144b920e9d96
+  en: '[Matrix implementations](implementation.md)'
+  ko: '[행렬 구현](implementation.md)'
+  status: machine
+- id: 95bdcfcf91be2ef1
+  en: Errors and stability
+  ko: 오류와 안정성
+  status: machine
+- id: f2aa541766a50851
+  en: '[Exceptions](exceptions.md)'
+  ko: '[예외](exceptions.md)'
+  status: machine
+- id: 3de54e16e845b179
+  en: '[Experimental APIs](experimental.md)'
+  ko: '[실험적 API](experimental.md)'
+  status: machine

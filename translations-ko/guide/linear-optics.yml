@@ -1,0 +1,104 @@
+- id: 29bdf6270af416ab
+  en: Simulate linear optics
+  ko: 선형 광학 시뮬레이션하기
+  status: machine
+- id: 28d325570a2d2bb4
+  en: 'Linear optics computes with photons travelling through optical modes, such as the two output ports of a beam splitter. It differs from qubit circuits in three ways:'
+  ko: 선형 광학은 빔 스플리터의 두 출력 포트 같은 광학 모드 사이로 이동하는 광자로 계산합니다. 큐비트 회로와는 세 가지 점에서 다릅니다.
+  status: machine
+- id: 78f424eaa240c9bb
+  en: '**A mode holds any number of photons.** Its level `n` is a photon count, not one of two states.'
+  ko: '**한 모드에는 광자가 몇 개든 들어갈 수 있습니다.** 준위 `n`은 두 상태 중 하나가 아니라 광자 수를 뜻합니다.'
+  status: machine
+- id: 8765afb750ad701e
+  en: '**Photons are moved, never created.** Beam splitters and phase shifters redistribute photons among modes; the total number that entered stays the same.'
+  ko: '**광자는 이동할 뿐 새로 생기지 않습니다.** 빔 스플리터와 위상 시프터는 모드 사이에 광자를 재분배하며, 입력된 총 광자 수는 유지됩니다.'
+  status: machine
+- id: d66be5aca6a75876
+  en: '**Photons are identical.** When two photons could have taken different paths to the same outcome, those paths interfere, and some outcomes disappear.'
+  ko: '**광자는 동일 입자입니다.** 두 광자가 서로 다른 경로로 같은 결과에 도달할 수 있으면 경로 사이에 간섭이 일어나 일부 결과가 사라집니다.'
+  status: machine
+- id: ba88fbdb62ec9b5f
+  en: This guide shows all three with the Hong–Ou–Mandel experiment, run on [`LOSimulator`][fatqat.simulator.LOSimulator].
+  ko: 이 가이드에서는 [`LOSimulator`][fatqat.simulator.LOSimulator]에서 Hong–Ou–Mandel 실험을 실행해 이 세 특징을 살펴봅니다.
+  status: machine
+- id: 4e7747fb51373682
+  en: One photon on a beam splitter
+  ko: 빔 스플리터에 광자 하나 보내기
+  status: machine
+- id: 22369d88558515cc
+  en: 'A [`ModeRegister`][fatqat.ModeRegister] holds the modes. Measuring a mode records its photon count in a [`CountRegister`][fatqat.CountRegister]. Build a balanced (50:50) [`BeamSplitter`][fatqat.operations.BeamSplitter] between two modes and count the photons in each output:'
+  ko: '[`ModeRegister`][fatqat.ModeRegister]는 모드를 담습니다. 모드를 측정하면 광자 수가 [`CountRegister`][fatqat.CountRegister]에 기록됩니다. 두 모드 사이에 균형 잡힌 50:50 [`BeamSplitter`][fatqat.operations.BeamSplitter]를 놓고 각 출력의 광자를 세어 보겠습니다.'
+  status: machine
+- id: 1412f2452392ed95
+  en: 'Photons enter through the run''s `initial_state`: a [`BasisState`][fatqat.simulator.BasisState] gives the photon count of each mode, and unnamed modes start empty. Send one photon into mode 0:'
+  ko: 광자는 실행의 `initial_state`로 입력합니다. [`BasisState`][fatqat.simulator.BasisState]로 각 모드의 광자 수를 지정하며, 지정하지 않은 모드는 빈 상태로 시작합니다. 모드 0에 광자 하나를 보내세요.
+  status: machine
+- id: a4be380e501a38f7
+  en: 'Each key lists the counts in register order: `"10"` is the photon in mode 0, `"01"` in mode 1. The photon leaves through either port with probability ½, like a fair coin.'
+  ko: 각 키에는 레지스터 순서대로 광자 수가 나열됩니다. `"10"`은 광자가 모드 0에, `"01"`은 모드 1에 있다는 뜻입니다. 공정한 동전 던지기처럼 광자가 각 포트로 나갈 확률은 ½입니다.
+  status: machine
+- id: ba1b2c723dcb4056
+  en: 'Two photons: Hong–Ou–Mandel interference'
+  ko: '광자 두 개: Hong–Ou–Mandel 간섭'
+  status: machine
+- id: 61fe9e48969d77a1
+  en: 'Now send one photon into each input. If the photons behaved like two independent coins, a quarter of the runs would put both in mode 0, a quarter both in mode 1, and half would put one in each mode, `"11"`:'
+  ko: 이번에는 각 입력에 광자를 하나씩 보냅니다. 광자들이 독립적인 두 동전처럼 행동한다면, 실행의 4분의 1에서는 둘 다 모드 0에, 4분의 1에서는 둘 다 모드 1에, 절반에서는 각 모드에 하나씩 놓이는 `"11"`이 나와야 합니다.
+  status: machine
+- id: 4c2779c5b49269c4
+  en: The outcome `"11"` never occurs; the photons always leave together. To end in `"11"`, both photons must pass straight through or both must be reflected. Because the photons are identical, these two histories lead to the same final state, so their amplitudes add, and at a 50:50 splitter they cancel exactly.
+  ko: 그러나 `"11"`은 한 번도 나오지 않고 광자는 항상 함께 나갑니다. `"11"`이 되려면 두 광자가 모두 직진해 투과하거나 모두 반사되어야 합니다. 광자는 동일 입자이므로 두 과정은 같은 최종 상태에 도달합니다. 따라서 진폭을 더해야 하며, 50:50 스플리터에서는 두 진폭이 정확히 상쇄됩니다.
+  status: machine
+- id: 1957dc784598f7d4
+  en: '![Four beam-splitter diagrams show the histories of two photons entering modes 0 and 1. Both photons passing through and both reflecting each end in outcome 11; their amplitudes cos theta squared and minus sin theta squared add to cos 2 theta, which is zero at 50:50. One photon passing and the other reflecting puts both photons in mode 0 or both in mode 1.](../assets/generated/guide/hong-ou-mandel-histories.svg)'
+  ko: '![모드 0과 1로 들어오는 두 광자의 경로를 보여 주는 네 빔 스플리터 그림. 모두 투과하거나 모두 반사하면 결과가 11입니다. 두 진폭 cos theta 제곱과 -sin theta 제곱의 합은 cos 2 theta이며 50:50에서 0이 됩니다. 하나가 투과하고 다른 하나가 반사하면 두 광자는 함께 모드 0 또는 모드 1로 나갑니다.](../assets/generated/guide/hong-ou-mandel-histories.svg)'
+  status: machine
+- id: 4635efaa3845c7bb
+  en: This is Hong–Ou–Mandel interference, and it has no counterpart for classical particles.
+  ko: 이것이 Hong–Ou–Mandel 간섭이며, 고전 입자에서는 나타나지 않는 현상입니다.
+  status: machine
+- id: 09be74f349ffead5
+  en: Change the reflectivity
+  ko: 반사율 바꾸기
+  status: machine
+- id: ced71eaa53845b66
+  en: The cancellation is exact only for a balanced splitter. `BeamSplitter(theta)` reflects a photon with probability `R = sin(theta)**2`. The two histories that end in `"11"` have amplitudes `cos(theta)**2` and `-sin(theta)**2`, so the coincidence probability is `(1 - 2R)**2`. For distinguishable particles the probabilities would add instead, giving `(1 - R)**2 + R**2`.
+  ko: 완전한 상쇄는 균형 잡힌 스플리터에서만 일어납니다. `BeamSplitter(theta)`가 광자를 반사할 확률은 `R = sin(theta)**2`입니다. `"11"`로 끝나는 두 경로의 진폭은 `cos(theta)**2`와 `-sin(theta)**2`이므로 동시 검출 확률은 `(1 - 2R)**2`입니다. 구별 가능한 입자라면 진폭 대신 확률을 더하므로 `(1 - R)**2 + R**2`가 됩니다.
+  status: machine
+- id: ae86e013cbaf7480
+  en: 'An [`Estimator`][fatqat.Estimator] computes the exact probability of `"11"` as the expectation value of [`Projector(1)`][fatqat.observable.Projector] on both modes. Sweep the angle to compare the two:'
+  ko: '[`Estimator`][fatqat.Estimator]는 두 모드에 각각 작용하는 [`Projector(1)`][fatqat.observable.Projector]의 곱에 대한 기댓값으로 `"11"`의 정확한 확률을 계산합니다. 각도를 스윕해 두 경우를 비교하세요.'
+  status: machine
+- id: 61683af1d22d3061
+  en: 'A finer sweep traces the full curves:'
+  ko: 각도 간격을 더 촘촘하게 하면 전체 곡선을 볼 수 있습니다.
+  status: machine
+- id: 5bb95c691d0519d8
+  en: '![Coincidence probability against reflectivity. For distinguishable particles the curve dips to one half at reflectivity one half; for identical photons it dips to zero there. Both curves equal one at reflectivity zero and one.](../assets/generated/guide/hong-ou-mandel-reflectivity.svg)'
+  ko: '![반사율에 따른 동시 검출 확률. 구별 가능한 입자는 반사율 ½에서 확률이 ½까지 내려가지만, 동일한 광자는 같은 지점에서 0까지 내려갑니다. 반사율이 0과 1일 때는 두 곡선 모두 1입니다.](../assets/generated/guide/hong-ou-mandel-reflectivity.svg)'
+  status: machine
+- id: 058c0a2288b58a2e
+  en: At `R = 0` and `R = 1` only one history is possible, so the two cases agree. In between, interference suppresses coincidences, and at `R = 0.5` it removes them completely. In the laboratory, the Hong–Ou–Mandel dip is usually traced at a fixed 50:50 splitter by delaying one photon, which makes the photons partly distinguishable and brings the coincidences back.
+  ko: '`R = 0`과 `R = 1`에서는 가능한 경로가 하나뿐이므로 두 경우가 일치합니다. 그 사이에서는 간섭이 동시 검출을 억제하고, `R = 0.5`에서는 완전히 없앱니다. 실험실에서는 보통 50:50 스플리터를 고정한 채 한 광자를 지연시켜 Hong–Ou–Mandel 딥을 측정합니다. 그러면 두 광자가 부분적으로 구별 가능해져 동시 검출이 다시 나타납니다.'
+  status: machine
+- id: 172f3297c1076246
+  en: Simulate larger interferometers
+  ko: 더 큰 간섭계 시뮬레이션하기
+  status: machine
+- id: 283ed7a12dd9a492
+  en: 'A statevector stores every combination of photon counts, from `0` to the cutoff in each mode. Twelve modes with four photons would need `5**12`, about 244 million amplitudes or 3.9 GB, although almost all of them stay zero: beam splitters never change the total photon number.'
+  ko: 상태 벡터는 각 모드의 광자 수가 `0`부터 컷오프까지인 모든 조합을 저장합니다. 12개 모드에 광자 4개가 있으면 `5**12`, 즉 약 2억 4,400만 개의 진폭과 3.9 GB가 필요합니다. 하지만 빔 스플리터는 총 광자 수를 바꾸지 않으므로 대부분의 진폭은 계속 0입니다.
+  status: machine
+- id: 083de9f8f22ea8b8
+  en: '`LOSimulator`''s default method, `"fixed_photon_state"`, stores only the arrangements of the photons you sent in, 1365 for four photons in twelve modes. All runs in this guide use it. This interferometer mixes neighboring modes in twelve layers:'
+  ko: '`LOSimulator`의 기본 방법인 `"fixed_photon_state"`는 입력한 총 광자 수를 유지하는 가능한 배치만 저장합니다. 12개 모드에 광자 4개를 놓는 경우에는 1365개입니다. 이 가이드의 모든 실행은 이 방법을 사용합니다. 다음 간섭계는 12개 층에 걸쳐 이웃한 모드를 혼합합니다.'
+  status: machine
+- id: dc75b0535bdfc44a
+  en: Each amplitude belongs to one arrangement of the four photons. [`fixed_photon_index`][fatqat.simulator.fixed_photon_index] finds the amplitude of an arrangement, given as photon counts in mode order. The probability that the photons leave in the four modes they entered is
+  ko: 각 진폭은 광자 4개의 한 가지 배치에 대응합니다. [`fixed_photon_index`][fatqat.simulator.fixed_photon_index]에 모드 순서대로 광자 수를 주면 해당 배치의 진폭 위치를 찾습니다. 광자가 처음 들어간 네 모드로 나갈 확률은 다음과 같습니다.
+  status: machine
+- id: 17f3966500113b69
+  en: The method needs a `BasisState` start and modes only, and it rejects noise. For qubits alongside modes, dense initial states, or noise, choose `LOSimulator("statevector")` or `LOSimulator("density_matrix")`; see [`LOSimulator`][fatqat.simulator.LOSimulator] for the full rules.
+  ko: 이 방법은 `BasisState` 초기 상태와 모드만을 요구하며 잡음은 받지 않습니다. 큐비트와 모드를 함께 사용하거나, 조밀한 초기 상태나 잡음이 필요하면 `LOSimulator("statevector")` 또는 `LOSimulator("density_matrix")`를 선택하세요. 전체 규칙은 [`LOSimulator`][fatqat.simulator.LOSimulator]를 참고하세요.
+  status: machine

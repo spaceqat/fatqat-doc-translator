@@ -1,0 +1,24 @@
+- id: 1d6ccfdd2ae4637c
+  en: SampledWaveform
+  ko: SampledWaveform
+  status: machine
+- id: 8dc6eae65ae75c28
+  en: '[`SampledWaveform`][fatqat.emulator.SampledWaveform] describes a signal on a local time grid. Times use the model''s time unit, while the channel determines the sample unit and whether values may be complex.'
+  ko: '[`SampledWaveform`][fatqat.emulator.SampledWaveform]은 국소 시간 격자 위의 신호를 기술합니다. 시간에는 모델의 시간 단위를 사용하며, 샘플 단위와 복소수 허용 여부는 채널이 정합니다.'
+  status: machine
+- id: 10a8eec8b07a4d49
+  en: Interpolation
+  ko: 보간
+  status: machine
+- id: 920f9a623db66511
+  en: Built-in pulse emulators use not-a-knot spline interpolation. Two samples give a linear curve, three give a quadratic curve, and four or more give a cubic curve.
+  ko: 내장 펄스 에뮬레이터는 not-a-knot 스플라인 보간을 사용합니다. 샘플이 두 개면 선형, 세 개면 2차, 네 개 이상이면 3차 곡선이 됩니다.
+  status: machine
+- id: 0ca833ecdc811b1b
+  en: '`Atom2LevelEmulator` uses zero outside the sample interval. `TransmonEmulator` holds the nearest endpoint within the enclosing pulse block, so use zero first and last samples when a control should be off outside its grid. Every control is zero outside its block, allowing sequential pulse operations to compose without one block contributing during another. These rules do not change the operation''s duration.'
+  ko: '`Atom2LevelEmulator`는 샘플 구간 밖에서 0을 사용합니다. `TransmonEmulator`는 해당 펄스 블록 안에서는 가장 가까운 끝점 값을 유지하므로, 격자 밖에서 제어가 꺼져야 한다면 처음과 마지막 샘플을 0으로 지정하세요. 모든 제어는 자기 블록 밖에서 0입니다. 따라서 순차 펄스 연산을 연결해도 한 블록이 다른 블록의 시간에 작용하지 않습니다. 이 규칙들은 연산의 지속시간을 바꾸지 않습니다.'
+  status: machine
+- id: 2c55dfd5ae9baed1
+  en: A spline can exceed the supplied sample values between points. If a model has amplitude limits, the emulator checks the interpolated curve as well as the samples.
+  ko: 스플라인은 샘플 사이에서 주어진 샘플 값의 범위를 벗어날 수 있습니다. 모델에 진폭 제한이 있으면 에뮬레이터는 샘플뿐 아니라 보간 곡선도 검사합니다.
+  status: machine
