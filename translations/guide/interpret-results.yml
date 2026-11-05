@@ -93,10 +93,10 @@
 - id: de78884df70f702a
   en: Use [`Estimator`][fatqat.Estimator] to calculate expectation values, such as spin correlations or energies. Define the quantity with an [`Observable`][fatqat.Observable], then supply a Program and a [compatible simulator or emulator](../api/estimator.md#exact-and-sampled-results). You can calculate the expectation directly from the state or estimate it from a finite number of measurement shots.
   zh: 使用 [`Estimator`][fatqat.Estimator] 计算自旋关联或能量等期望值。用 [`Observable`][fatqat.Observable] 定义所需的量，再提供 Program 和[兼容的模拟器或仿真器](../api/estimator.md#exact-and-sampled-results)。可以直接从态计算期望值，也可以用有限次测量采样进行估计。
-  status: machine
+  status: retired
 - id: a013c4a700936969
   en: 'The examples below use the general-purpose `Simulator` and two Bell states. Adding a `Z` operation to the Bell circuit changes its relative phase while leaving its computational-basis probabilities unchanged:'
-  zh: "下面的示例使用通用 `Simulator` 和两个 Bell 态。在 Bell 电路中添加 `Z` 门会改变相对相位，但保持计算基概率不变："
+  zh: 下面的示例使用通用 `Simulator` 和两个 Bell 态。在 Bell 电路中添加 `Z` 门会改变相对相位，但保持计算基概率不变：
   status: machine
 - id: 9641ba0b9862ff14
   en: Both states give `00` or `11` with equal probability. Their state vectors are \((|00\rangle + |11\rangle)/\sqrt{2}\) and \((|00\rangle - |11\rangle)/\sqrt{2}\). To distinguish them, we need to measure in another basis.
@@ -121,11 +121,11 @@
 - id: a3e8a781e85c0c7c
   en: 'Each tuple in an `Observable` contains a Pauli label and its real coefficient. For example, `("ZZ", 1.0)` represents Z on both qubits with coefficient 1. Labels follow qubit order from left to right, and `I` is the identity: `ZI` measures Z on qubit 0 alone. To calculate a weighted sum, such as an energy, include its terms in the same `Observable`.'
   zh: '`Observable` 中的每个元组包含一个 Pauli 标签及其实系数。例如，`("ZZ", 1.0)` 表示系数为 1、作用于两个量子比特的 Z。标签从左到右遵循量子比特顺序，`I` 是恒等算符：`ZI` 仅测量量子比特 0 上的 Z。若要计算能量等加权和，请将各项放入同一个 `Observable`。'
-  status: machine
+  status: retired
 - id: 09ab7c95017ed787
   en: By default, `Estimator.run` uses `shots=0` to calculate the expectation directly from the state. The Program must be unmeasured; the estimator adds the required measurements when you request sampling.
-  zh: "默认情况下，`Estimator.run` 使用 `shots=0` 直接从态计算期望值。Program 必须不含测量；请求采样时，Estimator 会添加所需的测量。"
-  status: machine
+  zh: 默认情况下，`Estimator.run` 使用 `shots=0` 直接从态计算期望值。Program 必须不含测量；请求采样时，Estimator 会添加所需的测量。
+  status: retired
 - id: afaffc9442ea7089
   en: Estimate from samples
   zh: 从样本估计
@@ -152,9 +152,21 @@
   status: machine
 - id: 0b0418d8a9138516
   en: Circuit noise can change the expectation itself. Configure noise on the estimator's backend as described in [Ideal and noisy runs](ideal-and-noisy.md). A density-matrix backend can calculate the expectation with noise channels directly; increasing the shot count improves the precision of a sampled estimate of that noisy expectation.
-  zh: "电路噪声可以改变期望值本身。按照[理想运行与含噪运行](ideal-and-noisy.md)中的说明，在 Estimator 的后端上配置噪声。密度矩阵后端可以直接计算包含噪声信道的期望值；增加采样次数则能提高对该含噪期望值的采样估计精度。"
+  zh: 电路噪声可以改变期望值本身。按照[理想运行与含噪运行](ideal-and-noisy.md)中的说明，在 Estimator 的后端上配置噪声。密度矩阵后端可以直接计算包含噪声信道的期望值；增加采样次数则能提高对该含噪期望值的采样估计精度。
   status: machine
 - id: 040de4c07b00d573
   en: See the [Estimator API](../api/estimator.md) for supported backends, observable construction, and run options.
-  zh: "支持的后端、可观测量构造方式和运行选项见[Estimator API](../api/estimator.md)。"
+  zh: 支持的后端、可观测量构造方式和运行选项见[Estimator API](../api/estimator.md)。
   status: machine
+- id: d417a73509b9443d
+  en: Use [`Estimator`][fatqat.Estimator] to calculate expectation values, such as spin correlations or energies. Define the quantity with an [`Observable`][fatqat.Observable], then supply a Program and a [compatible simulator or emulator](../api/estimator.md#backend-support). You can calculate the expectation directly from the state or estimate it from a finite number of measurement shots.
+  zh: ''
+  status: pending
+- id: 08d74c6033fdb016
+  en: 'Each tuple in an `Observable` contains a Pauli label and its real coefficient. Labels follow qubit order from left to right, and `I` is the identity: `ZI` measures Z on qubit 0 alone. To calculate a weighted sum, such as an energy, include its terms in the same `Observable`. The [Estimator API](../api/estimator.md#construct-an-observable) describes the other ways to write an observable.'
+  zh: ''
+  status: pending
+- id: 775418f71c25fe82
+  en: '`Estimator.run` uses `shots=0` by default, which calculates the expectation directly from the state.'
+  zh: ''
+  status: pending
