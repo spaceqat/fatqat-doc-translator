@@ -8,4 +8,4 @@ build:
       - python -m pip install -r requirements.txt
     build:
       html:
-        - python tools/inject_build.py --output "$READTHEDOCS_OUTPUT/html" --site-url "$READTHEDOCS_CANONICAL_URL"
+        - python tools/inject_build.py --require-complete --output "$READTHEDOCS_OUTPUT/html" --site-url "$READTHEDOCS_CANONICAL_URL"

@@ -1,8 +1,8 @@
 """Maintain generated documentation locales from the translation database.
 
-The English tree is canonical. For every generated locale (marked
-``generated: true`` in ``locales.yml``), prose is stored segment-by-segment in
-``translations/`` and the locale's page tree is rendered, never authored.
+The English tree is canonical. Chinese prose is stored in ``translations/``;
+Korean prose is stored in ``translations-ko/``. Each locale's page tree is
+rendered from its database, never authored separately.
 
 Subcommands:
 
@@ -18,6 +18,7 @@ Subcommands:
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 from dataclasses import dataclass, field
 import hashlib
 import os
@@ -88,9 +89,23 @@ FRONT_MATTER_PROSE_LISTS = {"figure_alts"}
 
 # Upstream retired its multi-locale registry (locales.yml) when it moved to a
 # single root mkdocs.yml, so the locale pair is now this repository's own
-# contract: English canonical sources, one generated Chinese locale.
+# contract: English canonical sources, independently generated zh and ko locales.
 CANONICAL_LOCALE = "en"
 TARGET_LOCALE = "zh"
+
+
+def configure_locale(locale: str) -> None:
+    """Select an independent database and generated output language."""
+    global TARGET_LOCALE, TRANSLATIONS_ROOT, GLOSSARY
+    if locale not in ("zh", "ko"):
+        raise ValueError(f"Unsupported translation locale: {locale}")
+    TARGET_LOCALE = locale
+    TRANSLATIONS_ROOT = Path(
+        os.environ.get("FATQAT_TRANSLATIONS_ROOT")
+        or HERE.parent / ("translations" if locale == "zh" else "translations-ko")
+    )
+    GLOSSARY = TRANSLATIONS_ROOT / "glossary.yml"
+
 
 
 def normalize(text: str) -> str:
@@ -416,7 +431,7 @@ def _page_segments(page: SourcePage) -> list[str]:
 class Entry:
     id: str
     en: str
-    zh: str
+    zh: str  # Historical internal name; serialized under TARGET_LOCALE.
     status: str  # pending | machine | reviewed | retired
 
 
@@ -436,7 +451,7 @@ def load_database() -> dict[Path, list[Entry]]:
             Entry(
                 id=item["id"],
                 en=item["en"],
-                zh=item.get("zh") or "",
+                zh=item.get(TARGET_LOCALE) or "",
                 status=item.get("status", "pending"),
             )
             for item in raw
@@ -446,7 +461,7 @@ def load_database() -> dict[Path, list[Entry]]:
 
 def save_database_file(path: Path, entries: Iterable[Entry]) -> None:
     payload = [
-        {"id": entry.id, "en": entry.en, "zh": entry.zh, "status": entry.status}
+        {"id": entry.id, "en": entry.en, TARGET_LOCALE: entry.zh, "status": entry.status}
         for entry in entries
     ]
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -623,7 +638,7 @@ def render_page(page: SourcePage, merged: Mapping[str, Entry]) -> tuple[str, int
 
 
 def run_render(*, out_root: Path, strict: bool) -> int:
-    """Write the generated zh page and tutorial-source trees under out_root."""
+    """Write the selected locale's page and tutorial-source trees under out_root."""
 
     pages = discover_sources(CANONICAL_LOCALE)
     merged = global_map(load_database())
@@ -704,6 +719,18 @@ def run_check(*, require_complete: bool = False) -> int:
         for entry in entries:
             if not entry.zh or entry.status == "retired":
                 continue
+            if "\n" in entry.zh or "\r" in entry.zh:
+                errors.append(f"{entry.id}: translation must be one line")
+            # Word order may change, but executable names and formulas may not.
+            for label, pattern in (
+                ("inline code", r"`+[^`]+`+"),
+                ("inline math", r"\$[^$\n]+\$"),
+                ("parenthesized math", r"\\\(.*?\\\)"),
+            ):
+                if Counter(re.findall(pattern, entry.en)) != Counter(
+                    re.findall(pattern, entry.zh)
+                ):
+                    errors.append(f"{entry.id}: changes {label}")
             if _destinations(entry.en) != _destinations(entry.zh):
                 errors.append(
                     f"{path.relative_to(TRANSLATIONS_ROOT)}: {entry.id} changes "
@@ -743,6 +770,13 @@ def run_check(*, require_complete: bool = False) -> int:
         print(f"warning: {warning}")
     if len(warnings) > 40:
         print(f"warning: ... and {len(warnings) - 40} more glossary warnings")
+    if require_complete:
+        active = global_map(database)
+        for page in pages:
+            for text in _page_segments(page):
+                entry = active.get(segment_id(text))
+                if entry is None or not entry.zh or entry.status not in ("machine", "reviewed"):
+                    errors.append(f"{page.relative}: {segment_id(text)} has no complete translation")
     if require_complete and counts["pending"]:
         errors.append(f"{counts['pending']} segments need translation")
     for error in errors:
@@ -764,7 +798,7 @@ def run_find(snippet: str) -> int:
             if lowered in entry.en.lower() or lowered in entry.zh.lower():
                 print(f"{path.relative_to(TRANSLATIONS_ROOT).as_posix()}: {entry.id}")
                 print(f"  en: {entry.en}")
-                print(f"  zh: {entry.zh or '(untranslated)'}  [{entry.status}]")
+                print(f"  {TARGET_LOCALE}: {entry.zh or '(untranslated)'}  [{entry.status}]")
                 hits += 1
     if not hits:
         print("find: no matching entries")
@@ -773,6 +807,7 @@ def run_find(snippet: str) -> int:
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--locale", choices=("zh", "ko"), default="zh")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     extract_parser = subparsers.add_parser(
@@ -790,7 +825,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     render_parser.add_argument(
         "--out-root",
         required=True,
-        help="directory receiving zh/ and tutorial-sources/zh/ "
+        help="directory receiving <locale>/ and tutorial-sources/<locale>/ "
         "(an upstream clone's docs/mkdocs directory when building)",
     )
     render_parser.add_argument(
@@ -808,6 +843,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     find_parser.add_argument("snippet")
 
     args = parser.parse_args(argv)
+    configure_locale(args.locale)
     if args.command == "extract":
         return run_extract(dry_run=args.dry_run)
     if args.command == "render":

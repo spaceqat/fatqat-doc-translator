@@ -64,13 +64,13 @@ def translate_nav(nav, lookup):
     return result
 
 
-def translate_gallery(gallery, lookup):
+def translate_gallery(gallery, lookup, locale="zh"):
     result = {
-        key: {"zh": {k: lookup(v) for k, v in gallery[key]["en"].items()}}
+        key: {locale: {k: lookup(v) for k, v in gallery[key]["en"].items()}}
         for key in ("ui", "index")
     }
     result["categories"] = {
-        key: {"zh": {k: lookup(v) for k, v in value["en"].items()}}
+        key: {locale: {k: lookup(v) for k, v in value["en"].items()}}
         for key, value in gallery["categories"].items()
     }
     return result

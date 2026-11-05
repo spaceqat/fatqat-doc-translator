@@ -1,5 +1,11 @@
 Translate the pending documentation segments in this repository.
 
+Select the requested language before starting. Chinese uses `translations/`
+and the `zh` field. Korean uses `translations-ko/` and the `ko` field; read its
+own STYLE.md and glossary.yml and pass `--locale ko` before the subcommand.
+The preservation and status rules below apply identically to Korean. Translate
+from the canonical English, not through the Chinese translation.
+
 You are working in the fatqat-doc-translator repository. The translation
 database lives under `translations/`: one YAML file per English page, one
 entry per prose segment with keys `id`, `en`, `zh`, `status`.

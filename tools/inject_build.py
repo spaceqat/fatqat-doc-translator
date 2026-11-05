@@ -1,4 +1,4 @@
-"""Build Chinese HTML at the RTD version root from a pinned FatQat checkout."""
+"""Build translated HTML at the RTD version root from a pinned checkout."""
 
 from __future__ import annotations
 import argparse
@@ -61,25 +61,25 @@ def assert_snapshot(clone):
                 raise ValueError(f"Snapshot content differs: {path}")
 
 
-def generate_config(clone, canonical_url):
+def generate_config(clone, canonical_url, locale="zh"):
     merged = translate.global_map(translate.load_database())
     lookup = lambda text: translate._lookup(merged, translate.normalize(text)) or text
     config = yaml.safe_load(
-        (ROOT / "overlay/mkdocs.zh.yml").read_text(encoding="utf-8")
+        (ROOT / f"overlay/mkdocs.{locale}.yml").read_text(encoding="utf-8")
     )
     config["hooks"] = [str(ROOT / "overlay/translation_notice.py")]
     config["nav"] = translate_nav(read_config(clone / "mkdocs.yml")["nav"], lookup)
     config["site_url"] = canonical_url.rstrip("/") + "/"
-    (clone / "mkdocs.zh.yml").write_text(
+    (clone / f"mkdocs.{locale}.yml").write_text(
         yaml.safe_dump(config, allow_unicode=True, sort_keys=False), encoding="utf-8"
     )
     gallery = yaml.safe_load(
         (clone / "docs/mkdocs/tutorial-sources/gallery.yml").read_text(encoding="utf-8")
     )
-    target = clone / "gallery.zh.generated.yml"
+    target = clone / f"gallery.{locale}.generated.yml"
     target.write_text(
         yaml.safe_dump(
-            translate_gallery(gallery, lookup), allow_unicode=True, sort_keys=False
+            translate_gallery(gallery, lookup, locale), allow_unicode=True, sort_keys=False
         ),
         encoding="utf-8",
     )
@@ -89,12 +89,15 @@ def generate_config(clone, canonical_url):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True)
+    parser.add_argument("--locale", choices=("zh", "ko"), default=os.environ.get("FATQAT_LOCALE", "zh"))
     parser.add_argument("--workdir", type=Path, default=ROOT / ".build")
     parser.add_argument("--upstream-url", default=upstream_config()["repository"])
     parser.add_argument("--site-url", default="http://127.0.0.1:8767/")
     parser.add_argument("--skip-install", action="store_true")
     parser.add_argument("--require-complete", action="store_true")
     args = parser.parse_args()
+    locale = args.locale
+    translate.configure_locale(locale)
     output = Path(args.output).resolve()
     if output == ROOT or output in ROOT.parents or (output / ".git").exists():
         raise ValueError("Output must be a dedicated build directory")
@@ -137,16 +140,17 @@ def main():
     mkdocs_root = clone / "docs/mkdocs"
     env["FATQAT_MKDOCS_ROOT"] = str(mkdocs_root)
     run(
-        [python, ROOT / "tools/translate.py", "render", "--out-root", mkdocs_root],
+        [python, ROOT / "tools/translate.py", "--locale", locale, "render",
+         *(["--strict"] if args.require_complete else []), "--out-root", mkdocs_root],
         env=env,
     )
     shutil.copytree(
-        mkdocs_root / "en/assets", mkdocs_root / "zh/assets", dirs_exist_ok=True
+        mkdocs_root / "en/assets", mkdocs_root / locale / "assets", dirs_exist_ok=True
     )
     shutil.copytree(
-        ROOT / "overlay/assets", mkdocs_root / "zh/assets", dirs_exist_ok=True
+        ROOT / "overlay/assets", mkdocs_root / locale / "assets", dirs_exist_ok=True
     )
-    gallery = generate_config(clone, args.site_url)
+    gallery = generate_config(clone, args.site_url, locale)
     run(
         [
             python,
@@ -155,6 +159,8 @@ def main():
             clone,
             "--gallery",
             gallery,
+            "--locale",
+            locale,
         ],
         env=env,
     )
@@ -166,7 +172,7 @@ def main():
             "build",
             "--strict",
             "-f",
-            "mkdocs.zh.yml",
+            f"mkdocs.{locale}.yml",
             "-d",
             output,
         ],
@@ -176,6 +182,7 @@ def main():
     (output / "translation-source.json").write_text(
         json.dumps(
             {
+                "locale": locale,
                 "repository": args.upstream_url,
                 "commit": commit,
                 "ref": (ROOT / "UPSTREAM_REF").read_text().strip(),
@@ -184,7 +191,7 @@ def main():
         ),
         encoding="utf-8",
     )
-    print("Chinese site:", output)
+    print(f"{locale} site:", output)
     return 0
 
 

@@ -1,9 +1,15 @@
 # Agent instructions for fatqat-doc-translator
 
-This repository maintains the Simplified-Chinese translation of the FatQat
+This repository maintains the Simplified-Chinese and Korean translations of the FatQat
 documentation. The English docs live upstream in spaceqat/fatqat; this repo
 holds a synced English snapshot, a segment-level translation database, and
 the build pipeline that publishes the Chinese RTD translation.
+
+Korean uses `translations-ko/` with `{id, en, ko, status}` records and its own
+STYLE.md and glossary.yml. Select it with `tools/translate.py --locale ko` and
+`tools/inject_build.py --locale ko`. Chinese commands retain their existing
+defaults. Sync once, then extract and complete each locale independently. The
+same translate/preserve boundaries and human-review rules apply to both.
 
 ## What is source of truth (and what is not)
 

@@ -12,3 +12,14 @@ plugins:
     lang: zh
   mkdocstrings:
     locale: zh
+extra:
+  alternate:
+    - name: English
+      link: https://fatqat.readthedocs.io/en/
+      lang: en
+    - name: 简体中文
+      link: https://fatqat.readthedocs.io/zh-cn/
+      lang: zh-CN
+    - name: 한국어
+      link: https://fatqat.readthedocs.io/ko/
+      lang: ko
