@@ -133,7 +133,7 @@
 - id: 0fbd3d9e5cda0e4e
   en: 'Set `shots` to a positive integer to estimate an expectation from sampled measurements. For `ZI` on the original Bell state, each shot gives `+1` or `-1` with equal probability. The exact expectation is zero, but a finite sample usually gives a small nonzero mean:'
   zh: 将 `shots` 设为正整数，即可通过采样测量估计期望值。对于原始 Bell 态上的 `ZI`，每次采样以相等概率得到 `+1` 或 `-1`。精确期望值为零，但有限样本的均值通常略微偏离零：
-  status: machine
+  status: retired
 - id: 9e0ff5b29b234cd7
   en: For a single observable, `get_expectation()` and `get_standard_error()` each return a scalar. This run gives an estimate of `-0.045` with a standard error of about `0.05`. The standard error describes the expected spread of estimates if you repeated the run with the same number of shots.
   zh: 对于单个可观测量，`get_expectation()` 和 `get_standard_error()` 各返回一个标量。此次运行得到估计值 `-0.045`，标准误差约为 `0.05`。标准误差描述了以相同采样次数重复运行时，估计值预期的离散程度。
@@ -169,4 +169,8 @@
 - id: 775418f71c25fe82
   en: '`Estimator.run` uses `shots=0` by default, which calculates the expectation directly from the state.'
   zh: '`Estimator.run` 默认使用 `shots=0`，直接从量子态计算期望值。'
+  status: machine
+- id: a43562e0f07390b8
+  en: 'Set `shots` to a positive integer to estimate an expectation from sampled measurements. For `ZI` on the original Bell state, each shot gives `+1` or `-1` with equal probability. The exact expectation is zero, up to floating-point rounding, but a finite sample usually gives a small nonzero mean:'
+  zh: 将 `shots` 设为正整数，即可通过采样测量估计期望值。对于原始 Bell 态上的 `ZI`，每次采样以相等概率得到 `+1` 或 `-1`。除浮点舍入误差外，精确期望值为零，但有限样本的均值通常略微偏离零：
   status: machine

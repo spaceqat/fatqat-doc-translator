@@ -45,7 +45,7 @@
 - id: 0fbd3d9e5cda0e4e
   en: 'Set `shots` to a positive integer to estimate an expectation from sampled measurements. For `ZI` on the original Bell state, each shot gives `+1` or `-1` with equal probability. The exact expectation is zero, but a finite sample usually gives a small nonzero mean:'
   ko: '`shots`를 양의 정수로 설정하면 샘플링한 측정값으로 기댓값을 추정합니다. 원래 Bell 상태에서 `ZI`를 측정하면 각 샷에서 `+1`과 `-1`이 같은 확률로 나옵니다. 정확한 기댓값은 0이지만 유한한 표본의 평균은 대개 0에서 조금 벗어납니다.'
-  status: machine
+  status: retired
 - id: 9e0ff5b29b234cd7
   en: For a single observable, `get_expectation()` and `get_standard_error()` each return a scalar. This run gives an estimate of `-0.045` with a standard error of about `0.05`. The standard error describes the expected spread of estimates if you repeated the run with the same number of shots.
   ko: 관측량이 하나이면 `get_expectation()`과 `get_standard_error()`가 각각 스칼라를 반환합니다. 이 실행의 추정값은 `-0.045`이고 표준 오차는 약 `0.05`입니다. 표준 오차는 같은 샷 수로 실행을 반복할 때 추정값이 얼마나 퍼질 것으로 예상되는지를 나타냅니다.
@@ -69,4 +69,8 @@
 - id: 040de4c07b00d573
   en: See the [Estimator API](../api/estimator.md) for supported backends, observable construction, and run options.
   ko: 지원 백엔드, 관측량 작성법, 실행 옵션은 [Estimator API](../api/estimator.md)를 참고하세요.
+  status: machine
+- id: a43562e0f07390b8
+  en: 'Set `shots` to a positive integer to estimate an expectation from sampled measurements. For `ZI` on the original Bell state, each shot gives `+1` or `-1` with equal probability. The exact expectation is zero, up to floating-point rounding, but a finite sample usually gives a small nonzero mean:'
+  ko: '`shots`를 양의 정수로 설정하면 샘플링한 측정값으로 기댓값을 추정합니다. 원래 Bell 상태에서 `ZI`를 측정하면 각 샷에서 `+1`과 `-1`이 같은 확률로 나옵니다. 부동소수점 반올림 오차를 제외하면 정확한 기댓값은 0이지만, 유한한 표본의 평균은 대개 0에서 조금 벗어납니다.'
   status: machine
