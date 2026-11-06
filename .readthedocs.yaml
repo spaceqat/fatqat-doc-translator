@@ -6,6 +6,10 @@ build:
   jobs:
     install:
       - python -m pip install -r requirements.txt
+      - python -u tools/inject_build.py --stage prepare --require-complete --output "$READTHEDOCS_OUTPUT/html"
+    pre_build:
+      - python -u tools/inject_build.py --stage tutorials --require-complete --output "$READTHEDOCS_OUTPUT/html"
+      - python -u tools/inject_build.py --stage english --require-complete --output "$READTHEDOCS_OUTPUT/html"
     build:
       html:
-        - python tools/inject_build.py --require-complete --output "$READTHEDOCS_OUTPUT/html" --site-url "$READTHEDOCS_CANONICAL_URL"
+        - python -u tools/inject_build.py --stage translated --require-complete --output "$READTHEDOCS_OUTPUT/html" --site-url "$READTHEDOCS_CANONICAL_URL"

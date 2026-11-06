@@ -95,6 +95,10 @@ def main():
     parser.add_argument("--site-url", default="http://127.0.0.1:8767/")
     parser.add_argument("--skip-install", action="store_true")
     parser.add_argument("--require-complete", action="store_true")
+    parser.add_argument(
+        "--stage", choices=("all", "prepare", "tutorials", "english", "translated"),
+        default="all", help="run one RTD step, or the complete local build (default)",
+    )
     args = parser.parse_args()
     locale = args.locale
     translate.configure_locale(locale)
@@ -104,10 +108,20 @@ def main():
     if args.require_complete and translate.run_check(require_complete=True):
         return 1
     commit = (ROOT / "UPSTREAM_COMMIT").read_text().strip()
-    clone = checkout(args.upstream_url, args.workdir, commit)
+    if args.stage in ("all", "prepare"):
+        clone = checkout(args.upstream_url, args.workdir, commit)
+    else:
+        clone = args.workdir.resolve() / "upstream"
+        if not (clone / ".git").exists():
+            raise ValueError("Run --stage prepare before the other build stages")
+        actual = subprocess.check_output(
+            ["git", "-C", str(clone), "rev-parse", "HEAD"], text=True
+        ).strip()
+        if actual != commit:
+            raise ValueError("Upstream checkout has changed; rerun --stage prepare")
     assert_snapshot(clone)
     python = sys.executable
-    if not args.skip_install:
+    if args.stage in ("all", "prepare") and not args.skip_install:
         run([python, "-m", "pip", "install", clone])
         run(
             [
@@ -120,23 +134,37 @@ def main():
                 "jieba",
             ]
         )
+    if args.stage == "prepare":
+        return 0
     env = os.environ.copy()
-    # English is built only to generate/validate shared assets and tutorial caches.
-    run(
-        [
-            python,
-            "-m",
-            "mkdocs",
-            "build",
-            "--strict",
-            "-f",
-            "mkdocs.yml",
-            "-d",
-            args.workdir.resolve() / "english",
-        ],
-        cwd=clone,
-        env=env,
-    )
+    env["PYTHONUNBUFFERED"] = "1"
+    # Execute once in a separate RTD command; both sites reuse these results.
+    if args.stage in ("all", "tutorials"):
+        run(
+            [python, "docs/mkdocs/tools/build_tutorials.py", "--execute-if-needed"],
+            cwd=clone, env=env,
+        )
+    if args.stage == "tutorials":
+        return 0
+    # English generates and validates the shared guide/homepage assets.
+    if args.stage in ("all", "english"):
+        run(
+            [
+                python,
+                "-m",
+                "mkdocs",
+                "build",
+                "--strict",
+                "-f",
+                "mkdocs.yml",
+                "-d",
+                args.workdir.resolve() / "english",
+            ],
+            cwd=clone,
+            env=env,
+        )
+    if args.stage == "english":
+        return 0
     mkdocs_root = clone / "docs/mkdocs"
     env["FATQAT_MKDOCS_ROOT"] = str(mkdocs_root)
     run(

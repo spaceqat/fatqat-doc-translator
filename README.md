@@ -42,6 +42,16 @@ builds the selected language. It reuses tutorial caches on repeated local builds
 Add `--require-complete` to reject untranslated segments before publishing.
 No translation service is called during an RTD build.
 
+Read the Docs runs preparation/dependency installation, tutorial execution,
+English asset generation, and the translated site as separate commands using
+`--stage prepare`, `--stage tutorials`, `--stage english`, and
+`--stage translated`, in that order. They share the same `--workdir` and locale.
+Local builds still run all stages by default. This keeps the completed stages'
+logs available if a later stage is killed; RTD saves command output on completion.
+It does not increase RTD's build time or memory limits. An inactivity notification
+alone does not identify a Python error: inspect the completed commands and the
+project's build notifications before diagnosing the failure.
+
 Translated headings preserve their English anchors. Navigation and tutorial
 categories are generated from the pinned source and use the same segment database.
 Examples remain executable and unchanged. Generated Python API docstrings and
