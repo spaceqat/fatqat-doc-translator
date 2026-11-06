@@ -77,7 +77,7 @@
 - id: 75d1d475e0d9210a
   en: '| Runtime | `numba` by default; `numpy` is also supported |'
   zh: '| 运行时 | 默认为 `numba`；也支持 `numpy` |'
-  status: machine
+  status: retired
 - id: 9afe2d589c7a9bea
   en: '| Noise | Ideal by default; a built-in reference model is available explicitly |'
   zh: '| 噪声 | 默认理想（无噪声）；可显式启用内置参考模型 |'
@@ -100,5 +100,5 @@
   status: machine
 - id: 15ec2ec4ac5a537c
   en: '| Measurement | — | `P(report 1 \| true 0) = 0.02` and `P(report 0 \| true 1) = 0.04` |'
-  zh: "| 测量 | — | `P(report 1 \\| true 0) = 0.02` 和 `P(report 0 \\| true 1) = 0.04` |"
+  zh: '| 测量 | — | `P(report 1 \| true 0) = 0.02` 和 `P(report 0 \| true 1) = 0.04` |'
   status: machine

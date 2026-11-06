@@ -29,6 +29,16 @@ the next example.
 [Performance and scaling](performance.md) explains when to compare it with
 the Numba runtime.
 
+To use NumPy for matrix simulation throughout a script or notebook, set the
+default before creating simulators. The initial default is Numba.
+
+```python
+# guide-test: skip
+import fatqat as fq
+
+fq.simulator.set_default_runtime("numpy")
+```
+
 ## Choose a simulation method
 
 Set `method` to choose how the simulator represents the state:

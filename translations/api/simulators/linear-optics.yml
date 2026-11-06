@@ -1,0 +1,36 @@
+- id: 24a37eaf20a2a41e
+  en: LOSimulator
+  zh: ''
+  status: pending
+- id: 9ac80e2eeb6f6fcc
+  en: '[`LOSimulator`][fatqat.simulator.LOSimulator] is a [`Simulator`](../simulator.md) for Programs with optical modes. It runs, returns results, and handles noise and sweeps like `Simulator`, except as listed below. For a worked example, see [Simulate linear optics](../../guide/linear-optics.md).'
+  zh: ''
+  status: pending
+- id: bb075b3e25ea22b6
+  en: '**Differences from `Simulator`**'
+  zh: ''
+  status: pending
+- id: 48db188c37d058f6
+  en: '| Topic | `LOSimulator` |'
+  zh: ''
+  status: pending
+- id: f0815e455eeb8172
+  en: '| Registers | Also accepts [`ModeRegister`][fatqat.ModeRegister] and [`CountRegister`][fatqat.CountRegister]; `Simulator` rejects them |'
+  zh: ''
+  status: pending
+- id: 7ccd76781c55737a
+  en: '| Methods | Adds `"fixed_photon_state"`, the default |'
+  zh: ''
+  status: pending
+- id: c2be93767fa5a52f
+  en: '| `simulation_config` | Adds `"cutoff"` |'
+  zh: ''
+  status: pending
+- id: ee698140cfa0afbf
+  en: '| [`Estimator`][fatqat.Estimator] | On a mode, accepts [`NumberOperator`][fatqat.observable.NumberOperator] and [`Projector`][fatqat.observable.Projector] up to level `cutoff`; Pauli operators raise at any cutoff |'
+  zh: ''
+  status: pending
+- id: f325511225173275
+  en: '| Noise selectors | Select modes by device label; a `ModeRegister` reference is not supported |'
+  zh: ''
+  status: pending
