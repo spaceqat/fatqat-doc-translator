@@ -15,6 +15,14 @@ import translate
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def default_locale():
+    explicit = os.environ.get("FATQAT_LOCALE")
+    if explicit:
+        return explicit
+    language = os.environ.get("READTHEDOCS_LANGUAGE", "zh").lower().split("-")[0]
+    return language if language in ("zh", "ko") else "zh"
+
+
 def run(command, **kwargs):
     print("+", " ".join(map(str, command)), flush=True)
     subprocess.run(list(map(str, command)), check=True, **kwargs)
@@ -89,7 +97,7 @@ def generate_config(clone, canonical_url, locale="zh"):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True)
-    parser.add_argument("--locale", choices=("zh", "ko"), default=os.environ.get("FATQAT_LOCALE", "zh"))
+    parser.add_argument("--locale", choices=("zh", "ko"), default=default_locale())
     parser.add_argument("--workdir", type=Path, default=ROOT / ".build")
     parser.add_argument("--upstream-url", default=upstream_config()["repository"])
     parser.add_argument("--site-url", default="http://127.0.0.1:8767/")
@@ -102,6 +110,7 @@ def main():
     args = parser.parse_args()
     locale = args.locale
     translate.configure_locale(locale)
+    print(f"Build locale: {locale}; stage: {args.stage}", flush=True)
     output = Path(args.output).resolve()
     if output == ROOT or output in ROOT.parents or (output / ".git").exists():
         raise ValueError("Output must be a dedicated build directory")

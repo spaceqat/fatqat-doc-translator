@@ -4,8 +4,10 @@
 
 The same repository now builds Korean with `--locale ko`. Create a separate
 Read the Docs project for Korean, using this repository and the same version
-branches. Set its language to Korean and set the project environment variable
-`FATQAT_LOCALE=ko`; leave the Chinese project's locale unset (default `zh`).
+branches. Set its language to Korean. The build reads RTD's
+`READTHEDOCS_LANGUAGE` automatically, so no custom locale variable is required.
+An explicit `--locale` takes precedence over `FATQAT_LOCALE`, which in turn
+overrides the RTD language. Local builds default to Chinese (`zh`).
 Add the Korean project to the English parent project's Translations settings.
 RTD supplies each project's canonical language/version URL. The shared build
 configuration requires complete translations before producing a published site.

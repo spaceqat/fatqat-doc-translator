@@ -14,6 +14,19 @@ import translate
 
 
 class BuildStageTests(unittest.TestCase):
+    def test_locale_defaults_use_rtd_language_and_honor_custom_override(self):
+        for environment, expected in (
+            ({}, "zh"),
+            ({"READTHEDOCS_LANGUAGE": "ko"}, "ko"),
+            ({"READTHEDOCS_LANGUAGE": "zh-cn"}, "zh"),
+            ({"READTHEDOCS_LANGUAGE": "en"}, "zh"),
+            ({"READTHEDOCS_LANGUAGE": "ko", "FATQAT_LOCALE": "zh"}, "zh"),
+        ):
+            with self.subTest(environment=environment), patch.dict(
+                "os.environ", environment, clear=True
+            ):
+                self.assertEqual(inject_build.default_locale(), expected)
+
     def setUp(self):
         self.stack = ExitStack()
         self.addCleanup(self.stack.close)
