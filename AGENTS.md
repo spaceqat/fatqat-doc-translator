@@ -13,7 +13,7 @@ same translate/preserve boundaries and human-review rules apply to both.
 
 ## What is source of truth (and what is not)
 
-- `translations/**.yml` — THE source of truth. One file per English page;
+- `translations-zh/**.yml` — THE source of truth. One file per English page;
   one entry per prose segment: `{id, en, zh, status}`.
 - `upstream-docs/` + `UPSTREAM_COMMIT` — a machine-managed snapshot of
   upstream English docs. Never edit by hand; only `tools/sync_upstream.py`
@@ -30,7 +30,7 @@ same translate/preserve boundaries and human-review rules apply to both.
    stay as `status: retired` in the same file.
 3. Translate every `pending` entry: fill `zh:`, set `status: machine`.
    Follow `tools/TRANSLATE_PROMPT.md` (the prompt contract),
-   `translations/STYLE.md` (style rules), and `translations/glossary.yml`
+   `translations-zh/STYLE.md` (style rules), and `translations-zh/glossary.yml`
    (fixed terminology). When a retired entry's English overlaps the new
    English, reuse its `zh` phrasing — updates should read as minimal
    revisions, not fresh translations.
@@ -64,7 +64,7 @@ same translate/preserve boundaries and human-review rules apply to both.
 From the repo root:
 
 ```sh
-python -c "import sys,yaml,pathlib; sys.path.insert(0,'tools'); import translate; p=pathlib.Path('translations/<FILE>'); d=yaml.safe_load(p.read_text(encoding='utf-8')); assert all(translate.segment_id(e['en'])==e['id'] for e in d); assert not [e for e in d if e['status']=='pending']; print(len(d),'ok')"
+python -c "import sys,yaml,pathlib; sys.path.insert(0,'tools'); import translate; p=pathlib.Path('translations-zh/<FILE>'); d=yaml.safe_load(p.read_text(encoding='utf-8')); assert all(translate.segment_id(e['en'])==e['id'] for e in d); assert not [e for e in d if e['status']=='pending']; print(len(d),'ok')"
 ```
 
 ## Build (usually not the agent's job)

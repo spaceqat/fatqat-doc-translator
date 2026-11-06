@@ -1,6 +1,6 @@
 """Maintain generated documentation locales from the translation database.
 
-The English tree is canonical. Chinese prose is stored in ``translations/``;
+The English tree is canonical. Chinese prose is stored in ``translations-zh/``;
 Korean prose is stored in ``translations-ko/``. Each locale's page tree is
 rendered from its database, never authored separately.
 
@@ -31,7 +31,7 @@ import yaml
 from site_config import source_strings
 
 # The tool runs in two contexts. Standalone (this repository): sources live in
-# upstream-docs/ and the database in translations/, both beside tools/.
+# upstream-docs/ and the database in translations-zh/, both beside tools/.
 # Injected (copied to docs/mkdocs/tools/ inside an upstream clone by
 # inject_build.py): everything resolves relative to docs/mkdocs/ as upstream
 # expects. The environment overrides let one file serve both without edits.
@@ -45,9 +45,9 @@ MKDOCS_ROOT = Path(os.environ.get("FATQAT_MKDOCS_ROOT", _DEFAULT_ROOT))
 TRANSLATIONS_ROOT = Path(
     os.environ.get("FATQAT_TRANSLATIONS_ROOT", "")
     or (
-        HERE.parent / "translations"
-        if (HERE.parent / "translations").is_dir()
-        else MKDOCS_ROOT / "translations"
+        HERE.parent / "translations-zh"
+        if (HERE.parent / "translations-zh").is_dir()
+        else MKDOCS_ROOT / "translations-zh"
     )
 )
 GLOSSARY = TRANSLATIONS_ROOT / "glossary.yml"
@@ -102,7 +102,7 @@ def configure_locale(locale: str) -> None:
     TARGET_LOCALE = locale
     TRANSLATIONS_ROOT = Path(
         os.environ.get("FATQAT_TRANSLATIONS_ROOT")
-        or HERE.parent / ("translations" if locale == "zh" else "translations-ko")
+        or HERE.parent / ("translations-zh" if locale == "zh" else "translations-ko")
     )
     GLOSSARY = TRANSLATIONS_ROOT / "glossary.yml"
 

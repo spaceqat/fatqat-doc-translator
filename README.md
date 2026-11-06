@@ -5,7 +5,7 @@ Chinese and Korean. Both editions use the same pinned English source and preserv
 executable examples, API identifiers, generated docstrings, and plot labels.
 English sources stay upstream.
 
-Translations live in `translations/` as segment records (`id`, `en`, `zh`, `status`).
+Chinese translations live in `translations-zh/` as segment records (`id`, `en`, `zh`, `status`).
 Korean records live in `translations-ko/` with `ko` in place of `zh`.
 The extractor reuses unchanged translations. New English text becomes `pending`;
 Codex fills the Chinese text and marks it `machine`. Only a human marks an entry
@@ -64,7 +64,7 @@ with a link to this repository's GitHub Issues for translation feedback.
 - `upstream.yml`: canonical repository, main ref, release-tag pattern, English URL.
 - `UPSTREAM_REF` / `UPSTREAM_COMMIT`: exact source version for this branch.
 - `upstream-docs/`: machine-managed snapshot; update with `tools/sync_upstream.py`.
-- `translations/`: authored translation database and terminology/style rules.
+- `translations-zh/`: Chinese database, terminology, and style rules.
 - `translations-ko/`: Korean database, terminology, and style rules.
 - `tools/`: extraction, validation, rendering, and build tools.
 - `overlay/mkdocs.zh.yml`: minimal Chinese theme settings; navigation is generated.

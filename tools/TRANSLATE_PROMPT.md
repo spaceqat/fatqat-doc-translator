@@ -1,20 +1,20 @@
 Translate the pending documentation segments in this repository.
 
-Select the requested language before starting. Chinese uses `translations/`
+Select the requested language before starting. Chinese uses `translations-zh/`
 and the `zh` field. Korean uses `translations-ko/` and the `ko` field; read its
 own STYLE.md and glossary.yml and pass `--locale ko` before the subcommand.
 The preservation and status rules below apply identically to Korean. Translate
 from the canonical English, not through the Chinese translation.
 
 You are working in the fatqat-doc-translator repository. The translation
-database lives under `translations/`: one YAML file per English page, one
+database lives under `translations-zh/`: one YAML file per English page, one
 entry per prose segment with keys `id`, `en`, `zh`, `status`.
 
 Do exactly this:
 
-1. Read `translations/STYLE.md` (binding style contract) and
-   `translations/glossary.yml` (fixed terminology) first.
-2. Find every entry with `status: pending` across `translations/**/*.yml`.
+1. Read `translations-zh/STYLE.md` (binding style contract) and
+   `translations-zh/glossary.yml` (fixed terminology) first.
+2. Find every entry with `status: pending` across `translations-zh/**/*.yml`.
 3. For each: write a high-quality Simplified Chinese translation of `en` into
    `zh` (one line, no newlines), then set `status: machine`. If a retired
    entry elsewhere in the same file carries similar English text, use its `zh`

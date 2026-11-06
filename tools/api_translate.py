@@ -23,7 +23,7 @@ import urllib.request
 import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-TRANSLATIONS = REPO_ROOT / "translations"
+TRANSLATIONS = REPO_ROOT / "translations-zh"
 
 SYSTEM_PROMPT = """You translate quantum-computing SDK documentation from English to Simplified Chinese.
 Rules (binding):
