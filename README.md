@@ -67,6 +67,5 @@ name and keep a separate source pin and translations. Read the Docs handles the
 language/version URLs; each language is built directly at its version root.
 
 See [ONBOARDING.md](ONBOARDING.md) for RTD configuration, version handling, and the
-subscription-based scheduling proposal. Recurring execution and automatic
-publication are awaiting explicit approval; the legacy GitHub sync workflow has
-not been replaced or enabled by this setup work.
+subscription-based scheduling proposal. The legacy GitHub sync workflow has been
+removed. Recurring execution and automatic publication are not enabled.

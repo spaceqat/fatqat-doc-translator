@@ -26,9 +26,9 @@ docstrings and figure labels remain English, as in the Chinese edition.
 The English Read the Docs project is `fatqat`:
 https://fatqat.readthedocs.io/en/latest/.
 
-The local build and version pinning are implemented. The replacement scheduler
-and automatic publisher are not enabled yet. The existing `sync.yml` predates
-this setup; do not use its subscription-credential cache for this public repo.
+The local build and version pinning are implemented. The scheduled GitHub
+sync workflow has been removed; updates no longer create branches automatically.
+The replacement scheduler and automatic publisher are not enabled yet.
 
 ## Hosting
 
