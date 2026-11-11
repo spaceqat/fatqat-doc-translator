@@ -154,3 +154,95 @@
   en: 'To work with the latest source instead, clone the repository:'
   zh: 如果希望使用最新源码，请克隆仓库：
   status: machine
+- id: 2bd7cf1b318603c9
+  en: If you are new to Python, install Python 3.12 or later from [python.org](https://www.python.org/downloads/). Open PowerShell on Windows, or Terminal on macOS or Linux. Enter the following commands in that terminal, one at a time.
+  zh: 如果你刚开始使用 Python，请先从 [python.org](https://www.python.org/downloads/) 安装 Python 3.12 或更高版本。在 Windows 上打开 PowerShell，在 macOS 或 Linux 上打开终端，然后逐条输入以下命令。
+  status: machine
+- id: 2b03acbe981a9619
+  en: 'Create a folder for your examples:'
+  zh: 为示例创建一个文件夹：
+  status: machine
+- id: 24c88402b82cef72
+  en: 'Create and activate a virtual environment for this folder:'
+  zh: 为这个文件夹创建并激活虚拟环境：
+  status: machine
+- id: 6305e431dbd06a81
+  en: After activation, `python` uses this environment. Continue with the installation command below. When you open a new terminal, return to this folder and activate the environment again; you do not need to reinstall FatQat.
+  zh: 激活后，`python` 就会使用这个环境。接着运行下方的安装命令。每次打开新终端时，回到这个文件夹并重新激活环境即可，无需重新安装 FatQat。
+  status: machine
+- id: dc705132b95a8735
+  en: Save and run a Python file
+  zh: 保存并运行 Python 文件
+  status: machine
+- id: 1df35e1c1e518c9b
+  en: Create a file named `first_program.py` in your `fatqat-learning` folder using a text editor. Copy the complete example below into the file and save it. Python code belongs in this file; terminal commands belong in the terminal. Avoid naming the file `fatqat.py` or accidentally saving it as `first_program.py.txt`.
+  zh: 用文本编辑器在 `fatqat-learning` 文件夹中创建 `first_program.py`，将下方完整示例复制进去并保存。Python 代码写在这个文件里，终端命令则在终端中输入。不要将文件命名为 `fatqat.py`，也要注意别误存为 `first_program.py.txt`。
+  status: machine
+- id: 783c792f4a6dece2
+  en: 'This small example flips one qubit from `0` to `1`, measures it, and prints the counts:'
+  zh: 这个简单示例将一个量子比特从 `0` 翻转到 `1`，然后测量并打印测量结果的计数：
+  status: machine
+- id: 8d4a5c3753c905be
+  en: 'In your terminal, with the environment activated and the current folder set to `fatqat-learning`, run:'
+  zh: 在终端中激活环境，并确认当前文件夹为 `fatqat-learning`，然后运行：
+  status: machine
+- id: 5727b088fda04d11
+  en: 'The output is `{''1'': 100}`. After editing the file, save it and run the same command again.'
+  zh: '输出为 `{''1'': 100}`。修改文件后，保存并再次运行同一条命令即可。'
+  status: machine
+- id: a6dbebf6c7070411
+  en: Run with VS Code on Windows
+  zh: 在 Windows 上用 VS Code 运行
+  status: machine
+- id: a3573474bb83b3e5
+  en: 'You can also run the file with a button:'
+  zh: 也可以点击按钮来运行文件：
+  status: machine
+- id: 65dc7b7ae6d3f8f2
+  en: Install [VS Code](https://code.visualstudio.com/) and Microsoft's Python extension.
+  zh: 安装 [VS Code](https://code.visualstudio.com/) 和 Microsoft 的 Python 扩展。
+  status: machine
+- id: 1f553ef79c563ec6
+  en: Choose **File > Open Folder**, open `fatqat-learning`, and open `first_program.py`.
+  zh: 选择 **文件 > 打开文件夹**，打开 `fatqat-learning`，再打开 `first_program.py`。
+  status: machine
+- id: fe068dfa603ffa7d
+  en: 'Press `Ctrl+Shift+P`, choose **Python: Select Interpreter**, and select this folder''s `.venv`. If it is not listed, enter the path to `.venv\Scripts\python.exe` inside your learning folder.'
+  zh: '按 `Ctrl+Shift+P`，选择 **Python: 选择解释器**，然后选择这个文件夹中的 `.venv`。如果列表中没有显示它，输入学习文件夹下 `.venv\Scripts\python.exe` 的路径。'
+  status: machine
+- id: a71da6e1fc5708f6
+  en: Save the file. Use the triangle button at the top right of the editor and choose **Run Python File in Terminal**.
+  zh: 保存文件。点击编辑器右上角的三角形按钮，选择 **在终端中运行 Python 文件**。
+  status: machine
+- id: 3456123a0f424dce
+  en: The output appears in the terminal panel. For later runs, edit, save, and click the same button.
+  zh: 输出会显示在终端面板中。之后每次修改并保存文件，再点击同一个按钮即可运行。
+  status: machine
+- id: c2aea16c107bee0f
+  en: If the example does not run
+  zh: 示例无法运行时
+  status: machine
+- id: ac98bc5440ac8c33
+  en: '**Python cannot find the file:** check that your terminal is in the folder containing `first_program.py`.'
+  zh: '**Python 找不到文件：** 检查终端的当前文件夹是否包含 `first_program.py`。'
+  status: machine
+- id: 2d5f3b88cc497441
+  en: '**`No module named fatqat`:** activate the environment where you installed FatQat. In VS Code, check the selected Python interpreter.'
+  zh: '**`No module named fatqat`：** 激活安装了 FatQat 的环境。如果使用 VS Code，检查所选的 Python 解释器。'
+  status: machine
+- id: 5d5781303af90017
+  en: '**Ubuntu reports that `venv` is unavailable:** for the Python 3.12 supplied with Ubuntu 24.04, install `python3.12-venv` with `sudo apt install python3.12-venv`, then create the environment again. Other releases may use a different package name.'
+  zh: '**Ubuntu 提示 `venv` 不可用：** 如果使用 Ubuntu 24.04 自带的 Python 3.12，先运行 `sudo apt install python3.12-venv` 安装 `python3.12-venv`，再重新创建环境。其他发行版本的软件包名称可能不同。'
+  status: machine
+- id: 1fddcb5ab04ee671
+  en: '**PowerShell blocks the activation script:** you can use the environment without activating it. Install with `.\.venv\Scripts\python.exe -m pip install fatqat`, then run `.\.venv\Scripts\python.exe first_program.py`.'
+  zh: '**PowerShell 阻止运行激活脚本：** 无需激活也能使用这个环境。先用 `.\.venv\Scripts\python.exe -m pip install fatqat` 安装，再运行 `.\.venv\Scripts\python.exe first_program.py`。'
+  status: machine
+- id: 941ddc5fd774a432
+  en: If you still need help, open a [GitHub issue](https://github.com/spaceqat/fatqat/issues) with your operating system, Python version, the command you ran, and the first error message.
+  zh: 如果仍需帮助，请提交 [GitHub issue](https://github.com/spaceqat/fatqat/issues)，附上操作系统、Python 版本、运行的命令和第一条错误信息。
+  status: machine
+- id: 23ff14ee431abf8b
+  en: The rest of this page uses a Bell pair to explain Programs, drawing, and simulation. Examples beginning with `>>>` show an interactive Python session. To put those examples in a `.py` file, omit the `>>>` and `...` prompts and any shown output.
+  zh: 本页接下来用一对 Bell 态量子比特介绍 Program、电路绘制和模拟。以 `>>>` 开头的示例展示的是 Python 交互式会话。要把这些示例放进 `.py` 文件，请去掉 `>>>` 和 `...` 提示符以及示例中的输出。
+  status: machine
