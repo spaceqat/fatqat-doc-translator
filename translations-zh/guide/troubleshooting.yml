@@ -137,7 +137,7 @@
 - id: f7ef98d3e7318315
   en: 'Runs contain only the data that the selected execution method produced and that you requested. Inspect the result before choosing an accessor:'
   zh: "Result 只保存所选方法能够产生、且本次运行请求了的数据。调用访问方法前，先检查结果包含哪些字段："
-  status: machine
+  status: retired
 - id: 824dcd52fa1db4ef
   en: '[Ask questions of a run](interpret-results.md) connects each output to the question it answers.'
   zh: '[向一次运行提问](interpret-results.md)把每个输出与它所回答的问题对应起来。'
@@ -193,4 +193,8 @@
 - id: b7919bcf68888606
   en: Displayed count strings and tuple keys both put classical slot 0 first, on the left or at tuple position 0. When local dimensions differ, tuple keys avoid string-token parsing; native strings use commas if any classical dimension is at least 10.
   zh: 显示的计数字符串和元组键都将经典槽位 0 放在最前面，即字符串最左侧或元组位置 0。局域维数不同时，元组键可以避免解析字符串中的数位；若任一经典维数不小于 10，原生字符串使用逗号分隔。
+  status: machine
+- id: fcf57fc7df62696f
+  en: 'Runs contain only the data that the selected simulation method produced and that you requested. Inspect the result before choosing an accessor:'
+  zh: Result 只保存所选模拟方法能够产生、且本次运行请求了的数据。调用访问方法前，先检查结果包含哪些字段：
   status: machine

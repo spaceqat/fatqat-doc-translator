@@ -241,8 +241,16 @@
 - id: db46ed8513071d05
   en: '| Running a program | Whether references belong to the program, device labels belong to the backend''s legal device universe, selectors resolve without conflicts, and dimensions and the chosen execution method are compatible | Usually [`BackendValidationError`][fatqat.errors.BackendValidationError] or [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
   zh: '| 运行程序 | 引用是否属于程序，设备标签是否属于后端的合法设备集合，选择器解析是否无冲突，以及维数和所选执行方法是否兼容 | 通常为 [`BackendValidationError`][fatqat.errors.BackendValidationError] 或 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
-  status: machine
+  status: retired
 - id: 61f5011983f1ebd5
   en: A legal selector can still match nothing in a run; in that case, it is a no-op. Some checks require a concrete program, resource layout, and execution method.
   zh: 合法选择器在某次运行中仍可能没有匹配项，此时不产生任何作用。一些检查需要具体的程序、资源布局和执行方法。
+  status: retired
+- id: 973a57506c236dc1
+  en: '| Running a program | Whether references belong to the program, device labels belong to the backend''s legal device universe, selectors resolve without conflicts, and dimensions and the chosen simulation method are compatible | Usually [`BackendValidationError`][fatqat.errors.BackendValidationError] or [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
+  zh: '| 运行程序 | 引用是否属于程序，设备标签是否属于后端的合法设备集合，选择器解析是否无冲突，以及维数和所选模拟方法是否兼容 | 通常为 [`BackendValidationError`][fatqat.errors.BackendValidationError] 或 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
+  status: machine
+- id: 466065c4e74367e3
+  en: A legal selector can still match nothing in a run; in that case, it is a no-op. Some checks require a concrete program, resource layout, and simulation method.
+  zh: 合法选择器在某次运行中仍可能没有匹配项，此时不产生任何作用。一些检查需要具体的程序、资源布局和模拟方法。
   status: machine

@@ -205,11 +205,11 @@
 - id: db46ed8513071d05
   en: '| Running a program | Whether references belong to the program, device labels belong to the backend''s legal device universe, selectors resolve without conflicts, and dimensions and the chosen execution method are compatible | Usually [`BackendValidationError`][fatqat.errors.BackendValidationError] or [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
   ko: '| 프로그램 실행 | 참조가 프로그램에 속하는지, 장치 레이블이 백엔드의 허용 집합에 속하는지, 선택자가 충돌 없이 해석되는지, 차원과 선택한 실행 방법이 호환되는지 | 일반적으로 [`BackendValidationError`][fatqat.errors.BackendValidationError] 또는 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
-  status: machine
+  status: retired
 - id: 61f5011983f1ebd5
   en: A legal selector can still match nothing in a run; in that case, it is a no-op. Some checks require a concrete program, resource layout, and execution method.
   ko: 유효한 선택자라도 한 실행에서 아무것도 매칭하지 않을 수 있습니다. 이 경우 아무 동작도 하지 않습니다. 일부 검사는 구체적인 프로그램, 자원 레이아웃, 실행 방법이 있어야 가능합니다.
-  status: machine
+  status: retired
 - id: b65f6e28167e564a
   en: Validate backend support
   ko: 백엔드 지원 검증하기
@@ -221,4 +221,12 @@
 - id: a3f076377a0c71d6
   en: Program- and layout-dependent checks still happen when the model is used.
   ko: 프로그램과 레이아웃에 의존하는 검사는 모델을 실제로 사용할 때 수행합니다.
+  status: machine
+- id: 973a57506c236dc1
+  en: '| Running a program | Whether references belong to the program, device labels belong to the backend''s legal device universe, selectors resolve without conflicts, and dimensions and the chosen simulation method are compatible | Usually [`BackendValidationError`][fatqat.errors.BackendValidationError] or [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
+  ko: '| 프로그램 실행 | 참조가 프로그램에 속하는지, 장치 레이블이 백엔드의 허용 집합에 속하는지, 선택자가 충돌 없이 해석되는지, 차원과 선택한 시뮬레이션 방법이 호환되는지 | 일반적으로 [`BackendValidationError`][fatqat.errors.BackendValidationError] 또는 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
+  status: machine
+- id: 466065c4e74367e3
+  en: A legal selector can still match nothing in a run; in that case, it is a no-op. Some checks require a concrete program, resource layout, and simulation method.
+  ko: 유효한 선택자라도 한 실행에서 아무것도 매칭하지 않을 수 있습니다. 이 경우 아무 동작도 하지 않습니다. 일부 검사는 구체적인 프로그램, 자원 레이아웃, 시뮬레이션 방법이 있어야 가능합니다.
   status: machine

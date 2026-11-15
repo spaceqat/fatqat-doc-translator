@@ -69,7 +69,7 @@
 - id: 06bc25cc87da7e9a
   en: Use the calibrated path to study the supplied gate recipe. Use direct controls when the waveform itself is the experiment; the two forms can also coexist in one Program. The [transmon emulator API](../api/pulse-emulator.md) lists the supported units, gates, noise forms, and execution methods.
   zh: 使用校准路径来研究所提供的门配方。当波形本身就是实验对象时使用直接控制；两种形式也可以共存于同一个 Program 中。[transmon 仿真器 API](../api/pulse-emulator.md)列出了受支持的单位、门、噪声形式和执行方法。
-  status: machine
+  status: retired
 - id: caacdbf1f285f7cf
   en: 'The packaged document describes one physical transmon. It is a simulation baseline, not a live calibration from a named device:'
   zh: "内置模型文档描述一个物理 transmon，用于建立模拟基准，不代表某台实际设备的当前校准："
@@ -209,4 +209,8 @@
 - id: 0806d9b02284b8fc
   en: For a complete amplitude scan, parameter selection, and checks on other input states, follow [Calibrating a quantum gate](../tutorials/pulse-calibration.md).
   zh: 完整的振幅扫描、参数选择以及其他输入态的检查见[校准量子门](../tutorials/pulse-calibration.md)。
+  status: machine
+- id: 1bc09d2a36d1e372
+  en: Use the calibrated path to study the supplied gate recipe. Use direct controls when the waveform itself is the experiment; the two forms can also coexist in one Program. The [transmon emulator API](../api/pulse-emulator.md) lists the supported units, gates, noise forms, and simulation methods.
+  zh: 使用校准路径来研究所提供的门配方。当波形本身就是实验对象时使用直接控制；两种形式也可以共存于同一个 Program 中。[transmon 仿真器 API](../api/pulse-emulator.md)列出了受支持的单位、门、噪声形式和模拟方法。
   status: machine

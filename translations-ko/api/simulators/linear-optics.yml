@@ -25,7 +25,7 @@
 - id: c2be93767fa5a52f
   en: '| `simulation_config` | Adds `"cutoff"` |'
   ko: '| `simulation_config` | `"cutoff"` 추가 |'
-  status: machine
+  status: retired
 - id: ee698140cfa0afbf
   en: '| [`Estimator`][fatqat.Estimator] | On a mode, accepts [`NumberOperator`][fatqat.observable.NumberOperator] and [`Projector`][fatqat.observable.Projector] up to level `cutoff`; Pauli operators raise at any cutoff |'
   ko: '| [`Estimator`][fatqat.Estimator] | 모드에서는 `cutoff` 준위까지의 [`NumberOperator`][fatqat.observable.NumberOperator]와 [`Projector`][fatqat.observable.Projector]를 허용. Pauli 연산자는 절단값과 관계없이 오류 발생 |'
@@ -33,4 +33,8 @@
 - id: f325511225173275
   en: '| Noise selectors | Select modes by device label; a `ModeRegister` reference is not supported |'
   ko: '| 잡음 선택자 | 장치 라벨로 모드 선택. `ModeRegister` 참조는 미지원 |'
+  status: machine
+- id: 22823497e2d96b0a
+  en: '| `execution_config` | Adds `"cutoff"` |'
+  ko: '| `execution_config` | `"cutoff"` 추가 |'
   status: machine

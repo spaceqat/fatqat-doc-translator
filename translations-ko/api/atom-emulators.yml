@@ -53,11 +53,11 @@
 - id: ae39b92e35ae7343
   en: The `run()` method has the signature `(program, *, shots=1024, resource_layout=None, simulation_config=None, result_config=None)`. The optional layout must still cover every arrangement site exactly once; the default uses declaration order. Validation errors are raised directly from `run()` before a job is returned. A failure after execution starts is represented by a failed job, and `job.result()` raises [`BackendExecutionError`][fatqat.errors.BackendExecutionError].
   ko: '`run()`의 시그니처는 `(program, *, shots=1024, resource_layout=None, simulation_config=None, result_config=None)`입니다. 선택적으로 지정하는 배치 매핑도 모든 원자 위치를 정확히 한 번씩 포함해야 합니다. 기본값은 선언 순서입니다. 검증 오류는 Job을 반환하기 전에 `run()`에서 바로 발생합니다. 실행 시작 후의 실패는 실패한 Job에 기록되며, `job.result()`가 [`BackendExecutionError`][fatqat.errors.BackendExecutionError]를 발생시킵니다.'
-  status: machine
+  status: retired
 - id: 717899110983b6ec
   en: '`simulation_config` accepts the shared pulse controls plus an Atom2-specific Hamiltonian cutoff:'
   ko: '`simulation_config`에는 공통 펄스 제어 설정과 Atom2 전용 해밀토니안 거리 제한을 지정할 수 있습니다.'
-  status: machine
+  status: retired
 - id: 6b2cab5dcf5316ee
   en: '**Simulation configuration**'
   ko: '**시뮬레이션 설정**'
@@ -137,7 +137,7 @@
 - id: fbcd864ea91aae3d
   en: 'Measurement and potentially active Lindblad noise make a retained final state stochastic. In those cases, the default request returns counts when the program contains measurement and otherwise returns metadata only. Request a single seeded final state explicitly with `result_config={"final_state": True}`, `shots=1`, and `simulation_config={"seed": ...}`. Select `method="density_matrix"` for an exact supported Lindblad ensemble.'
   ko: '측정이나 작용 가능성이 있는 Lindblad 잡음이 있으면 저장되는 최종 상태는 확률적으로 결정됩니다. 이 경우 기본 설정은 프로그램에 측정이 있으면 counts를, 없으면 메타데이터만 반환합니다. 시드가 지정된 최종 상태 하나를 얻으려면 `result_config={"final_state": True}`, `shots=1`, `simulation_config={"seed": ...}`를 명시하세요. 지원되는 Lindblad 앙상블의 정확한 상태를 얻으려면 `method="density_matrix"`를 선택하세요.'
-  status: machine
+  status: retired
 - id: 50deee6556c299e3
   en: For unitary execution, construct the backend with `method="unitary"`, call `run()`, and retrieve the result with [`get_unitary`][fatqat.Result.get_unitary]. Unitary execution rejects measurement, reset, conditions, counts, and potentially active Lindblad evolution. There is no separate public propagator API.
   ko: 유니터리 실행은 백엔드를 `method="unitary"`로 생성한 뒤 `run()`을 호출하고 [`get_unitary`][fatqat.Result.get_unitary]로 결과를 읽습니다. 이 모드는 측정, 리셋, 조건, 카운트, 작용 가능성이 있는 Lindblad 시간 진화를 허용하지 않습니다. 별도의 공개 전파 연산자 API는 없습니다.
@@ -173,7 +173,7 @@
 - id: 6d502055303ba98a
   en: 'Set `interaction_cutoff` per run through `simulation_config`. The default `None` keeps every pair and preserves the complete `C6/R^6` Hamiltonian. A finite nonnegative cutoff keeps pairs whose Euclidean distance is at or below that value in `arrangement.distance_unit` (currently micrometres); `0.0` disables pair interactions. For a rectangular arrangement with scalar spacing, `simulation_config={"interaction_cutoff": arrangement.spacing}` keeps only horizontal and vertical nearest pairs. This is a numerical Hamiltonian truncation, not a physical blockade radius. One emulator can therefore be reused to compare several truncations without rebuilding its model or arrangement.'
   ko: '`simulation_config`를 통해 실행마다 `interaction_cutoff`를 지정합니다. 기본값 `None`은 모든 쌍을 유지해 전체 `C6/R^6` 해밀토니안을 보존합니다. 유한한 음이 아닌 값을 지정하면 유클리드 거리가 그 값 이하인 쌍만 유지하며, 단위는 `arrangement.distance_unit`(현재 마이크로미터)입니다. `0.0`은 쌍 상호작용을 끕니다. 스칼라 간격의 직사각형 배치에서 `simulation_config={"interaction_cutoff": arrangement.spacing}`는 가로와 세로의 최근접 쌍만 유지합니다. 이는 해밀토니안의 수치적 절단이며 물리적인 봉쇄 반경이 아닙니다. 따라서 모델이나 배치를 다시 만들지 않고 같은 에뮬레이터로 여러 절단값을 비교할 수 있습니다.'
-  status: machine
+  status: retired
 - id: 5558f6ca0291ac31
   en: Lindblad noise
   ko: Lindblad 잡음
@@ -197,4 +197,20 @@
 - id: c8e5998f6a3955c2
   en: API
   ko: API
+  status: machine
+- id: ce49c929949d348d
+  en: The `run()` method has the signature `(program, *, shots=1024, resource_layout=None, execution_config=None, result_config=None)`. The optional layout must still cover every arrangement site exactly once; the default uses declaration order. Validation errors are raised directly from `run()` before a job is returned. A failure after execution starts is represented by a failed job, and `job.result()` raises [`BackendExecutionError`][fatqat.errors.BackendExecutionError].
+  ko: '`run()`의 시그니처는 `(program, *, shots=1024, resource_layout=None, execution_config=None, result_config=None)`입니다. 선택적으로 지정하는 배치 매핑도 모든 원자 위치를 정확히 한 번씩 포함해야 합니다. 기본값은 선언 순서입니다. 검증 오류는 Job을 반환하기 전에 `run()`에서 바로 발생합니다. 실행 시작 후의 실패는 실패한 Job에 기록되며, `job.result()`가 [`BackendExecutionError`][fatqat.errors.BackendExecutionError]를 발생시킵니다.'
+  status: machine
+- id: e620de08c98e98e9
+  en: '`execution_config` accepts the shared pulse controls plus an Atom2-specific Hamiltonian cutoff:'
+  ko: '`execution_config`에는 공통 펄스 제어 설정과 Atom2 전용 해밀토니안 거리 제한을 지정할 수 있습니다.'
+  status: machine
+- id: 295e6fbda73e8fba
+  en: 'Measurement and potentially active Lindblad noise make a retained final state stochastic. In those cases, the default request returns counts when the program contains measurement and otherwise returns metadata only. Request a single seeded final state explicitly with `result_config={"final_state": True}`, `shots=1`, and `execution_config={"seed": ...}`. Select `method="density_matrix"` for an exact supported Lindblad ensemble.'
+  ko: '측정이나 작용 가능성이 있는 Lindblad 잡음이 있으면 저장되는 최종 상태는 확률적으로 결정됩니다. 이 경우 기본 설정은 프로그램에 측정이 있으면 counts를, 없으면 메타데이터만 반환합니다. 시드가 지정된 최종 상태 하나를 얻으려면 `result_config={"final_state": True}`, `shots=1`, `execution_config={"seed": ...}`를 명시하세요. 지원되는 Lindblad 앙상블의 정확한 상태를 얻으려면 `method="density_matrix"`를 선택하세요.'
+  status: machine
+- id: 7eb876f6cf99727d
+  en: 'Set `interaction_cutoff` per run through `execution_config`. The default `None` keeps every pair and preserves the complete `C6/R^6` Hamiltonian. A finite nonnegative cutoff keeps pairs whose Euclidean distance is at or below that value in `arrangement.distance_unit` (currently micrometres); `0.0` disables pair interactions. For a rectangular arrangement with scalar spacing, `execution_config={"interaction_cutoff": arrangement.spacing}` keeps only horizontal and vertical nearest pairs. This is a numerical Hamiltonian truncation, not a physical blockade radius. One emulator can therefore be reused to compare several truncations without rebuilding its model or arrangement.'
+  ko: '`execution_config`를 통해 실행마다 `interaction_cutoff`를 지정합니다. 기본값 `None`은 모든 쌍을 유지해 전체 `C6/R^6` 해밀토니안을 보존합니다. 유한한 음이 아닌 값을 지정하면 유클리드 거리가 그 값 이하인 쌍만 유지하며, 단위는 `arrangement.distance_unit`(현재 마이크로미터)입니다. `0.0`은 쌍 상호작용을 끕니다. 스칼라 간격의 직사각형 배치에서 `execution_config={"interaction_cutoff": arrangement.spacing}`는 가로와 세로의 최근접 쌍만 유지합니다. 이는 해밀토니안의 수치적 절단이며 물리적인 봉쇄 반경이 아닙니다. 따라서 모델이나 배치를 다시 만들지 않고 같은 에뮬레이터로 여러 절단값을 비교할 수 있습니다.'
   status: machine

@@ -61,7 +61,7 @@
 - id: 072ebeeb3ecb0bee
   en: All controls inside one `PulseOperation` share its interval; `start_offset` can move an individual waveform within that interval. Between operations, the schedule preserves source order for blocks that use the same physical resource and may overlap independent blocks. Choose `"ASAP"` or `"ALAP"` through `simulation_config` when that placement matters.
   ko: 하나의 `PulseOperation` 안에 있는 모든 제어는 해당 연산의 시간 구간을 공유합니다. `start_offset`으로 그 구간 안에서 개별 파형의 위치를 옮길 수 있습니다. 서로 다른 연산 사이에서는 같은 물리 자원을 사용하는 블록의 소스 순서를 유지하며, 독립적인 블록은 겹칠 수 있습니다. 배치 방식이 중요하다면 `simulation_config`에서 `"ASAP"` 또는 `"ALAP"`를 선택하세요.
-  status: machine
+  status: retired
 - id: a9369d5400c85395
   en: Drift and background continuous noise evolve throughout elapsed time. On an emulator that supports classical conditions, a false condition can skip a control block without deleting its duration, so the model still evolves during the interval. This lets you study the effect of elapsed time even when no control is active.
   ko: 드리프트와 배경 연속 잡음은 경과 시간 전체에 걸쳐 작용합니다. 고전 조건을 지원하는 에뮬레이터에서 조건이 거짓이면 제어 블록을 건너뛰더라도 해당 시간 구간은 남을 수 있으므로, 그동안 모델의 상태는 계속 변합니다. 이를 통해 제어가 활성화되지 않은 동안에도 경과 시간이 미치는 영향을 연구할 수 있습니다.
@@ -73,4 +73,12 @@
 - id: 966d30c7aad11f15
   en: Continue with [Transmon emulation](transmon-emulation.md) or [Neutral-atom emulation](neutral-atom-emulation.md). For pulse object, schedule, execution-method, and model contracts, use the [pulse-control API](../api/pulse-control/index.md) and [emulator API](../api/emulators/index.md).
   ko: '[Transmon 에뮬레이션](transmon-emulation.md) 또는 [중성 원자 에뮬레이션](neutral-atom-emulation.md)으로 이어서 읽어보세요. 펄스 객체, 실행 일정, 실행 방식, 모델의 정확한 규약은 [펄스 제어 API](../api/pulse-control/index.md)와 [에뮬레이터 API](../api/emulators/index.md)를 참고하세요.'
+  status: retired
+- id: 662a021e3ee25783
+  en: All controls inside one `PulseOperation` share its interval; `start_offset` can move an individual waveform within that interval. Between operations, the schedule preserves source order for blocks that use the same physical resource and may overlap independent blocks. Choose `"ASAP"` or `"ALAP"` through `execution_config` when that placement matters.
+  ko: 하나의 `PulseOperation` 안에 있는 모든 제어는 해당 연산의 시간 구간을 공유합니다. `start_offset`으로 그 구간 안에서 개별 파형의 위치를 옮길 수 있습니다. 서로 다른 연산 사이에서는 같은 물리 자원을 사용하는 블록의 소스 순서를 유지하며, 독립적인 블록은 겹칠 수 있습니다. 배치 방식이 중요하다면 `execution_config`에서 `"ASAP"` 또는 `"ALAP"`를 선택하세요.
+  status: machine
+- id: 14b295a7d9d48b5b
+  en: Continue with [Transmon emulation](transmon-emulation.md) or [Neutral-atom emulation](neutral-atom-emulation.md). For pulse object, schedule, simulation-method, and model contracts, use the [pulse-control API](../api/pulse-control/index.md) and [emulator API](../api/emulators/index.md).
+  ko: '[Transmon 에뮬레이션](transmon-emulation.md) 또는 [중성 원자 에뮬레이션](neutral-atom-emulation.md)으로 이어서 읽어보세요. 펄스 객체, 실행 일정, 시뮬레이션 방법, 모델의 정확한 규약은 [펄스 제어 API](../api/pulse-control/index.md)와 [에뮬레이터 API](../api/emulators/index.md)를 참고하세요.'
   status: machine

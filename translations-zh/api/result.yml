@@ -89,7 +89,7 @@
 - id: c9200d2e6e622b6d
   en: Most other accessors return the value stored in the result. Copy arrays or dictionaries before changing them if you need to preserve the original. Metadata from a direct backend run records the normalized `simulation_config` and `result_config`. Backend extensions may add fields. Pulse-emulator metadata records `runtime="qutip"` and a `runtime_details` mapping with `solver` and `solver_options`. A run that invokes multiple solvers reports their names as a tuple. These numerical-runtime details are informational. Keep the model, arrangement, controls, and application metadata alongside a result when they are needed to reproduce a physical run.
   zh: 其他大多数访问方法返回结果中存储的值。如果需要保留原始内容，请在修改前复制数组或字典。直接后端运行的元数据记录规范化的 `simulation_config` 和 `result_config`。后端扩展可能添加字段。脉冲仿真器元数据记录 `runtime="qutip"`，以及包含 `solver` 和 `solver_options` 的 `runtime_details` 映射。调用多个求解器的运行以元组报告其名称。这些数值运行时细节仅供参考。如果复现物理运行需要模型、排列、控制和应用元数据，请将它们与结果一起保存。
-  status: machine
+  status: retired
 - id: 9a259a2e36fba14e
   en: When a result includes a state or operator, `metadata["state_axes"]` lists its physical subsystems from most to least significant. Each entry contains a `device_operand` and its program `register_ref`; `register_ref` is `None` when a physical model contains a subsystem the Program did not address. Position 0 is the most-significant subsystem of a flat basis index. For local dimensions `dims`, position `q` has place value `prod(dims[q + 1:])`. Statevectors, both density-matrix and unitary axes, and the global operator basis of super-operators use this same public order.
   zh: 结果包含态或算符时，`metadata["state_axes"]` 按有效位从高到低列出其物理子系统。每个条目包含 `device_operand` 及其程序 `register_ref`；如果物理模型中存在 Program 未寻址的子系统，其 `register_ref` 为 `None`。位置 0 是展平基索引的最高有效子系统。对于局域维数 `dims`，位置 `q` 的位权为 `prod(dims[q + 1:])`。态矢量、密度矩阵和酉算符的两个轴，以及超算符的全局算符基，均使用相同的公共顺序。
@@ -109,4 +109,8 @@
 - id: 98b1d973ff452cda
   en: Pulse emulators return `Qobj` values from `get_statevector`, `get_density_matrix`, and `get_unitary`; simulators return NumPy arrays.
   zh: 脉冲仿真器的 `get_statevector`、`get_density_matrix` 和 `get_unitary` 返回 `Qobj`，模拟器则返回 NumPy 数组。
+  status: machine
+- id: dab3b6195075ac6d
+  en: Most other accessors return the value stored in the result. Copy arrays or dictionaries before changing them if you need to preserve the original. Metadata from a direct backend run records the normalized `execution_config` and `result_config`; the deprecated key `simulation_config` holds a copy of `execution_config` until it is removed before FATQAT 0.1.0. Backend extensions may add fields. Pulse-emulator metadata records `runtime="qutip"` and a `runtime_details` mapping with `solver` and `solver_options`. A run that invokes multiple solvers reports their names as a tuple. These numerical-runtime details are informational. Keep the model, arrangement, controls, and application metadata alongside a result when they are needed to reproduce a physical run.
+  zh: 其他大多数访问方法返回结果中存储的值。如果需要保留原始内容，请在修改前复制数组或字典。直接调用后端运行时，元数据记录规范化的 `execution_config` 和 `result_config`；已弃用的键 `simulation_config` 保存一份 `execution_config` 的副本，并将在 FATQAT 0.1.0 发布前移除。后端扩展可能添加字段。脉冲仿真器元数据记录 `runtime="qutip"`，以及包含 `solver` 和 `solver_options` 的 `runtime_details` 映射。调用多个求解器的运行以元组报告其名称。这些数值运行时细节仅供参考。如果复现物理运行需要模型、排列、控制和应用元数据，请将它们与结果一起保存。
   status: machine

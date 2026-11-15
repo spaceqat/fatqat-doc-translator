@@ -153,11 +153,11 @@
 - id: 1b56b6f38a0057de
   en: '`shots=0` computes an exact value. A positive `shots` value samples each nonconstant term independently, and [`get_standard_error`][fatqat.Result.get_standard_error] reports the resulting sample standard error. Constant terms contribute zero standard error; one sample of a nonconstant term has undefined standard error and reports `nan`. Set `simulation_config["seed"]` to reproduce a sampled run.'
   zh: '`shots=0` 计算精确值。`shots` 为正时，对每个非常数项独立采样，[`get_standard_error`][fatqat.Result.get_standard_error] 返回由此得到的采样标准误差。常数项的标准误差为零；非常数项只有一次采样时，标准误差无定义，返回 `nan`。设置 `simulation_config["seed"]` 可复现采样运行。'
-  status: machine
+  status: retired
 - id: 8cdd28ab39614078
   en: Configure the simulation method, runtime, and noise on the backend. The Estimator forwards `simulation_config` to the backend and accepts the same keys as its normal `run()` path; see the tables for [matrix simulators](simulator.md#runtime-and-execution) and [the two-level atom emulator](atom-emulators.md#run-configuration-and-results). `result_config` is not accepted.
   zh: 在后端上配置模拟方法、运行时和噪声。Estimator 将 `simulation_config` 传给后端，接受的键与后端普通 `run()` 路径相同，详见[矩阵模拟器](simulator.md#runtime-and-execution)和[二能级原子仿真器](atom-emulators.md#run-configuration-and-results)的配置表。不接受 `result_config`。
-  status: machine
+  status: retired
 - id: cc396809c6935a1a
   en: 'Read estimator results with [`get_expectation`][fatqat.Result.get_expectation] and [`get_standard_error`][fatqat.Result.get_standard_error]. Run the backend separately if you also need its final state. Result metadata is compact: backend name, method, runtime, and shots, plus the pulse solver for pulse executions.'
   zh: 通过 [`get_expectation`][fatqat.Result.get_expectation] 和 [`get_standard_error`][fatqat.Result.get_standard_error] 读取 Estimator 的结果。如果还需要最终量子态，请另行运行后端。结果元数据仅包含后端名称、方法、运行时和采样次数；脉冲执行还会记录脉冲求解器。
@@ -189,4 +189,12 @@
 - id: b35d8307b89e7fad
   en: '**Readout noise.** Exact evaluation rejects readout-confusion noise, since it has no exact meaning. Positive-shot evaluation applies readout confusion to the measurements. On matrix simulators, a sampled `X` or `Y` is measured after an ideal basis change that gate noise does not affect.'
   zh: '**读出噪声。** 读出混淆噪声在精确计算中没有对应的精确定义，因此不被接受。采样次数为正时，读出混淆会应用于测量结果。在矩阵模拟器上，采样 `X` 或 `Y` 前会执行理想基变换，该变换不受门噪声影响。'
+  status: machine
+- id: 386e9ea92863c559
+  en: '`shots=0` computes an exact value. A positive `shots` value samples each nonconstant term independently, and [`get_standard_error`][fatqat.Result.get_standard_error] reports the resulting sample standard error. Constant terms contribute zero standard error; one sample of a nonconstant term has undefined standard error and reports `nan`. Set `execution_config["seed"]` to reproduce a sampled run.'
+  zh: '`shots=0` 计算精确值。`shots` 为正时，对每个非常数项独立采样，[`get_standard_error`][fatqat.Result.get_standard_error] 返回由此得到的采样标准误差。常数项的标准误差为零；非常数项只有一次采样时，标准误差无定义，返回 `nan`。设置 `execution_config["seed"]` 可复现采样运行。'
+  status: machine
+- id: 66bbc8c6461e37e4
+  en: Configure the simulation method, runtime, and noise on the backend. The Estimator forwards `execution_config` to the backend and accepts the same keys as its normal `run()` path; see the tables for [matrix simulators](simulator.md#runtime-and-execution) and [the two-level atom emulator](atom-emulators.md#run-configuration-and-results). `result_config` is not accepted.
+  zh: 在后端上配置模拟方法、运行时和噪声。Estimator 将 `execution_config` 传给后端，接受的键与后端普通 `run()` 路径相同，详见[矩阵模拟器](simulator.md#runtime-and-execution)和[二能级原子仿真器](atom-emulators.md#run-configuration-and-results)的配置表。不接受 `result_config`。
   status: machine

@@ -61,11 +61,11 @@
 - id: 1b56b6f38a0057de
   en: '`shots=0` computes an exact value. A positive `shots` value samples each nonconstant term independently, and [`get_standard_error`][fatqat.Result.get_standard_error] reports the resulting sample standard error. Constant terms contribute zero standard error; one sample of a nonconstant term has undefined standard error and reports `nan`. Set `simulation_config["seed"]` to reproduce a sampled run.'
   ko: '`shots=0`이면 정확한 값을 계산합니다. 양의 `shots`에서는 상수항이 아닌 각 항을 독립적으로 샘플링하며 [`get_standard_error`][fatqat.Result.get_standard_error]가 그에 따른 표본 표준 오차를 반환합니다. 상수항의 표준 오차는 0입니다. 비상수항을 한 번만 샘플링하면 표준 오차가 정의되지 않아 `nan`을 반환합니다. 샘플링 실행을 재현하려면 `simulation_config["seed"]`를 설정하세요.'
-  status: machine
+  status: retired
 - id: 8cdd28ab39614078
   en: Configure the simulation method, runtime, and noise on the backend. The Estimator forwards `simulation_config` to the backend and accepts the same keys as its normal `run()` path; see the tables for [matrix simulators](simulator.md#runtime-and-execution) and [the two-level atom emulator](atom-emulators.md#run-configuration-and-results). `result_config` is not accepted.
   ko: 시뮬레이션 방법, 런타임, 잡음은 백엔드에서 설정합니다. Estimator는 `simulation_config`를 백엔드로 전달하며, 해당 백엔드의 일반 `run()` 경로와 같은 키를 받습니다. [행렬 시뮬레이터](simulator.md#runtime-and-execution)와 [2준위 원자 에뮬레이터](atom-emulators.md#run-configuration-and-results)의 표를 참고하세요. `result_config`는 받지 않습니다.
-  status: machine
+  status: retired
 - id: cc396809c6935a1a
   en: 'Read estimator results with [`get_expectation`][fatqat.Result.get_expectation] and [`get_standard_error`][fatqat.Result.get_standard_error]. Run the backend separately if you also need its final state. Result metadata is compact: backend name, method, runtime, and shots, plus the pulse solver for pulse executions.'
   ko: 추정 결과는 [`get_expectation`][fatqat.Result.get_expectation]과 [`get_standard_error`][fatqat.Result.get_standard_error]로 읽습니다. 최종 상태도 필요하면 백엔드를 별도로 실행하세요. 결과 메타데이터에는 백엔드 이름, 방법, 런타임, 샷 수만 담기며, 펄스 실행에서는 펄스 솔버도 기록됩니다.
@@ -113,4 +113,12 @@
 - id: 0512da99303af84f
   en: Detailed reference
   ko: 상세 레퍼런스
+  status: machine
+- id: 386e9ea92863c559
+  en: '`shots=0` computes an exact value. A positive `shots` value samples each nonconstant term independently, and [`get_standard_error`][fatqat.Result.get_standard_error] reports the resulting sample standard error. Constant terms contribute zero standard error; one sample of a nonconstant term has undefined standard error and reports `nan`. Set `execution_config["seed"]` to reproduce a sampled run.'
+  ko: '`shots=0`이면 정확한 값을 계산합니다. 양의 `shots`에서는 상수항이 아닌 각 항을 독립적으로 샘플링하며 [`get_standard_error`][fatqat.Result.get_standard_error]가 그에 따른 표본 표준 오차를 반환합니다. 상수항의 표준 오차는 0입니다. 비상수항을 한 번만 샘플링하면 표준 오차가 정의되지 않아 `nan`을 반환합니다. 샘플링 실행을 재현하려면 `execution_config["seed"]`를 설정하세요.'
+  status: machine
+- id: 66bbc8c6461e37e4
+  en: Configure the simulation method, runtime, and noise on the backend. The Estimator forwards `execution_config` to the backend and accepts the same keys as its normal `run()` path; see the tables for [matrix simulators](simulator.md#runtime-and-execution) and [the two-level atom emulator](atom-emulators.md#run-configuration-and-results). `result_config` is not accepted.
+  ko: 시뮬레이션 방법, 런타임, 잡음은 백엔드에서 설정합니다. Estimator는 `execution_config`를 백엔드로 전달하며, 해당 백엔드의 일반 `run()` 경로와 같은 키를 받습니다. [행렬 시뮬레이터](simulator.md#runtime-and-execution)와 [2준위 원자 에뮬레이터](atom-emulators.md#run-configuration-and-results)의 표를 참고하세요. `result_config`는 받지 않습니다.
   status: machine

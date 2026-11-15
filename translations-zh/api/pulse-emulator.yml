@@ -49,7 +49,7 @@
 - id: af18feebbd6b1f16
   en: Execution methods
   zh: 执行方法
-  status: machine
+  status: retired
 - id: 8962a38b946a9853
   en: '`method` names a mathematical representation, not the internal differential- equation solver. The read-only `backend.method` property always returns the canonical full name, and `result.metadata["method"]` records it.'
   zh: '`method` 指定的是一种数学表示，而不是内部的微分方程求解器。只读属性 `backend.method` 始终返回规范全名，并由 `result.metadata["method"]` 记录。'
@@ -65,7 +65,7 @@
 - id: 44504ff05040d8bd
   en: 'An unmeasured statevector run with potentially active Lindblad noise is stochastic, so the default result request retains metadata only. Request one reproducible trajectory with `result_config={"final_state": True}`, `shots=1`, and a non-negative `simulation_config["seed"]`. Choose `method="density_matrix"` for the exact ensemble instead.'
   zh: '在 Lindblad 噪声可能起作用时，未测量的态矢量运行是随机的，因此默认的结果请求仅保留元数据。要请求一条可复现的轨迹，请设置 `result_config={"final_state": True}`、`shots=1` 以及非负的 `simulation_config["seed"]`。若需要精确的系综结果，请改用 `method="density_matrix"`。'
-  status: machine
+  status: retired
 - id: 3188395e78db1205
   en: Each transmon statevector trajectory is an independent physical evolution, so the cost of a measured trajectory run grows with `shots`. Use `method="density_matrix"` when an exact ensemble result is more useful.
   zh: 每条 transmon 态矢量轨迹都是一次独立的物理演化，因此带测量的轨迹运行的开销随 `shots` 增长。当精确的系综结果更有用时，请使用 `method="density_matrix"`。
@@ -85,11 +85,11 @@
 - id: 3c0aee9880b80eb6
   en: '[`run`][fatqat.emulator.TransmonEmulator.run] accepts these `simulation_config` keys:'
   zh: '[`run`][fatqat.emulator.TransmonEmulator.run] 接受以下 `simulation_config` 键：'
-  status: machine
+  status: retired
 - id: 2368645ee8fd1731
   en: '**`simulation_config` keys**'
   zh: '**`simulation_config` 键**'
-  status: machine
+  status: retired
 - id: f7b5b5f788502380
   en: These are the only two keys. Pulse emulators reject the matrix backend's `shot_parallelism`, `kernel_parallelism`, `max_workers`, and `fusion` settings.
   zh: 仅有这两个键。脉冲仿真器拒绝矩阵后端的 `shot_parallelism`、`kernel_parallelism`、`max_workers` 和 `fusion` 设置。
@@ -349,4 +349,20 @@
 - id: 1464bc3ee54bfcae
   en: Every method returns a QuTiP `Qobj` whose `dims` list the subsystem dimensions. Call `.full()` for a NumPy array (`.full().ravel()` for a flat statevector).
   zh: 每种方法都返回 QuTiP `Qobj`，其 `dims` 列出各子系统的维度。调用 `.full()` 可获得 NumPy 数组，调用 `.full().ravel()` 可获得一维态矢量。
+  status: machine
+- id: cc989fb46ac977ae
+  en: Simulation methods
+  zh: 模拟方法
+  status: machine
+- id: a37c43eee15bcd5a
+  en: 'An unmeasured statevector run with potentially active Lindblad noise is stochastic, so the default result request retains metadata only. Request one reproducible trajectory with `result_config={"final_state": True}`, `shots=1`, and a non-negative `execution_config["seed"]`. Choose `method="density_matrix"` for the exact ensemble instead.'
+  zh: '在 Lindblad 噪声可能起作用时，未测量的态矢量运行是随机的，因此默认的结果请求仅保留元数据。要请求一条可复现的轨迹，请设置 `result_config={"final_state": True}`、`shots=1` 以及非负的 `execution_config["seed"]`。若需要精确的系综结果，请改用 `method="density_matrix"`。'
+  status: machine
+- id: 4ba30307b6d2c7b9
+  en: '[`run`][fatqat.emulator.TransmonEmulator.run] accepts these `execution_config` keys:'
+  zh: '[`run`][fatqat.emulator.TransmonEmulator.run] 接受以下 `execution_config` 键：'
+  status: machine
+- id: bc841cae20b62870
+  en: '**`execution_config` keys**'
+  zh: '**`execution_config` 键**'
   status: machine

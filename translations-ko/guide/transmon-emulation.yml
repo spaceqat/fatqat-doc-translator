@@ -181,4 +181,8 @@
 - id: 06bc25cc87da7e9a
   en: Use the calibrated path to study the supplied gate recipe. Use direct controls when the waveform itself is the experiment; the two forms can also coexist in one Program. The [transmon emulator API](../api/pulse-emulator.md) lists the supported units, gates, noise forms, and execution methods.
   ko: 제공된 게이트 레시피를 연구하려면 보정된 게이트를 사용하세요. 파형 자체가 실험 대상이라면 직접 제어를 사용하며, 두 방식을 하나의 Program에서 함께 쓸 수도 있습니다. 지원 단위, 게이트, 잡음 형식, 실행 방법은 [transmon 에뮬레이터 API](../api/pulse-emulator.md)에 나와 있습니다.
+  status: retired
+- id: 1bc09d2a36d1e372
+  en: Use the calibrated path to study the supplied gate recipe. Use direct controls when the waveform itself is the experiment; the two forms can also coexist in one Program. The [transmon emulator API](../api/pulse-emulator.md) lists the supported units, gates, noise forms, and simulation methods.
+  ko: 제공된 게이트 레시피를 연구하려면 보정된 게이트를 사용하세요. 파형 자체가 실험 대상이라면 직접 제어를 사용하며, 두 방식을 하나의 Program에서 함께 쓸 수도 있습니다. 지원 단위, 게이트, 잡음 형식, 시뮬레이션 방법은 [transmon 에뮬레이터 API](../api/pulse-emulator.md)에 나와 있습니다.
   status: machine

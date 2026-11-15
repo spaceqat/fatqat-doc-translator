@@ -149,4 +149,4 @@
 - id: de9016c742c9be7d
   en: 'The same energy, estimated the way hardware would deliver it: every expectation comes from 1024 measurement shots. `shots` is a per-run option, not an estimator property, so the same estimator serves exact and sampled evaluations. An explicit `simulation_config={"seed": ...}` reuses the same randomness at every evaluation, keeping the optimizer''s landscape deterministic. `sampled_std` propagates the per-observable standard errors (`get_standard_error()`) through the weights in quadrature — $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$ — the scale of the error bar on the noisy objective.'
   zh: '同一能量也可以按硬件的方式估计：每个期望值来自 1024 次测量采样。`shots` 是每次运行的选项，而不是估计器属性，因此同一个估计器可用于精确和采样计算。显式设置 `simulation_config={"seed": ...}` 会在每次评估中复用相同随机性，使优化器的景观保持确定。`sampled_std` 将各可观测量的标准误差（`get_standard_error()`）按权重以平方和开方传播，即 $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$，表示含噪目标误差棒的尺度。'
-  status: machine
+  status: retired

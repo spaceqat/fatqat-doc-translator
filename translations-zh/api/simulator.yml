@@ -41,7 +41,7 @@
 - id: 08eacd9ef7ec9459
   en: '`simulation_config` changes one call to [`Simulator.run`][fatqat.simulator.Simulator.run]. Its string values are case-sensitive.'
   zh: '`simulation_config` 仅作用于对 [`Simulator.run`][fatqat.simulator.Simulator.run] 的一次调用。其字符串值区分大小写。'
-  status: machine
+  status: retired
 - id: 9bd4bf27e1c6035b
   en: '**Simulation controls**'
   zh: '**模拟控制项**'
@@ -77,7 +77,7 @@
 - id: 201d48525c7cfdcf
   en: 'Besides `simulation_config`, [`Simulator.run`][fatqat.simulator.Simulator.run] accepts:'
   zh: 除 `simulation_config` 外，[`Simulator.run`][fatqat.simulator.Simulator.run] 还接受：
-  status: machine
+  status: retired
 - id: 62f564eb57ff63b0
   en: '**Run inputs**'
   zh: '**运行输入**'
@@ -317,4 +317,12 @@
 - id: 54d13ade4a57fcf1
   en: See [Simulate a quantum program](../guide/simulation.md) for an example and [`run_sweep`][fatqat.simulator.Simulator.run_sweep] for accepted batch shapes.
   zh: 使用示例见[模拟量子程序](../guide/simulation.md)，接受的批次形状见 [`run_sweep`][fatqat.simulator.Simulator.run_sweep]。
+  status: machine
+- id: 12128359cfce3993
+  en: '`execution_config` changes one call to [`Simulator.run`][fatqat.simulator.Simulator.run]. Its string values are case-sensitive. The former name `simulation_config` is deprecated on every backend and on `Estimator`; it still works as an alias and will be removed before FATQAT 0.1.0.'
+  zh: '`execution_config` 仅作用于对 [`Simulator.run`][fatqat.simulator.Simulator.run] 的一次调用。其字符串值区分大小写。旧名称 `simulation_config` 在所有后端和 `Estimator` 中均已弃用；目前仍可作为别名使用，但将在 FATQAT 0.1.0 发布前移除。'
+  status: machine
+- id: a3699637677bfc48
+  en: 'Besides `execution_config`, [`Simulator.run`][fatqat.simulator.Simulator.run] accepts:'
+  zh: 除 `execution_config` 外，[`Simulator.run`][fatqat.simulator.Simulator.run] 还接受：
   status: machine

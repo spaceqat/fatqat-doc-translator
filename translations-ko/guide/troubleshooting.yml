@@ -137,7 +137,7 @@
 - id: f7ef98d3e7318315
   en: 'Runs contain only the data that the selected execution method produced and that you requested. Inspect the result before choosing an accessor:'
   ko: 실행에는 선택한 실행 방법이 생성했으며 사용자가 요청한 데이터만 들어 있습니다. 접근자를 고르기 전에 결과를 확인하세요.
-  status: machine
+  status: retired
 - id: 488f301da9f1d419
   en: The [Result reference](../api/result.md) lists the available fields, their accessors, and which runs produce them.
   ko: '[Result 참조](../api/result.md)에 사용 가능한 필드, 접근자, 해당 데이터를 생성하는 실행이 나와 있습니다.'
@@ -181,4 +181,8 @@
 - id: d68a13ad257b7859
   en: The step where it changes tells you which boundary to inspect. Preserve the small reproducer—it is also the most useful starting point for a bug report.
   ko: 동작이 달라지는 단계가 어느 경계를 확인해야 하는지 알려 줍니다. 줄인 재현 예제는 보관하세요. 버그를 보고할 때도 가장 유용한 출발점입니다.
+  status: machine
+- id: fcf57fc7df62696f
+  en: 'Runs contain only the data that the selected simulation method produced and that you requested. Inspect the result before choosing an accessor:'
+  ko: 실행에는 선택한 시뮬레이션 방법이 생성했으며 사용자가 요청한 데이터만 들어 있습니다. 접근자를 고르기 전에 결과를 확인하세요.
   status: machine

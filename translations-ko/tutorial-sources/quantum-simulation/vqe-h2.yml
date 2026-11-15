@@ -121,7 +121,7 @@
 - id: de9016c742c9be7d
   en: 'The same energy, estimated the way hardware would deliver it: every expectation comes from 1024 measurement shots. `shots` is a per-run option, not an estimator property, so the same estimator serves exact and sampled evaluations. An explicit `simulation_config={"seed": ...}` reuses the same randomness at every evaluation, keeping the optimizer''s landscape deterministic. `sampled_std` propagates the per-observable standard errors (`get_standard_error()`) through the weights in quadrature — $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$ — the scale of the error bar on the noisy objective.'
   ko: '같은 에너지를 실제 하드웨어처럼 추정합니다. 각 기댓값은 1024회의 측정 샷에서 얻습니다. `shots`는 추정기 자체의 속성이 아니라 실행별 옵션이므로, 같은 추정기로 정확한 평가와 표본 기반 평가를 모두 수행할 수 있습니다. `simulation_config={"seed": ...}`를 명시하면 평가마다 같은 난수를 사용하여 최적화기가 보는 목적 함수가 결정적으로 유지됩니다. `sampled_std`는 관측량별 표준 오차(`get_standard_error()`)를 가중치와 함께 제곱합으로 전파합니다. 즉 $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$이며, 잡음이 있는 목적 함수의 오차 막대 크기에 해당합니다.'
-  status: machine
+  status: retired
 - id: add004053ba85637
   en: The same COBYLA run, now optimizing the noisy objective. Note that what matters at the end is the *exact* energy of the point found — the shot noise only steers the search.
   ko: 이번에는 같은 COBYLA 과정으로 잡음이 있는 목적 함수를 최적화합니다. 최종적으로 중요한 값은 찾은 지점의 *정확한* 에너지입니다. 샷 잡음은 탐색 방향에만 영향을 줍니다.
@@ -145,4 +145,8 @@
 - id: 375b62441d724af7
   en: On larger systems, the bitstrings sampled from the optimized state can be post-processed classically (sample-based quantum diagonalization) — overkill at two qubits, where the sampled subspace is the whole space.
   ko: 더 큰 계에서는 최적화된 상태에서 추출한 비트열을 고전적으로 후처리할 수 있습니다(표본 기반 양자 대각화). 2큐비트에서는 표본이 이루는 부분공간이 전체 공간이므로 이런 방법을 쓸 필요가 없습니다.
+  status: machine
+- id: 4185706d3abc4f67
+  en: 'The same energy, estimated the way hardware would deliver it: every expectation comes from 1024 measurement shots. `shots` is a per-run option, not an estimator property, so the same estimator serves exact and sampled evaluations. An explicit `execution_config={"seed": ...}` reuses the same randomness at every evaluation, keeping the optimizer''s landscape deterministic. `sampled_std` propagates the per-observable standard errors (`get_standard_error()`) through the weights in quadrature — $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$ — the scale of the error bar on the noisy objective.'
+  ko: '같은 에너지를 실제 하드웨어처럼 추정합니다. 각 기댓값은 1024회의 측정 샷에서 얻습니다. `shots`는 추정기 자체의 속성이 아니라 실행별 옵션이므로, 같은 추정기로 정확한 평가와 표본 기반 평가를 모두 수행할 수 있습니다. `execution_config={"seed": ...}`를 명시하면 평가마다 같은 난수를 사용하여 최적화기가 보는 목적 함수가 결정적으로 유지됩니다. `sampled_std`는 관측량별 표준 오차(`get_standard_error()`)를 가중치와 함께 제곱합으로 전파합니다. 즉 $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$이며, 잡음이 있는 목적 함수의 오차 막대 크기에 해당합니다.'
   status: machine

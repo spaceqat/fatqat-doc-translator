@@ -25,7 +25,7 @@
 - id: ae39b92e35ae7343
   en: The `run()` method has the signature `(program, *, shots=1024, resource_layout=None, simulation_config=None, result_config=None)`. The optional layout must still cover every arrangement site exactly once; the default uses declaration order. Validation errors are raised directly from `run()` before a job is returned. A failure after execution starts is represented by a failed job, and `job.result()` raises [`BackendExecutionError`][fatqat.errors.BackendExecutionError].
   zh: '`run()` 方法的签名为 `(program, *, shots=1024, resource_layout=None, simulation_config=None, result_config=None)`。可选的布局仍必须恰好覆盖每个排布位点一次；默认使用声明顺序。验证错误会在返回作业之前直接由 `run()` 引发。执行开始之后的失败以失败作业表示，此时 `job.result()` 会引发 [`BackendExecutionError`][fatqat.errors.BackendExecutionError]。'
-  status: machine
+  status: retired
 - id: '8259028330497640'
   en: '`simulation_config` accepts only `seed` and `schedule_mode`:'
   zh: '`simulation_config` 仅接受 `seed` 和 `schedule_mode`：'
@@ -65,7 +65,7 @@
 - id: fbcd864ea91aae3d
   en: 'Measurement and potentially active Lindblad noise make a retained final state stochastic. In those cases, the default request returns counts when the program contains measurement and otherwise returns metadata only. Request a single seeded final state explicitly with `result_config={"final_state": True}`, `shots=1`, and `simulation_config={"seed": ...}`. Select `method="density_matrix"` for an exact supported Lindblad ensemble.'
   zh: '测量以及可能处于活动状态的 Lindblad 噪声会使保留的最终状态成为随机的。在这些情况下，默认请求会在程序包含测量时返回计数，否则仅返回元数据。要显式请求单个带种子的最终状态，请使用 `result_config={"final_state": True}`、`shots=1` 和 `simulation_config={"seed": ...}`。选择 `method="density_matrix"` 可获得受支持 Lindblad 演化的精确系综。'
-  status: machine
+  status: retired
 - id: 50deee6556c299e3
   en: For unitary execution, construct the backend with `method="unitary"`, call `run()`, and retrieve the result with [`get_unitary`][fatqat.Result.get_unitary]. Unitary execution rejects measurement, reset, conditions, counts, and potentially active Lindblad evolution. There is no separate public propagator API.
   zh: 要进行幺正执行，请使用 `method="unitary"` 构造后端，调用 `run()`，并通过 [`get_unitary`][fatqat.Result.get_unitary] 获取结果。幺正执行拒绝测量、重置、条件、计数以及可能处于活动状态的 Lindblad 演化。没有单独的公共传播子 API。
@@ -169,7 +169,7 @@
 - id: 717899110983b6ec
   en: '`simulation_config` accepts the shared pulse controls plus an Atom2-specific Hamiltonian cutoff:'
   zh: '`simulation_config` 接受共享的脉冲控制项，外加一个 Atom2 特有的哈密顿量截断：'
-  status: machine
+  status: retired
 - id: 3037cfd329cdd8ee
   en: '| `interaction_cutoff` | finite nonnegative `Real` or `None`; not `bool` | `None` | For this run, retain interaction pairs at or below this distance in the arrangement''s distance unit. `None` keeps all pairs; `0.0` disables pair interactions. |'
   zh: '| `interaction_cutoff` | 有限的非负 `Real` 或 `None`；不接受 `bool` | `None` | 在本次运行中，保留距离不超过该值（以排布的距离单位计）的相互作用原子对。`None` 保留所有原子对；`0.0` 禁用原子对相互作用。 |'
@@ -233,4 +233,20 @@
 - id: 6d502055303ba98a
   en: 'Set `interaction_cutoff` per run through `simulation_config`. The default `None` keeps every pair and preserves the complete `C6/R^6` Hamiltonian. A finite nonnegative cutoff keeps pairs whose Euclidean distance is at or below that value in `arrangement.distance_unit` (currently micrometres); `0.0` disables pair interactions. For a rectangular arrangement with scalar spacing, `simulation_config={"interaction_cutoff": arrangement.spacing}` keeps only horizontal and vertical nearest pairs. This is a numerical Hamiltonian truncation, not a physical blockade radius. One emulator can therefore be reused to compare several truncations without rebuilding its model or arrangement.'
   zh: '通过 `simulation_config` 为每次运行设置 `interaction_cutoff`。默认值 `None` 保留所有原子对，即完整的 `C6/R^6` 哈密顿量。有限的非负截断值仅保留欧氏距离不超过该值的原子对，单位为 `arrangement.distance_unit`（目前是微米）；`0.0` 禁用原子对相互作用。对于采用标量间距的矩形排列，`simulation_config={"interaction_cutoff": arrangement.spacing}` 仅保留水平和竖直方向的最近邻原子对。这是哈密顿量的数值截断，不是物理上的阻塞半径。因此，可以复用同一个仿真器比较不同截断，无需重建模型或排列。'
+  status: retired
+- id: ce49c929949d348d
+  en: The `run()` method has the signature `(program, *, shots=1024, resource_layout=None, execution_config=None, result_config=None)`. The optional layout must still cover every arrangement site exactly once; the default uses declaration order. Validation errors are raised directly from `run()` before a job is returned. A failure after execution starts is represented by a failed job, and `job.result()` raises [`BackendExecutionError`][fatqat.errors.BackendExecutionError].
+  zh: '`run()` 方法的签名为 `(program, *, shots=1024, resource_layout=None, execution_config=None, result_config=None)`。可选的布局仍必须恰好覆盖每个排布位点一次；默认使用声明顺序。验证错误会在返回作业之前直接由 `run()` 引发。执行开始之后的失败以失败作业表示，此时 `job.result()` 会引发 [`BackendExecutionError`][fatqat.errors.BackendExecutionError]。'
+  status: machine
+- id: e620de08c98e98e9
+  en: '`execution_config` accepts the shared pulse controls plus an Atom2-specific Hamiltonian cutoff:'
+  zh: '`execution_config` 接受共享的脉冲控制项，外加一个 Atom2 特有的哈密顿量截断：'
+  status: machine
+- id: 295e6fbda73e8fba
+  en: 'Measurement and potentially active Lindblad noise make a retained final state stochastic. In those cases, the default request returns counts when the program contains measurement and otherwise returns metadata only. Request a single seeded final state explicitly with `result_config={"final_state": True}`, `shots=1`, and `execution_config={"seed": ...}`. Select `method="density_matrix"` for an exact supported Lindblad ensemble.'
+  zh: '测量以及可能处于活动状态的 Lindblad 噪声会使保留的最终状态成为随机的。在这些情况下，默认请求会在程序包含测量时返回计数，否则仅返回元数据。要显式请求单个带种子的最终状态，请使用 `result_config={"final_state": True}`、`shots=1` 和 `execution_config={"seed": ...}`。选择 `method="density_matrix"` 可获得受支持 Lindblad 演化的精确系综。'
+  status: machine
+- id: 7eb876f6cf99727d
+  en: 'Set `interaction_cutoff` per run through `execution_config`. The default `None` keeps every pair and preserves the complete `C6/R^6` Hamiltonian. A finite nonnegative cutoff keeps pairs whose Euclidean distance is at or below that value in `arrangement.distance_unit` (currently micrometres); `0.0` disables pair interactions. For a rectangular arrangement with scalar spacing, `execution_config={"interaction_cutoff": arrangement.spacing}` keeps only horizontal and vertical nearest pairs. This is a numerical Hamiltonian truncation, not a physical blockade radius. One emulator can therefore be reused to compare several truncations without rebuilding its model or arrangement.'
+  zh: '通过 `execution_config` 为每次运行设置 `interaction_cutoff`。默认值 `None` 保留所有原子对，即完整的 `C6/R^6` 哈密顿量。有限的非负截断值仅保留欧氏距离不超过该值的原子对，单位为 `arrangement.distance_unit`（目前是微米）；`0.0` 禁用原子对相互作用。对于采用标量间距的矩形排列，`execution_config={"interaction_cutoff": arrangement.spacing}` 仅保留水平和竖直方向的最近邻原子对。这是哈密顿量的数值截断，不是物理上的阻塞半径。因此，可以复用同一个仿真器比较不同截断，无需重建模型或排列。'
   status: machine

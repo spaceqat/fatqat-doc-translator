@@ -69,7 +69,7 @@
 - id: 5823ac31dd84d4b3
   en: 'Both controls act on every site. The arrangement supplies the distances and the model supplies the signed interaction strength, so changing the spacing can change the dynamics without changing the Program. By default every site pair interacts. Set `simulation_config={"interaction_cutoff": distance}` on a particular `run()` to remove terms beyond that distance; this is a numerical Hamiltonian truncation rather than a blockade radius.'
   ko: '두 제어 모두 모든 사이트에 작용합니다. 배열 배치는 거리를 제공하고 모델은 부호를 포함한 상호작용 세기를 제공합니다. 따라서 Program을 바꾸지 않아도 간격을 바꾸면 동역학이 달라질 수 있습니다. 기본적으로 모든 사이트 쌍이 상호작용합니다. 특정 `run()`에서 `simulation_config={"interaction_cutoff": distance}`를 설정하면 그 거리를 넘는 항을 제거할 수 있습니다. 이는 수치 계산을 위한 해밀토니안 절단이며 블로케이드 반경이 아닙니다.'
-  status: machine
+  status: retired
 - id: 7a17ea0b2d9ff5e7
   en: For this short pulse, about 5.4% of the final probability lies outside the all-ground state. That number is a physical consequence of the waveform, detuning, spacing, interaction model, and duration—not a gate label.
   ko: 이 짧은 펄스에서는 최종 확률의 약 5.4%가 모든 원자가 바닥 상태인 상태 밖에 있습니다. 이 값은 게이트 레이블이 아니라 파형, 디튜닝, 간격, 상호작용 모델, 지속 시간에 따른 물리적 결과입니다.
@@ -85,4 +85,8 @@
 - id: 5478bf9c31bd904b
   en: Continue with the tutorials for a [PXP revival](../tutorials/pxp-z2-revival.md), [antiferromagnetic chain](../tutorials/antiferromagnetic-chain.md), or [gate-level GHZ preparation](../tutorials/atom-array-ghz8.md). For model schemas, units, channel limits, and noise support, use the [neutral-atom emulator API](../api/atom-emulators.md).
   ko: '[PXP 상태의 되살아남](../tutorials/pxp-z2-revival.md), [반강자성 사슬](../tutorials/antiferromagnetic-chain.md), [게이트 수준 GHZ 상태 준비](../tutorials/atom-array-ghz8.md) 튜토리얼로 이어서 살펴보세요. 모델 스키마, 단위, 채널 한계, 잡음 지원 범위는 [중성 원자 에뮬레이터 API](../api/atom-emulators.md)를 참고하세요.'
+  status: machine
+- id: f98e688bd433ee93
+  en: 'Both controls act on every site. The arrangement supplies the distances and the model supplies the signed interaction strength, so changing the spacing can change the dynamics without changing the Program. By default every site pair interacts. Set `execution_config={"interaction_cutoff": distance}` on a particular `run()` to remove terms beyond that distance; this is a numerical Hamiltonian truncation rather than a blockade radius.'
+  ko: '두 제어 모두 모든 사이트에 작용합니다. 배열 배치는 거리를 제공하고 모델은 부호를 포함한 상호작용 세기를 제공합니다. 따라서 Program을 바꾸지 않아도 간격을 바꾸면 동역학이 달라질 수 있습니다. 기본적으로 모든 사이트 쌍이 상호작용합니다. 특정 `run()`에서 `execution_config={"interaction_cutoff": distance}`를 설정하면 그 거리를 넘는 항을 제거할 수 있습니다. 이는 수치 계산을 위한 해밀토니안 절단이며 블로케이드 반경이 아닙니다.'
   status: machine

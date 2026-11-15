@@ -65,7 +65,7 @@
 - id: af18feebbd6b1f16
   en: Execution methods
   ko: 실행 방법
-  status: machine
+  status: retired
 - id: 8962a38b946a9853
   en: '`method` names a mathematical representation, not the internal differential- equation solver. The read-only `backend.method` property always returns the canonical full name, and `result.metadata["method"]` records it.'
   ko: '`method`는 내부 미분방정식 솔버가 아니라 수학적 표현을 지정합니다. 읽기 전용 `backend.method` 속성은 항상 정식 전체 이름을 반환하며, `result.metadata["method"]`에도 이 이름이 기록됩니다.'
@@ -101,7 +101,7 @@
 - id: 44504ff05040d8bd
   en: 'An unmeasured statevector run with potentially active Lindblad noise is stochastic, so the default result request retains metadata only. Request one reproducible trajectory with `result_config={"final_state": True}`, `shots=1`, and a non-negative `simulation_config["seed"]`. Choose `method="density_matrix"` for the exact ensemble instead.'
   ko: '측정이 없는 상태 벡터 실행에서 Lindblad 잡음이 작용할 가능성이 있으면 실행은 확률적입니다. 따라서 기본 결과 요청은 메타데이터만 남깁니다. 재현 가능한 궤적 하나를 얻으려면 `result_config={"final_state": True}`, `shots=1`, 음이 아닌 `simulation_config["seed"]`를 지정하세요. 정확한 앙상블이 필요하면 `method="density_matrix"`를 선택합니다.'
-  status: machine
+  status: retired
 - id: 3188395e78db1205
   en: Each transmon statevector trajectory is an independent physical evolution, so the cost of a measured trajectory run grows with `shots`. Use `method="density_matrix"` when an exact ensemble result is more useful.
   ko: 각 transmon 상태 벡터 궤적은 독립적인 물리 진화이므로, 측정이 있는 궤적 실행의 비용은 `shots`에 비례해 늘어납니다. 정확한 앙상블 결과가 더 유용하다면 `method="density_matrix"`를 사용하세요.
@@ -121,11 +121,11 @@
 - id: 3c0aee9880b80eb6
   en: '[`run`][fatqat.emulator.TransmonEmulator.run] accepts these `simulation_config` keys:'
   ko: '[`run`][fatqat.emulator.TransmonEmulator.run]은 다음 `simulation_config` 키를 받습니다:'
-  status: machine
+  status: retired
 - id: 2368645ee8fd1731
   en: '**`simulation_config` keys**'
   ko: '**`simulation_config` 키**'
-  status: machine
+  status: retired
 - id: 06b48a7722ce9495
   en: '| `seed` | `int` or `None`; not `bool` | `None` | Seed stochastic sampling for measurement, reset, readout, and statevector trajectories. Use a non-negative integer; `None` uses fresh entropy. |'
   ko: '| `seed` | `int` 또는 `None`; `bool` 제외 | `None` | 측정, 리셋, 판독, 상태 벡터 궤적의 확률적 샘플링 시드. 음이 아닌 정수를 사용하며 `None`은 새로운 엔트로피를 사용합니다. |'
@@ -317,4 +317,20 @@
 - id: f38b09c990d4b16e
   en: The two-level atom backend also accepts an optional gate implementation map. It has its own continuous-noise implementations. `Atom2LevelEmulator` has an empty built-in gate map and global direct controls; user-supplied maps can add gate rules. See [Neutral-atom emulator](atom-emulators.md) for its API and [Choose and run a neutral-atom workflow](../guide/neutral-atom-emulation.md) for the complete workflow.
   ko: 2준위 원자 백엔드도 선택적으로 게이트 구현 맵을 받으며, 자체 연속시간 잡음 구현을 제공합니다. `Atom2LevelEmulator`의 내장 게이트 맵은 비어 있고 직접 제어는 전역적으로 작용합니다. 사용자 맵으로 게이트 규칙을 추가할 수 있습니다. API는 [중성 원자 에뮬레이터](atom-emulators.md), 전체 과정은 [중성 원자 작업 흐름 선택 및 실행](../guide/neutral-atom-emulation.md)을 참고하세요.
+  status: machine
+- id: cc989fb46ac977ae
+  en: Simulation methods
+  ko: 시뮬레이션 방법
+  status: machine
+- id: a37c43eee15bcd5a
+  en: 'An unmeasured statevector run with potentially active Lindblad noise is stochastic, so the default result request retains metadata only. Request one reproducible trajectory with `result_config={"final_state": True}`, `shots=1`, and a non-negative `execution_config["seed"]`. Choose `method="density_matrix"` for the exact ensemble instead.'
+  ko: '측정이 없는 상태 벡터 실행에서 Lindblad 잡음이 작용할 가능성이 있으면 실행은 확률적입니다. 따라서 기본 결과 요청은 메타데이터만 남깁니다. 재현 가능한 궤적 하나를 얻으려면 `result_config={"final_state": True}`, `shots=1`, 음이 아닌 `execution_config["seed"]`를 지정하세요. 정확한 앙상블이 필요하면 `method="density_matrix"`를 선택합니다.'
+  status: machine
+- id: 4ba30307b6d2c7b9
+  en: '[`run`][fatqat.emulator.TransmonEmulator.run] accepts these `execution_config` keys:'
+  ko: '[`run`][fatqat.emulator.TransmonEmulator.run]은 다음 `execution_config` 키를 받습니다:'
+  status: machine
+- id: bc841cae20b62870
+  en: '**`execution_config` keys**'
+  ko: '**`execution_config` 키**'
   status: machine

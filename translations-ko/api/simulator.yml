@@ -65,7 +65,7 @@
 - id: 08eacd9ef7ec9459
   en: '`simulation_config` changes one call to [`Simulator.run`][fatqat.simulator.Simulator.run]. Its string values are case-sensitive.'
   ko: '`simulation_config`는 [`Simulator.run`][fatqat.simulator.Simulator.run]의 한 번의 호출에 적용됩니다. 문자열 값은 대소문자를 구분합니다.'
-  status: machine
+  status: retired
 - id: 972ff86231223e9d
   en: '| Key | Default | Accepted values and effect |'
   ko: '| 키 | 기본값 | 허용 값과 효과 |'
@@ -129,7 +129,7 @@
 - id: 201d48525c7cfdcf
   en: 'Besides `simulation_config`, [`Simulator.run`][fatqat.simulator.Simulator.run] accepts:'
   ko: '[`Simulator.run`][fatqat.simulator.Simulator.run]은 `simulation_config` 외에 다음 인수를 받습니다.'
-  status: machine
+  status: retired
 - id: 111031020f17d451
   en: '| Argument | Default | Meaning |'
   ko: '| 인수 | 기본값 | 의미 |'
@@ -205,4 +205,12 @@
 - id: 54d13ade4a57fcf1
   en: See [Simulate a quantum program](../guide/simulation.md) for an example and [`run_sweep`][fatqat.simulator.Simulator.run_sweep] for accepted batch shapes.
   ko: 예제는 [양자 프로그램 시뮬레이션](../guide/simulation.md), 허용되는 배치 형태는 [`run_sweep`][fatqat.simulator.Simulator.run_sweep]를 참고하세요.
+  status: machine
+- id: 12128359cfce3993
+  en: '`execution_config` changes one call to [`Simulator.run`][fatqat.simulator.Simulator.run]. Its string values are case-sensitive. The former name `simulation_config` is deprecated on every backend and on `Estimator`; it still works as an alias and will be removed before FATQAT 0.1.0.'
+  ko: '`execution_config`는 [`Simulator.run`][fatqat.simulator.Simulator.run]의 한 번의 호출에 적용됩니다. 문자열 값은 대소문자를 구분합니다. 이전 이름인 `simulation_config`는 모든 백엔드와 `Estimator`에서 사용이 중단될 예정입니다. 현재는 별칭으로 계속 사용할 수 있지만 FATQAT 0.1.0 출시 전에 제거됩니다.'
+  status: machine
+- id: a3699637677bfc48
+  en: 'Besides `execution_config`, [`Simulator.run`][fatqat.simulator.Simulator.run] accepts:'
+  ko: '[`Simulator.run`][fatqat.simulator.Simulator.run]은 `execution_config` 외에 다음 인수를 받습니다.'
   status: machine
