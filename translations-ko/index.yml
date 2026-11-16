@@ -173,11 +173,11 @@
 - id: 5727a0b51520e3b5
   en: '![The three-level TransmonEmulator result gives the target outcome 101 a probability of about 64.05 percent with the same coherence times.](assets/generated/home/grover-transmon.png){ loading=lazy width=714 height=515 }'
   ko: '![같은 결맞음 시간을 사용한 3준위 TransmonEmulator에서 목표 결과 101의 확률은 약 64.05퍼센트입니다.](assets/generated/home/grover-transmon.png){ loading=lazy width=714 height=515 }'
-  status: machine
+  status: retired
 - id: c0722ef9790a984b
   en: Calibrated pulses, three physical levels, and the same coherence times return `101` with about **64.05%** probability; physical leakage is **0.0649%**. This run realizes the compiled X/SX/RZ/CZ gates with calibrated pulses.
   ko: 보정된 펄스, 세 물리적 준위, 같은 결맞음 시간을 사용하면 `101`의 확률은 약 **64.05%**이고 물리적 누설은 **0.0649%**입니다. 이 실행에서는 컴파일된 X/SX/RZ/CZ 게이트를 보정된 펄스로 구현합니다.
-  status: machine
+  status: retired
 - id: 7b314aaff7ff66e9
   en: With the fixed routing seed, compilation produces **51 CZ**, **172 SX**, and **383 RZ** gates. These results use the same compiled circuit for both hardware models; the SC noise channels and the Transmon pulse dynamics model different physical effects. The Transmon model also uses 60 ns CZ pulses, while the SC coherence channels use a 50 ns CZ duration. Compilation preserves ideal algorithm behavior, but the gate decomposition and routing affect noisy results.
   ko: 라우팅 시드를 고정하면 컴파일 결과는 **51개의 CZ**, **172개의 SX**, **383개의 RZ** 게이트입니다. 두 하드웨어 모델은 같은 컴파일된 회로를 사용하지만, SC 잡음 채널과 Transmon 펄스 동역학은 서로 다른 물리적 효과를 모델링합니다. Transmon 모델의 CZ 펄스 길이는 60 ns이며 SC 결맞음 채널의 CZ 지속 시간은 50 ns입니다. 컴파일은 이상적인 알고리즘 동작을 보존하지만, 게이트 분해와 라우팅은 잡음이 있는 결과에 영향을 줍니다.
@@ -301,4 +301,12 @@
 - id: b242595bbda9459f
   en: '[:octicons-arrow-right-24: Look up an API](api/index.md)'
   ko: '[:octicons-arrow-right-24: API 찾아보기](api/index.md)'
+  status: machine
+- id: 8d85a303086cdbda
+  en: '![The three-level TransmonEmulator result gives the target outcome 101 a probability of about 74.02 percent with the same coherence times.](assets/generated/home/grover-transmon.png){ loading=lazy width=714 height=515 }'
+  ko: '![같은 결맞음 시간을 사용한 3준위 TransmonEmulator에서 목표 결과 101의 확률은 약 74.02퍼센트입니다.](assets/generated/home/grover-transmon.png){ loading=lazy width=714 height=515 }'
+  status: machine
+- id: 8c92b427c0c38bdc
+  en: Calibrated pulses, three physical levels, and the same coherence times return `101` with about **74.02%** probability; physical leakage is **0.0669%**. This run realizes the compiled X/SX/RZ/CZ gates with calibrated pulses.
+  ko: 보정된 펄스, 세 물리적 준위, 같은 결맞음 시간을 사용하면 `101`의 확률은 약 **74.02%**이고 물리적 누설은 **0.0669%**입니다. 이 실행에서는 컴파일된 X/SX/RZ/CZ 게이트를 보정된 펄스로 구현합니다.
   status: machine
