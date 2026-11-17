@@ -5,51 +5,51 @@
 - id: 35e8ddfcf44d29bd
   en: Before tuning runtimes, estimate how much state FatQat must carry. Subsystem dimensions and the chosen representation usually matter sooner than a runtime switch.
   ko: 실행 시간을 조정하기 전에 FatQat이 얼마나 큰 상태를 저장해야 하는지 추산하세요. 대개 런타임 옵션보다 부분계의 차원과 선택한 표현 방식이 먼저 중요해집니다.
-  status: machine
+  status: retired
 - id: 3e5ca39f7683080d
   en: First choose the simplest execution level that contains the effect you need; [Choose how much physics to model](execution-models.md) draws that boundary. Then use the estimates and benchmark pattern below on your own [`Program`][fatqat.Program].
   ko: 먼저 필요한 효과를 담을 수 있는 가장 단순한 실행 수준을 선택하세요. [물리 현상을 어느 수준까지 모델링할지 선택하기](execution-models.md)에서 그 기준을 설명합니다. 그런 다음 아래의 추산 방법과 벤치마크 예제를 자신의 [`Program`][fatqat.Program]에 적용하세요.
-  status: machine
+  status: retired
 - id: de0a741db58a69c7
   en: Count the state space before running
   ko: 실행 전에 상태 공간 크기 계산하기
-  status: machine
+  status: retired
 - id: e1a1b07622eb77d3
   en: 'If the local dimensions are `d0, d1, ...`, the state-space dimension is their product. This makes FatQat''s mixed-dimensional Program support useful and also makes its scaling explicit:'
   ko: 국소 차원이 `d0, d1, ...`이면 상태 공간의 차원은 이들의 곱입니다. FatQat은 서로 다른 차원이 섞인 Program을 지원하므로 이를 활용할 수 있으며, 필요한 상태 공간의 크기도 명확하게 계산할 수 있습니다.
-  status: machine
+  status: retired
 - id: 49eb55bbc0afecbe
   en: A statevector stores one complex entry per basis state. A density matrix or unitary stores a square array, and a super-operator is square in the already squared density-matrix space. In terms of total dimension `D`, their entry counts scale as `D`, `D**2`, `D**2`, and `D**4`, respectively. Temporary work space and backend overhead add to these lower-level counts.
   ko: 상태 벡터는 기저 상태마다 복소수 원소 하나를 저장합니다. 밀도 행렬과 유니터리는 정사각 배열을 저장하며, 초연산자는 이미 제곱된 밀도 행렬 공간에서 다시 정사각 배열을 사용합니다. 전체 차원을 `D`라 하면 원소 수는 각각 `D`, `D**2`, `D**2`, `D**4`에 비례합니다. 여기에 임시 작업 공간과 백엔드 오버헤드가 추가됩니다.
-  status: machine
+  status: retired
 - id: 3d6295115c62dec8
   en: 'The growth is exponential in both subsystem count and local dimension:'
   ko: 부분계 수가 늘어나면 원소 수는 지수적으로 증가하며, 국소 차원이 클수록 증가가 더 빠릅니다.
-  status: machine
+  status: retired
 - id: e9d917ecdcbda8c9
   en: '![Logarithmic curves show statevector and density-matrix entry counts growing faster for qutrits than for qubits as subsystem count increases.](../assets/generated/guide/performance-1.png)'
   ko: '![부분계 수에 따른 상태 벡터와 밀도 행렬의 원소 수를 로그 축으로 나타낸 곡선으로, 큐비트보다 큐트릿에서 더 빠르게 증가합니다.](../assets/generated/guide/performance-1.png)'
-  status: machine
+  status: retired
 - id: d6b32d01142825b8
   en: This plot counts entries rather than bytes so it does not assume a dtype or allocator. Estimate the Program you actually intend to run, including physical levels that an emulator models even when the logical Program addresses only qubits.
   ko: 이 그래프는 dtype이나 메모리 할당 방식을 가정하지 않도록 바이트 대신 원소 수를 셉니다. 실제로 실행할 Program을 기준으로 추산하세요. 논리 Program이 큐비트만 지정하더라도 에뮬레이터가 모델링하는 물리 준위까지 포함해야 합니다.
-  status: machine
+  status: retired
 - id: 01b23090a377c8c0
   en: Request only the answer you need
   ko: 필요한 결과만 요청하기
-  status: machine
+  status: retired
 - id: fb76dbda332cead8
   en: Result choice can dominate scaling. A complete unitary or super-operator asks for the action on every input, while a state run asks for one input state. Likewise, a full state is unnecessary when you only need counts or a few expectation values.
   ko: 어떤 결과를 요청하느냐가 계산 규모를 좌우할 수 있습니다. 완전한 유니터리나 초연산자를 구하려면 모든 입력에 대한 작용이 필요하지만, 상태 실행은 하나의 입력 상태만 다룹니다. 마찬가지로 카운트나 몇 개의 기댓값만 필요하다면 전체 상태를 요청할 이유가 없습니다.
-  status: machine
+  status: retired
 - id: 64fd0cb292e0e365
   en: Shot cost also depends on the Program. A circuit that evolves deterministically and measures only at the end can reuse more work than one with mid-circuit measurement, reset, feedforward, or stochastic trajectories. Avoid estimating shot cost from `shots` alone; benchmark the same Program and result request you will use in practice.
   ko: 샷 비용도 Program에 따라 달라집니다. 결정론적으로 상태가 변하고 마지막에만 측정하는 회로는 회로 중간 측정, 리셋, 피드포워드, 확률적 궤적이 있는 회로보다 계산을 더 많이 재사용할 수 있습니다. `shots`만으로 비용을 추산하지 말고 실제로 사용할 Program과 결과 요청을 그대로 벤치마크하세요.
-  status: machine
+  status: retired
 - id: b0fe69b8b621bc2c
   en: See [Estimate observables](interpret-results.md) for expectation values and uncertainty, and the [Simulator API](../api/simulator.md) for method and result constraints.
   ko: 기댓값과 불확실성은 [관측량 추정하기](interpret-results.md)를, 방법과 결과의 제약은 [Simulator API](../api/simulator.md)를 참고하세요.
-  status: machine
+  status: retired
 - id: aff6d0e042b3d6f5
   en: Compare NumPy and Numba on your workload
   ko: 실제 작업에서 NumPy와 Numba 비교하기
@@ -57,76 +57,216 @@
 - id: 7f0c969f43ff93ea
   en: 'FatQat''s general simulator offers two CPU runtimes:'
   ko: FatQat의 범용 시뮬레이터는 두 가지 CPU 런타임을 제공합니다.
-  status: machine
+  status: retired
 - id: bc56721abc8e360f
   en: NumPy executes directly and avoids JIT compilation startup.
   ko: NumPy는 직접 실행하므로 시작 시 JIT 컴파일 비용이 들지 않습니다.
-  status: machine
+  status: retired
 - id: 6208c984646abb4d
   en: Numba compiles numerical kernels on first use and can reuse compatible compiled work on later calls.
   ko: Numba는 처음 사용할 때 수치 커널을 컴파일하고, 이후 호출에서 호환되는 컴파일 결과를 재사용할 수 있습니다.
-  status: machine
+  status: retired
 - id: e93a77ce6e3e4cef
   en: Neither choice changes the Program or the modeled mathematics. Compilation, array-library behavior, CPU, operating system, Program shape, and repetition count all affect the result, so benchmark rather than assuming one runtime is always preferable. FatQat does not currently provide a GPU runtime.
   ko: 어느 쪽을 선택해도 Program이나 모델링하는 수학은 바뀌지 않습니다. 컴파일, 배열 라이브러리 동작, CPU, 운영체제, Program 구조, 반복 횟수가 모두 결과에 영향을 줍니다. 한 런타임이 항상 낫다고 가정하지 말고 벤치마크하세요. 현재 FatQat은 GPU 런타임을 제공하지 않습니다.
-  status: machine
+  status: retired
 - id: 02bce73ef1399c4a
   en: 'The following harness separates one untimed warm-up from repeated measurements and compares like-for-like final states:'
   ko: 다음 측정 코드는 시간을 재지 않는 준비 실행 한 번과 반복 측정을 구분하고, 같은 조건의 최종 상태를 비교합니다.
-  status: machine
+  status: retired
 - id: 8cdae70e6e2bf362
   en: Treat the printed values as local evidence, not package guarantees. If startup latency matters, measure the first run separately instead of discarding it. If sustained throughput matters, increase the repetition count and Program size to match the intended workload.
   ko: 출력값은 로컬 환경에서 얻은 측정값이며 패키지의 성능 보장이 아닙니다. 시작 지연이 중요하면 첫 실행을 버리지 말고 따로 측정하세요. 지속적인 처리량이 중요하면 실제 작업에 맞게 반복 횟수와 Program 크기를 늘리세요.
-  status: machine
+  status: retired
 - id: 9fe0e41be0efcc43
   en: Tune parallelism and fusion only after measuring
   ko: 측정 후 병렬 실행과 연산 융합 조정하기
-  status: machine
+  status: retired
 - id: 40dac9df9f62183d
   en: Automatic execution settings are the appropriate baseline. Manual shot parallelism, kernel parallelism, worker limits, and operation fusion apply only to compatible workloads, and overhead can outweigh saved numerical work.
   ko: 자동 실행 설정을 기준으로 삼는 것이 좋습니다. 샷 병렬화, 커널 병렬화, 작업자 수 제한, 연산 융합을 수동으로 설정할 수 있는 것은 지원되는 작업에 한하며, 오버헤드가 줄어든 수치 계산 비용보다 클 수도 있습니다.
-  status: machine
+  status: retired
 - id: 9dcc62ea75802c41
   en: 'When tuning:'
   ko: 성능을 조정할 때는 다음을 지키세요.
-  status: machine
+  status: retired
 - id: 001a7abad98f018e
   en: Keep the Program, method, runtime, seed, and result request fixed.
   ko: Program, 실행 방식, 런타임, 시드, 결과 요청을 고정합니다.
-  status: machine
+  status: retired
 - id: 3ede3da005e609ad
   en: Warm any compiled path before measuring steady state.
   ko: 안정 상태 성능을 측정하기 전에 컴파일이 필요한 경로를 미리 실행합니다.
-  status: machine
+  status: retired
 - id: 6d3d7ecbd2acce1e
   en: Measure several repetitions and report a robust statistic such as the median.
   ko: 여러 번 반복 측정하고 중앙값처럼 이상값의 영향을 덜 받는 통계량을 보고합니다.
-  status: machine
+  status: retired
 - id: b247220b80792049
   en: Change one execution choice at a time.
   ko: 실행 설정은 한 번에 하나씩 바꿉니다.
-  status: machine
+  status: retired
 - id: af43e64f5523643f
   en: Verify the resulting state, counts distribution, or observable before accepting the timing.
   ko: 측정 시간을 채택하기 전에 결과 상태, 카운트 분포, 관측량을 검증합니다.
-  status: machine
+  status: retired
 - id: 858a08c720287871
   en: Repeat at the problem sizes that matter; a small example may rank choices differently from the target workload.
   ko: 실제로 중요한 문제 크기에서 다시 측정합니다. 작은 예제와 목표 작업에서는 설정 간 성능 순위가 다를 수 있습니다.
-  status: machine
+  status: retired
 - id: 37f6e7b028ddadff
   en: For eligible combinations and error behavior, see [Simulator runtime and execution](../api/simulator.md). Fusion is opt-in, and explicit parallel modes can be rejected when the Program cannot use them.
   ko: 사용 가능한 조합과 오류 동작은 [Simulator 런타임 및 실행](../api/simulator.md)을 참고하세요. 연산 융합은 명시적으로 활성화해야 하며, Program이 사용할 수 없는 병렬 모드를 직접 지정하면 거부될 수 있습니다.
-  status: machine
+  status: retired
 - id: 32305c55b3b2e6b9
   en: Account for physical emulation separately
   ko: 물리 에뮬레이션 비용은 별도로 계산하기
-  status: machine
+  status: retired
 - id: a62d31c0742f09cd
   en: 'Hamiltonian emulators add costs that a circuit-level array-size estimate does not capture: the model''s physical levels, unaddressed modeled subsystems, time-dependent controls, scheduling, integration intervals, and open-system evolution. A logical qubit may therefore contribute three physical levels in a transmon model.'
   ko: 해밀토니안 에뮬레이터에는 회로 수준의 배열 크기 추산만으로 설명할 수 없는 비용이 있습니다. 모델의 물리 준위, 직접 지정하지 않은 모델 부분계, 시간 의존 제어, 스케줄링, 적분 구간, 개방계 시간 변화가 여기에 해당합니다. 따라서 Transmon 모델에서는 논리 큐비트 하나가 물리 준위 세 개에 해당할 수 있습니다.
-  status: machine
+  status: retired
 - id: f62d06a81d1002a8
   en: Benchmark the actual model, arrangement, controls, duration, solver settings, and requested result. Do not extrapolate an emulator run from a gate-level Simulator timing. The [emulator API](../api/emulators/index.md) lists the solver and schedule controls available to each physical model.
   ko: 실제 모델, 배열 배치, 제어, 지속 시간, 솔버 설정, 요청 결과를 그대로 사용해 벤치마크하세요. 게이트 수준 Simulator의 실행 시간으로 에뮬레이터 성능을 추정하지 마세요. 물리 모델별로 사용할 수 있는 솔버와 스케줄 설정은 [에뮬레이터 API](../api/emulators/index.md)에 나와 있습니다.
+  status: retired
+- id: db763a48df9f5f88
+  en: Simulation cost depends on the state representation, requested results, and how you organize repeated runs. This guide covers these choices for [`Simulator`][fatqat.simulator.Simulator] and [`Estimator`][fatqat.Estimator].
+  ko: 시뮬레이션 비용은 상태 표현, 요청한 결과, 반복 실행을 구성하는 방식에 따라 달라집니다. 이 가이드에서는 [`Simulator`][fatqat.simulator.Simulator]와 [`Estimator`][fatqat.Estimator]에서 이러한 항목을 선택하는 방법을 설명합니다.
+  status: machine
+- id: 660b822f49f6927a
+  en: Choose the state and results you need
+  ko: 필요한 상태 표현과 결과 선택하기
+  status: machine
+- id: ce2b3a73c0798466
+  en: 'For subsystem dimensions `d0, d1, ...`, the total state-space dimension is `D = d0 * d1 * ...`. Each extra qubit doubles `D`; each extra qutrit triples it. The simulation method determines the number of entries you store:'
+  ko: '부분계의 차원이 `d0, d1, ...`이면 전체 상태 공간의 차원은 `D = d0 * d1 * ...`입니다. 큐비트가 하나 늘 때마다 `D`는 두 배, 큐트릿이 하나 늘 때마다 세 배가 됩니다. 저장할 원소 수는 시뮬레이션 방법에 따라 결정됩니다:'
+  status: machine
+- id: bdc2c9e44db01044
+  en: '| Method | Complex entries | Use it to |'
+  ko: '| 방법 | 복소수 원소 수 | 용도 |'
+  status: machine
+- id: beecfcd8e765ecd8
+  en: '| `statevector` | `D` | Evolve a pure state or sample noisy trajectories |'
+  ko: '| `statevector` | `D` | 순수 상태를 시간에 따라 변화시키거나 잡음 궤적 샘플링 |'
+  status: machine
+- id: a5f332670af9bcbb
+  en: '| `density_matrix` | `D**2` | Evolve a mixed state and apply noise channels directly |'
+  ko: '| `density_matrix` | `D**2` | 혼합 상태를 시간에 따라 변화시키고 잡음 채널을 직접 적용 |'
+  status: machine
+- id: c564664de59db197
+  en: '| `unitary` | `D**2` | Find the circuit''s action on every input state |'
+  ko: '| `unitary` | `D**2` | 모든 입력 상태에 대한 회로의 작용 계산 |'
+  status: machine
+- id: a717f16c72a2c7a6
+  en: '| `superop` | `D**4` | Find the full channel acting on density matrices |'
+  ko: '| `superop` | `D**4` | 밀도 행렬에 작용하는 전체 채널 계산 |'
+  status: machine
+- id: 835ad335d74867a9
+  en: For example, 20 qubits need about 16 MiB for a complex128 statevector alone. A density matrix of the same system needs about 16 TiB. Temporary arrays add to these storage costs. For noisy simulations, this makes statevector trajectories useful at sizes where a density matrix is too large; the tradeoff is sampling uncertainty.
+  ko: 예를 들어 큐비트 20개의 complex128 상태 벡터만 저장하는 데 약 16 MiB가 필요합니다. 같은 시스템의 밀도 행렬에는 약 16 TiB가 필요하며, 임시 배열이 추가 메모리를 사용합니다. 따라서 잡음 시뮬레이션에서는 밀도 행렬이 너무 커지는 규모에서도 상태 벡터 궤적을 활용할 수 있습니다. 대신 샘플링 불확실성이 생깁니다.
+  status: machine
+- id: 84ef938187f919bb
+  en: 'Choose results to match the question. Use counts for a measurement distribution, an Estimator for correlations or energies, and a final state when you need the quantum state itself. A counts-only run can use `result_config={"counts": True, "final_state": False}`. This avoids retaining a final quantum array in the result, although simulation still needs a state while it runs.'
+  ko: '구하려는 물리량에 맞춰 결과를 선택하세요. 측정 분포에는 카운트, 상관관계나 에너지에는 Estimator를 사용하고, 양자 상태 자체가 필요할 때 최종 상태를 요청하세요. 카운트만 필요한 실행에는 `result_config={"counts": True, "final_state": False}`를 사용할 수 있습니다. 그러면 결과에 최종 양자 상태 배열을 보관하지 않지만, 시뮬레이션을 실행하는 동안에는 여전히 상태가 필요합니다.'
+  status: machine
+- id: 3f3ef4f6afcc37a8
+  en: 'Specialized representations can save much more than runtime tuning. For linear optics, `LOSimulator` uses fixed-photon states by default: four photons in twelve modes require just 1,365 amplitudes. See [Simulate larger interferometers](linear-optics.md#simulate-larger-interferometers). For physical models, first [choose how much physics to model](execution-models.md); extra physical levels and pulse integration change the cost of the problem.'
+  ko: 문제에 맞는 전용 표현을 사용하면 런타임 조정보다 훨씬 큰 절감 효과를 얻을 수 있습니다. 선형 광학에서 `LOSimulator`는 기본적으로 고정 광자 수 상태를 사용합니다. 모드 열두 개에 광자 네 개가 있으면 진폭은 1,365개만 필요합니다. [더 큰 간섭계 시뮬레이션하기](linear-optics.md#simulate-larger-interferometers)를 참고하세요. 물리 모델을 사용할 때는 먼저 [물리 현상을 어느 수준까지 모델링할지 선택하세요](execution-models.md). 추가 물리 준위와 펄스 적분은 문제의 계산 비용을 바꿉니다.
+  status: machine
+- id: 4ff7b5d50fd53b4c
+  en: FatQat offers two CPU runtimes. NumPy starts executing directly, which makes it useful when compilation startup would dominate the workload. Numba compiles numerical kernels on first use and spreads that startup cost over repeated work. The initial simulator default is Numba; set `runtime` explicitly when comparing them.
+  ko: FatQat은 두 가지 CPU 런타임을 제공합니다. NumPy는 바로 실행하므로 컴파일 시작 비용이 전체 작업 시간을 좌우할 때 유용합니다. Numba는 처음 사용할 때 수치 커널을 컴파일하고, 반복 작업을 통해 시작 비용을 분산합니다. 시뮬레이터의 초기 기본값은 Numba입니다. 두 런타임을 비교할 때는 `runtime`을 명시하세요.
+  status: machine
+- id: 1d29f73c8c51454e
+  en: The runtime and the execution workflow serve different roles. A **kernel** does numerical work, such as applying a gate to a state. A **workflow** sequences those operations and handles repeated shots or parameter points. NumPy uses Python workflows with NumPy numerical operations. Numba uses compiled kernels, with compiled workflows for eligible statevector trajectories and parameter batches.
+  ko: 런타임과 실행 흐름은 역할이 다릅니다. **커널**은 상태에 게이트를 적용하는 것과 같은 수치 계산을 수행합니다. **실행 흐름**은 이러한 연산의 순서를 정하고 반복 샷이나 매개변수 지점을 처리합니다. NumPy는 Python 실행 흐름에서 NumPy 수치 연산을 사용합니다. Numba는 컴파일된 커널을 사용하며, 지원 조건을 만족하는 상태 벡터 궤적과 매개변수 배치에는 컴파일된 실행 흐름을 사용합니다.
+  status: machine
+- id: 9bee158de461a949
+  en: For statevector simulation, choosing `runtime="numba"` does not require the whole program to fit a compiled workflow. If an otherwise supported operation cannot run in that workflow, the simulator uses a Python workflow with Numba kernels for supported numerical operations. Custom Python callbacks still execute in Python. Python workflows also support process-based shots and threading within kernels.
+  ko: 상태 벡터 시뮬레이션에서 `runtime="numba"`를 선택해도 프로그램 전체가 컴파일된 실행 흐름의 조건을 만족할 필요는 없습니다. 지원되는 연산이지만 해당 실행 흐름에서는 실행할 수 없다면, 시뮬레이터는 Python 실행 흐름을 사용하면서 지원되는 수치 연산에는 Numba 커널을 적용합니다. 사용자 정의 Python 콜백은 계속 Python에서 실행됩니다. Python 실행 흐름도 프로세스 기반 샷 병렬화와 커널 내부의 스레드 병렬화를 지원합니다.
+  status: machine
+- id: 18b284f41d6e5fca
+  en: For repeated runs, parameter sweeps, or many independent shots, start with Numba and automatic execution settings. Even small circuits can benefit from compiled workflows and shot parallelism when each shot evolves a separate noisy trajectory or follows measurement-dependent control flow.
+  ko: 반복 실행, 매개변수 스윕, 독립적인 샷이 많은 작업에는 Numba와 자동 실행 설정부터 사용하세요. 각 샷이 별도의 잡음 궤적을 따르거나 측정 결과에 따라 제어 흐름이 달라진다면, 작은 회로도 컴파일된 실행 흐름과 샷 병렬화의 이점을 얻을 수 있습니다.
+  status: machine
+- id: 9ac1c27ec2830957
+  en: 'Workflow selection is automatic: you choose the runtime and parallelism options, and the simulator selects the workflow. For parallelism choices, see [Match parallelism to the work](#match-parallelism-to-the-work).'
+  ko: 실행 흐름은 자동으로 선택됩니다. 런타임과 병렬화 옵션을 지정하면 시뮬레이터가 실행 흐름을 선택합니다. 병렬화 설정은 [작업에 맞는 병렬화 선택하기](#match-parallelism-to-the-work)를 참고하세요.
+  status: machine
+- id: b18b56da7aefdbb5
+  en: The following example compares warmed execution times and checks that both runtimes agree within floating-point tolerance. Times are in seconds.
+  ko: 아래 예제는 준비 실행 후의 실행 시간을 비교하고, 두 런타임의 결과가 부동소수점 허용 오차 안에서 일치하는지 확인합니다. 시간 단위는 초입니다.
+  status: machine
+- id: 465b625cddf8ea0b
+  en: Measure a representative circuit with the same method and result request. For startup latency, time the first call in a fresh Python process separately.
+  ko: 실제 작업을 대표하는 회로를 골라 같은 시뮬레이션 방법과 결과 요청으로 측정하세요. 시작 지연을 확인하려면 새 Python 프로세스에서 첫 호출 시간을 따로 측정하세요.
+  status: machine
+- id: 78727f84b99379ae
+  en: Sweep parameters without rebuilding
+  ko: 회로를 다시 만들지 않고 매개변수 스윕하기
+  status: machine
+- id: 5ff0fd0f18260450
+  en: 'Parameter scans and variational algorithms repeatedly run the same circuit with different angles. Express those angles as `Parameter` objects and pass the values to `run_sweep()`: the simulator can share preparation across the batch.'
+  ko: 매개변수 스캔과 변분 알고리즘은 같은 회로를 서로 다른 각도로 반복 실행합니다. 각도를 `Parameter` 객체로 표현하고 값을 `run_sweep()`에 전달하면, 시뮬레이터가 배치 전체에서 준비 작업을 공유할 수 있습니다.
+  status: machine
+- id: 9b3583c3c431ba72
+  en: Requesting final states retains one state per parameter point. Use an estimator sweep when you only need energies or correlations. See [Sweep without rebuilding](simulation.md#sweep-without-rebuilding) for a worked example.
+  ko: 최종 상태를 요청하면 매개변수 지점마다 상태 하나가 저장됩니다. 에너지나 상관관계만 필요하다면 추정기 스윕을 사용하세요. 구체적인 예제는 [다시 만들지 않고 스윕하기](simulation.md#sweep-without-rebuilding)를 참고하세요.
+  status: machine
+- id: dd56efe05718e9b7
+  en: Evaluate observables together
+  ko: 관측량을 함께 계산하기
+  status: machine
+- id: 1c1283f4ee52cb9a
+  en: An Estimator computes expectation values directly from structured [`Observable`][fatqat.Observable] objects. For matrix simulation, it evaluates their local factors without constructing a dense operator over the full system. Pass related observables together so they share the state evolution.
+  ko: Estimator는 구조화된 [`Observable`][fatqat.Observable] 객체에서 기댓값을 직접 계산합니다. 행렬 시뮬레이션에서는 전체 시스템의 조밀한 연산자를 만들지 않고 관측량의 국소 인자를 계산합니다. 관련 관측량을 함께 전달하면 상태의 시간 변화를 공유할 수 있습니다.
+  status: machine
+- id: 6434926fc96fb15c
+  en: '`shots=0` calculates expectations without shot sampling. Positive shots introduce measurement sampling and give a standard error alongside each estimate. For exact expectations with stochastic channels or reset, choose a density-matrix backend; use positive shots for noisy statevector trajectories.'
+  ko: '`shots=0`은 샷 샘플링 없이 기댓값을 계산합니다. 샷 수가 양수이면 측정 샘플링이 적용되며 각 추정값과 함께 표준 오차가 제공됩니다. 확률적 채널이나 리셋이 있을 때 정확한 기댓값을 구하려면 밀도 행렬 백엔드를 선택하세요. 잡음이 있는 상태 벡터 궤적에는 양의 샷 수를 사용하세요.'
+  status: machine
+- id: e460225d79321cba
+  en: '`Estimator.run_sweep()` retains expectation results instead of a final state for every point, saving memory in large scans. See [Estimate observables](interpret-results.md) for examples and uncertainty, and the [Estimator API](../api/estimator.md#parameter-sweeps) for sweeps.'
+  ko: '`Estimator.run_sweep()`는 지점마다 최종 상태 대신 기댓값 결과를 보관하므로 큰 스캔에서 메모리를 절약합니다. 예제와 불확실성은 [관측량 추정하기](interpret-results.md)를, 스윕은 [Estimator API](../api/estimator.md#parameter-sweeps)를 참고하세요.'
+  status: machine
+- id: f6b76a385f6d91a4
+  en: Match parallelism to the work
+  ko: 작업에 맞는 병렬화 선택하기
+  status: machine
+- id: 8ef1eb3512b6179e
+  en: 'Start with automatic execution settings. For explicit control, set these options in `execution_config`:'
+  ko: '자동 실행 설정부터 사용하세요. 직접 제어하려면 `execution_config`에서 다음 옵션을 설정하세요:'
+  status: machine
+- id: a34b05377d5c0f07
+  en: '| Workload | Parallelism |'
+  ko: '| 작업 | 병렬화 |'
+  status: machine
+- id: 93c3089571bc40ee
+  en: '| General use | Keep the default `"auto"` settings; use `max_workers` to cap the worker count |'
+  ko: '| 일반적인 용도 | 기본 `"auto"` 설정을 유지하고 `max_workers`로 작업자 수의 상한을 지정 |'
+  status: machine
+- id: 24e67ce15716751a
+  en: '| Large state with Numba | `kernel_parallelism="threads"`, `shot_parallelism="serial"` |'
+  ko: '| Numba를 사용하는 큰 상태 | `kernel_parallelism="threads"`, `shot_parallelism="serial"` |'
+  status: machine
+- id: 2b4204f2d249a5b4
+  en: '| Independent shots, counts only | `shot_parallelism="threads"` for compatible Numba statevector runs, or `"processes"` for other supported workloads; keep kernel parallelism serial |'
+  ko: '| 독립적인 샷, 카운트만 요청 | 호환되는 Numba 상태 벡터 실행에는 `shot_parallelism="threads"`, 그 밖의 지원되는 작업에는 `"processes"` 사용. 커널은 직렬 실행 유지 |'
+  status: machine
+- id: 3b58c63101e557d2
+  en: '| Little total work, or a serial timing baseline | Set both `kernel_parallelism` and `shot_parallelism` to `"serial"` |'
+  ko: '| 전체 계산량이 적거나 직렬 실행 시간을 기준으로 측정 | `kernel_parallelism`과 `shot_parallelism`을 모두 `"serial"`로 설정 |'
+  status: machine
+- id: 40abdb978ce3fcf0
+  en: A deterministic circuit with terminal measurements evolves once and samples its output distribution. Increasing its shot count does not repeat the whole circuit, so explicit shot parallelism does not apply to that workload.
+  ko: 결정론적으로 상태가 변하고 마지막에만 측정하는 회로는 상태를 한 번만 변화시킨 뒤 출력 분포에서 샘플링합니다. 샷 수를 늘려도 회로 전체를 반복 실행하지 않으므로, 이 작업에는 샷 병렬화를 명시적으로 적용할 수 없습니다.
+  status: machine
+- id: 410cdda346a8789a
+  en: Parallelism pays off when there is enough work across state entries or independent shots to outweigh worker overhead. Choose one parallel axis at a time. The [Simulator API](../api/simulator.md#runtime-and-execution) lists the supported combinations.
+  ko: 상태 원소나 독립적인 샷에 걸친 계산량이 작업자 오버헤드를 상쇄할 만큼 커야 병렬화의 이점이 있습니다. 한 번에 하나의 축으로 병렬화하세요. 지원되는 조합은 [Simulator API](../api/simulator.md#runtime-and-execution)에 나와 있습니다.
+  status: machine
+- id: d1de9a51288c7828
+  en: 'When comparing sampled runs, set `execution_config["seed"]` and compare observables or distributions: changing runtime or parallel mode can change the individual samples. For deterministic runs, compare final states within floating-point tolerance.'
+  ko: 샘플링 실행을 비교할 때는 `execution_config["seed"]`를 설정하고 관측량이나 분포를 비교하세요. 런타임이나 병렬 모드를 바꾸면 개별 표본은 달라질 수 있습니다. 결정론적 실행에서는 부동소수점 허용 오차 안에서 최종 상태를 비교하세요.
   status: machine
