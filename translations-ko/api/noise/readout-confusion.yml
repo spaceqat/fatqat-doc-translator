@@ -1,0 +1,64 @@
+- id: 7724496895a34c5f
+  en: ReadoutConfusion
+  ko: ReadoutConfusion
+  status: machine
+- id: 5c26aa04e9996d59
+  en: '[`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] is a classical channel applied to the digit reported after physical measurement. It changes counts and feedforward inputs, not the post-measurement quantum state.'
+  ko: '[`ReadoutConfusion`][fatqat.noise.ReadoutConfusion]은 물리 측정 뒤에 보고되는 숫자에 적용하는 고전 채널입니다. 카운트와 피드포워드 입력을 바꾸지만 측정 후 양자 상태는 바꾸지 않습니다.'
+  status: machine
+- id: 0401176c32cc37ac
+  en: Matrix convention
+  ko: 행렬 규약
+  status: machine
+- id: 8afe61fa5fd5659f
+  en: For confusion matrix C,
+  ko: 혼동 행렬 C에서
+  status: machine
+- id: bfa2576ce21f5dd5
+  en: Rows are reported digits and columns are true digits. Each column must therefore sum to 1. A qubit matrix
+  ko: 행은 보고된 숫자, 열은 실제 숫자입니다. 따라서 각 열의 합은 1이어야 합니다. 다음 큐비트 행렬은
+  status: machine
+- id: 842c196075c3fbec
+  en: means that true 0 is reported as 1 with probability 0.02, while true 1 is reported as 0 with probability 0.04.
+  ko: 실제 0이 확률 0.02로 1로 보고되고, 실제 1이 확률 0.04로 0으로 보고된다는 뜻입니다.
+  status: machine
+- id: 1f38a29e86d6afcf
+  en: The input may be any float-convertible array-like value. It must produce a finite square matrix of side length at least 2, with entries in `[0, 1]` and columns that sum to 1 within numerical tolerance. The matrix size must also match the backend's reported digit dimension.
+  ko: 입력은 float로 변환할 수 있는 배열 형태의 값이면 됩니다. 변환 결과는 한 변의 길이가 2 이상인 유한한 정사각 행렬이어야 합니다. 원소는 `[0, 1]`에 있고 각 열의 합은 수치 허용 오차 안에서 1이어야 합니다. 행렬 크기는 백엔드가 보고하는 숫자의 차원과도 같아야 합니다.
+  status: machine
+- id: c5e6232e39cba4dd
+  en: FATQAT converts the matrix to float and stores its own read-only copy. Changing the input array later does not affect the noise object.
+  ko: FATQAT은 행렬을 float로 변환하고 자체 읽기 전용 사본을 저장합니다. 이후 입력 배열을 바꿔도 잡음 객체에는 영향이 없습니다.
+  status: machine
+- id: b8c1611f1a272ca1
+  en: How measurements are reported
+  ko: 측정값 보고 방식
+  status: machine
+- id: bcb8331ae2d4f202
+  en: The backend first samples the true physical outcome and collapses the quantum state. It then samples the reported digit from the corresponding matrix column. The reported value is written to classical memory, so subsequent feedforward sees the confused value. Reusing the measured subsystem still evolves from its true collapsed state.
+  ko: 백엔드는 먼저 실제 물리 결과를 샘플링해 양자 상태를 붕괴시킵니다. 그런 다음 대응하는 행렬 열에서 보고할 숫자를 샘플링합니다. 보고된 값이 고전 메모리에 기록되므로 이후 피드포워드는 혼동이 적용된 값을 사용합니다. 측정한 부분계를 다시 사용해도 양자 상태는 실제로 붕괴한 상태에서 계속 변합니다.
+  status: machine
+- id: 39e44cbf5682d56e
+  en: Where it applies
+  ko: 적용 범위
+  status: machine
+- id: afc02a548220baa5
+  en: 'Readout confusion always applies at measurement in [`NoiseModel`][fatqat.NoiseModel]:'
+  ko: '[`NoiseModel`][fatqat.NoiseModel]에서 판독 혼동은 항상 측정 시 적용됩니다.'
+  status: machine
+- id: 257000375ab1de28
+  en: Omit `targets` to affect every measured operand, or pass one quantum [`RegisterRef`][fatqat.RegisterRef] or device label. Correlated multi-operand readout is not supported. Do not pass `operation` or `target_positions`, even as `None`.
+  ko: 모든 측정 피연산자에 적용하려면 `targets`를 생략하거나, 양자 [`RegisterRef`][fatqat.RegisterRef] 또는 장치 레이블 하나를 전달하세요. 여러 피연산자의 상관 판독은 지원하지 않습니다. `operation`과 `target_positions`는 `None`이라도 전달하지 마세요.
+  status: machine
+- id: cbddecbd7b5a6daf
+  en: A universal registration cannot coexist with targeted registrations, and the same target cannot be registered twice. Logical and device-label registrations that select the same operand are rejected when the program runs with a concrete layout.
+  ko: 전체 적용 등록은 대상 지정 등록과 함께 사용할 수 없으며 같은 대상을 두 번 등록할 수도 없습니다. 논리 등록과 장치 레이블 등록이 같은 피연산자를 선택하면, 구체적인 레이아웃으로 프로그램을 실행할 때 거부됩니다.
+  status: machine
+- id: 1a216e0f614dfca8
+  en: Simulators require the matrix side length to match the measured subsystem's reported digit dimension. An empty-site erasure bypasses confusion because no physical digit was measured. See [Simulators](backend-support.md#noise-simulator-support) for backend and dimension details.
+  ko: 시뮬레이터는 행렬의 한 변 길이가 측정 부분계에서 보고하는 숫자의 차원과 같을 것을 요구합니다. 빈 사이트의 소실 값은 물리 숫자가 측정된 것이 아니므로 혼동을 거치지 않습니다. 백엔드와 차원에 관한 자세한 내용은 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.
+  status: machine
+- id: 24d695eef4631b99
+  en: Readout confusion remains a classical reporting step; it is not represented by a Lindblad operator. See [Pulse emulators](backend-support.md#noise-emulator-support) for each emulator's reported digit dimension and physical-level mapping.
+  ko: 판독 혼동은 고전적인 보고 단계이며 Lindblad 연산자로 표현하지 않습니다. 에뮬레이터별 보고 숫자의 차원과 물리 준위 매핑은 [펄스 에뮬레이터](backend-support.md#noise-emulator-support)를 참고하세요.
+  status: machine

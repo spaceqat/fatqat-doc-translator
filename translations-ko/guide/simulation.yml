@@ -1,0 +1,88 @@
+- id: ca0bab8f02a61c2d
+  en: Simulate a quantum program
+  ko: 양자 프로그램 시뮬레이션하기
+  status: machine
+- id: 87292fa005592633
+  en: 'Use the general-purpose [`Simulator`][fatqat.simulator.Simulator] to study circuit behavior, with or without noise. Start here with an ideal single-qubit rotation: calculate its exact probabilities, sample measurement outcomes, then vary the rotation angle to see how the probabilities change.'
+  ko: 범용 [`Simulator`][fatqat.simulator.Simulator]로 잡음이 있거나 없는 회로의 동작을 연구할 수 있습니다. 여기서는 이상적인 단일 큐비트 회전으로 시작합니다. 정확한 확률을 계산하고 측정값을 샘플링한 뒤, 회전 각도에 따라 확률이 어떻게 바뀌는지 살펴봅니다.
+  status: machine
+- id: 8ac32dd5d2b43ede
+  en: 'The statevector contains an amplitude for each basis state. Its squared magnitudes give the probabilities of measuring `0` and `1`: here, one half each. No measurements were sampled to obtain these probabilities. The classical bit declared by `Program(1, 1)` will hold the measurement outcome in the next example.'
+  ko: 상태 벡터에는 각 기저 상태의 진폭이 들어 있습니다. 진폭의 절댓값을 제곱하면 `0`과 `1`을 측정할 확률이 되며, 여기서는 각각 절반입니다. 이 확률을 구하는 데 측정 샘플링은 사용하지 않았습니다. `Program(1, 1)`에 선언한 고전 비트는 다음 예제에서 측정 결과를 담습니다.
+  status: machine
+- id: ede568490dc3b75f
+  en: '`runtime="numpy"` avoids compilation startup for this small circuit. [Performance and scaling](performance.md) explains when to compare it with the Numba runtime.'
+  ko: 작은 회로에서 `runtime="numpy"`를 사용하면 시작 시 컴파일을 피할 수 있습니다. 언제 Numba 런타임과 비교할지는 [성능과 확장성](performance.md)에 설명되어 있습니다.
+  status: machine
+- id: c45fefffd021a124
+  en: To use NumPy for matrix simulation throughout a script or notebook, set the default before creating simulators. The initial default is Numba.
+  ko: 스크립트나 노트북 전체의 행렬 시뮬레이션에 NumPy를 사용하려면 시뮬레이터를 만들기 전에 기본값을 설정하세요. 초기 기본값은 Numba입니다.
+  status: machine
+- id: e76a237faf9235da
+  en: Choose a simulation method
+  ko: 시뮬레이션 방법 선택하기
+  status: machine
+- id: 98961a58ae30e173
+  en: 'Set `method` to choose how the simulator represents the state:'
+  ko: '`method`로 시뮬레이터가 상태를 표현하는 방법을 선택합니다.'
+  status: machine
+- id: 4e1b06b65f64402c
+  en: '**`statevector`** represents a pure state. With noise, it samples individual noise trajectories.'
+  ko: '**`statevector`**는 순수 상태를 표현합니다. 잡음이 있으면 개별 잡음 궤적을 샘플링합니다.'
+  status: machine
+- id: f16addc9014c09ef
+  en: '**`density_matrix`** represents a mixed state and applies noise channels directly, without sampling trajectories.'
+  ko: '**`density_matrix`**는 혼합 상태를 표현하며, 궤적을 샘플링하지 않고 잡음 채널을 직접 적용합니다.'
+  status: machine
+- id: 39d06ef230a0cc0e
+  en: Use `unitary` or `superop` when you need the circuit's full transformation rather than its output state.
+  ko: 출력 상태보다 회로의 전체 변환이 필요하다면 `unitary` 또는 `superop`을 사용하세요.
+  status: machine
+- id: 2717d780dc95b264
+  en: For a worked example using a density matrix to study noise, see [Ideal and noisy runs](ideal-and-noisy.md).
+  ko: 밀도 행렬로 잡음을 연구하는 예제는 [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md)을 참고하세요.
+  status: machine
+- id: b6d344af5f9bb899
+  en: Measure a distribution
+  ko: 분포 측정하기
+  status: machine
+- id: 7a0107acdd972919
+  en: 'An exact probability of one half does not mean every set of measurements splits evenly. Copy the rotation Program and add a measurement into its classical bit. Each shot runs the circuit from its initial state and produces one outcome:'
+  ko: 정확한 확률이 절반이라고 해서 모든 측정 묶음이 반반으로 나뉘는 것은 아닙니다. 회전 Program을 복사하고 고전 비트에 기록할 측정을 추가하세요. 각 샷은 초기 상태에서 회로를 실행해 하나의 결과를 냅니다.
+  status: machine
+- id: 6fc50a3fc7697b8b
+  en: The counts record how many shots produced each outcome. Divide them by the number of shots to obtain the observed frequencies. These fluctuate around the exact probabilities because measurement is sampled, even though the circuit has no noise. More shots generally reduce the sampling fluctuations; they do not change the underlying probabilities. The seed makes this example repeatable.
+  ko: 카운트는 각 결과가 나온 샷 수를 기록합니다. 이를 전체 샷 수로 나누면 관측 빈도를 얻습니다. 회로에 잡음이 없어도 측정을 샘플링하므로 빈도는 정확한 확률 주변에서 변동합니다. 샷 수를 늘리면 일반적으로 샘플링 변동이 줄지만, 본래의 확률이 바뀌지는 않습니다. 시드 덕분에 이 예제를 재현할 수 있습니다.
+  status: machine
+- id: fc583207e249f7ee
+  en: '[`Result.draw()`][fatqat.Result.draw] can display the counts as frequencies. The dashed line below marks the exact probability for both outcomes:'
+  ko: '[`Result.draw()`][fatqat.Result.draw]는 카운트를 빈도로 표시할 수 있습니다. 아래 점선은 두 결과의 정확한 확률을 나타냅니다.'
+  status: machine
+- id: a1a945b7edea3e08
+  en: '![A histogram of 200 shots shows outcome frequencies close to, but on opposite sides of, the dashed exact-probability line at one half.](../assets/generated/guide/simulation-measurements.png)'
+  ko: '![200회 샷의 히스토그램. 두 결과의 빈도는 ½인 정확한 확률 점선에 가깝지만 하나는 위에, 하나는 아래에 있습니다.](../assets/generated/guide/simulation-measurements.png)'
+  status: machine
+- id: e23739e7ac814952
+  en: Sweep without rebuilding
+  ko: Program을 다시 만들지 않고 스윕하기
+  status: machine
+- id: 8770e38a451ba2c4
+  en: How does the probability of `1` change with the rotation angle? Replace the fixed angle with a [`Parameter`][fatqat.Parameter], then use [`run_sweep`][fatqat.simulator.Simulator.run_sweep] to evaluate a list of angles without rebuilding the Program for each value. This is typically faster than separate `run` calls because the simulator reuses setup work across parameter values.
+  ko: 회전 각도에 따라 `1`의 확률은 어떻게 바뀔까요? 고정 각도를 [`Parameter`][fatqat.Parameter]로 바꾸고 [`run_sweep`][fatqat.simulator.Simulator.run_sweep]로 각도 목록을 계산하면, 값마다 Program을 다시 만들 필요가 없습니다. 시뮬레이터가 매개변수 값 사이에서 준비 작업을 재사용하므로 보통 별도의 `run` 호출보다 빠릅니다.
+  status: machine
+- id: 1b194f72e0c8092a
+  en: 'The mapping `{theta: angles}` supplies a value of `theta` for each run. The results follow the same order as `angles`. This Program has no measurements; each probability comes directly from a statevector, so the curve has no shot-sampling fluctuations.'
+  ko: '맵 `{theta: angles}`는 각 실행에 사용할 `theta` 값을 제공합니다. 결과는 `angles`와 같은 순서로 반환됩니다. 이 Program에는 측정이 없고 각 확률을 상태 벡터에서 직접 구하므로, 곡선에 샷 샘플링으로 인한 변동이 없습니다.'
+  status: machine
+- id: ada480a31ad285fb
+  en: 'For this rotation, \(P(1) = \sin^2(\theta / 2)\). It rises from zero to one at \(\theta = \pi\), then returns to zero at \(2\pi\). The plot uses a finer angle grid to show that dependence:'
+  ko: 이 회전에서는 \(P(1) = \sin^2(\theta / 2)\)입니다. 0에서 시작해 \(\theta = \pi\)에서 1이 된 뒤, \(2\pi\)에서 다시 0이 됩니다. 그래프는 각도 간격을 더 촘촘하게 하여 이 관계를 보여 줍니다.
+  status: machine
+- id: 413b853d2d030fc8
+  en: '![Probability of measuring one follows a smooth sine-squared curve as the RY angle is swept from zero to two pi.](../assets/generated/guide/simulation-1.png)'
+  ko: '![RY 각도를 0부터 2 pi까지 스윕하면 1을 측정할 확률이 매끄러운 사인 제곱 곡선을 따릅니다.](../assets/generated/guide/simulation-1.png)'
+  status: machine
+- id: c3bb5e8439260fd8
+  en: For more sweep options, see the [Simulator API](../api/simulator.md). Continue with [Estimate observables](interpret-results.md) to calculate correlations and understand the uncertainty of sampled estimates.
+  ko: 다른 스윕 옵션은 [Simulator API](../api/simulator.md)를 참고하세요. [관측량 추정하기](interpret-results.md)에서는 상관을 계산하고 샘플링 추정의 불확실성을 이해할 수 있습니다.
+  status: machine

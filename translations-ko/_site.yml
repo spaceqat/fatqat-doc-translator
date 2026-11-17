@@ -1,0 +1,236 @@
+- id: 3a78695388b38b5c
+  en: Home
+  ko: 홈
+  status: machine
+- id: e4095b778786868d
+  en: Start with one program
+  ko: 하나의 프로그램으로 시작하기
+  status: machine
+- id: d3b2aefa7524f88c
+  en: Quickstart
+  ko: 빠른 시작
+  status: machine
+- id: d71f409e900eb6ed
+  en: Programs and registers
+  ko: 프로그램과 레지스터
+  status: machine
+- id: 435e7cb6fa6d898c
+  en: Execution models
+  ko: 실행 모델
+  status: machine
+- id: bcab022f89313896
+  en: Run and analyze programs
+  ko: 프로그램 실행과 분석
+  status: machine
+- id: 45314e97b0c26a86
+  en: Simulation
+  ko: 시뮬레이션
+  status: machine
+- id: 0b450ba46b4d6b79
+  en: Ideal and noisy runs
+  ko: 이상적인 실행과 잡음이 있는 실행
+  status: machine
+- id: 442aded87a55aa8c
+  en: Performance
+  ko: 성능
+  status: machine
+- id: 9a9cc4a72ef682dd
+  en: Model hardware and physics
+  ko: 하드웨어와 물리 모델링
+  status: machine
+- id: 20fe5776b5d3cf0f
+  en: Linear optics simulation
+  ko: 선형 광학 시뮬레이션
+  status: machine
+- id: 348c1c6d71f05569
+  en: Transmon emulation
+  ko: Transmon 에뮬레이션
+  status: machine
+- id: 2eab1e06090bdc3d
+  en: Neutral-atom emulation
+  ko: 중성 원자 에뮬레이션
+  status: machine
+- id: e6665fc1d2b887bc
+  en: Connect and diagnose
+  ko: 연동과 문제 진단
+  status: machine
+- id: c3af076f92c5ed8d
+  en: Troubleshooting
+  ko: 문제 해결
+  status: machine
+- id: 8d9f66992dd4373c
+  en: Tutorials
+  ko: 튜토리얼
+  status: machine
+- id: 90d9132f374d3bac
+  en: SC target
+  ko: SC 타깃
+  status: machine
+- id: fa67b73f924173f5
+  en: Atom gates
+  ko: 원자 게이트
+  status: machine
+- id: 5ccfda1d2e6f7edc
+  en: Structural operations
+  ko: 구조 연산
+  status: machine
+- id: f2b98fa03b5e7013
+  en: Pulse operation
+  ko: 펄스 연산
+  status: machine
+- id: aba195e5a25033a0
+  en: Sampled waveform
+  ko: 샘플 기반 파형
+  status: machine
+- id: 311d61958b798ee2
+  en: Superconducting profile
+  ko: 초전도 프로파일
+  status: machine
+- id: be224f1a4e829978
+  en: Atom-array profile
+  ko: 원자 배열 프로파일
+  status: machine
+- id: 291e656731600b18
+  en: Linear optics
+  ko: 선형 광학
+  status: machine
+- id: 00a5ef93df74d61e
+  en: Transmon emulator
+  ko: Transmon 에뮬레이터
+  status: machine
+- id: 8de013e1075dfe0d
+  en: Neutral-atom emulators
+  ko: 중성 원자 에뮬레이터
+  status: machine
+- id: 0400649647234c8f
+  en: Pauli channel
+  ko: Pauli 채널
+  status: machine
+- id: efdc19ad0456f1a5
+  en: Amplitude damping
+  ko: 진폭 감쇠
+  status: machine
+- id: 6e24bf42abc3c2bc
+  en: Transition relaxation
+  ko: 전이 이완
+  status: machine
+- id: 06dc1bd3c1ac5ca1
+  en: Phase damping
+  ko: 위상 감쇠
+  status: machine
+- id: 235c723928862110
+  en: Thermal relaxation
+  ko: 열적 이완
+  status: machine
+- id: 3594f151d3e213e5
+  en: Readout confusion
+  ko: 판독 혼동
+  status: machine
+- id: 913a3ce80567b922
+  en: Custom implementations
+  ko: 사용자 정의 구현
+  status: machine
+- id: cd1f1dbdda8a0624
+  en: Estimator
+  ko: Estimator
+  status: machine
+- id: 3b4cdc3dac476229
+  en: How to contribute
+  ko: 기여 방법
+  status: machine
+- id: 41086d79c9f4b58a
+  en: Runtime result
+  ko: 실행 결과
+  status: machine
+- id: 751b889343959a6a
+  en: Python cell
+  ko: Python 셀
+  status: machine
+- id: 051f01f095a28b04
+  en: Track
+  ko: 학습 경로
+  status: machine
+- id: d5fdc1af021e2d36
+  en: Downloads
+  ko: 다운로드
+  status: machine
+- id: 6923d8b0cc04e3de
+  en: Python script
+  ko: Python 스크립트
+  status: machine
+- id: 610e853f5a689f60
+  en: Jupyter notebook
+  ko: Jupyter 노트북
+  status: machine
+- id: defc57312aca47bf
+  en: Tutorials collected from the {title} source folder.
+  ko: '{title} 소스 폴더의 튜토리얼 모음입니다.'
+  status: machine
+- id: d37597d4221ee046
+  en: Executable FatQat case studies in circuits, control, error correction, simulation, optimization, and machine learning.
+  ko: 회로, 제어, 오류 정정, 시뮬레이션, 최적화, 머신러닝을 다루는 실행 가능한 FatQat 사례 연구입니다.
+  status: machine
+- id: c2a1b013a196080f
+  en: Explore complete, executable case studies grouped by topic. If you are new to FatQat, start with the [quickstart](../guide/quickstart.md) to learn how to build, run, and inspect a program.
+  ko: 주제별로 정리한 완전한 사례 연구를 직접 실행해 보세요. FatQat을 처음 사용한다면 [빠른 시작](../guide/quickstart.md)에서 프로그램을 작성하고 실행하며 결과를 살펴보는 방법부터 익히세요.
+  status: machine
+- id: 140ac7ae079e25b1
+  en: Choose a path
+  ko: 학습 경로 선택하기
+  status: machine
+- id: 294bdbea76a46f14
+  en: Follow [eight-atom GHZ preparation](atom-array-ghz8.md) with [atom-loss error correction](atom-loss-erasure.md), or move from [gate calibration](pulse-calibration.md) to [Rydberg CZ pulse design](optimal-cz-control.md). For optimization, work through [QUBO and QAOA](qubo-qaoa.md), [the islanding model](islanding-model.md), and [islanding with QAOA](islanding-qaoa.md).
+  ko: '[8원자 GHZ 상태 준비](atom-array-ghz8.md) 다음에 [원자 손실 오류 정정](atom-loss-erasure.md)을 살펴보거나, [게이트 보정](pulse-calibration.md)에서 [Rydberg CZ 펄스 설계](optimal-cz-control.md)로 이어 가세요. 최적화는 [QUBO와 QAOA](qubo-qaoa.md), [계통 분리 모델](islanding-model.md), [QAOA를 이용한 계통 분리](islanding-qaoa.md) 순서로 진행할 수 있습니다.'
+  status: machine
+- id: 22d7a3a1ec2eadac
+  en: Open tutorial
+  ko: 튜토리얼 열기
+  status: machine
+- id: dd6caa21b5b249b2
+  en: Circuits and entanglement
+  ko: 회로와 얽힘
+  status: machine
+- id: 96fd73eba3eeaa5f
+  en: Construct and verify quantum gates and entangled states using mixed qubit-qutrit registers and reconfigurable atom-array connectivity.
+  ko: 큐비트와 큐트릿가 섞인 레지스터 및 재구성 가능한 원자 배열 연결을 이용해 양자 게이트와 얽힌 상태를 만들고 검증합니다.
+  status: machine
+- id: c7bdad567af23bae
+  en: Error correction
+  ko: 오류 정정
+  status: machine
+- id: c49e59c70de41581
+  en: Study repetition-code and surface-code memories, parity checks, and decoding with syndrome histories or information about atom loss.
+  ko: 신드롬 이력이나 원자 손실 정보를 이용해 반복 부호 및 표면 부호 메모리, 패리티 검사, 디코딩을 살펴봅니다.
+  status: machine
+- id: 424ea86c0b42650e
+  en: Quantum simulation
+  ko: 양자 시뮬레이션
+  status: machine
+- id: dfaf297980a192b7
+  en: Estimate molecular ground-state energies and explore correlations, revivals, and entanglement in interacting quantum systems.
+  ko: 분자의 바닥 상태 에너지를 추정하고 상호작용하는 양자계의 상관, 재현 현상, 얽힘을 탐구합니다.
+  status: machine
+- id: d4e81b343e3c9857
+  en: Combinatorial optimization
+  ko: 조합 최적화
+  status: machine
+- id: a651e2aaed99e35c
+  en: Encode constraints as QUBOs, solve them with QAOA, and apply the workflow to controlled power-grid islanding.
+  ko: 제약을 QUBO로 표현하고 QAOA로 푼 뒤, 이 과정을 전력망의 제어된 계통 분리에 적용합니다.
+  status: machine
+- id: 49e2662f86fd17cb
+  en: Quantum machine learning
+  ko: 양자 머신러닝
+  status: machine
+- id: 44ca0662598d620e
+  en: Train parameterized circuits and search circuit structures for classification and regression with batched parameter sweeps.
+  ko: 매개변수 배치 스윕으로 매개변수화된 회로를 학습하고, 분류와 회귀에 적합한 회로 구조를 탐색합니다.
+  status: machine
+- id: 152549dfacbdcd6b
+  en: Pulse control and calibration
+  ko: 펄스 제어와 보정
+  status: machine
+- id: a1a6016e838e11b5
+  en: Design and calibrate control pulses, then check their action on quantum states in transmon and Rydberg models.
+  ko: 제어 펄스를 설계하고 보정한 뒤, transmon 및 Rydberg 모델에서 양자 상태에 미치는 작용을 확인합니다.
+  status: machine

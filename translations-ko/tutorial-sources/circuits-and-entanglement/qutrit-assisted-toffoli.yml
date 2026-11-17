@@ -1,0 +1,280 @@
+- id: 5957e98c8cd785a4
+  en: Build a Toffoli gate by borrowing a third level
+  ko: 세 번째 준위를 빌려 Toffoli 게이트 만들기
+  status: machine
+- id: 6f9e94b452777c0d
+  en: Use a qubit–qutrit–qubit register to construct Toffoli with three qubit–qutrit interactions, then verify its relative phases and return from the borrowed level.
+  ko: 큐비트–큐트릿–큐비트 레지스터에서 세 번의 큐비트–큐트릿 상호작용으로 Toffoli를 구성하고, 상대 위상과 빌린 준위에서의 복귀를 검증합니다.
+  status: machine
+- id: efab3866fc676b1c
+  en: One simulated input follows 110, 120, 121, and 111 at the input, controlled level exchange, target flip, and restoration checkpoints; the middle system's level-2 population is zero, one, one, and zero.
+  ko: 한 입력의 시뮬레이션 상태는 입력, 제어 준위 교환, 타깃 반전, 복원 시점에서 각각 110, 120, 121, 111입니다. 가운데 계의 준위 2 점유율은 차례로 0, 1, 1, 0입니다.
+  status: machine
+- id: 15712a5bf3546440
+  en: 'Transition probabilities from eight logical inputs to all twelve output states: only 110 and 111 exchange places, and the four orange-outlined output rows with middle level 2 have zero population.'
+  ko: 여덟 논리 입력에서 열두 출력 상태로 가는 전이 확률입니다. 110과 111만 서로 바뀌며, 가운데 준위가 2인 주황색 테두리의 네 출력 행은 점유율이 0입니다.
+  status: machine
+- id: c950dc7048298eec
+  en: 'In this tutorial, we build a Toffoli gate with three qubit–qutrit interactions and verify its action on quantum states. The middle system is a qutrit: it has levels $|0\rangle$, $|1\rangle$, and $|2\rangle$. We use its first two levels as a logical qubit and borrow the third during the gate. The final checks will show that we recover the required logical output, including its relative phases, and empty the borrowed level.'
+  ko: 이 튜토리얼에서는 세 번의 큐비트–큐트릿 상호작용으로 Toffoli 게이트를 만들고 양자 상태에 대한 작용을 검증합니다. 가운데 계는 $|0\rangle$, $|1\rangle$, $|2\rangle$ 준위를 가진 큐트릿입니다. 앞의 두 준위를 논리 큐비트로 사용하고, 게이트를 실행하는 동안 세 번째 준위를 잠시 빌립니다. 마지막에는 상대 위상을 포함한 올바른 논리 출력이 나오는지, 빌린 준위가 다시 비워지는지 확인합니다.
+  status: machine
+- id: 14ffde9c6d006100
+  en: You should be familiar with qubit basis states, superpositions, and basic single-qubit gates. Here we use ideal gate simulation to study a register with different local dimensions.
+  ko: 큐비트 기저 상태, 중첩, 기본 단일 큐비트 게이트를 알고 있다고 가정합니다. 여기서는 이상적인 게이트 시뮬레이션으로 국소 차원이 서로 다른 레지스터를 살펴봅니다.
+  status: machine
+- id: 19f7216018b2e824
+  en: 'A Toffoli gate has two controls, $a$ and $b$, and a target, $t$. It flips the target exactly when both controls are $1$:'
+  ko: Toffoli 게이트에는 두 제어 $a$, $b$와 하나의 타깃 $t$가 있습니다. 두 제어가 모두 $1$일 때만 타깃을 뒤집습니다.
+  status: machine
+- id: d61cbcf3f8864bbe
+  en: where $\oplus$ means addition modulo two. Starting the target at zero therefore computes the logical AND of the controls without changing their values. The gate exchanges $|110\rangle$ and $|111\rangle$ and leaves the other six logical basis states unchanged.
+  ko: 여기서 $\oplus$는 2를 법으로 하는 덧셈입니다. 따라서 타깃을 0에서 시작하면 두 제어값은 바꾸지 않고 논리 AND를 계산합니다. 이 게이트는 $|110\rangle$과 $|111\rangle$을 교환하며 나머지 여섯 논리 기저 상태는 그대로 둡니다.
+  status: machine
+- id: c1d9d69314c8946b
+  en: 'We give the middle control, $b$, access to $|2\rangle$ and construct the gate in three steps:'
+  ko: 가운데 제어 $b$가 $|2\rangle$에 접근할 수 있게 하고 세 단계로 게이트를 구성합니다.
+  status: machine
+- id: 44935bbba4649d2b
+  en: '**Borrow the third level.** When the input has $a=1$ and $b=1$, move $b$ from $|1\rangle$ to $|2\rangle$.'
+  ko: '**세 번째 준위 빌리기.** 입력이 $a=1$, $b=1$이면 $b$를 $|1\rangle$에서 $|2\rangle$로 옮깁니다.'
+  status: machine
+- id: 839236e1e735da89
+  en: '**Flip the target.** Apply $X$ to $t$ when $b=2$.'
+  ko: '**타깃 뒤집기.** $b=2$일 때 $t$에 $X$를 적용합니다.'
+  status: machine
+- id: cb9c41a93f6b208a
+  en: '**Return the control.** Undo the first step so that $b$ has its original value.'
+  ko: '**제어 복원하기.** 첫 단계를 되돌려 $b$를 원래 값으로 돌려놓습니다.'
+  status: machine
+- id: 46fb07457a3ea633
+  en: Each step uses a short sequence of gates, which we call a block. At the end of the first block, occupation of level 2 records that both input controls were $1$. We can then condition the target flip on this one level and undo the temporary encoding, using the same three subsystems throughout.
+  ko: 각 단계는 짧은 게이트 순서로 이루어지며 이를 블록이라고 부릅니다. 첫 블록이 끝났을 때 준위 2의 점유 여부는 두 입력 제어가 모두 $1$이었는지를 기록합니다. 따라서 이 준위 하나를 조건으로 타깃을 뒤집고 임시 인코딩을 되돌릴 수 있습니다. 전체 과정에서 같은 세 부분계을 사용합니다.
+  status: machine
+- id: da31938065f988ef
+  en: Set up the mixed register
+  ko: 혼합 레지스터 준비하기
+  status: machine
+- id: 919032b7187d9048
+  en: We give each control and the target a named one-slot register. The registers `a` and `t` use the default qubit dimension, while `dim=3` makes `b` a qutrit. We address their slots as `a[0]`, `b[0]`, and `t[0]`, following the [mixed-register guide](../guide/program.md#mix-qubits-and-qutrits).
+  ko: 각 제어와 타깃에 이름이 있는 단일 슬롯 레지스터를 배정합니다. `a`와 `t`는 기본 큐비트 차원을 사용하고, `b`는 `dim=3`으로 큐트릿로 만듭니다. [혼합 레지스터 안내](../guide/program.md#mix-qubits-and-qutrits)에 따라 슬롯을 `a[0]`, `b[0]`, `t[0]`으로 지정합니다.
+  status: machine
+- id: 08710becb74001e0
+  en: The joint state has $2\times3\times2=12$ amplitudes. Eight basis states have `b=0` or `b=1`; these form the logical subspace on which we want Toffoli to act. The remaining four have `b=2` and are available during the gate.
+  ko: 전체 상태에는 $2\times3\times2=12$개의 진폭이 있습니다. `b=0` 또는 `b=1`인 여덟 기저 상태가 Toffoli를 적용할 논리 부분공간을 이룹니다. 나머지 네 상태는 `b=2`이며 게이트 실행 중 사용할 수 있습니다.
+  status: machine
+- id: d7da52eadd58341e
+  en: Returned states follow register declaration order, with the last subsystem changing fastest. For these dimensions, $|a,b,t\rangle$ has flat index $6a+2b+t$. For example, $|110\rangle$ is at index $8$, and $|120\rangle$ is at index $10$. This differs from the three-qubit index because the middle system has three levels.
+  ko: 반환 상태는 레지스터 선언 순서를 따르며 마지막 부분계의 값이 가장 빨리 바뀝니다. 이 차원에서 $|a,b,t\rangle$의 평탄화 인덱스는 $6a+2b+t$입니다. 예를 들어 $|110\rangle$은 인덱스 $8$, $|120\rangle$은 인덱스 $10$에 있습니다. 가운데 계가 세 준위이므로 3큐비트 인덱스와 다릅니다.
+  status: machine
+- id: fbea99a3e3b67f2e
+  en: The helper below creates a basis state with unit amplitude at the requested index and zero everywhere else. We will use it both to choose inputs and to write down the states we expect from the gate.
+  ko: 아래 헬퍼는 지정한 인덱스의 진폭만 1이고 나머지는 0인 기저 상태를 만듭니다. 입력을 선택할 때와 게이트의 예상 출력 상태를 표현할 때 모두 사용합니다.
+  status: machine
+- id: 9689c3ea510ee6c1
+  en: Exchange levels 1 and 2 when a=1
+  ko: a=1일 때 준위 1과 2 교환하기
+  status: machine
+- id: 6c697345e8e33d0d
+  en: 'The first block must distinguish inputs with both controls equal to $1$. We do this with a controlled level exchange: exchange the middle system''s levels 1 and 2 when `a=1`, and leave them alone when `a=0`. Level `b=0` stays unchanged in either case.'
+  ko: 첫 블록은 두 제어가 모두 $1$인 입력을 구별해야 합니다. 이를 위해 `a=1`이면 가운데 계의 준위 1과 2를 교환하고, `a=0`이면 그대로 두는 제어 준위 교환을 사용합니다. `b=0` 준위는 어느 경우에도 바뀌지 않습니다.
+  status: machine
+- id: 1b0c318dec2ac0a6
+  en: We can build the controlled exchange from two rotations and a controlled phase. `SubspaceRY(theta, (1, 2))` applies the usual qubit $R_y$ rotation within the ordered pair $(|1\rangle,|2\rangle)$ of `b`, leaving its $|0\rangle$ level untouched.
+  ko: 두 회전과 하나의 제어 위상으로 이 교환을 구성할 수 있습니다. `SubspaceRY(theta, (1, 2))`는 `b`의 순서 있는 쌍 $(|1\rangle,|2\rangle)$ 안에서 일반적인 큐비트 $R_y$ 회전을 적용하며 $|0\rangle$은 그대로 둡니다.
+  status: machine
+- id: ca8c278f17e42153
+  en: 'Between the rotations, we use `CClock(1)` to change a sign when `a=1`. Its second operand''s dimension sets the phase''s root of unity. We put the qutrit first and the qubit second, `(b[0], a[0])`, to obtain the binary phases $\pm1$:'
+  ko: 두 회전 사이에 `CClock(1)`을 넣어 `a=1`일 때 부호를 바꿉니다. 두 번째 피연산자의 차원이 위상에 사용할 단위근을 결정합니다. 이진 위상 $\pm1$을 얻기 위해 큐트릿를 먼저, 큐비트를 나중에 놓아 `(b[0], a[0])`로 지정합니다.
+  status: machine
+- id: dd7e39e0b73cf445
+  en: This formula uses the pair's operand order, $(b,a)$; the full register remains in $(a,b,t)$ order. Putting the qutrit second would introduce third roots of unity and change the gate.
+  ko: 이 공식은 쌍의 피연산자 순서 $(b,a)$를 사용합니다. 전체 레지스터 순서는 여전히 $(a,b,t)$입니다. 큐트릿를 두 번째에 놓으면 3차 단위근이 도입되어 다른 게이트가 됩니다.
+  status: machine
+- id: 2b97e260a58254eb
+  en: When `a=0`, the phase is always $+1$ and the two opposite rotations cancel. When `a=1`, level `b=1` gains a minus sign, while levels 0 and 2 keep their phase. In the selected pair, placing this sign change between the rotations gives
+  ko: '`a=0`이면 위상이 항상 $+1$이므로 반대 방향의 두 회전이 상쇄됩니다. `a=1`이면 `b=1` 준위만 음의 부호를 얻고 준위 0과 2의 위상은 유지됩니다. 선택한 준위 쌍에서 이 부호 변화를 두 회전 사이에 놓으면'
+  status: machine
+- id: 2efa9aed64975ae4
+  en: 'The matrix on the right exchanges levels 1 and 2 with no extra phase. Matrix products act from right to left, so we apply the positive rotation first. The list below keeps the operations and their targets in execution order:'
+  ko: 오른쪽 행렬은 추가 위상 없이 준위 1과 2를 교환합니다. 행렬곱은 오른쪽부터 작용하므로 양의 회전을 먼저 적용합니다. 아래 목록은 연산과 타깃을 실행 순서대로 나열합니다.
+  status: machine
+- id: f368c7d4e514e1dd
+  en: For a logical input, this block moves $|11t\rangle$ to $|12t\rangle$ and leaves the other control combinations unchanged. After this exchange, `b=2` tells us that both controls were $1$ at the input. Repeating the block swaps the levels back, so the controlled exchange is its own inverse. The [qudit-gate reference](../api/operations/qudit-gates.md) gives the full rotation and controlled-phase conventions.
+  ko: 논리 입력에서 이 블록은 $|11t\rangle$을 $|12t\rangle$로 옮기고 다른 제어 조합은 그대로 둡니다. 교환 뒤의 `b=2`는 입력의 두 제어가 모두 $1$이었다는 뜻입니다. 같은 블록을 반복하면 준위가 다시 교환되므로 이 제어 교환은 자기 자신의 역연산입니다. 회전 및 제어 위상의 전체 규약은 [큐디트 게이트 레퍼런스](../api/operations/qudit-gates.md)를 참고하세요.
+  status: machine
+- id: ebc528c83167f0b3
+  en: Flip the target when b=2
+  ko: b=2일 때 타깃 뒤집기
+  status: machine
+- id: 8775e8db368c7064
+  en: The first block has encoded the two-control condition in `b=2`. We now need a target flip conditioned on that level, while leaving `t` unchanged for `b=0` and `b=1`.
+  ko: 첫 블록은 두 제어 조건을 `b=2`에 인코딩했습니다. 이제 이 준위를 조건으로 타깃을 뒤집되, `b=0`과 `b=1`에서는 `t`를 그대로 두어야 합니다.
+  status: machine
+- id: 0185a5b522b694da
+  en: 'We again put the qubit second in the controlled phase, now using `(b[0], t[0])`. It applies $Z$ to `t` when `b=1` and the identity when `b=0` or `b=2`. Placing `H` before and after it gives a target flip for `b=1`, because $H Z H=X$. For the other two levels, the Hadamards cancel: $H I H=I$.'
+  ko: 다시 제어 위상에서 큐비트를 두 번째에 놓아 `(b[0], t[0])`를 사용합니다. 이는 `b=1`이면 `t`에 $Z$를, `b=0`이나 `b=2`이면 항등 연산을 적용합니다. 앞뒤에 `H`를 놓으면 $H Z H=X$이므로 `b=1`에서 타깃이 뒤집힙니다. 다른 두 준위에서는 $H I H=I$로 Hadamard가 상쇄됩니다.
+  status: machine
+- id: 24260609fb85285e
+  en: 'To select states that enter with `b=2`, we exchange levels 1 and 2 using `SwapLevels(1, 2)` before the `H`, `CClock`, `H` sequence and exchange them again afterward. Tracking each possible value of `b` gives:'
+  ko: '`b=2`로 들어온 상태를 선택하려면 `H`, `CClock`, `H` 순서 앞에 `SwapLevels(1, 2)`를 넣어 준위 1과 2를 바꾸고, 뒤에서 다시 교환합니다. 가능한 `b` 값을 따라가면 다음과 같습니다.'
+  status: machine
+- id: ed5985af660b8033
+  en: '| `b` at the start of this block | After the first swap | Effect of `H`, `CClock`, `H` on `t` | After the second swap |'
+  ko: '| 블록 시작 시 `b` | 첫 교환 뒤 | `H`, `CClock`, `H`가 `t`에 미치는 효과 | 두 번째 교환 뒤 |'
+  status: machine
+- id: 2357992b021af78b
+  en: '| 0 | 0 | Unchanged | 0 |'
+  ko: '| 0 | 0 | 변화 없음 | 0 |'
+  status: machine
+- id: 474e6db4ae1d8c7a
+  en: '| 1 | 2 | Unchanged | 1 |'
+  ko: '| 1 | 2 | 변화 없음 | 1 |'
+  status: machine
+- id: 1c9466eb72c6b060
+  en: '| 2 | 1 | Flipped | 2 |'
+  ko: '| 2 | 1 | 반전 | 2 |'
+  status: machine
+- id: 3550f321a7ab7648
+  en: The two swaps return `b` to the value it had at the start of this block. Only the target of a state that entered with `b=2` is flipped.
+  ko: 두 번의 교환은 `b`를 이 블록 시작 시의 값으로 돌려놓습니다. `b=2`로 들어온 상태의 타깃만 뒤집힙니다.
+  status: machine
+- id: b8208acf4ffdb4ac
+  en: Restore the middle control
+  ko: 가운데 제어 복원하기
+  status: machine
+- id: 3131141c25ca3364
+  en: For input $|110\rangle$, the first two blocks produce $|121\rangle$. The target has the correct value, $t=1$, but the middle control is still at $b=2$. Toffoli must leave both controls at their input values, so the required output is $|111\rangle$.
+  ko: 입력 $|110\rangle$에 첫 두 블록을 적용하면 $|121\rangle$이 됩니다. 타깃은 올바른 값 $t=1$이지만 가운데 제어는 아직 $b=2$입니다. Toffoli는 두 제어의 입력값을 보존해야 하므로 필요한 출력은 $|111\rangle$입니다.
+  status: machine
+- id: 0cfd6c36210df50b
+  en: We finish the gate by repeating `controlled_exchange`. Since `a=1`, it exchanges `b`'s levels 1 and 2 again, taking $|121\rangle$ to $|111\rangle$ without changing the target. Inputs with `a=0` or `b=0` remain unchanged by this last block.
+  ko: '`controlled_exchange`를 한 번 더 적용해 게이트를 마무리합니다. `a=1`이므로 `b`의 준위 1과 2가 다시 교환되어 타깃을 바꾸지 않고 $|121\rangle$을 $|111\rangle$로 옮깁니다. `a=0` 또는 `b=0`인 입력은 이 마지막 블록에서 바뀌지 않습니다.'
+  status: machine
+- id: 3532e7e4d75a37b9
+  en: This reversal of the temporary encoding is called uncomputation. We undo the encoding with coherent gates, preserving the relative amplitudes of input branches. After tracing one basis input, we will check that restoration also works for a superposition.
+  ko: 이처럼 임시 인코딩을 되돌리는 과정을 언컴퓨테이션이라고 합니다. 결맞은 게이트로 인코딩을 되돌리므로 입력 분기 사이의 상대 진폭이 보존됩니다. 기저 입력 하나를 추적한 다음 중첩에서도 복원이 되는지 확인하겠습니다.
+  status: machine
+- id: 43dd88a6c9eeb614
+  en: Assemble and run the program
+  ko: 프로그램 조립과 실행
+  status: machine
+- id: 043f12ce50274a88
+  en: We have the three blocks needed for Toffoli. Joining them in order gives the complete gate; keeping their instruction lists also lets us stop at block boundaries to inspect the temporary encoding. The helper `make_program` turns an instruction list into a `Program` through `Program.add`.
+  ko: Toffoli에 필요한 세 블록을 준비했습니다. 순서대로 연결하면 완전한 게이트가 되며, 각 블록의 명령 목록을 유지하면 블록 경계에서 멈추어 임시 인코딩을 살펴볼 수도 있습니다. `make_program` 헬퍼는 `Program.add`로 명령 목록을 `Program`으로 만듭니다.
+  status: machine
+- id: d93241cd22bebe9f
+  en: To follow the borrowed level, we need the complex state after each block. The `statevector` method returns this vector. In `evolve`, `initial_state` chooses the input, and `result_config` requests the final state and disables counts. These ideal runs contain no measurements or noise, so they have no sampling uncertainty and need no random seed. We can use the same helper for the full gate or a prefix of its instructions.
+  ko: 빌린 준위를 추적하려면 각 블록 뒤의 복소 상태가 필요합니다. `statevector` 방법이 이 벡터를 반환합니다. `evolve`에서 `initial_state`로 입력을 고르고, `result_config`로 최종 상태를 요청하며 측정 횟수 출력을 끕니다. 측정과 잡음이 없는 이상적 실행이므로 샘플링 불확실성이 없고 난수 시드도 필요하지 않습니다. 같은 헬퍼로 전체 게이트나 앞부분의 명령만 실행할 수 있습니다.
+  status: machine
+- id: 74fa2e592a4a866b
+  en: Follow one input through the borrowed level
+  ko: 한 입력이 빌린 준위를 거치는 과정
+  status: machine
+- id: 438ea4a8364ce63f
+  en: 'We start with $|110\rangle$: both controls are $1$, and the target is $0$. The controlled exchange moves the middle control to level 2, the middle block flips the target, and restoration brings the control back. The expected states at the block boundaries are'
+  ko: 두 제어가 $1$이고 타깃이 $0$인 $|110\rangle$에서 시작합니다. 제어 교환은 가운데 제어를 준위 2로 옮기고, 가운데 블록은 타깃을 뒤집으며, 복원 블록은 제어를 돌려놓습니다. 블록 경계의 예상 상태는 다음과 같습니다.
+  status: machine
+- id: d51875efca8c3813
+  en: The boundaries occur after 0, 3, 8, and 11 instructions. Each prefix run starts from the same $|110\rangle$ input; its returned state is compared directly with the expected complex vector.
+  ko: 경계는 명령 0개, 3개, 8개, 11개를 실행한 시점입니다. 각 접두 부분 실행은 같은 $|110\rangle$ 입력에서 시작하며, 반환 상태를 예상 복소 벡터와 직접 비교합니다.
+  status: machine
+- id: e6a7d2361f1e17bf
+  en: We also compute the probability of finding `b` in level 2. Reshaping a state to `(2, 3, 2)` gives one axis per subsystem. The slice `[:, 2, :]` selects every amplitude with `b=2`, regardless of `a` or `t`, and summing their squared magnitudes gives the borrowed-level population.
+  ko: '`b`가 준위 2에 있을 확률도 계산합니다. 상태를 `(2, 3, 2)`로 재구성하면 부분계마다 축 하나를 얻습니다. 슬라이스 `[:, 2, :]`는 `a`나 `t`와 무관하게 `b=2`인 모든 진폭을 선택합니다. 그 절댓값의 제곱을 합하면 빌린 준위의 점유율입니다.'
+  status: machine
+- id: 31d16d717676c3aa
+  en: The printed populations follow $0,1,1,0$ to numerical precision. For this input, the middle control occupies level 2 after the exchange and target flip, then returns to level 1. The figure pairs each population with its state label so we can inspect both the control's return and the target's flip.
+  ko: 출력된 점유율은 수치 정밀도 내에서 $0,1,1,0$을 따릅니다. 이 입력에서 가운데 제어는 교환과 타깃 반전 뒤에 준위 2를 차지하다가 준위 1로 돌아옵니다. 그림은 각 점유율과 상태 라벨을 함께 표시해 제어의 복귀와 타깃 반전을 모두 확인하게 합니다.
+  status: machine
+- id: 0df1ce0014ebad3c
+  en: The horizontal axis marks block boundaries, not elapsed time. Rotations and swaps can also populate level 2 within a block; each bar describes the state at its checkpoint. The tiny final residual is consistent with floating-point arithmetic.
+  ko: 가로축은 경과 시간이 아니라 블록 경계를 나타냅니다. 블록 내부의 회전이나 교환 중에도 준위 2에 점유가 생길 수 있으며, 각 막대는 해당 확인 시점의 상태만 나타냅니다. 마지막의 아주 작은 잔여값은 부동소수점 연산 오차 범위입니다.
+  status: machine
+- id: ac514ce606d60230
+  en: Check a superposition
+  ko: 중첩 확인하기
+  status: machine
+- id: 7180a78c3a0215f3
+  en: 'The trace confirms the route through level 2 for one input. We now combine two branches: after the controlled exchange, one occupies level 2 and the other remains in the logical subspace. To prepare them, we apply `H` followed by `S` to `a`, giving $(|0\rangle+i|1\rangle)/\sqrt2$. A `Shift(1)` puts `b` in level 1, while `t` starts at zero. The factor $i$ gives us a relative phase to track.'
+  ko: 지금까지 한 입력이 준위 2를 거치는 경로를 확인했습니다. 이제 두 분기를 결합합니다. 제어 교환 뒤에 한 분기는 준위 2를 차지하고 다른 분기는 논리 부분공간에 남습니다. 이를 준비하려면 `a`에 `H` 다음 `S`를 적용해 $(|0\rangle+i|1\rangle)/\sqrt2$를 만듭니다. `Shift(1)`로 `b`를 준위 1에 놓고 `t`는 0에서 시작합니다. 계수 $i$는 추적할 상대 위상을 제공합니다.
+  status: machine
+- id: b9c0a4078ed10ff6
+  en: This input contains two branches. The $|010\rangle$ branch should stay unchanged because its first control is zero. The $|110\rangle$ branch should undergo the exchange, flip, and restoration we just traced. The full gate should therefore give
+  ko: 이 입력에는 두 분기가 있습니다. $|010\rangle$ 분기는 첫 제어가 0이므로 그대로여야 합니다. $|110\rangle$ 분기는 앞서 추적한 교환, 반전, 복원을 거쳐야 합니다. 따라서 전체 게이트의 출력은
+  status: machine
+- id: 9e676d132b9d1f37
+  en: 'After the first block, only the second branch occupies level 2. Restoration must bring it back without altering its relative factor $i$. We keep preparation separate from the gate: first create `coherent_input`, then pass it to a run of `sequence`. The assertions check both the expected complex output and the absence of any remaining borrowed-level amplitude.'
+  ko: 첫 블록 뒤에는 두 번째 분기만 준위 2에 있습니다. 복원 과정은 상대 계수 $i$를 바꾸지 않고 이 분기를 되돌려야 합니다. 상태 준비와 게이트를 분리해 먼저 `coherent_input`을 만든 뒤 `sequence` 실행에 전달합니다. 단언문은 예상 복소 출력과 빌린 준위에 남은 진폭이 없음을 모두 확인합니다.
+  status: machine
+- id: 91df84303b492101
+  en: The two printed amplitudes are $1/\sqrt2$ and $i/\sqrt2$, as expected. Both branches end with `b=1`, while `a` and `t` are entangled with a relative phase of $i$ between their $|00\rangle$ and $|11\rangle$ components.
+  ko: 출력된 두 진폭은 예상대로 $1/\sqrt2$과 $i/\sqrt2$입니다. 두 분기 모두 `b=1`로 끝나며, `a`와 `t`는 $|00\rangle$과 $|11\rangle$ 성분 사이에 상대 위상 $i$를 가진 얽힌 상태가 됩니다.
+  status: machine
+- id: 1f0f85c2d715278c
+  en: Measuring these branches in the computational basis would give equal probabilities. Replacing $i$ by $-i$ would give the same probabilities but a different quantum state. Comparing complex amplitudes lets us detect that phase error, which a probability-only check would miss.
+  ko: 이 분기들을 계산 기저에서 측정하면 같은 확률이 나옵니다. $i$를 $-i$로 바꾸어도 확률은 같지만 양자 상태는 달라집니다. 복소 진폭을 비교하면 확률만 확인할 때 놓치는 이런 위상 오류를 잡을 수 있습니다.
+  status: machine
+- id: d20aea1a136e4f13
+  en: Check all eight logical inputs
+  ko: 여덟 논리 입력 모두 확인하기
+  status: machine
+- id: 7a1f6788c4bf2734
+  en: The superposition check tests coherence for two input branches. We can cover the whole logical subspace by comparing the output for each of its eight basis states, including the complex amplitudes. The `unitary` simulation method gives us all those outputs in the full $12\times12$ matrix of the gate. We run `toffoli_program`, which contains only the gate.
+  ko: 중첩 검사는 두 입력 분기의 결맞음을 확인했습니다. 여덟 기저 상태 각각의 출력을 복소 진폭까지 비교하면 전체 논리 부분공간을 검증할 수 있습니다. `unitary` 시뮬레이션은 게이트의 전체 $12\times12$ 행렬로 이 모든 출력을 제공합니다. 게이트만 포함된 `toffoli_program`을 실행합니다.
+  status: machine
+- id: 617fc341c1be4810
+  en: Each column is the output state for one basis input. Entry $(i,j)$ is the amplitude for output state $i$ when the input is state $j$. Both axes use the [result conventions](../api/result.md#ordering-and-mutable-values) introduced above. For example, the column for $|110\rangle$ should have unit amplitude in the row for $|111\rangle$.
+  ko: 각 열은 하나의 기저 입력에 대한 출력 상태입니다. 원소 $(i,j)$는 상태 $j$를 입력했을 때 출력 상태 $i$의 진폭입니다. 두 축은 앞서 설명한 [결과 규약](../api/result.md#ordering-and-mutable-values)을 따릅니다. 예를 들어 $|110\rangle$의 열은 $|111\rangle$ 행에서 진폭 1을 가져야 합니다.
+  status: machine
+- id: e80bdc742e78a5f7
+  en: 'The logical states are interleaved with the borrowed-level states in this ordering. We select the eight logical rows and columns to obtain the gate''s logical matrix. We also select the four borrowed-level output rows to check for leakage: amplitude left outside the logical subspace at the end of the gate.'
+  ko: 이 순서에서는 논리 상태와 빌린 준위 상태가 서로 섞여 있습니다. 여덟 논리 행과 열을 선택해 게이트의 논리 행렬을 얻습니다. 또한 빌린 준위에 해당하는 네 출력 행을 골라, 게이트가 끝났을 때 논리 부분공간 밖에 남은 진폭인 누설을 확인합니다.
+  status: machine
+- id: a16f0f9189c8606d
+  en: For comparison, we build a reference $8\times8$ Toffoli matrix from its Boolean rule. Here the indices use the three-bit formula $4a+2b+t$. For each input column, `t_bit ^ (a_bit & b_bit)` gives the output target bit; we put a one in the corresponding output row and leave the other entries zero.
+  ko: 비교를 위해 불리언 규칙으로 기준 $8\times8$ Toffoli 행렬을 만듭니다. 여기서는 3비트 공식 $4a+2b+t$를 인덱스로 사용합니다. 각 입력 열에서 `t_bit ^ (a_bit & b_bit)`가 출력 타깃 비트를 주므로 해당 출력 행에 1을 놓고 나머지는 0으로 둡니다.
+  status: machine
+- id: 9ddad430f90c86b7
+  en: Both printed errors should be near floating-point precision. The first assertion compares the logical matrix with Toffoli, including every complex phase. The second requires the amplitudes from logical inputs to level-2 outputs to be zero. These checks use the returned amplitudes without a phase adjustment or renormalization, so a phase mismatch or amplitude left in level 2 would remain visible.
+  ko: 출력된 두 오차는 모두 부동소수점 정밀도에 가까워야 합니다. 첫 단언문은 모든 복소 위상을 포함해 논리 행렬을 Toffoli와 비교합니다. 두 번째는 논리 입력에서 준위 2 출력으로 가는 진폭이 0인지 확인합니다. 위상을 맞추거나 재정규화하지 않고 반환 진폭을 그대로 검사하므로, 위상이 다르거나 준위 2에 진폭이 남으면 드러납니다.
+  status: machine
+- id: c96d05614b3d547d
+  en: Any logical superposition is a linear combination of the eight input columns. Matching all those columns, including their phases and their borrowed-level entries, therefore establishes the intended action for arbitrary logical superpositions to numerical precision.
+  ko: 모든 논리 중첩은 여덟 입력 열의 선형 결합입니다. 따라서 위상과 빌린 준위의 성분까지 모든 열이 일치하면 임의의 논리 중첩에서도 의도한 작용을 수치 정밀도 내에서 확인한 것입니다.
+  status: machine
+- id: 2e0696e5071558b5
+  en: With the complex matrix checked, we can visualize the truth table by plotting the squared magnitudes of the eight logical input columns. We keep all twelve output rows so that any final borrowed-level population would also appear.
+  ko: 복소 행렬을 검증했으므로 여덟 논리 입력 열의 진폭 절댓값을 제곱해 진리표를 시각화할 수 있습니다. 열두 출력 행을 모두 남겨 마지막에 빌린 준위에 점유율이 있으면 보이도록 합니다.
+  status: machine
+- id: ac9821ae7908f969
+  en: Read the heatmap one column at a time. Inputs `110` and `111` exchange places, while the other six logical inputs return to themselves. The four orange-outlined rows correspond to `b=2` and have zero population to numerical precision for all eight inputs. The figure shows the correct truth table and return to the logical subspace; the complex comparisons above supply the phase-sensitive verification.
+  ko: 열 지도를 한 열씩 읽어 보세요. `110`과 `111`은 서로 바뀌고 나머지 여섯 논리 입력은 원래 상태로 돌아옵니다. 주황색 테두리의 네 행은 `b=2`에 해당하며, 여덟 입력 모두에서 수치 정밀도 내 점유율이 0입니다. 그림은 올바른 진리표와 논리 부분공간으로의 복귀를 보여 주고, 앞선 복소수 비교는 위상까지 검증합니다.
+  status: machine
+- id: 4cd2541f277b8271
+  en: Count the interactions
+  ko: 상호작용 수 세기
+  status: machine
+- id: a606760d4ee43586
+  en: Having verified the gate, we can count the operations needed to construct it. Each `CClock` couples the qutrit `b` to one qubit, either `a` or `t`. The other gates act on one subsystem at a time. We count these groups in the same `sequence` we simulated, using each operation's `num_subsystems` value. The count covers the gate itself; input preparation is separate.
+  ko: 게이트를 검증했으니 구성에 필요한 연산 수를 셀 수 있습니다. 각 `CClock`은 큐트릿 `b`를 큐비트 `a` 또는 `t`에 결합합니다. 다른 게이트는 한 번에 하나의 부분계에 작용합니다. 시뮬레이션한 동일한 `sequence`에서 각 연산의 `num_subsystems`로 이들을 구분해 셉니다. 여기에는 게이트 자체만 포함하고 입력 준비는 제외합니다.
+  status: machine
+- id: 73aea9e3ee2c5a40
+  en: 'There are eleven primitive instructions: three qubit–qutrit interactions, two single-qubit gates (`H` on `t`), and six single-qutrit gates (four rotations and two level swaps on `b`). Each of the three blocks uses one interaction, with local gates selecting how it acts on the logical states.'
+  ko: 기본 명령은 총 11개입니다. 큐비트–큐트릿 상호작용 3개, 단일 큐비트 게이트 2개(`t`의 `H`), 단일 큐트릿 게이트 6개(`b`의 회전 4개와 준위 교환 2개)입니다. 세 블록마다 상호작용 하나를 사용하고 국소 게이트로 논리 상태에 대한 작용을 정합니다.
+  status: machine
+- id: 7761cbce74fd1262
+  en: In [*Efficient Toffoli Gates Using Qudits*](https://arxiv.org/abs/0806.0654), Ralph, Resch, and Gilchrist showed how access to a third level reduces Toffoli to three controlled-sign interactions. This FatQat construction follows that principle with a different gate sequence. To compare physical speed or fidelity, we would also need the durations and errors of the rotations and interactions.
+  ko: Ralph, Resch, Gilchrist는 [*Efficient Toffoli Gates Using Qudits*](https://arxiv.org/abs/0806.0654)에서 세 번째 준위에 접근하면 Toffoli를 세 번의 제어 부호 상호작용으로 줄일 수 있음을 보였습니다. 이 FatQat 구성도 같은 원리를 따르지만 게이트 순서는 다릅니다. 물리적 속도나 충실도를 비교하려면 회전과 상호작용의 지속 시간 및 오차도 필요합니다.
+  status: machine
+- id: d739adfc0cf08bc9
+  en: 'Exercise: leave out restoration'
+  ko: '연습: 복원 단계 빼기'
+  status: machine
+- id: 792bc414fae7e026
+  en: Run the following code after the tutorial cells to omit the restoration block. It applies the first two blocks to $|110\rangle$ and prints the output amplitudes and borrowed-level population. Predict the output state before running it, then compare it with the required $|111\rangle$.
+  ko: 튜토리얼 셀 다음에 아래 코드를 실행하면 복원 블록을 생략할 수 있습니다. $|110\rangle$에 첫 두 블록만 적용하고 출력 진폭과 빌린 준위의 점유율을 표시합니다. 실행 전에 출력 상태를 예상한 뒤 필요한 $|111\rangle$과 비교하세요.
+  status: machine
+- id: 607972d33a48f509
+  en: Next, replace `basis_state(1, 1, 0)` in the exercise with `coherent_input`. Predict which branch will remain in level 2 and its contribution to `P(b=2)`, then compare the returned amplitudes with `expected_output`. Explain why getting the target bit right on each branch is insufficient to recover the intended quantum state. Finally, use the full `sequence` and check that the middle control returns to the logical subspace.
+  ko: 다음으로 연습의 `basis_state(1, 1, 0)`을 `coherent_input`으로 바꾸세요. 어떤 분기가 준위 2에 남고 `P(b=2)`에 얼마나 기여할지 예상한 뒤, 반환 진폭을 `expected_output`과 비교하세요. 각 분기에서 타깃 비트만 맞는 것으로는 의도한 양자 상태를 복원할 수 없는 이유를 설명해 보세요. 마지막으로 전체 `sequence`를 사용해 가운데 제어가 논리 부분공간으로 돌아오는지 확인하세요.
+  status: machine

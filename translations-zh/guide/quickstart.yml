@@ -1,0 +1,248 @@
+- id: a99af30b2b10aedb
+  en: Build, draw, and run one Program
+  zh: 构建、绘制并运行一个 Program
+  status: machine
+- id: 916ffa564cb77c2f
+  en: In about ten minutes, you will create a Bell pair, draw its circuit, run 1,000 shots, and see why only `00` and `11` appear. The computation will live in a [`Program`][fatqat.Program] from start to finish.
+  zh: "大约十分钟，你就能完成一个 Bell 对的制备、绘制电路、运行 1,000 次采样，并理解为什么结果只有 `00` 和 `11`。整个计算过程都由同一个 [`Program`][fatqat.Program] 描述。"
+  status: machine
+- id: 159ffec9434cfc72
+  en: Install FatQat from source
+  zh: 从源码安装 FatQat
+  status: retired
+- id: 1577b7bdaad2769b
+  en: 'FatQat is not yet published on PyPI. Clone the repository, create an isolated environment, and install the checkout:'
+  zh: FatQat 尚未发布到 PyPI。克隆仓库，创建一个隔离的环境，然后安装检出的代码：
+  status: retired
+- id: e60dedadf5475ff7
+  en: 'Activate the environment with the command for your platform:'
+  zh: 使用适合你所在平台的命令激活环境：
+  status: retired
+- id: 6b5b5551a61babc6
+  en: 'Then install FatQat:'
+  zh: 然后安装 FatQat：
+  status: retired
+- id: 44d89952b3679d6b
+  en: Write a Bell-state Program
+  zh: 编写一个贝尔态 Program
+  status: machine
+- id: a3243d85fd63e586
+  en: 'A `Program` records the logical resources and instructions in execution order. This one prepares two qubits in a Bell state and measures both of them:'
+  zh: '`Program` 按执行顺序记录逻辑资源和指令。下面这个 Program 将两个量子比特制备到贝尔态并对它们都进行测量：'
+  status: retired
+- id: 11ae954fe050c4db
+  en: '`Program(2, 2)` creates two qubits and two classical bits. `H` puts qubit 0 into a superposition, and `CX` uses qubit 0 as its control and qubit 1 as its target. The final instruction writes both quantum outcomes to the classical bits.'
+  zh: '`Program(2, 2)` 创建两个量子比特和两个经典比特。`H` 使量子比特 0 进入叠加态，`CX` 以量子比特 0 为控制位、量子比特 1 为目标位。最后一条指令把两个量子测量结果写入经典比特。'
+  status: machine
+- id: 916a763bda1d87e2
+  en: The Program describes *what* should happen. It has not selected a simulator or performed any evolution yet.
+  zh: Program 描述的是应当发生*什么*。此时它尚未选择模拟器，也没有进行任何演化。
+  status: retired
+- id: 9662224d143b753f
+  en: Inspect the Program
+  zh: 检查 Program
+  status: machine
+- id: 5f2d9b02bd0f2b41
+  en: 'Drawing is a native Program capability built on QuTiP-QIP''s circuit drawing tools. FatQat translates the Program''s instructions for that renderer. The default renderer returns a Matplotlib figure that you can display or save:'
+  zh: "Program 自带电路绘图功能，底层使用 QuTiP-QIP。FatQat 会将程序指令转换为绘图工具可识别的形式。默认返回 Matplotlib 图对象，可直接显示或保存："
+  status: machine
+- id: cbdab5ef33e7b372
+  en: '![Bell-state Program with H, controlled-X, and two measurements](../assets/generated/guide/quickstart-circuit.png)'
+  zh: '![包含 H、受控 X 和两次测量的贝尔态 Program](../assets/generated/guide/quickstart-circuit.png)'
+  status: machine
+- id: 569c18b563070e8e
+  en: For a terminal-friendly version, `program.draw("text")` returns a string instead of printing it. Drawing is a view of the recorded instruction structure; it does not run the Program.
+  zh: 若需要适合终端的版本，`program.draw("text")` 会返回字符串而不是直接打印。绘图只是所记录指令结构的一种视图，并不会运行 Program。
+  status: machine
+- id: 958ca26c6a61f02f
+  en: Run it
+  zh: 运行
+  status: machine
+- id: deb619d64ef11c96
+  en: 'The general-purpose simulator follows the Program''s logical circuit evolution. `run()` submits the Program and returns a [`job`][fatqat.Job]. Calling `job.result()` waits for completion and gives you a [`Result`][fatqat.Result] containing the requested outputs:'
+  zh: 通用模拟器遵循 Program 的逻辑电路演化。`run()` 提交 Program 并返回一个 [`job`][fatqat.Job]。调用 `job.result()` 会等待运行完成，并给出一个包含所请求输出的 [`Result`][fatqat.Result]：
+  status: retired
+- id: 5759a5c833a17f4e
+  en: 'Each shot ends as either `00` or `11`: the two measured bits agree because the qubits are entangled. Their counts are close rather than exactly equal because measurement samples the state. The fixed seed makes this particular run reproducible.'
+  zh: 每次 shot 的结果不是 `00` 就是 `11`：两个测得的比特之所以一致，是因为这两个量子比特处于纠缠态。两者的计数接近但不完全相等，因为测量是对状态的采样。固定的随机种子使这次特定的运行可以复现。
+  status: retired
+- id: 5f64aef3b878e87f
+  en: '![Bar chart containing only 00 and 11 Bell-state outcomes](../assets/generated/guide/quickstart-counts.png)'
+  zh: '![仅包含 00 和 11 两种贝尔态结果的柱状图](../assets/generated/guide/quickstart-counts.png)'
+  status: retired
+- id: 187cf45c9824f9fb
+  en: 'Keep this `Program`: the next chapters change the backend to explore logical behavior, hardware constraints, and physical dynamics.'
+  zh: 保留这个 `Program`：接下来的章节会更换后端，以探索逻辑行为、硬件约束和物理动力学。
+  status: retired
+- id: 31fbef162594de01
+  en: Continue
+  zh: 继续
+  status: machine
+- id: 918deb61eb6164f5
+  en: '[Write quantum computations with Program](program.md) to use explicit registers, measurements, conditions, parameters, and qudits.'
+  zh: "[用 Program 编写量子计算](program.md)，使用显式 Register、测量、条件、参数和 qudit。"
+  status: machine
+- id: 39ae5d6787845c3a
+  en: '[Choose how much physics to model](execution-models.md) to compare FatQat''s execution paths.'
+  zh: "[选择需要建模的物理细节](execution-models.md)，比较 FatQat 的各条执行路径。"
+  status: machine
+- id: 92c7cab94192cc95
+  en: '[Bring Programs to and from OpenQASM and Qiskit](interoperability.md) to connect an existing circuit workflow.'
+  zh: '[在 OpenQASM 和 Qiskit 之间双向转换 Program](interoperability.md)，连接现有的电路工作流。'
+  status: machine
+- id: 396f7b4884ddf446
+  en: 'FatQat requires Python 3.12 or later and is not yet published on PyPI. Clone the repository first:'
+  zh: ''
+  status: retired
+- id: 54c82c9dccbbe4e6
+  en: 'We recommend [uv](https://docs.astral.sh/uv/) for local projects because it records the selected Python minor version in `.python-version`. This keeps the interpreter choice explicit and makes the environment easier to reproduce:'
+  zh: 本地项目推荐使用 [uv](https://docs.astral.sh/uv/)，因为它将所选 Python 次版本记录在 `.python-version` 中。这样解释器选择明确，也更容易复现环境：
+  status: machine
+- id: 6327ee6a577e9676
+  en: 'Keep `.python-version` with the project so later `uv` commands select the same Python minor version. If you prefer the standard library tools, create and activate a virtual environment instead:'
+  zh: 将 `.python-version` 保留在项目中，使后续 `uv` 命令选择相同的 Python 次版本。如果更喜欢标准库工具，也可以创建并激活虚拟环境：
+  status: machine
+- id: e14ee7be00d2493f
+  en: 'Then install FatQat with `pip`:'
+  zh: 然后使用 `pip` 安装 FatQat：
+  status: machine
+- id: 18727e7f56f37dda
+  en: 'A `Program` records quantum and classical resources together with the instructions that act on them. This one prepares two qubits in a Bell state and measures both:'
+  zh: '`Program` 记录量子和经典资源，以及作用于它们的指令。下面的程序将两个量子比特制备为 Bell 态，并测量二者：'
+  status: machine
+- id: 77caa73f37fc6ca9
+  en: 'The Program describes *what* should happen. It has not selected a simulator or performed any evolution yet. FatQat is also extensible: users can define operations and provide the backend implementations that execute them. Built-in operations such as `Put`, `Pair`, and `Unpair` show how `AtomArraySimulator` can represent workflows beyond standard quantum gates.'
+  zh: Program 描述*要做什么*。它尚未选择模拟器，也未执行任何演化。FatQat 还支持扩展：用户可以定义操作，并提供执行这些操作的后端实现。`Put`、`Pair` 和 `Unpair` 等内置操作展示了 `AtomArraySimulator` 如何表达超出标准量子门范围的工作流程。
+  status: machine
+- id: d339383b48c80a58
+  en: 'The general-purpose simulator evolves the Program as a quantum circuit. `run()` executes the Program and returns a completed [`Job`][fatqat.Job]. Calling `job.result()` returns a [`Result`][fatqat.Result] containing the requested outputs, or raises the recorded execution error:'
+  zh: 通用模拟器将 Program 作为量子电路演化。`run()` 执行 Program 并返回一个已完成的 [`Job`][fatqat.Job]。调用 `job.result()` 返回包含所请求输出的 [`Result`][fatqat.Result]，或抛出记录的执行错误：
+  status: machine
+- id: d749c83be0090d5a
+  en: 'Each shot ends as either `00` or `11`: the two measured bits agree because the qubits are entangled. Their counts are close rather than exactly equal because measurement samples the state. The fixed seed makes this particular run reproducible. `Result.draw()` provides a built-in chart for these counts, so no custom Matplotlib styling is needed.'
+  zh: 每次采样最终得到 `00` 或 `11`：两个测量位一致，因为量子比特处于纠缠态。测量对态进行采样，所以计数接近但不完全相等。固定种子使这次运行可以复现。`Result.draw()` 为计数提供内置图表，无需自定义 Matplotlib 样式。
+  status: machine
+- id: 72dd22c5ff616331
+  en: '![Bell-state measurement counts with nearly equal bars for 00 and 11](../assets/generated/guide/quickstart-counts.png)'
+  zh: '![Bell 态测量计数，00 和 11 的柱高近似相等](../assets/generated/guide/quickstart-counts.png)'
+  status: machine
+- id: 7669978ca0e9f0ee
+  en: Read basis indices
+  zh: 理解基索引
+  status: machine
+- id: 5eb1d82357e6870a
+  en: 'Public subsystem 0 is the most-significant factor. The two-qubit basis is `|00>`, `|01>`, `|10>`, `|11>` at flat indices 0 through 3. Consequently, `X(q0)|00>` has its nonzero amplitude at index 2, while `X(q1)|00>` uses index 1. Count strings use the same left-to-right public slot order: measuring those states into `(c0, c1)` produces `"10"` and `"01"`, respectively.'
+  zh: 公共子系统 0 是最高有效位的张量因子。双量子比特基 `|00>`、`|01>`、`|10>`、`|11>` 对应展平索引 0 至 3。因此，`X(q0)|00>` 的非零振幅位于索引 2，`X(q1)|00>` 则位于索引 1。计数字符串采用相同的公共槽位从左到右顺序：将这些态测量到 `(c0, c1)`，分别得到 `"10"` 和 `"01"`。
+  status: machine
+- id: 214c1db17448d168
+  en: 'Keep this `Program`: the next chapters change the backend to explore circuit behavior, hardware constraints, and physical dynamics.'
+  zh: 保留这个 `Program`：后续章节会通过更换后端，探索电路行为、硬件约束与物理动力学。
+  status: machine
+- id: 703d3d17895537f7
+  en: Install FatQat
+  zh: 安装 FatQat
+  status: machine
+- id: c6085a3d4e498556
+  en: 'FatQat requires Python 3.12 or later. In a virtual environment, install FatQat:'
+  zh: FatQat 需要 Python 3.12 或更高版本。在虚拟环境中安装 FatQat：
+  status: machine
+- id: 3ddc2c50c1a04830
+  en: Install the development version from source
+  zh: 从源码安装开发版
+  status: machine
+- id: d206a4b8f396cae6
+  en: 'To work with the latest source instead, clone the repository:'
+  zh: 如果希望使用最新源码，请克隆仓库：
+  status: machine
+- id: 2bd7cf1b318603c9
+  en: If you are new to Python, install Python 3.12 or later from [python.org](https://www.python.org/downloads/). Open PowerShell on Windows, or Terminal on macOS or Linux. Enter the following commands in that terminal, one at a time.
+  zh: "如果你刚开始使用 Python，请从 [Python 官网](https://www.python.org/downloads/) 安装 Python 3.12 或更高版本。打开终端：Windows 使用 PowerShell，macOS 和 Linux 使用“终端”。下面的命令在终端中逐条输入。"
+  status: machine
+- id: 2b03acbe981a9619
+  en: 'Create a folder for your examples:'
+  zh: "先创建一个存放示例的学习文件夹："
+  status: machine
+- id: 24c88402b82cef72
+  en: 'Create and activate a virtual environment for this folder:'
+  zh: "为这个文件夹创建并激活虚拟环境："
+  status: machine
+- id: 6305e431dbd06a81
+  en: After activation, `python` uses this environment. Continue with the installation command below. When you open a new terminal, return to this folder and activate the environment again; you do not need to reinstall FatQat.
+  zh: "激活后，`python` 命令就会使用这个环境。接着运行下面的安装命令。重新打开终端后，先回到这个文件夹，再激活环境；不需要重新安装 FatQat。"
+  status: machine
+- id: dc705132b95a8735
+  en: Save and run a Python file
+  zh: "保存并运行 Python 文件"
+  status: machine
+- id: 1df35e1c1e518c9b
+  en: Create a file named `first_program.py` in your `fatqat-learning` folder using a text editor. Copy the complete example below into the file and save it. Python code belongs in this file; terminal commands belong in the terminal. Avoid naming the file `fatqat.py` or accidentally saving it as `first_program.py.txt`.
+  zh: "用文本编辑器在 `fatqat-learning` 文件夹中新建 `first_program.py`。把下面的完整示例复制进去并保存。Python 代码写在文件中，终端命令在终端中输入。不要将文件命名为 `fatqat.py`，也不要误存为 `first_program.py.txt`。"
+  status: machine
+- id: 783c792f4a6dece2
+  en: 'This small example flips one qubit from `0` to `1`, measures it, and prints the counts:'
+  zh: "这个小程序把一个量子比特从 `0` 翻转到 `1`，测量后打印计数："
+  status: machine
+- id: 8d4a5c3753c905be
+  en: 'In your terminal, with the environment activated and the current folder set to `fatqat-learning`, run:'
+  zh: "在终端中激活环境，并确认当前文件夹为 `fatqat-learning`，然后运行："
+  status: machine
+- id: 5727b088fda04d11
+  en: 'The output is `{''1'': 100}`. After editing the file, save it and run the same command again.'
+  zh: "输出为 `{'1': 100}`。之后修改代码、保存，再运行同一条命令即可。"
+  status: machine
+- id: a6dbebf6c7070411
+  en: Run with VS Code on Windows
+  zh: "在 Windows 的 VS Code 中运行"
+  status: machine
+- id: a3573474bb83b3e5
+  en: 'You can also run the file with a button:'
+  zh: "也可以使用按钮运行文件："
+  status: machine
+- id: 65dc7b7ae6d3f8f2
+  en: Install [VS Code](https://code.visualstudio.com/) and Microsoft's Python extension.
+  zh: "安装 [VS Code](https://code.visualstudio.com/)，并安装 Microsoft 发布的 Python 扩展。"
+  status: machine
+- id: 1f553ef79c563ec6
+  en: Choose **File > Open Folder**, open `fatqat-learning`, and open `first_program.py`.
+  zh: "选择 **文件 > 打开文件夹**，打开 `fatqat-learning`，再打开 `first_program.py`。"
+  status: machine
+- id: fe068dfa603ffa7d
+  en: 'Press `Ctrl+Shift+P`, choose **Python: Select Interpreter**, and select this folder''s `.venv`. If it is not listed, enter the path to `.venv\Scripts\python.exe` inside your learning folder.'
+  zh: "按 `Ctrl+Shift+P`，选择 **Python: Select Interpreter**，再选择该文件夹里的 `.venv`。如果没有找到，可以输入学习文件夹中 `.venv\\Scripts\\python.exe` 的路径。"
+  status: machine
+- id: a71da6e1fc5708f6
+  en: Save the file. Use the triangle button at the top right of the editor and choose **Run Python File in Terminal**.
+  zh: "保存文件，点击编辑区右上角的三角形按钮，选择 **Run Python File in Terminal**。"
+  status: machine
+- id: 3456123a0f424dce
+  en: The output appears in the terminal panel. For later runs, edit, save, and click the same button.
+  zh: "结果会显示在终端面板。以后修改代码、保存，再点击同一个按钮运行即可。"
+  status: machine
+- id: c2aea16c107bee0f
+  en: If the example does not run
+  zh: "示例无法运行时"
+  status: machine
+- id: ac98bc5440ac8c33
+  en: '**Python cannot find the file:** check that your terminal is in the folder containing `first_program.py`.'
+  zh: "**Python 找不到程序文件：** 确认终端当前所在的文件夹中包含 `first_program.py`。"
+  status: machine
+- id: 2d5f3b88cc497441
+  en: '**`No module named fatqat`:** activate the environment where you installed FatQat. In VS Code, check the selected Python interpreter.'
+  zh: "**`No module named fatqat`：** 激活安装了 FatQat 的环境；在 VS Code 中检查选中的 Python 解释器。"
+  status: machine
+- id: 5d5781303af90017
+  en: '**Ubuntu reports that `venv` is unavailable:** for the Python 3.12 supplied with Ubuntu 24.04, install `python3.12-venv` with `sudo apt install python3.12-venv`, then create the environment again. Other releases may use a different package name.'
+  zh: "**Ubuntu 提示缺少 `venv`：** 对于 Ubuntu 24.04 自带的 Python 3.12，先执行 `sudo apt install python3.12-venv` 安装 `python3.12-venv`，再创建环境。其他版本的软件包名称可能不同。"
+  status: machine
+- id: 1fddcb5ab04ee671
+  en: '**PowerShell blocks the activation script:** you can use the environment without activating it. Install with `.\.venv\Scripts\python.exe -m pip install fatqat`, then run `.\.venv\Scripts\python.exe first_program.py`.'
+  zh: "**PowerShell 不允许运行激活脚本：** 可以不激活环境，改用 `.\\.venv\\Scripts\\python.exe -m pip install fatqat` 安装，再用 `.\\.venv\\Scripts\\python.exe first_program.py` 运行。"
+  status: machine
+- id: 941ddc5fd774a432
+  en: If you still need help, open a [GitHub issue](https://github.com/spaceqat/fatqat/issues) with your operating system, Python version, the command you ran, and the first error message.
+  zh: "如果仍然需要帮助，请到项目的 [GitHub Issues](https://github.com/spaceqat/fatqat/issues) 中提问，并提供操作系统、Python 版本、执行的命令和第一条报错信息。"
+  status: machine
+- id: 23ff14ee431abf8b
+  en: The rest of this page uses a Bell pair to explain Programs, drawing, and simulation. Examples beginning with `>>>` show an interactive Python session. To put those examples in a `.py` file, omit the `>>>` and `...` prompts and any shown output.
+  zh: "下面继续用贝尔对介绍 Program、绘图和模拟。带 `>>>` 的示例表示 Python 交互式会话；复制到 `.py` 文件时，需要去掉 `>>>` 和 `...` 提示符，也不要复制示例显示的输出。"
+  status: machine

@@ -1,0 +1,136 @@
+- id: 205c03aeb73e361a
+  en: Recognize handwritten digits with a quantum neural network
+  ko: 양자 신경망으로 손글씨 숫자 분류하기
+  status: machine
+- id: f9afa8402798aeb5
+  en: Train a data-reuploading circuit to distinguish handwritten 3s and 6s while evaluating a whole parameter batch with one sweep.
+  ko: 데이터 재입력 회로로 손글씨 3과 6을 구분하도록 학습하고, 한 번의 스윕으로 전체 매개변수 배치를 평가합니다.
+  status: machine
+- id: dc23d7d1d2c68a7b
+  en: Average-pooled handwritten digit inputs
+  ko: 평균 풀링한 손글씨 숫자 입력
+  status: machine
+- id: 7399ba3aba833503
+  en: Four-qubit data-reuploading QNN template
+  ko: 4큐비트 데이터 재업로딩 QNN 템플릿
+  status: machine
+- id: eac3eefc8b361a80
+  en: COBYLA training-loss trace
+  ko: COBYLA 학습 손실 추이
+  status: machine
+- id: ec2fe80e8e7b8f8e
+  en: Held-out handwritten digit predictions after training
+  ko: 학습 후 별도 테스트 데이터에 대한 손글씨 숫자 예측
+  status: machine
+- id: 7c4c70a32bff7945
+  en: Additional dependency
+  ko: 추가 의존성
+  status: machine
+- id: 5009ae831a4d53ec
+  en: This tutorial requires scikit-learn, which is not installed with FatQat. Install it with `python -m pip install scikit-learn`.
+  ko: 이 튜토리얼에는 FatQat과 함께 설치되지 않는 scikit-learn이 필요합니다. `python -m pip install scikit-learn`으로 설치하세요.
+  status: machine
+- id: a87da96845755370
+  en: A quantum neural network (QNN) classifier is an ordinary parameterized function $f(x;\theta)$ — the twist is that the function is evaluated by a quantum circuit. The input features $x$ and the trainable weights $\theta$ both enter the circuit as rotation angles, and the class scores are read off the final state as expectation values.
+  ko: 양자 신경망(QNN) 분류기는 매개변수화된 함수 $f(x;\theta)$입니다. 일반적인 함수와 다른 점은 양자 회로로 값을 계산한다는 것입니다. 입력 특성 $x$와 학습 가중치 $\theta$는 모두 회전각으로 회로에 들어가며, 최종 상태의 기댓값에서 클래스 점수를 얻습니다.
+  status: machine
+- id: eaf0fccde7501325
+  en: 'This tutorial trains such a classifier to tell the handwritten digits 3 and 6 apart, and it showcases the piece fatqat contributes beyond a plain "build one circuit per sample" workflow: **the circuit is built once as a parameterized template, and a whole batch of inputs is evaluated with a single** `run_sweep` **call**.'
+  ko: 이 튜토리얼에서는 손글씨 숫자 3과 6을 구분하는 분류기를 학습합니다. 특히 표본마다 회로를 새로 만드는 방식에서 나아가 fatqat이 제공하는 배치 처리 방식을 살펴봅니다. **회로를 매개변수 템플릿으로 한 번만 만들고, 전체 입력 배치를 단 한 번의** `run_sweep` **호출로 평가합니다**.
+  status: machine
+- id: 1ba70b3e6cfc2bb1
+  en: The model
+  ko: 모델
+  status: machine
+- id: 3b50b023f8232acc
+  en: Each qubit alternates an *encoding* gate $R_Y(x)$ with a *trainable* gate $R_Z(\theta)$ over several rounds, entangled by a CX ring — the *data re-uploading* pattern of Pérez-Salinas et al. ([arXiv:1907.02085](https://arxiv.org/abs/1907.02085)). With four qubits and four rounds,
+  ko: 각 큐비트에 *인코딩* 게이트 $R_Y(x)$와 *학습 가능한* 게이트 $R_Z(\theta)$를 여러 라운드에 걸쳐 번갈아 적용하고, CX 고리로 얽힘을 만듭니다. Pérez-Salinas 등의 *데이터 재입력(data re-uploading)* 방식입니다([arXiv:1907.02085](https://arxiv.org/abs/1907.02085)). 큐비트 네 개와 네 라운드를 사용하면 다음과 같습니다.
+  status: machine
+- id: 02227a745fdc83b8
+  en: so the 16 features and 16 weights are consumed one per qubit per round. Re-uploading the same features in every round lets a small circuit fit a nonlinear decision boundary.
+  ko: 따라서 큐비트마다 각 라운드에서 특성 하나와 가중치 하나를 사용하여, 특성 16개와 가중치 16개를 모두 반영합니다. 같은 특성을 매 라운드에 다시 입력하면 작은 회로로도 비선형 결정 경계를 학습할 수 있습니다.
+  status: machine
+- id: 07facfe486b5561d
+  en: 'The readout follows Farhi & Neven ([arXiv:1802.06002](https://arxiv.org/abs/1802.06002)): measure the four single-qubit expectations $\langle Z_q\rangle$ and fold them into two class logits,'
+  ko: 판독은 Farhi와 Neven의 방식을 따릅니다([arXiv:1802.06002](https://arxiv.org/abs/1802.06002)). 단일 큐비트 기댓값 $\langle Z_q\rangle$ 네 개를 측정해 두 클래스의 로짓으로 조합합니다.
+  status: machine
+- id: 0e5a5ca1098c1a06
+  en: Training minimizes the mean cross-entropy $-\frac{1}{N}\sum_i \log p_i(\text{label}_i)$ with the gradient-free COBYLA optimizer — the loss is a black box, so no circuit differentiation is needed.
+  ko: 학습에서는 기울기가 필요 없는 COBYLA 최적화기로 평균 교차 엔트로피 $-\frac{1}{N}\sum_i \log p_i(\text{label}_i)$를 최소화합니다. 손실 함수를 블랙박스로 취급하므로 회로를 미분할 필요가 없습니다.
+  status: machine
+- id: 944b353107a44d54
+  en: The data are the 8x8 handwritten digits bundled with scikit-learn. Once that package is installed, the dataset is available locally, so the tutorial needs no external data download. Every source of randomness is seeded.
+  ko: 데이터는 scikit-learn에 포함된 8x8 손글씨 숫자입니다. 패키지를 설치하면 데이터셋이 로컬에 준비되므로 외부 데이터를 내려받을 필요가 없습니다. 모든 난수에는 시드를 지정합니다.
+  status: machine
+- id: 84e07c3a1f11aca5
+  en: 'Data: two classes of small digits'
+  ko: '데이터: 두 종류의 작은 숫자 이미지'
+  status: machine
+- id: 8e0a781d13808d8a
+  en: The 3-vs-6 subset is shuffled with a seeded generator and each 8x8 image is average-pooled to 4x4 — one feature per qubit per round. Pixel values (0–16) are scaled to angles in $[0, \pi]$, so a blank pixel encodes as the identity rotation $R_Y(0) = I$ and brightness order survives the $\cos$ in $\langle Z\rangle = \cos x$ of a lone $R_Y(x)$.
+  ko: 3과 6에 해당하는 부분집합을 시드가 지정된 난수 생성기로 섞고, 각 8x8 이미지를 평균 풀링하여 4x4로 줄입니다. 각 값은 큐비트 하나의 한 라운드에 대응합니다. 픽셀값(0–16)은 $[0, \pi]$ 범위의 각도로 변환합니다. 따라서 빈 픽셀은 항등 회전 $R_Y(0) = I$가 되며, 단독 $R_Y(x)$의 $\langle Z\rangle = \cos x$에 나타나는 $\cos$를 거쳐도 밝기에 따른 순서 관계가 유지됩니다.
+  status: machine
+- id: caa982bc367bdc6b
+  en: This 4x4 pooling — not the original 8x8 scan — is what the circuit sees.
+  ko: 회로에 입력되는 것은 원래의 8x8 스캔이 아니라 이 4x4 풀링 결과입니다.
+  status: machine
+- id: bfc6e7e1af3e2bf2
+  en: 'The ansatz: one parameterized template'
+  ko: '변분 회로: 하나의 매개변수 템플릿'
+  status: machine
+- id: 9bb95be967de903f
+  en: 'A [`ParameterVector`][fatqat.ParameterVector] is a group of named placeholders. Gates added with placeholders instead of numbers produce a *template*: a program whose structure is fixed but whose angles are bound later. Binding always returns a new program and never mutates the template, so one template serves every sample and every optimizer step.'
+  ko: '[`ParameterVector`][fatqat.ParameterVector]는 이름이 있는 자리표시자의 모음입니다. 게이트에 숫자 대신 자리표시자를 넣으면 구조는 고정되어 있고 각도는 나중에 대입하는 프로그램, 즉 *템플릿*이 만들어집니다. 값을 대입할 때는 항상 새 프로그램을 반환하고 템플릿은 바꾸지 않으므로, 모든 표본과 최적화 단계에서 하나의 템플릿을 재사용할 수 있습니다.'
+  status: machine
+- id: 27c8a8efa25472e1
+  en: 'The template draws like any other program: each round applies `RY(x)` then `RZ(θ)` on every wire and closes with the CX ring, repeated four times.'
+  ko: 템플릿도 다른 프로그램처럼 그릴 수 있습니다. 각 라운드에서는 모든 와이어에 `RY(x)`와 `RZ(θ)`를 차례로 적용한 뒤 CX 고리로 마무리하며, 이를 네 번 반복합니다.
+  status: machine
+- id: 73479e1a1924690f
+  en: Evaluate a whole batch with one `run_sweep`
+  ko: 한 번의 `run_sweep`으로 전체 배치 평가하기
+  status: machine
+- id: ff09d29b4f321b3c
+  en: 'Within one optimizer step the weights are fixed, so they are bound once with `assign_parameters`. The batch then sweeps only the features: [`Estimator`][fatqat.Estimator] takes the two class observables alongside the entire `(N, 16)` feature array and returns an ordered list of results — one ordinary [`Result`][fatqat.Result] per sample. Each result contains the two expectation values, which a short list comprehension collects into the `(N, 2)` logit array. The parameters have become *data*: plain NumPy arrays flowing through one call, instead of circuit structure rebuilt per sample.'
+  ko: 한 최적화 단계 안에서는 가중치가 고정되므로 `assign_parameters`로 한 번만 대입합니다. 이후 배치에서는 특성만 스윕합니다. [`Estimator`][fatqat.Estimator]에 두 클래스의 관측량과 전체 `(N, 16)` 특성 배열을 전달하면, 표본마다 하나씩 일반 [`Result`][fatqat.Result]를 담은 순서 있는 결과 목록을 반환합니다. 각 결과에 들어 있는 두 기댓값을 짧은 리스트 컴프리헨션으로 모으면 `(N, 2)` 로짓 배열이 됩니다. 매개변수를 표본마다 다시 만드는 회로 구조로 취급하는 대신, 한 번의 호출로 전달하는 일반 NumPy 배열, 즉 *데이터*로 다루는 것입니다.
+  status: machine
+- id: adb221d68af7fcd3
+  en: (In this fatqat version `run_sweep` still lowers and executes row by row; the win today is the single-template workflow and one-call batch interface, which is also where fused batched execution will land. The estimator handles final-state evolution and observable contraction; see [interpreting results](../guide/interpret-results.md).)
+  ko: (이 fatqat 버전의 `run_sweep`은 아직 행마다 하위 실행 표현으로 변환하고 실행합니다. 현재의 이점은 단일 템플릿 작업 흐름과 한 번의 호출로 배치를 처리하는 인터페이스이며, 향후 융합 배치 실행도 이 인터페이스에 도입될 예정입니다. 추정기는 최종 상태까지의 시간 진화와 관측량 축약을 처리합니다. 자세한 내용은 [결과 해석](../guide/interpret-results.md)을 참고하세요.)
+  status: machine
+- id: 3ad062f431e84703
+  en: 'A small check with random initial weights: the logits start near zero, as expected for an untrained circuit.'
+  ko: 무작위 초기 가중치로 간단히 확인해 봅니다. 학습 전 회로에서 예상되는 대로 로짓은 0 근처에서 시작합니다.
+  status: machine
+- id: 36a798e3f39239cc
+  en: Training
+  ko: 학습
+  status: machine
+- id: e52d6289664d733c
+  en: The loss is the mean softmax cross-entropy over the training batch. One loss evaluation is one `run_sweep` call over all 120 training images.
+  ko: 손실은 학습 배치 전체의 평균 softmax 교차 엔트로피입니다. 손실을 한 번 계산할 때 학습 이미지 120개 전체를 대상으로 `run_sweep`을 한 번 호출합니다.
+  status: machine
+- id: 163e44b102626149
+  en: Evaluation
+  ko: 평가
+  status: machine
+- id: af42f483a97e143e
+  en: The trained weights are evaluated on the held-out test split — again with a single sweep over the whole batch.
+  ko: 학습에 사용하지 않은 테스트 데이터로 학습된 가중치를 평가합니다. 여기서도 한 번의 스윕으로 전체 배치를 처리합니다.
+  status: machine
+- id: 51578c9d1d451798
+  en: A sample of test predictions; wrong calls are marked in red.
+  ko: 테스트 예측 일부를 표시합니다. 오분류한 예측은 빨간색으로 표시합니다.
+  status: machine
+- id: 92f76a1011323fc3
+  en: Where to go from here
+  ko: 다음 단계
+  status: machine
+- id: b1379d16daa3d413
+  en: '[the Program guide](../guide/program.md) introduces parameter binding; [the simulation guide](../guide/simulation.md) covers sweeps, and [interpreting results](../guide/interpret-results.md) covers exact and sampled expectation values.'
+  ko: '[Program 가이드](../guide/program.md)에서 매개변수 대입을, [시뮬레이션 가이드](../guide/simulation.md)에서 스윕을, [결과 해석](../guide/interpret-results.md)에서 정확한 기댓값과 표본 추정 기댓값을 설명합니다.'
+  status: machine
+- id: fd88e61ef11029fd
+  en: 'Natural extensions: more rounds or qubits, a noise model passed to the simulator, or sampled (`shots > 0`) expectations to study shot noise on the training curve.'
+  ko: 라운드나 큐비트 수를 늘리거나, 시뮬레이터에 잡음 모델을 전달해 보세요. 표본 기반 기댓값(`shots > 0`)을 사용하면 샷 잡음이 학습 곡선에 미치는 영향도 분석할 수 있습니다.
+  status: machine

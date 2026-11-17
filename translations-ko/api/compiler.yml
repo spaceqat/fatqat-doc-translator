@@ -1,0 +1,104 @@
+- id: d62b4a0de1f16d62
+  en: Compiler
+  ko: Compiler
+  status: machine
+- id: 76bfaf6fb46a8cc1
+  en: Use the compiler to prepare a device-independent circuit for a superconducting or neutral-atom target. A final compilation can be passed directly to the matching simulator.
+  ko: 컴파일러를 사용하면 장치에 독립적인 회로를 초전도 또는 중성 원자 대상에 맞게 변환할 수 있습니다. 최종 컴파일 결과는 해당 시뮬레이터에 바로 전달할 수 있습니다.
+  status: machine
+- id: ffe5ef1e9cfbec60
+  en: 'Choose an entry point from the source and target you have:'
+  ko: '소스와 대상에 맞는 진입점을 선택하세요:'
+  status: machine
+- id: dba9ac5692611db9
+  en: '| Source | Superconducting target | Neutral-atom target |'
+  ko: '| 소스 | 초전도 대상 | 중성 원자 대상 |'
+  status: machine
+- id: e546eb4df69a06cd
+  en: '| OpenQASM 2 or 3 | `compile_qasm_to_sc()` | `compile_qasm_to_na()` |'
+  ko: '| OpenQASM 2 또는 3 | `compile_qasm_to_sc()` | `compile_qasm_to_na()` |'
+  status: machine
+- id: 170fa7d891a89053
+  en: The [compiler guide](../guide/compiler.md) shows complete compile-and-run examples for all four paths.
+  ko: 네 가지 경로의 전체 컴파일·실행 예제는 [컴파일러 가이드](../guide/compiler.md)에 있습니다.
+  status: machine
+- id: 2aa9756d9a566092
+  en: Compile a LogicalProgram
+  ko: LogicalProgram 컴파일
+  status: machine
+- id: 775c8b2bafa8fa6b
+  en: 'Build a circuit with `LogicalProgram`, then provide either an [SC target](sc-target.md) or a neutral-atom architecture. Run an SC result on a simulator that provides the sites and couplings it uses:'
+  ko: '`LogicalProgram`으로 회로를 만든 뒤 [SC 대상](sc-target.md)이나 중성 원자 아키텍처를 지정하세요. SC 결과는 그 결과가 사용하는 사이트와 결합을 제공하는 시뮬레이터에서 실행합니다:'
+  status: machine
+- id: 7165119da4d40aef
+  en: You can also pass an `SCQubitSimulator` in place of the target. The compiler then uses its sites and couplings and checks the emitted gates against its implementation map.
+  ko: 대상 대신 `SCQubitSimulator`를 전달할 수도 있습니다. 이때 컴파일러는 시뮬레이터의 사이트와 결합을 사용하고, 생성한 게이트를 구현 맵과 대조해 검사합니다.
+  status: machine
+- id: 64be6899a1ef4c75
+  en: Compile OpenQASM
+  ko: OpenQASM 컴파일
+  status: machine
+- id: aa30c7b43b56c804
+  en: Pass OpenQASM source text directly to the target compiler. The returned result uses the same execution interface as a compiled `LogicalProgram`.
+  ko: OpenQASM 소스 문자열을 대상 컴파일러에 직접 전달하세요. 반환 결과는 컴파일된 `LogicalProgram`과 같은 실행 인터페이스를 사용합니다.
+  status: machine
+- id: d9ea79af78648e1e
+  en: Compilation results
+  ko: 컴파일 결과
+  status: machine
+- id: dd2697f3c35717c3
+  en: At the final target boundary, the compile functions return an `ExecutableCompilationResult`. Pass it to the matching simulator, inspect the target representation through `.output`, or review the stages through `.route`.
+  ko: 최종 대상 경계에서 컴파일 함수는 `ExecutableCompilationResult`를 반환합니다. 이를 해당 시뮬레이터에 전달하거나, `.output`으로 대상 표현을 살펴보고 `.route`로 변환 단계를 확인할 수 있습니다.
+  status: machine
+- id: d65839e7d87b90d7
+  en: When `emit` selects an earlier boundary, the return value is a `CompilationResult` intended for inspection.
+  ko: '`emit`으로 더 이른 경계를 선택하면 살펴보기 위한 `CompilationResult`를 반환합니다.'
+  status: machine
+- id: e120b05f9137892b
+  en: A compiler created with `create_sc_pipeline()` or `create_na_pipeline()` returns a `CompilationResult` at every boundary, including the final one. Convert a final-boundary `output` with the [simulator translation](#simulator-translation) functions before running it.
+  ko: '`create_sc_pipeline()` 또는 `create_na_pipeline()`로 만든 컴파일러는 최종 경계를 포함한 모든 경계에서 `CompilationResult`를 반환합니다. 최종 경계의 `output`은 실행 전에 [시뮬레이터 변환](#simulator-translation) 함수로 변환하세요.'
+  status: machine
+- id: aa7892c2c99be973
+  en: Neutral-atom architectures and animation
+  ko: 중성 원자 아키텍처와 애니메이션
+  status: machine
+- id: b28df277f721dc39
+  en: '`load_architecture()` returns a fresh copy of a bundled neutral-atom profile. Use the same architecture for compilation and schedule visualization.'
+  ko: '`load_architecture()`는 내장 중성 원자 프로필의 새 복사본을 반환합니다. 컴파일과 스케줄 시각화에는 같은 아키텍처를 사용하세요.'
+  status: machine
+- id: bc64685c4318cf4b
+  en: Advanced compiler APIs
+  ko: 고급 컴파일러 API
+  status: machine
+- id: 0e6cd38cf49be2d9
+  en: Most applications only need the four compile functions above. The following APIs expose intermediate translation and pipeline construction for compiler extensions and IR inspection.
+  ko: 대부분의 응용에서는 위의 네 컴파일 함수면 충분합니다. 다음 API는 컴파일러 확장과 IR 분석에 필요한 중간 변환 및 파이프라인 구성을 제공합니다.
+  status: machine
+- id: 22d9daa28a5e204c
+  en: Simulator translation
+  ko: 시뮬레이터 변환
+  status: machine
+- id: 5d564287e3eafeea
+  en: Use these functions when working with a final compiler IR that was constructed or modified directly. Results returned by the normal compile functions are already ready for simulation.
+  ko: 최종 컴파일러 IR을 직접 만들거나 수정했다면 이 함수들을 사용하세요. 일반 컴파일 함수가 반환한 결과는 이미 시뮬레이션할 준비가 되어 있습니다.
+  status: machine
+- id: 195718c934de872b
+  en: SC native programs can declare `classical_registers` as a keyword-only tuple of the original register objects in output order. The bridge retains all slots, including unwritten slots and entirely unused registers. Distinct registers may share a name; declaring the same object twice is invalid. Measurement outputs must belong to declared registers. The bridge and native verifier raise `ValidationError` for invalid explicit declarations.
+  ko: SC 네이티브 프로그램은 원래 레지스터 객체를 출력 순서대로 담은 튜플을 키워드 전용 `classical_registers`로 선언할 수 있습니다. 변환 과정에서 값이 쓰이지 않은 슬롯과 전혀 사용하지 않은 레지스터까지 모두 보존합니다. 서로 다른 레지스터의 이름은 같아도 되지만 같은 객체를 두 번 선언할 수는 없습니다. 측정 출력은 선언한 레지스터에 속해야 합니다. 명시적 선언이 잘못되면 변환 단계와 네이티브 검증기에서 `ValidationError`가 발생합니다.
+  status: machine
+- id: cc244e75592a610b
+  en: 'The default `None` preserves compatibility with native programs constructed without declarations: the bridge discovers registers in first measurement occurrence order. This fallback cannot recover original declaration order or registers with no measurements. Use `()` to declare no classical registers; it does not request inference. Compiler-generated native programs always carry explicit declarations. Adding this field preserves the existing three positional constructor arguments; it also participates in dataclass equality and reflection.'
+  ko: 기본값 `None`은 선언 없이 만든 기존 네이티브 프로그램과의 호환성을 유지합니다. 이때는 측정에서 처음 등장한 순서대로 레지스터를 찾습니다. 이 대체 방식으로는 원래 선언 순서나 측정되지 않은 레지스터를 복원할 수 없습니다. 고전 레지스터가 없음을 명시하려면 `()`를 사용하세요. 이는 추론을 요청하는 값이 아닙니다. 컴파일러가 생성하는 네이티브 프로그램은 항상 명시적 선언을 포함합니다. 이 필드를 추가해도 기존의 위치 인수 세 개는 유지되며, 새 필드는 dataclass 동등성 비교와 리플렉션에도 포함됩니다.
+  status: machine
+- id: c16c0af8aba62b64
+  en: Pipelines and IRs
+  ko: 파이프라인과 IR
+  status: machine
+- id: cb702378f31507ef
+  en: Errors
+  ko: 오류
+  status: machine
+- id: e79e4b8fee7065f5
+  en: Compiler errors share the `CompilerError` base class. `PassError` includes the stage that failed and preserves the original error as its cause.
+  ko: 컴파일러 오류는 공통 기반 클래스 `CompilerError`를 사용합니다. `PassError`에는 실패한 단계가 포함되며 원래 오류가 원인으로 보존됩니다.
+  status: machine

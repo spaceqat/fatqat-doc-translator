@@ -1,0 +1,52 @@
+- id: 4cb5a2167b8403dd
+  en: LogicalProgram
+  ko: LogicalProgram
+  status: machine
+- id: f928299f5cbb70d0
+  en: Use [`LogicalProgram`][fatqat.LogicalProgram] to describe a circuit that FatQat will compile for a hardware profile. It follows the familiar [`Program`](program.md) interface, so the same circuit can also be simulated directly.
+  ko: '[`LogicalProgram`][fatqat.LogicalProgram]은 FatQat이 하드웨어 프로필에 맞게 컴파일할 회로를 기술합니다. 익숙한 [`Program`](program.md) 인터페이스를 따르므로 같은 회로를 직접 시뮬레이션할 수도 있습니다.'
+  status: machine
+- id: 453663e8eb4ffd00
+  en: '`LogicalProgram(2, 2)` creates two logical qubits and two classical bits. `add()` appends gates, while `measure()` and `measure_all()` record measurement results. These methods update the circuit in place.'
+  ko: '`LogicalProgram(2, 2)`는 논리 큐비트 두 개와 고전 비트 두 개를 만듭니다. `add()`는 게이트를 추가하고, `measure()`와 `measure_all()`은 측정 결과를 기록합니다. 이 메서드들은 회로를 제자리에서 수정합니다.'
+  status: machine
+- id: 1b03518789170a58
+  en: Compile or simulate the circuit
+  ko: 회로 컴파일 또는 시뮬레이션
+  status: machine
+- id: 77d1e5d89899824f
+  en: 'Compile the circuit by choosing a target family:'
+  ko: '대상 계열을 선택해 회로를 컴파일합니다:'
+  status: machine
+- id: ae6c168240365fe4
+  en: 'For algorithm development, the same circuit can run directly on the general simulator:'
+  ko: '알고리즘을 개발할 때는 같은 회로를 범용 시뮬레이터에서 직접 실행할 수 있습니다:'
+  status: machine
+- id: 303571ba799a8d0c
+  en: See [Compile and run a logical circuit](../guide/compiler.md) for complete SC, neutral-atom, and OpenQASM workflows.
+  ko: SC, 중성 원자, OpenQASM의 전체 작업 흐름은 [논리 회로 컴파일 및 실행](../guide/compiler.md)을 참고하세요.
+  status: machine
+- id: 010c44e9717d1225
+  en: Reuse parameterized circuits
+  ko: 매개변수화된 회로 재사용
+  status: machine
+- id: b9d87f4a5b705a4b
+  en: '`copy()` returns a `LogicalProgram` with independent instructions and top-level metadata. Values nested inside metadata remain shared. `assign_parameters()` returns a new `LogicalProgram` with the selected values, leaving the original template unchanged.'
+  ko: '`copy()`는 명령과 최상위 메타데이터가 독립적인 `LogicalProgram`을 반환합니다. 메타데이터 내부에 중첩된 값은 공유됩니다. `assign_parameters()`는 선택한 값을 적용한 새 `LogicalProgram`을 반환하며 원래 템플릿은 바꾸지 않습니다.'
+  status: machine
+- id: 466b158092fd1f1c
+  en: Bind all parameters to numeric values before compiling. Partial binding remains useful while assembling a larger template.
+  ko: 컴파일 전에 모든 매개변수를 수치로 바인딩하세요. 더 큰 템플릿을 구성하는 중에는 부분 바인딩을 활용할 수 있습니다.
+  status: machine
+- id: e93e26809f52effc
+  en: Choose between LogicalProgram and Program
+  ko: LogicalProgram과 Program 선택
+  status: machine
+- id: 87609141707bf8ea
+  en: '`LogicalProgram` is for device-independent gates that can be lowered by the compiler. Use [`Program`](program.md) when you are constructing physical operations directly, such as atom placement, pairing, or pulse controls, or when you are adding custom operation types.'
+  ko: '`LogicalProgram`은 컴파일러가 변환할 수 있는 장치 독립적 게이트를 위한 형식입니다. 원자 배치, 페어링, 펄스 제어 같은 물리적 연산을 직접 구성하거나 사용자 정의 연산 타입을 추가할 때는 [`Program`](program.md)을 사용하세요.'
+  status: machine
+- id: 04e41354faeb8034
+  en: Classical conditions are available when simulating a `LogicalProgram` directly. The current compiler handles static circuits with terminal measurements; the [compiler guide](../guide/compiler.md#current-compiler-support) summarizes the supported inputs.
+  ko: '`LogicalProgram`을 직접 시뮬레이션할 때는 고전 조건을 사용할 수 있습니다. 현재 컴파일러는 마지막에 측정하는 정적 회로를 처리합니다. 지원 입력은 [컴파일러 가이드](../guide/compiler.md#current-compiler-support)에 정리되어 있습니다.'
+  status: machine

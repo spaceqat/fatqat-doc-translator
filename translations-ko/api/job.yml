@@ -1,0 +1,16 @@
+- id: ad617a0fdd57e3f4
+  en: Job
+  ko: Job
+  status: machine
+- id: 7a602eb84d82aa3b
+  en: Job API under development
+  ko: 개발 중인 Job API
+  status: machine
+- id: 98a03d4e150ad576
+  en: The Job API is under active development. Its interfaces and supported behavior may change between releases. Pin an exact FatQat version when reproducibility matters.
+  ko: Job API는 활발히 개발 중이며 릴리스마다 인터페이스와 지원 동작이 바뀔 수 있습니다. 재현성이 중요하면 FatQat 버전을 정확히 고정하세요.
+  status: machine
+- id: 23a697e79ef36e87
+  en: Native FATQAT backends and [`Estimator`][fatqat.Estimator] return a completed [`Job`][fatqat.Job]. Call [`result`][fatqat.Job.result] to obtain the result; it does not wait.
+  ko: FATQAT 기본 백엔드와 [`Estimator`][fatqat.Estimator]는 실행이 완료된 [`Job`][fatqat.Job]을 반환합니다. 결과를 얻으려면 [`result`][fatqat.Job.result]를 호출하세요. 이 호출은 실행을 기다리지 않습니다.
+  status: machine

@@ -1,0 +1,56 @@
+- id: f0c620aca972d170
+  en: Custom operations
+  ko: 사용자 정의 연산
+  status: machine
+- id: b7130dde76d73ae6
+  en: Use a custom operation to update quantum and classical data together or keep additional data for each shot. Define the operation as a `CustomOperation` and register a `CustomOperationImplementation` with the simulator's [`MatrixImplementationMap`](../implementation.md).
+  ko: 양자 데이터와 고전 데이터를 함께 갱신하거나 샷별 추가 데이터를 보관하려면 사용자 정의 연산을 사용하세요. 연산을 `CustomOperation`으로 정의하고 시뮬레이터의 [`MatrixImplementationMap`](../implementation.md)에 `CustomOperationImplementation`을 등록합니다.
+  status: machine
+- id: 05c75667c0afab29
+  en: Define and register an operation
+  ko: 연산 정의와 등록
+  status: machine
+- id: 9d62c46e449a77c9
+  en: 'This classical-only operation counts its calls and writes the count to the first classical register entry:'
+  ko: '다음 고전 전용 연산은 호출 횟수를 세고 첫 번째 고전 레지스터 항목에 기록합니다:'
+  status: machine
+- id: 2fb6db3522ce552c
+  en: To extend the atom-array profile, start with `AtomArraySimulator().implementation_map`.
+  ko: 원자 배열 프로필을 확장하려면 `AtomArraySimulator().implementation_map`에서 시작하세요.
+  status: machine
+- id: ecaa2a00f52146cb
+  en: State and execution
+  ko: 상태와 실행
+  status: machine
+- id: 70eda70c9e8b6015
+  en: '`execute(operation, state, context)` must return the updated state or a replacement `EvolutionState`. Keep shot-specific data in `state.classical`, rather than on the operation or implementation object, which may be reused across shots. User data is not included in counts; write reported values to `clbits` as in the example.'
+  ko: '`execute(operation, state, context)`는 갱신된 상태 또는 이를 대체할 `EvolutionState`를 반환해야 합니다. 샷별 데이터는 여러 샷에서 재사용될 수 있는 연산이나 구현 객체가 아니라 `state.classical`에 보관하세요. 사용자 데이터는 카운트에 포함되지 않습니다. 보고할 값은 예제처럼 `clbits`에 쓰세요.'
+  status: machine
+- id: ed1ef66e51dafbe7
+  en: Use `context.targets` to locate quantum operands and `context.rng` for random draws that respect the simulation seed. Field meanings, target ordering, and initialization defaults are described in the API reference below.
+  ko: 양자 피연산자는 `context.targets`로 찾고, 시뮬레이션 시드를 따르는 난수 추출에는 `context.rng`를 사용하세요. 필드 의미, 대상 순서, 초기화 기본값은 아래 API 참조에 설명되어 있습니다.
+  status: machine
+- id: 24e4e7e46e3be2c4
+  en: Classical conditions are evaluated before `execute`. On the atom-array profile, custom operations handle absent atoms and pairing requirements themselves. Attached noise runs afterward and evaluates conditions against the updated classical register.
+  ko: 고전 조건은 `execute` 전에 평가합니다. 원자 배열 프로필에서 사용자 정의 연산은 원자가 없는 경우와 페어링 조건을 직접 처리해야 합니다. 부착 잡음은 그 뒤에 실행되며 갱신된 고전 레지스터를 기준으로 조건을 평가합니다.
+  status: machine
+- id: e099dc81ba737d77
+  en: Supported usage
+  ko: 지원 범위
+  status: machine
+- id: 271c559e1b1673e6
+  en: '`Simulator` and `AtomArraySimulator` support custom operations with statevector and density-matrix methods on both NumPy and Numba.'
+  ko: '`Simulator`와 `AtomArraySimulator`는 NumPy와 Numba 모두에서 상태 벡터 및 밀도 행렬 방법의 사용자 정의 연산을 지원합니다.'
+  status: machine
+- id: 9fe4b5853b548475
+  en: '`run_sweep`, unitary/superoperator methods, and expectation calculations do not support custom operations.'
+  ko: '`run_sweep`, 유니터리·초연산자 방법, 기댓값 계산은 사용자 정의 연산을 지원하지 않습니다.'
+  status: machine
+- id: 026d241f74518b14
+  en: 'Final-state output requires `shots=1` and `result_config={"final_state": True}`. Counts without measurements require `result_config={"counts": True}`.'
+  ko: '최종 상태를 출력하려면 `shots=1`과 `result_config={"final_state": True}`가 필요합니다. 측정 없이 카운트를 받으려면 `result_config={"counts": True}`를 지정하세요.'
+  status: machine
+- id: a7131e2ab82db613
+  en: Process execution requires serializable operations, implementations, and initial data. Define classes at module level when using it.
+  ko: 프로세스 실행에서는 연산, 구현, 초기 데이터가 직렬화 가능해야 합니다. 이를 사용할 때는 클래스를 모듈 수준에 정의하세요.
+  status: machine

@@ -1,0 +1,12 @@
+- id: a0c002f91bf98dba
+  en: Exceptions
+  zh: 异常
+  status: machine
+- id: d604ab54b9d78414
+  en: Catch [`FatqatError`][fatqat.errors.FatqatError] when one handler can recover from any FATQAT error, or catch a subclass when recovery depends on the failure. Invalid argument types and values may instead raise Python's `TypeError` or `ValueError`.
+  zh: "若所有 FATQAT 错误都采用相同的恢复方式，可以统一捕获 [`FatqatError`][fatqat.errors.FatqatError]；需要按错误类型分别处理时，则捕获对应子类。参数类型或取值不合法时，也可能抛出 Python 的 `TypeError` 或 `ValueError`。"
+  status: machine
+- id: 43955a547653b894
+  en: '[`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] is a subtype of [`BackendValidationError`][fatqat.errors.BackendValidationError]. A backend normally raises validation errors before `run` returns a job. A later execution failure may be stored on the returned [`Job`][fatqat.Job] and raised by [`result`][fatqat.Job.result].'
+  zh: '[`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] 是 [`BackendValidationError`][fatqat.errors.BackendValidationError] 的子类型。后端通常会在 `run` 返回作业之前抛出校验错误。之后发生的执行失败可能会被存储在返回的 [`Job`][fatqat.Job] 上，并由 [`result`][fatqat.Job.result] 抛出。'
+  status: machine

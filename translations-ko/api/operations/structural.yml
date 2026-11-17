@@ -1,0 +1,36 @@
+- id: e813e7d078112ec7
+  en: Measurement and structural operations
+  ko: 측정과 구조적 연산
+  status: machine
+- id: 42695c7dda8ea629
+  en: Measurement and reset
+  ko: 측정과 리셋
+  status: machine
+- id: c8b9e9a9ce49a6c2
+  en: Measurement writes computational-basis outcomes to classical storage. Reset returns its targets to `|0>` without producing an output.
+  ko: 측정은 계산 기저의 결과를 고전 저장 공간에 씁니다. 리셋은 출력을 만들지 않고 대상을 `|0>`으로 되돌립니다.
+  status: machine
+- id: 2864333c71881e50
+  en: Create measurements with [`fatqat.Program.measure`][fatqat.Program.measure] or [`fatqat.Program.measure_all`][fatqat.Program.measure_all]. A grouped measurement pairs quantum targets and classical outputs by tuple position, and each pair must have the same local dimension. Measurements are created through these methods, not [`add`][fatqat.Program.add], and cannot carry its `condition=` argument.
+  ko: 측정은 [`fatqat.Program.measure`][fatqat.Program.measure] 또는 [`fatqat.Program.measure_all`][fatqat.Program.measure_all]로 만듭니다. 그룹 측정은 튜플 위치에 따라 양자 대상과 고전 출력을 짝짓고, 각 쌍의 국소 차원은 같아야 합니다. 측정은 [`add`][fatqat.Program.add]가 아닌 이 메서드들로 생성하며 이 메서드의 `condition=` 인수를 사용할 수 없습니다.
+  status: machine
+- id: 2ec5af53e4af87c5
+  en: Repeated targets and outputs are accepted, and pairs are processed in tuple order. Repeating a target reports its already-collapsed outcome, with reporting noise applied independently to each pair. Repeating a classical output means the last write wins. [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] changes only the reported digit, not the collapsed physical outcome.
+  ko: 대상과 출력의 중복은 허용되며 쌍은 튜플 순서대로 처리됩니다. 같은 대상을 반복하면 이미 붕괴한 결과를 보고하고, 보고 잡음은 쌍마다 독립적으로 적용합니다. 같은 고전 출력에 반복해서 쓰면 마지막 값이 남습니다. [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion]은 보고 숫자만 바꾸며 붕괴한 물리적 결과는 바꾸지 않습니다.
+  status: machine
+- id: 05a18d81f34909e5
+  en: Add [`Reset`][fatqat.operations.Reset] with [`fatqat.Program.add`][fatqat.Program.add]. It accepts one or more distinct scalar targets and can carry a condition when the backend supports feedforward. It rejects an empty target tuple, duplicate targets, and [`RegisterView`](../registers.md#fatqat.RegisterView). Reset is non-unitary. For an entangled target, a statevector run samples one reset branch, while a density-matrix run represents the resulting mixture directly. It has no attached-noise realization, so using it as the `operation=` selector in [`fatqat.NoiseModel.add`][fatqat.NoiseModel.add] raises [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError).
+  ko: '[`Reset`][fatqat.operations.Reset]은 [`fatqat.Program.add`][fatqat.Program.add]로 추가합니다. 서로 다른 스칼라 대상을 하나 이상 받으며 백엔드가 피드포워드를 지원하면 조건을 붙일 수 있습니다. 빈 대상 튜플, 중복 대상, [`RegisterView`](../registers.md#fatqat.RegisterView)는 거부합니다. 리셋은 비유니터리입니다. 대상이 얽혀 있으면 상태 벡터 실행은 리셋 분기 하나를 샘플링하고, 밀도 행렬 실행은 결과 혼합 상태를 직접 표현합니다. 부착 잡음 구현이 없으므로 [`fatqat.NoiseModel.add`][fatqat.NoiseModel.add]의 `operation=` 선택자로 사용하면 [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)가 발생합니다.'
+  status: machine
+- id: c95efa0315ddb927
+  en: Compiler barrier
+  ko: 컴파일러 배리어
+  status: machine
+- id: b01f31ea958a4475
+  en: '[`Barrier`][fatqat.operations.Barrier] is a compiler and scheduling marker, not a state-changing operation or noise boundary. Add it with [`fatqat.Program.add`][fatqat.Program.add] and one or more distinct scalar targets. It rejects an empty target tuple, duplicate targets, and [`RegisterView`](../registers.md#fatqat.RegisterView).'
+  ko: '[`Barrier`][fatqat.operations.Barrier]는 컴파일과 스케줄링을 위한 표식이며, 상태를 바꾸는 연산이나 잡음 경계가 아닙니다. [`fatqat.Program.add`][fatqat.Program.add]에 서로 다른 스칼라 대상을 하나 이상 지정해 추가하세요. 빈 대상 튜플, 중복 대상, [`RegisterView`](../registers.md#fatqat.RegisterView)는 거부합니다.'
+  status: machine
+- id: 6a26bf4fff1add65
+  en: 'Built-in simulators ignore barriers, including any condition recorded by [`add`][fatqat.Program.add], so barriers do not change states or counts. A barrier cannot be bound to noise: using it as the `operation=` selector in [`fatqat.NoiseModel.add`][fatqat.NoiseModel.add] raises [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError).'
+  ko: 내장 시뮬레이터는 [`add`][fatqat.Program.add]로 기록한 조건까지 포함해 배리어를 무시하므로 상태나 카운트가 바뀌지 않습니다. 배리어에는 잡음을 연결할 수 없습니다. [`fatqat.NoiseModel.add`][fatqat.NoiseModel.add]의 `operation=` 선택자로 쓰면 [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)가 발생합니다.
+  status: machine

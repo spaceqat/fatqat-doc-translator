@@ -1,6 +1,7 @@
 .build/
 site/
 site-test/
+site-ko/
 __pycache__/
 *.pyc
 

@@ -17,6 +17,66 @@ from list_versions import release_versions
 
 
 class TranslationTests(unittest.TestCase):
+    def test_korean_database_is_independent_and_uses_ko_key(self):
+        import yaml
+        self.addCleanup(translate.configure_locale, "zh")
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            tools = root / "tools"
+            tools.mkdir()
+            with patch.object(translate, "HERE", tools), patch.dict(
+                "os.environ", {}, clear=True
+            ):
+                translate.configure_locale("ko")
+                key = translate.segment_id("Overview")
+                path = translate.TRANSLATIONS_ROOT / "index.yml"
+                translate.save_database_file(path, [
+                    translate.Entry(key, "Overview", "개요", "machine")
+                ])
+                self.assertEqual(yaml.safe_load(path.read_text(encoding="utf-8"))[0]["ko"], "개요")
+                self.assertNotIn("zh:", path.read_text(encoding="utf-8"))
+                self.assertEqual(translate.load_database()[path][0].zh, "개요")
+                translate.configure_locale("zh")
+                self.assertEqual(translate.load_database(), {})
+
+    def test_check_rejects_changed_code_and_math_but_allows_reordering(self):
+        english = "Use `x` with $a$ and `y`."
+        key = translate.segment_id(english)
+        for text, expected in (
+            ("`y`와 $a$, `x`를 사용합니다.", 0),
+            ("`z`와 $a$, `x`를 사용합니다.", 1),
+            ("`y`와 $b$, `x`를 사용합니다.", 1),
+        ):
+            with self.subTest(text=text), patch.object(
+                translate, "discover_sources", return_value=[]
+            ), patch.object(translate, "load_database", return_value={
+                translate.TRANSLATIONS_ROOT / "fake.yml": [
+                    translate.Entry(key, english, text, "machine")
+                ]
+            }):
+                self.assertEqual(translate.run_check(), expected)
+
+    def test_complete_check_rejects_missing_and_empty_active_translation(self):
+        source = self.source("# Overview\n")
+        key = translate.segment_id("Overview")
+        for database in ({}, {Path("fake.yml"): [
+            translate.Entry(key, "Overview", "", "machine")
+        ]}):
+            with self.subTest(database=database), patch.object(
+                translate, "discover_sources", return_value=[source]
+            ), patch.object(translate, "load_database", return_value=database):
+                self.assertEqual(translate.run_check(require_complete=True), 1)
+
+    def test_korean_gallery_uses_only_korean_key(self):
+        gallery = {
+            "ui": {"en": {"open": "Open"}},
+            "index": {"en": {"title": "Tutorials"}},
+            "categories": {"new": {"en": {"title": "New"}}},
+        }
+        result = translate_gallery(gallery, lambda text: "번역 " + text, "ko")
+        self.assertEqual(result["ui"], {"ko": {"open": "번역 Open"}})
+        self.assertEqual(result["categories"]["new"]["ko"]["title"], "번역 New")
+
     def source(self, text):
         directory = tempfile.TemporaryDirectory()
         self.addCleanup(directory.cleanup)

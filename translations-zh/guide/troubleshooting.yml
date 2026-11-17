@@ -1,0 +1,200 @@
+- id: d07fb82dc004c488
+  en: Diagnose a Program workflow
+  zh: "排查 Program 运行问题"
+  status: machine
+- id: 8636df5374a4ad47
+  en: 'Most first-run problems occur at one of four boundaries:'
+  zh: "首次运行遇到的问题，大多出在以下四个环节："
+  status: machine
+- id: f34ebdd30c568a6b
+  en: Start with the symptom below. You should not need to inspect FatQat's internal execution engine.
+  zh: "可以根据下面的现象逐项排查，通常无需深入 FatQat 的内部执行引擎。"
+  status: machine
+- id: e04f9228880ac7fd
+  en: Writing the Program
+  zh: 编写 Program
+  status: machine
+- id: 17b6aa23c0286d8e
+  en: An integer target is ambiguous
+  zh: 整数目标有歧义
+  status: machine
+- id: 21e364de512be153
+  en: 'Bare integers are convenient for `Program(2)`, where there is only one quantum register. Once a Program contains several registers, use the register references you created:'
+  zh: "对于只有一个量子 Register 的 `Program(2)`，裸整数很方便。一旦 Program 包含多个 Register，请使用你创建的 Register 引用："
+  status: machine
+- id: fa1dda001e9d7328
+  en: This also makes each target's local dimension unambiguous. See [Write quantum computations with Program](program.md).
+  zh: 这也使每个目标的局部维度不再有歧义。参见[用 Program 编写量子计算](program.md)。
+  status: machine
+- id: 7f207fe33c42308b
+  en: Measurement reports a dimension mismatch
+  zh: 测量报告维度不匹配
+  status: machine
+- id: 6fcf6df6fc465d91
+  en: 'A measured quantum resource and its classical destination must have the same local dimension. A qutrit needs a classical trit, not an ordinary bit:'
+  zh: 被测量的量子资源与其经典目标必须具有相同的局部维度。一个 qutrit 需要一个经典 trit，而不是普通的比特：
+  status: machine
+- id: 4b3bb80dbafdf941
+  en: The Program still contains an unbound parameter
+  zh: Program 中仍含有未绑定的参数
+  status: machine
+- id: f10a339c4c5a3d4f
+  en: 'Binding returns a new Program; it does not modify the template in place. Keep the returned value and submit that one:'
+  zh: 绑定会返回一个新的 Program；它不会就地修改模板。请保留返回值并提交它：
+  status: machine
+- id: 925426e167c3339f
+  en: For a batch of bindings, use the sweep workflow in [Simulate a quantum program](simulation.md).
+  zh: 对于一批绑定，请使用[模拟量子程序](simulation.md)中的扫描工作流。
+  status: machine
+- id: ecf299635b276acc
+  en: Matching the execution target
+  zh: 匹配执行目标
+  status: machine
+- id: 13a948cdb96e44f6
+  en: An operation works on Simulator but is unsupported here
+  zh: "某条指令在 Simulator 上可用，在这里却不受支持"
+  status: machine
+- id: f9546d1afd71b66a
+  en: That usually means the selected hardware profile or emulator cannot realize the instruction as written. The general simulator accepts a wider logical operation set; constrained targets intentionally do not.
+  zh: "这通常表示所选硬件配置或仿真器无法执行该指令。通用模拟器支持的逻辑操作更广，而硬件和物理模型会按各自的约束限制支持范围。"
+  status: machine
+- id: cfad2968f94182a6
+  en: 'Check the target''s supported operations and ask which detail you meant to study:'
+  zh: 检查目标支持的操作，并问一问你想研究的到底是哪个细节：
+  status: machine
+- id: 3ab3fd0488fc5cb3
+  en: return to the general simulator for unrestricted algorithm behavior;
+  zh: "只关心算法行为时，改用通用模拟器；"
+  status: machine
+- id: a9db0a2b3ba38c9f
+  en: rewrite the Program in the profile's native operations when hardware constraints are the point; or
+  zh: "当硬件约束正是研究重点时，用该配置的原生操作重写 Program；或者"
+  status: machine
+- id: 11c7bd34cccf14fc
+  en: supply an implementation/calibration only if you are deliberately extending the target.
+  zh: "需要扩展目标的支持范围时，再提供相应的实现或校准。"
+  status: machine
+- id: ba31eaa138b909a3
+  en: FatQat does not silently transpile or route the Program. See [Choose how much physics to model](execution-models.md).
+  zh: "FatQat 不会悄悄地转译或路由 Program。参见[选择需要建模的物理细节](execution-models.md)。"
+  status: machine
+- id: 0548d37a3281f7c8
+  en: A two-resource gate fails because of placement
+  zh: "双目标门因布局不匹配而报错"
+  status: machine
+- id: 92152188b5a272ec
+  en: The operation can be native while its two physical locations are not connected. Inspect or choose a [`ResourceLayout`][fatqat.ResourceLayout] and keep the ordered logical targets distinct from their device labels. The worked failure-and-fix is in [Test a Program against a hardware profile](hardware-profile-simulation.md).
+  zh: "量子门本身可以是原生的，但它的两个物理位置并不相连。请检查或选择 [`ResourceLayout`][fatqat.ResourceLayout]，并把有序的逻辑目标与它们的设备标号区分开。完整的失败与修复示例见[用硬件配置检验 Program](hardware-profile-simulation.md)。"
+  status: machine
+- id: 81ebaa3fc23e5356
+  en: A direct control is rejected by an emulator
+  zh: 直接控制被仿真器拒绝
+  status: machine
+- id: c65497b61f8c09e0
+  en: Each pulse channel comes from a particular physical model and identifies one of that model's resources. Build the control from the same model used by the emulator. Then check that the waveform uses the model's time and control units, that its values are allowed, and that the operation duration covers every control. [Follow a Program into physical dynamics](hamiltonian-emulation.md) builds this chain one piece at a time.
+  zh: "每个脉冲控制通道都来自特定的物理模型，并标识该模型的某个资源。请从仿真器所用的同一模型构建控制。然后检查波形是否使用该模型的时间和控制单位、其数值是否被允许，以及脉冲块时长是否覆盖每个控制。[用 Program 模拟物理动力学](hamiltonian-emulation.md)逐步构建了这条链路。"
+  status: machine
+- id: f78c928a5db65fdb
+  en: Configuring the run
+  zh: 配置运行
+  status: machine
+- id: fccabf9903471a09
+  en: Counts change each time
+  zh: 计数每次都不一样
+  status: machine
+- id: 05e2a873e556e9a1
+  en: 'Counts are sampled. Increase `shots` when you want a steadier estimate, and set a seed when you need to reproduce a particular sample:'
+  zh: 计数是采样得到的。当你想要更平稳的估计时增大 `shots`，当你需要复现特定样本时设置种子：
+  status: machine
+- id: 28ff31e6c36ac66f
+  en: A fixed seed aids debugging; it does not make a small sample more accurate.
+  zh: 固定种子有助于调试；它不会让小样本变得更准确。
+  status: machine
+- id: bc40669ff86b00da
+  en: A statevector is unavailable for a noisy or dynamic run
+  zh: 含噪声或动态运行无法获得态矢量
+  status: machine
+- id: 3b7bb637f15070e0
+  en: After measurement, reset, or trajectory noise, one statevector is only one sampled history. Request it with `shots=1` when that single history is what you want. Use density-matrix simulation for an exact mixed state.
+  zh: "经过测量、重置或随机噪声轨迹后，一个态矢量只代表其中一次采样的演化过程。若需要查看这条轨迹，可设置 `shots=1` 并请求最终态；若需要精确的混合态，则使用密度矩阵模拟。"
+  status: machine
+- id: 1bc9ce1555eccd79
+  en: The first Numba run is unexpectedly slow
+  zh: 首次 Numba 运行出乎意料地慢
+  status: machine
+- id: 8ba9327679552d33
+  en: Numba compiles kernels lazily. Warm the workload before measuring repeated runtime, or choose NumPy when predictable one-off latency matters more. The benchmark pattern is in [Performance and scaling](performance.md).
+  zh: "Numba 在首次用到数值内核时才编译。比较重复运行的耗时时，应先运行一次完成预热；若只运行一次、希望避免编译带来的延迟，可以选 NumPy。基准测试方法见[性能与扩展性](performance.md)。"
+  status: machine
+- id: 08d5f76d290cfb6d
+  en: Reading the Result
+  zh: 读取 Result
+  status: machine
+- id: ee98bc5cd0c2d8cb
+  en: A Result accessor says its data is unavailable
+  zh: 某个 Result 访问器提示其数据不可用
+  status: machine
+- id: f7ef98d3e7318315
+  en: 'Runs contain only the data that the selected execution method produced and that you requested. Inspect the result before choosing an accessor:'
+  zh: "Result 只保存所选方法能够产生、且本次运行请求了的数据。调用访问方法前，先检查结果包含哪些字段："
+  status: retired
+- id: 824dcd52fa1db4ef
+  en: '[Ask questions of a run](interpret-results.md) connects each output to the question it answers.'
+  zh: '[向一次运行提问](interpret-results.md)把每个输出与它所回答的问题对应起来。'
+  status: retired
+- id: 9633a55eb5f7e523
+  en: Count strings appear reversed
+  zh: 计数字符串看起来是反的
+  status: retired
+- id: b5d4ed01ebadd3cc
+  en: Displayed count strings put classical slot 0 on the right. When local dimensions differ—or when you simply want an unambiguous program-order representation—use `result.get_counts_as_tuples()` instead. Tuple position 0 is classical slot 0.
+  zh: 显示的计数字符串把经典槽位 0 放在右侧。当局部维度不同时——或者你只是想要一个按程序顺序、无歧义的表示——请改用 `result.get_counts_as_tuples()`。元组位置 0 对应经典槽位 0。
+  status: retired
+- id: d3cff453d8563cde
+  en: Reduce the problem without losing the clue
+  zh: "逐步缩小复现示例"
+  status: machine
+- id: 2999b803a7af68ed
+  en: 'If none of those matches, make a copy of the failing workflow and reduce it:'
+  zh: 如果以上都不符合，请复制一份出错的工作流并逐步缩减它：
+  status: machine
+- id: fcab0e9ab2780f25
+  en: keep one register and one operation;
+  zh: "只保留一个 Register 和一个 Operation；"
+  status: machine
+- id: 1b865511cf0921f1
+  en: run it with the general `Simulator`;
+  zh: 用通用的 `Simulator` 运行它；
+  status: machine
+- id: ef9e4a68e8f9fb7d
+  en: add the requested result field;
+  zh: 加上所请求的结果字段；
+  status: machine
+- id: b5a9b2225f298a28
+  en: switch to the intended profile or emulator; and
+  zh: "切换到目标硬件配置或仿真器；然后"
+  status: machine
+- id: f01c2ebce4dc4155
+  en: restore operations one at a time.
+  zh: "逐条恢复程序指令。"
+  status: machine
+- id: d68a13ad257b7859
+  en: The step where it changes tells you which boundary to inspect. Preserve the small reproducer—it is also the most useful starting point for a bug report.
+  zh: "在哪一步开始出错，就重点检查哪个环节。保留这个最小复现示例，提交缺陷报告时也能直接使用。"
+  status: machine
+- id: 488f301da9f1d419
+  en: The [Result reference](../api/result.md) lists the available fields, their accessors, and which runs produce them.
+  zh: '[Result 参考](../api/result.md)列出了可用字段、访问方法及产生它们的运行类型。'
+  status: machine
+- id: f4550463aa53c38e
+  en: How are count strings ordered?
+  zh: 计数字符串如何排序？
+  status: machine
+- id: b7919bcf68888606
+  en: Displayed count strings and tuple keys both put classical slot 0 first, on the left or at tuple position 0. When local dimensions differ, tuple keys avoid string-token parsing; native strings use commas if any classical dimension is at least 10.
+  zh: 显示的计数字符串和元组键都将经典槽位 0 放在最前面，即字符串最左侧或元组位置 0。局域维数不同时，元组键可以避免解析字符串中的数位；若任一经典维数不小于 10，原生字符串使用逗号分隔。
+  status: machine
+- id: fcf57fc7df62696f
+  en: 'Runs contain only the data that the selected simulation method produced and that you requested. Inspect the result before choosing an accessor:'
+  zh: Result 只保存所选模拟方法能够产生、且本次运行请求了的数据。调用访问方法前，先检查结果包含哪些字段：
+  status: machine

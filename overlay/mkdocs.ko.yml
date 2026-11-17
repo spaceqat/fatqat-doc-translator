@@ -1,0 +1,26 @@
+# Navigation is generated from the pinned source; RTD handles language switching.
+INHERIT: mkdocs.yml
+edit_uri: ""
+docs_dir: docs/mkdocs/ko
+hooks: []
+extra_css:
+  - assets/stylesheets/translation.css
+theme:
+  language: ko
+plugins:
+  search:
+    # Bundled Lunr has no Korean stemmer; retain Unicode word indexing.
+    lang: en
+  mkdocstrings:
+    locale: ko
+extra:
+  alternate:
+    - name: English
+      link: https://fatqat.readthedocs.io/en/
+      lang: en
+    - name: 简体中文
+      link: https://fatqat.readthedocs.io/zh-cn/
+      lang: zh-CN
+    - name: 한국어
+      link: https://fatqat.readthedocs.io/ko/
+      lang: ko

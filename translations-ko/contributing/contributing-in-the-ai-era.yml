@@ -1,0 +1,240 @@
+- id: 5cc9274a3f307710
+  en: Contributing in the AI era
+  ko: AI 시대의 기여
+  status: machine
+- id: a5e9125c25fd0607
+  en: If AI can write the code, where can I make the biggest difference?
+  ko: AI가 코드를 쓸 수 있다면, 나는 어디에서 가장 큰 역할을 할 수 있을까요?
+  status: machine
+- id: 7205a8d12744e648
+  en: '**By asking a question worth answering.**'
+  ko: '**답할 가치가 있는 질문을 던지는 데서 시작합니다.**'
+  status: machine
+- id: 17f81519706562d7
+  en: AI has made it easier to turn an idea into code. That makes deciding **what to build, why it matters, and how it fits** increasingly important. A valuable question grounded in real use can contribute more than a ready-made implementation.
+  ko: AI 덕분에 아이디어를 코드로 옮기기 쉬워졌습니다. 그만큼 **무엇을 만들지, 왜 필요한지, 기존 구조에 어떻게 맞출지**를 판단하는 일이 중요해졌습니다. 실제 사용 경험에 근거한 좋은 질문 하나가 완성된 구현보다 더 큰 기여가 될 수 있습니다.
+  status: machine
+- id: d1f30eb4be628fad
+  en: Perhaps a result surprised you. You or your agent struggled with an explanation or needed a complicated workaround. Or you looked at a pull request and saw a simpler approach. A useful question, a clearer example, or a thoughtful review can all move the project forward.
+  ko: 예상과 다른 결과가 나왔을 수도 있습니다. 설명을 이해하기 어려웠거나, 사용자나 에이전트가 복잡한 우회 코드를 작성해야 했을 수도 있습니다. PR을 보다가 더 단순한 방법이 떠올랐을 수도 있습니다. 유용한 질문, 더 명확한 예제, 깊이 있는 리뷰는 모두 프로젝트를 발전시킵니다.
+  status: machine
+- id: 4d1f71a5c3ccb010
+  en: You don't need a patch to contribute
+  ko: 코드를 수정하지 않아도 기여할 수 있습니다
+  status: machine
+- id: 4ac4ddadce561465
+  en: Share a question, investigate an obstacle, or help review an approach. Helping the community decide what deserves attention is valuable work.
+  ko: 질문을 나누고, 막히는 부분을 조사하고, 접근 방법을 함께 검토해 보세요. 커뮤니티가 어디에 집중할지 판단하도록 돕는 것도 가치 있는 일입니다.
+  status: machine
+- id: 7f3de9edbe110277
+  en: What have you built with FatQat?
+  ko: FatQat으로 무엇을 만드셨나요?
+  status: machine
+- id: 118ab1da8d918eb5
+  en: Have you reproduced a result from a paper, explored a new physical model, or used FatQat in a way our examples do not cover? Share it. Your workflow could help someone else get started and show the community where the package could grow.
+  ko: 논문의 결과를 재현하거나, 새로운 물리 모델을 탐구하거나, 예제에서 다루지 않은 방식으로 FatQat을 사용하셨나요? 경험을 공유해 주세요. 다른 사용자가 시작하는 데 도움이 되고, 패키지가 어떤 방향으로 발전할 수 있는지도 보여 줍니다.
+  status: machine
+- id: 1f2f0075af1ee2a0
+  en: A small example, a tutorial, or a walkthrough of your own work can all be valuable contributions. Explain the question you explored, how you used FatQat, and what the results mean. Include enough code and context for someone else to follow, and credit the papers or other work you build on.
+  ko: 작은 예제, 튜토리얼, 자신의 작업 과정을 풀어 쓴 글 모두 좋은 기여가 될 수 있습니다. 어떤 질문을 탐구했고, FatQat을 어떻게 사용했으며, 결과가 무엇을 의미하는지 설명해 주세요. 다른 사람이 따라갈 수 있을 만큼 코드와 맥락을 제공하고, 바탕이 된 논문이나 다른 작업의 출처도 밝혀 주세요.
+  status: machine
+- id: 31d69a6dc23e4e2c
+  en: '**You don''t need a polished tutorial to start the conversation.** If you have a new use case or an example you would like to share, [open an issue](https://github.com/spaceqat/fatqat/issues) and tell us about it. We can discuss how it might fit into the examples or [tutorial collection](../tutorials/index.md).'
+  ko: '**완성도 높은 튜토리얼이 있어야만 대화를 시작할 수 있는 것은 아닙니다.** 새로운 사용 사례나 공유하고 싶은 예제가 있다면 [이슈를 열어](https://github.com/spaceqat/fatqat/issues) 알려 주세요. 예제나 [튜토리얼 모음](../tutorials/index.md)에 어떻게 넣으면 좋을지 함께 논의할 수 있습니다.'
+  status: machine
+- id: 2c35b7592e40c275
+  en: Using FatQat through an agent? Follow the friction.
+  ko: 에이전트로 FatQat을 사용한다면, 막히는 부분을 살펴보세요
+  status: machine
+- id: c9e5e8896289fe2e
+  en: You may ask an agent to reproduce a paper, implement an algorithm, or explore a physical model. Even when it writes most of the code, your goals and judgment guide the work and can reveal opportunities to improve FatQat.
+  ko: 에이전트에게 논문 재현, 알고리즘 구현, 물리 모델 탐색을 맡길 수 있습니다. 코드 대부분을 에이전트가 작성하더라도 작업의 방향은 사용자의 목표와 판단이 정합니다. 그 과정에서 FatQat을 개선할 기회도 찾을 수 있습니다.
+  status: machine
+- id: 739fc41d3ed4d429
+  en: Start from those experiences. A broad request to "find improvements in the codebase" gives an agent little basis for deciding what matters. A concrete experiment gives it a purpose and constraints.
+  ko: 그 경험에서 출발하세요. 단순히 “코드베이스에서 개선점을 찾아 줘”라고 하면 에이전트가 무엇이 중요한지 판단할 근거가 부족합니다. 구체적인 실험은 목적과 제약을 제공합니다.
+  status: machine
+- id: 24ee3fdf1c825e2f
+  en: 'Try these questions during your next task:'
+  ko: 다음 작업에서 이런 질문을 해 보세요.
+  status: machine
+- id: 3aa0a5643a448e64
+  en: A workaround appeared
+  ko: 우회 코드가 필요했을 때
+  status: machine
+- id: bb014b0c3e43b4fa
+  en: '"Which parts required custom code, and why?"'
+  ko: “어떤 부분에 별도 코드가 필요했고, 이유는 무엇인가요?”
+  status: machine
+- id: 39ae72b55f55dd44
+  en: '"Is the capability missing, or did we struggle to find and use it?"'
+  ko: “기능이 없는 건가요, 아니면 있는 기능을 찾고 쓰기가 어려웠나요?”
+  status: machine
+- id: e35768e5785beed3
+  en: A run is too slow
+  ko: 실행이 너무 느릴 때
+  status: machine
+- id: 3021168daae69605
+  en: '"Where is the runtime going? Can we measure it?"'
+  ko: “어디에서 시간이 걸리나요? 측정할 수 있나요?”
+  status: machine
+- id: 133b6b90616f69fa
+  en: '"Can we improve performance while preserving the physical model and required accuracy?"'
+  ko: “물리 모델과 필요한 정확도를 유지하면서 성능을 높일 수 있나요?”
+  status: machine
+- id: e6f49eaf85b3e32e
+  en: A result is hard to interpret
+  ko: 결과를 해석하기 어려울 때
+  status: machine
+- id: 76895a764d060f82
+  en: '"What do we need to know to interpret this result, and does FatQat explain it clearly? For example, are the units and basis ordering clear?"'
+  ko: “이 결과를 해석하려면 무엇을 알아야 하나요? FatQat이 이를 명확히 설명하나요? 예를 들어 단위와 기저 순서가 분명한가요?”
+  status: machine
+- id: 2330edd452264073
+  en: '"What would help the next user: a clearer explanation, a worked example, or more information in the output?"'
+  ko: “다음 사용자에게는 무엇이 도움이 될까요? 더 명확한 설명, 실행 예제, 출력에 담긴 추가 정보 중 무엇이 필요할까요?”
+  status: machine
+- id: 59a83546e4a2d6cb
+  en: If you and your agent had to work out a convention, inspect private internals, or write extra code to understand an output, describe that step. It may reveal a useful improvement even when the result is correct.
+  ko: 출력을 이해하기 위해 에이전트와 함께 규약을 추론하거나, 비공개 내부 구현을 살펴보거나, 추가 코드를 작성해야 했다면 그 과정을 설명해 주세요. 결과가 정확하더라도 개선할 만한 부분이 드러날 수 있습니다.
+  status: machine
+- id: 110f0fa8587a3943
+  en: Treat the answers as leads to investigate. Check the documentation and the evidence.
+  ko: 이 답들은 추가 조사의 실마리로 삼으세요. 문서와 근거를 확인하는 과정이 필요합니다.
+  status: machine
+- id: f5d25f412651c2ac
+  en: Found something? Help others see it.
+  ko: 발견한 점을 다른 사람도 이해할 수 있게 설명해 주세요
+  status: machine
+- id: 738e0cf051fb603e
+  en: 'Help someone who has not seen your experiment understand where you got stuck. Start with what you wanted to achieve, then walk them through what happened. These questions can help:'
+  ko: 실험을 보지 못한 사람도 어디에서 막혔는지 이해할 수 있도록 도와주세요. 무엇을 하려 했는지부터 설명하고, 실제로 무슨 일이 있었는지 차례로 보여 주세요. 다음 질문이 도움이 됩니다.
+  status: machine
+- id: 08a1dda7e25d4f8e
+  en: '**What were you trying to do?** Describe the calculation, paper, or workflow that led you here. This helps others understand why the problem matters.'
+  ko: '**무엇을 하려 했나요?** 계기가 된 계산, 논문, 작업 과정을 설명해 주세요. 다른 사람이 문제의 중요성을 이해하는 데 도움이 됩니다.'
+  status: machine
+- id: b5d2fb6e6097079e
+  en: '**What surprised you?** Explain what you expected and what you observed. Mention anything you tried that helped or left you stuck.'
+  ko: '**무엇이 예상과 달랐나요?** 기대한 것과 실제 관찰한 것을 설명해 주세요. 시도한 방법 중 도움이 된 것과 여전히 막힌 부분도 알려 주세요.'
+  status: machine
+- id: 03de69acdbdd8845
+  en: '**How could someone explore it with you?** Share a small runnable example and the settings needed to reproduce it. Include an error message or measurements when they help show the problem.'
+  ko: '**다른 사람이 어떻게 함께 살펴볼 수 있나요?** 작게 줄인 실행 예제와 재현에 필요한 설정을 공유해 주세요. 문제를 보여 주는 데 도움이 된다면 오류 메시지나 측정값도 포함하세요.'
+  status: machine
+- id: 2c97873f8c02333f
+  en: '**What would you like to understand or improve?** You might need a way to express a calculation, an explanation of a result, or a faster way to run an experiment. You can ask that question without knowing the solution.'
+  ko: '**무엇을 이해하거나 개선하고 싶나요?** 계산을 표현할 방법, 결과에 대한 설명, 실험을 더 빨리 실행할 방법이 필요할 수 있습니다. 해결책을 몰라도 질문할 수 있습니다.'
+  status: machine
+- id: 495021c8b69bfcd4
+  en: The useful details depend on the question. For a scientific result, a reference and the physical assumptions help others assess the comparison. For a slow simulation, the workload and how you measured runtime help them investigate the cost. Share your experience in an [issue](https://github.com/spaceqat/fatqat/issues) or a relevant ongoing conversation; you do not need to diagnose the cause or implement a fix first.
+  ko: 필요한 정보는 질문에 따라 다릅니다. 과학적 결과라면 참고 문헌과 물리적 가정이 비교를 판단하는 데 도움이 됩니다. 느린 시뮬레이션이라면 워크로드와 시간 측정 방법이 비용을 조사하는 데 필요합니다. [이슈](https://github.com/spaceqat/fatqat/issues)나 관련된 기존 대화에서 경험을 공유해 주세요. 원인을 진단하거나 수정부터 구현할 필요는 없습니다.
+  status: machine
+- id: 61ad132938ad9214
+  en: What might a useful report sound like?
+  ko: 유용한 보고는 어떤 모습일까요?
+  status: machine
+- id: a1bf2dbf7e25a2ac
+  en: '"While reproducing this paper''s parameter sweep, we measured most of the runtime in repeated setup. Here is a reduced example and timings for two sweep sizes. We tried this existing option, but it did not address the repeated work. Is there a supported way to reuse the setup?"'
+  ko: “이 논문의 매개변수 스윕을 재현하면서 실행 시간 대부분이 반복되는 준비 작업에 쓰인다는 것을 측정했습니다. 줄인 예제와 두 가지 스윕 크기의 측정값을 첨부합니다. 기존 옵션도 사용해 봤지만 반복 작업은 줄지 않았습니다. 준비 과정을 재사용하는 기능을 지원하나요?”
+  status: machine
+- id: 2e70094b9c97bbdd
+  en: A small example and the actual timings let someone investigate this question without first reconstructing the whole study.
+  ko: 작은 예제와 실제 측정값이 있으면 다른 사람이 전체 연구를 다시 구성하지 않고도 질문을 조사할 수 있습니다.
+  status: machine
+- id: baa877f973e5da50
+  en: Have an approach? Discuss it before spending the tokens.
+  ko: 접근 방법이 떠올랐다면, 토큰을 쓰기 전에 논의해 보세요
+  status: machine
+- id: b30c212387c3823c
+  en: For substantial changes, **we strongly encourage discussing the direction before implementation**. Join an existing relevant issue or discussion, or open an issue if there isn't one.
+  ko: 규모가 큰 변경은 **구현 전에 방향을 논의하기를 강력히 권장합니다**. 관련된 기존 이슈나 토론에 참여하거나, 없다면 새 이슈를 열어 주세요.
+  status: machine
+- id: e79f970370119f2d
+  en: Explain the intended behavior and sketch the approach. Discuss the proposed API, where the behavior belongs, numerical methods and their assumptions, and trade-offs in accuracy, performance, or compatibility as relevant.
+  ko: 의도한 동작을 설명하고 접근 방법을 간략히 제시하세요. 제안하는 API, 동작을 맡을 구성 요소, 수치 방법과 그 가정, 정확도·성능·호환성 사이의 절충 등 관련된 내용을 논의하세요.
+  status: machine
+- id: 15871594a8901a1c
+  en: '> "I''m reproducing this calculation, and this step requires a workaround. > I''m considering an interface like this, with two possible numerical > approaches. Does this fit FatQat''s direction? Is there existing > functionality I should build on?"'
+  ko: '> “이 계산을 재현하고 있는데, 이 단계에 우회 코드가 필요합니다. > 이런 인터페이스와 두 가지 수치 방법을 생각하고 있습니다. > FatQat의 방향에 맞을까요? 활용할 만한 기존 기능이 > 있을까요?”'
+  status: machine
+- id: 5bf16b21599c61a2
+  en: This conversation is itself a contribution. It helps contributors and maintainers uncover constraints and consider alternatives before investing time or AI tokens in code. An unfinished design with clear questions is enough to begin. Small, obvious corrections can usually go straight to a pull request.
+  ko: 이 대화 자체가 기여입니다. 코드에 시간이나 AI 토큰을 쓰기 전에 기여자와 메인테이너가 제약을 찾아내고 대안을 검토할 수 있습니다. 설계가 미완성이어도 질문이 명확하면 시작하기에 충분합니다. 작고 명확한 수정은 보통 바로 PR로 제출해도 됩니다.
+  status: machine
+- id: da4f21df0ba21f9b
+  en: Writing code is easier. Thoughtful review matters more than ever.
+  ko: 코드 작성이 쉬워질수록 세심한 리뷰가 더 중요합니다
+  status: machine
+- id: d6f2366cb58b605e
+  en: '**Reviewing a change can be more valuable than writing it.** As AI makes implementations easier to produce, the community needs people who can judge whether they solve the right problem, fit the architecture, and remain understandable.'
+  ko: '**변경을 검토하는 일이 작성하는 일보다 더 가치 있을 수 있습니다.** AI로 구현을 쉽게 만들 수 있게 된 만큼, 그것이 올바른 문제를 해결하는지, 아키텍처에 맞는지, 이해하기 쉬운지 판단할 사람이 필요합니다.'
+  status: machine
+- id: 310c1449f293558b
+  en: '**You do not need to be a maintainer to review a pull request.** Try an example, question a design decision, or explain where the reasoning becomes difficult to follow. State what you checked and where you remain uncertain.'
+  ko: '**메인테이너가 아니어도 PR을 리뷰할 수 있습니다.** 예제를 실행하고, 설계 결정에 질문하고, 논리를 따라가기 어려운 부분을 설명해 보세요. 무엇을 확인했고 무엇이 아직 확실하지 않은지도 밝혀 주세요.'
+  status: machine
+- id: eac40cd4e3525d2e
+  en: 'AI can assist with local correctness checks, but correctness still needs verification. Review also asks:'
+  ko: AI는 개별 코드의 정확성을 점검하는 데 도움이 되지만 검증은 여전히 필요합니다. 리뷰에서는 다음도 묻습니다.
+  status: machine
+- id: 5ba34cc39ce7d551
+  en: '**Does it fit the architecture?** Does the responsibility belong in this component, with a clear separation from other components?'
+  ko: '**아키텍처에 맞나요?** 이 동작을 해당 구성 요소가 맡는 것이 적절하며, 다른 구성 요소와 책임이 명확히 나뉘어 있나요?'
+  status: machine
+- id: 88af2d6880204ceb
+  en: '**Does it duplicate existing functionality?** Could an existing path serve the same purpose and avoid two implementations drifting apart?'
+  ko: '**기존 기능과 중복되나요?** 기존 경로로 같은 목적을 달성해 두 구현이 서로 달라지는 일을 피할 수 있나요?'
+  status: machine
+- id: f22646baad9c3b8d
+  en: '**Is the complexity justified?** Do defensive checks, fallbacks, and special cases address real requirements?'
+  ko: '**복잡성이 필요한가요?** 방어적 검사, 대체 동작, 특수 사례가 실제 요구 사항을 해결하나요?'
+  status: machine
+- id: 7491351051843f52
+  en: '**Can someone follow the behavior?** Do private hooks, hidden dependencies, or an obscure sequence of calls make it difficult to reason about?'
+  ko: '**동작을 따라갈 수 있나요?** 비공개 훅, 숨은 의존성, 불명확한 호출 순서 때문에 이해하기 어려워지지는 않나요?'
+  status: machine
+- id: 1e4465cfaafeafab
+  en: '**Will it remain easy to extend?** Could a simpler design make the next change more straightforward?'
+  ko: '**앞으로도 확장하기 쉬울까요?** 더 단순한 설계가 다음 변경을 쉽게 해 주지는 않을까요?'
+  status: machine
+- id: f66f0e04df29c579
+  en: Turn a concern into a constructive comment
+  ko: 우려를 건설적인 의견으로 바꾸기
+  status: machine
+- id: 6fa389bf9c147a83
+  en: '"This creates a second place that decides which operations are supported. Could we reuse the existing validation so the two paths cannot drift apart?"'
+  ko: “지원 연산을 결정하는 곳이 하나 더 생깁니다. 기존 검증을 재사용해서 두 경로의 동작이 달라지지 않게 할 수 있을까요?”
+  status: machine
+- id: 6128a19c2380fde2
+  en: '"What situation requires this fallback? If that state should be impossible, would reporting an error make the behavior clearer?"'
+  ko: “이 대체 동작이 필요한 상황은 무엇인가요? 원래 발생할 수 없는 상태라면 오류를 보고하는 편이 동작을 더 명확하게 하지 않을까요?”
+  status: machine
+- id: 7fd5e41ddc97db64
+  en: '"I''m having trouble tracing when this private hook runs. Could the caller pass the information explicitly, or could the behavior stay inside the component that owns it?"'
+  ko: “이 비공개 훅이 언제 실행되는지 따라가기 어렵습니다. 호출자가 정보를 명시적으로 넘기거나, 해당 동작을 책임지는 구성 요소 안에 두는 방법은 어떨까요?”
+  status: machine
+- id: fd0d27d8a7dd0c08
+  en: Explain the consequence, invite discussion, and remain open to constraints you may have missed. You can improve a design without supplying its replacement. Browse the [open pull requests](https://github.com/spaceqat/fatqat/pulls) to find a conversation you can help with.
+  ko: 어떤 영향이 있는지 설명하고 대화를 제안하되, 놓친 제약이 있을 수 있음을 열어 두세요. 대체 구현을 직접 내놓지 않아도 설계를 개선할 수 있습니다. [열린 PR](https://github.com/spaceqat/fatqat/pulls)에서 도움이 될 만한 대화를 찾아보세요.
+  status: machine
+- id: f92e0f434de12148
+  en: Ready to make a change?
+  ko: 직접 변경할 준비가 되었나요?
+  status: machine
+- id: 00b5a5abfc7babd6
+  en: For a guided path through investigating an issue, choosing a design, and opening a PR, read [How to work on an issue](how-to-work-on-an-issue.md).
+  ko: 이슈를 조사하고, 설계를 선택하고, PR을 여는 과정을 안내하는 [이슈를 해결해 나가는 방법](how-to-work-on-an-issue.md)을 읽어 보세요.
+  status: machine
+- id: 6b4ef6f5301a6ffd
+  en: Keep it focused, verify the relevant behavior, and explain the reasoning. Use AI to assist investigation and implementation while taking responsibility for the claims and changes you submit. Read and understand generated material before sharing it; lead the project conversation yourself.
+  ko: 변경 범위를 좁게 유지하고 관련 동작을 검증하며 판단 근거를 설명하세요. 조사와 구현에 AI의 도움을 받되, 제출하는 주장과 변경에는 직접 책임을 져야 합니다. 생성된 자료를 읽고 이해한 뒤 공유하고, 프로젝트의 대화도 직접 이끌어 주세요.
+  status: machine
+- id: b26371c60cb57247
+  en: For development setup, validation steps, and contribution guidelines, see [CONTRIBUTING.md](https://github.com/spaceqat/fatqat/blob/main/CONTRIBUTING.md).
+  ko: 개발 환경 설정, 검증 단계, 기여 지침은 [CONTRIBUTING.md](https://github.com/spaceqat/fatqat/blob/main/CONTRIBUTING.md)를 참고하세요.
+  status: machine
+- id: b9c0b41b5efcba28
+  en: '**Bring your questions. Share your evidence. Help review an approach.** You do not need a finished implementation to move FatQat forward. Helping the community decide what to build and how to build it well is a contribution in its own right.'
+  ko: '**질문하고, 근거를 공유하고, 접근 방법을 함께 검토해 주세요.** FatQat을 발전시키는 데 완성된 구현이 꼭 필요한 것은 아닙니다. 무엇을 만들고 어떻게 잘 만들지 커뮤니티가 판단하도록 돕는 일 자체가 기여입니다.'
+  status: machine

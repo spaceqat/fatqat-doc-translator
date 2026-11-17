@@ -1,0 +1,108 @@
+- id: 191121b5415625c5
+  en: Implementation maps
+  ko: 구현 맵
+  status: machine
+- id: 30d3572927e4155e
+  en: Use [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to add custom operations and channels to a simulator, or choose rules by physical target. Pass the map as `implementation_map=` when constructing the backend. Built-in gates and channels work without a custom map. Noise placement is still defined by `NoiseModel`; the map supplies how each matched channel acts.
+  ko: '[`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]으로 시뮬레이터에 사용자 정의 연산과 채널을 추가하거나 물리적 대상별 규칙을 선택할 수 있습니다. 백엔드를 만들 때 `implementation_map=`으로 맵을 전달하세요. 내장 게이트와 채널은 사용자 정의 맵 없이도 동작합니다. 잡음의 적용 위치는 여전히 `NoiseModel`이 정하며, 맵은 일치한 채널의 작용 방식을 제공합니다.'
+  status: machine
+- id: f691813784da6bbb
+  en: Choose a map
+  ko: 맵 선택
+  status: machine
+- id: acb9ba579f4c546a
+  en: '[`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] returns a fresh map containing FATQAT''s built-in matrix gates and finite channel rules. Editing it does not affect another map or a later call. Construct [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] directly when the backend should support only rules you add. A supplied map replaces both the gate and channel registrations; start with the default map to retain built-ins.'
+  ko: '[`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map]은 FATQAT 내장 행렬 게이트와 유한 채널 규칙이 담긴 새 맵을 반환합니다. 이를 수정해도 다른 맵이나 이후 호출에는 영향을 주지 않습니다. 직접 추가한 규칙만 지원하는 백엔드가 필요하면 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]을 직접 생성하세요. 제공한 맵은 게이트와 채널 등록을 모두 대체하므로 내장 구현을 유지하려면 기본 맵에서 시작해야 합니다.'
+  status: machine
+- id: 5913e9b7c22024d6
+  en: Choose a rule
+  ko: 규칙 선택
+  status: machine
+- id: 37537a4985e85159
+  en: '[`MatrixImplementationMap.add`][fatqat.implementation.MatrixImplementationMap.add] accepts an operation or channel instance or class. Matrix operations accept these rule forms:'
+  ko: '[`MatrixImplementationMap.add`][fatqat.implementation.MatrixImplementationMap.add]는 연산 또는 채널의 인스턴스나 클래스를 받습니다. 행렬 연산에는 다음 형식의 규칙을 사용할 수 있습니다:'
+  status: machine
+- id: 65a08b5cc89d4c87
+  en: '**Matrix rule forms**'
+  ko: '**행렬 규칙 형식**'
+  status: machine
+- id: 50cbd645e833b814
+  en: '| Form | Use it for | Value passed to `add` |'
+  ko: '| 형식 | 용도 | `add`에 전달할 값 |'
+  status: machine
+- id: 6b0bbf8976a50788
+  en: '| Two-dimensional NumPy array | One constant matrix | The array; FATQAT copies it, so later changes do not affect the rule |'
+  ko: '| 2차원 NumPy 배열 | 상수 행렬 하나 | 배열 자체를 전달합니다. FATQAT이 복사하므로 이후 원본 배열을 변경해도 규칙에는 영향을 주지 않습니다. |'
+  status: machine
+- id: 526e30d236208856
+  en: '| Callable | A matrix that depends on operation parameters or target dimensions | `rule(op)` by default. If the callable accepts a `targets=` keyword or `**kwargs`, FATQAT calls `rule(op, targets=targets)`. |'
+  ko: '| 호출 가능 객체 | 연산 매개변수나 대상 차원에 따라 달라지는 행렬 | 기본 호출은 `rule(op)`입니다. 객체가 `targets=` 키워드 또는 `**kwargs`를 받으면 FATQAT은 `rule(op, targets=targets)`로 호출합니다. |'
+  status: machine
+- id: bb5c96eef7125ee7
+  en: '| [`MatrixImplementation`][fatqat.implementation.MatrixImplementation] | A configured or stateful rule object | Override `__call__(op, *, targets)`. |'
+  ko: '| [`MatrixImplementation`][fatqat.implementation.MatrixImplementation] | 설정이나 상태를 담는 규칙 객체 | `__call__(op, *, targets)`를 재정의합니다. |'
+  status: machine
+- id: 1c1741d2f28083af
+  en: Channel rules are callables returning Kraus matrices; see [Custom noise implementations](noise/custom-implementations.md). For operations that update quantum and classical state together, the same map accepts `CustomOperationImplementation` objects. See [Custom operations](simulators/custom-operations.md).
+  ko: 채널 규칙은 Kraus 행렬을 반환하는 호출 가능 객체입니다. [사용자 정의 잡음 구현](noise/custom-implementations.md)을 참고하세요. 양자 상태와 고전 상태를 함께 갱신하는 연산에는 같은 맵에 `CustomOperationImplementation` 객체를 등록할 수 있습니다. [사용자 정의 연산](simulators/custom-operations.md)을 참고하세요.
+  status: machine
+- id: 6dc0a44677c7c095
+  en: '`op` is the applied operation value, so it contains parameters such as a rotation angle. `targets` contains scalar program [`RegisterRef`][fatqat.RegisterRef] objects in operand order; a rule can inspect `target.register.dim` when its matrix depends on subsystem dimension.'
+  ko: '`op`는 적용할 연산 값이므로 회전각 같은 매개변수를 담고 있습니다. `targets`에는 피연산자 순서대로 프로그램의 스칼라 [`RegisterRef`][fatqat.RegisterRef] 객체가 들어갑니다. 행렬이 부분계 차원에 따라 달라지는 규칙은 `target.register.dim`을 확인할 수 있습니다.'
+  status: machine
+- id: 2950147f148b66c8
+  en: Local basis order
+  ko: 국소 기저 순서
+  status: machine
+- id: 0804d44b7e3f816e
+  en: Matrix factors follow the target tuple passed to [`add`][fatqat.Program.add]. The first target is the most-significant local factor and the last target changes fastest. For dimensions `(d0, d1, ..., dk)` and basis digits `(b0, b1, ..., bk)`, the flat local index is `b0 * d1 * ... * dk + b1 * d2 * ... * dk + ... + bk`.
+  ko: 행렬 인자는 [`add`][fatqat.Program.add]에 전달한 대상 튜플의 순서를 따릅니다. 첫 번째 대상이 최상위 국소 인자이며 마지막 대상이 가장 빠르게 변합니다. 차원이 `(d0, d1, ..., dk)`이고 기저 숫자가 `(b0, b1, ..., bk)`일 때 평탄화된 국소 인덱스는 `b0 * d1 * ... * dk + b1 * d2 * ... * dk + ... + bk`입니다.
+  status: machine
+- id: 5d5b2445efafc346
+  en: For two qubits, targets `(q0, q1)` therefore use the local basis `|00>`, `|01>`, `|10>`, `|11>`. Controlled operations list controls before targets. When the tuple lists every subsystem in public order, this is also the basis used by returned states and operators. A local matrix on a smaller or differently ordered target tuple must be embedded before direct use with a full returned state; the simulator performs that embedding during execution.
+  ko: 따라서 두 큐비트의 대상이 `(q0, q1)`이면 국소 기저는 `|00>`, `|01>`, `|10>`, `|11>`입니다. 제어 연산은 제어 큐비트를 대상보다 먼저 나열합니다. 튜플이 모든 부분계를 공개 순서대로 담고 있다면 반환된 상태와 연산자도 같은 기저를 사용합니다. 대상이 일부 부분계만 포함하거나 순서가 다르면 해당 국소 행렬을 전체 반환 상태에 바로 적용하기 전에 임베딩해야 합니다. 시뮬레이터는 실행 중 이 임베딩을 수행합니다.
+  status: machine
+- id: 92ed903d39713644
+  en: Target-specific rules
+  ko: 대상별 규칙
+  status: machine
+- id: bf3586251296875b
+  en: 'Pass `device_operands=` to `add` to register a rule only for that exact ordered tuple of backend-defined physical labels. These labels are not program register references. One operation family uses exactly one registration mode:'
+  ko: 백엔드가 정의한 물리적 라벨의 특정 순서 있는 튜플에만 규칙을 등록하려면 `add`에 `device_operands=`를 전달하세요. 이 라벨은 프로그램의 레지스터 참조가 아닙니다. 하나의 연산 계열은 다음 등록 방식 중 정확히 하나만 사용합니다.
+  status: machine
+- id: 0d324fe487f3d1c0
+  en: A *uniform* rule, added without `device_operands`, matches every physical tuple of the correct arity.
+  ko: '`device_operands` 없이 추가한 *공통* 규칙은 피연산자 수가 맞는 모든 물리적 튜플에 적용됩니다.'
+  status: machine
+- id: adfbfde160c1ddc6
+  en: '*Device-specific* rules match only their explicitly registered tuples. You may add several tuples for the same operation.'
+  ko: '*장치별* 규칙은 명시적으로 등록한 튜플에만 적용됩니다. 같은 연산에 여러 튜플을 등록할 수 있습니다.'
+  status: machine
+- id: bd6928b5d5312b1f
+  en: Call [`remove`][fatqat.implementation.MatrixImplementationMap.remove] before switching a family between these modes.
+  ko: 연산 계열의 등록 방식을 바꾸려면 먼저 [`remove`][fatqat.implementation.MatrixImplementationMap.remove]를 호출하세요.
+  status: machine
+- id: 7f1d40e4fd319694
+  en: Both modes accept `num_subsystems=None` and instance-dependent channel widths. Their device-specific tuples may have different lengths. A fixed integer `num_subsystems` requires that many labels.
+  ko: 두 모드 모두 `num_subsystems=None`과 인스턴스에 따라 달라지는 채널 폭을 허용합니다. 장치별 튜플의 길이가 서로 달라도 됩니다. `num_subsystems`를 정수로 고정하면 정확히 그 수만큼의 라벨이 필요합니다.
+  status: machine
+- id: 03d8783769910f22
+  en: Validation timing
+  ko: 검증 시점
+  status: machine
+- id: eb9d12d01172db20
+  en: '`add` rejects an invalid registration immediately with `TypeError` or `ValueError`. Matrix and channel rules run when a backend prepares a program. A matrix rule that raises produces [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError], an array with the wrong target shape produces [`BackendValidationError`][fatqat.errors.BackendValidationError], and a missing rule produces [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]. These errors occur before `run` returns a [`Job`][fatqat.Job].'
+  ko: '`add`는 잘못된 등록을 즉시 `TypeError` 또는 `ValueError`로 거부합니다. 행렬 및 채널 규칙은 백엔드가 프로그램을 준비할 때 실행됩니다. 행렬 규칙이 예외를 발생시키면 [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError], 배열 형태가 대상과 맞지 않으면 [`BackendValidationError`][fatqat.errors.BackendValidationError], 규칙이 없으면 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]가 발생합니다. 이 오류들은 `run`이 [`Job`][fatqat.Job]을 반환하기 전에 발생합니다.'
+  status: machine
+- id: 71bf90935fc231d2
+  en: Reference
+  ko: 레퍼런스
+  status: machine
+- id: 70db4dffbad4eba5
+  en: data `fatqat.implementation.DeviceOperands`
+  ko: 데이터 `fatqat.implementation.DeviceOperands`
+  status: machine
+- id: c8d39d581916d005
+  en: Alias for an ordered tuple of hashable backend-defined physical labels.
+  ko: 백엔드가 정의한 해시 가능한 물리적 라벨을 순서대로 담는 튜플의 별칭입니다.
+  status: machine

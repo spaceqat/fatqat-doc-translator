@@ -1,0 +1,204 @@
+- id: 6490eb510cd85c88
+  en: Split a power grid into islands with QAOA
+  ko: QAOA로 전력망을 독립 계통으로 나누기
+  status: machine
+- id: 73bec9ae7dab89e4
+  en: Run the controlled-islanding QUBO on a FatQat simulator, then repair every measured bitstring into a feasible split with pVSQA postprocessing.
+  ko: 제어된 계통 분리 QUBO를 FatQat 시뮬레이터에서 실행하고, pVSQA 후처리로 측정 비트열을 실행 가능한 분할로 보정합니다.
+  status: machine
+- id: 2010594335a64b8e
+  en: Mean energy and best-feasible-split probability against QAOA depth
+  ko: QAOA 깊이에 따른 평균 에너지와 최적 실행 가능 분할의 확률
+  status: machine
+- id: b44a33226c1fa47e
+  en: Energy distribution of raw QAOA samples compared with repaired ones
+  ko: 원래 QAOA 표본과 보정한 표본의 에너지 분포 비교
+  status: machine
+- id: bdfffa6619d805dd
+  en: Qubit count per encoding across five IEEE test systems
+  ko: 다섯 IEEE 시험 계통의 인코딩별 큐비트 수
+  status: machine
+- id: ba39710dc301da62
+  en: '[Model controlled islanding as a QUBO](islanding-model.md) turned the problem of splitting a transmission network into a quadratic function of binary variables: the objective is the power interrupted by the cut lines, and generator coherency and island balance are penalties that vanish when the requirement holds. This tutorial takes that model, runs it on a quantum circuit, and deals with what comes back.'
+  ko: '[제어된 계통 분리를 QUBO로 모델링하기](islanding-model.md)에서는 송전망 분할을 이진 변수의 이차 함수로 바꾸었습니다. 목적함수는 차단 선로로 끊기는 전력이며, 발전기 동조성과 섬 균형은 조건이 충족되면 0이 되는 벌점입니다. 이번에는 그 모델을 양자 회로로 실행하고 나온 결과를 처리합니다.'
+  status: machine
+- id: 79255209c8cf1916
+  en: The headline difficulty is that a shallow QAOA circuit on a constrained problem returns mostly unusable bitstrings. Out of 2000 measurements of the 14-bus model below, around 25 describe a split the grid could actually operate. The fix is not a deeper circuit; it is to stop treating a measurement as an answer and start treating it as a starting point, which is what the postprocessing half of this tutorial does.
+  ko: 가장 큰 어려움은 제약 문제를 얕은 QAOA 회로로 실행하면 대부분 쓸 수 없는 비트열이 나온다는 것입니다. 아래 14모선 모델의 측정 2000회 중 실제 운전 가능한 분할은 약 25개입니다. 해결책은 회로를 더 깊게 만드는 것이 아니라 측정값을 답 대신 출발점으로 보는 것입니다. 이 튜토리얼 후반부의 후처리가 그 역할을 합니다.
+  status: machine
+- id: 8390ea3a4af0e46c
+  en: The pipeline as a whole — the coherency-informed QUBO, sampling it with a shallow circuit, and repairing what comes back — follows REGRID-QAOA [1]. The repair itself is the pVSQA procedure of [2].
+  ko: 동조성을 반영한 QUBO, 얕은 회로의 샘플링, 결과 보정으로 이어지는 전체 과정은 REGRID-QAOA [1]을 따릅니다. 보정에는 [2]의 pVSQA 절차를 사용합니다.
+  status: machine
+- id: 7f8e5c817f9f442d
+  en: The mechanics of mapping a QUBO onto gates — the substitution to spins, the phase separator, the mixer — are covered in [Solve a QUBO with QAOA](qubo-qaoa.md) and are reused here without re-derivation.
+  ko: QUBO를 게이트로 옮기는 스핀 치환, 위상 분리기, 혼합기는 [QAOA로 QUBO 풀기](qubo-qaoa.md)에서 설명했으므로 다시 유도하지 않고 사용합니다.
+  status: machine
+- id: fb1f3ee5db0fa258
+  en: Rebuilding the model
+  ko: 모델 다시 구성하기
+  status: machine
+- id: c7066f997d4789d1
+  en: 'This tutorial stands alone, so the model is rebuilt here in condensed form. Only the 14-bus system and the binary encoding are needed: one qubit per bus, whose value names the island directly. The derivation, the comparison against the one-hot encoding, and the exhaustive check all live in the modeling tutorial.'
+  ko: 이 튜토리얼만으로 실행할 수 있도록 모델을 간추려 다시 만듭니다. 14모선 계통과 이진 인코딩만 필요합니다. 모선당 큐비트 하나를 사용하며 그 값이 섬을 직접 나타냅니다. 유도 과정, 원-핫 인코딩과의 비교, 전수 검증은 모델링 튜토리얼에 있습니다.
+  status: machine
+- id: 3fa5ee8ab76aa28c
+  en: 'The gap between those two numbers is the thing to keep in view. The QUBO''s minimum is cheaper than the best feasible split, and it is cheaper precisely because it is allowed to be wrong: its islands are disconnected. An optimizer pointed at this model is being pointed slightly past the answer.'
+  ko: 이 두 수치 사이의 차이에 주목해야 합니다. QUBO의 최소값은 최적 실행 가능 분할보다 저렴한데, 섬이 연결되지 않는 잘못된 배정을 허용하기 때문입니다. 이 모델을 최소화하는 최적화기는 실제 답을 조금 지나친 지점을 목표로 삼습니다.
+  status: machine
+- id: 7533a0f3b88bedbc
+  en: Running QAOA on the 14-bus model
+  ko: 14모선 모델에서 QAOA 실행하기
+  status: machine
+- id: 30da50f22d0bd5cf
+  en: 'The circuit construction is exactly the one from the QUBO tutorial: substitute $x_i = (1 - z_i)/2$ to get an Ising Hamiltonian, then emit an `RZ` per field term, a `CX`-`RZ`-`CX` ladder per coupling, and an `RX` mixer per layer.'
+  ko: 회로 구성은 QUBO 튜토리얼과 같습니다. $x_i = (1 - z_i)/2$를 대입해 Ising 해밀토니안을 얻고, 각 층에 장 항별 `RZ`, 결합 항별 `CX`-`RZ`-`CX`, `RX` 혼합기를 배치합니다.
+  status: machine
+- id: dfaf8ba2fd91a8f3
+  en: The target to aim at is the best feasible split, not the QUBO ground state, so that is what the probability below is measured against. Depth is grown one layer at a time, seeding each depth from the previous solution.
+  ko: 목표는 QUBO의 바닥 상태가 아니라 최적 실행 가능 분할이므로 아래 확률도 이를 기준으로 계산합니다. 이전 깊이의 해를 초기값으로 삼아 한 층씩 깊이를 늘립니다.
+  status: machine
+- id: 17d7b4b2ebf25609
+  en: The mean energy falls toward the QUBO ground state, which sits *below* the best feasible split — a reminder that the optimizer is minimizing the model, not the problem. The probability of measuring the split we actually want rises with depth, but it stays small. At this point a naive pipeline would need a very large shot budget, and most of what it collected would be unusable.
+  ko: 평균 에너지는 최적 실행 가능 분할보다 *낮은* QUBO 바닥 상태로 내려갑니다. 최적화기는 실제 문제가 아니라 모델을 최소화한다는 점을 상기시킵니다. 원하는 분할을 측정할 확률은 깊이와 함께 오르지만 여전히 작습니다. 단순한 절차라면 매우 많은 샷이 필요하고, 얻은 결과 대부분도 사용할 수 없을 것입니다.
+  status: machine
+- id: 4c02fbfb001ef72c
+  en: 'Postprocessing: pVSQA Method 1'
+  ko: '후처리: pVSQA 방법 1'
+  status: machine
+- id: 1ed142275968d5c3
+  en: The fix is to stop treating a measurement as an answer and start treating it as a *starting point*. The postprocessing variationally scheduled quantum algorithm (pVSQA) [2] walks each measured bitstring downhill to the nearest feasible assignment, so every shot yields a usable split.
+  ko: 측정값을 답이 아니라 *출발점*으로 보면 해결할 수 있습니다. 후처리 변분 스케줄 양자 알고리즘(pVSQA) [2]은 각 측정 비트열에서 더 낮은 비용의 가까운 실행 가능 배정으로 이동해 각 샷을 사용 가능한 분할로 바꿉니다.
+  status: machine
+- id: a04b1dcc8a457419
+  en: 'Method 1 is the two-stage form. The first stage is that paper''s Algorithm 1: repeatedly flip whichever single variable most decreases'
+  ko: 방법 1은 두 단계로 구성됩니다. 첫 단계는 해당 논문의 알고리즘 1이며, 다음 값을 가장 크게 줄이는 단일 변수를 반복해서 뒤집습니다.
+  status: machine
+- id: f839a692955e888b
+  en: where the violation term counts constraint breaches *linearly* rather than quadratically. That flatter penalty is the point — with $A'$ above the objective's own scale, every local minimum of $Q'$ is feasible, so the descent cannot stall on a violation.
+  ko: 여기서 위반 항은 제약 위반을 이차가 아니라 *선형*으로 셉니다. 이렇게 완만한 벌점을 쓰는 것이 핵심입니다. $A'$가 목적함수의 척도보다 크면 $Q'$의 모든 국소 최솟값이 실행 가능하므로 하강이 위반 상태에 멈추지 않습니다.
+  status: machine
+- id: 8bd4645999e34a73
+  en: Under the binary encoding there is no constraint left for the flip stage to enforce, so it reduces to a pure descent on the QUBO. That is not the whole job, as the next result shows.
+  ko: 이진 인코딩에서는 비트 반전 단계가 추가로 강제할 제약이 남아 있지 않으므로 순수한 QUBO 하강으로 줄어듭니다. 다음 결과처럼 이것만으로는 충분하지 않습니다.
+  status: machine
+- id: 76ce2557d32e9bc4
+  en: Every descent lands on the QUBO's ground state, and none of them is feasible — because that ground state is the disconnected split found earlier. The greedy stage is doing exactly what it was asked to do, and it is not enough.
+  ko: 모든 하강은 QUBO의 바닥 상태에 도달하지만 실행 가능한 결과는 하나도 없습니다. 앞서 확인한 연결되지 않은 분할이 바닥 상태이기 때문입니다. 탐욕 단계는 요청한 일을 정확히 수행하지만 그것만으로는 부족합니다.
+  status: machine
+- id: d22e0124df67d4e6
+  en: 'The second stage handles what the QUBO deliberately left out. When an island falls into several connected components, each stray fragment can be fixed two ways: hand it to a neighboring island, or annex the buses along the shortest path back to the island''s main body. Exile is cheaper, but it is impossible when a coherency group straddles the fragment. Both moves are constructed, scored with the model''s own energy, and the better one wins.'
+  ko: 두 번째 단계는 QUBO에서 의도적으로 생략한 조건을 처리합니다. 섬이 여러 연결 성분으로 갈라지면 떨어진 조각을 고치는 방법은 두 가지입니다. 이웃 섬으로 넘기거나, 주된 몸체까지의 최단 경로에 있는 모선들을 편입합니다. 넘기는 편이 저렴하지만 동조 그룹이 조각에 걸쳐 있으면 불가능합니다. 두 후보를 모두 만들고 모델 자체의 에너지로 평가해 더 나은 쪽을 택합니다.
+  status: machine
+- id: 4a1a18407207a833
+  en: 'Together the two stages turn most random bitstrings into feasible splits, and most of those are the best feasible split. Stage 2 is what made the difference: the same descent that produced nothing usable on its own now lands on the answer four times out of five.'
+  ko: 두 단계를 결합하면 대부분의 무작위 비트열이 실행 가능한 분할이 되며 그중 대부분은 최적 실행 가능 분할입니다. 차이를 만든 것은 2단계입니다. 단독으로는 쓸 수 있는 답을 하나도 주지 못하던 하강이 이제 다섯 번 중 네 번꼴로 답에 도달합니다.
+  status: machine
+- id: 76e70e3a5e2d10b3
+  en: That number is also a warning, and the next section takes it seriously.
+  ko: 이 수치는 경고이기도 합니다. 다음 절에서 그 의미를 확인합니다.
+  status: machine
+- id: d6fd729c2068565f
+  en: A control the demonstration needs
+  ko: 필요한 대조 실험
+  status: machine
+- id: 0645b4cf84b1e1fc
+  en: Repairing random bitstrings already reaches the best feasible split most of the time. So before claiming that QAOA contributes anything, the honest thing to do is run the classical half on its own and compare. Uniform random bitstrings, repaired with the same Method 1, are the baseline; anything the quantum sampler is worth has to show up as a difference against it.
+  ko: 무작위 비트열을 보정하는 것만으로도 대부분 최적 실행 가능 분할을 얻습니다. 따라서 QAOA가 기여한다고 주장하기 전에 고전적 부분만 따로 실행해 비교해야 합니다. 균일 무작위 비트열에 같은 방법 1을 적용한 결과를 기준으로 삼고, 양자 샘플러의 가치는 그 기준과의 차이로 입증해야 합니다.
+  status: machine
+- id: 582d42d6c00838a1
+  en: 'The two rates are close. On a 14-bus network the repair is strong enough to find the answer from almost anywhere, so the quantum sampler has nothing left to contribute, and no claim of advantage is supportable from this run. What these results do establish is that the pipeline is correct end to end: the model, the circuit, the repair, and the decoding all agree with an exhaustive classical reference.'
+  ko: 두 성공률은 비슷합니다. 14모선 망에서는 보정이 거의 어디서 시작해도 답을 찾을 만큼 강하므로 양자 샘플러가 추가로 기여할 여지가 없습니다. 이 실행으로는 양자 이점을 주장할 수 없습니다. 다만 모델, 회로, 보정, 디코딩 모두가 고전적 전수 조사와 일치한다는 점에서 전체 절차의 정확성은 확인합니다.
+  status: machine
+- id: 58c81b8e4ca62c15
+  en: Separating the two claims needs a network where the classical descent gets stuck — larger, more strongly meshed, or with tighter coherency groups. That is exactly where the qubit accounting at the end of this tutorial becomes the binding constraint, and it is the honest place to put the effort next.
+  ko: 두 주장을 구분하려면 고전적 하강이 막히는 전력망이 필요합니다. 더 크거나 더 촘촘히 연결되어 있거나 동조 그룹 조건이 더 엄격한 경우입니다. 바로 그 규모에서 마지막 절의 큐비트 수가 실질적인 제약이 되며, 다음 연구도 그 지점에 집중해야 합니다.
+  status: machine
+- id: 9355ded8842fef29
+  en: What postprocessing does to a QAOA run
+  ko: 후처리가 QAOA 실행에 미치는 효과
+  status: machine
+- id: ae1457fc6adad672
+  en: Applied to a real measurement, the effect is a shift in what the shot budget buys. Raw outcomes spread across the whole energy range and are mostly infeasible; repaired outcomes collapse onto feasible splits. Repair runs once per *distinct* outcome rather than once per shot, which is what keeps it affordable.
+  ko: 실제 측정에 적용하면 같은 샷 수로 얻는 결과의 가치가 달라집니다. 원래 결과는 전체 에너지 범위에 퍼져 있고 대부분 실행 불가능하지만, 보정한 결과는 실행 가능한 분할에 모입니다. 각 샷이 아니라 *서로 다른* 결과마다 한 번씩만 보정하므로 비용을 억제할 수 있습니다.
+  status: machine
+- id: 49e2a5c645c4e85c
+  en: How wide does this get?
+  ko: 얼마나 많은 큐비트가 필요할까?
+  status: machine
+- id: 0c8ceb4c7b2ab55d
+  en: 'Qubit count is what decides whether a network is reachable at all, and it follows directly from the encoding and the components in use. Three numbers matter per system: the one-hot width $n_\text{buses} \times k$, the binary width $n_\text{buses}$ when $k = 2$, and the width once the slack-carrying requirements are added. The two encodings and the reason they agree on the answer are developed in [Model controlled islanding as a QUBO](islanding-model.md).'
+  ko: 큐비트 수는 어떤 전력망을 다룰 수 있는지 결정하며 인코딩과 사용한 모델 요소에서 바로 계산됩니다. 계통별로 중요한 수치는 세 가지입니다. 원-핫 폭 $n_\text{buses} \times k$, $k = 2$일 때의 이진 폭 $n_\text{buses}$, 그리고 슬랙 변수가 필요한 조건을 추가한 뒤의 폭입니다. 두 인코딩과 같은 답을 주는 이유는 [제어된 계통 분리를 QUBO로 모델링하기](islanding-model.md)에서 설명합니다.
+  status: machine
+- id: d421ecd9965609d2
+  en: The slack-carrying components — "at least $M$ buses", "at least one generator", "at least one load" — are inequalities, and an inequality needs a binary slack register per island to absorb the difference. That is $\lceil \log_2(\cdot) \rceil$ extra qubits per island, per requirement. The balance requirement used above avoids all of it by being an equality instead, which is why it is the default here.
+  ko: 모선이 최소 $M$개, 발전기가 최소 하나, 부하가 최소 하나라는 조건은 부등식입니다. 차이를 흡수하려면 섬마다 이진 슬랙 레지스터가 필요하므로 조건별·섬별로 $\lceil \log_2(\cdot) \rceil$개의 큐비트가 추가됩니다. 위에서 사용한 균형 조건은 등식이므로 이 추가 자원이 필요 없어 기본값으로 선택했습니다.
+  status: machine
+- id: b04c74b65a9ab225
+  en: Two islands on the 30-bus system need 30 qubits with the binary encoding and 60 with one-hot — the difference between a statevector simulation that fits on a laptop and one that does not. Three-island systems cannot use the binary encoding at all, which is why the 24-bus and 39-bus rows show only the one-hot width; a base-$k$ encoding recovers part of the saving there, at the cost of a messier decoding.
+  ko: 30모선 계통을 두 섬으로 나누려면 이진 인코딩은 30큐비트, 원-핫은 60큐비트가 필요합니다. 상태 벡터 시뮬레이션을 노트북에서 다룰 수 있는지 가르는 차이입니다. 세 섬인 경우 이진 인코딩을 사용할 수 없어 24모선과 39모선 행에는 원-핫 폭만 표시합니다. $k$진 인코딩은 그 경우에도 일부 절감할 수 있지만 디코딩이 더 복잡해집니다.
+  status: machine
+- id: f4cb394e95eebd5a
+  en: Where this leaves the problem
+  ko: 현재까지 확인한 것
+  status: machine
+- id: e672ed96a147dff5
+  en: 'The pipeline is complete and each piece is checkable: the QUBO reproduces the operating requirements, the two encodings agree on the answer, the circuit construction matches an independent estimator, and every measured bitstring becomes a feasible split.'
+  ko: 전체 절차를 완성했고 각 부분을 검증할 수 있습니다. QUBO는 운전 요구를 표현하고, 두 인코딩은 같은 답을 주며, 회로 구성은 독립적인 추정기와 일치하고, 측정 비트열은 실행 가능한 분할로 보정됩니다.
+  status: machine
+- id: 495a12cd12532b6a
+  en: What it does not yet show is a quantum advantage, and it is worth being precise about why. On networks small enough to simulate, the classical repair reaches the optimum from any starting point, so the quantum sampler's contribution is unmeasurable. Making that contribution visible needs a network where the classical descent has somewhere to get stuck — and there, the width numbers above become the binding constraint rather than the runtime. Approaches aimed at exactly that constraint are developed in [7] and [8].
+  ko: 아직 양자 이점을 보인 것은 아닙니다. 시뮬레이션 가능한 작은 망에서는 고전적 보정이 어느 시작점에서도 최적값에 도달해 양자 샘플러의 기여를 측정할 수 없습니다. 기여를 드러내려면 고전적 하강이 막힐 수 있는 망이 필요하며, 그곳에서는 실행 시간보다 앞서 계산한 폭이 실질적인 제약이 됩니다. 바로 이 제약을 겨냥한 접근이 [7], [8]에 제시되어 있습니다.
+  status: machine
+- id: 2214d09be1d08edd
+  en: 'The parts most worth pushing on:'
+  ko: 더 발전시킬 만한 방향은 다음과 같습니다.
+  status: machine
+- id: 1f2d1d1f95e139d7
+  en: '**Narrower encodings.** A base-$k$ assignment beats one-hot for more than two islands, and merging buses that will never separate shrinks the problem before any encoding is chosen [7]. Solving regional subproblems in sequence keeps the circuit width independent of the network size altogether [8].'
+  ko: '**더 좁은 인코딩.** 섬이 둘보다 많으면 $k$진 배정이 원-핫보다 효율적입니다. 절대로 분리되지 않을 모선을 합치면 인코딩 전부터 문제를 줄일 수 있습니다[7]. 지역별 하위 문제를 순차적으로 풀면 회로 폭을 망 크기와 아예 독립적으로 유지할 수 있습니다[8].'
+  status: machine
+- id: 9435b8497956d9e5
+  en: '**Constraint-preserving mixers.** An XY mixer confines the state to the one-hot subspace, so amplitude is never spent on assignments the penalty would only have to reject.'
+  ko: '**제약 보존 혼합기.** XY 혼합기는 상태를 원-핫 부분공간에 가두므로 벌점으로 거부해야 할 배정에 진폭을 낭비하지 않습니다.'
+  status: machine
+- id: f83981424dca3169
+  en: '**Warm starts.** Seeding QAOA from a classical partition and letting the circuit search nearby uses shallow depth where it helps most.'
+  ko: '**웜 스타트.** 고전적 분할에서 QAOA를 시작해 주변을 탐색하게 하면 얕은 깊이를 필요한 곳에 사용할 수 있습니다.'
+  status: machine
+- id: d173b4faa8036430
+  en: '**Noise.** Every run here is noiseless. Attaching a `fatqat.NoiseModel` to the simulator turns the same code into a study of how much depth this problem can actually afford on hardware.'
+  ko: '**잡음.** 여기의 모든 실행에는 잡음이 없습니다. 시뮬레이터에 `fatqat.NoiseModel`을 붙이면 같은 코드로 실제 하드웨어에서 어느 정도 깊이까지 견딜 수 있는지 연구할 수 있습니다.'
+  status: machine
+- id: 31f572540763fefb
+  en: 'Y. Jiang, Y. Zhang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "REGRID-QAOA: A Resource-Efficient Hybrid QAOA Framework for Physics-Constrained Power System Islanding", [arXiv:2606.15083](https://arxiv.org/abs/2606.15083) (2026). The hybrid pipeline this tutorial implements.'
+  ko: 'Y. Jiang, Y. Zhang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "REGRID-QAOA: A Resource-Efficient Hybrid QAOA Framework for Physics-Constrained Power System Islanding", [arXiv:2606.15083](https://arxiv.org/abs/2606.15083) (2026). 이 튜토리얼에서 구현한 혼합 절차입니다.'
+  status: machine
+- id: af8e433f3e351577
+  en: K. Shirai and N. Togawa, "Postprocessing Variationally Scheduled Quantum Algorithm for Constrained Combinatorial Optimization Problems", *IEEE Transactions on Quantum Engineering* **5**, 3100415 (2024). The pVSQA procedure used for the repair.
+  ko: K. Shirai and N. Togawa, "Postprocessing Variationally Scheduled Quantum Algorithm for Constrained Combinatorial Optimization Problems", *IEEE Transactions on Quantum Engineering* **5**, 3100415 (2024). 보정에 사용한 pVSQA 절차입니다.
+  status: machine
+- id: a2d4f5f5e425c06e
+  en: E. Farhi, J. Goldstone, and S. Gutmann, "A Quantum Approximate Optimization Algorithm", [arXiv:1411.4028](https://arxiv.org/abs/1411.4028) (2014).
+  ko: E. Farhi, J. Goldstone, and S. Gutmann, "A Quantum Approximate Optimization Algorithm", [arXiv:1411.4028](https://arxiv.org/abs/1411.4028) (2014).
+  status: machine
+- id: 92239fcb5b81c0af
+  en: H. You, V. Vittal, and X. Wang, "Slow coherency-based islanding", *IEEE Transactions on Power Systems* **19**(1), 483–491 (2004). Where the coherent generator groups this model takes as input come from.
+  ko: H. You, V. Vittal, and X. Wang, "Slow coherency-based islanding", *IEEE Transactions on Power Systems* **19**(1), 483–491 (2004). 이 모델이 입력으로 받는 동조 발전기 그룹을 구하는 방법입니다.
+  status: machine
+- id: c4277084201ba65c
+  en: K. Sun, D.-Z. Zheng, and Q. Lu, "Splitting strategies for islanding operation of large-scale power systems using OBDD-based methods", *IEEE Transactions on Power Systems* **18**(2), 912–923 (2003). A classical approach to the same search, on the same IEEE test systems.
+  ko: K. Sun, D.-Z. Zheng, and Q. Lu, "Splitting strategies for islanding operation of large-scale power systems using OBDD-based methods", *IEEE Transactions on Power Systems* **18**(2), 912–923 (2003). 같은 IEEE 시험 계통에서 동일한 탐색을 수행하는 고전적 접근입니다.
+  status: machine
+- id: 2064a8f0fd294a7c
+  en: A. Lucas, "Ising formulations of many NP problems", *Frontiers in Physics* **2**, 5 (2014). The standard catalogue of constraint-to-penalty mappings.
+  ko: A. Lucas, "Ising formulations of many NP problems", *Frontiers in Physics* **2**, 5 (2014). 제약을 벌점으로 바꾸는 대표적 정리입니다.
+  status: machine
+- id: 35edd69e96efb8bf
+  en: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "PACE-QAOA: Physics-Constrained Quantum Optimization for Qubit-Efficient Power System Islanding", [arXiv:2608.02789](https://arxiv.org/abs/2608.02789) (2026). Compact encodings that reduce phase-separator cost on sparse grids.'
+  ko: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "PACE-QAOA: Physics-Constrained Quantum Optimization for Qubit-Efficient Power System Islanding", [arXiv:2608.02789](https://arxiv.org/abs/2608.02789) (2026). 희소 전력망에서 위상 분리기 비용을 줄이는 압축 인코딩입니다.'
+  status: machine
+- id: 6c6bdd4203f4f366
+  en: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "SPLIT-Q: A Scalable Sequential Quantum Computing Framework for Coherent Controlled Islanding", [arXiv:2608.12711](https://arxiv.org/abs/2608.12711) (2026). Qubit-bounded sequential regional QAOA for larger networks.'
+  ko: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "SPLIT-Q: A Scalable Sequential Quantum Computing Framework for Coherent Controlled Islanding", [arXiv:2608.12711](https://arxiv.org/abs/2608.12711) (2026). 더 큰 망을 위해 큐비트 수를 제한한 순차 지역 QAOA입니다.'
+  status: machine

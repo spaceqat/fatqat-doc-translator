@@ -1,0 +1,140 @@
+- id: e602f0c05a1eeb4d
+  en: Atom loss as an erasure in a repetition code
+  ko: 반복 부호에서 원자 손실을 소실로 다루기
+  status: machine
+- id: bf7504deb5c04c63
+  en: Run a repetition-code memory on AtomArraySimulator with atom loss, see what the parity checks reveal about a lost atom, and measure how much the erasure flag in the final readout is worth to a simple decoder.
+  ko: 원자 손실이 있는 AtomArraySimulator에서 반복 부호 메모리를 실행합니다. 패리티 검사가 손실된 원자에 관해 무엇을 알려 주는지 살펴보고, 최종 판독의 소실 표시가 간단한 디코더에 얼마나 도움이 되는지 측정합니다.
+  status: machine
+- id: 35ee9e01f2bdfec7
+  en: Logical error rate versus per-gate loss probability for distance-3 and distance-5 repetition codes, decoded by a majority vote over the final readout with and without the erasure flag. Simulated points follow the exact curves, and the curves that use the flag fall much more steeply at each distance.
+  ko: 거리 3과 5의 반복 부호에서 게이트당 손실 확률에 따른 논리 오류율입니다. 최종 판독을 다수결로 디코딩하되 소실 표시를 사용하는 경우와 사용하지 않는 경우를 비교합니다. 시뮬레이션 점은 정확한 곡선을 따르며, 소실 표시를 쓰는 곡선은 각 거리에서 훨씬 가파르게 감소합니다.
+  status: machine
+- id: ce369adb03bf9678
+  en: 'A neutral-atom processor can lose an atom from its trap. The atom takes its quantum state with it, but the loss is not invisible: when the array is imaged, the trap is empty. On [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] an empty site measures as the digit `2`, distinct from `0` and `1`. An error whose location is known in this way is called an *erasure*.'
+  ko: 중성 원자 프로세서에서는 원자가 트랩에서 빠져나갈 수 있습니다. 원자가 사라지면 양자 상태도 잃지만, 배열을 촬영했을 때 트랩이 비어 있으므로 손실을 알아낼 수 있습니다. [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]에서 빈 위치를 측정하면 `0`, `1`과 구별되는 숫자 `2`가 나옵니다. 이렇게 위치를 아는 오류를 *소실*이라고 합니다.
+  status: machine
+- id: b1a55137c3a54145
+  en: 'Erasures are easier to correct than errors at unknown locations. A code of distance $d$ corrects any $\lfloor (d-1)/2 \rfloor$ errors at unknown locations, but up to $d-1$ erasures. This tutorial shows what that means in a small memory experiment. We run a bit-flip repetition code, lose atoms during its entangling gates, and look at the loss from two sides: what the parity checks reveal while the circuit runs, and what the erasure flag in the final readout is worth to a decoder.'
+  ko: 소실은 위치를 모르는 오류보다 쉽게 정정할 수 있습니다. 거리 $d$인 부호는 위치를 모르는 오류를 최대 $\lfloor (d-1)/2 \rfloor$개 정정하지만 소실은 $d-1$개까지 정정합니다. 이 튜토리얼은 작은 메모리 실험으로 그 의미를 보여 줍니다. 비트 반전 반복 부호의 얽힘 게이트 도중 원자를 잃게 하고, 실행 중 패리티 검사가 보여 주는 것과 최종 판독의 소실 표시가 디코더에 주는 이득을 살펴봅니다.
+  status: machine
+- id: 29e4558fd9e4781e
+  en: Imports and settings
+  ko: 모듈과 설정
+  status: machine
+- id: 314bdca43c166935
+  en: A repetition code with reloaded ancillas
+  ko: 보조 원자를 다시 적재하는 반복 부호
+  status: machine
+- id: 77fafda5d35c1c04
+  en: 'The distance-$d$ repetition code stores one bit in $d$ data atoms, $|0_L\rangle = |0\cdots0\rangle$ and $|1_L\rangle = |1\cdots1\rangle$. Between neighbouring data atoms sits an ancilla that measures the parity $Z_j Z_{j+1}$: prepared in $|+\rangle$, it picks up a phase from a `CZ` with each neighbour, and a final Hadamard turns that phase into a bit. A round of these measurements is a *syndrome*. For an intact code it reports even parity everywhere.'
+  ko: 거리 $d$인 반복 부호는 하나의 비트를 $d$개 데이터 원자에 $|0_L\rangle = |0\cdots0\rangle$, $|1_L\rangle = |1\cdots1\rangle$로 저장합니다. 이웃 데이터 원자 사이에는 패리티 $Z_j Z_{j+1}$을 측정할 보조 원자를 둡니다. 보조 원자를 $|+\rangle$로 준비하면 각 이웃과의 `CZ`에서 위상을 얻고, 마지막 Hadamard가 이를 비트로 바꿉니다. 한 라운드의 측정 결과가 *신드롬*입니다. 손상되지 않은 부호는 모든 위치에서 짝수 패리티를 보고합니다.
+  status: machine
+- id: 972208f117b4941c
+  en: The atom array accepts only `RX`, `RY`, `RZ`, and `CZ`, and a `CZ` needs its two atoms to be paired first, as in the [eight-atom GHZ tutorial](atom-array-ghz8.md). Each round pairs every ancilla with its left data atom, applies the `CZ` gates, and then does the same with the right neighbours. The pairs within a layer are disjoint, so the gates of a layer can run in parallel.
+  ko: 원자 배열은 `RX`, `RY`, `RZ`, `CZ`만 받으며, [8원자 GHZ 튜토리얼](atom-array-ghz8.md)처럼 `CZ` 전에 두 원자를 쌍으로 연결해야 합니다. 각 라운드에서 보조 원자를 왼쪽 데이터 원자와 연결해 `CZ`를 적용하고, 오른쪽 이웃에도 같은 과정을 반복합니다. 한 층의 쌍들은 겹치지 않으므로 그 층의 게이트를 병렬로 실행할 수 있습니다.
+  status: machine
+- id: 3901100e31e3ffb7
+  en: Every site starts empty. [`Put`][fatqat.operations.Put] loads the data atoms once and the ancillas at the start of every round. Because `Put` leaves an occupied site unchanged, it only refills an ancilla lost in an earlier round. Each round writes its syndrome to its own classical register, and the data atoms are read out at the end.
+  ko: 모든 위치는 처음에 비어 있습니다. [`Put`][fatqat.operations.Put]으로 데이터 원자는 한 번, 보조 원자는 매 라운드 시작마다 적재합니다. 이미 원자가 있는 위치는 `Put`이 바꾸지 않으므로 이전 라운드에서 잃은 보조 원자만 다시 채워집니다. 각 라운드는 별도의 고전 레지스터에 신드롬을 기록하고 마지막에 데이터 원자를 판독합니다.
+  status: machine
+- id: 79246318e9a3f395
+  en: 'Count keys list the classical registers in declaration order: three rounds of two syndrome bits, then the three data bits. Without noise every check reports even parity and the data atoms read `111`.'
+  ko: 측정 횟수의 키는 고전 레지스터 선언 순서를 따릅니다. 두 신드롬 비트씩 세 라운드가 먼저 오고, 세 데이터 비트가 뒤따릅니다. 잡음이 없으면 모든 검사는 짝수 패리티이고 데이터 판독은 `111`입니다.
+  status: machine
+- id: 296ed536f64782ff
+  en: Lose atoms during the entangling gates
+  ko: 얽힘 게이트 도중 원자 잃기
+  status: machine
+- id: 82bc06f4a50b3612
+  en: 'Attach [`Loss`][fatqat.noise.Loss] to `CZ`. The backend samples a loss independently for each of the two atoms after every `CZ`, so an atom that takes part in more gates is more likely to be lost. A lost atom stays lost: later gates on its site do nothing, and its final readout is `2`.'
+  ko: '`CZ`에 [`Loss`][fatqat.noise.Loss]를 붙입니다. 백엔드는 각 `CZ` 뒤 두 원자의 손실을 독립적으로 샘플링하므로 더 많은 게이트에 참여한 원자가 손실될 가능성이 큽니다. 잃은 원자는 그대로 없는 상태로 남습니다. 이후 해당 위치의 게이트는 아무 효과가 없고 최종 판독은 `2`입니다.'
+  status: machine
+- id: a85464bd7cbc974d
+  en: A `2` among the syndrome bits is a lost ancilla. It is flagged in the round in which it happens, since that round's parity is missing, and the next round's `Put` loads a fresh ancilla. A lost data atom is different. Data atoms are not imaged until the end, so the `2` of a lost data atom appears only in the final readout, and nothing in the record says when the atom was lost.
+  ko: 신드롬 비트의 `2`는 보조 원자를 잃었다는 뜻입니다. 해당 라운드의 패리티가 사라지므로 그 라운드에서 바로 표시되며, 다음 라운드의 `Put`이 새 보조 원자를 적재합니다. 데이터 원자 손실은 다릅니다. 데이터는 마지막에야 촬영하므로 손실 표시 `2`는 최종 판독에만 나타나고, 기록만으로 손실 시점을 알 수 없습니다.
+  status: machine
+- id: a421640dc765ca06
+  en: What a parity check sees of a lost atom
+  ko: 패리티 검사는 손실된 원자를 어떻게 볼까?
+  status: machine
+- id: 2f80da5b9da8c16e
+  en: 'A `CZ` with an empty trap applies no phase, exactly as an atom in $|0\rangle$ would. A check next to a lost data atom therefore measures its surviving neighbour alone: instead of $Z_j Z_{j+1}$ it measures a single $Z$. The next cell selects shots in which exactly one data atom and no ancilla was lost, and counts how often the last syndrome round shows an odd parity.'
+  ko: 빈 트랩과의 `CZ`는 위상을 적용하지 않습니다. 원자가 $|0\rangle$에 있을 때와 같습니다. 따라서 손실된 데이터 원자 옆의 검사는 살아남은 이웃 하나만 측정합니다. $Z_j Z_{j+1}$ 대신 단일 $Z$를 측정하는 것입니다. 다음 셀에서는 데이터 원자 하나만 잃고 보조 원자는 모두 남은 샷을 골라 마지막 신드롬 라운드의 홀수 패리티 빈도를 셉니다.
+  status: machine
+- id: f67bfff477d5cf89
+  en: 'For $|0_L\rangle$ the checks never fire, because the lost atom looks like the $|0\rangle$ atoms around it. For $|1_L\rangle$ they fire in most shots; in the rest the atom was lost after its last `CZ`, too late for any check to notice. A lost atom is therefore not a Pauli error: what the checks show depends on the state the atom held.'
+  ko: $|0_L\rangle$에서는 잃은 원자가 주변의 $|0\rangle$ 원자와 같아 보이므로 검사가 발화하지 않습니다. $|1_L\rangle$에서는 대부분 발화합니다. 나머지는 원자가 마지막 `CZ` 뒤에 손실되어 검사가 알아채기에는 늦은 경우입니다. 따라서 원자 손실은 Pauli 오류가 아닙니다. 검사가 보여 주는 결과는 원자가 지녔던 상태에 따라 달라집니다.
+  status: machine
+- id: 006e91f4d2e1aaec
+  en: 'This also means the syndrome carries information about the logical value itself. In the repetition code every single-atom $Z$ is a logical operator, so a check that has lost one of its atoms measures the logical bit. Codes such as the surface code do not have this property, because no single-atom $Z$ is a logical operator there. Keep this in mind below: it is a feature of this small code, not of atom loss in general.'
+  ko: 이는 신드롬이 논리값 자체에 관한 정보도 담는다는 뜻입니다. 반복 부호에서는 단일 원자의 $Z$가 모두 논리 연산자이므로, 원자 하나를 잃은 검사는 논리 비트를 측정합니다. 단일 원자 $Z$가 논리 연산자가 아닌 표면 부호 등에는 이런 성질이 없습니다. 아래 결과는 이 작은 부호의 특징이지 원자 손실의 일반적 성질이 아니라는 점을 기억하세요.
+  status: machine
+- id: e20240b603677329
+  en: Decoders and logical error rates
+  ko: 디코더와 논리 오류율
+  status: machine
+- id: 97bedd95528c8b9b
+  en: 'A *decoder* maps the recorded outcomes of a shot to a guess of the stored logical bit. Its *logical error rate* (LER) is the probability that the guess is wrong. The LER is a property of the decoder as much as of the noise: the same shots decoded two ways give two error rates.'
+  ko: '*디코더*는 한 샷의 측정 기록에서 저장된 논리 비트를 추정합니다. *논리 오류율*(LER)은 그 추정이 틀릴 확률입니다. LER은 잡음뿐 아니라 디코더의 성질이기도 합니다. 같은 샷을 두 방식으로 디코딩하면 두 오류율을 얻습니다.'
+  status: machine
+- id: 066a6fe98c231ccd
+  en: 'This tutorial uses the simplest decoder for a repetition code: a majority vote over the final data readout. For the repetition code this is the minimum-weight correction of the last syndrome, which the final readout determines. It ignores the syndrome history, so it is not the best possible decoder, even without loss. What it offers here is a controlled comparison. We run the same vote in two versions that differ only in whether they use the erasure flag:'
+  ko: 가장 간단한 반복 부호 디코더인 최종 데이터 판독의 다수결을 사용합니다. 반복 부호에서는 최종 판독이 결정하는 마지막 신드롬의 최소 가중치 정정과 같습니다. 신드롬 이력은 무시하므로 손실이 없어도 최선의 디코더는 아닙니다. 대신 통제된 비교를 할 수 있습니다. 소실 표시를 쓰는지만 다른 두 다수결을 같은 데이터에 적용합니다.
+  status: machine
+- id: f6869efd29999296
+  en: '**Loss-unaware.** The vote cannot tell an empty trap from an atom, as if the loss went undetected. Each `2` enters the vote as a random bit.'
+  ko: '**손실을 모르는 경우.** 빈 트랩과 원자를 구분하지 못해 손실을 탐지하지 못한 것처럼 처리합니다. 각 `2`를 무작위 비트로 바꾸어 투표에 넣습니다.'
+  status: machine
+- id: 0e76be9341fb8bb1
+  en: '**Erasure-aware.** The vote drops every `2` and counts only the surviving atoms. A tie, or a shot with no survivors, is decided by a coin flip.'
+  ko: '**소실을 아는 경우.** 모든 `2`를 제외하고 살아남은 원자만 셉니다. 동률이거나 원자가 하나도 남지 않은 샷은 동전 던지기로 결정합니다.'
+  status: machine
+- id: 3a07aa1d5ee8ecb1
+  en: Both versions see the same shots, so the difference between their error rates is the value of the erasure flag to this decoder.
+  ko: 두 방식은 같은 샷을 보므로 오류율 차이가 이 디코더에서 소실 표시가 갖는 가치입니다.
+  status: machine
+- id: 54e07674d729d016
+  en: When loss is the only noise, every surviving atom reads the stored value. The erasure-aware vote then fails only when all $d$ data atoms are lost and it has to guess. No decoder that sees only the final readout can do better, since such a shot contains no information about the logical bit. A decoder that also reads the syndrome history can do better, because of the leak described in the previous section, so this is not a lower bound on the LER of the experiment.
+  ko: 잡음이 손실뿐이면 살아남은 원자는 모두 저장된 값을 읽습니다. 소실을 아는 다수결은 $d$개 데이터 원자를 모두 잃어 추측해야 할 때만 실패합니다. 최종 판독만 보는 디코더는 이보다 나을 수 없습니다. 그런 샷에는 논리 비트 정보가 전혀 없기 때문입니다. 다만 신드롬 이력까지 보는 디코더는 앞 절의 정보 유출을 이용해 더 나을 수 있으므로, 이것이 전체 실험 LER의 하한은 아닙니다.
+  status: machine
+- id: 7cd9505044c9e26e
+  en: 'The two error rates also have exact values under pure loss. Data atom $i$ takes part in $n_i$ `CZ` gates: $R$ at either end of the chain and $2R$ in between, for $R$ rounds. It is lost with probability $q_i = 1-(1-p)^{n_i}$, independently of the others, and each decoder fails on a known set of loss patterns. The loss-unaware vote fails when at least $(d+1)/2$ of the random bits that replace lost atoms are wrong. The erasure-aware vote fails with probability $1/2$ when every atom is lost.'
+  ko: 순수 손실에서는 두 오류율을 정확히 계산할 수도 있습니다. 데이터 원자 $i$는 $n_i$개의 `CZ`에 참여합니다. $R$라운드에서 사슬 양 끝은 $R$개, 내부는 $2R$개입니다. 각 원자는 다른 원자와 독립적으로 $q_i = 1-(1-p)^{n_i}$ 확률로 손실되며, 각 디코더가 실패하는 손실 패턴도 알 수 있습니다. 손실을 모르는 다수결은 손실 원자를 대체한 무작위 비트 중 적어도 $(d+1)/2$개가 틀릴 때 실패합니다. 소실을 아는 다수결은 모든 원자를 잃었을 때 확률 $1/2$로 실패합니다.
+  status: machine
+- id: cdfd28e49b9acd4f
+  en: Logical error rate versus loss rate
+  ko: 손실률에 따른 논리 오류율
+  status: machine
+- id: 74a43e8bfdfdaf42
+  en: Sweep the loss probability for distances 3 and 5, and decode each set of shots both ways.
+  ko: 거리 3과 5에서 손실 확률을 스윕하고, 각 샷 집합을 두 방법으로 디코딩합니다.
+  status: machine
+- id: 9e35fa112719c410
+  en: Markers are sampled error rates; dashed and solid lines are the exact loss-unaware and erasure-aware rates. Points with no failures in the sampled shots are left out, which is why the distance-5 erasure-aware curve has no markers at the lowest loss rates.
+  ko: 표식은 샘플링한 오류율입니다. 점선과 실선은 각각 손실을 모르는 경우와 소실을 아는 경우의 정확한 오류율입니다. 실패가 한 번도 관측되지 않은 점은 생략하므로, 거리 5의 소실 인지 곡선에는 가장 낮은 손실률 구간의 표식이 없습니다.
+  status: machine
+- id: 9bf2a14d64f93845
+  en: At small $p$ each curve becomes a straight line whose slope counts the losses needed to cause a logical error. The loss-unaware vote fails once $(d+1)/2$ lost atoms happen to contribute the wrong bit, so its error rate scales as $p^{(d+1)/2}$. The erasure-aware vote fails only when all $d$ atoms are lost, so it scales as $p^d$. These are the two numbers from the introduction, $\lfloor (d-1)/2 \rfloor + 1$ unknown errors against $d$ erasures. Going from distance 3 to 5 gains the loss-unaware vote one power of $p$ and the erasure-aware vote two.
+  ko: 작은 $p$에서 각 곡선은 직선에 가까워지며 기울기는 논리 오류에 필요한 손실 수를 나타냅니다. 손실을 모르는 다수결은 $(d+1)/2$개의 손실 원자가 우연히 잘못된 비트를 주면 실패하므로 오류율은 $p^{(d+1)/2}$에 비례합니다. 소실을 아는 다수결은 $d$개 원자를 모두 잃어야 실패하므로 $p^d$에 비례합니다. 이는 도입부의 두 수, 위치를 모르는 오류 $\lfloor (d-1)/2 \rfloor + 1$개와 소실 $d$개입니다. 거리를 3에서 5로 늘리면 손실을 모르는 경우 $p$의 지수가 하나, 소실을 아는 경우 두 개 늘어납니다.
+  status: machine
+- id: d03ae4d4e73d0fa6
+  en: Loss together with bit flips
+  ko: 손실과 비트 반전 함께 넣기
+  status: machine
+- id: 1c9cbb819b4e593d
+  en: Atoms that stay in their traps can still flip. Add a 2% `X` error on the data atom of every `CZ`, keep 5% loss, and decode again. The surviving atoms are no longer always right, so the erasure-aware vote can now fail with atoms left to vote, but it still removes the lost atoms instead of letting them add random bits.
+  ko: 트랩에 남아 있는 원자도 뒤집힐 수 있습니다. 각 `CZ`의 데이터 원자에 2%의 `X` 오류를 추가하고 손실은 5%로 유지한 뒤 다시 디코딩합니다. 이제 살아남은 원자도 항상 맞지는 않아, 소실을 아는 다수결도 원자가 남은 상태에서 실패할 수 있습니다. 그래도 손실 원자를 무작위 표로 넣지 않고 제외한다는 이점은 유지됩니다.
+  status: machine
+- id: 18d22878464f39df
+  en: '`AtomArraySimulator` reports a lost atom as the digit `2`, which turns atom loss into an erasure. For a majority vote over the final readout, using that flag changes the scaling of the logical error rate from $p^{(d+1)/2}$ to $p^d$. The comparison holds the decoder fixed and so isolates the value of the flag; it does not show the best error rate the experiment allows.'
+  ko: '`AtomArraySimulator`는 손실 원자를 숫자 `2`로 보고해 원자 손실을 소실로 만듭니다. 최종 판독의 다수결에서 이 표시를 사용하면 논리 오류율의 스케일링이 $p^{(d+1)/2}$에서 $p^d$로 바뀝니다. 디코더를 고정해 표시의 가치만 비교했으며, 실험에서 가능한 최상의 오류율을 보인 것은 아닙니다.'
+  status: machine
+- id: 219d0e0547a29def
+  en: While the circuit runs, loss is harder to read. A lost ancilla is flagged in its own round, but a lost data atom shows up in the checks only as a changed parity, which depends on the state the atom held. A decoder that uses the syndrome history must therefore treat a data-atom loss as a set of possible error patterns, one for each time at which the atom may have been lost. Such decoders go beyond this tutorial.
+  ko: 회로 실행 중에는 손실을 해석하기가 더 어렵습니다. 보조 원자 손실은 해당 라운드에 표시되지만 데이터 원자 손실은 그 원자가 지녔던 상태에 따라 패리티 변화로만 나타납니다. 따라서 신드롬 이력을 사용하는 디코더는 데이터 원자의 가능한 손실 시점마다 서로 다른 오류 패턴을 고려해야 합니다. 이런 디코더는 이 튜토리얼의 범위 밖입니다.
+  status: machine
+- id: a488990ff955dfb5
+  en: To explore further, attach `Loss` to `Pair` and `Unpair` to model the cost of transport, as in the [eight-atom GHZ tutorial](atom-array-ghz8.md). You can also raise `ROUNDS` to see loss accumulate over a longer memory, or replace the majority vote with a decoder that reads the syndrome history and compare its error rate with the curves above.
+  ko: 더 탐구하려면 [8원자 GHZ 튜토리얼](atom-array-ghz8.md)처럼 `Pair`와 `Unpair`에 `Loss`를 붙여 이동 비용을 모델링하세요. `ROUNDS`를 늘려 긴 메모리에서 손실이 쌓이는 모습을 보거나, 다수결 대신 신드롬 이력을 읽는 디코더를 사용해 오류율을 위 곡선과 비교할 수도 있습니다.
+  status: machine

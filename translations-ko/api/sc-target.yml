@@ -1,0 +1,108 @@
+- id: e8b1fc6e1f547387
+  en: SCTarget
+  ko: SCTarget
+  status: machine
+- id: 753af8e596948b75
+  en: 'Use [`SCTarget`][fatqat.compiler.SCTarget] to describe the superconducting device that you compile a program for: how many sites it has and which pairs of sites support `CZ`. Pass it to [`compile_to_sc()`][fatqat.compiler.compile_to_sc] or [`compile_qasm_to_sc()`][fatqat.compiler.compile_qasm_to_sc] in place of a simulator.'
+  ko: '[`SCTarget`][fatqat.compiler.SCTarget]은 컴파일 대상 초전도 장치의 사이트 수와 `CZ`를 지원하는 사이트 쌍을 기술합니다. [`compile_to_sc()`][fatqat.compiler.compile_to_sc] 또는 [`compile_qasm_to_sc()`][fatqat.compiler.compile_qasm_to_sc]에 시뮬레이터 대신 전달하세요.'
+  status: machine
+- id: 3bc601a71335ff45
+  en: Why compile against a target
+  ko: 대상을 기준으로 컴파일하는 이유
+  status: machine
+- id: 08b32b1a6571a790
+  en: A target contains only the information the compiler needs. It has no gate set, runtime, simulation method, or noise model, and it cannot run a program. You can therefore compile without constructing a simulator, and choose how to run the result afterwards.
+  ko: 대상에는 컴파일러에 필요한 정보만 담깁니다. 게이트 집합, 런타임, 시뮬레이션 방법, 잡음 모델은 없으며 프로그램을 실행할 수도 없습니다. 따라서 시뮬레이터를 만들지 않고 먼저 컴파일한 뒤 결과를 실행할 방법을 선택할 수 있습니다.
+  status: machine
+- id: 1c21c23682825e20
+  en: The compiled result is not tied to one simulator. An [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] can run it if it provides the sites and couplings that the result uses, including a simulator with more sites or additional couplings. The simulator's method must also support the program. For example, `method="unitary"` rejects measurements.
+  ko: 컴파일 결과는 특정 시뮬레이터에 종속되지 않습니다. [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]가 결과에서 사용하는 사이트와 결합을 제공하면 실행할 수 있으며, 사이트나 결합이 더 많아도 됩니다. 시뮬레이터의 방법도 프로그램을 지원해야 합니다. 예를 들어 `method="unitary"`는 측정을 허용하지 않습니다.
+  status: machine
+- id: 2761143e1d325ec7
+  en: 'You can still pass an `SCQubitSimulator` as the `backend` argument. In that case, the compiler also applies the simulator''s implementation map, both when choosing couplings for routing and when checking each emitted gate. To reuse the sites and couplings of an existing simulator, call [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target]:'
+  ko: '`backend` 인수에 `SCQubitSimulator`를 전달하는 방법도 그대로 사용할 수 있습니다. 이 경우 컴파일러는 라우팅 결합 선택과 생성한 각 게이트의 검증에 시뮬레이터의 구현 맵도 적용합니다. 기존 시뮬레이터의 사이트와 결합을 재사용하려면 [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target]을 호출하세요:'
+  status: machine
+- id: e50dec58f0df54a6
+  en: '`get_compiler_target()` returns the site count and couplings the simulator was constructed with. For a simulator created with its public constructor, compiling against the simulator or against this target produces the same native operations and layouts. The results can differ for a subclass that changes the implementation map, for example by removing a native gate or allowing `CZ` in one direction only.'
+  ko: '`get_compiler_target()`은 시뮬레이터 생성 시 지정한 사이트 수와 결합을 반환합니다. 공개 생성자로 만든 시뮬레이터라면 시뮬레이터 자체를 대상으로 하든 이 대상을 사용하든 같은 네이티브 연산과 배치가 생성됩니다. 네이티브 게이트를 제거하거나 `CZ`를 한 방향으로만 허용하는 등 구현 맵을 바꾼 서브클래스에서는 결과가 다를 수 있습니다.'
+  status: machine
+- id: 7225712563b37fc1
+  en: Construct a target
+  ko: 대상 생성
+  status: machine
+- id: 4d54abad5f55e8ee
+  en: Both arguments are keyword-only and required. There is no default capacity or topology.
+  ko: 두 인수 모두 필수이며 키워드로만 지정할 수 있습니다. 용량이나 토폴로지의 기본값은 없습니다.
+  status: machine
+- id: 1eff5b76881cd004
+  en: '`num_qubits` is the number of device sites, labeled `0` to `num_qubits - 1`. It must be a Python `int` greater than zero. The constructor rejects `bool`, `float`, and NumPy integers and does not convert them.'
+  ko: '`num_qubits`는 장치의 사이트 수이며, 라벨은 `0`부터 `num_qubits - 1`까지입니다. 0보다 큰 Python `int`여야 합니다. 생성자는 `bool`, `float`, NumPy 정수를 변환하지 않고 거부합니다.'
+  status: machine
+- id: f10762f51a7a17c9
+  en: '`couplings` is a finite iterable of undirected connections. Each element must be a two-element `tuple` of `int` site labels.'
+  ko: '`couplings`는 무방향 연결의 유한 이터러블입니다. 각 원소는 `int` 사이트 라벨 두 개로 된 `tuple`이어야 합니다.'
+  status: machine
+- id: 1b5f7be0935b5ceb
+  en: 'The constructor reads the couplings once. You can therefore pass a generator, and later changes to the original container do not affect the target. The target stores each edge as `(low, high)` and merges reversed and repeated edges into their first occurrence:'
+  ko: '생성자는 결합을 한 번만 읽으므로 생성기를 전달할 수 있습니다. 이후 원래 컨테이너를 수정해도 대상에는 영향이 없습니다. 각 연결은 `(low, high)`로 저장하며 역방향 및 중복 연결은 처음 등장한 하나로 합칩니다:'
+  status: machine
+- id: 631c63c0b3b7fbc5
+  en: An empty `couplings` describes a device without `CZ` connections. It is a valid target. Circuits without two-qubit gates compile. A circuit with a two-qubit gate fails during compilation.
+  ko: 빈 `couplings`는 `CZ` 연결이 없는 장치를 뜻하며 유효한 대상입니다. 2큐비트 게이트가 없는 회로는 컴파일되지만, 2큐비트 게이트가 있는 회로는 컴파일 중 실패합니다.
+  status: machine
+- id: 26ea5772220b7015
+  en: '`num_qubits` and `couplings` are read-only. You can reuse a target for any number of compilations. Equality, hashing, and serialization are not part of the `SCTarget` interface.'
+  ko: '`num_qubits`와 `couplings`는 읽기 전용입니다. 대상은 횟수 제한 없이 재사용할 수 있습니다. 동등성 비교, 해싱, 직렬화는 `SCTarget` 인터페이스에 포함되지 않습니다.'
+  status: machine
+- id: e30e10283c839b67
+  en: When errors are raised
+  ko: 오류 발생 조건
+  status: machine
+- id: 325dbb54599e3c32
+  en: '| Stage | Condition | Error |'
+  ko: '| 단계 | 조건 | 오류 |'
+  status: machine
+- id: f7f345792c1a2bcf
+  en: '| `SCTarget(...)` | A missing or positional argument, a non-`int` site count or site label, or a coupling that is not a two-element `tuple` | `TypeError` |'
+  ko: '| `SCTarget(...)` | 인수가 빠졌거나 위치 인수를 사용함, 사이트 수나 라벨이 `int`가 아님, 결합이 두 원소의 `tuple`이 아님 | `TypeError` |'
+  status: machine
+- id: da109ca318db8446
+  en: '| `SCTarget(...)` | A site count below one, a site label outside `range(num_qubits)`, or a coupling between a site and itself | `ValueError` |'
+  ko: '| `SCTarget(...)` | 사이트 수가 1 미만, 라벨이 `range(num_qubits)` 밖에 있음, 사이트가 자신과 연결됨 | `ValueError` |'
+  status: machine
+- id: 0a3bea99476f7038
+  en: '| Compilation | More program qubits than target sites, a two-qubit gate whose qubits the couplings cannot connect, or a `backend` that is neither an `SCTarget` nor an `SCQubitSimulator` | [`PassError`][fatqat.compiler.PassError] from the `lower-sc-to-native` stage. Its `__cause__` is the original `ValueError` or `TypeError` |'
+  ko: '| 컴파일 | 프로그램 큐비트가 대상 사이트보다 많음, 결합으로 연결할 수 없는 큐비트 쌍에 2큐비트 게이트가 있음, `backend`가 `SCTarget`도 `SCQubitSimulator`도 아님 | `lower-sc-to-native` 단계의 [`PassError`][fatqat.compiler.PassError]. `__cause__`는 원래 `ValueError` 또는 `TypeError` |'
+  status: machine
+- id: 7d02a5ad18990af6
+  en: '| `SCQubitSimulator.run()` | The result uses a site that the simulator does not have | [`BackendValidationError`][fatqat.errors.BackendValidationError] |'
+  ko: '| `SCQubitSimulator.run()` | 결과가 시뮬레이터에 없는 사이트를 사용함 | [`BackendValidationError`][fatqat.errors.BackendValidationError] |'
+  status: machine
+- id: c23d2181744cbf58
+  en: '| `SCQubitSimulator.run()` | The result applies `CZ` to a pair that the simulator does not couple | [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
+  ko: '| `SCQubitSimulator.run()` | 결과가 시뮬레이터에서 결합되지 않은 쌍에 `CZ`를 적용함 | [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] |'
+  status: machine
+- id: 1f5eeb602f93b388
+  en: '`run()` raises these errors itself, before it returns a job. The compiled result does not keep a reference to its target. The simulator checks the program against its own sites and couplings.'
+  ko: '`run()`은 Job을 반환하기 전에 이 오류들을 직접 발생시킵니다. 컴파일 결과는 대상에 대한 참조를 보관하지 않습니다. 시뮬레이터가 자신의 사이트와 결합을 기준으로 프로그램을 검증합니다.'
+  status: machine
+- id: cc26d4390ef692be
+  en: Compiled output
+  ko: 컴파일 출력
+  status: machine
+- id: b63a09e552842412
+  en: 'Compiling for a target always produces gates from the canonical SC native basis: `X`, `SX`, `RZ`, and `CZ`. The compiler keeps the measurements and `Reset` operations of the source. Every operation uses a site within `range(num_qubits)`, and every `CZ` acts on a target coupling. A target cannot request a different native gate set. `SCQubitSimulator` executes this basis.'
+  ko: 대상에 맞춰 컴파일하면 항상 표준 SC 네이티브 기저인 `X`, `SX`, `RZ`, `CZ`로 게이트가 생성됩니다. 소스의 측정과 `Reset` 연산은 보존합니다. 모든 연산은 `range(num_qubits)` 안의 사이트를 사용하고 모든 `CZ`는 대상의 결합에 작용합니다. 대상에서 다른 네이티브 게이트 집합을 요청할 수는 없습니다. `SCQubitSimulator`는 이 기저를 실행합니다.
+  status: machine
+- id: 45b60071232e2e1c
+  en: The convenience functions return an [`ExecutableCompilationResult`][fatqat.compiler.ExecutableCompilationResult] at the final boundary. A compiler created with [`create_sc_pipeline()`][fatqat.compiler.create_sc_pipeline] accepts the same target through [`CompileContext`][fatqat.compiler.CompileContext], but returns a [`CompilationResult`][fatqat.compiler.CompilationResult] whose `output` is an `SCNativeProgram`. Convert that output with [`to_sc_simulator_program()`][fatqat.compiler.to_sc_simulator_program] before running it.
+  ko: 편의 함수는 최종 경계에서 [`ExecutableCompilationResult`][fatqat.compiler.ExecutableCompilationResult]를 반환합니다. [`create_sc_pipeline()`][fatqat.compiler.create_sc_pipeline]로 만든 컴파일러도 [`CompileContext`][fatqat.compiler.CompileContext]를 통해 같은 대상을 받지만, `output`이 `SCNativeProgram`인 [`CompilationResult`][fatqat.compiler.CompilationResult]를 반환합니다. 실행 전에 [`to_sc_simulator_program()`][fatqat.compiler.to_sc_simulator_program]으로 출력을 변환하세요.
+  status: machine
+- id: f3a94becb382575d
+  en: Compile and run
+  ko: 컴파일 및 실행
+  status: machine
+- id: 54a19c580a765caf
+  en: 'The same target works with a directly constructed compiler:'
+  ko: '직접 구성한 컴파일러에서도 같은 대상을 사용할 수 있습니다:'
+  status: machine

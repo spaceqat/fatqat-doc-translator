@@ -1,0 +1,136 @@
+- id: 9ada8e83c1186cd6
+  en: Noise
+  ko: 잡음
+  status: machine
+- id: dd12920a0bc8b9ef
+  en: FatQat keeps noise separate from [`Program`][fatqat.Program]. Add the noise sources you need to a [`NoiseModel`][fatqat.NoiseModel], then pass that model to a compatible simulator or emulator with `noise=...`. You can reuse the same program for ideal and noisy runs.
+  ko: FatQat은 잡음을 [`Program`][fatqat.Program]과 분리해 관리합니다. 필요한 잡음원을 [`NoiseModel`][fatqat.NoiseModel]에 추가한 뒤, 호환되는 시뮬레이터나 에뮬레이터에 `noise=...`로 전달하세요. 같은 프로그램을 이상적 실행과 잡음이 있는 실행에 재사용할 수 있습니다.
+  status: machine
+- id: cfe326ef2151e877
+  en: See [Compare the same Program ideally and noisily](../guide/ideal-and-noisy.md) for a controlled ideal-versus-noisy comparison. This section is the reference for selectors, support, units, and validation.
+  ko: 조건을 통제한 비교 예제는 [같은 Program의 이상적 실행과 잡음 실행 비교](../guide/ideal-and-noisy.md)를 참고하세요. 이 절은 선택자, 지원 범위, 단위, 검증을 다루는 레퍼런스입니다.
+  status: machine
+- id: 7dea6b16fbac7b54
+  en: Noise types live in `fatqat.noise`. `NoiseModel` is also available as `fatqat.NoiseModel`.
+  ko: 잡음 타입은 `fatqat.noise`에 있습니다. `NoiseModel`은 `fatqat.NoiseModel`로도 사용할 수 있습니다.
+  status: machine
+- id: 0a4958e8792e912a
+  en: Choose a noise type
+  ko: 잡음 타입 선택
+  status: machine
+- id: 5002d68269ebe1c9
+  en: Probabilities describe one simulator channel application after a matched operation. Rates and relaxation times describe local Lindblad operators that act over emulator time. Backends do not convert between these forms.
+  ko: 확률은 일치하는 연산 뒤에 시뮬레이터 채널을 한 번 적용할 때의 값입니다. 잡음률과 이완 시간은 에뮬레이터의 시간에 걸쳐 작용하는 국소 Lindblad 연산자를 나타냅니다. 백엔드는 두 형식을 서로 변환하지 않습니다.
+  status: machine
+- id: 3e8eac22ec87e872
+  en: '**Built-in noise types**'
+  ko: '**내장 잡음 타입**'
+  status: machine
+- id: 923e0b10256db3ec
+  en: '| Noise type | Accepted parameters | Applies to | User-visible effect |'
+  ko: '| 잡음 타입 | 허용 매개변수 | 적용 대상 | 효과 |'
+  status: machine
+- id: 156c15a252c49924
+  en: '| [`Depolarizing`][fatqat.noise.Depolarizing] | Exactly one of `p` or `rate` | `p`: the selected operands; `rate`: one subsystem | Uniform mixing toward the maximally mixed state |'
+  ko: '| [`Depolarizing`][fatqat.noise.Depolarizing] | `p` 또는 `rate` 중 정확히 하나 | `p`: 선택한 피연산자; `rate`: 부분계 하나 | 최대 혼합 상태를 향한 균일한 혼합 |'
+  status: machine
+- id: 9aabbed5deff741d
+  en: '| [`PauliChannel`][fatqat.noise.PauliChannel] | Pauli-string probability mapping or pair sequence | One qubit per string character | A stochastic mixture of `I`, `X`, `Y`, and `Z` strings |'
+  ko: '| [`PauliChannel`][fatqat.noise.PauliChannel] | Pauli 문자열과 확률의 매핑 또는 쌍 시퀀스 | 문자열의 문자마다 큐비트 하나 | `I`, `X`, `Y`, `Z` 문자열의 확률적 혼합 |'
+  status: machine
+- id: 0ee5d8b7052aa775
+  en: '| [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] | Exactly one scalar `p` or `rate` | One qubit | Conventional finite channel or continuous qubit energy relaxation |'
+  ko: '| [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] | 스칼라 `p` 또는 `rate` 중 정확히 하나 | 큐비트 하나 | 표준 유한 채널 또는 연속 큐비트 에너지 이완 |'
+  status: machine
+- id: 62b111ac1123a957
+  en: '| [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] | Exactly one scalar `p` or `rate`, plus explicit transition coefficients | One subsystem | One explicitly authored finite or continuous jump operator |'
+  ko: '| [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] | 스칼라 `p` 또는 `rate` 중 정확히 하나와 명시적 전이 계수 | 부분계 하나 | 직접 지정한 유한 또는 연속 점프 연산자 하나 |'
+  status: machine
+- id: efa905c053cdb71f
+  en: '| [`PhaseDamping`][fatqat.noise.PhaseDamping] | Exactly one of `p`, `rate`, or `t_phi` | One subsystem | Coherence decay without population transfer |'
+  ko: '| [`PhaseDamping`][fatqat.noise.PhaseDamping] | `p`, `rate`, `t_phi` 중 정확히 하나 | 부분계 하나 | 점유수 이동 없는 결맞음 감쇠 |'
+  status: machine
+- id: 827b3d1eab64fc91
+  en: '| [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation] | `t1` and `t2` | One qubit | Combined energy relaxation and residual pure dephasing |'
+  ko: '| [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation] | `t1`과 `t2` | 큐비트 하나 | 에너지 이완과 잔여 순수 위상 소실의 결합 |'
+  status: machine
+- id: eebe1848a578f638
+  en: '| [`Loss`][fatqat.noise.Loss] | Per-carrier probability `p` | Every selected carrier in a matched operation | Persistent carrier removal on an occupancy-aware backend |'
+  ko: '| [`Loss`][fatqat.noise.Loss] | 운반체별 확률 `p` | 일치하는 연산에서 선택한 모든 운반체 | 점유 상태를 추적하는 백엔드에서 운반체를 영구적으로 제거 |'
+  status: machine
+- id: bfe822216ede4f67
+  en: '| [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] | Column-stochastic report matrix | Each measured subsystem independently, or one selected subsystem | Classical resampling of the reported digit after physical collapse |'
+  ko: '| [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] | 열 확률 판독 행렬 | 측정된 각 부분계에 독립적으로 적용하거나 선택한 부분계 하나 | 물리적 붕괴 후 보고되는 숫자를 고전적으로 다시 샘플링 |'
+  status: machine
+- id: 3266089454f9c4c6
+  en: See [Noise model](noise/model.md) for operation and background noise, target selection, composition, conflicts, and validation timing. Each noise-type page covers its parameters, units, and mathematical definition.
+  ko: 연산 잡음과 배경 잡음, 대상 선택, 합성, 충돌, 검증 시점은 [잡음 모델](noise/model.md)을 참고하세요. 각 잡음 타입의 매개변수, 단위, 수학적 정의는 개별 페이지에서 설명합니다.
+  status: machine
+- id: c9366d3f412ef90e
+  en: Support depends on the noise form, where it applies, and the backend. The [Backend support](noise/backend-support.md#noise-backend-support) tables show the built-in behavior and unsupported forms for each backend family. Pulse-emulator continuous-noise realizations are family-owned rather than user-replaceable.
+  ko: 지원 여부는 잡음 형식, 적용 위치, 백엔드에 따라 달라집니다. [백엔드 지원](noise/backend-support.md#noise-backend-support) 표에서 백엔드 계열별 기본 동작과 지원하지 않는 형식을 확인할 수 있습니다. 펄스 에뮬레이터의 연속 잡음 구현은 백엔드 계열이 제공하며 사용자가 교체할 수 없습니다.
+  status: machine
+- id: 0eb95fb6244c03f1
+  en: Quick start
+  ko: 빠른 시작
+  status: machine
+- id: afcfc0f67d465620
+  en: 'This model adds a joint channel after every `CX` and then applies binary readout confusion to every measurement:'
+  ko: 다음 모델은 모든 `CX` 뒤에 결합 채널을 적용하고, 모든 측정에 이진 판독 혼동을 적용합니다.
+  status: machine
+- id: 99c2299a697ccf62
+  en: 'For a pulse backend, express rates and relaxation times in the model''s time unit. For example, the reference transmon model uses device labels such as `"q0"`. This relaxation noise stays active there throughout elapsed pulse time:'
+  ko: 펄스 백엔드에서는 모델의 시간 단위에 맞춰 잡음률과 이완 시간을 지정하세요. 예를 들어 기준 transmon 모델은 `"q0"` 같은 장치 라벨을 사용합니다. 다음 이완 잡음은 펄스 시간이 흐르는 동안 해당 위치에서 계속 작용합니다.
+  status: machine
+- id: 025749b05b549cc6
+  en: 'The reference transmon model uses nanoseconds, while the neutral-atom model uses microseconds. Check the chosen model''s `time_unit` instead of inferring a unit from the size of a value: see [`time_unit`][fatqat.emulator.TransmonModel.time_unit] and [`time_unit`][fatqat.emulator.Atom2LevelModel.time_unit].'
+  ko: 기준 transmon 모델은 나노초를, 중성 원자 모델은 마이크로초를 사용합니다. 값의 크기로 단위를 추측하지 말고 선택한 모델의 `time_unit`을 확인하세요. [`time_unit`][fatqat.emulator.TransmonModel.time_unit]과 [`time_unit`][fatqat.emulator.Atom2LevelModel.time_unit]을 참고하세요.
+  status: machine
+- id: aa0fda68c27da5fc
+  en: API pages
+  ko: API 페이지
+  status: machine
+- id: c67c1acc10c1ae15
+  en: '[Noise model](noise/model.md)'
+  ko: '[잡음 모델](noise/model.md)'
+  status: machine
+- id: eb7185f556bc31fe
+  en: '[Backend support](noise/backend-support.md)'
+  ko: '[백엔드 지원](noise/backend-support.md)'
+  status: machine
+- id: 1fe1ca1cccb91f37
+  en: '[Depolarizing](noise/depolarizing.md)'
+  ko: '[Depolarizing](noise/depolarizing.md)'
+  status: machine
+- id: fa13cc87bf406f0c
+  en: '[PauliChannel](noise/pauli-channel.md)'
+  ko: '[PauliChannel](noise/pauli-channel.md)'
+  status: machine
+- id: 489dfd1112340932
+  en: '[AmplitudeDamping](noise/amplitude-damping.md)'
+  ko: '[AmplitudeDamping](noise/amplitude-damping.md)'
+  status: machine
+- id: cb50d52d143477c2
+  en: '[TransitionRelaxation](noise/transition-relaxation.md)'
+  ko: '[TransitionRelaxation](noise/transition-relaxation.md)'
+  status: machine
+- id: a7fb3a77a5b247ca
+  en: '[PhaseDamping](noise/phase-damping.md)'
+  ko: '[PhaseDamping](noise/phase-damping.md)'
+  status: machine
+- id: 9a3aeea4942eb055
+  en: '[ThermalRelaxation](noise/thermal-relaxation.md)'
+  ko: '[ThermalRelaxation](noise/thermal-relaxation.md)'
+  status: machine
+- id: c3e7f7163bb87141
+  en: '[Loss](noise/loss.md)'
+  ko: '[Loss](noise/loss.md)'
+  status: machine
+- id: a9bc9cd9f5945fef
+  en: '[ReadoutConfusion](noise/readout-confusion.md)'
+  ko: '[ReadoutConfusion](noise/readout-confusion.md)'
+  status: machine
+- id: d08ff5c91fb4d5a7
+  en: '[Custom noise implementations](noise/custom-implementations.md)'
+  ko: '[사용자 정의 잡음 구현](noise/custom-implementations.md)'
+  status: machine

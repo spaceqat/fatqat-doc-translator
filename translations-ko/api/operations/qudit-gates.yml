@@ -1,0 +1,116 @@
+- id: 18bc8b645c92f49e
+  en: Qudit gates
+  ko: 큐디트 게이트
+  status: machine
+- id: b72a9bf3dad8276b
+  en: These gates are defined for local dimensions `d >= 2`; the table gives any additional dimension rules. [`add`][fatqat.Program.add] records the operation, and the backend checks support when the program runs. Integer `power` values are reduced modulo the relevant target dimension, so negative and oversized values are valid.
+  ko: 이 게이트들은 국소 차원 `d >= 2`에 정의되며 추가 차원 조건은 표에 표시되어 있습니다. [`add`][fatqat.Program.add]는 연산을 기록하고 실행 시 백엔드가 지원 여부를 확인합니다. 정수 `power`는 해당 대상 차원을 법으로 하는 나머지로 줄이므로 음수나 큰 값도 유효합니다.
+  status: machine
+- id: 5c620dad1ce7b81a
+  en: Unary gates accept one scalar target or one [`RegisterView`](../registers.md#fatqat.RegisterView). Two-target gates accept scalars or two compatible views and zip their members.
+  ko: 단항 게이트는 스칼라 대상 하나 또는 [`RegisterView`](../registers.md#fatqat.RegisterView) 하나를 받습니다. 두 대상 게이트는 스칼라들 또는 호환되는 뷰 두 개를 받아 원소를 순서대로 짝짓습니다.
+  status: machine
+- id: 9e08d15edb572c0e
+  en: '**Qudit gates**'
+  ko: '**큐디트 게이트**'
+  status: machine
+- id: 918389d9a98f0804
+  en: '| Value or constructor | Targets and constraints | Basis action |'
+  ko: '| 값 또는 생성자 | 대상과 제약 | 기저에 대한 작용 |'
+  status: machine
+- id: fb73586a7acf39ff
+  en: '| [`Shift`][fatqat.operations.Shift] `(power)` | One scalar or view; any `d >= 2` | `\|k> -> \|(k + power) mod d>`. `Shift(1)` is X for `d=2`. |'
+  ko: '| [`Shift`][fatqat.operations.Shift] `(power)` | 스칼라 또는 뷰 하나; 임의의 `d >= 2` | `\|k> -> \|(k + power) mod d>`. `d=2`에서 `Shift(1)`은 X입니다. |'
+  status: machine
+- id: 9a38808a06abbc77
+  en: '| [`Clock`][fatqat.operations.Clock] `(power)` | One scalar or view; any `d >= 2` | `\|k> -> omega**(k*power)\|k>`, `omega=exp(2*pi*i/d)`. `Clock(1)` is Z for `d=2`. |'
+  ko: '| [`Clock`][fatqat.operations.Clock] `(power)` | 스칼라 또는 뷰 하나; 임의의 `d >= 2` | `\|k> -> omega**(k*power)\|k>`, `omega=exp(2*pi*i/d)`. `d=2`에서 `Clock(1)`은 Z입니다. |'
+  status: machine
+- id: 373a32b7d8e66f74
+  en: '| [`Sum`][fatqat.operations.Sum] | Scalar or view pair with equal dimensions | `\|i,j> -> \|i,(i+j) mod d>`. It is CX for `d=2`. |'
+  ko: '| [`Sum`][fatqat.operations.Sum] | 차원이 같은 스칼라 또는 뷰 쌍 | `\|i,j> -> \|i,(i+j) mod d>`. `d=2`에서 CX입니다. |'
+  status: machine
+- id: 630504439d1193d5
+  en: '| [`SwapLevels`][fatqat.operations.SwapLevels] `(j, k)` | One scalar or view; `0 <= j,k < d` and `j != k` | Exchanges `\|j>` and `\|k>` and fixes every other level. |'
+  ko: '| [`SwapLevels`][fatqat.operations.SwapLevels] `(j, k)` | 스칼라 또는 뷰 하나; `0 <= j,k < d`이고 `j != k` | `\|j>`와 `\|k>`를 교환하고 다른 준위는 그대로 둡니다. |'
+  status: machine
+- id: 590e1d1cda481ac5
+  en: '| [`Fourier`][fatqat.operations.Fourier] | One scalar or view; any `d >= 2` | `\|j> -> sum(exp(2*pi*i*j*k/d)\|k>) / sqrt(d)`. It is H for `d=2`. |'
+  ko: '| [`Fourier`][fatqat.operations.Fourier] | 스칼라 또는 뷰 하나; 임의의 `d >= 2` | `\|j> -> sum(exp(2*pi*i*j*k/d)\|k>) / sqrt(d)`. `d=2`에서 H입니다. |'
+  status: machine
+- id: 9ef4e451a8909d00
+  en: '| [`InverseFourier`][fatqat.operations.InverseFourier] | One scalar or view; any `d >= 2` | Conjugate transpose of `Fourier`; uses the negative exponent. |'
+  ko: '| [`InverseFourier`][fatqat.operations.InverseFourier] | 스칼라 또는 뷰 하나; 임의의 `d >= 2` | `Fourier`의 켤레전치이며 음의 지수를 사용합니다. |'
+  status: machine
+- id: 1e4b22b4ea34b1e5
+  en: '| [`SubspaceRX`][fatqat.operations.SubspaceRX] `(theta, (j, k))` | One scalar or view; two distinct in-range levels | With `c=cos(theta/2)`, `s=sin(theta/2)`: `\|j> -> c\|j>-i*s\|k>` and `\|k> -> -i*s\|j>+c\|k>`. |'
+  ko: '| [`SubspaceRX`][fatqat.operations.SubspaceRX] `(theta, (j, k))` | 스칼라 또는 뷰 하나; 범위 안의 서로 다른 두 준위 | `c=cos(theta/2)`, `s=sin(theta/2)`일 때 `\|j> -> c\|j>-i*s\|k>`, `\|k> -> -i*s\|j>+c\|k>`. |'
+  status: machine
+- id: a2f9e47da0b991f1
+  en: '| [`SubspaceRY`][fatqat.operations.SubspaceRY] `(theta, (j, k))` | One scalar or view; two distinct in-range levels | `\|j> -> c\|j>+s\|k>` and `\|k> -> -s\|j>+c\|k>`. Reversing `(j, k)` reverses the rotation. |'
+  ko: '| [`SubspaceRY`][fatqat.operations.SubspaceRY] `(theta, (j, k))` | 스칼라 또는 뷰 하나; 범위 안의 서로 다른 두 준위 | `\|j> -> c\|j>+s\|k>`, `\|k> -> -s\|j>+c\|k>`. `(j, k)`의 순서를 뒤집으면 회전도 반대가 됩니다. |'
+  status: machine
+- id: e1d79a9aece490cb
+  en: '| [`SubspaceRZ`][fatqat.operations.SubspaceRZ] `(theta, (j, k))` | One scalar or view; two distinct in-range levels | `\|j>` gains `exp(-i*theta/2)` and `\|k>` gains `exp(i*theta/2)`. Reversing the pair reverses the rotation. |'
+  ko: '| [`SubspaceRZ`][fatqat.operations.SubspaceRZ] `(theta, (j, k))` | 스칼라 또는 뷰 하나; 범위 안의 서로 다른 두 준위 | `\|j>`에는 `exp(-i*theta/2)`, `\|k>`에는 `exp(i*theta/2)`가 곱해집니다. 쌍의 순서를 뒤집으면 회전도 반대가 됩니다. |'
+  status: machine
+- id: f74152c4350f99e3
+  en: '| [`CClock`][fatqat.operations.CClock] `(power)` | Scalar or view pair; dimensions may differ | `\|i,j>` gains `omega**(i*j*power)` using the target''s `omega=exp(2*pi*i/d_target)`. It is CZ for two qubits and power 1. |'
+  ko: '| [`CClock`][fatqat.operations.CClock] `(power)` | 스칼라 또는 뷰 쌍; 차원이 달라도 됨 | 대상의 `omega=exp(2*pi*i/d_target)`를 사용해 `\|i,j>`에 `omega**(i*j*power)`를 곱합니다. 두 큐비트에서 power가 1이면 CZ입니다. |'
+  status: machine
+- id: 6e6d70ea8b21d6e7
+  en: Level pairs must contain distinct, non-negative integers. Equality and negativity are checked at construction, and the target dimension is checked when the operation is added. `Sum` requires equal control and target dimensions; the backend rejects a mismatch when the program runs.
+  ko: 준위 쌍은 서로 다른 음이 아닌 정수여야 합니다. 생성 시 같은 값인지와 음수 여부를 확인하고, 연산 추가 시 대상 차원을 확인합니다. `Sum`은 제어와 대상의 차원이 같아야 하며, 다르면 실행 시 백엔드가 거부합니다.
+  status: machine
+- id: eca1b850e1c7e5ca
+  en: The matrices below act on column vectors. For one-qudit gates, rows and columns use the computational-basis order $\lvert 0\rangle,\lvert 1\rangle,\ldots,\lvert d-1\rangle$.
+  ko: 아래 행렬들은 열벡터에 작용합니다. 단일 큐디트 게이트의 행과 열은 계산 기저 순서 $\lvert 0\rangle,\lvert 1\rangle,\ldots,\lvert d-1\rangle$를 사용합니다.
+  status: machine
+- id: 13019995861aae92
+  en: Shift and Clock
+  ko: Shift와 Clock
+  status: machine
+- id: 1ed311facf7a9498
+  en: For `Shift(power=p)` and `Clock(power=p)`, let $\omega_d=\exp(2\pi i/d)$. Their general operators are
+  ko: '`Shift(power=p)`와 `Clock(power=p)`에서 $\omega_d=\exp(2\pi i/d)$라 두면 일반 연산자는 다음과 같습니다:'
+  status: machine
+- id: a21d7df04c33f507
+  en: Sum
+  ko: Sum
+  status: machine
+- id: 3af643fe2c192f61
+  en: '`Sum` takes operands as `(control, target)`. For equal dimension `d`, the control is the local most-significant factor:'
+  ko: '`Sum`은 `(control, target)` 순서로 피연산자를 받습니다. 차원이 같은 `d`일 때 제어가 국소 최상위 인자입니다:'
+  status: machine
+- id: 5792b5f263faeb22
+  en: SwapLevels
+  ko: SwapLevels
+  status: machine
+- id: e8843e48a88c10f2
+  en: For distinct levels $j$ and $k$, the general operator is
+  ko: '서로 다른 준위 $j$와 $k$에 대해 일반 연산자는 다음과 같습니다:'
+  status: machine
+- id: 8d26421d403d39a8
+  en: Fourier transforms
+  ko: Fourier 변환
+  status: machine
+- id: d69fadacc566b502
+  en: With $\omega_d=\exp(2\pi i/d)$, `Fourier` and `InverseFourier` are
+  ko: '$\omega_d=\exp(2\pi i/d)$라 두면 `Fourier`와 `InverseFourier`는 다음과 같습니다:'
+  status: machine
+- id: 473911cdd93b0247
+  en: Subspace rotations
+  ko: 부분공간 회전
+  status: machine
+- id: ab4507b4f3fcb7e4
+  en: Let $c=\cos(\theta/2)$ and $s=\sin(\theta/2)$. For the ordered level pair `subspace=(j, k)`, the general operators are
+  ko: '$c=\cos(\theta/2)$, $s=\sin(\theta/2)$라 두면 순서 있는 준위 쌍 `subspace=(j, k)`에 대한 일반 연산자는 다음과 같습니다:'
+  status: machine
+- id: 7aad66c3b8dd2cff
+  en: CClock
+  ko: CClock
+  status: machine
+- id: 7d2c82abb88c2378
+  en: '`CClock(power=p)` takes operands as `(control, target)`. If their dimensions are $d_c$ and $d_t$, the control is the local most-significant factor, $\omega_t=\exp(2\pi i/d_t)$, and'
+  ko: '`CClock(power=p)`는 `(control, target)` 순서로 피연산자를 받습니다. 차원이 각각 $d_c$, $d_t$이면 제어가 국소 최상위 인자이며 $\omega_t=\exp(2\pi i/d_t)$일 때'
+  status: machine

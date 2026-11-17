@@ -1,0 +1,212 @@
+- id: 4578b1afce590fe6
+  en: Qubit gates
+  ko: 큐비트 게이트
+  status: machine
+- id: c42a34a9d32421d7
+  en: Every gate on this page is defined for dimension-2 targets (qubits). [`add`][fatqat.Program.add] records the operation without checking target dimensions. The backend checks that requirement and any device-specific limits when the program runs.
+  ko: 이 페이지의 모든 게이트는 차원이 2인 대상, 즉 큐비트에 정의됩니다. [`add`][fatqat.Program.add]는 대상 차원을 검사하지 않고 연산을 기록합니다. 프로그램 실행 시 백엔드가 차원 조건과 장치별 제한을 확인합니다.
+  status: machine
+- id: 6f5e9b2a238bef11
+  en: Every unary gate accepts either one scalar target or one [`RegisterView`](../registers.md#fatqat.RegisterView). Every multi-qubit gate accepts either scalar operands or one compatible view per operand and zips the views in order.
+  ko: 모든 단항 게이트는 스칼라 대상 하나 또는 [`RegisterView`](../registers.md#fatqat.RegisterView) 하나를 받습니다. 다중 큐비트 게이트는 스칼라 피연산자들 또는 피연산자마다 호환되는 뷰 하나씩을 받고, 뷰의 원소를 순서대로 짝짓습니다.
+  status: machine
+- id: 6429dc71b525a77e
+  en: Fixed gates
+  ko: 고정 게이트
+  status: machine
+- id: ded2ecb0912285d5
+  en: Fixed gates are ready-to-use values and must not be called. The single-qubit matrices use `|0>, |1>` basis order.
+  ko: 고정 게이트는 바로 사용할 수 있는 값이므로 호출하지 않습니다. 단일 큐비트 행렬은 `|0>, |1>` 기저 순서를 사용합니다.
+  status: machine
+- id: af8f7f7184b49c97
+  en: '**Fixed single-qubit gates**'
+  ko: '**고정 단일 큐비트 게이트**'
+  status: machine
+- id: 4ce012426ae19b46
+  en: '| Value | Basis action |'
+  ko: '| 값 | 기저에 대한 작용 |'
+  status: machine
+- id: 254da98737f33b1b
+  en: '| [`I`][fatqat.operations.I] | Leaves $\|0\rangle$ and $\|1\rangle$ unchanged. |'
+  ko: '| [`I`][fatqat.operations.I] | $\|0\rangle$과 $\|1\rangle$을 그대로 둡니다. |'
+  status: machine
+- id: 99b895100ba7e87a
+  en: '| [`H`][fatqat.operations.H] | Maps $\|0\rangle$ to $(\|0\rangle+\|1\rangle)/\sqrt{2}$ and $\|1\rangle$ to $(\|0\rangle-\|1\rangle)/\sqrt{2}$. |'
+  ko: '| [`H`][fatqat.operations.H] | $\|0\rangle$을 $(\|0\rangle+\|1\rangle)/\sqrt{2}$로, $\|1\rangle$을 $(\|0\rangle-\|1\rangle)/\sqrt{2}$로 보냅니다. |'
+  status: machine
+- id: d68ed51817edce34
+  en: '| [`X`][fatqat.operations.X] | Exchanges $\|0\rangle$ and $\|1\rangle$. |'
+  ko: '| [`X`][fatqat.operations.X] | $\|0\rangle$과 $\|1\rangle$을 교환합니다. |'
+  status: machine
+- id: 873dc47d62a7441f
+  en: '| [`Y`][fatqat.operations.Y] | Maps $\|0\rangle$ to $i\|1\rangle$ and $\|1\rangle$ to $-i\|0\rangle$. |'
+  ko: '| [`Y`][fatqat.operations.Y] | $\|0\rangle$을 $i\|1\rangle$로, $\|1\rangle$을 $-i\|0\rangle$로 보냅니다. |'
+  status: machine
+- id: 12e09223ec1a305f
+  en: '| [`Z`][fatqat.operations.Z] | Maps $\|1\rangle$ to $-\|1\rangle$. |'
+  ko: '| [`Z`][fatqat.operations.Z] | $\|1\rangle$을 $-\|1\rangle$로 보냅니다. |'
+  status: machine
+- id: 848034f1f6be5d2b
+  en: '| [`S`][fatqat.operations.S] | Maps $\|1\rangle$ to $i\|1\rangle$. |'
+  ko: '| [`S`][fatqat.operations.S] | $\|1\rangle$을 $i\|1\rangle$로 보냅니다. |'
+  status: machine
+- id: 5ae4f1e60bb0f911
+  en: '| [`Sdg`][fatqat.operations.Sdg] | Maps $\|1\rangle$ to $-i\|1\rangle$. |'
+  ko: '| [`Sdg`][fatqat.operations.Sdg] | $\|1\rangle$을 $-i\|1\rangle$로 보냅니다. |'
+  status: machine
+- id: 5cc89a5ab388590a
+  en: '| [`SX`][fatqat.operations.SX] | Two applications have the same action as X. |'
+  ko: '| [`SX`][fatqat.operations.SX] | 두 번 적용하면 X와 같습니다. |'
+  status: machine
+- id: 3096793f1b42c9ab
+  en: '| [`T`][fatqat.operations.T] | Maps $\|1\rangle$ to $e^{i\pi/4}\|1\rangle$. |'
+  ko: '| [`T`][fatqat.operations.T] | $\|1\rangle$을 $e^{i\pi/4}\|1\rangle$로 보냅니다. |'
+  status: machine
+- id: 567c4748eb54d919
+  en: '| [`Tdg`][fatqat.operations.Tdg] | Maps $\|1\rangle$ to $e^{-i\pi/4}\|1\rangle$. |'
+  ko: '| [`Tdg`][fatqat.operations.Tdg] | $\|1\rangle$을 $e^{-i\pi/4}\|1\rangle$로 보냅니다. |'
+  status: machine
+- id: a29819d4e6637ad4
+  en: For the multi-qubit values below, targets are ordered exactly as shown.
+  ko: 아래 다중 큐비트 게이트의 대상 순서는 표에 표시된 그대로입니다.
+  status: machine
+- id: ed49cb32eac69cdf
+  en: '**Fixed multi-qubit gates**'
+  ko: '**고정 다중 큐비트 게이트**'
+  status: machine
+- id: eb7b260472eb3742
+  en: '| Value | Target order | Basis action |'
+  ko: '| 값 | 대상 순서 | 기저에 대한 작용 |'
+  status: machine
+- id: 41c9b1a913de05c7
+  en: '| [`CX`][fatqat.operations.CX] | `(control, target)` | Applies X to the target when the control is `\|1>`. |'
+  ko: '| [`CX`][fatqat.operations.CX] | `(control, target)` | 제어가 `\|1>`이면 대상에 X를 적용합니다. |'
+  status: machine
+- id: 1aedaa43b567b36f
+  en: '| [`CY`][fatqat.operations.CY] | `(control, target)` | Applies Y to the target when the control is `\|1>`. |'
+  ko: '| [`CY`][fatqat.operations.CY] | `(control, target)` | 제어가 `\|1>`이면 대상에 Y를 적용합니다. |'
+  status: machine
+- id: 10e2634210013478
+  en: '| [`CZ`][fatqat.operations.CZ] | `(control, target)` | Negates `\|11>`. |'
+  ko: '| [`CZ`][fatqat.operations.CZ] | `(control, target)` | `\|11>`의 부호를 바꿉니다. |'
+  status: machine
+- id: 94e2cdc02337b62b
+  en: '| [`CS`][fatqat.operations.CS] | `(control, target)` | Applies S to the target when the control is `\|1>`. |'
+  ko: '| [`CS`][fatqat.operations.CS] | `(control, target)` | 제어가 `\|1>`이면 대상에 S를 적용합니다. |'
+  status: machine
+- id: d81e14bdf000ca22
+  en: '| [`Swap`][fatqat.operations.Swap] | `(target0, target1)` | Exchanges the two target states. |'
+  ko: '| [`Swap`][fatqat.operations.Swap] | `(target0, target1)` | 두 대상의 상태를 교환합니다. |'
+  status: machine
+- id: b3082ec7e83f4164
+  en: '| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | Maps `\|01>` to `i\|10>` and `\|10>` to `i\|01>`. |'
+  ko: '| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | `\|01>`을 `i\|10>`으로, `\|10>`을 `i\|01>`로 보냅니다. |'
+  status: machine
+- id: 6a34e74aeaabdf5b
+  en: '| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli: applies X when both controls are `\|1>`. |'
+  ko: '| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli: 두 제어가 모두 `\|1>`이면 X를 적용합니다. |'
+  status: machine
+- id: bd1628539218f6c8
+  en: '| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin: exchanges the two targets when the control is `\|1>`. |'
+  ko: '| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin: 제어가 `\|1>`이면 두 대상을 교환합니다. |'
+  status: machine
+- id: 4710714cf40a10fb
+  en: Matrix definitions
+  ko: 행렬 정의
+  status: machine
+- id: d751353ad499fc58
+  en: 'These matrices act on column state vectors. For the single-qubit gates, rows and columns use basis order $(|0\rangle,|1\rangle)$:'
+  ko: '이 행렬들은 열 상태 벡터에 작용합니다. 단일 큐비트 게이트의 행과 열은 $(|0\rangle,|1\rangle)$ 기저 순서를 사용합니다:'
+  status: machine
+- id: 547205a94a4dad88
+  en: For each two-qubit matrix, the targets are $(q_0,q_1)$ and rows and columns use basis order $(|00\rangle,|01\rangle,|10\rangle,|11\rangle)$. The first operand $q_0$ is the local most-significant bit. It is the control for `CX`, `CY`, `CZ`, and `CS`; $q_1$ is the target.
+  ko: 각 2큐비트 행렬의 대상은 $(q_0,q_1)$이며, 행과 열의 기저 순서는 $(|00\rangle,|01\rangle,|10\rangle,|11\rangle)$입니다. 첫 피연산자 $q_0$가 국소 최상위 비트입니다. `CX`, `CY`, `CZ`, `CS`에서는 이 피연산자가 제어이고 $q_1$이 대상입니다.
+  status: machine
+- id: c90cb958977a087a
+  en: For `Swap` and `iSwap`, the same basis order applies with operand order `(target0, target1)`.
+  ko: '`Swap`과 `iSwap`도 같은 기저 순서를 사용하며 피연산자 순서는 `(target0, target1)`입니다.'
+  status: machine
+- id: d8ee12f7b4cf55fc
+  en: 'For `CCX`, operand order is `(control0, control1, target)`. Rows and columns use basis order $(|000\rangle,|001\rangle,|010\rangle, |011\rangle,|100\rangle,|101\rangle,|110\rangle,|111\rangle)$, with the first operand as the most-significant bit:'
+  ko: '`CCX`의 피연산자 순서는 `(control0, control1, target)`입니다. 행과 열은 $(|000\rangle,|001\rangle,|010\rangle, |011\rangle,|100\rangle,|101\rangle,|110\rangle,|111\rangle)$ 기저 순서를 사용하며 첫 피연산자가 최상위 비트입니다:'
+  status: machine
+- id: 74770dc9bb383fdd
+  en: 'For `CSwap`, operand order is `(control, target0, target1)`. Rows and columns use the same three-bit basis order, again with the first operand as the most-significant bit:'
+  ko: '`CSwap`의 피연산자 순서는 `(control, target0, target1)`입니다. 행과 열은 같은 3비트 기저 순서를 사용하며 여기서도 첫 피연산자가 최상위 비트입니다:'
+  status: machine
+- id: b8afbdbf8e7ca0b9
+  en: Parameterized gates
+  ko: 매개변수화된 게이트
+  status: machine
+- id: 1e0b085dd37e7a7a
+  en: All angles are in radians and are not normalized. Every angle field accepts a [`Parameter`][fatqat.Parameter] for later binding through [`fatqat.Program.assign_parameters`][fatqat.Program.assign_parameters].
+  ko: 모든 각도는 라디안 단위이며 정규화하지 않습니다. 각도 필드에는 [`Parameter`][fatqat.Parameter]를 넣고 나중에 [`fatqat.Program.assign_parameters`][fatqat.Program.assign_parameters]로 바인딩할 수 있습니다.
+  status: machine
+- id: dc745762f08d06b3
+  en: '**Parameterized qubit gates**'
+  ko: '**매개변수화된 큐비트 게이트**'
+  status: machine
+- id: adb2d3d8f0948393
+  en: '| Constructor | Targets | Definition |'
+  ko: '| 생성자 | 대상 | 정의 |'
+  status: machine
+- id: 54303deff4296d6b
+  en: '| [`RX`][fatqat.operations.RX] `(theta)` | One scalar or one view | Rotation about the X axis by `theta`. |'
+  ko: '| [`RX`][fatqat.operations.RX] `(theta)` | 스칼라 또는 뷰 하나 | X축 주위로 `theta`만큼 회전합니다. |'
+  status: machine
+- id: 4ac47dee4dff23f4
+  en: '| [`RY`][fatqat.operations.RY] `(theta)` | One scalar or one view | Rotation about the Y axis by `theta`. |'
+  ko: '| [`RY`][fatqat.operations.RY] `(theta)` | 스칼라 또는 뷰 하나 | Y축 주위로 `theta`만큼 회전합니다. |'
+  status: machine
+- id: 5d7d3269b29c90a6
+  en: '| [`RZ`][fatqat.operations.RZ] `(theta)` | One scalar or one view | Rotation about the Z axis by `theta`. |'
+  ko: '| [`RZ`][fatqat.operations.RZ] `(theta)` | 스칼라 또는 뷰 하나 | Z축 주위로 `theta`만큼 회전합니다. |'
+  status: machine
+- id: f5b96991bd7572f0
+  en: '| [`Phase`][fatqat.operations.Phase] `(theta)` | One scalar or one view | Differs from RZ only by global phase. |'
+  ko: '| [`Phase`][fatqat.operations.Phase] `(theta)` | 스칼라 또는 뷰 하나 | RZ와 전역 위상만 다릅니다. |'
+  status: machine
+- id: 6178d02da842e84d
+  en: '| [`U`][fatqat.operations.U] `(theta, phi, lam)` | One scalar or one view | General single-qubit gate using Qiskit''s parameter convention. |'
+  ko: '| [`U`][fatqat.operations.U] `(theta, phi, lam)` | 스칼라 또는 뷰 하나 | Qiskit의 매개변수 규약을 사용하는 일반 단일 큐비트 게이트. |'
+  status: machine
+- id: 86c388132ffcc76e
+  en: '| [`U1`][fatqat.operations.U1] `(lam)` | One scalar or one view | Equivalent to `Phase(lam)`. |'
+  ko: '| [`U1`][fatqat.operations.U1] `(lam)` | 스칼라 또는 뷰 하나 | `Phase(lam)`과 같습니다. |'
+  status: machine
+- id: 42c09435788ef977
+  en: '| [`U2`][fatqat.operations.U2] `(phi, lam)` | One scalar or one view | Equivalent to `U(pi/2, phi, lam)`. |'
+  ko: '| [`U2`][fatqat.operations.U2] `(phi, lam)` | 스칼라 또는 뷰 하나 | `U(pi/2, phi, lam)`과 같습니다. |'
+  status: machine
+- id: 59c137d7129c559d
+  en: '| [`U3`][fatqat.operations.U3] `(theta, phi, lam)` | One scalar or one view | Same matrix as `U(theta, phi, lam)`; retained for Qiskit compatibility. |'
+  ko: '| [`U3`][fatqat.operations.U3] `(theta, phi, lam)` | 스칼라 또는 뷰 하나 | `U(theta, phi, lam)`과 같은 행렬이며 Qiskit 호환성을 위해 유지됩니다. |'
+  status: machine
+- id: fff46ca18fb46b1c
+  en: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` scalars or compatible views | Multiplies $\|11\rangle$ by $e^{i\theta}$. |'
+  ko: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` 스칼라 또는 호환되는 뷰 | $\|11\rangle$에 $e^{i\theta}$를 곱합니다. |'
+  status: machine
+- id: 75c613a8bef7c752
+  en: 'These matrices act on column state vectors. The single-qubit matrices below use row and column basis order $(|0\rangle,|1\rangle)$. Let $c=\cos(\theta/2)$ and $s=\sin(\theta/2)$:'
+  ko: '이 행렬들은 열 상태 벡터에 작용합니다. 아래 단일 큐비트 행렬의 행과 열은 $(|0\rangle,|1\rangle)$ 기저 순서를 사용합니다. $c=\cos(\theta/2)$, $s=\sin(\theta/2)$라 두면:'
+  status: machine
+- id: 9aa321dc4dd54dd7
+  en: 'For `U`, `U1`, `U2`, and `U3`, operands still use the single-qubit basis above and the parameter order is the constructor order shown in the table:'
+  ko: '`U`, `U1`, `U2`, `U3`도 위의 단일 큐비트 기저를 사용하며, 매개변수 순서는 표에 나온 생성자 순서와 같습니다:'
+  status: machine
+- id: ca9976b9062b90cf
+  en: 'For `CPhase`, operand order is `(control, target)`. Rows and columns use basis order $(|00\rangle,|01\rangle,|10\rangle,|11\rangle)$, with the control as the local most-significant bit:'
+  ko: '`CPhase`의 피연산자 순서는 `(control, target)`입니다. 행과 열의 기저 순서는 $(|00\rangle,|01\rangle,|10\rangle,|11\rangle)$이며 제어가 국소 최상위 비트입니다:'
+  status: machine
+- id: 88d2bdc5edf81ec3
+  en: Common operation properties are documented on the [Operations overview](../operations.md).
+  ko: 공통 연산 속성은 [Operations 개요](../operations.md)에 설명되어 있습니다.
+  status: machine
+- id: 1ff587133108c201
+  en: Fixed values
+  ko: 고정 값
+  status: machine
+- id: 722950457f60ae8c
+  en: Parameterized classes
+  ko: 매개변수화된 클래스
+  status: machine

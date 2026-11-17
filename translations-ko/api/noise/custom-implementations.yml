@@ -1,0 +1,60 @@
+- id: 77bf7237305df63a
+  en: Custom noise implementations
+  ko: 사용자 정의 잡음 구현
+  status: machine
+- id: a203ab4324b74c2c
+  en: This page is for simulator extension authors. Most applications need only FATQAT's built-in noise types. Use this API to define a new [`Channel`][fatqat.noise.Channel] or change how a matrix simulator applies an existing type. Pulse-emulator continuous-noise realizations are family-owned and are not a public extension surface.
+  ko: 이 페이지는 시뮬레이터 확장 작성자를 위한 것입니다. 대부분의 애플리케이션에는 FATQAT의 내장 잡음 타입이면 충분합니다. 새 [`Channel`][fatqat.noise.Channel]을 정의하거나 행렬 시뮬레이터가 기존 타입을 적용하는 방식을 바꾸려면 이 API를 사용하세요. 펄스 에뮬레이터의 연속 잡음 구현은 각 계열이 관리하며 공개 확장 인터페이스가 아닙니다.
+  status: machine
+- id: d7c2eb84ee360300
+  en: Define a custom noise type
+  ko: 사용자 정의 잡음 타입 정의하기
+  status: machine
+- id: a4e6471416ed6d4a
+  en: A custom noise type subclasses [`Channel`][fatqat.noise.Channel] and stores its physical parameters. Set `Channel.num_subsystems` to the fixed number of targets, leave it as `None` to use the matched operation's width, or expose a property when the instance determines the width. Treat instances as immutable after adding them to a [`NoiseModel`][fatqat.NoiseModel].
+  ko: 사용자 정의 잡음 타입은 [`Channel`][fatqat.noise.Channel]의 하위 클래스로 만들고 물리 매개변수를 저장합니다. `Channel.num_subsystems`에 고정 대상 수를 지정하거나, 매칭된 연산의 너비를 사용하도록 `None`으로 두세요. 인스턴스가 너비를 결정한다면 속성으로 제공할 수도 있습니다. [`NoiseModel`][fatqat.NoiseModel]에 추가한 뒤에는 인스턴스를 불변으로 취급하세요.
+  status: machine
+- id: 84a48b6d4f821e66
+  en: Register each concrete channel class; a base-class registration does not cover subclasses.
+  ko: 각 구체적인 채널 클래스를 등록하세요. 기본 클래스의 등록은 하위 클래스에 적용되지 않습니다.
+  status: machine
+- id: e4305affe773ab71
+  en: Register and reuse rules
+  ko: 규칙 등록하고 재사용하기
+  status: machine
+- id: e7adb32d9c350281
+  en: Use the same [implementation map](../implementation.md) for gates, custom operations, and channels. `add(ChannelType, rule)` registers a uniform rule; `device_operands=` restricts it to an exact ordered device tuple. These are the channel's selected targets, which can be a subset of the matching gate's targets.
+  ko: 게이트, 사용자 정의 연산, 채널에 같은 [구현 맵](../implementation.md)을 사용합니다. `add(ChannelType, rule)`은 공통 규칙을 등록하고, `device_operands=`는 정확히 일치하는 순서의 장치 튜플로 범위를 제한합니다. 이는 채널에 선택된 대상이며, 매칭되는 게이트 대상의 일부일 수 있습니다.
+  status: machine
+- id: 1aa665077b125267
+  en: '`implementation_for` retrieves a rule, `supported_channels` lists channel types, and `copy` makes an independently editable map.'
+  ko: '`implementation_for`는 규칙을 가져오고, `supported_channels`는 채널 타입 목록을 제공하며, `copy`는 독립적으로 편집할 수 있는 맵을 만듭니다.'
+  status: machine
+- id: 2164f7b527ede062
+  en: Simulator rules
+  ko: 시뮬레이터 규칙
+  status: machine
+- id: 44a4b484920f1746
+  en: 'A channel rule receives the channel and an ordered tuple of program [`RegisterRef`][fatqat.RegisterRef] targets. It returns Kraus operators acting on their combined space for one finite channel application:'
+  ko: 채널 규칙은 채널과 순서가 있는 프로그램 [`RegisterRef`][fatqat.RegisterRef] 대상 튜플을 받습니다. 유한 채널 한 번의 적용을 위해, 대상의 결합 공간에 작용하는 Kraus 연산자를 반환합니다.
+  status: machine
+- id: f7ff3c774f44593c
+  en: If the ordered targets have dimensions `d_0, d_1, ...`, their combined dimension is `D = d_0 * d_1 * ...`. The result must be nonempty, and every element must be a NumPy array with shape `(D, D)`. FATQAT checks only those structural requirements. It does not verify complete positivity, trace preservation, Hermiticity preservation, or any parameter convention for a custom rule.
+  ko: 순서가 있는 대상의 차원이 `d_0, d_1, ...`이면 결합 차원은 `D = d_0 * d_1 * ...`입니다. 결과는 비어 있으면 안 되며, 모든 원소는 형태가 `(D, D)`인 NumPy 배열이어야 합니다. FATQAT은 이 구조적 조건만 검사합니다. 사용자 정의 규칙의 완전 양성성, 트레이스 보존, 에르미트성 보존, 매개변수 규약은 검증하지 않습니다.
+  status: machine
+- id: b0426ebe47776df8
+  en: Start with [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] when you want to keep FATQAT's built-in simulator rules. See [Simulators](backend-support.md#noise-simulator-support) for backend limits.
+  ko: FATQAT의 내장 시뮬레이터 규칙을 유지하려면 [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map]에서 시작하세요. 백엔드 제약은 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.
+  status: machine
+- id: 68e86d76920db277
+  en: Minimal example
+  ko: 최소 예제
+  status: machine
+- id: e432d162ee5b8226
+  en: 'This custom qubit channel and rule add bit-flip noise while retaining all built-in gate and channel implementations:'
+  ko: 다음 사용자 정의 큐비트 채널과 규칙은 모든 내장 게이트·채널 구현을 유지하면서 비트 플립 잡음을 추가합니다.
+  status: machine
+- id: 77839e213e980a1c
+  en: Simulator types
+  ko: 시뮬레이터 타입
+  status: machine

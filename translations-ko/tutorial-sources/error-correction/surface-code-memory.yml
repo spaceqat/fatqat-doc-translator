@@ -1,0 +1,228 @@
+- id: 7bdca6e7fee98fd6
+  en: Run a surface-code memory-Z experiment
+  ko: 표면 부호 memory-Z 실험 실행하기
+  status: machine
+- id: 70373c70db071b72
+  en: Build a noisy surface-code memory-Z experiment with SCQubitSimulator, decode repeated stabilizer measurements, and fit the logical error rate per cycle.
+  ko: SCQubitSimulator로 잡음이 있는 표면 부호 memory-Z 실험을 만들고, 반복 안정자 측정을 디코딩해 주기당 논리 오류율을 적합합니다.
+  status: machine
+- id: 5828b43b350ca6ba
+  en: Seventeen-qubit surface-code patch with nine data qubits, four X checks, four Z checks, and the logical Z support
+  ko: 데이터 큐비트 9개, X 검사 4개, Z 검사 4개와 논리 Z 지지 집합을 표시한 17큐비트 표면 부호 패치
+  status: machine
+- id: ca52a9286b9baa65
+  en: Z-check detection-event frequencies during eighteen noisy QEC cycles and the final data readout
+  ko: 잡음이 있는 QEC 18주기와 최종 데이터 판독에서의 Z 검사 검출 사건 빈도
+  status: machine
+- id: f4db69e77205249f
+  en: Decoded logical error versus QEC cycles, with 128 shots per point, symmetric one-standard-error bars, and a fitted logical error rate per cycle
+  ko: 각 점당 128샷으로 얻은 QEC 주기 수별 디코딩 후 논리 오류입니다. 대칭적인 1표준오차 막대와 적합한 주기당 논리 오류율을 함께 표시합니다.
+  status: machine
+- id: 57e89265ee01f78e
+  en: Written by Zhi ZENG, The Chinese University of Hong Kong.
+  ko: '작성: Zhi ZENG, The Chinese University of Hong Kong.'
+  status: machine
+- id: 142076b94e9ce3f6
+  en: A surface code uses data qubits to store information and ancilla qubits to detect errors through stabilizer measurements. In this tutorial, we use FatQat to study a distance-three surface-code memory-Z experiment with nine data qubits and eight ancilla qubits.
+  ko: 표면 부호는 데이터 큐비트에 정보를 저장하고 보조 큐비트의 안정자 측정으로 오류를 검출합니다. 이 튜토리얼에서는 FatQat으로 데이터 큐비트 9개와 보조 큐비트 8개를 사용하는 거리 3 표면 부호 memory-Z 실험을 살펴봅니다.
+  status: machine
+- id: aa2e528da5e398e5
+  en: We will show how repeated stabilizer measurements provide information for decoding the final logical Z readout. You will learn how to construct a noisy syndrome-extraction circuit, interpret detection events, and apply a classical decoder. Finally, we will examine how the decoded logical error rate changes with the number of QEC cycles and fit an effective error rate per cycle.
+  ko: 반복 안정자 측정이 최종 논리 Z 판독을 디코딩하는 데 어떤 정보를 주는지 알아봅니다. 잡음이 있는 신드롬 추출 회로를 구성하고 검출 사건을 해석한 뒤 고전 디코더를 적용합니다. 마지막으로 QEC 주기 수에 따라 디코딩 후 논리 오류율이 어떻게 바뀌는지 살펴보고 유효 주기당 오류율을 적합합니다.
+  status: machine
+- id: ee7eb41e9c4a3ed2
+  en: 1. Specify the code and initial state
+  ko: 1. 부호와 초기 상태 지정하기
+  status: machine
+- id: 39a87391405846da
+  en: Data qubits 0 through 8 form a row-major $3\times3$ square. Each ancilla qubit measures the product of X or Z on its neighbouring data qubits. $H_X$ and $H_Z$ record those stabilizers as binary matrices and the commutation relation requires $H_X H_Z^T=0\pmod2$. The chosen logical operators are $Z_L=Z_0Z_3Z_6$ and $X_L=X_0X_1X_2$.
+  ko: 데이터 큐비트 0~8은 행 우선 순서의 $3\times3$ 정사각형을 이룹니다. 각 보조 큐비트는 이웃 데이터 큐비트들의 X 또는 Z 곱을 측정합니다. $H_X$와 $H_Z$는 안정자를 이진 행렬로 기록하며, 교환 관계는 $H_X H_Z^T=0\pmod2$를 요구합니다. 논리 연산자는 $Z_L=Z_0Z_3Z_6$, $X_L=X_0X_1X_2$로 선택합니다.
+  status: machine
+- id: 4f70050f8a4088ce
+  en: '`POSITIONS` assigns dimensionless coordinates to this code diagram. These coordinates are used to draw the patch and generate the four ordered CNOT layers in `cx_layers()` below.'
+  ko: '`POSITIONS`는 부호 도식의 무차원 좌표를 지정합니다. 이 좌표로 패치를 그리고 아래 `cx_layers()`에서 순서가 정해진 네 CNOT 층을 생성합니다.'
+  status: machine
+- id: b41aaa548423e869
+  en: The simulator starts every shot with all 17 qubits in the computational zero state. The data therefore start in $|0\rangle^{\otimes9}$ and all ancillas in $|0\rangle$. The initial Z-check parities and logical Z parity are zero. This product state is not the fully encoded logical state $|0_L\rangle$, since it is not an eigenstate of all X stabilizers. X stabilizers commute with the Z stabilizers and $Z_L$, so they preserve the initial logical Z value. This experiment tracks that value without requiring all X-check signs to be $+1$.
+  ko: 시뮬레이터는 매 샷을 17개 큐비트 모두 계산 기저의 0 상태에서 시작합니다. 데이터는 $|0\rangle^{\otimes9}$, 모든 보조 큐비트는 $|0\rangle$입니다. 초기 Z 검사와 논리 Z 패리티 비트는 0입니다. 이 곱 상태는 모든 X 안정자의 고유상태가 아니므로 완전히 인코딩된 논리 상태 $|0_L\rangle$는 아닙니다. X 안정자는 Z 안정자 및 $Z_L$과 교환하므로 초기 논리 Z 값을 보존합니다. 이 실험은 모든 X 검사 부호가 $+1$일 것을 요구하지 않고 그 값을 추적합니다.
+  status: machine
+- id: 9e57497bf32e1814
+  en: The following small exhaustive check verifies that each check matrix has rank four and that a Pauli error with no syndrome but a flipped logical observable has minimum weight three.
+  ko: 아래의 작은 전수 검사는 각 검사 행렬의 계수(rank)가 4이고, 신드롬 없이 논리 관측량을 뒤집는 Pauli 오류의 최소 가중치가 3임을 검증합니다.
+  status: machine
+- id: 9da499a4386acaf8
+  en: 2. Construct the backend and noise model
+  ko: 2. 백엔드와 잡음 모델 구성하기
+  status: machine
+- id: 6f6359ed8e96fec1
+  en: We use illustrative noise parameters to model gate errors, relaxation, dephasing, and readout errors. All qubits share the same coherence times and readout probabilities, and gates of each type share the same fidelity. We set $T_1=40\,\mu\mathrm{s}$ and $T_2=10\,\mu\mathrm{s}$.
+  ko: 예시 잡음 매개변수로 게이트 오류, 이완, 위상 소실, 판독 오류를 모델링합니다. 모든 큐비트는 같은 결맞음 시간과 판독 확률을 사용하고, 같은 종류의 게이트는 같은 충실도를 사용합니다. $T_1=40\,\mu\mathrm{s}$, $T_2=10\,\mu\mathrm{s}$로 설정합니다.
+  status: machine
+- id: 8bf44322e6cce6a6
+  en: Here we use a $d$-dimensional depolarizing channel
+  ko: 여기서는 $d$차원 탈분극 채널을 사용합니다.
+  status: machine
+- id: 2bd714537af12e95
+  en: given gate fidelity $F_{\rm avg}$,
+  ko: 게이트 충실도 $F_{\rm avg}$가 주어지면
+  status: machine
+- id: da1717c23bcb0148
+  en: Each X or SX receives one single-qubit channel, and each CZ receives one joint two-qubit channel. RZ is virtual and noiseless. During each gate layer, idle qubits undergo amplitude damping and pure dephasing for the duration of that layer, which is 20 ns for a single-qubit gate layer and 40 ns for a CZ layer. These idle intervals are represented by identity operations with the corresponding noise channels. All nine data qubits also experience 600 ns of idle decoherence during each ancilla measurement.
+  ko: 각 X와 SX에는 단일 큐비트 채널 하나를, 각 CZ에는 공동 2큐비트 채널 하나를 적용합니다. RZ는 가상 게이트이며 잡음이 없습니다. 게이트 층마다 유휴 큐비트는 그 층의 지속 시간 동안 진폭 감쇠와 순수 위상 소실을 겪습니다. 단일 큐비트 게이트 층은 20 ns, CZ 층은 40 ns입니다. 유휴 구간은 해당 잡음 채널을 붙인 항등 연산으로 표현합니다. 또한 보조 큐비트를 측정하는 동안 아홉 데이터 큐비트 모두 600 ns의 유휴 결맞음 상실을 겪습니다.
+  status: machine
+- id: 67289f91c8525679
+  en: Idle decoherence is modeled as Markovian amplitude damping and pure dephasing, with rates derived from $T_1$ and $T_2$. We assume a 600 ns ancilla readout time. A true outcome of 0 is reported as 1 with probability $1-F_{00}$, while a true outcome of 1 is reported as 0 with probability $1-F_{11}$. Reset prepares every ancilla in $|0\rangle$ with zero duration and no error, independently of its reported measurement bit. The measurement window adds decoherence only to the data qubits. Leakage, crosstalk, and dynamical decoupling are not included. Initialization is ideal, so no additional state-preparation error is applied to the default all-zero state.
+  ko: 유휴 결맞음 상실은 $T_1$, $T_2$에서 구한 비율을 갖는 마르코프 진폭 감쇠와 순수 위상 소실로 모델링합니다. 보조 판독 시간은 600 ns로 가정합니다. 실제 결과 0은 확률 $1-F_{00}$로 1로 보고되고, 실제 결과 1은 확률 $1-F_{11}$로 0으로 보고됩니다. 리셋은 보고된 비트와 무관하게 모든 보조 큐비트를 오류와 소요 시간 없이 $|0\rangle$로 준비합니다. 측정 구간에는 데이터 큐비트에만 결맞음 상실이 추가됩니다. 누설, 누화, 동적 디커플링은 포함하지 않습니다. 초기화는 이상적이므로 기본 전부 0 상태에 별도 준비 오류를 넣지 않습니다.
+  status: machine
+- id: a44a386a636ab6af
+  en: 3. Build the syndrome extraction circuit
+  ko: 3. 신드롬 추출 회로 만들기
+  status: machine
+- id: 17506ac887b88700
+  en: Z-type stabilizers are measured using CNOT gates with the data qubits as controls and the ancilla as the target. For X-type stabilizers, the ancilla acts as the control and the data qubits as targets. A Hadamard gate is applied to each X-check ancilla before and after its CNOT sequence. All ancillas are then measured in the Z basis.
+  ko: Z형 안정자는 데이터를 제어, 보조 큐비트를 타깃으로 하는 CNOT으로 측정합니다. X형에서는 보조 큐비트가 제어이고 데이터가 타깃입니다. 각 X 검사 보조 큐비트의 CNOT 순서 앞뒤에 Hadamard를 적용한 뒤 모든 보조 큐비트를 Z 기저로 측정합니다.
+  status: machine
+- id: 161ea463465951c7
+  en: The CNOT gates are scheduled in four layers. Each Z-check ancilla interacts with its neighbouring data qubits in the order northwest, northeast, southwest, southeast. Each X-check ancilla uses the order northwest, southwest, northeast, southeast. These directions refer to the positions of data qubits relative to the ancilla in the patch diagram. Missing neighbours at the boundaries are skipped. Each layer contains six CNOT gates acting on disjoint qubit pairs. The ordering controls how ancilla faults propagate into correlated data errors. Any alternative schedule should be checked for correct stabilizer extraction and hook-error propagation. See [Tomita and Svore](https://arxiv.org/abs/1404.3747).
+  ko: CNOT은 네 층으로 배치합니다. Z 검사 보조 큐비트는 북서, 북동, 남서, 남동 순서로 이웃 데이터와 상호작용합니다. X 검사는 북서, 남서, 북동, 남동 순서입니다. 방향은 패치 도식에서 보조 큐비트 기준 데이터 위치를 뜻하며 경계에 없는 이웃은 건너뜁니다. 각 층은 겹치지 않는 쌍에 작용하는 CNOT 여섯 개를 포함합니다. 이 순서는 보조 큐비트 오류가 상관된 데이터 오류로 퍼지는 방식을 정합니다. 다른 스케줄을 쓰려면 안정자 추출과 훅 오류 전파가 올바른지 검증해야 합니다. [Tomita와 Svore](https://arxiv.org/abs/1404.3747)를 참고하세요.
+  status: machine
+- id: 66cf48e006d868ec
+  en: Each QEC cycle measures all eight ancillas in parallel over a 600 ns window, then resets them to $|0\rangle$. The last cycle includes the same measurement window and reset before the final Z-basis data readout.
+  ko: 각 QEC 주기는 600 ns 동안 여덟 보조 큐비트를 병렬 측정한 뒤 $|0\rangle$로 리셋합니다. 마지막 주기도 같은 측정 구간과 리셋을 수행하고, 그다음 데이터를 Z 기저로 최종 판독합니다.
+  status: machine
+- id: 12debd0647840034
+  en: 4. Construct detection events
+  ko: 4. 검출 사건 구성하기
+  status: machine
+- id: 2029d86b62f7e100
+  en: With every ancilla initialized or reset to $|0\rangle$ before extraction, an ideal measurement directly returns the stabilizer bit $s_t$. A reported bit $m_t=s_t\oplus e_t$ may contain a classical readout error. For the R cycles, indexed $t=0,\ldots,R-1$, define
+  ko: 추출 전에 모든 보조 큐비트를 $|0\rangle$로 초기화하거나 리셋하므로 이상적 측정은 안정자 비트 $s_t$를 바로 반환합니다. 보고된 비트 $m_t=s_t\oplus e_t$에는 고전적 판독 오류가 있을 수 있습니다. $t=0,\ldots,R-1$로 표시한 R주기에 대해 다음을 정의합니다.
+  status: machine
+- id: 33f4b760b91a38f4
+  en: The initial data have all-positive Z-check signs, so their reference bits are zero. A single classical ancilla-readout flip produces events at two adjacent times, t and t+1. For the last ancilla readout, the second event lies on the final data boundary.
+  ko: 초기 데이터의 Z 검사 부호는 모두 양수이므로 기준 비트는 0입니다. 보조 판독의 고전적 비트 반전 하나는 인접 시점 t와 t+1에 두 사건을 만듭니다. 마지막 보조 판독의 두 번째 사건은 최종 데이터 경계에 나타납니다.
+  status: machine
+- id: 21e263021939989b
+  en: The final reported data bits $b$ provide four additional Z-check parities, $s_{\mathrm{data}}=H_Zb$. Close the detector history with
+  ko: 최종 보고 데이터 비트 $b$에서 네 개의 추가 Z 검사 패리티 $s_{\mathrm{data}}=H_Zb$를 얻습니다. 검출 이력은 다음으로 닫습니다.
+  status: machine
+- id: 281ea73c39b7e3df
+  en: The resulting Z-detector array has shape `(R + 1, 4)`. For R=0, it consists only of $H_Zb$. These checks come from the actual noisy data readout. A final Z-basis readout does not supply terminal X-check values. Data errors during the last 600 ns measurement window can therefore appear on this terminal boundary even when the last ancilla outcomes were correct.
+  ko: Z 검출기 배열의 형상은 `(R + 1, 4)`입니다. R=0이면 $H_Zb$만 포함합니다. 이 검사들은 실제 잡음이 있는 데이터 판독에서 얻습니다. 최종 Z 기저 판독으로는 마지막 X 검사값을 얻을 수 없습니다. 따라서 마지막 600 ns 측정 구간의 데이터 오류는 마지막 보조 결과가 옳더라도 이 최종 경계에 나타날 수 있습니다.
+  status: machine
+- id: dc557f36083faaa1
+  en: 5. Predict the logical correction from the syndrome
+  ko: 5. 신드롬에서 논리 정정 예측하기
+  status: machine
+- id: 3d0363350d7a3238
+  en: An X error on a data qubit reverses the sign of each Z stabilizer acting on that qubit. The decoder uses the resulting detection events to infer a Pauli-X recovery. If the recovery anticommutes with the chosen $Z_L$, the final logical readout must be flipped. Both stabilizer types are measured in the circuit, but this decoder uses only the Z-check history.
+  ko: 데이터 큐비트의 X 오류는 그 큐비트에 작용하는 각 Z 안정자의 부호를 뒤집습니다. 디코더는 검출 사건으로 Pauli-X 복구를 추론합니다. 복구가 선택한 $Z_L$과 반교환하면 최종 논리 판독을 뒤집어야 합니다. 회로는 두 안정자 종류를 모두 측정하지만 이 디코더는 Z 검사 이력만 사용합니다.
+  status: machine
+- id: b11f4ffe7fcab6e7
+  en: We approximate the noise by independent data X errors and ancilla readout errors. In the corresponding spacetime graph, a data error connects the affected Z checks within one time layer. An error detected by only one check connects that check to a spatial code boundary. An ancilla readout error changes one reported result and produces detection events at two successive times on the same check.
+  ko: 잡음을 독립적인 데이터 X 오류와 보조 판독 오류로 근사합니다. 대응하는 시공간 그래프에서 데이터 오류는 한 시간 층 안의 영향을 받은 Z 검사들을 연결합니다. 하나의 검사만 검출하는 오류는 그 검사를 공간적 부호 경계에 연결합니다. 보조 판독 오류는 보고값 하나를 바꾸고 같은 검사의 연속된 두 시점에 사건을 만듭니다.
+  status: machine
+- id: 1350481784637be4
+  en: The model has R+1 intervals for data errors, from before the first syndrome extraction to after the last. Data decoherence during each 600 ns ancilla measurement is assigned to the interval following that extraction. In the final interval, an X error before data measurement and a flipped data readout bit have the same effect on both the syndrome and logical readout. The two mechanisms share an edge in the decoding graph. The final data parities close the syndrome history at the last time boundary.
+  ko: 모델에는 첫 신드롬 추출 전부터 마지막 추출 뒤까지 데이터 오류 구간이 R+1개 있습니다. 각 600 ns 보조 측정 동안의 데이터 결맞음 상실은 해당 추출 다음 구간에 배정합니다. 마지막 구간에서는 데이터 측정 전 X 오류와 데이터 판독 비트 반전이 신드롬 및 논리 판독에 같은 영향을 주므로 디코딩 그래프의 같은 간선을 공유합니다. 최종 데이터 패리티가 마지막 시간 경계에서 신드롬 이력을 닫습니다.
+  status: machine
+- id: 65bd0374e363ee6a
+  en: The decoder selects a minimum-weight error history consistent with the observed detection events. Each elementary error has weight $w=\log[(1-p)/p]$. We set `data_error=readout_error=0.01`, so both error types have equal weight and the decoder favours histories with fewer faults.
+  ko: 디코더는 관측된 검출 사건과 일치하는 최소 가중치 오류 이력을 고릅니다. 각 기본 오류의 가중치는 $w=\log[(1-p)/p]$입니다. `data_error=readout_error=0.01`로 두므로 두 오류 유형의 가중치가 같으며 오류 수가 적은 이력을 선호합니다.
+  status: machine
+- id: c08141e14adc8512
+  en: Let $x_t$ describe the data X errors in interval $t$, and let $e_{t-1}$ and $e_t$ describe readout errors in the adjacent ancilla measurements. These are binary vectors with nine and four components, respectively. The true Z-syndrome change is $H_Zx_t$. The observed change $d_t$ also contains the readout errors from both measurements, giving the constraint
+  ko: 구간 $t$의 데이터 X 오류를 $x_t$, 인접 보조 측정의 판독 오류를 $e_{t-1}$, $e_t$로 둡니다. 각각 성분 9개와 4개를 갖는 이진 벡터입니다. 실제 Z 신드롬 변화는 $H_Zx_t$입니다. 관측 변화 $d_t$에는 두 측정의 판독 오류도 포함되므로 다음 제약을 얻습니다.
+  status: machine
+- id: 913a9559aaf984d8
+  en: We enumerate the 512 possible data X errors and retain a minimum-weight error for each of the 16 Z syndromes. Denote this weight by $g(s)$. We then follow the syndrome history using dynamic programming. Define $V_t(e_t)$ as the minimum accumulated weight through layer $t$, with ancilla readout errors $e_t$ in that layer. Comparing the 16 possible readout-error configurations in the preceding layer gives
+  ko: 가능한 데이터 X 오류 512개를 열거하고 16개 Z 신드롬 각각에 대해 최소 가중치 오류를 남깁니다. 이 가중치를 $g(s)$라 둡니다. 이어서 동적 계획법으로 신드롬 이력을 추적합니다. 층 $t$의 보조 판독 오류가 $e_t$일 때 해당 층까지의 최소 누적 가중치를 $V_t(e_t)$라 정의합니다. 이전 층에서 가능한 판독 오류 배치 16개를 비교하면
+  status: machine
+- id: 27ada2123ccf08c1
+  en: where $|e_t|$ counts incorrect ancilla readout bits. Each candidate adds the weight of the current readout errors and the least costly data error compatible with the observed syndrome change.
+  ko: 여기서 $|e_t|$는 잘못된 보조 판독 비트 수입니다. 각 후보는 현재 판독 오류의 가중치와 관측된 신드롬 변화에 맞는 최소 비용 데이터 오류를 더합니다.
+  status: machine
+- id: aa4b766a04d7bac9
+  en: The known initial Z-stabilizer values impose $e_{-1}=0$. At the final boundary we set $e_R=0$, since noisy data readout is already included in $x_R$. Multiplying the inferred X corrections along the selected history gives the net recovery, stored as a nine-bit mask. Its overlap parity with `LOGICAL_Z` determines the classical correction to the logical readout. For these four checks, the decoding time grows linearly with the number of QEC cycles.
+  ko: 초기 Z 안정자 값을 알고 있으므로 $e_{-1}=0$입니다. 최종 경계에서는 잡음이 있는 데이터 판독이 이미 $x_R$에 포함되므로 $e_R=0$으로 둡니다. 선택한 이력의 X 정정을 곱하면 순 복구가 되며 9비트 마스크로 저장합니다. `LOGICAL_Z`와 겹치는 패리티가 논리 판독의 고전적 정정을 결정합니다. 이 네 검사에서는 디코딩 시간이 QEC 주기 수에 선형으로 증가합니다.
+  status: machine
+- id: 04ab57f02d1d0b51
+  en: Different Pauli errors can produce the same syndrome history while having opposite effects on the logical Z readout. The decoder chooses a recovery using the detection events and the assumed error weights. The measured logical bit is not passed to `decode()`, so identical syndrome histories always receive the same recovery prediction.
+  ko: 서로 다른 Pauli 오류가 같은 신드롬 이력을 만들면서 논리 Z 판독에는 반대 효과를 줄 수 있습니다. 디코더는 검출 사건과 가정한 오류 가중치로 복구를 선택합니다. 측정된 논리 비트는 `decode()`에 전달하지 않으므로 같은 신드롬 이력은 항상 같은 복구 예측을 받습니다.
+  status: machine
+- id: 14d86c78d511dcfb
+  en: Larger code distances
+  ko: 더 큰 부호 거리
+  status: machine
+- id: b1a90fc0ac9b01e9
+  en: For larger code distances, consider sampling with FatQat, constructing a compatible detector error model with [Stim](https://github.com/quantumlib/Stim), and decoding with [PyMatching](https://github.com/oscarhiggott/PyMatching). The reference model should match the experiment's circuit and measurement protocol.
+  ko: 더 큰 거리에서는 FatQat으로 샘플링하고 [Stim](https://github.com/quantumlib/Stim)으로 호환되는 검출기 오류 모델을 만든 뒤 [PyMatching](https://github.com/oscarhiggott/PyMatching)으로 디코딩하는 방법을 고려하세요. 기준 모델은 실험 회로와 측정 프로토콜에 맞아야 합니다.
+  status: machine
+- id: 30040fc8eafeb68c
+  en: 6. Measure logical error after decoding
+  ko: 6. 디코딩 후 논리 오류 측정하기
+  status: machine
+- id: 607eb1f6c5e355c7
+  en: At the end of each shot, all nine data qubits are measured in the Z basis, giving the reported bits $b_0,\ldots,b_8$. The measurement outcome of the chosen logical operator $Z_L$ is $(-1)^\ell$, where
+  ko: 각 샷 마지막에 아홉 데이터 큐비트를 Z 기저로 측정해 보고 비트 $b_0,\ldots,b_8$을 얻습니다. 선택한 논리 연산자 $Z_L$의 측정 결과는 $(-1)^\ell$이며
+  status: machine
+- id: ea5aab868829cdc7
+  en: The initial state $|0\rangle^{\otimes9}$ has logical Z eigenvalue $+1$, so the expected logical bit is zero. From the Z-check detection events, the decoder selects a Pauli-X recovery represented by the binary vector $x(d)$. Its predicted logical flip is $\hat\ell(d)=x_0(d)\oplus x_3(d)\oplus x_6(d)$. The measured logical bit is used only to evaluate the recovery. A shot fails when the corrected logical Z outcome is $-1$. After $R$ cycles, we estimate this probability as
+  ko: 초기 상태 $|0\rangle^{\otimes9}$의 논리 Z 고유값은 $+1$이므로 예상 논리 비트는 0입니다. 디코더는 Z 검사 검출 사건으로 이진 벡터 $x(d)$가 나타내는 Pauli-X 복구를 고릅니다. 예측한 논리 반전은 $\hat\ell(d)=x_0(d)\oplus x_3(d)\oplus x_6(d)$입니다. 측정된 논리 비트는 복구 평가에만 사용합니다. 정정 후 논리 Z 결과가 $-1$이면 해당 샷은 실패입니다. $R$주기 뒤의 이 확률을 다음과 같이 추정합니다.
+  status: machine
+- id: 7c3b2e17cdf260b2
+  en: The indicator counts shots whose corrected logical bit is one. The recovery is applied through classical post-processing of the measurement record. The value stored as `logical_error` is the fraction of shots that have an incorrect decoded logical readout.
+  ko: 지시 함수는 정정된 논리 비트가 1인 샷을 셉니다. 복구는 측정 기록의 고전적 후처리로 적용합니다. `logical_error`는 디코딩된 논리 판독이 틀린 샷의 비율입니다.
+  status: machine
+- id: aab85841e6297fa1
+  en: The following data are the decoded failure counts and the Z-check detection-event counts from a simulation with base seed `20260925`, 128 shots per point, and four shot workers. They are stored explicitly so the plots and fit can be reproduced without sampling.
+  ko: 아래 데이터는 기본 시드 `20260925`, 점당 128샷, 샷 작업자 4개로 실행한 시뮬레이션의 디코딩 후 실패 횟수와 Z 검사 검출 사건 횟수입니다. 샘플링 없이 그림과 적합을 재현할 수 있도록 값을 명시적으로 저장했습니다.
+  status: machine
+- id: 40eb1c09eb07263d
+  en: To generate new measurement records, uncomment and run the next cell, then rerun the plotting cells. It replaces `summaries` with the new results.
+  ko: 새 측정 기록을 만들려면 다음 셀의 주석을 해제해 실행한 뒤 그림 셀들을 다시 실행하세요. 새 결과가 `summaries`를 대체합니다.
+  status: machine
+- id: 113894330bb10d61
+  en: When rerunning the simulation, each cycle count uses 128 independent noisy shots. Each measurement record contributes according to its observed frequency. Up to four workers sample shots, with serial numerical kernels within each shot. Use `shot_parallelism="serial"` when only one worker is available. Fixed seeds reproduce counts for the same runtime, parallelism settings, and result requests.
+  ko: 시뮬레이션을 다시 실행하면 각 주기 수마다 독립적인 잡음 샷 128개를 사용합니다. 각 측정 기록은 관측 빈도만큼 기여합니다. 최대 네 작업자가 샷을 샘플링하고 각 샷 내부 수치 커널은 직렬로 실행합니다. 작업자가 하나뿐이면 `shot_parallelism="serial"`을 사용하세요. 같은 런타임, 병렬 설정, 결과 요청에서는 고정 시드로 횟수를 재현할 수 있습니다.
+  status: machine
+- id: be59a677bf2f37bb
+  en: 7. Fit logical error per cycle
+  ko: 7. 주기당 논리 오류 적합하기
+  status: machine
+- id: 7b0f932748dd2d7b
+  en: The detector map shows changes in the measured Z-stabilizer parities during storage. Its final column compares the last ancilla results with the Z-check parities reconstructed from noisy data readout. Both X and Z stabilizers are measured in every QEC cycle, but this decoder uses only the Z-check history. Pauli-Z corrections commute with $Z_L$ and do not change its measurement outcome.
+  ko: 검출기 지도는 저장 중 측정된 Z 안정자 패리티의 변화를 보여 줍니다. 마지막 열은 마지막 보조 결과와 잡음이 있는 데이터 판독에서 재구성한 Z 검사 패리티를 비교합니다. 매 QEC 주기에 X와 Z 안정자를 모두 측정하지만 이 디코더는 Z 검사 이력만 사용합니다. Pauli-Z 정정은 $Z_L$과 교환하므로 측정 결과를 바꾸지 않습니다.
+  status: machine
+- id: 1e008c17b7eed4bc
+  en: The detection probabilities are the event counts divided by the number of shots.
+  ko: 검출 확률은 사건 횟수를 샷 수로 나눈 값입니다.
+  status: machine
+- id: e369d90a358f2405
+  en: The data points estimate the logical error rate after $R$ cycles. To extract a rate per cycle, assume that each cycle independently flips the logical Z value with probability $\epsilon_L$. An odd number of flips reverses the stored value, while an even number leaves it unchanged. Thus
+  ko: 데이터 점은 $R$주기 뒤의 논리 오류율을 추정합니다. 주기당 비율을 구하려면 각 주기가 독립적으로 확률 $\epsilon_L$로 논리 Z 값을 뒤집는다고 가정합니다. 홀수 번 뒤집히면 저장값이 반전되고 짝수 번이면 유지됩니다. 따라서
+  status: machine
+- id: 1f8c481932d53bca
+  en: We fit $\epsilon_L$ to the observed failure counts $k_R$ out of $N=128$ shots at each cycle count. Maximizing their binomial likelihood is equivalent to minimizing
+  ko: 각 주기 수에서 $N=128$샷 중 관측한 실패 횟수 $k_R$에 $\epsilon_L$을 적합합니다. 이항 우도를 최대화하는 것은 다음을 최소화하는 것과 같습니다.
+  status: machine
+- id: f3dfdda9246d4a1b
+  en: where terms independent of $\epsilon_L$ are omitted. Fitting the counts directly accommodates zero observed failures and measured fractions above one half due to sampling fluctuations. The symmetric error bars show one estimated binomial standard error, $\sigma_R=\sqrt{\hat p_R(1-\hat p_R)/N}$, above and below each measured rate $\hat p_R=k_R/N$. These bars describe sampling uncertainty at each point.
+  ko: 여기서는 $\epsilon_L$과 무관한 항을 생략했습니다. 횟수를 직접 적합하면 관측 실패가 0이거나 샘플링 변동으로 비율이 절반을 넘는 경우도 처리할 수 있습니다. 대칭 오차 막대는 각 관측률 $\hat p_R=k_R/N$의 위아래에 추정 이항 표준오차 하나, $\sigma_R=\sqrt{\hat p_R(1-\hat p_R)/N}$를 표시합니다. 각 점의 샘플링 불확실성을 나타냅니다.
+  status: machine
+- id: 00c1bfff890ce977
+  en: The fit assumes identical cycles and fixes $p_L(0)=0$. Final-readout errors and the finite syndrome history also affect the measured failure probability. The fitted $\epsilon_L$ therefore describes an effective rate over the chosen cycle range.
+  ko: 적합은 각 주기가 동일하다고 가정하고 $p_L(0)=0$으로 고정합니다. 최종 판독 오류와 유한한 신드롬 이력도 측정 실패 확률에 영향을 줍니다. 따라서 적합한 $\epsilon_L$은 선택한 주기 범위에서의 유효 오류율입니다.
+  status: machine
+- id: 63e438e3a7d6a4d9
+  en: Detection events reveal changes in stabilizer outcomes. A readout error can trigger a detector without changing the data state, while a logical X error can reverse the stored logical Z value without producing a syndrome. Decoding can also select a recovery in the wrong logical class. This decoder approximates gate-level and correlated faults with independent data-X and ancilla-readout errors.
+  ko: 검출 사건은 안정자 결과의 변화를 보여 줍니다. 판독 오류는 데이터 상태를 바꾸지 않고도 검출기를 발화시킬 수 있고, 논리 X 오류는 신드롬 없이 저장된 논리 Z 값을 뒤집을 수 있습니다. 디코더가 잘못된 논리 등급의 복구를 선택할 수도 있습니다. 이 디코더는 게이트 수준 및 상관 오류를 독립적인 데이터 X 오류와 보조 판독 오류로 근사합니다.
+  status: machine
+- id: 73f3f7322172d35d
+  en: This memory-Z experiment tests preservation of the logical Z value after decoding. Logical phase errors are invisible to this readout. A complementary memory-X experiment tests preservation of the logical X value. Both experiments measure all stabilizers during storage, but they do not fully characterize an arbitrary logical noise channel.
+  ko: 이 memory-Z 실험은 디코딩 후 논리 Z 값의 보존을 시험합니다. 논리 위상 오류는 이 판독으로 보이지 않습니다. 상보적인 memory-X 실험은 논리 X 값의 보존을 시험합니다. 두 실험 모두 저장 중 모든 안정자를 측정하지만, 임의의 논리 잡음 채널을 완전히 특성화하지는 못합니다.
+  status: machine
+- id: edd0d2877e12a1a9
+  en: A full characterization can use logical process tomography, with an informationally complete set of encoded inputs and measurements of the recovered logical X, Y, and Z observables. This requires more preparation and measurement settings. For quantitative comparisons, increase the shot count and use a decoder matched to the circuit noise. Multiple code distances are needed to study suppression with distance.
+  ko: 완전한 특성화에는 정보 완비 인코딩 입력 집합과 복구된 논리 X, Y, Z 관측량의 측정을 사용하는 논리 과정 토모그래피를 적용할 수 있습니다. 더 많은 준비 및 측정 설정이 필요합니다. 정량 비교에는 샷 수를 늘리고 회로 잡음에 맞는 디코더를 사용하세요. 거리에 따른 오류 억제를 연구하려면 여러 부호 거리가 필요합니다.
+  status: machine

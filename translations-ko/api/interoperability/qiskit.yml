@@ -1,0 +1,212 @@
+- id: 56b50a77036308e6
+  en: Qiskit
+  ko: Qiskit
+  status: machine
+- id: d619890e8c2368c3
+  en: <a id="fatqat.qiskit"></a>
+  ko: <a id="fatqat.qiskit"></a>
+  status: machine
+- id: eb6f02d125a7b8b9
+  en: Use [`FatqatBackend`](#fatqat.qiskit.FatqatBackend) to run supported Qiskit circuits on FATQAT, or [`circuit_to_program`](#fatqat.qiskit.circuit_to_program) to convert a circuit directly. Install Qiskit separately; Qiskit Aer is not required.
+  ko: '[`FatqatBackend`](#fatqat.qiskit.FatqatBackend)로 지원되는 Qiskit 회로를 FATQAT에서 실행하거나, [`circuit_to_program`](#fatqat.qiskit.circuit_to_program)으로 회로를 직접 변환할 수 있습니다. Qiskit은 따로 설치해야 하며 Qiskit Aer는 필요하지 않습니다.'
+  status: machine
+- id: b7fdd3b8fc98017a
+  en: 'To use FATQAT in a Qiskit backend workflow:'
+  ko: 'Qiskit 백엔드 작업 흐름에서 FATQAT을 사용하는 예입니다:'
+  status: machine
+- id: a3114c2357151164
+  en: Circuit conversion
+  ko: 회로 변환
+  status: machine
+- id: a0b5d9138df0421f
+  en: '[`circuit_to_program`](#fatqat.qiskit.circuit_to_program) accepts bound circuits containing instructions from [`build_simulator_target`](#fatqat.qiskit.build_simulator_target). Transpile other circuits to that target first. Named registers and circuit metadata are preserved. The global phase is stored in `program.metadata` but is not applied to the simulated state.'
+  ko: '[`circuit_to_program`](#fatqat.qiskit.circuit_to_program)은 [`build_simulator_target`](#fatqat.qiskit.build_simulator_target)에 포함된 명령으로 구성되고 매개변수가 바인딩된 회로를 받습니다. 다른 회로는 먼저 그 대상으로 트랜스파일하세요. 이름 있는 레지스터와 회로 메타데이터는 보존됩니다. 전역 위상은 `program.metadata`에 저장되지만 시뮬레이션 상태에는 적용되지 않습니다.'
+  status: machine
+- id: 52d67d1c8d06840d
+  en: Measurement and reset are converted, while barriers are discarded. Unsupported instructions, dynamic control flow, unbound instruction parameters, and an unbound global phase raise [`QiskitConversionError`](#fatqat.qiskit.QiskitConversionError).
+  ko: 측정과 리셋은 변환하고 배리어는 버립니다. 지원하지 않는 명령, 동적 제어 흐름, 바인딩되지 않은 명령 매개변수나 전역 위상에는 [`QiskitConversionError`](#fatqat.qiskit.QiskitConversionError)가 발생합니다.
+  status: machine
+- id: f6dedc59039c8e53
+  en: Backend execution
+  ko: 백엔드 실행
+  status: machine
+- id: ba1de22ea80f3514
+  en: '[`FatqatBackend`](#fatqat.qiskit.FatqatBackend) defaults to `method="statevector"` and `runtime="numpy"`. `method` accepts the names and aliases supported by [`Simulator`][fatqat.simulator.Simulator]; `runtime` accepts `"numpy"` or `"numba"`, case-insensitively. Unsupported values produce an error job from `run()` rather than failing construction. The backend accepts a FATQAT [`NoiseModel`][fatqat.NoiseModel], not a Qiskit Aer noise model.'
+  ko: '[`FatqatBackend`](#fatqat.qiskit.FatqatBackend)의 기본값은 `method="statevector"`, `runtime="numpy"`입니다. `method`는 [`Simulator`][fatqat.simulator.Simulator]가 지원하는 이름과 별칭을 받으며, `runtime`은 대소문자 구분 없이 `"numpy"` 또는 `"numba"`를 받습니다. 지원하지 않는 값은 생성 시 실패하지 않고 `run()`에서 오류 Job을 만듭니다. 잡음 모델로는 Qiskit Aer 모델이 아니라 FATQAT의 [`NoiseModel`][fatqat.NoiseModel]을 받습니다.'
+  status: machine
+- id: 57547e9578f7124a
+  en: '`run()` accepts one circuit or a nonempty iterable and supports three options:'
+  ko: '`run()`은 회로 하나 또는 비어 있지 않은 이터러블을 받으며 세 가지 옵션을 지원합니다:'
+  status: machine
+- id: fcee79e40fd9cb44
+  en: '`shots`: positive `int`, default `1024`;'
+  ko: '`shots`: 양의 `int`, 기본값 `1024`;'
+  status: machine
+- id: fd34f04113aa3881
+  en: '`memory`: `bool`, default `False`; and'
+  ko: '`memory`: `bool`, 기본값 `False`;'
+  status: machine
+- id: 1ac4ad3220a7b948
+  en: '`seed_simulator`: non-negative `int` or `None`, default `None`.'
+  ko: '`seed_simulator`: 음이 아닌 `int` 또는 `None`, 기본값 `None`.'
+  status: machine
+- id: 4a8edcc133ead22a
+  en: Options passed to `run()` override `backend.options`. Invalid options, an empty circuit iterable, or an iterable containing non-circuit values raise [`QiskitBackendError`](#fatqat.qiskit.QiskitBackendError) before a job is created. If circuit conversion or execution fails later, `run()` returns an `ERROR` job and [`FatqatJob.result`](#fatqat.qiskit.FatqatJob.result) raises Qiskit's `QiskitError`.
+  ko: '`run()`에 전달한 옵션은 `backend.options`보다 우선합니다. 잘못된 옵션, 빈 회로 이터러블, 회로가 아닌 값이 들어 있는 이터러블은 Job 생성 전에 [`QiskitBackendError`](#fatqat.qiskit.QiskitBackendError)를 발생시킵니다. 이후 회로 변환이나 실행이 실패하면 `run()`은 `ERROR` Job을 반환하고 [`FatqatJob.result`](#fatqat.qiskit.FatqatJob.result)에서 Qiskit의 `QiskitError`가 발생합니다.'
+  status: machine
+- id: 6e6dbd9b2ff1a5de
+  en: The result contains Qiskit-formatted counts, including for multiple classical registers. `memory=True` returns entries consistent with those counts, without guaranteeing shot order. Circuits without classical bits have no counts or memory data. Statevector and related simulator artifacts are not included in the Qiskit result.
+  ko: 결과에는 고전 레지스터가 여러 개인 경우까지 Qiskit 형식의 카운트가 담깁니다. `memory=True`는 카운트와 일치하는 항목들을 반환하지만 샷 순서는 보장하지 않습니다. 고전 비트가 없는 회로에는 카운트나 메모리 데이터가 없습니다. 상태 벡터 등 시뮬레이터 산출물은 Qiskit 결과에 포함되지 않습니다.
+  status: machine
+- id: 35d57859735df623
+  en: Jobs and provider helper
+  ko: Job과 provider 도우미
+  status: machine
+- id: cb7a9cf08bd51006
+  en: Execution is synchronous, so [`FatqatJob`](#fatqat.qiskit.FatqatJob) is `DONE` or `ERROR` when returned. [`FatqatProvider`](#fatqat.qiskit.FatqatProvider) creates configured [`FatqatBackend`](#fatqat.qiskit.FatqatBackend) instances for code that expects a provider-style interface.
+  ko: 실행은 동기식이므로 [`FatqatJob`](#fatqat.qiskit.FatqatJob)은 반환 시 이미 `DONE` 또는 `ERROR` 상태입니다. [`FatqatProvider`](#fatqat.qiskit.FatqatProvider)는 provider 형식의 인터페이스를 기대하는 코드에 설정된 [`FatqatBackend`](#fatqat.qiskit.FatqatBackend) 인스턴스를 제공합니다.
+  status: machine
+- id: 90252e08ebe0dba2
+  en: function `circuit_to_program(circuit)`
+  ko: 함수 `circuit_to_program(circuit)`
+  status: machine
+- id: 8e29056cf0779db2
+  en: Convert a bound, static Qiskit `QuantumCircuit` into a [`Program`][fatqat.Program]. Unrepresentable circuits raise [`QiskitConversionError`](#fatqat.qiskit.QiskitConversionError); non-circuit inputs raise [`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError).
+  ko: 바인딩된 정적 Qiskit `QuantumCircuit`을 [`Program`][fatqat.Program]으로 변환합니다. 표현할 수 없는 회로에는 [`QiskitConversionError`](#fatqat.qiskit.QiskitConversionError), 회로가 아닌 입력에는 [`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError)가 발생합니다.
+  status: machine
+- id: 117e750ffd80cc69
+  en: class `FatqatBackend(*, method="statevector", runtime="numpy", noise_model=None, provider=None, name="fatqat_simulator")`
+  ko: 클래스 `FatqatBackend(*, method="statevector", runtime="numpy", noise_model=None, provider=None, name="fatqat_simulator")`
+  status: machine
+- id: 141e69b19c80ea9d
+  en: Synchronous Qiskit `BackendV2` backed by the gate-level FATQAT simulator.
+  ko: 게이트 수준 FATQAT 시뮬레이터를 사용하는 동기식 Qiskit `BackendV2`입니다.
+  status: machine
+- id: 3f166f1974b05ba6
+  en: method `run(run_input, **run_options)`
+  ko: 메서드 `run(run_input, **run_options)`
+  status: machine
+- id: ce497a217b7948de
+  en: Execute one circuit or a nonempty iterable and return a completed [`FatqatJob`](#fatqat.qiskit.FatqatJob).
+  ko: 회로 하나 또는 비어 있지 않은 이터러블을 실행하고 완료된 [`FatqatJob`](#fatqat.qiskit.FatqatJob)을 반환합니다.
+  status: machine
+- id: e3d63071239cc88c
+  en: attribute `target`
+  ko: 속성 `target`
+  status: machine
+- id: 9232edd6e66604d4
+  en: The supported instruction basis used for transpilation.
+  ko: 트랜스파일에 사용하는 지원 명령 기저입니다.
+  status: machine
+- id: 36e9db95717e0f95
+  en: attribute `max_circuits`
+  ko: 속성 `max_circuits`
+  status: machine
+- id: cda465e6d0a1a201
+  en: Always `None`; batches are not capped.
+  ko: 항상 `None`이며 배치 크기 제한이 없습니다.
+  status: machine
+- id: 4cf85390058b3364
+  en: attribute `coupling_map`
+  ko: 속성 `coupling_map`
+  status: machine
+- id: 38767eb5acf75b8b
+  en: Always `None`; circuits are not restricted to a coupling map.
+  ko: 항상 `None`이며 회로에 결합 맵 제약이 없습니다.
+  status: machine
+- id: bcd20066eb267e21
+  en: class `FatqatJob`
+  ko: 클래스 `FatqatJob`
+  status: machine
+- id: cc61c9afde12ff2d
+  en: Completed Qiskit `JobV1` returned by [`FatqatBackend.run`](#fatqat.qiskit.FatqatBackend.run).
+  ko: '[`FatqatBackend.run`](#fatqat.qiskit.FatqatBackend.run)이 반환하는 완료된 Qiskit `JobV1`입니다.'
+  status: machine
+- id: c345bb29669fa3ec
+  en: method `status()`
+  ko: 메서드 `status()`
+  status: machine
+- id: 175ebb15df3094c3
+  en: Return Qiskit's `DONE` or `ERROR` status.
+  ko: Qiskit의 `DONE` 또는 `ERROR` 상태를 반환합니다.
+  status: machine
+- id: 9f16b51ffd8cabe5
+  en: method `result(timeout=None)`
+  ko: 메서드 `result(timeout=None)`
+  status: machine
+- id: aa1f3cd2073233bd
+  en: Return the Qiskit `Result` or raise `QiskitError`. `timeout` is accepted and ignored.
+  ko: Qiskit `Result`를 반환하거나 `QiskitError`를 발생시킵니다. `timeout`은 받지만 무시합니다.
+  status: machine
+- id: d3feee8300aed8cc
+  en: method `submit()`
+  ko: 메서드 `submit()`
+  status: machine
+- id: 3e7d0d2d9ef0d897
+  en: Return immediately because the job has already run.
+  ko: Job이 이미 실행되었으므로 즉시 반환합니다.
+  status: machine
+- id: 662c852356c89fea
+  en: method `cancel()`
+  ko: 메서드 `cancel()`
+  status: machine
+- id: 2b40766017eae6af
+  en: Return `False`.
+  ko: '`False`를 반환합니다.'
+  status: machine
+- id: 6a5347a81893111a
+  en: method `backend()`
+  ko: 메서드 `backend()`
+  status: machine
+- id: 40d037e60166a05e
+  en: Return the creating backend.
+  ko: Job을 만든 백엔드를 반환합니다.
+  status: machine
+- id: 36384e1704b54d0a
+  en: class `FatqatProvider(**default_backend_kwargs)`
+  ko: 클래스 `FatqatProvider(**default_backend_kwargs)`
+  status: machine
+- id: f7a5ae72ad2cbdeb
+  en: Provider-style helper that creates configured [`FatqatBackend`](#fatqat.qiskit.FatqatBackend) instances.
+  ko: 설정된 [`FatqatBackend`](#fatqat.qiskit.FatqatBackend) 인스턴스를 만드는 provider 형식 도우미입니다.
+  status: machine
+- id: 8886a45dea82fa8c
+  en: method `backends(name=None, *, filters=None, **kwargs)`
+  ko: 메서드 `backends(name=None, *, filters=None, **kwargs)`
+  status: machine
+- id: 734adbfcc0859f76
+  en: Return a new backend in a one-item list when `name` matches, otherwise an empty list. `filters` has no effect; other constructor options in `kwargs` override the provider defaults.
+  ko: '`name`이 일치하면 새 백엔드 하나가 든 목록을, 아니면 빈 목록을 반환합니다. `filters`는 효과가 없습니다. `kwargs`의 나머지 생성자 옵션은 provider 기본값보다 우선합니다.'
+  status: machine
+- id: 13ff02a6b0f8b2c9
+  en: method `get_backend(name=None, **kwargs)`
+  ko: 메서드 `get_backend(name=None, **kwargs)`
+  status: machine
+- id: 79dc9dc3310ab6e6
+  en: Return a new matching backend, or raise [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError).
+  ko: 일치하는 새 백엔드를 반환하며 없으면 [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)를 발생시킵니다.
+  status: machine
+- id: 5b0121c4e71313ae
+  en: function `build_simulator_target()`
+  ko: 함수 `build_simulator_target()`
+  status: machine
+- id: f8389760342e97a2
+  en: Return a new unbounded Qiskit target for the supported gate basis.
+  ko: 지원 게이트 기저에 대한 크기 제한 없는 새 Qiskit 대상을 반환합니다.
+  status: machine
+- id: 9322a4667f42a19b
+  en: exception `QiskitConversionError`
+  ko: 예외 `QiskitConversionError`
+  status: machine
+- id: bf3378da19e3ea6a
+  en: A circuit cannot be converted to a FATQAT program. This is a [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError].
+  ko: 회로를 FATQAT 프로그램으로 변환할 수 없을 때 발생합니다. [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError]입니다.
+  status: machine
+- id: b5716685bf40c786
+  en: exception `QiskitBackendError`
+  ko: 예외 `QiskitBackendError`
+  status: machine
+- id: 7597349de3d61aae
+  en: A run request was rejected before execution. This is a [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError].
+  ko: 실행 전에 실행 요청이 거부되었을 때 발생합니다. [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError]입니다.
+  status: machine

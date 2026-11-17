@@ -1,11 +1,36 @@
 # Set up Chinese FatQat documentation
 
+## Korean edition
+
+The same repository now builds Korean with `--locale ko`. Create a separate
+Read the Docs project for Korean, using this repository and the same version
+branches. Set its language to Korean. The build reads RTD's
+`READTHEDOCS_LANGUAGE` automatically, so no custom locale variable is required.
+An explicit `--locale` takes precedence over `FATQAT_LOCALE`, which in turn
+overrides the RTD language. Local builds default to Chinese (`zh`).
+Add the Korean project to the English parent project's Translations settings.
+RTD supplies each project's canonical language/version URL. The shared build
+configuration requires complete translations before producing a published site.
+Repository support alone does not create or activate the hosted Korean project.
+
+For a local preview, run:
+
+```sh
+python tools/translate.py --locale ko check --require-complete
+python tools/inject_build.py --locale ko --output .build/site-ko --require-complete
+```
+
+The Korean theme and footer are localized. Search uses the bundled English
+tokenizer because the bundled Lunr languages do not include a Korean stemmer;
+Korean text is indexed without Korean morphological analysis. Generated API
+docstrings and figure labels remain English, as in the Chinese edition.
+
 The English Read the Docs project is `fatqat`:
 https://fatqat.readthedocs.io/en/latest/.
 
-The local build and version pinning are implemented. The replacement scheduler
-and automatic publisher are not enabled yet. The existing `sync.yml` predates
-this setup; do not use its subscription-credential cache for this public repo.
+The local build and version pinning are implemented. The scheduled GitHub
+sync workflow has been removed; updates no longer create branches automatically.
+The replacement scheduler and automatic publisher are not enabled yet.
 
 ## Hosting
 

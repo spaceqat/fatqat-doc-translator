@@ -1,0 +1,124 @@
+- id: 691d61e78e0dda95
+  en: Registers give quantum and classical program slots stable identities. With `Program(quantum_count, classical_count)`, each positive count creates one default register named `"q"` or `"c"`; zero creates no register of that kind. Construct registers explicitly when you need other names, multiple registers, grids, metadata, or local dimensions greater than two.
+  ko: 레지스터는 프로그램의 양자 슬롯과 고전 슬롯에 안정적인 식별자를 부여합니다. `Program(quantum_count, classical_count)`에서는 각 개수가 양수이면 이름이 `"q"` 또는 `"c"`인 기본 레지스터 하나를 만듭니다. 0이면 해당 종류의 레지스터를 만들지 않습니다. 다른 이름, 여러 레지스터, 격자, 메타데이터, 2보다 큰 국소 차원이 필요하면 레지스터를 명시적으로 생성하세요.
+  status: machine
+- id: 8cb2803a775360b2
+  en: Register types
+  ko: 레지스터 타입
+  status: machine
+- id: 9e3a659c7e2767c4
+  en: '**Register choices**'
+  ko: '**레지스터 선택**'
+  status: machine
+- id: 8409c40de8d2be00
+  en: '| Type | Program role | Size |'
+  ko: '| 타입 | 프로그램에서의 역할 | 크기 |'
+  status: machine
+- id: 083a0b64061c5c56
+  en: '| [`Register`][fatqat.Register] | Common base class; not itself accepted as a quantum or classical register by [`Program`][fatqat.Program] | Explicit positive `size` |'
+  ko: '| [`Register`][fatqat.Register] | 공통 기반 클래스. [`Program`][fatqat.Program]은 이 타입 자체를 양자 또는 고전 레지스터로 받지 않습니다. | 명시적인 양수 `size` |'
+  status: machine
+- id: 8b5d1f2bd3ee607f
+  en: '| [`QuantumRegister`][fatqat.QuantumRegister] | Quantum operation and measurement targets | Explicit positive `size` |'
+  ko: '| [`QuantumRegister`][fatqat.QuantumRegister] | 양자 연산과 측정의 대상 | 명시적인 양수 `size` |'
+  status: machine
+- id: a5462404a4461f97
+  en: '| [`ClassicalRegister`][fatqat.ClassicalRegister] | Measurement outputs and condition values | Explicit positive `size` |'
+  ko: '| [`ClassicalRegister`][fatqat.ClassicalRegister] | 측정 출력과 조건 값 | 명시적인 양수 `size` |'
+  status: machine
+- id: 431b13d0aadb5192
+  en: '| [`GridRegister`][fatqat.GridRegister] | Quantum targets with rectangular selection helpers | Derived as `rows * cols` |'
+  ko: '| [`GridRegister`][fatqat.GridRegister] | 직사각형 선택 도우미를 제공하는 양자 대상 | `rows * cols`로 결정 |'
+  status: machine
+- id: 5fb7f7fc1d11dfa3
+  en: '| [`ModeRegister`][fatqat.ModeRegister] | Optical modes with no fixed dimension; run on [`LOSimulator`](simulators/linear-optics.md) | Explicit positive `size` |'
+  ko: '| [`ModeRegister`][fatqat.ModeRegister] | 고정 차원이 없는 광학 모드. [`LOSimulator`](simulators/linear-optics.md)로 실행합니다. | 명시적인 양수 `size` |'
+  status: machine
+- id: dd214391e66b73ba
+  en: '| [`CountRegister`][fatqat.CountRegister] | Photon counts from measuring a `ModeRegister` | Explicit positive `size` |'
+  ko: '| [`CountRegister`][fatqat.CountRegister] | `ModeRegister` 측정에서 얻는 광자 수 | 명시적인 양수 `size` |'
+  status: machine
+- id: be1396b39ae8a1dd
+  en: Names are labels and need not be unique. Keep and index the same register objects that you pass to [`Program`][fatqat.Program]; a newly constructed register with the same fields is not interchangeable. `metadata` is a mutable, string-keyed mapping for application data.
+  ko: 이름은 라벨이며 고유할 필요가 없습니다. [`Program`][fatqat.Program]에 전달한 레지스터 객체를 그대로 보관하고 인덱싱하세요. 필드가 같더라도 새로 만든 레지스터로 대체할 수 없습니다. `metadata`는 애플리케이션 데이터를 담는 수정 가능한 문자열 키 매핑입니다.
+  status: machine
+- id: 8a4e4bb220732b0e
+  en: 'Indexing with `register[index]` creates an immutable [`RegisterRef`][fatqat.RegisterRef]. In a program with multiple registers, pass the explicit ref rather than an ambiguous integer:'
+  ko: '`register[index]`로 인덱싱하면 불변 [`RegisterRef`][fatqat.RegisterRef]가 생성됩니다. 레지스터가 여러 개인 프로그램에서는 의미가 모호한 정수 대신 명시적 참조를 전달하세요.'
+  status: machine
+- id: c0c6fd131762d197
+  en: 'Call [`quantum_register.all()`][fatqat.QuantumRegister.all] to select every member in increasing index order. It returns a [`RegisterView`](#fatqat.RegisterView), which can be passed to view-capable operations:'
+  ko: '[`quantum_register.all()`][fatqat.QuantumRegister.all]을 호출하면 모든 원소를 인덱스가 증가하는 순서로 선택합니다. 반환되는 [`RegisterView`](#fatqat.RegisterView)는 뷰를 지원하는 연산에 전달할 수 있습니다.'
+  status: machine
+- id: 54c33581f9022c8a
+  en: '`dim=2` creates qubits or classical bits. A larger value creates qudits or d-ary classical digits; the quantum and classical dimensions of each measurement pair must match. Register construction accepts every integer dimension of at least two, but individual operations and backends may support only some dimensions. See [Write quantum computations with Program](../guide/program.md) for a mixed qubit-qutrit example.'
+  ko: '`dim=2`는 큐비트 또는 고전 비트를 만듭니다. 더 큰 값은 큐디트 또는 d진 고전 숫자를 만듭니다. 측정 쌍마다 양자 차원과 고전 차원이 같아야 합니다. 레지스터는 2 이상의 모든 정수 차원으로 생성할 수 있지만, 개별 연산이나 백엔드는 일부 차원만 지원할 수 있습니다. 큐비트와 큐트릿을 함께 쓰는 예제는 [Program으로 양자 계산 작성](../guide/program.md)을 참고하세요.'
+  status: machine
+- id: c44a7a9a6fff9cd2
+  en: Register selections
+  ko: 레지스터 선택
+  status: machine
+- id: bb73b2c0933df865
+  en: Every [`QuantumRegister`][fatqat.QuantumRegister] provides `all()`. A [`GridRegister`][fatqat.GridRegister] additionally arranges logical targets in row-major order and provides `row()`, `column()`, and `block()` selections. It does not assign physical coordinates. The flat index of `(row, col)` is `row * cols + col`, and all selection helpers return [`RegisterView`](#fatqat.RegisterView) objects rather than tuples of refs.
+  ko: 모든 [`QuantumRegister`][fatqat.QuantumRegister]는 `all()`을 제공합니다. [`GridRegister`][fatqat.GridRegister]는 추가로 논리적 대상을 행 우선 순서로 배열하고 `row()`, `column()`, `block()` 선택을 제공합니다. 물리적 좌표를 지정하는 것은 아닙니다. `(row, col)`의 평탄화된 인덱스는 `row * cols + col`이며, 모든 선택 도우미는 참조 튜플 대신 [`RegisterView`](#fatqat.RegisterView) 객체를 반환합니다.
+  status: machine
+- id: 25cb5e21e070233e
+  en: 'For a `GridRegister(2, 3)`, the helpers select these flat indices:'
+  ko: '`GridRegister(2, 3)`에서 선택 도우미는 다음의 평탄화된 인덱스를 선택합니다.'
+  status: machine
+- id: 97cacdb4e636f134
+  en: '**Grid selection order**'
+  ko: '**격자 선택 순서**'
+  status: machine
+- id: 90f909f89abded69
+  en: '| Expression | Selected indices, in order |'
+  ko: '| 표현식 | 선택되는 인덱스 순서 |'
+  status: machine
+- id: ae00437427703276
+  en: Pass views to [`add`][fatqat.Program.add]. Every built-in unitary gate accepts them. Unary gates act independently on each selected member; multi-target gates zip corresponding members from one view per operand. All views must use the same selector kind and cardinality, and selections on the same register cannot overlap. [`Put`][fatqat.operations.Put] accepts one view as its complete target collection and records one variadic operation. Measurements and QASM export require scalar targets. The backend validates physical placement and connectivity. See [Write quantum computations with Program](../guide/program.md) for the ordinary Program workflow and [Test a Program against a hardware profile](../guide/hardware-profile-simulation.md) for physical placement.
+  ko: 뷰는 [`add`][fatqat.Program.add]에 전달하세요. 모든 내장 유니터리 게이트가 뷰를 받습니다. 단항 게이트는 선택한 각 원소에 독립적으로 작용합니다. 여러 대상의 게이트는 피연산자별 뷰 하나씩을 받아 대응하는 원소를 짝짓습니다. 모든 뷰는 선택자 종류와 원소 수가 같아야 하고, 같은 레지스터의 선택 영역은 겹칠 수 없습니다. [`Put`][fatqat.operations.Put]은 뷰 하나를 전체 대상 모음으로 받아 가변 인자 연산 하나를 기록합니다. 측정과 QASM 내보내기에는 스칼라 대상이 필요합니다. 물리적 배치와 연결성은 백엔드가 검증합니다. 일반적인 Program 흐름은 [Program으로 양자 계산 작성](../guide/program.md), 물리적 배치는 [하드웨어 프로필로 Program 검증](../guide/hardware-profile-simulation.md)을 참고하세요.
+  status: machine
+- id: 775a1ac456c4b3c7
+  en: <a id="fatqat.registers.RegisterView"></a>
+  ko: <a id="fatqat.registers.RegisterView"></a>
+  status: machine
+- id: 42a2944319ff3288
+  en: class `fatqat.RegisterView`
+  ko: 클래스 `fatqat.RegisterView`
+  status: machine
+- id: 59e5c30d3b63d81c
+  en: Immutable, hashable target returned by quantum-register selection helpers. Its [`register`](#fatqat.RegisterView.register) attribute identifies the selected quantum register. Obtain views from register helpers; direct construction is unsupported.
+  ko: 양자 레지스터 선택 도우미가 반환하는 불변이며 해시 가능한 대상입니다. [`register`](#fatqat.RegisterView.register) 속성은 선택한 양자 레지스터를 가리킵니다. 뷰는 레지스터 도우미로 얻어야 하며 직접 생성은 지원하지 않습니다.
+  status: machine
+- id: 20e5db736594be82
+  en: <a id="fatqat.registers.RegisterView.register"></a>
+  ko: <a id="fatqat.registers.RegisterView.register"></a>
+  status: machine
+- id: 4da11a86bc43555a
+  en: attribute `register`
+  ko: 속성 `register`
+  status: machine
+- id: 39c0d0a7c2fb5584
+  en: '**Type:** `fatqat.QuantumRegister`'
+  ko: '**타입:** `fatqat.QuantumRegister`'
+  status: machine
+- id: 79940bf3787ca7fb
+  en: Quantum register containing the selected members.
+  ko: 선택한 원소가 속한 양자 레지스터입니다.
+  status: machine
+- id: c0705ed34246696b
+  en: Resource layouts
+  ko: 자원 배치 매핑
+  status: machine
+- id: 161d9e646eaed274
+  en: A [`ResourceLayout`][fatqat.ResourceLayout] associates scalar quantum [`RegisterRef`][fatqat.RegisterRef] operands with device labels. Most applications can use the backend's default layout; pass `resource_layout=` when you need a specific supported placement. Each backend defines the labels it accepts and checks coverage, uniqueness, dimensions, placement, and connectivity when the program runs. [`PulseOperation`][fatqat.operations.PulseOperation] channels address the emulator model directly and do not use this layout.
+  ko: '[`ResourceLayout`][fatqat.ResourceLayout]은 스칼라 양자 [`RegisterRef`][fatqat.RegisterRef] 피연산자를 장치 라벨에 연결합니다. 대부분의 애플리케이션에서는 백엔드의 기본 배치를 사용할 수 있습니다. 지원되는 특정 배치가 필요할 때 `resource_layout=`을 전달하세요. 각 백엔드는 허용 라벨을 정의하며, 실행 시 전체 자원 포함 여부, 중복, 차원, 배치, 연결성을 검사합니다. [`PulseOperation`][fatqat.operations.PulseOperation] 채널은 에뮬레이터 모델을 직접 지정하므로 이 배치 매핑을 사용하지 않습니다.'
+  status: machine
+- id: 9d16e53402d37e2a
+  en: type `fatqat.DeviceOperand`
+  ko: 타입 `fatqat.DeviceOperand`
+  status: machine
+- id: 1917ed9781ef1a72
+  en: Backend-defined opaque, hashable label for one device resource.
+  ko: 백엔드가 장치 자원 하나에 대해 정의하는, 내부 구조를 가정하지 않는 해시 가능한 라벨입니다.
+  status: machine
