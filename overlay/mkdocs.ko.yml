@@ -3,6 +3,8 @@ INHERIT: mkdocs.yml
 edit_uri: ""
 docs_dir: docs/mkdocs/ko
 hooks: []
+nav_page_labels:
+  guide/interoperability.md: OpenQASM과 Qiskit
 extra_css:
   - assets/stylesheets/translation.css
 theme:

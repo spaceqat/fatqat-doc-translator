@@ -76,7 +76,10 @@ def generate_config(clone, canonical_url, locale="zh"):
         (ROOT / f"overlay/mkdocs.{locale}.yml").read_text(encoding="utf-8")
     )
     config["hooks"] = [str(ROOT / "overlay/translation_notice.py")]
-    config["nav"] = translate_nav(read_config(clone / "mkdocs.yml")["nav"], lookup)
+    config["nav"] = translate_nav(
+        read_config(clone / "mkdocs.yml")["nav"], lookup,
+        config.pop("nav_page_labels", {}),
+    )
     config["site_url"] = canonical_url.rstrip("/") + "/"
     (clone / f"mkdocs.{locale}.yml").write_text(
         yaml.safe_dump(config, allow_unicode=True, sort_keys=False), encoding="utf-8"

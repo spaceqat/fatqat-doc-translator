@@ -45,14 +45,16 @@ def source_strings(root):
     )
 
 
-def translate_nav(nav, lookup):
+def translate_nav(nav, lookup, page_labels=None):
+    page_labels = page_labels or {}
     result = []
     for item in nav:
         if isinstance(item, dict):
             result.append(
                 {
-                    lookup(label): (
-                        translate_nav(target, lookup)
+                    (page_labels.get(target, lookup(label)) if isinstance(target, str)
+                     else lookup(label)): (
+                        translate_nav(target, lookup, page_labels)
                         if isinstance(target, list)
                         else target
                     )

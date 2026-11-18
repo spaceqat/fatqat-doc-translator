@@ -17,6 +17,19 @@ from list_versions import release_versions
 
 
 class TranslationTests(unittest.TestCase):
+    def test_page_navigation_label_does_not_rename_other_destinations(self):
+        nav = [{"Guide": [
+            {"Interoperability": "guide/interoperability.md"},
+            {"Interoperability": "api/interoperability/index.md"},
+        ]}]
+        actual = translate_nav(nav, lambda label: label, {
+            "guide/interoperability.md": "与 OpenQASM、Qiskit 互联",
+        })
+        self.assertEqual(actual, [{"Guide": [
+            {"与 OpenQASM、Qiskit 互联": "guide/interoperability.md"},
+            {"Interoperability": "api/interoperability/index.md"},
+        ]}])
+
     def test_korean_database_is_independent_and_uses_ko_key(self):
         import yaml
         self.addCleanup(translate.configure_locale, "zh")
