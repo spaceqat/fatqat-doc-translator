@@ -36,7 +36,7 @@
   status: machine
 - id: c40efbe94fb5d350
   en: '`runtime` is chosen when the backend is created. `"numba"` is the default for [`Simulator`][fatqat.simulator.Simulator] and the superconducting profiles; it compiles kernels on first use and supports threaded kernels. `"numpy"` runs directly without compilation and is the default for [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]. Both runtimes support all four methods, but need not produce bit-identical floating-point or sampled results.'
-  zh: '`runtime` 在创建后端时选定。`"numba"` 是 [`Simulator`][fatqat.simulator.Simulator] 和各超导硬件配置的默认值；它在首次使用时编译内核，并支持多线程内核。`"numpy"` 无需编译直接运行，是 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 的默认值。两种运行时都支持全部四种方法，但不保证产生逐位一致的浮点或采样结果。'
+  zh: "`runtime` 在创建后端时选定。`\"numba\"` 是 [`Simulator`][fatqat.simulator.Simulator] 和各超导设备模型的默认值；它在首次使用时编译内核，并支持多线程内核。`\"numpy\"` 无需编译直接运行，是 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 的默认值。两种运行时都支持全部四种方法，但不保证产生逐位一致的浮点或采样结果。"
   status: retired
 - id: 08eacd9ef7ec9459
   en: '`simulation_config` changes one call to [`Simulator.run`][fatqat.simulator.Simulator.run]. Its string values are case-sensitive.'
@@ -48,7 +48,7 @@
   status: retired
 - id: f4ffcb9339db9869
   en: Automatic selection uses at most one parallel axis. An explicit unsupported choice raises an error instead of falling back. A run is eligible for explicit shot parallelism only when it requests counts and must evolve shots independently—for example, because it contains mid-circuit measurement, reset, conditions, or stochastic channels. A circuit that evolves once and samples only terminal measurements is not eligible. Threaded shots require a Numba statevector run and do not support the atom-occupancy lifecycle; processes are the alternative for other eligible workloads.
-  zh: 自动选择最多使用一个并行轴。显式指定不受支持的选项会抛出错误，而不会回退。仅当运行请求计数且必须让各 shot 独立演化时——例如程序包含电路中途测量、复位、条件或随机信道——才有资格进行显式 shot 并行。只演化一次并仅对末端测量采样的电路不符合条件。线程化 shot 需要 Numba 态矢量运行，且不支持原子占据生命周期；对于其他符合条件的负载，可改用进程模式。
+  zh: 自动选择最多使用一个并行轴。显式指定不受支持的选项会抛出错误，而不会回退。仅当运行请求计数且必须让各 shot 独立演化时——例如程序包含线路中途测量、复位、条件或随机信道——才有资格进行显式 shot 并行。只演化一次并仅对末端测量采样的线路不符合条件。线程化 shot 需要 Numba 态矢量运行，且不支持原子占据生命周期；对于其他符合条件的负载，可改用进程模式。
   status: retired
 - id: 8ba1d2cf4d5d8fb3
   en: A fixed non-negative `seed` reproduces sampled results only when the Program, complete configuration, FatQat version, and execution environment are also the same. Changing the runtime or parallel execution mode can change random-number consumption. Deterministic results do not depend on the seed and follow normal floating-point tolerances.
@@ -200,7 +200,7 @@
   status: machine
 - id: e21a4ad23236a543
   en: '`runtime` is chosen when the backend is created. `"numba"` is the default for [`Simulator`][fatqat.simulator.Simulator] and all three hardware profiles, including [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]. It compiles kernels on first use and supports threaded kernels. `"numpy"` runs directly without compilation. Both runtimes support the methods offered by each backend, but need not produce bit-identical floating-point or sampled results.'
-  zh: '`runtime` 在创建后端时选定。`"numba"` 是 [`Simulator`][fatqat.simulator.Simulator] 以及包括 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 在内的全部三种硬件配置的默认值。它在首次使用时编译内核，并支持多线程内核。`"numpy"` 无需编译直接运行。两种运行时都支持各后端提供的方法，但不保证产生逐位一致的浮点或采样结果。'
+  zh: "`runtime` 在创建后端时选定。`\"numba\"` 是 [`Simulator`][fatqat.simulator.Simulator] 以及包括 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 在内的全部三种设备模型的默认值。它在首次使用时编译内核，并支持多线程内核。`\"numpy\"` 无需编译直接运行。两种运行时都支持各后端提供的方法，但不保证产生逐位一致的浮点或采样结果。"
   status: retired
 - id: 49b080718d774ff4
   en: All returned quantum arrays list subsystem 0 as the most-significant factor. For two qubits, `X(q0)|00>` is nonzero at flat index 2, while `X(q1)|00>` is nonzero at index 1. For dimensions `(3, 2)`, digits `(1, 0)` and `(0, 1)` likewise have indices 2 and 1. Ordinary NumPy C-order reshape follows this order.

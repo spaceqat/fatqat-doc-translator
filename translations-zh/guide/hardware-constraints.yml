@@ -1,0 +1,76 @@
+- id: 46e654f58d3fa657
+  en: Simulate with hardware constraints
+  zh: 模拟时考虑硬件约束
+  status: machine
+- id: 393825375b5dd384
+  en: A circuit can produce the expected result and still be unsuitable for a device. The device may support only some gates, or require two qubits to occupy connected positions. Hardware-constrained simulation lets you account for these rules while studying the computation.
+  zh: ''
+  status: retired
+- id: 7c636c8314d2a46c
+  en: 'Superconducting and neutral-atom gate simulations still use matrix-based methods to calculate how the quantum state changes. For example, a statevector or density matrix represents the state, and gates and noise channels act on it. The simulator also checks device rules: is the operation supported, are the target positions connected, and have the required atoms been loaded?'
+  zh: 超导和中性原子的门级模拟仍然使用矩阵方法计算量子态的变化，例如用态矢量或密度矩阵表示量子态，再计算量子门和噪声信道的作用。在此基础上，模拟器还会检查设备规则：这个门是否受支持、目标位置是否相连、需要的原子是否已经装载。
+  status: machine
+- id: 500ff026bfbe8e5c
+  en: For example, a two-qubit gate may run in the general simulator but fail on a superconducting device model because the selected positions are not connected. This makes the constraint visible during simulation, so you can adjust the Program or qubit placement.
+  zh: 例如，一个双量子比特门在通用模拟器中可以正常运行，但在超导设备模型中，如果两个位置没有连接，就会报错。这样，你可以在模拟时发现硬件限制带来的问题，并调整程序或量子比特的位置。
+  status: machine
+- id: 384c47ad7d77982f
+  en: This section covers superconducting devices, neutral atoms, and linear optics. Linear optics represents photons in optical modes and can use a specialized fixed-photon-number representation to reduce the computation. These simulators do not resolve the effects of pulse shape and duration on the physical state; use Hamiltonian emulation when those dynamics matter.
+  zh: ''
+  status: retired
+- id: cb32e03a895accba
+  en: '[Superconducting simulation](superconducting-simulation.md): native gates and fixed connectivity.'
+  zh: ''
+  status: retired
+- id: 90e24d00035866e8
+  en: '[Neutral-atom simulation](atom-array-simulation.md): atom loading, pairing, and loss.'
+  zh: ''
+  status: retired
+- id: 83aacd07e613aa9e
+  en: '[Linear optics simulation](linear-optics.md): photons, optical modes, and interference.'
+  zh: ''
+  status: retired
+- id: 0cf685d87d0dfd95
+  en: A circuit can produce the expected result and still be unsuitable for a device. The device may support only some gates, or require two qubits to occupy connected positions.
+  zh: 一个线路能得到正确结果，并不意味着它能直接在某种设备上运行。设备可能只支持部分量子门，也可能要求两个量子比特位于相连的位置。
+  status: machine
+- id: d77248d9d74cbbce
+  en: This section covers superconducting devices, neutral atoms, and linear optics. Linear optics represents photons in optical modes and can use a specialized fixed-photon-number representation to reduce the computation. Use Hamiltonian emulation when you need to study how pulse shape and duration affect the quantum state.
+  zh: 这一栏分别介绍超导、中性原子和线性光学。线性光学使用光学模式描述光子，并可利用固定光子数的专用表示减少计算量。需要研究脉冲形状和持续时间如何影响量子态时，再使用哈密顿量仿真。
+  status: machine
+- id: 65dceb371bdd93dc
+  en: Examples and compilation
+  zh: 示例与编译
+  status: machine
+- id: 4fd58836e56a731c
+  en: '[Superconducting simulation](superconducting-simulation.md)'
+  zh: '[超导比特模拟](superconducting-simulation.md)'
+  status: retired
+- id: 2eace7a826e16d94
+  en: '[Neutral-atom simulation](atom-array-simulation.md)'
+  zh: '[中性原子阵列模拟](atom-array-simulation.md)'
+  status: retired
+- id: 5f84fb98ebf0737a
+  en: '[Linear optics simulation](linear-optics.md)'
+  zh: '[线性光学模拟](linear-optics.md)'
+  status: retired
+- id: 735a76310f6c5803
+  en: '[Compile and run a logical circuit](compiler.md)'
+  zh: '[编译与运行逻辑线路](compiler.md)'
+  status: retired
+- id: 4e927684d098a7c8
+  en: '[Superconducting qubits](superconducting-simulation.md)'
+  zh: "[超导比特模拟](superconducting-simulation.md)"
+  status: machine
+- id: aec85dad2bc42319
+  en: '[Neutral-atom arrays](atom-array-simulation.md)'
+  zh: "[中性原子阵列模拟](atom-array-simulation.md)"
+  status: machine
+- id: 937455c682a1f41c
+  en: '[Linear optics](linear-optics.md)'
+  zh: "[线性光学模拟](linear-optics.md)"
+  status: machine
+- id: a60db591b68d1337
+  en: '[Compile circuits](compiler.md)'
+  zh: "[编译与运行逻辑线路](compiler.md)"
+  status: machine

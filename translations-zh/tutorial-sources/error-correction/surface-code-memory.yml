@@ -4,7 +4,7 @@
   status: machine
 - id: 70373c70db071b72
   en: Build a noisy surface-code memory-Z experiment with SCQubitSimulator, decode repeated stabilizer measurements, and fit the logical error rate per cycle.
-  zh: '使用 SCQubitSimulator 构建含噪声的表面码 memory-Z 存储实验，对重复稳定子测量进行译码，并拟合每个周期的逻辑错误率。'
+  zh: "使用 SCQubitSimulator 设置含噪声的表面码 memory-Z 存储实验，对重复稳定子测量进行译码，并拟合每个周期的逻辑错误率。"
   status: machine
 - id: 5828b43b350ca6ba
   en: Seventeen-qubit surface-code patch with nine data qubits, four X checks, four Z checks, and the logical Z support
@@ -28,7 +28,7 @@
   status: machine
 - id: aa2e528da5e398e5
   en: We will show how repeated stabilizer measurements provide information for decoding the final logical Z readout. You will learn how to construct a noisy syndrome-extraction circuit, interpret detection events, and apply a classical decoder. Finally, we will examine how the decoded logical error rate changes with the number of QEC cycles and fit an effective error rate per cycle.
-  zh: '我们将展示重复的稳定子测量如何为最终逻辑 Z 读出的译码提供信息。你将学习构建含噪声的综合征提取电路、理解检测事件，以及应用经典译码器。最后，我们会考察译码后的逻辑错误率如何随 QEC 周期数变化，并拟合每个周期的有效错误率。'
+  zh: "我们将展示重复的稳定子测量如何为最终逻辑 Z 读出的译码提供信息。你将学习编写含噪声的综合征提取线路、理解检测事件，以及应用经典译码器。最后，我们会考察译码后的逻辑错误率如何随 QEC 周期数变化，并拟合每个周期的有效错误率。"
   status: machine
 - id: ee7eb41e9c4a3ed2
   en: 1. Specify the code and initial state
@@ -76,7 +76,7 @@
   status: machine
 - id: a44a386a636ab6af
   en: 3. Build the syndrome extraction circuit
-  zh: '3. 构建综合征提取电路'
+  zh: "3. 编写综合征提取线路"
   status: machine
 - id: 17506ac887b88700
   en: Z-type stabilizers are measured using CNOT gates with the data qubits as controls and the ancilla as the target. For X-type stabilizers, the ancilla acts as the control and the data qubits as targets. A Hadamard gate is applied to each X-check ancilla before and after its CNOT sequence. All ancillas are then measured in the Z basis.
@@ -116,7 +116,7 @@
   status: machine
 - id: 3d0363350d7a3238
   en: An X error on a data qubit reverses the sign of each Z stabilizer acting on that qubit. The decoder uses the resulting detection events to infer a Pauli-X recovery. If the recovery anticommutes with the chosen $Z_L$, the final logical readout must be flipped. Both stabilizer types are measured in the circuit, but this decoder uses only the Z-check history.
-  zh: '数据量子比特上的 X 错误会翻转作用于该量子比特的每个 Z 稳定子的符号。译码器利用由此产生的检测事件推断 Pauli-X 恢复操作。如果恢复操作与选定的 $Z_L$ 反对易，就必须翻转最终逻辑读出。电路测量两类稳定子，但此译码器仅使用 Z 校验历史。'
+  zh: '数据量子比特上的 X 错误会翻转作用于该量子比特的每个 Z 稳定子的符号。译码器利用由此产生的检测事件推断 Pauli-X 恢复操作。如果恢复操作与选定的 $Z_L$ 反对易，就必须翻转最终逻辑读出。线路测量两类稳定子，但此译码器仅使用 Z 校验历史。'
   status: machine
 - id: b11f4ffe7fcab6e7
   en: We approximate the noise by independent data X errors and ancilla readout errors. In the corresponding spacetime graph, a data error connects the affected Z checks within one time layer. An error detected by only one check connects that check to a spatial code boundary. An ancilla readout error changes one reported result and produces detection events at two successive times on the same check.
@@ -156,7 +156,7 @@
   status: machine
 - id: b1a90fc0ac9b01e9
   en: For larger code distances, consider sampling with FatQat, constructing a compatible detector error model with [Stim](https://github.com/quantumlib/Stim), and decoding with [PyMatching](https://github.com/oscarhiggott/PyMatching). The reference model should match the experiment's circuit and measurement protocol.
-  zh: '对于更大的码距，可以考虑使用 FatQat 采样，用 [Stim](https://github.com/quantumlib/Stim) 构建兼容的检测器错误模型，并用 [PyMatching](https://github.com/oscarhiggott/PyMatching) 译码。参考模型应与实验电路和测量协议一致。'
+  zh: "对于更大的码距，可以考虑使用 FatQat 采样，用 [Stim](https://github.com/quantumlib/Stim) 生成兼容的检测器错误模型，并用 [PyMatching](https://github.com/oscarhiggott/PyMatching) 译码。参考模型应与实验线路和测量协议一致。"
   status: machine
 - id: 30040fc8eafeb68c
   en: 6. Measure logical error after decoding
@@ -224,5 +224,5 @@
   status: machine
 - id: edd0d2877e12a1a9
   en: A full characterization can use logical process tomography, with an informationally complete set of encoded inputs and measurements of the recovered logical X, Y, and Z observables. This requires more preparation and measurement settings. For quantitative comparisons, increase the shot count and use a decoder matched to the circuit noise. Multiple code distances are needed to study suppression with distance.
-  zh: '完整表征可使用逻辑过程层析：制备一组信息完备的编码输入，并测量恢复后的逻辑 X、Y 和 Z 可观测量。这需要更多制备与测量设置。进行定量比较时，应增加采样次数，并使用与电路噪声匹配的译码器。研究错误率随码距增大而受到抑制的情况，需要考察多个码距。'
+  zh: '完整表征可使用逻辑过程层析：制备一组信息完备的编码输入，并测量恢复后的逻辑 X、Y 和 Z 可观测量。这需要更多制备与测量设置。进行定量比较时，应增加采样次数，并使用与线路噪声匹配的译码器。研究错误率随码距增大而受到抑制的情况，需要考察多个码距。'
   status: machine

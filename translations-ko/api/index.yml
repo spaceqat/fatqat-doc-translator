@@ -73,7 +73,7 @@
 - id: 04846f2e25dba217
   en: '[Interoperability](interoperability/index.md)'
   ko: '[상호 운용](interoperability/index.md)'
-  status: machine
+  status: retired
 - id: 712e144b920e9d96
   en: '[Matrix implementations](implementation.md)'
   ko: '[행렬 구현](implementation.md)'
@@ -89,4 +89,8 @@
 - id: 3de54e16e845b179
   en: '[Experimental APIs](experimental.md)'
   ko: '[실험적 API](experimental.md)'
+  status: machine
+- id: b99fbe2efc494048
+  en: '[OpenQASM & Qiskit](interoperability/index.md)'
+  ko: "[상호 운용](interoperability/index.md)"
   status: machine

@@ -16,7 +16,7 @@
   status: machine
 - id: 0603685298480922
   en: Start with ideal circuit behavior, inspect states and measurements, then add controlled noise and measure performance.
-  zh: 从理想电路行为开始，检查状态和测量，然后加入受控的噪声并衡量性能。
+  zh: 从理想线路行为开始，检查状态和测量，然后加入受控的噪声并衡量性能。
   status: retired
 - id: a55f972269404651
   en: '[Start with simulation :material-arrow-right:](simulation.md)'
@@ -36,15 +36,15 @@
   status: retired
 - id: d24245b1fe2c7c94
   en: '[Open hardware-profile simulation :material-arrow-right:](hardware-profile-simulation.md)'
-  zh: "[了解硬件配置模拟 :material-arrow-right:](hardware-profile-simulation.md)"
-  status: machine
+  zh: '[了解硬件约束模拟 :material-arrow-right:](hardware-profile-simulation.md)'
+  status: retired
 - id: 1dd7f779f3bf5ef4
   en: '![Driven-atom spectroscopy heatmap](../assets/generated/guide/guide-path-physics.png){ loading=lazy width="639" height="418" }'
   zh: '![受驱原子光谱热图](../assets/generated/guide/guide-path-physics.png){ loading=lazy width="639" height="418" }'
   status: machine
 - id: da25ed4fe7d38c9c
   en: ':material-atom: **Follow the physics**'
-  zh: ":material-atom: **研究物理动力学**"
+  zh: ':material-atom: **研究物理动力学**'
   status: machine
 - id: 82f31475a823abd7
   en: Resolve calibrated gates and direct pulse controls into continuous dynamics for transmons and neutral atoms.
@@ -53,7 +53,7 @@
 - id: 197f1a458192becc
   en: '[Open Hamiltonian emulation :material-arrow-right:](hamiltonian-emulation.md)'
   zh: '[打开哈密顿量仿真 :material-arrow-right:](hamiltonian-emulation.md)'
-  status: machine
+  status: retired
 - id: c2fbdff2be61a55c
   en: One Program, three levels
   zh: 一个 Program，三个层级
@@ -64,11 +64,11 @@
   status: retired
 - id: 81408cccd382026f
   en: New to FatQat? [Build and run a Bell program](quickstart.md). It takes about ten minutes and ends with a circuit drawing and a counts plot.
-  zh: 初次接触 FatQat？[构建并运行一个贝尔程序](quickstart.md)。它大约需要十分钟，最后会得到一张电路图和一张计数图。
+  zh: 初次接触 FatQat？[创建并运行一个贝尔程序](quickstart.md)。它大约需要十分钟，最后会得到一张线路图和一张计数图。
   status: retired
 - id: 3d039d4c8ded5334
   en: When you are ready to go beyond the first circuit, [write a richer Program](program.md). That chapter introduces named registers, classical control, reusable parameters, and mixed qubit–qutrit systems without changing the authoring model.
-  zh: 当你准备超越第一个电路时，请[编写更丰富的 Program](program.md)。那一章介绍命名寄存器、经典控制、可复用参数以及量子比特–qutrit 混合系统，而无需改变编写模型。
+  zh: 当你准备超越第一个线路时，请[编写更丰富的 Program](program.md)。那一章介绍命名寄存器、经典控制、可复用参数以及量子比特–qutrit 混合系统，而无需改变编写模型。
   status: retired
 - id: 199aa25730d144d7
   en: '!!! tip'
@@ -76,7 +76,7 @@
   status: machine
 - id: b178c070c1fed1bf
   en: The guide teaches complete workflows and the reasoning behind them. Follow a link to the [API reference](../api/index.md) when you need a precise signature or contract. The [tutorials](../tutorials/index.md) are longer case studies built on the same features.
-  zh: "本指南介绍完整的使用流程，并说明为什么这样做。需要查询函数签名或具体行为约定时，请查阅 [API 参考](../api/index.md)。[教程](../tutorials/index.md)则通过更完整的案例展示这些功能。"
+  zh: 本指南介绍完整的使用流程，并说明为什么这样做。需要查询函数签名或具体行为约定时，请查阅 [API 参考](../api/index.md)。[教程](../tutorials/index.md)则通过更完整的案例展示这些功能。
   status: machine
 - id: 1080a3d338cf5d1d
   en: '| Question | Execution target | Typical answer |'
@@ -88,7 +88,7 @@
   status: retired
 - id: 1b8f6b17b5797f3e
   en: '| Does it fit this device profile? | Hardware-profile simulator | Native-operation, layout, and noise behavior |'
-  zh: '| 它符合这个设备配置文件吗？ | 硬件配置文件模拟器 | 原生操作、布局与噪声行为 |'
+  zh: '| 它符合这个设备配置文件吗？ | 设备模型模拟器 | 原生操作、布局与噪声行为 |'
   status: retired
 - id: f3e03c4b532b6ca3
   en: '| What dynamics produce it? | Hamiltonian emulator | Time evolution, leakage, occupancy, and pulse effects |'
@@ -104,15 +104,15 @@
   status: machine
 - id: 5e6b46ba4d76696f
   en: '[Build, draw, and run a Bell program](quickstart.md), then learn how to [write Programs and registers](program.md). When you are ready to compare backends, [choose how much physics to model](execution-models.md).'
-  zh: "先[构建、绘制并运行 Bell 程序](quickstart.md)，再学习[编写 Program 和 Register](program.md)。准备好比较后端时，可[选择需要建模的物理细节](execution-models.md)。"
-  status: machine
+  zh: 初次使用时，可以先[创建并运行一个贝尔态 Program](quickstart.md)，再了解[如何使用 Program 和 Register](program.md)。需要挑选后端时，参考[选择需要建模的物理细节](execution-models.md)。
+  status: retired
 - id: e47b6c18d04de867
   en: Choose an execution path
   zh: 选择执行路径
-  status: machine
+  status: retired
 - id: 77ca0539d56d4aa7
   en: Simulate states, measurements, observables, and parameter sweeps, then compare ideal and noisy results or tune performance.
-  zh: 模拟态、测量、可观测量和参数扫描，再比较理想与含噪结果，或调整性能。
+  zh: 查看量子态、测量结果和可观测量，扫描不同参数，再比较理想与含噪结果，或优化运行性能。
   status: machine
 - id: 643afd5e2f430d6d
   en: Check native operations, placement, connectivity, capacity, atom occupancy, pairing, and reference noise.
@@ -120,49 +120,133 @@
   status: machine
 - id: aeff105564baafc7
   en: Follow calibrated transmon gates and direct pulse controls as continuous dynamics, with built-in models for transmons and neutral atoms.
-  zh: 使用 transmon 和中性原子的内置模型，通过连续动力学跟踪校准 transmon 门与直接脉冲控制。
+  zh: 用内置的 transmon 和中性原子模型，研究校准门和直接脉冲控制过程中，物理状态如何随时间变化。
   status: machine
 - id: acd3ea8d36e24bf4
   en: '[Compare the execution levels](execution-models.md) if you are unsure which path contains the detail your study needs.'
   zh: 如果不确定哪条路径包含研究所需的细节，请先[比较执行层级](execution-models.md)。
-  status: machine
+  status: retired
 - id: 5997d80375de01f4
   en: To compile an editable gate circuit for a superconducting or neutral-atom target, continue with [Compile a logical circuit](compiler.md).
-  zh: 若要将可编辑的门电路编译到超导或中性原子目标，请继续阅读[编译逻辑电路](compiler.md)。
-  status: machine
+  zh: 若要将可编辑的门线路编译到超导或中性原子目标，请继续阅读[编译逻辑线路](compiler.md)。
+  status: retired
 - id: 9ce9ddbaa838b9d4
   en: Continue by task
-  zh: 按任务继续阅读
-  status: machine
+  zh: 按任务查找
+  status: retired
 - id: fc5a96b97f78a695
   en: :material-chart-box-outline:{ .lg .middle } **Simulate and analyze**
   zh: :material-chart-box-outline:{ .lg .middle } **模拟与分析**
-  status: machine
+  status: retired
 - id: f97507a79e8abb6d
   en: '[Simulation](simulation.md) · [Observables](interpret-results.md) · [Ideal and noisy runs](ideal-and-noisy.md) · [Visualization](visualization.md) · [Performance](performance.md)'
-  zh: '[模拟](simulation.md) · [可观测量](interpret-results.md) · [理想运行与含噪运行](ideal-and-noisy.md) · [可视化](visualization.md) · [性能](performance.md)'
-  status: machine
+  zh: '[模拟量子程序](simulation.md) · [可观测量](interpret-results.md) · [理想运行与含噪运行](ideal-and-noisy.md) · [可视化](visualization.md) · [性能优化](performance.md)'
+  status: retired
 - id: 8fed65b90a08bb3d
   en: :material-memory:{ .lg .middle } **Model hardware and dynamics**
   zh: :material-memory:{ .lg .middle } **硬件与动力学建模**
-  status: machine
+  status: retired
 - id: 9c7bf88b62eec61a
   en: '[Hardware profiles](hardware-profile-simulation.md) · [Hamiltonian emulation](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
-  zh: '[硬件配置](hardware-profile-simulation.md) · [哈密顿量仿真](hamiltonian-emulation.md) · [Transmon](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
+  zh: '[硬件约束模拟](hardware-profile-simulation.md) · [哈密顿量仿真](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
   status: retired
 - id: 6afa8a1317501315
   en: :material-transit-connection-variant:{ .lg .middle } **Connect and diagnose**
   zh: :material-transit-connection-variant:{ .lg .middle } **互操作与问题诊断**
-  status: machine
+  status: retired
 - id: 38dc3347fc810932
   en: '[OpenQASM and Qiskit](interoperability.md) · [Troubleshooting](troubleshooting.md)'
   zh: '[OpenQASM 和 Qiskit](interoperability.md) · [故障排查](troubleshooting.md)'
-  status: machine
+  status: retired
 - id: 692fb192bcb3b4d0
   en: Choose the level of detail that answers your question. Direct simulation and physics workflows start from the same backend-independent [`Program`][fatqat.Program]. When mapping and routing are part of the question, author a [`LogicalProgram`][fatqat.LogicalProgram] for the [compiler](compiler.md).
-  zh: 选择足以回答问题的细节层级。直接模拟与物理工作流程从同一个后端无关的 [`Program`][fatqat.Program] 出发。当问题涉及映射与路由时，为[编译器](compiler.md)编写 [`LogicalProgram`][fatqat.LogicalProgram]。
+  zh: 先确定你想研究什么，再选择所需的模拟细节。直接模拟和物理仿真都可以从不依赖后端的 [`Program`][fatqat.Program] 开始。如果还需要为设备进行映射和路由，则使用 [`LogicalProgram`][fatqat.LogicalProgram]，交给[编译器](compiler.md)处理。
   status: machine
 - id: 0cc09c11dc55235c
   en: '[Hardware profiles](hardware-profile-simulation.md) · [Linear optics](linear-optics.md) · [Hamiltonian emulation](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
-  zh: '[硬件配置](hardware-profile-simulation.md) · [线性光学](linear-optics.md) · [哈密顿量仿真](hamiltonian-emulation.md) · [Transmon](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
+  zh: '[硬件约束模拟](hardware-profile-simulation.md) · [线性光学](linear-optics.md) · [哈密顿量仿真](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
+  status: retired
+- id: 55caeadf0d91b75f
+  en: '[Simulation](simulation.md) · [Linear optics](linear-optics.md) · [Observables](interpret-results.md) · [Ideal and noisy runs](ideal-and-noisy.md) · [Visualization](visualization.md) · [Performance](performance.md)'
+  zh: '[模拟量子程序](simulation.md) · [线性光学](linear-optics.md) · [可观测量](interpret-results.md) · [理想运行与含噪运行](ideal-and-noisy.md) · [可视化](visualization.md) · [性能优化](performance.md)'
+  status: retired
+- id: 3ace145f2523f878
+  en: :material-memory:{ .lg .middle } **Hardware constraints**
+  zh: :material-memory:{ .lg .middle } **硬件约束模拟**
+  status: machine
+- id: cb5cf5dbd4815688
+  en: '[Hardware-profile simulation](hardware-profile-simulation.md) · [Compile and run a logical circuit](compiler.md)'
+  zh: '[硬件约束模拟](hardware-profile-simulation.md) · [编译与运行逻辑线路](compiler.md)'
+  status: retired
+- id: 144bcada83b288c4
+  en: :material-atom:{ .lg .middle } **Hamiltonian emulation**
+  zh: :material-atom:{ .lg .middle } **哈密顿量仿真**
+  status: machine
+- id: 31d4823f2bbd1646
+  en: '[Pulse workflow](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
+  zh: '[编写与运行脉冲](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
+  status: retired
+- id: 958e11a7870497b0
+  en: '[Superconducting simulation](superconducting-simulation.md) · [Neutral-atom simulation](atom-array-simulation.md) · [Linear optics](linear-optics.md) · [Compile and run a logical circuit](compiler.md)'
+  zh: '[超导比特模拟](superconducting-simulation.md) · [中性原子阵列模拟](atom-array-simulation.md) · [线性光学](linear-optics.md) · [编译与运行逻辑线路](compiler.md)'
+  status: retired
+- id: 3e23237651e83a43
+  en: '[Open hardware-profile simulation :material-arrow-right:](superconducting-simulation.md)'
+  zh: '[了解硬件约束模拟 :material-arrow-right:](superconducting-simulation.md)'
+  status: retired
+- id: 32e8dd0360ff99e2
+  en: '[Open hardware-profile simulation :material-arrow-right:](hardware-constraints.md)'
+  zh: '[了解硬件约束模拟 :material-arrow-right:](hardware-constraints.md)'
+  status: retired
+- id: c1d0ebccf65829c6
+  en: '[Build, draw, and run a Bell program](quickstart.md), then learn how to [write Programs and registers](program.md). When you are ready to compare backends, [choose a simulation or emulation approach](execution-models.md).'
+  zh: 先[编写、绘制并运行一个贝尔态程序](quickstart.md)，再了解如何[编写 Program 并使用 Register](program.md)。需要比较不同后端时，可以阅读[选择模拟与仿真方式](execution-models.md)。
+  status: machine
+- id: cbfe454a5b0b4bca
+  en: Choose an approach
+  zh: 选择执行路径
+  status: machine
+- id: ded2b420d3b9c644
+  en: '[Explore hardware constraints :material-arrow-right:](hardware-constraints.md)'
+  zh: '[了解硬件约束模拟 :material-arrow-right:](hardware-constraints.md)'
+  status: machine
+- id: 052c9f56ac0ab7bb
+  en: '[Explore physical dynamics :material-arrow-right:](hamiltonian-emulation.md)'
+  zh: '[打开哈密顿量仿真 :material-arrow-right:](hamiltonian-emulation.md)'
+  status: machine
+- id: f0105a82ccf172b8
+  en: '[Compare approaches](execution-models.md) if you are unsure which path contains the detail your study needs.'
+  zh: 如果不确定哪条路径包含研究所需的细节，请先[比较执行层级](execution-models.md)。
+  status: machine
+- id: e1aed4a008fad278
+  en: Browse by task
+  zh: 按任务查找
+  status: machine
+- id: b18d2cad72a0742c
+  en: :material-chart-box-outline:{ .lg .middle } **Run & analyze**
+  zh: :material-chart-box-outline:{ .lg .middle } **模拟与分析**
+  status: machine
+- id: 553499018434a22c
+  en: '[Simulate programs](simulation.md) · [Observables](interpret-results.md) · [Ideal and noisy runs](ideal-and-noisy.md) · [Visualize results](visualization.md) · [Improve performance](performance.md)'
+  zh: '[模拟量子程序](simulation.md) · [可观测量](interpret-results.md) · [理想运行与含噪运行](ideal-and-noisy.md) · [可视化](visualization.md) · [性能优化](performance.md)'
+  status: machine
+- id: f879acfabb147e1c
+  en: '[Superconducting qubits](superconducting-simulation.md) · [Neutral-atom arrays](atom-array-simulation.md) · [Linear optics](linear-optics.md) · [Compile circuits](compiler.md)'
+  zh: '[超导比特模拟](superconducting-simulation.md) · [中性原子阵列模拟](atom-array-simulation.md) · [线性光学模拟](linear-optics.md) · [编译与运行逻辑线路](compiler.md)'
+  status: machine
+- id: a787041f7fb55a66
+  en: '[Write & run pulses](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
+  zh: '[编写与运行脉冲](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
+  status: retired
+- id: 6e0d31638a8f39c4
+  en: :material-transit-connection-variant:{ .lg .middle } **Connect & debug**
+  zh: ":material-transit-connection-variant:{ .lg .middle } **工具对接与排查**"
+  status: machine
+- id: d517cf97b66e01ea
+  en: '[OpenQASM & Qiskit](interoperability.md) · [Troubleshooting](troubleshooting.md)'
+  zh: "[OpenQASM 与 Qiskit](interoperability.md) · [常见问题排查](troubleshooting.md)"
+  status: machine
+- id: dcf33c47f716ac6c
+  en: '[Pulse programs](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
+  zh: "[编写和运行脉冲程序](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)"
   status: machine

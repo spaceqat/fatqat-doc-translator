@@ -56,15 +56,15 @@
   status: retired
 - id: 171c680dd29842cb
   en: Compile and run a logical circuit
-  zh: 编译并运行逻辑电路
+  zh: 编译并运行逻辑线路
   status: machine
 - id: 46c03a3fde0e3b99
   en: 'FatQat can prepare the same logical circuit for a superconducting simulator or a neutral-atom simulator. The normal workflow has three steps:'
-  zh: "FatQat 可以将同一个逻辑电路编译为超导模拟器或中性原子模拟器可运行的程序。通常分为三步："
+  zh: FatQat 可以将同一个逻辑线路编译为超导模拟器或中性原子模拟器可运行的程序。通常分为三步：
   status: machine
 - id: fa0f17cc5980da2e
   en: Build a [`LogicalProgram`][fatqat.LogicalProgram].
-  zh: 构建 [`LogicalProgram`][fatqat.LogicalProgram]。
+  zh: 编写 [`LogicalProgram`][fatqat.LogicalProgram]。
   status: machine
 - id: 7bcc64b5299f6597
   en: Compile it for a target.
@@ -76,19 +76,19 @@
   status: machine
 - id: 2a9b6d547fb36a37
   en: Build a circuit
-  zh: 构建电路
+  zh: 编写线路
   status: machine
 - id: c45e41626076b96f
   en: 'This Bell-state circuit will be used for both targets:'
-  zh: 下面的 Bell 态电路将用于这两种目标：
+  zh: 我们用下面的贝尔态线路，分别尝试两种编译目标：
   status: machine
 - id: 3a35aa51796c2a74
   en: '`LogicalProgram` uses the same circuit-building interface as [`Program`][fatqat.Program]. You can simulate it directly while developing an algorithm, then compile it when you are ready to run against a hardware profile. Compilation does not modify the circuit, so it can be reused with more than one target.'
-  zh: '`LogicalProgram` 与 [`Program`][fatqat.Program] 使用相同的电路构建接口。开发算法时可以直接模拟，准备好在硬件配置上运行时再编译。编译不会修改电路，因此可以将其复用于多个目标。'
+  zh: '`LogicalProgram` 与 [`Program`][fatqat.Program] 使用相同的线路编写接口。开发算法时可以直接模拟，准备好在设备模型上运行时再编译。编译不会修改线路，因此可以将其复用于多个目标。'
   status: machine
 - id: a3710729082af1ae
   en: Run on a superconducting profile
-  zh: 在超导硬件配置上运行
+  zh: 在超导设备模型上运行
   status: machine
 - id: 645f4346e1159115
   en: Create an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] with the number of physical qubits and their allowed two-qubit connections. The compiler maps the logical qubits to this topology and adds routing operations where they are needed.
@@ -96,7 +96,7 @@
   status: retired
 - id: 483a2f8faf826821
   en: '`couplings` can describe any valid graph; the topology does not need to be a grid. The current public SC profile uses X, SX, RZ, and CZ as its native gate set.'
-  zh: '`couplings` 可以描述任意有效图，拓扑不必是网格。当前公共 SC 硬件配置使用 X、SX、RZ 和 CZ 作为原生门集。'
+  zh: '`couplings` 可以描述任意有效图，拓扑不必是网格。当前公共 SC 设备模型使用 X、SX、RZ 和 CZ 作为原生门集。'
   status: retired
 - id: 00360795314212b8
   en: Run on a neutral-atom architecture
@@ -104,11 +104,11 @@
   status: machine
 - id: 029797262a3762f1
   en: 'For neutral atoms, load an architecture and compile the same circuit with `compile_to_na()`:'
-  zh: 对于中性原子，先加载架构，再用 `compile_to_na()` 编译同一电路：
+  zh: 对于中性原子，先加载架构，再用 `compile_to_na()` 编译同一线路：
   status: machine
 - id: 392f6004b4d80ac7
   en: The architecture describes the zones and movement constraints used to create the neutral-atom schedule. FatQat also includes `scale_to_100` and `scale_to_500` profiles for larger studies.
-  zh: 架构描述了生成中性原子调度所需的分区和移动约束。FatQat 还提供 `scale_to_100` 和 `scale_to_500` 配置，用于更大规模的研究。
+  zh: 架构配置说明了有哪些分区、原子可以怎样移动，编译器据此安排执行时序。需要研究更大系统时，还可以使用 `scale_to_100` 和 `scale_to_500` 配置。
   status: machine
 - id: ca7149bff730f0e3
   en: 'OpenQASM 2 and OpenQASM 3 can be compiled without first creating a `LogicalProgram`. Choose the function that matches the target:'
@@ -124,11 +124,11 @@
   status: machine
 - id: 84951bb34d360fda
   en: 'The default compile functions return a result that is ready for the matching simulator. It also keeps two useful views of the compilation:'
-  zh: 默认编译函数返回可直接交给匹配模拟器的结果，同时保留两种有用的编译信息：
+  zh: 默认情况下，编译结果可以直接交给对应的模拟器运行。你还可以查看其中的两项信息，了解编译做了什么：
   status: machine
 - id: 9b06dadff5471f8d
   en: '`compiled.output` is the final compiler representation: an `SCNativeProgram` for SC or a `ZonedPlan` for NA.'
-  zh: "`compiled.output` 保存最终编译产物：SC 对应 `SCNativeProgram`，NA 对应 `ZonedPlan`。"
+  zh: '`compiled.output` 保存最终编译结果：超导目标对应 `SCNativeProgram`，中性原子目标对应 `ZonedPlan`。'
   status: machine
 - id: 76bec3679bda0d83
   en: '`compiled.route` lists the compiler stages that ran.'
@@ -136,7 +136,7 @@
   status: machine
 - id: c7570ea5d6cd2685
   en: Compiled programs keep classical registers in source declaration order, including unused registers and unwritten slots. Measurement order does not change count-key positions. Counts follow the usual [ordering and zero-fill rules](../api/result.md#ordering-and-mutable-values).
-  zh: 编译后的程序按源程序声明顺序保留经典寄存器，包括未使用的寄存器和未写入的槽位。测量顺序不会改变计数键中的位置。计数遵循通常的[排序和补零规则](../api/result.md#ordering-and-mutable-values)。
+  zh: 编译后，经典 Register 及其成员仍按源程序的声明顺序排列，未使用或尚未写入结果的成员也会保留。因此，测量的先后顺序不会改变结果键中各位的位置。具体规则见[结果排序与补零](../api/result.md#ordering-and-mutable-values)。
   status: machine
 - id: b01ab7cc3b816436
   en: To inspect an earlier representation, pass its IR identifier with `emit`. In that case the compiler returns a [`CompilationResult`][fatqat.compiler.CompilationResult] for inspection rather than a simulator-ready result.
@@ -148,15 +148,15 @@
   status: machine
 - id: 50f9590acd1dc3cc
   en: Creating the animation requires Matplotlib. Saving it as MP4 also requires FFmpeg on `PATH`.
-  zh: 创建动画需要 Matplotlib。保存为 MP4 还要求 `PATH` 中存在 FFmpeg。
+  zh: 生成动画需要 Matplotlib。若要保存为 MP4，还需安装 FFmpeg，并确保能通过 `PATH` 找到它。
   status: machine
 - id: e7249cd6de860050
   en: Bind circuit parameters
-  zh: 绑定电路参数
+  zh: 绑定线路参数
   status: machine
 - id: 86921b428627f357
   en: 'Keep symbolic parameters while building a reusable circuit, then bind numeric values before compiling:'
-  zh: 构建可复用电路时保留符号参数，在编译前绑定数值：
+  zh: 如果想复用同一条线路，可以先用符号参数编写，在编译前再填入具体数值：
   status: machine
 - id: 2470267cdd183cc9
   en: '`assign_parameters()` returns a new `LogicalProgram`; the template remains available for another set of values.'
@@ -168,29 +168,37 @@
   status: machine
 - id: 428cf66d8aa00e14
   en: The compiler currently handles static circuits with numeric parameters. Both targets support I, H, X, Y, Z, S, Sdg, T, Tdg, RX, RY, RZ, Phase, U, U1, U2, U3, CX, CZ, and Swap. The SC route also supports SX and Reset. Measurements belong at the end of the circuit, and each classical slot can receive one measurement result.
-  zh: 编译器目前处理参数为数值的静态电路。两种目标都支持 I、H、X、Y、Z、S、Sdg、T、Tdg、RX、RY、RZ、Phase、U、U1、U2、U3、CX、CZ 和 Swap。SC 路径还支持 SX 和 Reset。测量应位于电路末尾，每个经典槽位可以接收一个测量结果。
+  zh: 编译器目前处理参数为数值的静态线路。两种目标都支持 I、H、X、Y、Z、S、Sdg、T、Tdg、RX、RY、RZ、Phase、U、U1、U2、U3、CX、CZ 和 Swap。SC 路径还支持 SX 和 Reset。测量应位于线路末尾，每个经典槽位可以接收一个测量结果。
   status: machine
 - id: c17c784235da0b92
   en: Other operations available to `LogicalProgram`, including classical conditions, feed-forward, mid-circuit measurement, multi-controlled gates, and qudit gates, can still be used in direct simulation but are not compiled yet. If a circuit uses an operation unavailable on its chosen target, compilation raises a [`PassError`][fatqat.compiler.PassError] that identifies the compiler stage and operation.
-  zh: '`LogicalProgram` 中的其他操作，包括经典条件、前馈、电路中途测量、多重受控门和 qudit 门，仍可用于直接模拟，但目前尚不能编译。如果电路使用了所选目标不支持的操作，编译会抛出 [`PassError`][fatqat.compiler.PassError]，指出对应的编译阶段和操作。'
+  zh: '`LogicalProgram` 中的其他操作，包括经典条件、前馈、线路中途测量、多重受控门和 qudit 门，仍可用于直接模拟，但目前尚不能编译。如果线路使用了所选目标不支持的操作，编译会抛出 [`PassError`][fatqat.compiler.PassError]，指出对应的编译阶段和操作。'
   status: machine
 - id: a0eb5c50fd3df5ba
   en: '`couplings` can describe any valid graph; the topology does not need to be a grid. The current public SC profile uses X, SX, RZ, and CZ as its native gate set. Toffoli (`CCX`) gates are decomposed into one- and two-qubit gates before routing.'
-  zh: "`couplings` 可以描述任意有效图，拓扑不必是网格。当前公共 SC 硬件配置使用 X、SX、RZ 和 CZ 作为原生门集。Toffoli（`CCX`）门会在路由前分解为单量子比特和双量子比特门。"
+  zh: '`couplings` 可以描述任意有效图，拓扑不必是网格。当前公共 SC 设备模型使用 X、SX、RZ 和 CZ 作为原生门集。Toffoli（`CCX`）门会在路由前分解为单量子比特和双量子比特门。'
   status: machine
 - id: a78b91dd4db9ad90
   en: 'Describe the device with an [`SCTarget`][fatqat.compiler.SCTarget]: the number of physical qubits and their allowed two-qubit connections. The compiler maps the logical qubits to this topology and adds routing operations where they are needed.'
-  zh: '使用 [`SCTarget`][fatqat.compiler.SCTarget] 描述设备：物理量子比特数量及允许的双量子比特连接。编译器将逻辑量子比特映射到此拓扑，并在需要时添加路由指令。'
+  zh: 使用 [`SCTarget`][fatqat.compiler.SCTarget] 描述设备：物理量子比特数量及允许的双量子比特连接。编译器将逻辑量子比特映射到此拓扑，并在需要时添加路由指令。
   status: machine
 - id: 2dea8262bfd52d6c
   en: 'The target describes only the device''s qubits and connections. Choose how to run the result separately: create an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] that provides the qubits and connections the result uses, and select its runtime, simulation method, and noise model there.'
-  zh: "编译目标只描述设备的量子比特和连接关系。执行方式另行配置：创建一个 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]，确保它包含编译结果所需的量子比特和连接，再选择运行时、模拟方法与噪声模型。"
+  zh: 编译目标负责描述设备有哪些量子比特、它们如何连接。运行方式则由模拟器决定：创建 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]，确保它提供编译结果需要的量子比特和连接，再设置运行时、模拟方法和噪声模型。
   status: machine
 - id: bef30853ea8b21ce
   en: A simulator with more qubits or additional connections can run the same result. If the simulator lacks a qubit or connection that the result uses, `run()` raises an error immediately. The [SCTarget reference](../api/sc-target.md#when-errors-are-raised) lists these errors.
-  zh: '具有更多量子比特或额外连接的模拟器也能运行同一个结果。如果模拟器缺少结果所用的某个量子比特或连接，`run()` 会立即抛出错误。[SCTarget 参考文档](../api/sc-target.md#when-errors-are-raised)列出了这些错误。'
+  zh: 具有更多量子比特或额外连接的模拟器也能运行同一个结果。如果模拟器缺少结果所用的某个量子比特或连接，`run()` 会立即抛出错误。[SCTarget 参考文档](../api/sc-target.md#when-errors-are-raised)列出了这些错误。
   status: machine
 - id: 5d2ca6e80653c2ea
   en: 'Code that passes a simulator to the compiler continues to work. The compiler then uses the simulator''s qubits and connections, and also checks the emitted gates against its implementation map:'
-  zh: '将模拟器传给编译器的代码仍然可用。此时，编译器使用模拟器的量子比特与连接，并根据其实现映射检查生成的量子门：'
+  zh: 将模拟器传给编译器的代码仍然可用。此时，编译器使用模拟器的量子比特与连接，并根据其实现映射检查生成的量子门：
+  status: machine
+- id: f844f08569c20960
+  en: A logical circuit describes which gates to apply to which qubits. To run it on a device model, the gates also need to fit the device's instruction set and layout. A superconducting device may use `CZ` as its native two-qubit gate, for example, and allow it only between directly connected qubits. The compiler translates the gates, assigns logical qubits to physical positions, and adds routing operations when needed.
+  zh: "逻辑线路描述要对哪些量子比特施加哪些门。要把线路放到设备模型上运行，还得考虑设备支持哪些门，以及量子比特之间如何连接。比如，超导设备可能把 `CZ` 用作原生双量子比特门，而且只允许在直接相连的位置上执行。编译器会把线路中的门转换为设备支持的操作，把逻辑量子比特分配到物理位置，并在需要时加入路由操作。"
+  status: machine
+- id: 4dc706fc25d36c3e
+  en: You can simulate a logical circuit directly to check your algorithm. Compile it when you want to see how it runs under the constraints of a particular device, or to compare the same circuit on different devices.
+  zh: "想先验证算法，可以直接模拟逻辑线路。想了解线路在某种设备的约束下如何运行，或者比较同一个线路在不同设备上的表现，就可以分别为相应的设备编译。"
   status: machine

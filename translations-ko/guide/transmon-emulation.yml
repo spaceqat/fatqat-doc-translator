@@ -5,19 +5,19 @@
 - id: 290ebe4ca0c42961
   en: A transmon is operated as a qubit but modeled with at least three levels. [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] keeps the third level so that pulse-induced leakage remains visible, alongside timing and coupling effects. It uses the shared [Hamiltonian-emulation workflow](hamiltonian-emulation.md).
   ko: transmon은 큐비트로 동작시키지만, 모델에는 최소 3개의 준위를 사용합니다. [`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 세 번째 준위를 유지하여 시간과 결합의 효과뿐 아니라 펄스로 인한 누설도 확인할 수 있게 합니다. 공통 [해밀토니안 에뮬레이션 과정](hamiltonian-emulation.md)을 따릅니다.
-  status: machine
+  status: retired
 - id: 02456a4f53b8568f
   en: Load a reproducible baseline
   ko: 재현 가능한 기준 모델 불러오기
-  status: machine
+  status: retired
 - id: caacdbf1f285f7cf
   en: 'The packaged document describes one physical transmon. It is a simulation baseline, not a live calibration from a named device:'
   ko: 패키지에 포함된 문서는 물리 transmon 하나를 기술합니다. 특정 장치의 실시간 보정 데이터가 아니라 시뮬레이션용 기준 모델입니다.
-  status: machine
+  status: retired
 - id: 31ddcca003cbd258
   en: Program qubits bind to those subsystem IDs in declaration order unless a [`ResourceLayout`][fatqat.ResourceLayout] says otherwise. Every model transmon remains in the physical state even when the Program addresses only one of them. Retain `model_document` when you need persisted frequencies, anharmonicities, model identity, or coupling topology; the runtime model intentionally exposes execution capabilities rather than normalized copies of those records. This guide chooses the density-matrix method because it repeatedly inspects populations. The common default is `method="statevector"`; use `method="unitary"` when the complete coherent operator is the result you need.
   ko: '[`ResourceLayout`][fatqat.ResourceLayout]으로 달리 지정하지 않으면 Program의 큐비트는 선언 순서대로 해당 부분계 ID에 연결됩니다. Program이 하나만 지정해도 모델의 모든 transmon은 물리 상태에 남아 있습니다. 저장된 주파수, 비조화도, 모델 식별 정보, 결합 구조가 필요하면 `model_document`를 보관하세요. 런타임 모델은 이러한 기록의 정규화된 사본 대신 실행 기능을 제공하도록 설계되었습니다. 이 가이드에서는 점유 확률을 반복해서 살펴보므로 밀도 행렬 방법을 선택합니다. 공통 기본값은 `method="statevector"`이며, 전체 결맞음 연산자가 필요하면 `method="unitary"`를 사용하세요.'
-  status: machine
+  status: retired
 - id: ded7962db83deb0d
   en: Start with a transmon grid
   ko: transmon 격자에서 시작하기
@@ -49,19 +49,19 @@
 - id: d1233c2ab1f51f38
   en: Run the rotation as a calibrated gate
   ko: 보정된 게이트로 회전 실행하기
-  status: machine
+  status: retired
 - id: 01aa76e1c50c7a0c
   en: 'Reuse the guide''s central rotation as an ordinary Program operation. The emulator realizes it with its gate implementation map and reference calibration:'
-  ko: 앞에서 사용한 회전을 일반 Program 연산으로 다시 사용합니다. 에뮬레이터는 게이트 구현 맵과 기준 보정값으로 이를 구현합니다.
-  status: machine
+  ko: 앞에서 사용한 회전 게이트를 Program에 추가합니다. 에뮬레이터는 게이트 구현 맵과 기준 보정값을 사용해 이를 물리 제어로 바꿉니다.
+  status: retired
 - id: efe0e690674c8db4
   en: 'The Program declares one qubit, and the result covers all three levels of the physical transmon:'
   ko: Program은 큐비트 하나를 선언하지만 결과는 물리 transmon의 세 준위를 모두 포함합니다.
-  status: machine
+  status: retired
 - id: e48c5471ea880648
   en: Here `calibrated_populations[2]` is population in physical level `|2>`. This level models transmon leakage; it is not a qutrit declared by the Program.
-  ko: 여기서 `calibrated_populations[2]`는 물리 준위 `|2>`의 점유 확률입니다. 이 준위는 transmon 누설을 모델링하며, Program에 선언한 큐트릿가 아닙니다.
-  status: machine
+  ko: '`calibrated_populations[2]`는 물리 준위 `|2>`의 점유 확률로, transmon의 누설을 보여 줍니다. 이 물리 준위를 포함한다고 해서 Program에 큐트릿을 선언한 것은 아닙니다.'
+  status: retired
 - id: d26b91b5247b2042
   en: Drive the transmon directly
   ko: transmon 직접 구동하기
@@ -69,31 +69,31 @@
 - id: a5a36176af76e353
   en: 'Use a [`PulseOperation`][fatqat.operations.PulseOperation] when the waveform is part of the experiment. This example uses a Hann envelope with the same nominal \(\pi/2\) area as the calibrated rotation:'
   ko: 파형 자체가 실험의 일부라면 [`PulseOperation`][fatqat.operations.PulseOperation]을 사용하세요. 이 예제의 Hann 포락선은 보정된 회전과 같은 공칭 면적 \(\pi/2\)를 갖습니다.
-  status: machine
+  status: retired
 - id: 14269bd6c1f41916
   en: The waveform samples are the full complex Rabi rate \(\Omega(t)\) in rad/ns. Real samples drive the X quadrature; imaginary samples drive the Y quadrature. The analytic Hann envelope has area \(\pi/2\), and the sampled spline closely approximates it. The 10 ns direct pulse is shorter and stronger than the reference recipe's 20 ns `RX` pulse, and it omits that recipe's DRAG corrections. Those differences account for the changed populations and the reported `|2>` leakage. Both pulses use fixed analytic values rather than numerical calibration.
   ko: 파형 샘플은 rad/ns 단위의 전체 복소 Rabi 주파수 \(\Omega(t)\)입니다. 실수 샘플은 X 직교 성분을, 허수 샘플은 Y 직교 성분을 구동합니다. 해석적 Hann 포락선의 면적은 \(\pi/2\)이며 샘플링된 스플라인은 이를 잘 근사합니다. 10 ns 직접 펄스는 기준 레시피의 20 ns `RX` 펄스보다 짧고 강하며, 기준 레시피의 DRAG 보정을 생략합니다. 이 차이 때문에 점유 확률과 보고되는 `|2>` 누설이 달라집니다. 두 펄스 모두 수치 보정 대신 고정된 해석적 값을 사용합니다.
-  status: machine
+  status: retired
 - id: 0806d9b02284b8fc
   en: For a complete amplitude scan, parameter selection, and checks on other input states, follow [Calibrating a quantum gate](../tutorials/pulse-calibration.md).
   ko: 전체 진폭 스캔, 매개변수 선택, 다른 입력 상태의 검증은 [양자 게이트 보정하기](../tutorials/pulse-calibration.md)를 따라가 보세요.
   status: machine
 - id: e32457ed9b5fa407
   en: '`SampledWaveform` uses the endpoint values you provide. It does not taper a waveform or require it to start and finish at zero; this example does both explicitly through the envelope.'
-  ko: '`SampledWaveform`은 제공한 끝점 값을 그대로 사용합니다. 파형을 자동으로 줄이거나 시작과 끝이 0일 것을 요구하지 않습니다. 이 예제에서는 포락선을 통해 두 조건을 명시적으로 구현했습니다.'
-  status: machine
+  ko: '`SampledWaveform`은 지정한 끝점 값을 그대로 사용합니다. 파형의 끝을 자동으로 부드럽게 줄이지 않으며, 시작과 끝이 0일 필요도 없습니다. 이 예제의 포락선은 두 조건을 직접 만족하도록 정했습니다.'
+  status: retired
 - id: d55b102a2206c7a7
   en: '![Computational-level populations for a calibrated rotation and a direct drive are shown beside a magnified comparison of their level-two leakage percentages.](../assets/generated/guide/transmon-emulation-1.png)'
   ko: '![보정된 회전과 직접 구동의 계산 준위 점유 확률, 그리고 준위 2 누설 비율을 확대한 비교 그래프.](../assets/generated/guide/transmon-emulation-1.png)'
-  status: machine
+  status: retired
 - id: 864e8509a2a59c4c
   en: Reference pulse model
   ko: 기준 펄스 모델
   status: machine
 - id: 986f26e35bb03630
   en: The packaged calibration is a fixed analytic reference for simulation. Grid calibrations use the same pulse shapes, with deterministic rules choosing the CZ branch and filling in the recipe. Neither path numerically calibrates the pulses, fits them to hardware, or guarantees high fidelity or low leakage.
-  ko: 패키지의 보정값은 시뮬레이션을 위한 고정된 해석적 기준입니다. 격자 보정도 같은 펄스 모양을 사용하며, 결정론적 규칙으로 CZ 분기를 선택하고 레시피를 채웁니다. 어느 방식도 펄스를 수치 보정하거나 하드웨어에 피팅하지 않으며, 높은 충실도나 낮은 누설을 보장하지 않습니다.
-  status: machine
+  ko: 내장 보정값은 시뮬레이션에서 참고할 수 있는 고정된 해석적 펄스 레시피입니다. 격자 보정도 같은 펄스 모양을 사용하고, 정해진 규칙에 따라 CZ 분기와 레시피를 구성합니다. 두 방식 모두 수치 보정이나 실제 하드웨어에 대한 피팅을 수행하지 않으며, 높은 충실도나 낮은 누설을 보장하지 않습니다.
+  status: retired
 - id: c075201a74cf5c4f
   en: 'The emulator keeps three levels per transmon and uses an effective rotating- frame/RWA Hamiltonian. In the solver, \(\alpha_i\), \(\delta_i\), \(\Omega_i\), and \(g_{ij}\) are angular rates:'
   ko: 에뮬레이터는 transmon마다 3개의 준위를 유지하며 유효 회전 좌표계/RWA 해밀토니안을 사용합니다. 솔버에서 \(\alpha_i\), \(\delta_i\), \(\Omega_i\), \(g_{ij}\)는 각주파수입니다.
@@ -101,27 +101,27 @@
 - id: d0f8891dfbb64c55
   en: \[ H(t) = \sum_i \frac{\alpha_i}{2} n_i(n_i-1)
   ko: \[ H(t) = \sum_i \frac{\alpha_i}{2} n_i(n_i-1)
-  status: machine
+  status: retired
 - id: 6fbb788196a994f4
   en: \sum_i \delta_i(t)n_i
   ko: \sum_i \delta_i(t)n_i
-  status: machine
+  status: retired
 - id: 6725fb20bf44f1ff
   en: \frac{1}{2}\sum_i \left[\Omega_i(t)a_i^\dagger
   ko: \frac{1}{2}\sum_i \left[\Omega_i(t)a_i^\dagger
-  status: machine
+  status: retired
 - id: 551c869ef12e746e
   en: \Omega_i^*(t)a_i\right]
   ko: \Omega_i^*(t)a_i\right]
-  status: machine
+  status: retired
 - id: 1cbee6017f90f452
   en: \sum_{(i,j)\in E} g_{ij}(t) \left(a_i^\dagger a_j+a_i a_j^\dagger\right),
   ko: \sum_{(i,j)\in E} g_{ij}(t) \left(a_i^\dagger a_j+a_i a_j^\dagger\right),
-  status: machine
+  status: retired
 - id: 318b99e4c7b0cef4
   en: \qquad n_i=a_i^\dagger a_i. \]
   ko: \qquad n_i=a_i^\dagger a_i. \]
-  status: machine
+  status: retired
 - id: 28a78512ce1b2ef3
   en: Here \(a_i\) is the three-level lowering operator. The signed anharmonicity \(\alpha_i\) is the only coherent drift. Drive, detuning, and exchange appear only while their controls are active. In particular, there is no static exchange. Exchange is allowed only on a declared model edge; generated rectangular grids connect horizontal and vertical nearest neighbours.
   ko: 여기서 \(a_i\)는 3준위 하강 연산자입니다. 부호를 포함한 비조화도 \(\alpha_i\)가 유일한 결맞음 드리프트입니다. 구동, 디튜닝, 교환은 해당 제어가 활성화된 동안에만 나타납니다. 특히 정적 교환은 없습니다. 교환은 모델에 선언한 간선에서만 허용됩니다. 생성된 직사각형 격자는 가로와 세로의 최근접 이웃을 연결합니다.
@@ -133,7 +133,7 @@
 - id: f4e87de81f7a7260
   en: \[ g_{ij}(t) = -\frac{\pi}{T}\sin^2\!\left(\frac{\pi t}{T}\right), \qquad 0\leq t\leq T, \]
   ko: \[ g_{ij}(t) = -\frac{\pi}{T}\sin^2\!\left(\frac{\pi t}{T}\right), \qquad 0\leq t\leq T, \]
-  status: machine
+  status: retired
 - id: 894ab8135aee7ce1
   en: so \(\int_0^T g_{ij}(t)\,dt=-\pi/2\). A frame swap after the pulse gives the public \(+i\) convention. The full qutrit exchange operator also couples \(\lvert11\rangle\) to \(\lvert20\rangle\) and \(\lvert02\rangle\), so conditional-phase error and residual leakage remain possible.
   ko: 이므로 \(\int_0^T g_{ij}(t)\,dt=-\pi/2\)입니다. 펄스 뒤의 프레임 스왑으로 공개 인터페이스의 \(+i\) 규약을 맞춥니다. 전체 큐트릿 교환 연산자는 \(\lvert11\rangle\)을 \(\lvert20\rangle\), \(\lvert02\rangle\)에도 결합하므로 조건부 위상 오류와 잔여 누설이 생길 수 있습니다.
@@ -145,7 +145,7 @@
 - id: eec95197fc69a9cf
   en: \[ s(t)= \begin{cases} \frac{1-\cos(\pi t/t_r)}{2}, & 0\leq t<t_r,\\ 1, & t_r\leq t\leq T-t_r,\\ \frac{1-\cos(\pi(T-t)/t_r)}{2}, & T-t_r<t\leq T. \end{cases} \]
   ko: \[ s(t)= \begin{cases} \frac{1-\cos(\pi t/t_r)}{2}, & 0\leq t<t_r,\\ 1, & t_r\leq t\leq T-t_r,\\ \frac{1-\cos(\pi(T-t)/t_r)}{2}, & T-t_r<t\leq T. \end{cases} \]
-  status: machine
+  status: retired
 - id: 5b8c830a0bc27d55
   en: 'Exchange is active only during the parked interval \(T_p=T-2t_r\):'
   ko: 교환은 주파수를 유지하는 구간 \(T_p=T-2t_r\)에서만 활성화됩니다.
@@ -153,7 +153,7 @@
 - id: c891dc9018ed02b2
   en: \[ g_{ij}(t) = \frac{\sqrt{2}\pi}{T_p} \sin^2\!\left(\frac{\pi(t-t_r)}{T_p}\right), \qquad t_r\leq t\leq T-t_r. \]
   ko: \[ g_{ij}(t) = \frac{\sqrt{2}\pi}{T_p} \sin^2\!\left(\frac{\pi(t-t_r)}{T_p}\right), \qquad t_r\leq t\leq T-t_r. \]
-  status: machine
+  status: retired
 - id: 8cd5efbcb013a781
   en: The nominal resonant branch closes one cycle, and a frame update removes the local phase accumulated from detuning. The defaults are 60 ns total with 3 ns ramps.
   ko: 공칭 공명 분기는 한 주기를 완성하며, 프레임 갱신으로 디튜닝에서 누적된 국소 위상을 제거합니다. 기본값은 전체 60 ns, 램프 각각 3 ns입니다.
@@ -184,5 +184,121 @@
   status: retired
 - id: 1bc09d2a36d1e372
   en: Use the calibrated path to study the supplied gate recipe. Use direct controls when the waveform itself is the experiment; the two forms can also coexist in one Program. The [transmon emulator API](../api/pulse-emulator.md) lists the supported units, gates, noise forms, and simulation methods.
-  ko: 제공된 게이트 레시피를 연구하려면 보정된 게이트를 사용하세요. 파형 자체가 실험 대상이라면 직접 제어를 사용하며, 두 방식을 하나의 Program에서 함께 쓸 수도 있습니다. 지원 단위, 게이트, 잡음 형식, 시뮬레이션 방법은 [transmon 에뮬레이터 API](../api/pulse-emulator.md)에 나와 있습니다.
+  ko: 제공된 게이트 펄스 레시피를 살펴보려면 보정된 게이트를, 파형 자체를 연구하려면 직접 제어를 사용하세요. 두 방식을 하나의 Program에서 함께 사용할 수도 있습니다. 지원 단위, 게이트, 잡음 형식, 시뮬레이션 방법은 [transmon 에뮬레이터 API](../api/pulse-emulator.md)를 참고하세요.
+  status: machine
+- id: 9ddf784fe4d478dc
+  en: Program qubits bind to those subsystem IDs in declaration order unless a [`ResourceLayout`][fatqat.ResourceLayout] says otherwise. Every model transmon remains in the physical state even when the Program addresses only one of them.
+  ko: 기본적으로 Program의 큐비트는 선언 순서대로 해당 부분계 ID에 연결됩니다. [`ResourceLayout`][fatqat.ResourceLayout]으로 이 매핑을 바꿀 수 있습니다. Program이 transmon 하나만 사용하더라도 물리 상태에는 모델의 모든 transmon이 포함됩니다.
+  status: machine
+- id: 11ac253adfad36b4
+  en: Retain `model_document` when you need persisted frequencies, anharmonicities, model identity, or coupling topology. The runtime model provides the execution capabilities; use the document to look up the stored model data.
+  ko: 저장된 주파수, 비조화도, 모델 식별 정보, 결합 구조를 확인하려면 `model_document`를 보관하세요. 런타임 모델은 계산 실행에 사용하고, 저장된 모델 데이터는 이 문서에서 확인합니다.
+  status: machine
+- id: e4578d45bd6941b4
+  en: This guide chooses the density-matrix method because it repeatedly inspects populations. The common default is `method="statevector"`; use `method="unitary"` when the complete coherent operator is the result you need.
+  ko: 이 예제에서는 각 준위의 점유 확률을 여러 번 살펴보므로 밀도 행렬 방법을 사용합니다. 일반적인 기본값은 `method="statevector"`입니다. 전체 결맞음 연산자가 필요하면 `method="unitary"`를 선택하세요.
+  status: retired
+- id: d8cecfc462563111
+  en: A transmon uses its two lowest levels as the qubit states $\lvert 0\rangle$ and $\lvert 1\rangle$. A pulse can also move some population into the next level, $\lvert 2\rangle$. [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] keeps all three levels so you can see this leakage. Here we use the same transmon to compare a reference gate pulse and a waveform you specify directly. Both follow the workflow in [Write and run pulse programs](hamiltonian-emulation.md).
+  ko: Transmon은 가장 낮은 두 준위 $\lvert 0\rangle$과 $\lvert 1\rangle$을 큐비트 상태로 사용합니다. 펄스가 점유 확률의 일부를 세 번째 준위 $\lvert 2\rangle$로 옮길 수도 있습니다. [`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 세 준위를 모두 포함하므로 이러한 누설을 확인할 수 있습니다. 이 장에서는 [펄스 프로그램 작성과 실행](hamiltonian-emulation.md)의 절차를 따라 같은 Transmon에서 기준 게이트 펄스와 직접 지정한 파형을 비교합니다.
+  status: retired
+- id: 639b8cd29776463d
+  en: Load a single-transmon model
+  ko: 단일 Transmon 모델 불러오기
+  status: machine
+- id: f0be9e1022d36511
+  en: Load the built-in `transmon.single` model. It gives both examples the same transmon, `q0`, and the same physical parameters.
+  ko: 내장 모델 `transmon.single`을 불러옵니다. 두 예제는 같은 Transmon `q0`과 같은 물리 매개변수를 사용합니다.
+  status: machine
+- id: bce0c2a1de21a3c9
+  en: Use `method="density_matrix"` to read each level's population from the diagonal of the returned matrix. The default is `method="statevector"`. Use `method="unitary"` when you want the coherent evolution operator.
+  ko: '`method="density_matrix"`를 사용하면 반환된 행렬의 대각 원소에서 각 준위의 점유 확률을 읽을 수 있습니다. 기본값은 `method="statevector"`입니다. 결맞은 시간 진화 연산자가 필요하면 `method="unitary"`를 사용합니다.'
+  status: retired
+- id: 537695a5f5eeebbf
+  en: Add an `RX` gate with angle $\pi/2$ to the Program. The emulator looks up the reference pulse for that rotation and applies it to the transmon.
+  ko: Program에 회전 각도가 $\pi/2$인 `RX` 게이트를 추가합니다. 에뮬레이터는 이 회전에 해당하는 기준 펄스를 찾아 Transmon에 적용합니다.
+  status: machine
+- id: f0c1b461a89daaa5
+  en: After the rotation, $\lvert 0\rangle$ and $\lvert 1\rangle$ each have about half the population. `calibrated_populations[2]` is the fraction left in $\lvert 2\rangle$ at the end of the pulse, here less than 0.0001%.
+  ko: 회전이 끝나면 $\lvert 0\rangle$과 $\lvert 1\rangle$의 점유 확률은 각각 약 절반입니다. `calibrated_populations[2]`는 펄스가 끝났을 때 $\lvert 2\rangle$에 남은 점유 확률로, 이 예제에서는 0.0001% 미만입니다.
+  status: machine
+- id: 9d2fa656510b1b0a
+  en: Now drive the same transmon with a [`PulseOperation`][fatqat.operations.PulseOperation]. The example uses a 10 ns Hann pulse with an area of $\pi/2$, the target angle of the reference rotation.
+  ko: 이번에는 [`PulseOperation`][fatqat.operations.PulseOperation]으로 같은 Transmon을 직접 구동합니다. 길이가 10 ns이고 면적이 기준 회전의 목표 각도와 같은 $\pi/2$인 Hann 펄스를 사용합니다.
+  status: machine
+- id: b973ec493fc06698
+  en: The samples give the Rabi rate $\Omega(t)$ in rad/ns. Here they are real and drive the X component. An imaginary component would drive Y. The Hann envelope starts and ends at zero, and the emulator interpolates between the samples.
+  ko: 샘플은 rad/ns 단위의 Rabi 주파수 $\Omega(t)$를 나타냅니다. 이 예제에서는 실수 성분으로 X 성분을 구동합니다. 허수 성분을 주면 Y 성분을 구동할 수 있습니다. Hann 포락선은 0에서 시작해 다시 0으로 돌아오며, 에뮬레이터는 샘플 사이를 보간합니다.
+  status: machine
+- id: 31fb89278fed79a0
+  en: '![The 10 ns Hann pulse rises from zero to its peak at 5 ns and then returns to zero. Dots mark the waveform samples.](../assets/generated/guide/transmon-hann-pulse.svg)'
+  ko: '![10 ns Hann 펄스가 0에서 시작해 5 ns에 최대가 된 뒤 다시 0으로 돌아옵니다. 점은 파형 샘플을 나타냅니다.](../assets/generated/guide/transmon-hann-pulse.svg)'
+  status: machine
+- id: 5aea9472c7ddc2a3
+  en: Compare the final populations
+  ko: 펄스가 끝났을 때의 점유 확률 비교하기
+  status: machine
+- id: 4ac69a26cecbf864
+  en: The direct pulse leaves about 50.9% of the population in $\lvert 0\rangle$, 49.1% in $\lvert 1\rangle$, and 0.07% in $\lvert 2\rangle$. The reference pulse also divides the population nearly evenly between the qubit states, with less than 0.0001% left in $\lvert 2\rangle$. The 10 ns Hann pulse and the 20 ns reference `RX` pulse differ in shape, duration, and DRAG correction. The plot compares the final populations for these two recipes.
+  ko: 직접 구동이 끝나면 $\lvert 0\rangle$에 약 50.9%, $\lvert 1\rangle$에 49.1%, $\lvert 2\rangle$에 0.07%가 남습니다. 기준 펄스에서도 두 큐비트 상태의 점유 확률은 거의 절반씩이고, $\lvert 2\rangle$에 남는 비율은 0.0001% 미만입니다. 10 ns Hann 펄스와 20 ns 기준 `RX` 펄스는 모양, 길이, DRAG 보정이 서로 다릅니다. 아래 그림은 두 펄스를 적용한 뒤의 점유 확률을 비교합니다.
+  status: machine
+- id: 14b8bf136240d780
+  en: '![Both recipes split the population nearly evenly between levels 0 and 1. The magnified panel shows the small population left in level 2 after direct drive.](../assets/generated/guide/transmon-populations.svg)'
+  ko: '![두 펄스 모두 준위 0과 1의 점유 확률이 거의 절반씩입니다. 확대 패널은 직접 구동 후 세 번째 준위에 남은 작은 점유 확률을 보여 줍니다.](../assets/generated/guide/transmon-populations.svg)'
+  status: machine
+- id: 73e4319f6f6afd91
+  en: Save and reload the model and calibration
+  ko: 모델과 보정 데이터 저장 및 다시 불러오기
+  status: machine
+- id: dac87031237684cf
+  en: iSWAP pulse recipe
+  ko: iSWAP 펄스 구성
+  status: machine
+- id: f8869b941844b7e6
+  en: CZ pulse recipe
+  ko: CZ 펄스 구성
+  status: machine
+- id: f63090db2ae28017
+  en: A transmon is a common type of superconducting qubit made from a circuit with a Josephson junction shunted by a capacitor. Microwave pulses control the qubit, and a single-qubit gate can take only a few tens of nanoseconds.
+  ko: Transmon은 널리 쓰이는 초전도 큐비트입니다. 조셉슨 접합에 커패시터를 병렬로 연결한 회로로 만들고, 마이크로파 펄스로 제어합니다. 단일 큐비트 게이트는 수십 나노초 안에 실행할 수 있습니다.
+  status: machine
+- id: 7c5ccf6fff887e62
+  en: Small variations in fabrication mean that even transmons made to the same design can have different transition frequencies. To produce the intended rotation on each qubit, measure its transition frequency and tune the pulse amplitude and phase. On a chip with many qubits, calibration also involves checking how a pulse affects neighbouring qubits.
+  ko: 같은 설계로 제작한 Transmon도 공정에서 생기는 작은 차이 때문에 전이 주파수가 다를 수 있습니다. 각 큐비트에서 원하는 회전을 구현하려면 전이 주파수를 측정하고 구동 펄스의 진폭과 위상을 조정합니다. 칩에 여러 큐비트가 있으면 펄스가 이웃 큐비트에 미치는 영향도 확인해야 합니다.
+  status: machine
+- id: d790e719364a8c20
+  en: Rotate a qubit with a calibrated pulse
+  ko: 보정 펄스로 큐비트 회전시키기
+  status: machine
+- id: 6505a0d566ec77fc
+  en: The returned density matrix covers all three levels of the transmon. Read its diagonal to get the probabilities of measuring each level.
+  ko: 반환된 밀도 행렬은 Transmon의 세 준위를 모두 포함합니다. 이 행렬의 대각 원소를 읽으면 각 준위가 측정될 확률을 얻을 수 있습니다.
+  status: machine
+- id: 66f5dd15f93a1e79
+  en: A transmon is a nonlinear oscillator with multiple energy levels. Its two lowest levels, $\lvert 0\rangle$ and $\lvert 1\rangle$, encode the qubit. A control pulse can also excite higher levels such as $\lvert 2\rangle$. This is leakage out of the qubit's computational space, a source of gate error that quantum engineers need to control.
+  ko: Transmon은 여러 에너지 준위를 가진 비선형 진동자입니다. 보통 가장 낮은 두 준위 $\lvert 0\rangle$과 $\lvert 1\rangle$을 사용해 큐비트를 인코딩합니다. 제어 펄스를 적용하면 양자 상태의 일부가 $\lvert 2\rangle$ 같은 더 높은 준위로 이동할 수 있습니다. 이렇게 큐비트의 계산 공간을 벗어나는 현상을 누설이라고 하며, 양자 컴퓨팅에서 줄여야 할 게이트 오류 중 하나입니다.
+  status: machine
+- id: 49f198337d7abae0
+  en: Pulse emulation lets us study how a choice of pulse affects leakage. [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] models the lowest three levels. Following [Write and run pulse programs](hamiltonian-emulation.md), we use it to compare a reference gate pulse with a waveform you specify directly on the same transmon.
+  ko: 펄스 에뮬레이션을 이용하면 펄스 선택에 따라 누설이 얼마나 달라지는지 살펴볼 수 있습니다. [`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 가장 낮은 세 준위를 모델링합니다. 이 장에서는 [펄스 프로그램 작성과 실행](hamiltonian-emulation.md)의 절차를 따라 같은 Transmon에서 기준 게이트 펄스와 직접 지정한 파형을 비교합니다.
+  status: machine
+- id: ba42dcf99df17c06
+  en: '![One well of the cosine potential with three unevenly spaced levels. The qubit uses levels 0 and 1, and leakage can reach level 2.](../assets/generated/guide/transmon-cosine-well.svg)'
+  ko: '![코사인 퍼텐셜 우물 하나에 간격이 다른 세 준위가 있습니다. 가장 낮은 두 준위는 큐비트를 인코딩하는 데 사용하고, 세 번째 준위에서는 누설을 확인할 수 있습니다.](../assets/generated/guide/transmon-cosine-well.svg)'
+  status: retired
+- id: 28c2bf573ee2415a
+  en: '*One well of the Josephson potential $U(\varphi)=-E_J\cos\varphi$. The level spacing is schematic.*'
+  ko: '*곡선은 조셉슨 퍼텐셜 $U(\varphi)=-E_J\cos\varphi$의 우물 하나를 보여 줍니다. 준위 간격은 개략적으로 그렸습니다.*'
+  status: retired
+- id: 6061d2d0707d916b
+  en: '![Three energy levels in a cosine well. Two arrows show that the gap from level 0 to level 1 is larger than the gap from level 1 to level 2.](../assets/generated/guide/transmon-cosine-well.svg)'
+  ko: "![코사인 퍼텐셜 우물의 세 준위입니다. 두 화살표는 준위 0과 1 사이의 에너지 차이가 준위 1과 2 사이의 차이보다 크다는 것을 보여 줍니다.](../assets/generated/guide/transmon-cosine-well.svg)"
+  status: machine
+- id: e5ef4e2d81a53b6b
+  en: '*In this example with $E_J/E_C=50$, the $0\to1$ transition requires more energy than the $1\to2$ transition. The difference in transition frequencies helps a pulse address the qubit transition.*'
+  ko: "*그림에서는 $E_J/E_C=50$입니다. $0\\to1$ 전이에는 $1\\to2$ 전이보다 더 많은 에너지가 필요합니다. 두 전이 주파수가 달라 펄스로 큐비트 전이를 선택적으로 구동하기가 쉬워집니다.*"
+  status: machine
+- id: 3679a064dba06eb4
+  en: The reference calibration uses analytic recipes to keep pulse generation simple. The grid generator uses the same pulse shapes and chooses a CZ branch for each pair of connected transmons. Further pulse optimization can improve gate fidelity, for example by reducing the small residual controlled phase in the reference iSWAP.
+  ko: "기준 보정은 펄스를 쉽게 생성할 수 있도록 해석적 펄스 구성을 사용합니다. 배열을 생성할 때 같은 펄스 모양을 사용하며, 연결된 Transmon 쌍마다 CZ 분기를 선택합니다. 펄스를 더 최적화하면 기준 iSWAP에 남는 작은 제어 위상을 줄이는 등 게이트 충실도를 높일 수 있습니다."
   status: machine

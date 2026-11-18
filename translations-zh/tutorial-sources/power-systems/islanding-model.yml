@@ -84,7 +84,7 @@
   status: machine
 - id: 8ea9c1d05739144d
   en: By the end you will have a QUBO — a quadratic function of binary variables whose minimum is the split — checked against exhaustive enumeration on two IEEE test systems, plus a clear picture of what the model does and does not capture. Running it on a quantum circuit is the subject of [Split a power grid into islands with QAOA](islanding-qaoa.md).
-  zh: 完成本教程后，你将得到一个 QUBO，即最小值对应划分的二进制变量二次函数，并在两个 IEEE 测试系统上用穷举核验，同时明确模型包含与未包含的内容。在量子电路上运行它，是[用 QAOA 将电网划分为孤岛](islanding-qaoa.md)的主题。
+  zh: 完成本教程后，你将得到一个 QUBO，即最小值对应划分的二进制变量二次函数，并在两个 IEEE 测试系统上用穷举核验，同时明确模型包含与未包含的内容。在线路上运行它，是[用 QAOA 将电网划分为孤岛](islanding-qaoa.md)的主题。
   status: machine
 - id: 9f067401d638a3b1
   en: The formulation developed here follows REGRID-QAOA [1], which introduces this coherency-informed model of controlled islanding together with the structured post-processing the companion tutorial uses.
@@ -124,7 +124,7 @@
   status: machine
 - id: d5a9730ecc185f17
   en: 'Both encodings are built below. The rest of the requirements are the same in each: they only differ in how "bus $i$ is in island $g$" is written down.'
-  zh: 下文会构建两种编码。其余要求在二者中相同，仅“母线 $i$ 位于孤岛 $g$”的表达方式不同。
+  zh: "下文会设计两种编码。其余要求在二者中相同，仅“母线 $i$ 位于孤岛 $g$”的表达方式不同。"
   status: machine
 - id: b45edceb9af453e9
   en: What the model actually says
@@ -184,7 +184,7 @@
   status: machine
 - id: 155a3f9e155493c3
   en: '[Split a power grid into islands with QAOA](islanding-qaoa.md) takes this model, maps it onto a circuit, runs it on FatQat''s simulator, and repairs what comes back.'
-  zh: '[用 QAOA 将电网划分为孤岛](islanding-qaoa.md)将此模型映射到电路，在 FatQat 模拟器上运行，并修复所得结果。'
+  zh: '[用 QAOA 将电网划分为孤岛](islanding-qaoa.md)将此模型映射到线路，在 FatQat 模拟器上运行，并修复所得结果。'
   status: machine
 - id: 69824d3b0e70ca6a
   en: References
@@ -212,5 +212,5 @@
   status: machine
 - id: 434b3bf9c0125f0b
   en: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "SPLIT-Q: A Scalable Sequential Quantum Computing Framework for Coherent Controlled Islanding", [arXiv:2608.12711](https://arxiv.org/abs/2608.12711) (2026). Sequential regional QUBOs that keep circuit width independent of network size.'
-  zh: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "SPLIT-Q: A Scalable Sequential Quantum Computing Framework for Coherent Controlled Islanding", [arXiv:2608.12711](https://arxiv.org/abs/2608.12711) (2026)。通过顺序求解区域 QUBO，使电路宽度独立于网络规模。'
+  zh: 'Y. Jiang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "SPLIT-Q: A Scalable Sequential Quantum Computing Framework for Coherent Controlled Islanding", [arXiv:2608.12711](https://arxiv.org/abs/2608.12711) (2026)。通过顺序求解区域 QUBO，使线路宽度独立于网络规模。'
   status: machine

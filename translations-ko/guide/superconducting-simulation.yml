@@ -1,0 +1,108 @@
+- id: f10577039c46d25e
+  en: Simulate a superconducting device
+  ko: 초전도 장치 시뮬레이션하기
+  status: machine
+- id: f5082c68a2dc31e3
+  en: Use [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] to check native gates and qubit placement on a device with fixed connectivity. It simulates circuit operations, with optional noise channels.
+  ko: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]를 사용하면 연결 관계가 고정된 장치의 네이티브 게이트와 큐비트 배치를 검사할 수 있습니다. 회로 연산을 시뮬레이션하며 잡음 채널도 추가할 수 있습니다.'
+  status: retired
+- id: 79b1536f61ff6068
+  en: Compare runs with and without this model to study its effect on the output.
+  ko: 이 모델을 사용한 결과와 사용하지 않은 결과를 비교해 출력에 미치는 영향을 살펴보세요.
+  status: retired
+- id: 2743f3af1c1b8842
+  en: For supported gates and simulation methods, see the [superconducting simulator API](../api/simulators/sc-qubit.md).
+  ko: 지원하는 게이트와 시뮬레이션 방법은 [초전도 시뮬레이터 API](../api/simulators/sc-qubit.md)를 참고하세요.
+  status: retired
+- id: deb089bb3630ecc6
+  en: In a superconducting processor, qubits occupy fixed positions, and the device connections determine which pairs can interact directly. A circuit that works in an ideal simulator may therefore need different gates or a different qubit placement before it can run on the device.
+  ko: 초전도 프로세서에서는 큐비트의 위치가 고정되어 있으며, 장치의 연결 구조에 따라 직접 상호작용할 수 있는 큐비트 쌍이 정해집니다. 따라서 이상적인 시뮬레이터에서 잘 실행되는 회로도 실제 장치에서 실행하려면 게이트를 바꾸거나 큐비트 배치를 조정해야 할 수 있습니다.
+  status: retired
+- id: 856ae325568da4bd
+  en: When you prepare a Bell state on a general simulator, you can choose two qubits and apply gates to them without choosing a device. On a superconducting processor, each qubit occupies a fixed position. Does the processor support the gates in your circuit? Are the two positions connected so the qubits can interact directly?
+  ko: 범용 시뮬레이터에서 벨 상태를 준비할 때는 장치를 지정하지 않고 큐비트 두 개를 골라 게이트를 적용할 수 있습니다. 초전도 프로세서에서는 각 큐비트의 위치가 고정되어 있습니다. 이때는 두 가지를 살펴봅니다. 프로세서가 회로에 쓰인 게이트를 지원할까요? 두 큐비트가 직접 상호작용할 수 있도록 두 위치가 연결되어 있을까요?
+  status: machine
+- id: 925fb278106a7a94
+  en: The [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] lets you explore both questions at the gate level. First, check the gates in a Bell circuit. Then try the same native two-qubit gate at two different pairs of positions.
+  ko: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]로 게이트 수준에서 두 가지를 확인할 수 있습니다. 먼저 장치가 벨 회로의 게이트를 지원하는지 살펴봅니다. 그런 다음 장치가 지원하는 같은 두 큐비트 게이트를 서로 다른 두 쌍의 위치에서 실행해 봅니다.'
+  status: machine
+- id: bc9d46125df28cef
+  en: This device supports `CZ` on connected pairs. The diagram shows two layouts on the same six-site device. The outlined circles mark the positions assigned to the two program qubits. Can you trace a single edge between them in each layout?
+  ko: 이 장치는 직접 연결된 두 위치에서 `CZ`를 지원합니다. 아래 그림은 여섯 위치를 가진 같은 장치에 두 가지 배치를 적용한 모습입니다. 바깥 테두리가 있는 원이 프로그램의 두 큐비트가 놓인 위치입니다. 어느 그림에서 두 원 사이에 직접 연결된 선이 보이나요?
+  status: retired
+- id: 0d2a7a6853e6e048
+  en: '![Two layouts on the same grid. Sites 0 and 4 have no direct connection. Sites 0 and 1 share an edge.](../assets/images/superconducting-placement.svg)'
+  ko: '![같은 격자의 두 배치. 왼쪽의 위치 0과 4는 직접 연결되지 않고 오른쪽의 위치 0과 1은 직접 연결된다.](../assets/images/superconducting-placement.svg)'
+  status: machine
+- id: 0d887c3f23ab0d05
+  en: With the qubits at connected sites, the device can run the gates in this Program. Keep that placement and add measurements to see how noise affects the outcome.
+  ko: 두 큐비트를 직접 연결된 위치에 놓으면 장치에서 이 Program의 게이트를 실행할 수 있습니다. 같은 배치에 측정을 추가해 잡음이 결과에 어떤 영향을 주는지 살펴봅니다.
+  status: machine
+- id: ae9e9284c5c505b2
+  en: Use the built-in noise model
+  ko: 내장 잡음 모델 사용하기
+  status: machine
+- id: 4fba7e1d530a49ad
+  en: So far the device has applied its native gates under ideal conditions. Each qubit starts in zero, so flipping both qubits gives the measurement outcome `11`. Run the same gates with the device's built-in noise model and count how often both qubits still read one.
+  ko: 지금까지는 장치의 기본 게이트를 이상적인 조건에서 실행했습니다. 두 큐비트는 모두 0에서 시작하므로 각각 한 번씩 뒤집으면 측정 결과는 `11`입니다. 이제 장치의 내장 잡음 모델을 켜고 같은 게이트를 실행해 두 큐비트가 모두 1로 측정되는 횟수를 세어 봅니다.
+  status: retired
+- id: 5047debd2d2965f2
+  en: The first count is the number of times the ideal run returned `11` out of 100 shots. Compare it with the second count to see how often that outcome appeared with noise.
+  ko: 첫 번째 수는 이상적인 조건에서 100번 측정했을 때 `11`이 나온 횟수입니다. 두 번째 수와 비교해 잡음을 추가했을 때 같은 결과가 몇 번 나왔는지 확인하세요.
+  status: retired
+- id: f5b460a36edc17b1
+  en: Check which gates the device supports
+  ko: 장치가 지원하는 게이트 확인하기
+  status: machine
+- id: 7d6ebca666148e5f
+  en: This Program prepares a Bell state with `H` and `CX`. On the general simulator you can run it without assigning the qubits to sites on a device.
+  ko: 이 Program은 `H`와 `CX`로 벨 상태를 준비합니다. 범용 시뮬레이터에서는 두 큐비트를 장치의 어느 위치에 놓을지 정하지 않아도 실행할 수 있습니다.
+  status: machine
+- id: b806c61bf4c5d028
+  en: This device supports `CZ` on connected pairs. The diagram shows two layouts on the same six-site device. The outlined circles mark the positions assigned to the two program qubits.
+  ko: 이 장치에서는 서로 직접 연결된 두 위치에 `CZ`를 적용할 수 있습니다. 아래 그림은 같은 6큐비트 장치에 두 큐비트를 배치하는 두 가지 방법을 보여 줍니다. 바깥쪽 원은 두 큐비트에 할당된 위치를 표시합니다.
+  status: machine
+- id: dac690ecb9465ad3
+  en: Run the same Program again, this time assigning the second qubit to site `1`. Sites 0 and 1 share an edge, so the device can apply the gate there.
+  ko: 같은 Program을 다시 실행하되, 이번에는 두 번째 큐비트를 위치 `1`에 배치합니다. 위치 0과 1은 직접 연결되어 있어 이 게이트를 적용할 수 있습니다.
+  status: machine
+- id: 6cb09201f6c2f893
+  en: So far the device has applied its native gates under ideal conditions. Each qubit starts in zero, so flipping both qubits gives the measurement outcome `11`. The example runs the same Program 100 times on each of two simulators, one ideal and one with the built-in noise model.
+  ko: 지금까지는 이상적인 조건에서 게이트를 적용했습니다. 두 큐비트 모두 0에서 시작하므로 각각 한 번씩 뒤집으면 측정 결과는 `11`입니다. 아래에서는 같은 배치와 Program으로 먼저 이상적인 조건에서 100번 측정하고, 내장 잡음 모델을 켜고 다시 100번 측정합니다.
+  status: retired
+- id: 8d81b71aa4a47518
+  en: With the seed used here, the ideal simulator returns `11` in all 100 shots. With the built-in noise model, 92 of the 100 shots return `11`.
+  ko: 예제에 지정한 난수 시드를 사용하면 이상적인 조건에서는 100번 모두 `11`이 나옵니다. 내장 잡음 모델을 켜면 100번 중 92번 `11`이 나옵니다.
+  status: machine
+- id: 6e8a132ec11e3d12
+  en: Compare fidelity with and without a SWAP
+  ko: SWAP이 충실도에 미치는 영향
+  status: machine
+- id: e076cf829b2a88d5
+  en: Suppose qubit A already holds a state at site 0 and qubit B holds one at site 4. To apply `CZ` to them, we can choose a route through site 1. First exchange the states at sites 4 and 1 with `SWAP`. B is now next to A, so apply `CZ` at sites 0 and 1. Both outputs are available there. If B starts at site 1, only the last step is needed.
+  ko: 논리 큐비트 A와 B의 상태가 각각 위치 0과 4에 있다고 해 보겠습니다. 두 큐비트에 `CZ`를 적용하려면 위치 1을 거칠 수 있습니다. 먼저 `SWAP`으로 위치 4와 1의 상태를 교환하면 B가 A 옆으로 옵니다. 이제 위치 0과 1에 `CZ`를 적용하면 두 출력도 그 자리에 남습니다. B가 처음부터 위치 1에 있으면 마지막 단계만 필요합니다.
+  status: machine
+- id: 5e2e472630503e66
+  en: '![Time runs from left to right. A stays at site 0. The SWAP moves B from 4 to 1, then CZ acts on 0 and 1.](../assets/images/superconducting-swap-route.svg)'
+  ko: '![시간은 왼쪽에서 오른쪽으로 흐릅니다. A는 위치 0에 머물고 SWAP은 B를 위치 4에서 1로 옮깁니다. 이어서 CZ가 위치 0과 1에 작용합니다.](../assets/images/superconducting-swap-route.svg)'
+  status: machine
+- id: 7b4bd1af06bba768
+  en: We specify the route explicitly. In this implementation the exchange takes three `CX` gates, each realized with one native `CZ` and single-qubit gates. Including the final gate, the routed circuit uses four native `CZ` gates and the direct circuit uses one.
+  ko: 이 예제에서는 이동 경로를 코드로 지정합니다. 한 번의 교환에는 `CX` 세 개가 쓰이고, 각각은 기본 `CZ` 하나와 단일 큐비트 게이트들로 구현합니다. 마지막 게이트까지 포함하면 교환을 거친 회로는 기본 `CZ`를 네 번, 직접 적용하는 회로는 한 번 사용합니다.
+  status: machine
+- id: 1f79f1f952a30faa
+  en: Prepare both logical qubits in the plus state so that `CZ` changes their relative phase. Compare the final state of A and B with the ideal output. A state fidelity of one means the states match exactly.
+  ko: 두 논리 큐비트를 각각 플러스 상태로 준비하면 `CZ`가 상대 위상을 바꿉니다. A와 B의 최종 결합 상태가 이상적인 출력 상태에 얼마나 가까운지 충실도로 비교합니다. 충실도가 1이면 두 상태가 정확히 일치합니다.
+  status: machine
+- id: f9ce54be3d3e10fa
+  en: Code for both layouts and the fidelity calculation
+  ko: 두 가지 배치와 충실도 계산 코드
+  status: machine
+- id: e4f1adb5a93f76cd
+  en: Both layouts reach the same ideal state. With the built-in noise model, the extra gates lower the output-state fidelity from 99.74% to 99.39% for this input.
+  ko: 이상적인 조건에서는 두 배치 모두 목표 상태에 도달합니다. 이 입력에 내장 잡음 모델을 적용하면 직접 실행할 때의 출력 상태 충실도는 99.74%이고, 교환에 필요한 게이트를 추가하면 99.39%로 낮아집니다.
+  status: machine
+- id: f7d4f5b45921a09d
+  en: Copy `native` and add measurements to the copy. Each qubit starts in zero, so flipping both qubits gives the ideal measurement outcome `11`. Run the same measured Program at sites 0 and 1, with 100 shots each under ideal conditions and with the built-in noise model.
+  ko: "`native`를 복사하고 복사본에 측정을 추가합니다. 두 큐비트 모두 0에서 시작하므로 각각 한 번씩 뒤집으면 이상적인 측정 결과는 `11`입니다. 위치 0과 1에 같은 Program을 배치하고, 이상적인 조건과 내장 잡음 모델을 켠 조건에서 각각 100번 측정합니다."
+  status: machine

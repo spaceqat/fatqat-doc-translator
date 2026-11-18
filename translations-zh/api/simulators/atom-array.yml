@@ -8,7 +8,7 @@
   status: retired
 - id: f4ada25b182909a0
   en: '**Hardware profile**'
-  zh: '**硬件配置**'
+  zh: "**设备模型**"
   status: machine
 - id: 7fb9681ce592bd60
   en: Capacity, mapping, and native operations

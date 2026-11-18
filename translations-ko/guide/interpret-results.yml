@@ -5,10 +5,10 @@
 - id: d417a73509b9443d
   en: Use [`Estimator`][fatqat.Estimator] to calculate expectation values, such as spin correlations or energies. Define the quantity with an [`Observable`][fatqat.Observable], then supply a Program and a [compatible simulator or emulator](../api/estimator.md#backend-support). You can calculate the expectation directly from the state or estimate it from a finite number of measurement shots.
   ko: '[`Estimator`][fatqat.Estimator]로 스핀 상관이나 에너지 같은 기댓값을 계산할 수 있습니다. [`Observable`][fatqat.Observable]로 구할 물리량을 정의한 뒤, Program과 [호환되는 시뮬레이터 또는 에뮬레이터](../api/estimator.md#backend-support)를 지정하세요. 상태에서 직접 기댓값을 계산하거나 유한한 횟수의 측정 샷으로 추정할 수 있습니다.'
-  status: machine
+  status: retired
 - id: a013c4a700936969
   en: 'The examples below use the general-purpose `Simulator` and two Bell states. Adding a `Z` operation to the Bell circuit changes its relative phase while leaving its computational-basis probabilities unchanged:'
-  ko: 아래 예제는 범용 `Simulator`와 두 Bell 상태를 사용합니다. Bell 회로에 `Z` 연산을 추가하면 계산 기저 확률은 그대로인 채 상대 위상만 바뀝니다.
+  ko: 범용 `Simulator`로 두 Bell 상태를 비교해 보겠습니다. 원래 Bell 회로에 `Z`를 추가하면 상대 위상은 바뀌지만, 계산 기저에서 각 결과를 얻을 확률은 그대로입니다.
   status: machine
 - id: 9641ba0b9862ff14
   en: Both states give `00` or `11` with equal probability. Their state vectors are \((|00\rangle + |11\rangle)/\sqrt{2}\) and \((|00\rangle - |11\rangle)/\sqrt{2}\). To distinguish them, we need to measure in another basis.
@@ -48,7 +48,7 @@
   status: retired
 - id: 9e0ff5b29b234cd7
   en: For a single observable, `get_expectation()` and `get_standard_error()` each return a scalar. This run gives an estimate of `-0.045` with a standard error of about `0.05`. The standard error describes the expected spread of estimates if you repeated the run with the same number of shots.
-  ko: 관측량이 하나이면 `get_expectation()`과 `get_standard_error()`가 각각 스칼라를 반환합니다. 이 실행의 추정값은 `-0.045`이고 표준 오차는 약 `0.05`입니다. 표준 오차는 같은 샷 수로 실행을 반복할 때 추정값이 얼마나 퍼질 것으로 예상되는지를 나타냅니다.
+  ko: 관측량이 하나이면 `get_expectation()`과 `get_standard_error()`는 각각 수치 하나를 반환합니다. 이번 추정값은 `-0.045`, 표준 오차는 약 `0.05`입니다. 표준 오차는 같은 샷 수로 추정을 반복할 때 결과가 대략 얼마나 변동할지를 나타냅니다.
   status: machine
 - id: 0de5cbcaafd74856
   en: 'Increase `shots` for better precision. The plot below shows estimates from 100 to 6,400 shots, with error bars extending one standard error above and below each estimate:'
@@ -60,7 +60,7 @@
   status: machine
 - id: 83ee380ba9821fe1
   en: Quadrupling the shots roughly halves the standard error. Individual estimates still fluctuate, so a larger sample can give a value farther from zero. The exact value can also fall outside a one-standard-error bar.
-  ko: 샷 수를 네 배로 늘리면 표준 오차는 대략 절반이 됩니다. 그래도 개별 추정값은 변동하므로, 표본이 커졌는데도 값이 0에서 더 멀어질 수 있습니다. 정확한 값이 표준 오차 한 배의 오차 막대 밖에 놓일 수도 있습니다.
+  ko: 샷 수를 네 배로 늘리면 표준 오차는 대략 절반이 됩니다. 다만 한 번의 결과에는 무작위성이 남아 있어, 샷을 늘렸는데 추정값이 오히려 0에서 더 멀어질 수도 있습니다. 표준 오차 한 배의 막대가 정확한 값을 반드시 포함하는 것은 아닙니다.
   status: machine
 - id: 0b0418d8a9138516
   en: Circuit noise can change the expectation itself. Configure noise on the estimator's backend as described in [Ideal and noisy runs](ideal-and-noisy.md). A density-matrix backend can calculate the expectation with noise channels directly; increasing the shot count improves the precision of a sampled estimate of that noisy expectation.
@@ -73,4 +73,12 @@
 - id: a43562e0f07390b8
   en: 'Set `shots` to a positive integer to estimate an expectation from sampled measurements. For `ZI` on the original Bell state, each shot gives `+1` or `-1` with equal probability. The exact expectation is zero, up to floating-point rounding, but a finite sample usually gives a small nonzero mean:'
   ko: '`shots`를 양의 정수로 설정하면 샘플링한 측정값으로 기댓값을 추정합니다. 원래 Bell 상태에서 `ZI`를 측정하면 각 샷에서 `+1`과 `-1`이 같은 확률로 나옵니다. 부동소수점 반올림 오차를 제외하면 정확한 기댓값은 0이지만, 유한한 표본의 평균은 대개 0에서 조금 벗어납니다.'
+  status: machine
+- id: 97824855439ee406
+  en: Many quantum-physics problems ask about quantities such as energy or spin correlations, rather than every component of the quantum state. For these tasks, you often need only the expectation value of one observable or a group of observables, without requesting the full state as an output.
+  ko: "많은 양자 물리 문제에서는 양자 상태의 모든 성분보다 에너지나 스핀 상관관계 같은 물리량에 관심이 있습니다. 이런 경우에는 전체 상태를 결과로 가져올 필요 없이, 하나 또는 여러 관측량의 기댓값만 구하면 됩니다."
+  status: machine
+- id: 0ae9c3bcfb647097
+  en: Use [`Estimator`][fatqat.Estimator] to calculate these expectation values. Define each quantity with an [`Observable`][fatqat.Observable], then supply a Program and a [compatible simulator or emulator](../api/estimator.md#backend-support). You can calculate the expectation directly from the state or estimate it from a finite number of measurement shots.
+  ko: "[`Estimator`][fatqat.Estimator]로 이러한 기댓값을 계산할 수 있습니다. [`Observable`][fatqat.Observable]로 구하려는 물리량을 정의하고, Program과 [호환되는 시뮬레이터 또는 에뮬레이터](../api/estimator.md#backend-support)를 전달하세요. 상태에서 기댓값을 직접 계산하거나 유한한 횟수의 측정 샘플로 추정할 수 있습니다."
   status: machine

@@ -1,15 +1,15 @@
 - id: 29bdf6270af416ab
   en: Simulate linear optics
-  zh: 模拟线性光学
+  zh: 线性光学模拟
   status: machine
 - id: 28d325570a2d2bb4
   en: 'Linear optics computes with photons travelling through optical modes, such as the two output ports of a beam splitter. It differs from qubit circuits in three ways:'
-  zh: 线性光学利用光子在不同光学模式中的传播进行计算；分束器的两个输出端口就是两个模式。它与量子比特电路有三点不同：
+  zh: 线性光学利用光子在不同光学模式中的传播进行计算；分束器的两个输出端口就是两个模式。它与量子比特线路有三点不同：
   status: machine
 - id: 78f424eaa240c9bb
   en: '**A mode holds any number of photons.** Its level `n` is a photon count, not one of two states.'
   zh: '**一个模式可以容纳任意数量的光子。** 能级 `n` 表示光子数，而不是两个状态之一。'
-  status: machine
+  status: retired
 - id: 8765afb750ad701e
   en: '**Photons are moved, never created.** Beam splitters and phase shifters redistribute photons among modes; the total number that entered stays the same.'
   zh: '**光子只会转移，不会凭空产生。** 分束器和移相器将光子重新分配到各个模式，输入的总光子数保持不变。'
@@ -32,7 +32,7 @@
   status: machine
 - id: 1412f2452392ed95
   en: 'Photons enter through the run''s `initial_state`: a [`BasisState`][fatqat.simulator.BasisState] gives the photon count of each mode, and unnamed modes start empty. Send one photon into mode 0:'
-  zh: 通过运行时的 `initial_state` 输入光子：[`BasisState`][fatqat.simulator.BasisState] 指定各模式的光子数，未指定的模式初始为空。向模式 0 输入一个光子：
+  zh: 运行时通过 `initial_state` 指定输入光子：[`BasisState`][fatqat.simulator.BasisState] 给出各模式的光子数，未指定的模式初始为空。下面向模式 0 输入一个光子：
   status: machine
 - id: a4be380e501a38f7
   en: 'Each key lists the counts in register order: `"10"` is the photon in mode 0, `"01"` in mode 1. The photon leaves through either port with probability ½, like a fair coin.'
@@ -65,7 +65,7 @@
 - id: ced71eaa53845b66
   en: The cancellation is exact only for a balanced splitter. `BeamSplitter(theta)` reflects a photon with probability `R = sin(theta)**2`. The two histories that end in `"11"` have amplitudes `cos(theta)**2` and `-sin(theta)**2`, so the coincidence probability is `(1 - 2R)**2`. For distinguishable particles the probabilities would add instead, giving `(1 - R)**2 + R**2`.
   zh: 只有平衡分束器才能实现完全抵消。`BeamSplitter(theta)` 反射光子的概率为 `R = sin(theta)**2`。得到 `"11"` 的两条路径振幅分别为 `cos(theta)**2` 和 `-sin(theta)**2`，因此同时在两个端口探测到光子的概率（符合概率）为 `(1 - 2R)**2`。如果粒子可区分，则应将概率相加，得到 `(1 - R)**2 + R**2`。
-  status: machine
+  status: retired
 - id: ae86e013cbaf7480
   en: 'An [`Estimator`][fatqat.Estimator] computes the exact probability of `"11"` as the expectation value of [`Projector(1)`][fatqat.observable.Projector] on both modes. Sweep the angle to compare the two:'
   zh: '[`Estimator`][fatqat.Estimator] 可通过两个模式上 [`Projector(1)`][fatqat.observable.Projector] 乘积的期望值，精确计算 `"11"` 的概率。扫描角度，比较两种情况：'
@@ -81,7 +81,7 @@
 - id: 058c0a2288b58a2e
   en: At `R = 0` and `R = 1` only one history is possible, so the two cases agree. In between, interference suppresses coincidences, and at `R = 0.5` it removes them completely. In the laboratory, the Hong–Ou–Mandel dip is usually traced at a fixed 50:50 splitter by delaying one photon, which makes the photons partly distinguishable and brings the coincidences back.
   zh: 在 `R = 0` 和 `R = 1` 时，只有一条路径可能发生，因此两种情况一致。在两者之间，干涉会抑制符合事件，并在 `R = 0.5` 时使其完全消失。实验中通常固定使用 50:50 分束器，通过延迟一个光子来测量 Hong–Ou–Mandel 凹陷：延迟使两个光子变得部分可区分，符合事件便会重新出现。
-  status: machine
+  status: retired
 - id: 172f3297c1076246
   en: Simulate larger interferometers
   zh: 模拟更大的干涉仪
@@ -89,16 +89,32 @@
 - id: 283ed7a12dd9a492
   en: 'A statevector stores every combination of photon counts, from `0` to the cutoff in each mode. Twelve modes with four photons would need `5**12`, about 244 million amplitudes or 3.9 GB, although almost all of them stay zero: beam splitters never change the total photon number.'
   zh: 态矢量保存光子数的所有组合，每个模式从 `0` 到截断值。12 个模式中有 4 个光子时，需要 `5**12` 个振幅，约 2.44 亿个，占 3.9 GB；其中绝大多数始终为零，因为分束器不会改变总光子数。
-  status: machine
+  status: retired
 - id: 083de9f8f22ea8b8
   en: '`LOSimulator`''s default method, `"fixed_photon_state"`, stores only the arrangements of the photons you sent in, 1365 for four photons in twelve modes. All runs in this guide use it. This interferometer mixes neighboring modes in twelve layers:'
   zh: '`LOSimulator` 的默认方法 `"fixed_photon_state"` 只保存输入光子的可能分布。4 个光子分布在 12 个模式中，只有 1365 种情况。本指南的所有运行均采用该方法。下面的干涉仪分 12 层混合相邻模式：'
   status: machine
 - id: dc75b0535bdfc44a
   en: Each amplitude belongs to one arrangement of the four photons. [`fixed_photon_index`][fatqat.simulator.fixed_photon_index] finds the amplitude of an arrangement, given as photon counts in mode order. The probability that the photons leave in the four modes they entered is
-  zh: 每个振幅对应这 4 个光子的一种分布。按模式顺序给出光子数，[`fixed_photon_index`][fatqat.simulator.fixed_photon_index] 就能找到该分布对应的振幅。光子从最初输入的 4 个模式离开的概率为
+  zh: 每个振幅对应这 4 个光子的一种分布。按模式顺序给出光子数，[`fixed_photon_index`][fatqat.simulator.fixed_photon_index] 就能找到对应振幅的位置。这 4 个光子仍从最初输入的 4 个模式输出的概率为
   status: machine
 - id: 17f3966500113b69
   en: The method needs a `BasisState` start and modes only, and it rejects noise. For qubits alongside modes, dense initial states, or noise, choose `LOSimulator("statevector")` or `LOSimulator("density_matrix")`; see [`LOSimulator`][fatqat.simulator.LOSimulator] for the full rules.
   zh: 该方法要求使用 `BasisState` 初态，程序只能包含模式，且不接受噪声。若要混合量子比特和模式、使用稠密初态或加入噪声，请选择 `LOSimulator("statevector")` 或 `LOSimulator("density_matrix")`；完整规则见 [`LOSimulator`][fatqat.simulator.LOSimulator]。
+  status: machine
+- id: cf676503cc0ae1a2
+  en: '**A mode holds any number of photons.** Its level $n$ is a photon count, not one of two states.'
+  zh: "**一个模式可以容纳任意数量的光子。** 这里的 $n$ 表示模式中的光子数。"
+  status: machine
+- id: f53d1f2cfdae433a
+  en: The cancellation is exact only for a balanced splitter. `BeamSplitter(theta)` reflects a photon with probability $R = \sin^2\theta$. The two histories that end in `"11"` have amplitudes $\cos^2\theta$ and $-\sin^2\theta$. For identical photons, add the amplitudes and then square to get the coincidence probability $(1 - 2R)^2$. For distinguishable particles, add the probabilities of the two histories to get $(1 - R)^2 + R^2$.
+  zh: "两条路径的振幅只有在 50:50 分束器上才会完全抵消。使用 `BeamSplitter(theta)` 时，单个光子被反射的概率为 $R = \\sin^2\\theta$。得到 `\"11\"` 的两条路径，振幅分别为 $\\cos^2\\theta$ 和 $-\\sin^2\\theta$。对于全同光子，先将振幅相加再平方，得到符合概率 $(1 - 2R)^2$。对于可区分的粒子，直接相加两条路径的概率，得到 $(1 - R)^2 + R^2$。"
+  status: machine
+- id: ffbdce1e699e3e3a
+  en: At $R = 0$ and $R = 1$ only one history is possible, so the two cases agree. In between, interference suppresses coincidences, and at $R = 0.5$ it removes them completely. In the laboratory, the Hong–Ou–Mandel dip is usually traced at a fixed 50:50 splitter by delaying one photon, which makes the photons partly distinguishable and brings the coincidences back.
+  zh: "当 $R = 0$ 或 $R = 1$ 时，只有一条路径可能发生，两种情况的符合概率相同。反射率介于两者之间时，干涉会降低符合概率。在 $R = 0.5$ 处，符合概率降为零。实验中通常固定使用 50:50 分束器，通过改变一个光子的到达时间来测量 Hong–Ou–Mandel 凹陷。两个光子越容易区分，符合事件就越常见。"
+  status: machine
+- id: 0286a8e4c82ff89e
+  en: 'A statevector stores every combination of photon counts, from `0` to the cutoff in each mode. Twelve modes with four photons would need $5^{12}$, about 244 million amplitudes or 3.9 GB, although almost all of them stay zero: beam splitters never change the total photon number.'
+  zh: "态矢量保存光子数的所有组合，每个模式的光子数从 `0` 到截断值。要在 12 个模式中模拟 4 个光子，就需要 $5^{12}$ 个振幅，约 2.44 亿个，占 3.9 GB。分束器保持总光子数不变，因此其中绝大多数振幅始终为零。"
   status: machine

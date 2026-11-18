@@ -4,8 +4,8 @@
   status: machine
 - id: e4095b778786868d
   en: Start with one program
-  ko: 하나의 프로그램으로 시작하기
-  status: machine
+  ko: Program 만들고 실행하기
+  status: retired
 - id: d3b2aefa7524f88c
   en: Quickstart
   ko: 빠른 시작
@@ -13,35 +13,35 @@
 - id: d71f409e900eb6ed
   en: Programs and registers
   ko: 프로그램과 레지스터
-  status: machine
+  status: retired
 - id: 435e7cb6fa6d898c
   en: Execution models
   ko: 실행 모델
-  status: machine
+  status: retired
 - id: bcab022f89313896
   en: Run and analyze programs
   ko: 프로그램 실행과 분석
-  status: machine
+  status: retired
 - id: 45314e97b0c26a86
   en: Simulation
   ko: 시뮬레이션
-  status: machine
+  status: retired
 - id: 0b450ba46b4d6b79
   en: Ideal and noisy runs
   ko: 이상적인 실행과 잡음이 있는 실행
   status: machine
 - id: 442aded87a55aa8c
   en: Performance
-  ko: 성능
-  status: machine
+  ko: 성능 최적화
+  status: retired
 - id: 9a9cc4a72ef682dd
   en: Model hardware and physics
   ko: 하드웨어와 물리 모델링
-  status: machine
+  status: retired
 - id: 20fe5776b5d3cf0f
   en: Linear optics simulation
   ko: 선형 광학 시뮬레이션
-  status: machine
+  status: retired
 - id: 348c1c6d71f05569
   en: Transmon emulation
   ko: Transmon 에뮬레이션
@@ -53,7 +53,7 @@
 - id: e6665fc1d2b887bc
   en: Connect and diagnose
   ko: 연동과 문제 진단
-  status: machine
+  status: retired
 - id: c3af076f92c5ed8d
   en: Troubleshooting
   ko: 문제 해결
@@ -61,7 +61,7 @@
 - id: 8d9f66992dd4373c
   en: Tutorials
   ko: 튜토리얼
-  status: machine
+  status: retired
 - id: 90d9132f374d3bac
   en: SC target
   ko: SC 타깃
@@ -165,7 +165,7 @@
 - id: defc57312aca47bf
   en: Tutorials collected from the {title} source folder.
   ko: '{title} 소스 폴더의 튜토리얼 모음입니다.'
-  status: machine
+  status: retired
 - id: d37597d4221ee046
   en: Executable FatQat case studies in circuits, control, error correction, simulation, optimization, and machine learning.
   ko: 회로, 제어, 오류 정정, 시뮬레이션, 최적화, 머신러닝을 다루는 실행 가능한 FatQat 사례 연구입니다.
@@ -173,19 +173,19 @@
 - id: c2a1b013a196080f
   en: Explore complete, executable case studies grouped by topic. If you are new to FatQat, start with the [quickstart](../guide/quickstart.md) to learn how to build, run, and inspect a program.
   ko: 주제별로 정리한 완전한 사례 연구를 직접 실행해 보세요. FatQat을 처음 사용한다면 [빠른 시작](../guide/quickstart.md)에서 프로그램을 작성하고 실행하며 결과를 살펴보는 방법부터 익히세요.
-  status: machine
+  status: retired
 - id: 140ac7ae079e25b1
   en: Choose a path
   ko: 학습 경로 선택하기
-  status: machine
+  status: retired
 - id: 294bdbea76a46f14
   en: Follow [eight-atom GHZ preparation](atom-array-ghz8.md) with [atom-loss error correction](atom-loss-erasure.md), or move from [gate calibration](pulse-calibration.md) to [Rydberg CZ pulse design](optimal-cz-control.md). For optimization, work through [QUBO and QAOA](qubo-qaoa.md), [the islanding model](islanding-model.md), and [islanding with QAOA](islanding-qaoa.md).
   ko: '[8원자 GHZ 상태 준비](atom-array-ghz8.md) 다음에 [원자 손실 오류 정정](atom-loss-erasure.md)을 살펴보거나, [게이트 보정](pulse-calibration.md)에서 [Rydberg CZ 펄스 설계](optimal-cz-control.md)로 이어 가세요. 최적화는 [QUBO와 QAOA](qubo-qaoa.md), [계통 분리 모델](islanding-model.md), [QAOA를 이용한 계통 분리](islanding-qaoa.md) 순서로 진행할 수 있습니다.'
-  status: machine
+  status: retired
 - id: 22d7a3a1ec2eadac
   en: Open tutorial
   ko: 튜토리얼 열기
-  status: machine
+  status: retired
 - id: dd6caa21b5b249b2
   en: Circuits and entanglement
   ko: 회로와 얽힘
@@ -233,4 +233,184 @@
 - id: a1a6016e838e11b5
   en: Design and calibrate control pulses, then check their action on quantum states in transmon and Rydberg models.
   ko: 제어 펄스를 설계하고 보정한 뒤, transmon 및 Rydberg 모델에서 양자 상태에 미치는 작용을 확인합니다.
+  status: machine
+- id: b04e22341893dba7
+  en: Simulate and analyze
+  ko: 시뮬레이션과 분석
+  status: retired
+- id: f2dfd75fe1c9e0c0
+  en: Hardware constraints
+  ko: 하드웨어 제약 시뮬레이션
+  status: machine
+- id: ed1bd40816708938
+  en: Pulse workflow
+  ko: 펄스 작성과 실행
+  status: retired
+- id: 1c4f824919c29458
+  en: Superconducting simulation
+  ko: 초전도 시뮬레이션
+  status: retired
+- id: 1ebc915fa7106ec9
+  en: Neutral-atom simulation
+  ko: 중성 원자 시뮬레이션
+  status: retired
+- id: 61e8d44ad423a4a0
+  en: Get started
+  ko: Program 만들고 실행하기
+  status: machine
+- id: 666074c740953ec6
+  en: Program & Register
+  ko: 프로그램과 레지스터
+  status: machine
+- id: e6a87f53aa65439a
+  en: Simulation choices
+  ko: 시뮬레이션과 에뮬레이션 방식 선택하기
+  status: machine
+- id: e295a051a0d7533f
+  en: Run & analyze
+  ko: 시뮬레이션과 분석
+  status: machine
+- id: 32d4bb512cbfd7bd
+  en: Simulate programs
+  ko: 시뮬레이션
+  status: machine
+- id: 63c68fbe02915f82
+  en: Visualize results
+  ko: 시각화
+  status: machine
+- id: 3b28312d970dd922
+  en: Improve performance
+  ko: 성능 최적화
+  status: machine
+- id: 3a9997a686ffdad3
+  en: Hardware overview
+  ko: 하드웨어 제약을 고려한 시뮬레이션
+  status: machine
+- id: b8037f7b8b804cf3
+  en: Superconducting qubits
+  ko: 초전도 시뮬레이션
+  status: machine
+- id: cac53650c5062c99
+  en: Neutral-atom arrays
+  ko: 중성 원자 시뮬레이션
+  status: machine
+- id: fde5fc03c4a41468
+  en: Compile circuits
+  ko: 논리 회로 컴파일하고 실행하기
+  status: machine
+- id: 88c9dd022e95f64a
+  en: Write & run pulses
+  ko: 펄스 작성과 실행
+  status: retired
+- id: 068e662d04aee2be
+  en: Connect & debug
+  ko: "도구 연동과 문제 해결"
+  status: machine
+- id: 6b1df2ba950cf6e7
+  en: Case studies
+  ko: 응용 사례
+  status: machine
+- id: 459389c61e3f5709
+  en: Case studies in {title}.
+  ko: '{title} 분야의 응용 사례입니다.'
+  status: machine
+- id: ebcc39f9cdaf7b63
+  en: Start with a concrete question and use FatQat to model it, run a calculation, and interpret the results. These case studies combine runnable code with explanations of the assumptions and the physics or application behind each problem. For the basic use of individual features, see the [user guide](../guide/index.md).
+  ko: 구체적인 질문에서 출발해 FatQat으로 모델을 만들고, 계산을 실행하고, 결과를 해석합니다. 각 사례는 실행 가능한 코드와 함께 모델의 가정, 문제의 물리적 원리 또는 응용 배경을 설명합니다. 개별 기능의 기본 사용법은 [사용자 가이드](../guide/index.md)를 참고하세요.
+  status: retired
+- id: e72ab72c263c97d2
+  en: Browse by topic
+  ko: 주제별로 살펴보기
+  status: machine
+- id: 7c71c5222f97135f
+  en: Explore case study
+  ko: 사례 살펴보기
+  status: machine
+- id: b3517fc7c089212f
+  en: Eight-atom GHZ
+  ko: 8원자 GHZ 상태
+  status: machine
+- id: 518841fbae1e7853
+  en: Qutrit-assisted Toffoli
+  ko: 큐트릿 보조 Toffoli
+  status: machine
+- id: 42d50f8ad99d0207
+  en: Atom-loss correction
+  ko: 원자 손실 오류 정정
+  status: retired
+- id: a613999da7fdb5fb
+  en: Surface-code memory
+  ko: 표면 코드 메모리
+  status: machine
+- id: 3066af9d04c3cc2c
+  en: Rydberg correlations
+  ko: 리드베르크 상관관계
+  status: retired
+- id: 436ebb0670c063b3
+  en: PXP revivals
+  ko: PXP 재현
+  status: retired
+- id: cded015435b9bc24
+  en: H2 with VQE
+  ko: VQE로 H₂ 계산
+  status: retired
+- id: a98c019277d9e19a
+  en: QUBO with QAOA
+  ko: QAOA로 QUBO 풀기
+  status: machine
+- id: 59dd1487d43be792
+  en: Grid islanding model
+  ko: 전력망 분리 모델
+  status: machine
+- id: 31176b90915dd3ea
+  en: Islanding with QAOA
+  ko: QAOA 전력망 분리
+  status: retired
+- id: b75fe9afbc138389
+  en: QNN digit recognition
+  ko: QNN 숫자 인식
+  status: machine
+- id: e2d8ae48dd5a6558
+  en: ADMET circuit search
+  ko: ADMET 회로 탐색
+  status: machine
+- id: dac1da44f97836fc
+  en: Gate calibration
+  ko: 양자 게이트 보정
+  status: machine
+- id: bcdd2da3016da4e4
+  en: Rydberg CZ control
+  ko: 리드베르크 CZ 제어
+  status: retired
+- id: 93fa26b1cb571427
+  en: How does atom loss affect error correction? How does a control pulse change a quantum gate's behavior? And how can a power-grid partition be expressed as an optimization problem? These case studies turn questions like these into models you can run and explore with FatQat. Follow each problem from its background and assumptions through runnable code to plots and an explanation of the results. Choose a topic that interests you, run the example, and change its parameters to investigate further. For the basic use of individual features, see the [user guide](../guide/index.md).
+  ko: 원자 손실은 오류 정정에 어떤 영향을 줄까요? 제어 펄스는 양자 게이트의 동작을 어떻게 바꿀까요? 전력망을 나누는 문제는 어떻게 최적화 문제로 표현할 수 있을까요? 여기서는 이런 구체적인 질문을 FatQat으로 실행하고 탐구할 수 있는 모델로 옮깁니다. 각 사례를 따라가며 문제의 배경과 모델의 가정을 살펴보고, 코드를 실행한 뒤 그래프와 설명을 통해 결과를 이해할 수 있습니다. 관심 있는 주제를 골라 예제를 실행하고, 매개변수를 바꾸면서 어떤 변화가 생기는지 살펴보세요. 개별 기능의 기본 사용법은 [사용자 가이드](../guide/index.md)를 참고하세요.
+  status: machine
+- id: c3dc9d1832a5e485
+  en: Atom loss in repetition codes
+  ko: 반복 코드의 원자 손실
+  status: machine
+- id: 873bcaa8d67e29eb
+  en: Rydberg spin correlations
+  ko: 리드베르크 사슬의 스핀 상관관계
+  status: machine
+- id: b25fd3cfb1e2f248
+  en: PXP state revivals
+  ko: PXP 사슬의 초기 상태 재현
+  status: machine
+- id: 070e77afb295eef4
+  en: H₂ ground-state energy
+  ko: VQE로 구하는 H₂ 바닥상태 에너지
+  status: machine
+- id: 1e02e3a060792752
+  en: Grid splitting with QAOA
+  ko: QAOA로 전력망 분리
+  status: machine
+- id: 7c72718e2952e307
+  en: Rydberg CZ pulses
+  ko: 리드베르크 CZ 펄스
+  status: machine
+- id: 60d3440ebfab046a
+  en: Pulse programs
+  ko: "펄스 프로그램 작성과 실행"
   status: machine

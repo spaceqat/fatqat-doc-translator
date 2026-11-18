@@ -4,7 +4,7 @@
   status: machine
 - id: 9ac80e2eeb6f6fcc
   en: '[`LOSimulator`][fatqat.simulator.LOSimulator] is a [`Simulator`](../simulator.md) for Programs with optical modes. It runs, returns results, and handles noise and sweeps like `Simulator`, except as listed below. For a worked example, see [Simulate linear optics](../../guide/linear-optics.md).'
-  zh: '[`LOSimulator`][fatqat.simulator.LOSimulator] 是用于含光学模式的 Program 的 [`Simulator`](../simulator.md)。除下列区别外，其执行、结果返回、噪声处理和参数扫描均与 `Simulator` 相同。完整示例见[模拟线性光学](../../guide/linear-optics.md)。'
+  zh: '[`LOSimulator`][fatqat.simulator.LOSimulator] 是用于含光学模式的 Program 的 [`Simulator`](../simulator.md)。除下列区别外，其执行、结果返回、噪声处理和参数扫描均与 `Simulator` 相同。完整示例见[线性光学模拟](../../guide/linear-optics.md)。'
   status: machine
 - id: bb075b3e25ea22b6
   en: '**Differences from `Simulator`**'

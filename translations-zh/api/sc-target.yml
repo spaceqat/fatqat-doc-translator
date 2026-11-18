@@ -48,7 +48,7 @@
   status: machine
 - id: 631c63c0b3b7fbc5
   en: An empty `couplings` describes a device without `CZ` connections. It is a valid target. Circuits without two-qubit gates compile. A circuit with a two-qubit gate fails during compilation.
-  zh: '空的 `couplings` 表示没有 `CZ` 连接的设备。这是有效的编译目标。不含双量子比特门的电路可以编译；含双量子比特门的电路则会在编译时失败。'
+  zh: '空的 `couplings` 表示没有 `CZ` 连接的设备。这是有效的编译目标。不含双量子比特门的线路可以编译；含双量子比特门的线路则会在编译时失败。'
   status: machine
 - id: 26ea5772220b7015
   en: '`num_qubits` and `couplings` are read-only. You can reuse a target for any number of compilations. Equality, hashing, and serialization are not part of the `SCTarget` interface.'

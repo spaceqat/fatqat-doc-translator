@@ -1,96 +1,168 @@
 - id: cc343a2845b49b3c
   en: Choose and run a neutral-atom workflow
-  zh: 选择并运行中性原子工作流
-  status: machine
+  zh: 选择并运行中性原子模型
+  status: retired
 - id: 7984d47515a52e46
   en: 'FatQat offers two neutral-atom execution levels. Choose the least detailed one that still contains the effect you want to study:'
-  zh: FatQat 提供两个中性原子执行层级。请选择仍能包含你想研究的效应的最简层级：
-  status: machine
+  zh: FatQat 提供两种中性原子执行方式。根据你要研究的效应，选择能满足需要的较简单的一种：
+  status: retired
 - id: 305a51a3eb17cf2f
   en: '**Gate-level array**'
   zh: '**门级阵列**'
-  status: machine
+  status: retired
 - id: d7fb8ad08e2f9a34
   en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] adds occupancy and a changing pairing graph to finite qubit gates. Use it for fast loading, loss, and connectivity checks.'
-  zh: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 在有限的量子比特门之上增加了占据状态和可变的配对图。用它进行快速的装载、丢失和连通性检查。'
-  status: machine
+  zh: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 在有限维量子比特门的基础上，跟踪原子占据状态和可变的配对图，适合快速检查原子装载、丢失和连通性。'
+  status: retired
 - id: 5665407c7117a301
   en: '**Two physical levels**'
   zh: '**两个物理能级**'
-  status: machine
+  status: retired
 - id: e86f23c461a2b811
   en: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] follows $\lvert g\rangle$ and $\lvert r\rangle$. Use it for global drive, detuning, and many-body Rydberg dynamics.'
   zh: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 跟踪 $\lvert g\rangle$ 和 $\lvert r\rangle$。用它研究全局驱动、失谐和多体里德堡动力学。'
-  status: machine
+  status: retired
 - id: 15f9e5f79f4b0467
   en: The atom-array simulator is the profile introduced in [Hardware-profile simulation](hardware-profile-simulation.md); it does not integrate a Hamiltonian. The physical emulator below uses the pulse workflow from [Hamiltonian emulation](hamiltonian-emulation.md).
-  zh: "原子阵列模拟器就是[硬件配置模拟](hardware-profile-simulation.md)中介绍的硬件模型，不对哈密顿量进行积分。下面的物理仿真器则采用[哈密顿量仿真](hamiltonian-emulation.md)中的脉冲流程。"
-  status: machine
+  zh: 原子阵列模拟器就是[硬件约束模拟](hardware-profile-simulation.md)中介绍的硬件模型，不对哈密顿量进行积分。下面的物理仿真器则采用[哈密顿量仿真](hamiltonian-emulation.md)中的脉冲流程。
+  status: retired
 - id: ff611845e5bdbb41
   en: Describe the sites once
-  zh: "定义原子位置"
-  status: machine
+  zh: 定义原子位置
+  status: retired
 - id: 5df0c1bedf249775
   en: 'The physical emulator uses a fixed set of sites described by an [`AtomArrangement`][fatqat.emulator.AtomArrangement]. Program resources map to those sites in declaration order by default:'
   zh: 物理仿真器使用由 [`AtomArrangement`][fatqat.emulator.AtomArrangement] 描述的一组固定位点。默认情况下，Program 资源按声明顺序映射到这些位点：
-  status: machine
+  status: retired
 - id: 066ab9e43cfb6ac0
   en: The arrangement is fixed geometry, not an atom-transport instruction. It sets the distances used by Rydberg interactions, and the Program must declare exactly one dimension-two resource per site.
   zh: 排布是固定的几何结构，不是原子搬运指令。它设定里德堡相互作用所用的距离，并且 Program 必须为每个位点恰好声明一个维度为二的资源。
-  status: machine
+  status: retired
 - id: 9a631d1330ed4ba3
   en: Use a [`ResourceLayout`][fatqat.ResourceLayout] only when you need to override the default declaration-order mapping.
   zh: 仅当需要覆盖默认的声明顺序映射时，才使用 [`ResourceLayout`][fatqat.ResourceLayout]。
-  status: machine
+  status: retired
 - id: e82691c5e1016476
   en: Drive the array with the two-level model
   zh: 用二能级模型驱动阵列
-  status: machine
+  status: retired
 - id: ec7297494dfafc6b
   en: 'The two-level model uses global drive and detuning channels. Its default gate map is empty, so a Program normally contains direct pulse blocks:'
-  zh: "二能级模型使用全局的驱动通道和失谐通道。它的默认门映射为空，因此 Program 通常包含直接脉冲块："
-  status: machine
+  zh: 二能级模型使用全局的驱动通道和失谐通道。它的默认门映射为空，因此 Program 通常包含直接脉冲块：
+  status: retired
 - id: 6368d4bf664cbbb9
   en: Both controls act on every site. The arrangement supplies the distances and the model supplies the signed interaction strength, so changing the spacing can change the dynamics without changing the Program. By default every site pair interacts; `interaction_cutoff` can remove terms beyond a distance, but it is a Hamiltonian truncation rather than a blockade radius.
   zh: 两个控制都作用于每个位点。排布提供距离，模型提供带符号的相互作用强度，因此改变间距可以在不改变 Program 的情况下改变动力学。默认情况下所有位点对都相互作用；`interaction_cutoff` 可以去掉超过某个距离的项，但它是哈密顿量截断，而不是阻塞半径。
   status: retired
 - id: 7a17ea0b2d9ff5e7
   en: For this short pulse, about 5.4% of the final probability lies outside the all-ground state. That number is a physical consequence of the waveform, detuning, spacing, interaction model, and duration—not a gate label.
-  zh: 对这个短脉冲而言，最终概率中约有 5.4% 位于全基态之外。这个数字是波形、失谐、间距、相互作用模型和时长共同作用的物理结果——而不是一个门标签。
-  status: machine
+  zh: 施加这个短脉冲后，系统离开全基态的概率约为 5.4%。这个结果由波形、失谐、原子间距、相互作用模型和脉冲时长共同决定，无法仅用一个门名称概括。
+  status: retired
 - id: 3eafbe967c041999
   en: The default method returns the complete two-level statevector. With supported Lindblad noise it follows one seeded trajectory when a final state is explicitly requested; choose `method="density_matrix"` for the exact ensemble. Terminal measurement returns counts. Mid-circuit measurement, reset, conditions, and per-site direct controls are not part of this two-level workflow.
-  zh: 默认方法返回完整的二能级态矢量。在存在受支持的 Lindblad 噪声时，若显式请求最终态，它会跟踪一条由种子决定的轨迹；要得到精确的系综，请选择 `method="density_matrix"`。终端测量返回计数。电路中途测量、重置、条件以及逐位点直接控制不属于这个二能级工作流。
-  status: machine
+  zh: 默认方法返回完整的二能级态矢量。在存在受支持的 Lindblad 噪声时，若显式请求最终态，它会跟踪一条由种子决定的轨迹；要得到精确的系综，请选择 `method="density_matrix"`。终端测量返回计数。线路中途测量、重置、条件以及逐位点直接控制不属于这个二能级工作流。
+  status: retired
 - id: a629b94b7c5a42d3
   en: Continue with a physics study
   zh: 继续开展物理研究
-  status: machine
+  status: retired
 - id: 5478bf9c31bd904b
   en: Continue with the tutorials for a [PXP revival](../tutorials/pxp-z2-revival.md), [antiferromagnetic chain](../tutorials/antiferromagnetic-chain.md), or [gate-level GHZ preparation](../tutorials/atom-array-ghz8.md). For model schemas, units, channel limits, and noise support, use the [neutral-atom emulator API](../api/atom-emulators.md).
-  zh: "接下来可以学习 [PXP 复苏](../tutorials/pxp-z2-revival.md)、[反铁磁链](../tutorials/antiferromagnetic-chain.md)或[门级 GHZ 态制备](../tutorials/atom-array-ghz8.md)教程。有关模型模式、单位、信道限制和噪声支持，请使用[中性原子仿真器 API](../api/atom-emulators.md)。"
-  status: machine
+  zh: 接下来可以学习 [PXP 复苏](../tutorials/pxp-z2-revival.md)、[反铁磁链](../tutorials/antiferromagnetic-chain.md)或[门级 GHZ 态制备](../tutorials/atom-array-ghz8.md)教程。有关模型模式、单位、信道限制和噪声支持，请使用[中性原子仿真器 API](../api/atom-emulators.md)。
+  status: retired
 - id: 5823ac31dd84d4b3
   en: 'Both controls act on every site. The arrangement supplies the distances and the model supplies the signed interaction strength, so changing the spacing can change the dynamics without changing the Program. By default every site pair interacts. Set `simulation_config={"interaction_cutoff": distance}` on a particular `run()` to remove terms beyond that distance; this is a numerical Hamiltonian truncation rather than a blockade radius.'
   zh: '两个控制都作用于每个位点。排布提供距离，模型提供带符号的相互作用强度，因此改变间距可以在不改变 Program 的情况下改变动力学。默认情况下所有位点对都相互作用。在某次特定的 `run()` 上设置 `simulation_config={"interaction_cutoff": distance}` 可以去掉超过该距离的项；这是数值上的哈密顿量截断，而不是阻塞半径。'
   status: retired
 - id: 343e3c2ec0edb89d
   en: 'To choose individual positions, supply `(x, y)` coordinates for a 2D layout or `(x, y, z)` coordinates for a 3D layout. All sites in an arrangement must use the same number of components, and distances are in micrometres:'
-  zh: 需要自行指定各个位置时，二维布局使用 `(x, y)` 坐标，三维布局使用 `(x, y, z)` 坐标。同一排列中所有站点的坐标分量数必须一致，距离单位为微米：
-  status: machine
+  zh: 要自行指定原子位置，二维布局使用 `(x, y)`，三维布局使用 `(x, y, z)`。同一布局中所有位点的坐标分量数必须一致，距离单位为微米：
+  status: retired
 - id: bfcb526c556b4c18
   en: The factory preserves input order as site order and copies the positions into immutable tuples. Explicit z values select 3D even when every z value is zero. `chain()` and `rectangular()` describe layouts embedded in 2D. Custom coordinates have no declared row count, column count, or uniform spacing; their `rows`, `cols`, and `spacing` attributes are `None`. See the [arrangement API](../api/atom-emulators.md#arrangements-and-program-resources) for input constraints.
-  zh: 工厂方法按输入顺序排列站点，并将位置复制为不可变元组。只要显式提供 z 值，即使全部为零，也会采用三维布局。`chain()` 和 `rectangular()` 描述的是嵌入二维空间的布局。自定义坐标不声明行数、列数或统一间距，因此其 `rows`、`cols` 和 `spacing` 属性均为 `None`。输入约束见[排列 API](../api/atom-emulators.md#arrangements-and-program-resources)。
-  status: machine
+  zh: 工厂方法按输入顺序排列位点，并将位置复制为不可变元组。只要显式提供 z 值，即使全部为零，也会采用三维布局。`chain()` 和 `rectangular()` 描述的是嵌入二维空间的布局。自定义坐标不声明行数、列数或统一间距，因此其 `rows`、`cols` 和 `spacing` 属性均为 `None`。输入约束见[排列 API](../api/atom-emulators.md#arrangements-and-program-resources)。
+  status: retired
 - id: 44a25dd275a963aa
   en: 'You can give rectangular layouts different x and y spacings, then combine layouts in the order their sites should appear. Labels let you retrieve the site indices belonging to each part:'
-  zh: 矩形布局可以为 x 和 y 方向设置不同间距，再按所需站点顺序组合多个布局。通过标签可以取得各部分的站点索引：
-  status: machine
+  zh: 矩形布局可以为 x 和 y 方向设置不同间距，再按所需位点顺序组合多个布局。通过标签可以取得各部分的位点索引：
+  status: retired
 - id: f3a256dde7146674
   en: Combining layouts requires distinct positions and unique group names. A combination containing any 3D layout is 3D. Nested combinations retain their groups with indices adjusted to the final site order. You can also give `combine()` a label for a group covering the entire result.
-  zh: 组合布局中的位置不能重叠，组名不能重复。只要包含一个三维布局，组合结果就是三维。嵌套组合会保留各组，并按最终站点顺序调整索引。还可以为 `combine()` 指定标签，创建覆盖整个结果的组。
-  status: machine
+  zh: 组合布局中的位置不能重叠，组名不能重复。只要包含一个三维布局，组合结果就是三维。嵌套组合会保留各组，并按最终位点顺序调整索引。还可以为 `combine()` 指定标签，创建覆盖整个结果的组。
+  status: retired
 - id: f98e688bd433ee93
   en: 'Both controls act on every site. The arrangement supplies the distances and the model supplies the signed interaction strength, so changing the spacing can change the dynamics without changing the Program. By default every site pair interacts. Set `execution_config={"interaction_cutoff": distance}` on a particular `run()` to remove terms beyond that distance; this is a numerical Hamiltonian truncation rather than a blockade radius.'
   zh: '两个控制都作用于每个位点。排布提供距离，模型提供带符号的相互作用强度，因此改变间距可以在不改变 Program 的情况下改变动力学。默认情况下所有位点对都相互作用。在某次特定的 `run()` 上设置 `execution_config={"interaction_cutoff": distance}` 可以去掉超过该距离的项；这是数值上的哈密顿量截断，而不是阻塞半径。'
+  status: retired
+- id: 0af69f98046d4d70
+  en: For model schemas, units, channel limits, and noise support, use the [neutral-atom emulator API](../api/atom-emulators.md).
+  zh: 模型字段、单位、控制通道限制和噪声支持范围，见[中性原子仿真器 API](../api/atom-emulators.md)。
+  status: retired
+- id: 3f2e0bf1e580d893
+  en: The atom-array simulator is the profile introduced in [Neutral-atom simulation](atom-array-simulation.md); it does not integrate a Hamiltonian. The physical emulator below uses the pulse workflow from [Hamiltonian emulation](hamiltonian-emulation.md).
+  zh: 原子阵列模拟器就是[中性原子阵列模拟](atom-array-simulation.md)中介绍的设备模型，不对哈密顿量进行积分。下面的物理仿真器则采用[哈密顿量仿真](hamiltonian-emulation.md)中的脉冲流程。
+  status: retired
+- id: eeed1e9ebcd6d95b
+  en: Emulate neutral atoms with laser pulses
+  zh: "用激光脉冲仿真中性原子"
+  status: machine
+- id: b49fc9e9d7f25e19
+  en: Optical tweezers hold individual neutral atoms at chosen positions. A laser can drive an atom from its ground state $\lvert g\rangle$ to an excited Rydberg state $\lvert r\rangle$. When two nearby atoms are both in $\lvert r\rangle$, their interaction shifts the energy of the pair. A pulse tuned to excite one atom then has a much harder time exciting both. This suppression is called Rydberg blockade.
+  zh: "在中性原子实验中，研究者用光镊把原子排在选定的位置，再用激光驱动它们在基态 $\\lvert g\\rangle$ 和里德堡态 $\\lvert r\\rangle$ 之间跃迁。两个原子如果靠得很近，同时进入 $\\lvert r\\rangle$ 时的相互作用会改变双激发态的能量。这样，对准单原子跃迁的激光就很难把两个原子都激发起来。这种效应叫作里德堡阻塞。"
+  status: machine
+- id: 1bb9daf422d5a7d9
+  en: With [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator], you can study that effect using the [pulse workflow](hamiltonian-emulation.md). The example below changes only the distance between two atoms and checks how often both are excited at the end of the same pulse. For loading, moving, or pairing atoms in a gate-level Program, see [Neutral-atom array simulation](atom-array-simulation.md).
+  zh: "下面用 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 看看拉开原子间距会怎样改变激发结果。我们沿用[编写和运行脉冲程序](hamiltonian-emulation.md)中的流程，用同一个脉冲做两次仿真，只改变两个原子之间的距离。门级 Program 中的原子装载、搬运和配对见[中性原子阵列模拟](atom-array-simulation.md)。"
+  status: machine
+- id: 215ade2b3a48a3a7
+  en: Drive two atoms with the same pulse
+  zh: "用同一个脉冲驱动两个原子"
+  status: machine
+- id: 877d8243f9603bc7
+  en: The example starts with both atoms in $\lvert g\rangle$. Write one resonant drive pulse that acts on both atoms for 1 µs, with a peak Rabi rate of 3 rad/µs. The two-qubit Program provides one two-level resource per atom. The emulator gets the positions separately from an [`AtomArrangement`][fatqat.emulator.AtomArrangement].
+  zh: "两个原子起初都处在基态 $\\lvert g\\rangle$，随后一起接受一段 1 µs 的共振脉冲，峰值 Rabi 速率为 3 rad/µs。Program 中的两个量子比特各对应一个二能级原子。创建仿真器时，再用 [`AtomArrangement`][fatqat.emulator.AtomArrangement] 指定原子位置。"
+  status: machine
+- id: b95562490d39b3ad
+  en: Run that Program at 4 µm and 12 µm. The statevector lists amplitudes in the order $\lvert gg\rangle$, $\lvert gr\rangle$, $\lvert rg\rangle$, and $\lvert rr\rangle$. Square their magnitudes to get the probabilities, and add the middle two to find the probability of exactly one excitation.
+  zh: "写好脉冲后，把原子分别放在相距 4 µm 和 12 µm 的位置，用同一个 Program 跑两次。每次返回的态矢量按 $\\lvert gg\\rangle$、$\\lvert gr\\rangle$、$\\lvert rg\\rangle$ 和 $\\lvert rr\\rangle$ 的顺序给出四个振幅。把振幅取模平方，就能得到各状态的概率。其中第二和第三项都对应只激发一个原子，把它们的概率相加即可。"
+  status: machine
+- id: d5143e0096bff247
+  en: At 4 µm, the pulse almost always excites exactly one atom, and the chance of exciting both is about 0.002%. At 12 µm, the chance of exciting both rises to about 50%. In this model, the interaction between two Rydberg excitations scales as $C_6/R^6$, where $R$ is their separation. The larger separation weakens the interaction, so the same pulse can excite both atoms much more readily.
+  zh: "相距 4 µm 时，最常见的结果是恰好激发一个原子，两个都被激发的概率只有约 0.002%。把间距拉到 12 µm 后，双激发的概率升到约 50%。这个模型用 $C_6/R^6$ 描述相互作用，其中 $R$ 是原子间距。距离增大后，相互作用迅速减弱，原本受抑制的双激发就更容易发生。"
+  status: machine
+- id: b4a075d7e3d0013a
+  en: Describe other arrangements
+  zh: "换一种原子排布"
+  status: machine
+- id: ac9b2a30516d67c6
+  en: Each arrangement fixes the positions used by the emulator. By default, it maps Program resources to those positions in declaration order. Use a [`ResourceLayout`][fatqat.ResourceLayout] to supply a different mapping.
+  zh: "前面的例子只需要两个原子排成一条直线。如果想换一种几何形状，可以直接指定各原子的位置。仿真器默认按声明顺序把 Program 中的资源对应到这些位置。要改变对应关系，可以用 [`ResourceLayout`][fatqat.ResourceLayout]。"
+  status: machine
+- id: cb9b36efa876a644
+  en: To specify positions yourself, pass $(x, y)$ coordinates for two dimensions or $(x, y, z)$ coordinates for three. Use the same number of components for every site. Distances are in micrometres.
+  zh: "平面上的位置用 $(x, y)$ 表示，需要区分高度时再加上第三个坐标，写成 $(x, y, z)$。同一个排布里的位置要统一写成二维或三维，距离单位都是微米。"
+  status: machine
+- id: 1d9a95a1098bc7ed
+  en: For a rectangular array, you can set separate spacings along $x$ and $y$. To describe several regions in one arrangement, combine them in the desired site order and use labels to look up their indices.
+  zh: "如果原子排成矩形阵列，可以分别设置 $x$ 和 $y$ 方向的间距。也可以先定义几个区域，再按所需的位置顺序把它们组合起来。这样就能用区域标签找回相应的原子位置索引。"
+  status: machine
+- id: b2423181023d48c3
+  en: See the [arrangement API](../api/atom-emulators.md#arrangements-and-program-resources) for coordinate and group rules.
+  zh: "坐标和分组的具体写法见[原子排布 API](../api/atom-emulators.md#arrangements-and-program-resources)。"
+  status: machine
+- id: c8704e3385c3255f
+  en: Add detuning to the drive
+  zh: "调整驱动的失谐"
+  status: machine
+- id: 1720c7d646c15032
+  en: Detuning sets how far the drive frequency is from the atomic transition. Use a second control alongside the drive to vary it during the pulse. Both channels act on every atom and use rad/µs.
+  zh: "前面的脉冲对准了单原子的跃迁频率。如果想让驱动频率在脉冲过程中偏离这个频率，就在驱动之外再加一路控制，指定失谐随时间怎么变。驱动和失谐都作用于阵列中的所有原子，单位都是 rad/µs。"
+  status: machine
+- id: 54f4f942fe381071
+  en: 'The emulator includes interactions between every pair of atoms by default. Use `execution_config={"interaction_cutoff": distance}` on a run to truncate the Hamiltonian by dropping pairs farther apart than that distance.'
+  zh: "默认情况下，仿真器会把每一对原子之间的相互作用都算进去。如果只想保留一定距离内的相互作用，可以在运行时设置 `execution_config={\"interaction_cutoff\": distance}`。仿真器会从哈密顿量里省去距离超过这个值的原子对所对应的项。"
+  status: machine
+- id: dae0075b5254578e
+  en: For units, channel limits, noise, and measurement support, see the [neutral-atom emulator API](../api/atom-emulators.md).
+  zh: "单位、通道限制，以及如何加入噪声和测量，都可以在[中性原子仿真器 API](../api/atom-emulators.md)中查到。"
   status: machine

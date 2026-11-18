@@ -20,15 +20,15 @@
   status: machine
 - id: ba39710dc301da62
   en: '[Model controlled islanding as a QUBO](islanding-model.md) turned the problem of splitting a transmission network into a quadratic function of binary variables: the objective is the power interrupted by the cut lines, and generator coherency and island balance are penalties that vanish when the requirement holds. This tutorial takes that model, runs it on a quantum circuit, and deals with what comes back.'
-  zh: '[将受控孤岛划分建模为 QUBO](islanding-model.md)把输电网络切分问题转换成二进制变量的二次函数：目标是被切断线路中断的功率，发电机同调性与孤岛平衡则作为满足要求时为零的惩罚。本教程将该模型放到量子电路上运行，并处理返回的结果。'
+  zh: '[将受控孤岛划分建模为 QUBO](islanding-model.md)把输电网络切分问题转换成二进制变量的二次函数：目标是被切断线路中断的功率，发电机同调性与孤岛平衡则作为满足要求时为零的惩罚。本教程将该模型放到线路上运行，并处理返回的结果。'
   status: machine
 - id: 79255209c8cf1916
   en: The headline difficulty is that a shallow QAOA circuit on a constrained problem returns mostly unusable bitstrings. Out of 2000 measurements of the 14-bus model below, around 25 describe a split the grid could actually operate. The fix is not a deeper circuit; it is to stop treating a measurement as an answer and start treating it as a starting point, which is what the postprocessing half of this tutorial does.
-  zh: 主要困难是，浅层 QAOA 电路处理受约束问题时，返回的大多数比特串不可用。下方 14 母线模型的 2000 次测量中，约 25 次描述了电网实际可以运行的划分。解决办法不是加深电路，而是将测量结果视为起点而非答案；本教程的后半部分将进行这种后处理。
+  zh: 主要困难是，浅层 QAOA 线路处理受约束问题时，返回的大多数比特串不可用。下方 14 母线模型的 2000 次测量中，约 25 次描述了电网实际可以运行的划分。解决办法不是加深线路，而是将测量结果视为起点而非答案；本教程的后半部分将进行这种后处理。
   status: machine
 - id: 8390ea3a4af0e46c
   en: The pipeline as a whole — the coherency-informed QUBO, sampling it with a shallow circuit, and repairing what comes back — follows REGRID-QAOA [1]. The repair itself is the pVSQA procedure of [2].
-  zh: 整个流程——考虑同调性的 QUBO、浅层电路采样以及结果修复——遵循 REGRID-QAOA [1]。修复本身使用 [2] 中的 pVSQA 方法。
+  zh: 整个流程——考虑同调性的 QUBO、浅层线路采样以及结果修复——遵循 REGRID-QAOA [1]。修复本身使用 [2] 中的 pVSQA 方法。
   status: machine
 - id: 7f8e5c817f9f442d
   en: The mechanics of mapping a QUBO onto gates — the substitution to spins, the phase separator, the mixer — are covered in [Solve a QUBO with QAOA](qubo-qaoa.md) and are reused here without re-derivation.
@@ -36,7 +36,7 @@
   status: machine
 - id: fb1f3ee5db0fa258
   en: Rebuilding the model
-  zh: 重新构建模型
+  zh: "重新建立模型"
   status: machine
 - id: c7066f997d4789d1
   en: 'This tutorial stands alone, so the model is rebuilt here in condensed form. Only the 14-bus system and the binary encoding are needed: one qubit per bus, whose value names the island directly. The derivation, the comparison against the one-hot encoding, and the exhaustive check all live in the modeling tutorial.'
@@ -52,7 +52,7 @@
   status: machine
 - id: 30da50f22d0bd5cf
   en: 'The circuit construction is exactly the one from the QUBO tutorial: substitute $x_i = (1 - z_i)/2$ to get an Ising Hamiltonian, then emit an `RZ` per field term, a `CX`-`RZ`-`CX` ladder per coupling, and an `RX` mixer per layer.'
-  zh: 电路构造与 QUBO 教程完全相同：代入 $x_i = (1 - z_i)/2$ 得到 Ising 哈密顿量，再为每个场项生成一个 `RZ`，每个耦合生成一个 `CX`-`RZ`-`CX` 序列，并在每层加入 `RX` 混合器。
+  zh: 线路构造与 QUBO 教程完全相同：代入 $x_i = (1 - z_i)/2$ 得到 Ising 哈密顿量，再为每个场项生成一个 `RZ`，每个耦合生成一个 `CX`-`RZ`-`CX` 序列，并在每层加入 `RX` 混合器。
   status: machine
 - id: dfaf8ba2fd91a8f3
   en: The target to aim at is the best feasible split, not the QUBO ground state, so that is what the probability below is measured against. Depth is grown one layer at a time, seeding each depth from the previous solution.
@@ -108,7 +108,7 @@
   status: machine
 - id: 582d42d6c00838a1
   en: 'The two rates are close. On a 14-bus network the repair is strong enough to find the answer from almost anywhere, so the quantum sampler has nothing left to contribute, and no claim of advantage is supportable from this run. What these results do establish is that the pipeline is correct end to end: the model, the circuit, the repair, and the decoding all agree with an exhaustive classical reference.'
-  zh: 两个比例很接近。对于 14 母线网络，修复过程足够强，几乎从任何位置都能找到答案，因此量子采样器没有剩余贡献空间，这次运行无法支持优势声明。这些结果确实验证了端到端流程的正确性：模型、电路、修复和解码都与穷举经典参考一致。
+  zh: 两个比例很接近。对于 14 母线网络，修复过程足够强，几乎从任何位置都能找到答案，因此量子采样器没有剩余贡献空间，这次运行无法支持优势声明。这些结果确实验证了端到端流程的正确性：模型、线路、修复和解码都与穷举经典参考一致。
   status: machine
 - id: 58c81b8e4ca62c15
   en: Separating the two claims needs a network where the classical descent gets stuck — larger, more strongly meshed, or with tighter coherency groups. That is exactly where the qubit accounting at the end of this tutorial becomes the binding constraint, and it is the honest place to put the effort next.
@@ -124,7 +124,7 @@
   status: machine
 - id: 49e2a5c645c4e85c
   en: How wide does this get?
-  zh: 电路会有多宽？
+  zh: 线路会有多宽？
   status: machine
 - id: 0c8ceb4c7b2ab55d
   en: 'Qubit count is what decides whether a network is reachable at all, and it follows directly from the encoding and the components in use. Three numbers matter per system: the one-hot width $n_\text{buses} \times k$, the binary width $n_\text{buses}$ when $k = 2$, and the width once the slack-carrying requirements are added. The two encodings and the reason they agree on the answer are developed in [Model controlled islanding as a QUBO](islanding-model.md).'
@@ -144,7 +144,7 @@
   status: machine
 - id: e672ed96a147dff5
   en: 'The pipeline is complete and each piece is checkable: the QUBO reproduces the operating requirements, the two encodings agree on the answer, the circuit construction matches an independent estimator, and every measured bitstring becomes a feasible split.'
-  zh: 流程已完整，各部分都能检查：QUBO 复现运行要求，两种编码的答案一致，电路构造与独立估计器匹配，每个测量比特串都能变成可行划分。
+  zh: 流程已完整，各部分都能检查：QUBO 复现运行要求，两种编码的答案一致，线路构造与独立估计器匹配，每个测量比特串都能变成可行划分。
   status: machine
 - id: 495a12cd12532b6a
   en: What it does not yet show is a quantum advantage, and it is worth being precise about why. On networks small enough to simulate, the classical repair reaches the optimum from any starting point, so the quantum sampler's contribution is unmeasurable. Making that contribution visible needs a network where the classical descent has somewhere to get stuck — and there, the width numbers above become the binding constraint rather than the runtime. Approaches aimed at exactly that constraint are developed in [7] and [8].
@@ -156,7 +156,7 @@
   status: machine
 - id: 1f2d1d1f95e139d7
   en: '**Narrower encodings.** A base-$k$ assignment beats one-hot for more than two islands, and merging buses that will never separate shrinks the problem before any encoding is chosen [7]. Solving regional subproblems in sequence keeps the circuit width independent of the network size altogether [8].'
-  zh: '**更紧凑的编码。**孤岛数超过两个时，$k$ 进制赋值优于独热编码；将永远不会分开的母线合并，还能在选择编码之前缩小问题 [7]。依次求解区域子问题，则可以使电路宽度完全独立于网络规模 [8]。'
+  zh: '**更紧凑的编码。**孤岛数超过两个时，$k$ 进制赋值优于独热编码；将永远不会分开的母线合并，还能在选择编码之前缩小问题 [7]。依次求解区域子问题，则可以使线路宽度完全独立于网络规模 [8]。'
   status: machine
 - id: 9435b8497956d9e5
   en: '**Constraint-preserving mixers.** An XY mixer confines the state to the one-hot subspace, so amplitude is never spent on assignments the penalty would only have to reject.'
@@ -164,7 +164,7 @@
   status: machine
 - id: f83981424dca3169
   en: '**Warm starts.** Seeding QAOA from a classical partition and letting the circuit search nearby uses shallow depth where it helps most.'
-  zh: '**热启动。**用经典划分初始化 QAOA，让电路在附近搜索，可以将浅层深度用在最有帮助的位置。'
+  zh: '**热启动。**用经典划分初始化 QAOA，让线路在附近搜索，可以将浅层深度用在最有帮助的位置。'
   status: machine
 - id: d173b4faa8036430
   en: '**Noise.** Every run here is noiseless. Attaching a `fatqat.NoiseModel` to the simulator turns the same code into a study of how much depth this problem can actually afford on hardware.'

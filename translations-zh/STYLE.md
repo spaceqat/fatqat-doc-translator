@@ -18,8 +18,10 @@ check` enforces the structural ones; reviewers enforce the rest.
    abbreviations (Grover, QAOA, VQE) also stay English. Preserve source spelling
    and case; a code name such as `Estimator` takes precedence over the generic
    glossary term estimator → 估计器. Keep ordinary descriptions in Chinese.
-4. **Terminology follows `glossary.yml`.** Use established Chinese terms for
-   concepts such as 量子态、密度矩阵、哈密顿量、可观测量 and 期望值. For an
+4. **Terminology follows `glossary.yml`.** Quantum-computing circuit / quantum
+   circuit is “线路”, not “电路” or “量子电路”. Keep code identifiers such as
+   QuantumCircuit unchanged. Use established Chinese terms for concepts such
+   as 量子态、密度矩阵、哈密顿量、可观测量 and 期望值. For an
    ambiguous term, give Chinese and English together at its first substantive
    mention on a page, then use the Chinese term consistently. In particular,
    quantum channel → 量子信道 and control channel → 控制通道 are different
@@ -50,7 +52,30 @@ check` enforces the structural ones; reviewers enforce the rest.
    what happens, and why it matters in natural Chinese. Restructure sentences
    instead of copying English word order or metaphors, while preserving every
    technical condition. For example, eager execution means execution has already
-   happened when the Job is returned, not “急切执行”; a hardware profile is
-   “硬件配置”, not necessarily a file. Use “综合征” for syndrome, “复苏” for
+   happened when the Job is returned, not “急切执行”; hardware profile means “设备模型”, defining supported operations, resources,
+   and connectivity rules. Use “硬件约束模拟” for hardware-profile simulation
+   in headings and navigation, and “硬件约束模拟器” for hardware-profile
+   simulator. Do not imply a configuration file or pulse-level physical model. Use “综合征” for syndrome, “复苏” for
    quantum revival, and “淬火” for quantum quench. Keep prose concise and use
    the same wording in headings, navigation, and links to those headings.
+
+## User guide voice
+
+Lead with the reader's task, then explain what to do, what the result means,
+and why. Keep the tone approachable and pedagogical. Use short, connected
+sentences and concrete verbs; split paragraphs that answer different questions.
+Keep explanations needed to understand the example, including prerequisites,
+units, uncertainty, supported behavior, and limitations. Avoid repeated setup
+instructions, architecture summaries, and chapter previews that do not help
+with the current task. Keep links that help the reader complete or understand it.
+
+Adapt sentence structure to the target language rather than translating English
+word order. Preserve exact API names and use consistent conceptual terminology.
+When content or structure needs to change, update the English source first and
+synchronize both locales through extraction. Do not hide removed prose in HTML
+comments or let the localized guides drift apart.
+
+Avoid “构建” in Chinese prose. Choose a concrete verb for the action: 编写 a
+Program or circuit, 创建 an object, 生成 a schedule or matrix, 建立 a model,
+实现 a gate, and 制备 a quantum state. For documentation output, use 生成文档
+or 更新预览. Keep code identifiers such as build_template() unchanged.

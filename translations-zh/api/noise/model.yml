@@ -8,7 +8,7 @@
   status: machine
 - id: 0e84698742201727
   en: Build a model
-  zh: 构建模型
+  zh: "建立模型"
   status: machine
 - id: 1c53902058915ae8
   en: This example adds phase damping after every `RX`, amplitude damping to the second operand of every `CZ`, and readout confusion on `q[0]`. Logical targets use references from the program; device-label targets use labels from the run's [`ResourceLayout`][fatqat.ResourceLayout].

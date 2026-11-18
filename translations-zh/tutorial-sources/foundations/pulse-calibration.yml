@@ -4,7 +4,7 @@
   status: machine
 - id: d79c6a0705d8bec6
   en: Build a control pulse, collect amplitude-calibration data, and verify an X rotation on several input states.
-  zh: 构建控制脉冲，采集振幅校准数据，并在多个输入态上验证 X 旋转。
+  zh: "准备控制脉冲，采集振幅校准数据，并在多个输入态上验证 X 旋转。"
   status: machine
 - id: 7f0ba206b7a49ec4
   en: Desired-level population and leakage versus amplitude scale, marking the initial pulse at 0.8 and the best tested state-transfer amplitude near one.
@@ -36,11 +36,11 @@
   status: machine
 - id: 0a725e67e9d254e9
   en: We first build the ideal rotation as a `Program` and run it with the general `Simulator`. In unitary mode, the result is the \(2\times2\) matrix that we will use as our reference.
-  zh: 先将理想旋转构建为 `Program`，用通用 `Simulator` 运行。在酉算符模式下，结果是一个 \(2\times2\) 矩阵，将作为参考。
+  zh: "先用以下代码将理想旋转写成 `Program`，用通用 `Simulator` 运行。在酉算符模式下，结果是一个 \\(2\\times2\\) 矩阵，将作为参考。"
   status: machine
 - id: 57ccda8b6647a7bb
   en: Build an imperfect pulse
-  zh: 构建不理想的脉冲
+  zh: "准备不理想的脉冲"
   status: machine
 - id: 8d2bd3978e308737
   en: Next, load the transmon model and create a statevector emulator. Each run starts in physical \(|0\rangle\). We leave noise and measurement out of these runs so that we can inspect the pulse's final amplitudes. See the [transmon guide](../guide/transmon-emulation.md) for more on the model setup.
@@ -76,7 +76,7 @@
   status: machine
 - id: 977b91555f87001c
   en: For each amplitude, the loop builds a pulse program and collects its populations through `run().result()`. After finding the maximum, we rerun that pulse and record its parameters in a dictionary.
-  zh: 对于每个振幅，循环构建一个脉冲程序，通过 `run().result()` 收集布居。找到最大值后，再运行一次该脉冲，并将其参数记录在字典中。
+  zh: "对于每个振幅，循环创建一个脉冲程序，通过 `run().result()` 收集布居。找到最大值后，再运行一次该脉冲，并将其参数记录在字典中。"
   status: machine
 - id: aed530ccbac9cbd5
   en: The selected pulse transfers more population to \(|1\rangle\), with more leakage than the initial pulse. It is the best tested amplitude for our state-transfer objective, with some population still outside the desired level.
@@ -136,7 +136,7 @@
   status: machine
 - id: 7a991f12f60b6f73
   en: We can also sample the selected pulse's measurement outcomes. For this, we build a separate program with a classical bit and terminal measurement and return to the statevector backend; unitary execution requires an unmeasured program.
-  zh: 也可以采样选定脉冲的测量结果。为此，构建一个带经典位和末端测量的独立程序，并切回态矢量后端；酉算符执行要求程序不含测量。
+  zh: "也可以采样选定脉冲的测量结果。为此，创建一个带经典位和末端测量的独立程序，并切回态矢量后端；酉算符执行要求程序不含测量。"
   status: machine
 - id: 18506d426b92e9c6
   en: This backend reports physical level `0` as bit `0`, and both levels `1` and `2` as bit `1`. We therefore expect the frequency of `1` to approach `P1 + P2` as we increase the number of shots. This binary readout groups successful transfer and leakage into the same outcome.

@@ -1,7 +1,7 @@
 - id: f180315ca93c1b46
   en: Choose how much physics to model
   ko: 물리 현상을 어느 수준까지 모델링할지 선택하기
-  status: machine
+  status: retired
 - id: ff997f1d1ae66bca
   en: Choose a backend according to the question you want to answer. A circuit simulation can test an algorithm, a hardware profile can check device rules, and a physical emulator can resolve what happens while a pulse is applied.
   ko: 알고 싶은 내용에 맞춰 백엔드를 선택하세요. 회로 시뮬레이션으로 알고리즘을 검증하고, 하드웨어 프로파일로 장치 규칙을 확인하며, 물리 에뮬레이터로 펄스를 가하는 동안의 변화를 살펴볼 수 있습니다.
@@ -24,7 +24,7 @@
   status: machine
 - id: 951beefcb985cacd
   en: 'These are choices for different questions. You can begin with any of them. In particular, studying noise does not by itself require an emulator: both circuit simulators and hardware profiles support noise channels. Use physical emulation when you need to resolve dynamics over elapsed time, such as excitation during a pulse or relaxation during an idle interval.'
-  ko: 각 모델은 서로 다른 질문에 답하기 위한 선택지이며, 어느 것부터 시작해도 됩니다. 특히 잡음을 연구한다고 해서 반드시 에뮬레이터가 필요한 것은 아닙니다. 회로 시뮬레이터와 하드웨어 프로파일 모두 잡음 채널을 지원합니다. 펄스 중의 여기나 유휴 구간의 이완처럼 경과 시간에 따른 동역학을 알아야 할 때 물리 에뮬레이션을 사용하세요.
+  ko: 세 모델은 서로 다른 질문에 답하므로 정해진 순서대로 사용할 필요는 없습니다. 잡음만 연구한다면 회로 시뮬레이터나 하드웨어 프로파일의 잡음 채널로도 충분할 수 있습니다. 펄스 중의 여기나 유휴 시간의 이완처럼 시간에 따른 상태 변화가 중요할 때 물리 에뮬레이션을 선택하세요.
   status: machine
 - id: 5353f853279f27bd
   en: Compare a single-qubit rotation
@@ -64,7 +64,7 @@
   status: machine
 - id: 9604bc687cbe5e32
   en: 'The [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] turns `RX` into a pulse using its packaged reference calibration, then integrates the physical state over the pulse''s duration:'
-  ko: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 패키지에 포함된 기준 보정값으로 `RX`를 펄스로 변환하고, 펄스가 지속되는 동안 물리 상태를 적분합니다.'
+  ko: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 내장 기준 보정값을 사용해 `RX`를 펄스로 바꾼 뒤, 펄스가 지속되는 동안의 물리 상태 변화를 적분해 계산합니다.'
   status: machine
 - id: b5d0b180c2c28030
   en: The Program declares one qubit with two basis states. The reference model contains two physical transmons with three levels each, so the returned state has nine amplitudes. Reshaping it gives populations indexed by the levels of `q0` and `q1`; summing over `q1` leaves the three populations on `q0` shown above.
@@ -101,8 +101,20 @@
 - id: 5b360a31e19d782b
   en: You can reuse a Program when the destination backend supports its operations and resources. Otherwise, express the computation using operations it accepts, as `SX` does for the superconducting profile above. When program resources need specific device locations, a [`ResourceLayout`][fatqat.ResourceLayout] binds them to device labels. [Hardware-profile simulation](hardware-profile-simulation.md) walks through a placement error and its correction.
   ko: 옮겨 갈 백엔드가 Program의 연산과 자원을 지원하면 그대로 재사용할 수 있습니다. 그렇지 않으면 위의 초전도 프로파일에서 `SX`를 사용한 것처럼, 해당 백엔드가 받는 연산으로 계산을 표현해야 합니다. 프로그램 자원을 장치의 특정 위치에 놓아야 한다면 [`ResourceLayout`][fatqat.ResourceLayout]으로 장치 레이블에 연결합니다. [하드웨어 프로파일 시뮬레이션](hardware-profile-simulation.md)에서 배치 오류와 수정 과정을 살펴볼 수 있습니다.
-  status: machine
+  status: retired
 - id: bb4d371d405cf66b
   en: For circuit evolution and noise channels, see [Simulation](simulation.md) and [Ideal and noisy runs](ideal-and-noisy.md). For calibrated gates and direct controls, see [Hamiltonian emulation](hamiltonian-emulation.md). The [backend noise-support table](../api/noise/backend-support.md#noise-backend-support) helps you choose compatible noise declarations when changing models.
   ko: 회로의 상태 변화와 잡음 채널은 [시뮬레이션](simulation.md)과 [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md)을 참고하세요. 보정된 게이트와 직접 제어는 [해밀토니안 에뮬레이션](hamiltonian-emulation.md)에서 설명합니다. 모델을 바꿀 때는 [백엔드별 잡음 지원 표](../api/noise/backend-support.md#noise-backend-support)를 보고 호환되는 잡음 선언을 선택하세요.
+  status: machine
+- id: 56d11707a112387c
+  en: You can reuse a Program when the destination backend supports its operations and resources. Otherwise, express the computation using operations it accepts, as `SX` does for the superconducting profile above. When program resources need specific device locations, a [`ResourceLayout`][fatqat.ResourceLayout] binds them to device labels. [Hardware-profile simulation](superconducting-simulation.md) walks through a placement error and its correction.
+  ko: 옮겨 갈 백엔드가 Program의 연산과 자원을 지원하면 그대로 재사용할 수 있습니다. 그렇지 않으면 위의 초전도 프로파일에서 `SX`를 사용한 것처럼, 해당 백엔드가 받는 연산으로 계산을 표현해야 합니다. 프로그램 자원을 장치의 특정 위치에 놓아야 한다면 [`ResourceLayout`][fatqat.ResourceLayout]으로 장치 레이블에 연결합니다. [하드웨어 프로파일 시뮬레이션](superconducting-simulation.md)에서 배치 오류와 수정 과정을 살펴볼 수 있습니다.
+  status: machine
+- id: 4386a9f1e60e1104
+  en: Choose a simulation or emulation approach
+  ko: 시뮬레이션과 에뮬레이션 방식 선택하기
+  status: machine
+- id: a086c77dad4d67c1
+  en: A quantum computation can be described at different levels of physical detail. When exploring an algorithm, it may be enough to describe how gates change the quantum state. To understand how that computation would run on a device, you may also need to account for its supported operations and connections, or for the pulses that drive its physical evolution. The useful level of detail depends on what you want to learn.
+  ko: "하나의 양자 계산도 물리적 세부 사항을 어느 수준까지 다루느냐에 따라 다르게 표현할 수 있습니다. 알고리즘을 연구할 때는 양자 게이트가 양자 상태를 어떻게 바꾸는지만 알아도 충분할 수 있습니다. 이 계산이 실제 장치에서 어떻게 실행될지 알고 싶다면 장치가 지원하는 연산과 연결 관계, 또는 물리적 시간 변화를 일으키는 펄스까지 고려해야 할 수 있습니다. 어떤 수준의 세부 사항이 필요한지는 무엇을 알아보려는지에 따라 달라집니다."
   status: machine

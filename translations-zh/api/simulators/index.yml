@@ -1,14 +1,14 @@
 - id: 3006366a3c77233b
   en: FatQat provides a general circuit simulator and three hardware profiles. They use the same run and result API. Choose [`Simulator`][fatqat.simulator.Simulator] for unrestricted gate-level work, or a profile when the program must obey a native gate set, layout, or connectivity rule.
-  zh: FatQat 提供一个通用电路模拟器和三种硬件配置。它们使用相同的运行与结果 API。进行不受限制的门级工作时选择 [`Simulator`][fatqat.simulator.Simulator]；当程序必须遵守原生门集、布局或连接性规则时选择硬件配置。
+  zh: FatQat 提供一个通用线路模拟器和三种设备模型。它们使用相同的运行与结果 API。进行不受限制的门级工作时选择 [`Simulator`][fatqat.simulator.Simulator]；当程序必须遵守原生门集、布局或连接性规则时选择设备模型。
   status: retired
 - id: 9bf34699612b6c6b
   en: Start with [Choose how much physics to model](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/hardware-profile-simulation.md) for the profile workflow.
-  zh: "请先阅读[选择需要建模的物理细节](../../guide/execution-models.md)来选定执行层级，或按照[用硬件配置测试 Program](../../guide/hardware-profile-simulation.md)了解硬件配置的工作流程。"
-  status: machine
+  zh: 请先阅读[选择需要建模的物理细节](../../guide/execution-models.md)来选定执行层级，或按照[用硬件约束模拟检验 Program](../../guide/hardware-profile-simulation.md)了解设备模型的工作流程。
+  status: retired
 - id: 08872929bcfdb369
   en: The superconducting profiles use a fixed rectangular grid. [`SCQubitIBMSimulator`][fatqat.simulator.SCQubitIBMSimulator] accepts IBM-style native gates and nearest-neighbour `CZ`. [`SCQubitGoogleSimulator`][fatqat.simulator.SCQubitGoogleSimulator] accepts native rotations and nearest-neighbour `iSwap` and `CZ`. Both offer an optional reference noise model.
-  zh: 超导硬件配置使用固定的矩形网格。[`SCQubitIBMSimulator`][fatqat.simulator.SCQubitIBMSimulator] 接受 IBM 风格的原生门和最近邻 `CZ`。[`SCQubitGoogleSimulator`][fatqat.simulator.SCQubitGoogleSimulator] 接受原生旋转门以及最近邻 `iSwap` 和 `CZ`。两者都提供可选的参考噪声模型。
+  zh: 超导设备模型使用固定的矩形网格。[`SCQubitIBMSimulator`][fatqat.simulator.SCQubitIBMSimulator] 接受 IBM 风格的原生门和最近邻 `CZ`。[`SCQubitGoogleSimulator`][fatqat.simulator.SCQubitGoogleSimulator] 接受原生旋转门以及最近邻 `iSwap` 和 `CZ`。两者都提供可选的参考噪声模型。
   status: retired
 - id: 8c5e34363d674dcb
   en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] has no fixed connectivity. `Pair` and `Unpair` change which atoms can interact, while `Put` and `Loss` control occupancy.'
@@ -16,7 +16,7 @@
   status: retired
 - id: f1b9253556594d02
   en: 'The profiles validate the program as written: they do not transpile or route it, and they do not reproduce a named processor. Use the [pulse emulators](../emulators/index.md) when timing or Hamiltonian evolution matters.'
-  zh: "硬件配置按程序已有的指令进行验证，不会自动转译或路由，也不对应某一台实际处理器。若研究需要考虑时序或哈密顿量演化，请使用[脉冲仿真器](../emulators/index.md)。"
+  zh: 设备模型按程序已有的指令进行验证，不会自动转译或路由，也不对应某一台实际处理器。若研究需要考虑时序或哈密顿量演化，请使用[脉冲仿真器](../emulators/index.md)。
   status: machine
 - id: b423a251c71fdae6
   en: '**Choose a simulator**'
@@ -44,7 +44,7 @@
   status: machine
 - id: 88d56b8f26e8c3bd
   en: '| [`Simulator`][fatqat.simulator.Simulator] | General circuit simulation and custom matrix implementations | No device topology |'
-  zh: '| [`Simulator`][fatqat.simulator.Simulator] | 通用电路模拟和自定义矩阵实现 | 无设备拓扑 |'
+  zh: '| [`Simulator`][fatqat.simulator.Simulator] | 通用线路模拟和自定义矩阵实现 | 无设备拓扑 |'
   status: machine
 - id: 557c0071ac36bd81
   en: '| [`SCQubitIBMSimulator`][fatqat.simulator.SCQubitIBMSimulator] | IBM-style native-gate and grid experiments | `X`, `SX`, `RZ`; nearest-neighbour `CZ` |'
@@ -64,7 +64,7 @@
   status: machine
 - id: 933c61ba7f9876bb
   en: FatQat provides a general circuit simulator and two hardware profiles. They use the same run and result API. Choose [`Simulator`][fatqat.simulator.Simulator] for unrestricted gate-level work, or a profile when the program must obey a native gate set, layout, or connectivity rule.
-  zh: "FatQat 提供通用电路模拟器和两种硬件配置，它们使用相同的运行与结果 API。无需考虑设备约束时，可用 [`Simulator`][fatqat.simulator.Simulator]；需要检查原生门集、布局或连接规则时，则选择对应的硬件配置。"
+  zh: FatQat 提供通用线路模拟器和两种设备模型，它们使用相同的运行与结果 API。无需考虑设备约束时，可用 [`Simulator`][fatqat.simulator.Simulator]；需要检查原生门集、布局或连接规则时，则选择对应的设备模型。
   status: machine
 - id: e5bbaff4b52ca744
   en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] uses a configurable superconducting coupling graph and accepts `X`, `SX`, virtual `RZ`, and coupled `CZ`. It offers an optional reference noise model.'
@@ -85,4 +85,12 @@
 - id: e91038f7c32db28c
   en: '[LOSimulator](linear-optics.md)'
   zh: '[LOSimulator](linear-optics.md)'
+  status: machine
+- id: 510055bee9f4640c
+  en: Start with [Choose how much physics to model](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/superconducting-simulation.md) for the profile workflow.
+  zh: 请先阅读[选择需要建模的物理细节](../../guide/execution-models.md)来选定执行层级，或按照[用硬件约束模拟检验 Program](../../guide/superconducting-simulation.md)了解设备模型的工作流程。
+  status: retired
+- id: abea5b4fb1e7da50
+  en: Start with [Choose a simulation or emulation approach](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/superconducting-simulation.md) for the profile workflow.
+  zh: "可以先阅读[选择模拟与仿真方式](../../guide/execution-models.md)，确定所需的执行方式；也可以通过[用硬件约束模拟检验 Program](../../guide/superconducting-simulation.md)了解设备模型的使用流程。"
   status: machine

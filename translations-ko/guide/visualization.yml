@@ -8,8 +8,8 @@
   status: machine
 - id: 7f15acf255570f6a
   en: FATQAT provides drawing methods on the object that owns the data. A [`Program`][fatqat.Program] draws its circuit or derives a logical interaction summary, while a [`Result`][fatqat.Result] draws the measurement outcomes from one run.
-  ko: FATQAT은 데이터를 소유한 객체에 그리기 메서드를 제공합니다. [`Program`][fatqat.Program]은 회로를 그리거나 논리 상호작용 요약을 만들고, [`Result`][fatqat.Result]는 한 번의 실행에서 얻은 측정 결과를 그립니다.
-  status: machine
+  ko: 회로를 그리거나 논리 상호작용을 살펴보려면 [`Program`][fatqat.Program]의 그리기 메서드를 사용하세요. 실행에서 얻은 측정 결과는 [`Result`][fatqat.Result]로 그릴 수 있습니다.
+  status: retired
 - id: dd47988b226ad49c
   en: Draw a circuit
   ko: 회로 그리기
@@ -28,7 +28,7 @@
   status: machine
 - id: 3d2314df491fef4c
   en: Passing `ax=` embeds the circuit in a Matplotlib layout owned by the caller.
-  ko: '`ax=`를 전달하면 호출자가 만든 Matplotlib 레이아웃 안에 회로를 넣을 수 있습니다.'
+  ko: '`ax=`를 전달하면 기존 Matplotlib 레이아웃에 회로를 그릴 수 있습니다.'
   status: machine
 - id: 214c482f6b8fdaad
   en: The same composition pattern works for the FATQAT-owned Matplotlib visualizations below.
@@ -44,7 +44,7 @@
   status: machine
 - id: 969080f4af347f3e
   en: Each node represents one logical quantum slot. An edge connects two slots used by a source-level two-target operation, and its label is the number of such operations in the whole program. This is a hardware-independent aggregate. It does not represent atom pairing, physical connectivity, or connectivity at a particular instruction layer.
-  ko: 각 노드는 논리 양자 슬롯 하나를 나타냅니다. 소스 수준에서 두 대상을 사용하는 연산이 있으면 두 슬롯 사이에 간선이 생기며, 레이블은 전체 프로그램에 있는 해당 연산의 수입니다. 이는 하드웨어와 독립적인 집계입니다. 원자 페어링, 물리 연결성, 특정 명령 층의 연결성을 나타내지는 않습니다.
+  ko: 각 노드는 논리 양자 슬롯 하나를 나타냅니다. Program의 두 대상 연산이 사용하는 슬롯 사이에 간선을 그리고, 전체 Program에서 그 연산이 나타난 횟수를 표시합니다. 이 집계는 하드웨어와 무관하며 원자 페어링, 물리 연결성, 특정 명령 층의 연결 상태를 나타내지 않습니다.
   status: machine
 - id: 5505ce458432c4f7
   en: '![Five logical quantum slots connected by edges whose labels and widths show interaction frequency.](../assets/generated/guide/visualization-interactions.png)'
@@ -68,7 +68,7 @@
   status: machine
 - id: f77c41b4e8b91770
   en: '![Bell-state measurement frequencies with bars for the zero-zero and one-one outcomes.](../assets/generated/guide/visualization-counts.png)'
-  ko: '![00과 11 결과의 막대로 표시한 Bell 상태 측정 빈도.](../assets/generated/guide/visualization-counts.png)'
+  ko: '![00과 11 결과를 막대로 표시한 Bell 상태의 측정 빈도.](../assets/generated/guide/visualization-counts.png)'
   status: machine
 - id: 1978a84f230517b5
   en: '`stat="frequencies"` divides each count by the total number of shots; omit it to show raw counts.'
@@ -80,7 +80,7 @@
   status: machine
 - id: 7693d609adfe0d77
   en: 'A final NA compilation retains its physical `ZonedPlan` in `.output`. Animate that plan with the same architecture used for compilation:'
-  ko: 최종 NA 컴파일 결과는 물리 `ZonedPlan`을 `.output`에 보관합니다. 컴파일에 사용한 아키텍처로 이 계획을 애니메이션으로 만드세요.
+  ko: 중성 원자(NA) 컴파일을 마치면 결과의 `.output`에 물리 `ZonedPlan`이 저장됩니다. 컴파일할 때 사용한 아키텍처로 이 계획을 애니메이션으로 만들어 보겠습니다.
   status: machine
 - id: 5e052b178eb57b61
   en: The animation shows transfers, atom movements, gate batches, and crosstalk events without changing the plan. Creating it requires Matplotlib; saving MP4 requires FFmpeg on `PATH`. The [compiler guide](compiler.md) shows how to produce `na_compiled` and load `architecture`.
@@ -97,4 +97,12 @@
 - id: aa06008ce5448be8
   en: 'FATQAT applies a consistent categorical palette when Matplotlib''s default color cycle is active. An explicitly configured color cycle and other `rcParams` remain in effect, so plots still compose with an application''s own theme. A returned figure can be saved with ordinary Matplotlib APIs:'
   ko: Matplotlib의 기본 색상 순환을 사용할 때 FATQAT은 일관된 범주형 팔레트를 적용합니다. 명시적으로 설정한 색상 순환과 다른 `rcParams`는 그대로 유지되므로 애플리케이션의 테마와도 함께 사용할 수 있습니다. 반환된 그림은 일반 Matplotlib API로 저장할 수 있습니다.
+  status: machine
+- id: b63f379d75a1e532
+  en: Visualization helps you check a program and understand its results. A circuit diagram makes the gate order, measurement positions, and classical conditions easier to follow. Plotting measurement outcomes shows which results are more common and how their frequencies differ. For longer programs, an interaction graph also helps you see which logical qubits often take part in operations together.
+  ko: "시각화는 프로그램을 점검하고 실행 결과를 이해하는 데 도움이 됩니다. 회로를 그리면 게이트 순서, 측정 위치, 고전 조건을 더 쉽게 파악할 수 있습니다. 측정 결과를 그래프로 보면 어떤 결과가 더 자주 나오고 빈도가 얼마나 다른지 알 수 있습니다. 긴 프로그램에서는 상호작용 그래프로 어떤 논리 큐비트가 연산에 자주 함께 참여하는지도 살펴볼 수 있습니다."
+  status: machine
+- id: df851d8e85e86515
+  en: 'FatQat provides drawing methods for these tasks: use a [`Program`][fatqat.Program] to draw circuits and logical interactions, and a [`Result`][fatqat.Result] to plot the measurement outcomes from one run.'
+  ko: "FatQat은 이를 위한 그리기 메서드를 제공합니다. [`Program`][fatqat.Program]으로 회로와 논리 상호작용을 그리고, [`Result`][fatqat.Result]로 한 번의 실행에서 얻은 측정 결과를 그릴 수 있습니다."
   status: machine

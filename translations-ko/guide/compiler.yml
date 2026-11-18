@@ -24,7 +24,7 @@
   status: machine
 - id: c45e41626076b96f
   en: 'This Bell-state circuit will be used for both targets:'
-  ko: 두 타깃 모두에 다음 Bell 상태 회로를 사용하겠습니다.
+  ko: 다음 Bell 상태 회로를 두 종류의 타깃에 맞게 컴파일해 보겠습니다.
   status: machine
 - id: 3a35aa51796c2a74
   en: '`LogicalProgram` uses the same circuit-building interface as [`Program`][fatqat.Program]. You can simulate it directly while developing an algorithm, then compile it when you are ready to run against a hardware profile. Compilation does not modify the circuit, so it can be reused with more than one target.'
@@ -40,7 +40,7 @@
   status: machine
 - id: 2dea8262bfd52d6c
   en: 'The target describes only the device''s qubits and connections. Choose how to run the result separately: create an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] that provides the qubits and connections the result uses, and select its runtime, simulation method, and noise model there.'
-  ko: 타깃은 장치의 큐비트와 연결만 기술합니다. 실행 방식은 별도로 선택합니다. 컴파일 결과에서 사용하는 큐비트와 연결을 제공하는 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]를 만들고, 여기에서 런타임, 시뮬레이션 방법, 잡음 모델을 선택하세요.
+  ko: 컴파일 타깃에는 장치의 큐비트와 연결을 지정합니다. 실행 방식은 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]에서 정하세요. 컴파일 결과에 필요한 큐비트와 연결을 제공한 뒤 런타임, 시뮬레이션 방법, 잡음 모델을 선택하면 됩니다.
   status: machine
 - id: bef30853ea8b21ce
   en: A simulator with more qubits or additional connections can run the same result. If the simulator lacks a qubit or connection that the result uses, `run()` raises an error immediately. The [SCTarget reference](../api/sc-target.md#when-errors-are-raised) lists these errors.
@@ -64,7 +64,7 @@
   status: machine
 - id: 392f6004b4d80ac7
   en: The architecture describes the zones and movement constraints used to create the neutral-atom schedule. FatQat also includes `scale_to_100` and `scale_to_500` profiles for larger studies.
-  ko: 아키텍처는 중성 원자 실행 스케줄을 만드는 데 필요한 구역과 이동 제약을 기술합니다. 더 큰 규모의 연구를 위해 `scale_to_100`과 `scale_to_500` 프로파일도 제공됩니다.
+  ko: 아키텍처에는 구역 구성과 원자 이동 제약이 담겨 있으며, 컴파일러는 이를 바탕으로 실행 스케줄을 만듭니다. 더 큰 시스템에는 `scale_to_100`이나 `scale_to_500` 프로파일을 사용할 수 있습니다.
   status: machine
 - id: ca7149bff730f0e3
   en: 'OpenQASM 2 and OpenQASM 3 can be compiled without first creating a `LogicalProgram`. Choose the function that matches the target:'
@@ -80,11 +80,11 @@
   status: machine
 - id: 84951bb34d360fda
   en: 'The default compile functions return a result that is ready for the matching simulator. It also keeps two useful views of the compilation:'
-  ko: 기본 컴파일 함수는 해당 시뮬레이터에서 바로 실행할 수 있는 결과를 반환합니다. 컴파일 과정을 확인할 수 있는 다음 두 정보도 함께 보관합니다.
+  ko: 기본 설정으로 얻은 컴파일 결과는 해당 시뮬레이터에서 바로 실행할 수 있습니다. 컴파일 과정을 살펴보려면 다음 두 항목을 확인하세요.
   status: machine
 - id: 9b06dadff5471f8d
   en: '`compiled.output` is the final compiler representation: an `SCNativeProgram` for SC or a `ZonedPlan` for NA.'
-  ko: '`compiled.output`은 컴파일러의 최종 표현입니다. SC에서는 `SCNativeProgram`, NA에서는 `ZonedPlan`입니다.'
+  ko: '`compiled.output`에는 최종 컴파일 결과가 들어 있습니다. 초전도 타깃은 `SCNativeProgram`, 중성 원자 타깃은 `ZonedPlan`입니다.'
   status: machine
 - id: 76bec3679bda0d83
   en: '`compiled.route` lists the compiler stages that ran.'
@@ -92,7 +92,7 @@
   status: machine
 - id: c7570ea5d6cd2685
   en: Compiled programs keep classical registers in source declaration order, including unused registers and unwritten slots. Measurement order does not change count-key positions. Counts follow the usual [ordering and zero-fill rules](../api/result.md#ordering-and-mutable-values).
-  ko: 컴파일된 프로그램에서도 고전 레지스터는 소스의 선언 순서를 유지합니다. 사용하지 않는 레지스터와 값이 기록되지 않은 슬롯도 포함됩니다. 측정 순서는 카운트 키의 위치에 영향을 주지 않습니다. 카운트에는 일반적인 [순서 및 0 채움 규칙](../api/result.md#ordering-and-mutable-values)이 적용됩니다.
+  ko: 컴파일 후에도 고전 Register와 그 구성 요소는 선언한 순서를 유지하며, 사용하지 않거나 결과를 기록하지 않은 항목도 남습니다. 따라서 측정 순서를 바꿔도 결과 키에서 각 값의 위치는 바뀌지 않습니다. 자세한 내용은 [순서와 0 채움 규칙](../api/result.md#ordering-and-mutable-values)을 참고하세요.
   status: machine
 - id: b01ab7cc3b816436
   en: To inspect an earlier representation, pass its IR identifier with `emit`. In that case the compiler returns a [`CompilationResult`][fatqat.compiler.CompilationResult] for inspection rather than a simulator-ready result.
@@ -104,7 +104,7 @@
   status: machine
 - id: 50f9590acd1dc3cc
   en: Creating the animation requires Matplotlib. Saving it as MP4 also requires FFmpeg on `PATH`.
-  ko: 애니메이션을 만들려면 Matplotlib이 필요합니다. MP4로 저장하려면 FFmpeg도 `PATH`에 있어야 합니다.
+  ko: 애니메이션을 만들려면 Matplotlib이 필요합니다. MP4로 저장할 때는 FFmpeg도 설치하고 `PATH`에서 찾을 수 있도록 설정하세요.
   status: machine
 - id: e7249cd6de860050
   en: Bind circuit parameters
@@ -112,7 +112,7 @@
   status: machine
 - id: 86921b428627f357
   en: 'Keep symbolic parameters while building a reusable circuit, then bind numeric values before compiling:'
-  ko: 재사용할 회로를 만들 때는 기호 매개변수를 유지하고, 컴파일하기 전에 수치를 바인딩하세요.
+  ko: 같은 회로를 여러 값에 재사용하려면 기호 매개변수로 작성한 뒤, 컴파일 전에 구체적인 값을 넣으세요.
   status: machine
 - id: 2470267cdd183cc9
   en: '`assign_parameters()` returns a new `LogicalProgram`; the template remains available for another set of values.'
@@ -129,4 +129,12 @@
 - id: c17c784235da0b92
   en: Other operations available to `LogicalProgram`, including classical conditions, feed-forward, mid-circuit measurement, multi-controlled gates, and qudit gates, can still be used in direct simulation but are not compiled yet. If a circuit uses an operation unavailable on its chosen target, compilation raises a [`PassError`][fatqat.compiler.PassError] that identifies the compiler stage and operation.
   ko: '`LogicalProgram`에서 사용할 수 있는 고전 조건, 피드포워드, 회로 중간 측정, 다중 제어 게이트, 큐디트 게이트 등의 기능은 직접 시뮬레이션에서는 사용할 수 있지만 아직 컴파일되지 않습니다. 선택한 타깃에서 지원하지 않는 연산이 회로에 있으면, 컴파일러는 해당 단계와 연산을 알려 주는 [`PassError`][fatqat.compiler.PassError]를 발생시킵니다.'
+  status: machine
+- id: f844f08569c20960
+  en: A logical circuit describes which gates to apply to which qubits. To run it on a device model, the gates also need to fit the device's instruction set and layout. A superconducting device may use `CZ` as its native two-qubit gate, for example, and allow it only between directly connected qubits. The compiler translates the gates, assigns logical qubits to physical positions, and adds routing operations when needed.
+  ko: "논리 회로는 어떤 큐비트에 어떤 게이트를 적용할지 정의합니다. 장치 모델에서 회로를 실행하려면 장치가 지원하는 명령과 큐비트 배치도 고려해야 합니다. 예를 들어 초전도 장치는 `CZ`를 기본 2큐비트 게이트로 사용하면서 직접 연결된 큐비트에만 이를 허용할 수 있습니다. 컴파일러는 게이트를 장치에 맞게 변환하고, 논리 큐비트를 물리 위치에 배치한 다음 필요에 따라 라우팅 연산을 추가합니다."
+  status: machine
+- id: 4dc706fc25d36c3e
+  en: You can simulate a logical circuit directly to check your algorithm. Compile it when you want to see how it runs under the constraints of a particular device, or to compare the same circuit on different devices.
+  ko: "알고리즘을 확인하려면 논리 회로를 바로 시뮬레이션할 수 있습니다. 특정 장치의 제약 아래에서 회로가 어떻게 실행되는지 살펴보거나 같은 회로를 여러 장치에서 비교하려면 각 장치를 대상으로 컴파일합니다."
   status: machine

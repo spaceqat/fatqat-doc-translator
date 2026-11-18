@@ -5,7 +5,7 @@
 - id: 4c1b4dccb6e49b6e
   en: Read [Follow a Program into physical dynamics](../../guide/hamiltonian-emulation.md) first for the gate-calibration, direct-control, and scheduling workflow. This section defines the exact pulse objects and validation rules.
   ko: 게이트 보정, 직접 제어, 스케줄링 과정은 먼저 [Program에서 물리 동역학까지](../../guide/hamiltonian-emulation.md)를 읽어 보세요. 이 절은 펄스 객체와 검증 규칙을 정확히 정의합니다.
-  status: machine
+  status: retired
 - id: ddca672ef1110b07
   en: 'A direct pulse block is built from three values:'
   ko: '직접 펄스 블록은 세 가지 값으로 구성합니다:'
@@ -101,4 +101,8 @@
 - id: 959453f771a8926b
   en: '[Gate realization](gate-realization.md)'
   ko: '[게이트 구현](gate-realization.md)'
+  status: machine
+- id: 5bf59d5d33dffe89
+  en: Read [Write and run pulse programs](../../guide/hamiltonian-emulation.md) first for the gate-calibration, direct-control, and scheduling workflow. This section defines the exact pulse objects and validation rules.
+  ko: "게이트 보정, 직접 제어, 스케줄링 과정은 먼저 [펄스 프로그램 작성과 실행](../../guide/hamiltonian-emulation.md)를 읽어 보세요. 이 절은 펄스 객체와 검증 규칙을 정확히 정의합니다."
   status: machine

@@ -8,11 +8,11 @@
   status: retired
 - id: 0dbc48399605c860
   en: Establish an ideal baseline
-  zh: 建立理想基线
+  zh: 先看没有噪声的结果
   status: machine
 - id: 1fa6f76be22dc0d4
   en: 'Build the computation before configuring the ideal and noisy backends:'
-  zh: 在配置理想后端和噪声后端之前，先构建计算：
+  zh: 在配置理想后端和噪声后端之前，先创建计算：
   status: retired
 - id: e558b0caa7e504be
   en: 'An ideal Bell run has no wrong-parity outcomes: its two classical digits always agree. The split between `00` and `11` still fluctuates because measurement is sampled.'
@@ -24,7 +24,7 @@
   status: retired
 - id: 222d3c2500e1cbc3
   en: 'Add a finite channel after `CX` and classical confusion at measurement, then construct another backend:'
-  zh: 在 `CX` 之后添加一个有限信道，并在测量处添加经典混淆，然后构建另一个后端：
+  zh: 在 `CX` 之后添加一个有限信道，并在测量处添加经典混淆，然后创建另一个后端：
   status: retired
 - id: cf6d8b81724ce9fb
   en: 'The depolarizing channel changes the quantum state after the entangling gate. The confusion matrix changes only the reported classical digit: in this example, a true `0` is reported as `1` two percent of the time, while a true `1` is reported as `0` four percent of the time. Both effects can create the wrong-parity bars below.'
@@ -56,7 +56,7 @@
   status: retired
 - id: d41dba8651230fe9
   en: Circuit channels and continuous noise
-  zh: 电路信道与连续噪声
+  zh: 线路信道与连续噪声
   status: machine
 - id: 11d2010c7636d46c
   en: FatQat does not invent a gate duration to convert between the two. Move to [Hamiltonian-level emulation](hamiltonian-emulation.md) for pulse duration, idle evolution, leakage, or continuous-time noise. For supported combinations, selectors, and validation rules, see the [noise-backend-support](../api/noise/backend-support.md#noise-backend-support) table and [Noise model API](../api/noise/model.md).
@@ -68,27 +68,27 @@
   status: machine
 - id: 437e184cfeafd1be
   en: '| Circuit simulator | finite probabilities and channels | at matched operation boundaries |'
-  zh: '| 电路模拟器 | 有限概率与信道 | 在匹配的操作边界处 |'
+  zh: '| 线路模拟器 | 有限概率与信道 | 在匹配的操作边界处 |'
   status: machine
 - id: 240b507c280916de
   en: '| Physical emulator | rates and relaxation times | throughout elapsed Hamiltonian/Lindblad evolution |'
-  zh: '| 物理仿真器 | 速率与弛豫时间 | 贯穿哈密顿量/Lindblad 演化的全部经过时间 |'
+  zh: '| 物理仿真器 | 速率与弛豫时间 | 在哈密顿量/Lindblad 演化的整个时间段内 |'
   status: machine
 - id: a83fe45d6b81b590
   en: Attach a [`NoiseModel`][fatqat.NoiseModel] to a simulator to study how errors affect your results. The model specifies which errors occur and where they apply; you can run the same [`Program`][fatqat.Program] with or without it.
-  zh: 为模拟器附加 [`NoiseModel`][fatqat.NoiseModel]，研究误差如何影响结果。模型指定出现哪些误差及其作用位置；同一个 [`Program`][fatqat.Program] 可以分别在有无噪声模型的情况下运行。
+  zh: 给模拟器添加一个 [`NoiseModel`][fatqat.NoiseModel]，就能研究误差对结果的影响。你可以在模型中指定误差的类型和作用位置，再用同一个 [`Program`][fatqat.Program] 对比有噪声和无噪声的运行结果。
   status: machine
 - id: 56ffcffd79e25721
   en: This example compares measurements of a Bell pair before and after adding gate noise and readout errors.
-  zh: 本例比较添加门噪声和读出误差前后，Bell 对的测量结果。
+  zh: 我们用一对处于贝尔态的量子比特，比较加入门噪声和读出误差前后的测量结果。
   status: machine
 - id: 4e260352eaa9d4a2
   en: 'Prepare a Bell pair and measure both qubits:'
-  zh: 制备 Bell 对并测量两个量子比特：
+  zh: 先制备贝尔态，再测量两个量子比特：
   status: machine
 - id: 610c7d6a5bd6e229
   en: The two measured bits always agree. Each outcome has exact probability 0.5, but their counts differ slightly because the simulator samples 4,000 shots.
-  zh: 两个测量位始终一致。每种结果的精确概率为 0.5，但模拟器进行了 4,000 次采样，因此计数略有不同。
+  zh: 在这个贝尔态中，两个量子比特的测量结果总是相同。两种结果的概率都是 0.5，不过 4,000 次随机采样后，它们出现的次数会略有差别。
   status: machine
 - id: 6b94605643630ccf
   en: Add gate and readout noise
@@ -96,11 +96,11 @@
   status: machine
 - id: 34b0b23d88ccdee2
   en: Use `operation=ops.CX` to apply depolarizing noise after each `CX` gate. Here, `p=0.12` mixes 88% of the two-qubit state with 12% of the maximally mixed state, which gives all four computational-basis outcomes equal probability. This acts jointly on the gate's two operands.
-  zh: 使用 `operation=ops.CX`，在每个 `CX` 门后施加退极化噪声。这里 `p=0.12` 将 88% 的双量子比特态与 12% 的最大混合态混合，后者使四种计算基结果等概率出现。该噪声联合地作用于门的两个操作数。
+  zh: 指定 `operation=ops.CX`，就会在每个 `CX` 门后施加退极化噪声。`p=0.12` 表示把原来的双量子比特态按 88% 的权重，与 12% 的最大混合态相混合；最大混合态中的四种计算基结果等概率出现。这里的噪声共同作用于两个量子比特。
   status: machine
 - id: 3958fc75a81809e7
   en: 'Add readout confusion to model incorrectly reported bits. In the matrix below, columns identify the true bit and rows identify the reported bit: a true `0` is reported as `1` with probability 0.02, and a true `1` as `0` with probability 0.04. Without a target selector, this applies to each measured qubit.'
-  zh: "添加读出混淆，模拟测量值被误报的情况。下方矩阵的列对应真实值，行对应报告值：真实 `0` 有 0.02 的概率被报为 `1`，真实 `1` 有 0.04 的概率被报为 `0`。不指定目标选择器时，它作用于所有被测量子比特。"
+  zh: 添加读出混淆，模拟测量值被误报的情况。下方矩阵的列对应真实值，行对应报告值：真实 `0` 有 0.02 的概率被报为 `1`，真实 `1` 有 0.04 的概率被报为 `0`。不指定目标选择器时，它作用于所有被测量子比特。
   status: machine
 - id: ffd76383c2484ce0
   en: 'Pass the noise model to another simulator:'
@@ -108,7 +108,7 @@
   status: machine
 - id: ade20d954f414ccd
   en: The reported bits disagree in about 10.1% of these shots. Gate noise changes the quantum state, while readout confusion changes the reported bits. Both can produce `01` and `10`, so these counts alone do not tell you which error occurred. The unequal readout probabilities also favor reported zeros, shifting the balance between `00` and `11`.
-  zh: 约 10.1% 的采样中，报告的两个位不一致。门噪声改变量子态，读出混淆则改变报告位。二者都能产生 `01` 和 `10`，因此仅凭这些计数无法判断发生了哪种误差。不相等的读出概率还使结果偏向零，改变 `00` 与 `11` 的比例。
+  zh: 这次约有 10.1% 的采样得到两个不同的比特值。门噪声改变的是量子态，读出误差改变的是报告出来的值；它们都可能产生 `01` 和 `10`，所以只看次数无法区分误差来源。此外，两种读出误差的概率不同，使报告值更偏向零，也改变了 `00` 与 `11` 的比例。
   status: machine
 - id: fd74b89af290d2fb
   en: The density-matrix method used here calculates the noisy state directly. Measurement counts are still sampled, so repeating a run with a different seed changes the counts.
@@ -116,7 +116,7 @@
   status: machine
 - id: b6cdf7c55dcf3f4b
   en: A statevector simulator can also run this noise model. It samples individual noise trajectories, using less memory to represent the state. This is useful for larger circuits where storing a density matrix is too expensive. More shots improve the precision of the sampled distribution.
-  zh: 态矢量模拟器也能运行此噪声模型。它采样独立的噪声轨迹，用较少的内存表示态。当电路较大、存储密度矩阵代价过高时，这种方式很有用。增加采样次数可提高采样分布的精度。
+  zh: 态矢量模拟器也能运行此噪声模型。它采样独立的噪声轨迹，用较少的内存表示态。当线路较大、存储密度矩阵代价过高时，这种方式很有用。增加采样次数可提高采样分布的精度。
   status: machine
 - id: 91880175ee75ad76
   en: Both methods describe the same noise model and should give statistically consistent measurement frequencies. Use a density matrix when you need the noisy state or an expectation value without sampling noise trajectories.
@@ -124,5 +124,9 @@
   status: machine
 - id: e5f01d7d9052fc44
   en: Circuit noise probabilities and continuous-time rates require different inputs; FatQat does not convert between them automatically. Move to [Hamiltonian-level emulation](hamiltonian-emulation.md) for pulse duration, idle evolution, leakage, or continuous-time noise. For supported combinations, selectors, and validation rules, see the [noise-backend-support](../api/noise/backend-support.md#noise-backend-support) table and [Noise model API](../api/noise/model.md).
-  zh: 电路噪声概率和连续时间速率需要不同输入；FatQat 不会自动在二者之间转换。脉冲时长、空闲演化、泄漏和连续时间噪声见[哈密顿量级仿真](hamiltonian-emulation.md)。支持的组合、选择器和验证规则见[噪声后端支持表](../api/noise/backend-support.md#noise-backend-support)及[噪声模型 API](../api/noise/model.md)。
+  zh: 线路噪声用概率描述，连续时间噪声则用速率等参数描述，FatQat 不会自动在两者之间转换。如果要研究脉冲时长、空闲演化、泄漏或连续时间噪声，可以使用[哈密顿量级仿真](hamiltonian-emulation.md)。支持的噪声组合、作用对象选择和检查规则，见[噪声后端支持表](../api/noise/backend-support.md#noise-backend-support)和[Noise model API](../api/noise/model.md)。
+  status: machine
+- id: ab606c2415f9d233
+  en: Real quantum devices are affected by their environment, imperfect controls, and measurement errors. These effects can change the state or the recorded outcomes. An ideal simulation helps you understand the intended computation; adding a noise model lets you study how selected imperfections affect it and bring the simulation closer to the conditions of an implementation. Which effects it captures depends on the model and parameters you choose.
+  zh: "实际量子设备会受到环境、控制误差和测量误差的影响，使量子态或记录的结果发生变化。理想模拟帮助我们理解计算原本应有的结果；加入噪声模型后，就可以研究这些误差带来的影响，让模拟更贴近实际实现。具体能反映哪些影响，取决于所选的模型和参数。"
   status: machine

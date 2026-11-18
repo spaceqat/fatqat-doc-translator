@@ -4,11 +4,11 @@
   status: machine
 - id: 35e8ddfcf44d29bd
   en: Before tuning runtimes, estimate how much state FatQat must carry. Subsystem dimensions and the chosen representation usually matter sooner than a runtime switch.
-  zh: "调优 FatQat 运行时之前，先估算量子态需要多大的存储空间。子系统维数和所选表示方式通常比切换运行时更能决定模拟规模。"
+  zh: 调优 FatQat 运行时之前，先估算量子态需要多大的存储空间。子系统维数和所选表示方式通常比切换运行时更能决定模拟规模。
   status: retired
 - id: 3e5ca39f7683080d
   en: First choose the simplest execution level that contains the effect you need; [Choose how much physics to model](execution-models.md) draws that boundary. Then use the estimates and benchmark pattern below on your own [`Program`][fatqat.Program].
-  zh: "首先选择包含所需效应的最简执行层级；[选择需要建模的物理细节](execution-models.md)划定了这条边界。然后在你自己的 [`Program`][fatqat.Program] 上使用下面的估算方法和基准测试模式。"
+  zh: 首先选择包含所需效应的最简执行层级；[选择需要建模的物理细节](execution-models.md)划定了这条边界。然后在你自己的 [`Program`][fatqat.Program] 上使用下面的估算方法和基准测试模式。
   status: retired
 - id: de0a741db58a69c7
   en: Count the state space before running
@@ -16,7 +16,7 @@
   status: retired
 - id: e1a1b07622eb77d3
   en: 'If the local dimensions are `d0, d1, ...`, the state-space dimension is their product. This makes FatQat''s mixed-dimensional Program support useful and also makes its scaling explicit:'
-  zh: "各子系统的局域维数为 `d0, d1, ...` 时，总状态空间的维数就是它们的乘积。这个公式同样适用于 FatQat 的混合维数 Program，可以直接用来估算模拟规模："
+  zh: 各子系统的局域维数为 `d0, d1, ...` 时，总状态空间的维数就是它们的乘积。这个公式同样适用于 FatQat 的混合维数 Program，可以直接用来估算模拟规模：
   status: retired
 - id: 49eb55bbc0afecbe
   en: A statevector stores one complex entry per basis state. A density matrix or unitary stores a square array, and a super-operator is square in the already squared density-matrix space. In terms of total dimension `D`, their entry counts scale as `D`, `D**2`, `D**2`, and `D**4`, respectively. Temporary work space and backend overhead add to these lower-level counts.
@@ -40,11 +40,11 @@
   status: retired
 - id: fb76dbda332cead8
   en: Result choice can dominate scaling. A complete unitary or super-operator asks for the action on every input, while a state run asks for one input state. Likewise, a full state is unnecessary when you only need counts or a few expectation values.
-  zh: "需要输出什么，会显著影响计算和存储开销。完整酉矩阵或超算符描述对所有输入的作用，量子态演化只需计算一个输入态。如果只关心计数或少量期望值，就不必输出完整量子态。"
+  zh: 需要输出什么，会显著影响计算和存储开销。完整酉矩阵或超算符描述对所有输入的作用，量子态演化只需计算一个输入态。如果只关心计数或少量期望值，就不必输出完整量子态。
   status: retired
 - id: 64fd0cb292e0e365
   en: Shot cost also depends on the Program. A circuit that evolves deterministically and measures only at the end can reuse more work than one with mid-circuit measurement, reset, feedforward, or stochastic trajectories. Avoid estimating shot cost from `shots` alone; benchmark the same Program and result request you will use in practice.
-  zh: shot 开销也取决于 Program。一个确定性演化、只在末尾测量的电路，比含有电路中途测量、重置、前馈或随机轨迹的电路能复用更多计算。不要仅凭 `shots` 来估计 shot 开销；请对你在实践中将会使用的同一 Program 和结果请求进行基准测试。
+  zh: shot 开销也取决于 Program。一个确定性演化、只在末尾测量的线路，比含有线路中途测量、重置、前馈或随机轨迹的线路能复用更多计算。不要仅凭 `shots` 来估计 shot 开销；请对你在实践中将会使用的同一 Program 和结果请求进行基准测试。
   status: retired
 - id: 4b7ff615ffe11c69
   en: See [Ask questions of a run](interpret-results.md) for choosing an answer and the [Simulator API](../api/simulator.md) for exact method and result constraints.
@@ -52,7 +52,7 @@
   status: retired
 - id: aff6d0e042b3d6f5
   en: Compare NumPy and Numba on your workload
-  zh: 在你的工作负载上比较 NumPy 与 Numba
+  zh: 用你的实际任务比较 NumPy 与 Numba
   status: machine
 - id: 7f0c969f43ff93ea
   en: 'FatQat''s general simulator offers two CPU runtimes:'
@@ -68,7 +68,7 @@
   status: retired
 - id: e93a77ce6e3e4cef
   en: Neither choice changes the Program or the modeled mathematics. Compilation, array-library behavior, CPU, operating system, Program shape, and repetition count all affect the result, so benchmark rather than assuming one runtime is always preferable. FatQat does not currently provide a GPU runtime.
-  zh: "两种运行时执行相同的 Program 和数学模型。性能会受到编译开销、数组库、CPU、操作系统、Program 结构和重复次数影响，应通过实际测量比较，不能假定某一种总是更快。FatQat 目前不提供 GPU 运行时。"
+  zh: 两种运行时执行相同的 Program 和数学模型。性能会受到编译开销、数组库、CPU、操作系统、Program 结构和重复次数影响，应通过实际测量比较，不能假定某一种总是更快。FatQat 目前不提供 GPU 运行时。
   status: retired
 - id: 02bce73ef1399c4a
   en: 'The following harness separates one untimed warm-up from repeated measurements and compares like-for-like final states:'
@@ -76,7 +76,7 @@
   status: retired
 - id: 8cdae70e6e2bf362
   en: Treat the printed values as local evidence, not package guarantees. If startup latency matters, measure the first run separately instead of discarding it. If sustained throughput matters, increase the repetition count and Program size to match the intended workload.
-  zh: "输出的计时只反映本地测试结果，不是软件包的性能保证。关注启动延迟时，应单独记录首次运行的时间；关注持续吞吐量时，则应调整重复次数和 Program 规模，使测试接近实际负载。"
+  zh: 输出的计时只反映本地测试结果，不是软件包的性能保证。关注启动延迟时，应单独记录首次运行的时间；关注持续吞吐量时，则应调整重复次数和 Program 规模，使测试接近实际负载。
   status: retired
 - id: 9fe0e41be0efcc43
   en: Tune parallelism and fusion only after measuring
@@ -116,7 +116,7 @@
   status: retired
 - id: 37f6e7b028ddadff
   en: For eligible combinations and error behavior, see [Simulator runtime and execution](../api/simulator.md). Fusion is opt-in, and explicit parallel modes can be rejected when the Program cannot use them.
-  zh: "有关可用组合与错误行为，请参阅[Simulator 运行时与执行](../api/simulator.md)。融合需要显式开启，而当 Program 无法使用显式并行模式时，这些模式可能会被拒绝。"
+  zh: 有关可用组合与错误行为，请参阅[Simulator 运行时与执行](../api/simulator.md)。融合需要显式开启，而当 Program 无法使用显式并行模式时，这些模式可能会被拒绝。
   status: retired
 - id: 32305c55b3b2e6b9
   en: Account for physical emulation separately
@@ -124,7 +124,7 @@
   status: retired
 - id: a62d31c0742f09cd
   en: 'Hamiltonian emulators add costs that a circuit-level array-size estimate does not capture: the model''s physical levels, unaddressed modeled subsystems, time-dependent controls, scheduling, integration intervals, and open-system evolution. A logical qubit may therefore contribute three physical levels in a transmon model.'
-  zh: 哈密顿量仿真器带来的开销是电路级数组大小估算无法涵盖的：模型的物理能级、未被寻址的建模子系统、时变控制、调度、积分区间以及开放系统演化。因此，一个逻辑量子比特在 transmon 模型中可能贡献三个物理能级。
+  zh: 哈密顿量仿真器带来的开销是线路级数组大小估算无法涵盖的：模型的物理能级、未被寻址的建模子系统、时变控制、调度、积分区间以及开放系统演化。因此，一个逻辑量子比特在 transmon 模型中可能贡献三个物理能级。
   status: retired
 - id: f62d06a81d1002a8
   en: Benchmark the actual model, arrangement, controls, duration, solver settings, and requested result. Do not extrapolate an emulator run from a gate-level Simulator timing. The [emulator API](../api/emulators/index.md) lists the solver and schedule controls available to each physical model.
@@ -132,7 +132,7 @@
   status: retired
 - id: b0fe69b8b621bc2c
   en: See [Estimate observables](interpret-results.md) for expectation values and uncertainty, and the [Simulator API](../api/simulator.md) for method and result constraints.
-  zh: "期望值与不确定度见[估计可观测量](interpret-results.md)，方法和结果限制见[Simulator API](../api/simulator.md)。"
+  zh: 期望值与不确定度见[估计可观测量](interpret-results.md)，方法和结果限制见[Simulator API](../api/simulator.md)。
   status: retired
 - id: db763a48df9f5f88
   en: Simulation cost depends on the state representation, requested results, and how you organize repeated runs. This guide covers these choices for [`Simulator`][fatqat.simulator.Simulator] and [`Estimator`][fatqat.Estimator].
@@ -160,7 +160,7 @@
   status: machine
 - id: c564664de59db197
   en: '| `unitary` | `D**2` | Find the circuit''s action on every input state |'
-  zh: '| `unitary` | `D**2` | 求电路对所有输入态的作用 |'
+  zh: '| `unitary` | `D**2` | 求线路对所有输入态的作用 |'
   status: machine
 - id: a717f16c72a2c7a6
   en: '| `superop` | `D**4` | Find the full channel acting on density matrices |'
@@ -177,10 +177,10 @@
 - id: 3f3ef4f6afcc37a8
   en: 'Specialized representations can save much more than runtime tuning. For linear optics, `LOSimulator` uses fixed-photon states by default: four photons in twelve modes require just 1,365 amplitudes. See [Simulate larger interferometers](linear-optics.md#simulate-larger-interferometers). For physical models, first [choose how much physics to model](execution-models.md); extra physical levels and pulse integration change the cost of the problem.'
   zh: 专用表示方式带来的节省可能远大于运行时调优。在线性光学中，`LOSimulator` 默认使用固定光子数态：十二个模式中的四个光子只需 1,365 个振幅。参见[模拟更大的干涉仪](linear-optics.md#simulate-larger-interferometers)。对于物理模型，先[选择需要建模的物理细节](execution-models.md)；额外的物理能级和脉冲积分都会改变问题的计算开销。
-  status: machine
+  status: retired
 - id: 4ff7b5d50fd53b4c
   en: FatQat offers two CPU runtimes. NumPy starts executing directly, which makes it useful when compilation startup would dominate the workload. Numba compiles numerical kernels on first use and spreads that startup cost over repeated work. The initial simulator default is Numba; set `runtime` explicitly when comparing them.
-  zh: FatQat 提供两种 CPU 运行时。NumPy 直接执行，适合编译启动开销会占据主要耗时的工作负载。Numba 在首次使用时编译数值内核，并通过重复计算分摊启动开销。模拟器初始默认使用 Numba；比较两者时请显式设置 `runtime`。
+  zh: FatQat 提供两种 CPU 运行时。NumPy 可以直接执行，适合编译准备时间占比较大的任务。Numba 在首次使用时编译数值内核，之后的重复计算可以复用编译结果，分摊首次启动的开销。模拟器初始默认使用 Numba；比较两者时，请显式设置 `runtime`。
   status: machine
 - id: 1d29f73c8c51454e
   en: The runtime and the execution workflow serve different roles. A **kernel** does numerical work, such as applying a gate to a state. A **workflow** sequences those operations and handles repeated shots or parameter points. NumPy uses Python workflows with NumPy numerical operations. Numba uses compiled kernels, with compiled workflows for eligible statevector trajectories and parameter batches.
@@ -192,7 +192,7 @@
   status: machine
 - id: 18b284f41d6e5fca
   en: For repeated runs, parameter sweeps, or many independent shots, start with Numba and automatic execution settings. Even small circuits can benefit from compiled workflows and shot parallelism when each shot evolves a separate noisy trajectory or follows measurement-dependent control flow.
-  zh: 对于重复运行、参数扫描或大量独立 shot，可以先使用 Numba 和自动执行设置。如果每个 shot 都演化一条独立的含噪轨迹，或沿着取决于测量结果的控制流执行，即使是小电路，也可能受益于编译后的执行流程和 shot 并行。
+  zh: 对于重复运行、参数扫描或大量独立 shot，可以先使用 Numba 和自动执行设置。如果每个 shot 都演化一条独立的含噪轨迹，或沿着取决于测量结果的控制流执行，即使是小线路，也可能受益于编译后的执行流程和 shot 并行。
   status: machine
 - id: 9ac1c27ec2830957
   en: 'Workflow selection is automatic: you choose the runtime and parallelism options, and the simulator selects the workflow. For parallelism choices, see [Match parallelism to the work](#match-parallelism-to-the-work).'
@@ -204,19 +204,19 @@
   status: machine
 - id: 465b625cddf8ea0b
   en: Measure a representative circuit with the same method and result request. For startup latency, time the first call in a fresh Python process separately.
-  zh: 选取有代表性的电路，在相同模拟方法和结果请求下测量。若关注启动延迟，请在新的 Python 进程中单独测量首次调用。
+  zh: 选取有代表性的线路，在相同模拟方法和结果请求下测量。若关注启动延迟，请在新的 Python 进程中单独测量首次调用。
   status: machine
 - id: 78727f84b99379ae
   en: Sweep parameters without rebuilding
-  zh: 无需重建电路的参数扫描
+  zh: 无需重建线路的参数扫描
   status: machine
 - id: 5ff0fd0f18260450
   en: 'Parameter scans and variational algorithms repeatedly run the same circuit with different angles. Express those angles as `Parameter` objects and pass the values to `run_sweep()`: the simulator can share preparation across the batch.'
-  zh: 参数扫描和变分算法会用不同角度反复运行同一电路。将这些角度表示为 `Parameter` 对象，再把数值传给 `run_sweep()`，模拟器就能在整个批次中共享准备工作。
+  zh: 参数扫描和变分算法会用不同角度反复运行同一线路。将这些角度表示为 `Parameter` 对象，再把数值传给 `run_sweep()`，模拟器就能在整个批次中共享准备工作。
   status: machine
 - id: 9b3583c3c431ba72
   en: Requesting final states retains one state per parameter point. Use an estimator sweep when you only need energies or correlations. See [Sweep without rebuilding](simulation.md#sweep-without-rebuilding) for a worked example.
-  zh: 请求最终态会为每个参数点保留一个量子态。如果只需要能量或关联，请使用估计器的参数扫描。完整示例见[无需重建的扫描](simulation.md#sweep-without-rebuilding)。
+  zh: 请求最终态会为每个参数点保留一个量子态。如果只需要能量或关联，可以使用 Estimator 扫描，见[无需重建的扫描](simulation.md#sweep-without-rebuilding)。
   status: machine
 - id: dd56efe05718e9b7
   en: Evaluate observables together
@@ -264,13 +264,21 @@
   status: machine
 - id: 40abdb978ce3fcf0
   en: A deterministic circuit with terminal measurements evolves once and samples its output distribution. Increasing its shot count does not repeat the whole circuit, so explicit shot parallelism does not apply to that workload.
-  zh: 对于确定性演化、只在末尾测量的电路，模拟器只演化一次，再从输出分布中采样。增加 shot 数不会重复执行整个电路，因此显式 shot 并行不适用于这类工作负载。
+  zh: 对于确定性演化、只在末尾测量的线路，模拟器只演化一次，再从输出分布中采样。增加 shot 数不会重复执行整个线路，因此显式 shot 并行不适用于这类工作负载。
   status: machine
 - id: 410cdda346a8789a
   en: Parallelism pays off when there is enough work across state entries or independent shots to outweigh worker overhead. Choose one parallel axis at a time. The [Simulator API](../api/simulator.md#runtime-and-execution) lists the supported combinations.
-  zh: 当量子态元素或独立 shot 上的计算量足以抵消工作单元开销时，并行才有收益。一次只选择一个并行维度。[Simulator API](../api/simulator.md#runtime-and-execution) 列出了受支持的组合。
+  zh: 并行执行本身也有开销，只有每个量子态元素或独立 shot 上的计算量足够大时，才可能节省时间。一次选择一个并行维度；支持的组合见 [Simulator API](../api/simulator.md#runtime-and-execution)。
   status: machine
 - id: d1de9a51288c7828
   en: 'When comparing sampled runs, set `execution_config["seed"]` and compare observables or distributions: changing runtime or parallel mode can change the individual samples. For deterministic runs, compare final states within floating-point tolerance.'
   zh: 比较采样运行时，请设置 `execution_config["seed"]`，并比较可观测量或分布；更换运行时或并行模式可能改变单次采样结果。对于确定性运行，请在浮点容差内比较最终态。
+  status: machine
+- id: 27b31e61a58319d7
+  en: As the number of qubits grows or you repeat a calculation for many parameter values, simulation time and memory use can rise quickly. A method that works well for a small example may become too costly for a larger study.
+  zh: 当量子比特数量增加，或者需要反复运行许多组参数时，模拟所需的时间和内存可能迅速增长。适合小示例的方法，到了更大的计算任务中，可能就需要重新选择。
+  status: machine
+- id: 72508469d889168a
+  en: 'Specialized representations can save much more than runtime tuning. For linear optics, `LOSimulator` uses fixed-photon states by default: four photons in twelve modes require just 1,365 amplitudes. See [Simulate larger interferometers](linear-optics.md#simulate-larger-interferometers). For physical models, first [choose a simulation or emulation approach](execution-models.md); extra physical levels and pulse integration change the cost of the problem.'
+  zh: "专用表示方式带来的节省可能远大于运行时调优。在线性光学中，`LOSimulator` 默认使用固定光子数态：十二个模式中的四个光子只需 1,365 个振幅。参见[模拟更大的干涉仪](linear-optics.md#simulate-larger-interferometers)。对于物理模型，先[选择模拟与仿真方式](execution-models.md)；额外的物理能级和脉冲积分都会改变问题的计算开销。"
   status: machine

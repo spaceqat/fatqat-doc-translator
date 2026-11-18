@@ -1,0 +1,28 @@
+- id: 17b4a9b1f2117f15
+  en: Simulate a neutral-atom array
+  zh: 中性原子阵列模拟
+  status: machine
+- id: b8a647123b0fb8f9
+  en: Use [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] to track atom loading, pairing, and loss while running circuit operations. It does not integrate a Hamiltonian or calculate physical atom trajectories.
+  zh: 使用 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]，可以在执行线路操作时跟踪原子的装载、配对和丢失。它不对哈密顿量进行积分，也不计算原子的实际运动轨迹。
+  status: machine
+- id: 2fff67ba7053afeb
+  en: '`AtomArraySimulator` has no packaged reference noise model; pass a [`NoiseModel`][fatqat.NoiseModel] of your own when loading, loss, or other effects belong in the experiment.'
+  zh: '`AtomArraySimulator` 没有内置的参考噪声模型。如果实验需要考虑装载、丢失或其他效应，请自行提供 [`NoiseModel`][fatqat.NoiseModel]。'
+  status: retired
+- id: 51ec4051d54cda86
+  en: 'The atom array has no fixed geometry. Program resources define sites that begin empty. `Put` loads the atoms, while `Pair` and `Unpair` reshape the connectivity on which `CZ` is legal:'
+  zh: 原子阵列没有固定的几何结构。Program 资源定义初始为空的位点。`Put` 装载原子，`Pair` 和 `Unpair` 则改变允许施加 `CZ` 的连接关系：
+  status: machine
+- id: 100e5e2c904fc849
+  en: For native gates, occupancy rules, and simulation methods, see the [atom-array simulator API](../api/simulators/atom-array.md). For pulse-driven physical dynamics, see [Neutral-atom emulation](neutral-atom-emulation.md).
+  zh: 原生门、占据规则和模拟方法见[原子阵列模拟器 API](../api/simulators/atom-array.md)。要研究脉冲驱动下的物理动力学，请参阅[中性原子仿真](neutral-atom-emulation.md)。
+  status: machine
+- id: a63d0f8d64962ff4
+  en: A neutral-atom array uses individual atoms as qubits. Alongside the quantum state, it matters whether an atom is present at each site and which atoms can interact. Loading, pairing, and losing atoms can change which operations are available as the program runs.
+  zh: 中性原子阵列用单个原子作为量子比特。除了量子态，我们还需要关注每个位置上是否有原子，以及哪些原子可以相互作用。随着程序运行，原子的装载、配对和丢失都会影响当前可以执行哪些操作。
+  status: machine
+- id: f86676a69ca8eb46
+  en: 'Omitting `Pair` before `CZ` is a program error. A missing atom is different: supported gates find nothing to act on, and measurement reports the erasure digit `2`.'
+  zh: "在 `CZ` 之前遗漏 `Pair` 是程序错误。原子缺失则是另一回事：受支持的门找不到可作用的原子，而测量会报告擦除数字 `2`。"
+  status: machine

@@ -8,7 +8,7 @@
   status: machine
 - id: 098905eee48c3592
   en: One QAOA layer drawn as a circuit on nine qubits
-  zh: 九个量子比特上的一层 QAOA 电路图
+  zh: 九个量子比特上的一层 QAOA 线路图
   status: machine
 - id: ac4a29094ab0a6fe
   en: Energy landscape of a depth-one QAOA over its two angles
@@ -28,7 +28,7 @@
   status: machine
 - id: 36b3837ffbc576ab
   en: 'QUBO is the lingua franca of quantum optimization because the map from $f$ to a quantum circuit is mechanical, and because the "unconstrained" part is a modeling convention rather than a limitation: a constraint becomes a penalty term that costs energy exactly when it is violated.'
-  zh: QUBO 是量子优化的通用表达形式，因为从 $f$ 到量子电路的映射可以按固定步骤完成，而且“无约束”是一种建模约定而非限制：约束会变成惩罚项，恰在违反约束时增加能量。
+  zh: QUBO 是量子优化的通用表达形式，因为从 $f$ 到线路的映射可以按固定步骤完成，而且“无约束”是一种建模约定而非限制：约束会变成惩罚项，恰在违反约束时增加能量。
   status: machine
 - id: 145a5502a50967ff
   en: 'This tutorial walks the whole path on a problem small enough to check by hand: splitting a nine-node weighted graph into two balanced halves while keeping two specific nodes apart. The graph is the WSCC 9-bus power network, with edge weights equal to the power flowing on each line, but nothing below uses that reading — it is simply a weighted graph with a partitioning problem on it. [Model controlled islanding as a QUBO](islanding-model.md) takes the same network and asks the full engineering question.'
@@ -48,7 +48,7 @@
   status: machine
 - id: 18be77b87f0337d7
   en: '**Build.** Turn each Ising term into gates: an `RZ` per field term, a `CX`-`RZ`-`CX` ladder per coupling, and an `RX` mixer.'
-  zh: '**构建。**将每个 Ising 项转换为量子门：每个场项对应一个 `RZ`，每个耦合对应一个 `CX`-`RZ`-`CX` 序列，再加入 `RX` 混合器。'
+  zh: "**创建。**将每个 Ising 项转换为量子门：每个场项对应一个 `RZ`，每个耦合对应一个 `CX`-`RZ`-`CX` 序列，再加入 `RX` 混合器。"
   status: machine
 - id: 42cdb00b080fe2a6
   en: '**Evaluate.** Get the energy from `fatqat.Estimator`, or read the whole outcome distribution from the simulator.'
@@ -80,7 +80,7 @@
   status: machine
 - id: 9370ea11f5b3875c
   en: 'A QUBO is just three containers: a constant, a vector of linear coefficients, and a dictionary of pair coefficients. Building it by hand keeps the algebra visible, and every term below is one line of the model.'
-  zh: QUBO 只需三个容器：一个常数、一个线性系数向量和一个成对系数字典。手动构建能清楚展示代数关系，下方每一项都对应模型的一行。
+  zh: "QUBO 只需三个容器：一个常数、一个线性系数向量和一个成对系数字典。手动创建能清楚展示代数关系，下方每一项都对应模型的一行。"
   status: machine
 - id: 6bed240a6f5c8828
   en: The cut term uses the identity $x_i + x_j - 2 x_i x_j$, which is 1 when the two endpoints disagree and 0 when they agree. The balance term squares $\sum_i x_i - N/2$. The separation term is $1 - (x_i + x_j - 2 x_i x_j)$, which charges the penalty exactly when the two nodes agree.
@@ -136,7 +136,7 @@
   status: machine
 - id: 0fce656469c0cefe
   en: A parameter cannot be scaled inside a gate argument — FatQat gate angles take a number or a bare `fatqat.Parameter`, not an expression — and every phase rotation here needs $\gamma$ multiplied by its own coupling. The program is therefore rebuilt for each set of angles, which costs about a millisecond and disappears next to the simulation.
-  zh: 不能在门参数内部对参数做缩放——FatQat 门角度接受数值或单独的 `fatqat.Parameter`，不接受表达式——而这里每个相位旋转都需要将 $\gamma$ 乘以各自的耦合。因此，每组角度都会重新构建程序，耗时约一毫秒，相比模拟开销可以忽略。
+  zh: "不能在门参数内部对参数做缩放——FatQat 门角度接受数值或单独的 `fatqat.Parameter`，不接受表达式——而这里每个相位旋转都需要将 $\\gamma$ 乘以各自的耦合。因此，每组角度都会重新创建程序，耗时约一毫秒，相比模拟开销可以忽略。"
   status: machine
 - id: 6a488f9a52e374bb
   en: Two ways to get the energy
@@ -164,7 +164,7 @@
   status: machine
 - id: 03451b75f080b63a
   en: 'At $p = 1$ there are only two angles, so the entire landscape can be drawn. This is the cheapest way to learn the scale a problem wants: $\gamma$ enters the circuit multiplied by a coupling, so a Hamiltonian with large couplings has its structure squeezed into small $\gamma$, and an optimizer started on the wrong scale will wander over featureless terrain.'
-  zh: 当 $p = 1$ 时只有两个角度，可以绘出整个景观。这是了解问题所需尺度的低成本方式：$\gamma$ 进入电路时会乘以耦合，因此较大耦合的哈密顿量会将结构压缩到较小的 $\gamma$ 区间，若优化器从错误尺度开始，就可能在缺少明显结构的区域游走。
+  zh: 当 $p = 1$ 时只有两个角度，可以绘出整个景观。这是了解问题所需尺度的低成本方式：$\gamma$ 进入线路时会乘以耦合，因此较大耦合的哈密顿量会将结构压缩到较小的 $\gamma$ 区间，若优化器从错误尺度开始，就可能在缺少明显结构的区域游走。
   status: machine
 - id: a191f3c66af164f9
   en: The landscape is smooth and periodic in $\beta$ with period $\pi$, and its structure in $\gamma$ repeats on the scale set by the couplings. The minimum is a broad basin, which is why a gradient-free optimizer started anywhere sensible finds it.
@@ -196,7 +196,7 @@
   status: machine
 - id: 32e7c8be68d6be81
   en: 'A QAOA circuit is a sampler, not an oracle: it returns a distribution in which good assignments are over-represented. The practical procedure is to measure a few thousand shots, evaluate the true objective on each distinct outcome, and keep the best. Evaluating the objective is classical and cheap, so a run succeeds as soon as *one* shot lands on a good assignment — a far weaker requirement than the mean energy reaching the minimum.'
-  zh: QAOA 电路是采样器，不是直接给出答案的预言机：它返回一个偏重优良赋值的分布。实际步骤是测量几千次，计算每种不同结果的真实目标值，再保留最佳结果。目标值可用经典方法低成本计算，因此只要*一次*采样落到优良赋值上，运行就成功了；这一要求远弱于平均能量达到最小值。
+  zh: QAOA 线路是采样器，不是直接给出答案的预言机：它返回一个偏重优良赋值的分布。实际步骤是测量几千次，计算每种不同结果的真实目标值，再保留最佳结果。目标值可用经典方法低成本计算，因此只要*一次*采样落到优良赋值上，运行就成功了；这一要求远弱于平均能量达到最小值。
   status: machine
 - id: c7c21a98e8771a64
   en: The two optimal assignments are among the most frequent outcomes, and they are each other's bitwise complement — the side-relabeling symmetry, surviving all the way from the Hamiltonian's zero field to the measured histogram.
@@ -224,7 +224,7 @@
   status: machine
 - id: dd7d7eb24be97e29
   en: '**Not every constraint belongs in the QUBO.** Requirements that are awkward to write quadratically are often cheaper to check classically after measurement, since decoding is free compared with the circuit.'
-  zh: '**并非所有约束都应写入 QUBO。**难以用二次形式表达的要求，往往在测量后用经典方法检查更划算，因为解码开销相比电路几乎可以忽略。'
+  zh: '**并非所有约束都应写入 QUBO。**难以用二次形式表达的要求，往往在测量后用经典方法检查更划算，因为解码开销相比线路几乎可以忽略。'
   status: machine
 - id: 2c3f526f2e98c43a
   en: '[Model controlled islanding as a QUBO](islanding-model.md) puts all three to work on a real application, where the choice of encoding decides whether the problem fits on the hardware at all, and [Split a power grid into islands with QAOA](islanding-qaoa.md) runs it.'

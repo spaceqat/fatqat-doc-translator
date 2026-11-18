@@ -24,3 +24,19 @@ Each entry has id, en, ko, and status. Keep ko on one line. The extractor owns
 id, en, ordering, and retirement. Set translated entries to machine; only a human
 may mark them reviewed. Review in three passes: meaning against the English,
 terminology and protected syntax, then fluent Korean in rendered page context.
+
+## User guide voice
+
+Lead with the reader's task, then explain what to do, what the result means,
+and why. Keep the tone approachable and pedagogical. Use short, connected
+sentences and concrete verbs; split paragraphs that answer different questions.
+Keep explanations needed to understand the example, including prerequisites,
+units, uncertainty, supported behavior, and limitations. Avoid repeated setup
+instructions, architecture summaries, and chapter previews that do not help
+with the current task. Keep links that help the reader complete or understand it.
+
+Adapt sentence structure to the target language rather than translating English
+word order. Preserve exact API names and use consistent conceptual terminology.
+When content or structure needs to change, update the English source first and
+synchronize both locales through extraction. Do not hide removed prose in HTML
+comments or let the localized guides drift apart.

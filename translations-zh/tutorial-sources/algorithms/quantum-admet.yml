@@ -1,6 +1,6 @@
 - id: 2a83b1f0ce752b70
   en: Search quantum circuits for ADMET prediction
-  zh: 搜索用于 ADMET 预测的量子电路
+  zh: 搜索用于 ADMET 预测的线路
   status: machine
 - id: b4e950b036948a86
   en: Reimplement the QCS-ADME search, imbalance-aware scoring, regression scoring, and training workflow with FatQat parameter sweeps.
@@ -8,15 +8,15 @@
   status: machine
 - id: 123656e3d3e00fcc
   en: Classification and regression search scores for four candidate quantum circuits on synthetic inputs.
-  zh: 四个候选量子电路在合成输入上的分类与回归搜索评分。
+  zh: 四个候选线路在合成输入上的分类与回归搜索评分。
   status: machine
 - id: 8b1874c25ace756c
   en: Three-qubit circuit selected by the classification search.
-  zh: 分类搜索选出的三量子比特电路。
+  zh: 分类搜索选出的三量子比特线路。
   status: machine
 - id: 52a6e67c8d3b1cec
   en: Training mean squared error for the selected classification and regression circuits.
-  zh: 所选分类与回归电路的训练均方误差。
+  zh: 所选分类与回归线路的训练均方误差。
   status: machine
 - id: 18d57c4273f7e418
   en: Held-out classification confusion matrix and regression predictions on synthetic inputs.
@@ -56,19 +56,19 @@
   status: machine
 - id: 02f829a2363ac545
   en: Predicting these properties from molecular structure helps researchers prioritize candidates before costly experiments. These endpoints require different learning objectives. Blood–brain barrier penetration and drug-induced liver injury are classification examples; drug half-life and clearance require continuous predictions. Unequal class counts can hide poor minority-class performance. Continuous targets instead require preserving degrees of similarity. These two challenges motivate the task-specific circuit scores used below.
-  zh: 根据分子结构预测这些性质，可以帮助研究人员在开展昂贵实验前确定候选优先级。不同终点需要不同学习目标：血脑屏障通透性和药物性肝损伤属于分类问题，药物半衰期和清除率则需要连续预测。类别数量不均衡可能掩盖少数类表现不佳的问题；连续目标则需要保留相似程度。这两个挑战促成了下文面向不同任务的电路评分。
+  zh: 根据分子结构预测这些性质，可以帮助研究人员在开展昂贵实验前确定候选优先级。不同终点需要不同学习目标：血脑屏障通透性和药物性肝损伤属于分类问题，药物半衰期和清除率则需要连续预测。类别数量不均衡可能掩盖少数类表现不佳的问题；连续目标则需要保留相似程度。这两个挑战促成了下文面向不同任务的线路评分。
   status: machine
 - id: 685d668d002b7a63
   en: From molecular features to quantum circuit search
-  zh: 从分子特征到量子电路搜索
+  zh: 从分子特征到线路搜索
   status: machine
 - id: 7bbf167cb035c04d
   en: Which circuit should we train when its inputs describe a molecule? The QCS-ADME workflow searches circuit structures before optimizing their weights. It compares the states produced by different inputs with a desired similarity matrix, then combines that score with resistance to simulated noise. Classification asks for similar states within a class; regression asks for similar states when target values are close.
-  zh: 当输入描述一个分子时，应训练什么样的电路？QCS-ADME 流程先搜索电路结构，再优化权重。它将不同输入产生的态与期望相似度矩阵比较，再将该评分与对模拟噪声的抵抗能力结合。分类要求同类输入产生相似态；回归要求目标值相近时产生相似态。
+  zh: 当输入描述一个分子时，应训练什么样的线路？QCS-ADME 流程先搜索线路结构，再优化权重。它将不同输入产生的态与期望相似度矩阵比较，再将该评分与对模拟噪声的抵抗能力结合。分类要求同类输入产生相似态；回归要求目标值相近时产生相似态。
   status: machine
 - id: 76d3c8dca012b4c6
   en: This tutorial reimplements that loop with [`Program`][fatqat.Program], [`ParameterVector`][fatqat.ParameterVector], and [`Estimator`][fatqat.Estimator]. You will generate a small candidate pool, score both tasks, train one circuit per task, and evaluate predictions on held-out inputs. Each circuit is built once; features and weights enter as parameter bindings throughout search and training.
-  zh: 本教程用 [`Program`][fatqat.Program]、[`ParameterVector`][fatqat.ParameterVector] 和 [`Estimator`][fatqat.Estimator] 重新实现这一循环。你将生成一个小型候选池，为两种任务评分，各训练一个电路，并在留出输入上评估预测。每个电路只构建一次；搜索与训练期间，特征和权重均通过参数绑定传入。
+  zh: "本教程用 [`Program`][fatqat.Program]、[`ParameterVector`][fatqat.ParameterVector] 和 [`Estimator`][fatqat.Estimator] 重新实现这一循环。你将生成一个小型候选池，为两种任务评分，各训练一个线路，并在留出输入上评估预测。每个线路只创建一次；搜索与训练期间，特征和权重均通过参数绑定传入。"
   status: machine
 - id: fdf6b1593ce3cd7e
   en: 'The scientific reference is [*QCS-ADME: Quantum Circuit Search for Drug Property Prediction with Imbalanced Data and Regression Adaptation*](https://arxiv.org/abs/2503.01927) (2026). The paper provides the motivation and search method. The executable formulas below follow the supplied Quantum ADMET reference implementation, including its binary imbalance weighting, one-qubit reduced-state score, regression target weighting, composite ranking, and mean squared training loss. Its binary weighting and reduced-state similarity use implementation-specific conventions, which are specified below.'
@@ -100,11 +100,11 @@
   status: machine
 - id: 867b73fc8845f55f
   en: The short list of gate specifications also lets us build Clifford decoys with the same gate locations. It belongs to this tutorial, not to FatQat's public API. For device-aware studies, replace the generator with candidates that respect your selected device's gate set, connectivity, and calibration.
-  zh: 这份简短的门规格列表也能用于构建门位置相同的 Clifford 替代电路。它属于本教程，不属于 FatQat 公共 API。若要考虑实际设备，应替换生成器，使候选遵守所选设备的门集、连接关系与校准。
+  zh: "这份简短的门规格列表也能用于创建门位置相同的 Clifford 替代线路。它属于本教程，不属于 FatQat 公共 API。若要考虑实际设备，应替换生成器，使候选遵守所选设备的门集、连接关系与校准。"
   status: machine
 - id: c5c64e0efd03a23e
   en: '`shots=0` gives exact expectations. The sweep returns one result per input row; it does not require a new circuit construction for each example. The three observables expose the reduced state of qubit 0 through its Bloch vector $r_i=(\langle X_0\rangle,\langle Y_0\rangle,\langle Z_0\rangle)$.'
-  zh: '`shots=0` 给出精确期望值。扫描对每行输入返回一个结果，无需为每个样本构建新电路。三个可观测量通过 Bloch 向量 $r_i=(\langle X_0\rangle,\langle Y_0\rangle,\langle Z_0\rangle)$ 给出量子比特 0 的约化态。'
+  zh: "`shots=0` 给出精确期望值。扫描对每行输入返回一个结果，无需为每个样本创建新线路。三个可观测量通过 Bloch 向量 $r_i=(\\langle X_0\\rangle,\\langle Y_0\\rangle,\\langle Z_0\\rangle)$ 给出量子比特 0 的约化态。"
   status: machine
 - id: 2ad42ab7d256cadf
   en: Reproduce the task-specific representational scores
@@ -128,7 +128,7 @@
   status: machine
 - id: 09e1341753976e8d
   en: For regression, the desired similarity is $A_{ij}=\exp[-(y_i-y_j)^2/(2\sigma^2)]$. The implementation additionally weights the circuit similarity by $G_{ij}=\exp[-(y_i-y_j)^2/2]$, with fixed bandwidth one, before computing $R_{\rm reg}=1-\operatorname{mean}[(A-G\bar S)^2]$. Both uses of the labels are intentional here. This is a supervised search score computed on training examples, not a predictive kernel to evaluate using unknown test labels. Regression target scaling changes both Gaussian weights and therefore must be recorded when comparing experiments.
-  zh: 对于回归，期望相似度为 $A_{ij}=\exp[-(y_i-y_j)^2/(2\sigma^2)]$。实现还用固定带宽为一的 $G_{ij}=\exp[-(y_i-y_j)^2/2]$ 对电路相似度加权，再计算 $R_{\rm reg}=1-\operatorname{mean}[(A-G\bar S)^2]$。这里两次使用标签都是有意为之。这是在训练样本上计算的有监督搜索评分，不是利用未知测试标签评估的预测核。回归目标的缩放会改变两种高斯权重，因此比较实验时必须记录该缩放。
+  zh: 对于回归，期望相似度为 $A_{ij}=\exp[-(y_i-y_j)^2/(2\sigma^2)]$。实现还用固定带宽为一的 $G_{ij}=\exp[-(y_i-y_j)^2/2]$ 对线路相似度加权，再计算 $R_{\rm reg}=1-\operatorname{mean}[(A-G\bar S)^2]$。这里两次使用标签都是有意为之。这是在训练样本上计算的有监督搜索评分，不是利用未知测试标签评估的预测核。回归目标的缩放会改变两种高斯权重，因此比较实验时必须记录该缩放。
   status: machine
 - id: 1e897a604f1a1b4c
   en: Every candidate sees the same examples and sampled weight vectors. This reduces incidental variation between candidates. Four weight samples are a small execution budget, not evidence that the ranking has converged. A research run should examine ranking stability across sample counts and seeds.
@@ -140,19 +140,19 @@
   status: machine
 - id: 81360bca32261ff3
   en: 'For each candidate we replace every one-qubit gate by a random choice from H, S, Z, X, and Y, and retain the CX locations. These are the implementation''s Clifford decoys. We compare their ideal and noisy computational-basis probability distributions using total variation distance:'
-  zh: 对于每个候选，将所有单量子比特门随机替换为 H、S、Z、X、Y 中的一个，同时保留 CX 位置。这些就是实现中的 Clifford 替代电路。使用总变差距离比较其理想与含噪计算基概率分布：
+  zh: 对于每个候选，将所有单量子比特门随机替换为 H、S、Z、X、Y 中的一个，同时保留 CX 位置。这些就是实现中的 Clifford 替代线路。使用总变差距离比较其理想与含噪计算基概率分布：
   status: machine
 - id: 520b2c3a12253d16
   en: Here $\alpha=0.25$. The illustrative noise model applies depolarization after each CX. Exact density-matrix probabilities remove shot fluctuations from this small comparison. The CNR value describes these decoys under this noise model; it does not estimate the fidelity of an IBM device.
-  zh: 这里 $\alpha=0.25$。示例噪声模型在每个 CX 后施加退极化。精确的密度矩阵概率消除了这个小型比较中的采样波动。CNR 值描述的是这些替代电路在该噪声模型下的表现，不是 IBM 设备保真度的估计。
+  zh: 这里 $\alpha=0.25$。示例噪声模型在每个 CX 后施加退极化。精确的密度矩阵概率消除了这个小型比较中的采样波动。CNR 值描述的是这些替代线路在该噪声模型下的表现，不是 IBM 设备保真度的估计。
   status: machine
 - id: 97a38b7658e48c6d
   en: 'The highest composite score determines which circuit we train for each task. These two tasks need not select the same circuit. As in the implementation, the multiplicative rule has a limitation: when $R$ is negative, reducing CNR makes the product less negative and can improve its rank. Inspect the uncombined scores when using strongly imbalanced data; do not treat this formula as a universally valid noise penalty.'
-  zh: 每种任务都选择综合评分最高的电路进行训练，两种任务不一定选中同一电路。与参考实现一样，乘法规则存在一个局限：当 $R$ 为负时，降低 CNR 会使乘积更接近零，反而可能提高排名。使用严重不平衡的数据时，应检查未组合的各项评分，不要将此公式视为普遍有效的噪声惩罚。
+  zh: 每种任务都选择综合评分最高的线路进行训练，两种任务不一定选中同一线路。与参考实现一样，乘法规则存在一个局限：当 $R$ 为负时，降低 CNR 会使乘积更接近零，反而可能提高排名。使用严重不平衡的数据时，应检查未组合的各项评分，不要将此公式视为普遍有效的噪声惩罚。
   status: machine
 - id: 33533e837b647af3
   en: Train the selected circuits
-  zh: 训练选中的电路
+  zh: 训练选中的线路
   status: machine
 - id: 556f20d2af89441f
   en: The prediction is $f_\theta(x)=\langle Z_0\rangle$. We minimize $N^{-1}\sum_i(f_\theta(x_i)-y_i)^2$ for both tasks, preserving the implementation's single-output MSE objective. Imbalance weighting was used in architecture selection; this loss itself is unweighted. A binary prediction is $+1$ for a positive expectation and $-1$ otherwise. Regression uses the expectation directly, so its output is bounded to $[-1,1]$.
@@ -168,7 +168,7 @@
   status: machine
 - id: f738449587e2bc13
   en: For classification, compare accuracy with an always-majority prediction and report balanced accuracy, the mean recall of the two classes. A high ordinary accuracy alone can conceal failure on the minority class. For regression, compare mean absolute error with a constant prediction equal to the training median. These are simple checks on whether the fitted circuit learned useful structure in this synthetic exercise.
-  zh: 分类任务中，将准确率与始终预测多数类的基线比较，并报告平衡准确率，即两类召回率的平均值。单看较高的普通准确率，可能掩盖少数类预测失败。回归任务中，将平均绝对误差与始终预测训练目标中位数的常数基线比较。这些简单检查用于判断拟合电路是否在该合成实验中学到了有用结构。
+  zh: 分类任务中，将准确率与始终预测多数类的基线比较，并报告平衡准确率，即两类召回率的平均值。单看较高的普通准确率，可能掩盖少数类预测失败。回归任务中，将平均绝对误差与始终预测训练目标中位数的常数基线比较。这些简单检查用于判断拟合线路是否在该合成实验中学到了有用结构。
   status: machine
 - id: 3109020d128a18b3
   en: Search scores and held-out predictive performance measure different things. The score selects an architecture using a small set of untrained states; optimization, data coverage, and readout constraints still determine the trained model's performance. Poor results are informative and should not be hidden by tuning on the test examples.
@@ -188,7 +188,7 @@
   status: machine
 - id: 9c4c8adde3b481ad
   en: In a downloaded notebook or script, move this loader above the data setup, replace the synthetic `tasks` assignment with the following, and set `NUM_QUBITS = 7`, `NUM_FEATURES = 128`, and `NUM_WEIGHTS = 32` **before** constructing the parameter vectors and candidate programs. Set `root` to your local checkout. These lines are not executed in the documentation build, which always uses the synthetic example.
-  zh: 在下载的 notebook 或脚本中，将此加载器移到数据设置之前，用下方内容替换合成 `tasks` 的赋值，并在构造参数向量和候选程序**之前**设置 `NUM_QUBITS = 7`、`NUM_FEATURES = 128` 和 `NUM_WEIGHTS = 32`。将 `root` 设为本地检出目录。文档构建不会执行这些行，始终使用合成示例。
+  zh: "在下载的 notebook 或脚本中，将此加载器移到数据设置之前，用下方内容替换合成 `tasks` 的赋值，并在构造参数向量和候选程序**之前**设置 `NUM_QUBITS = 7`、`NUM_FEATURES = 128` 和 `NUM_WEIGHTS = 32`。将 `root` 设为本地检出目录。文档创建不会执行这些行，始终使用合成示例。"
   status: machine
 - id: 646f39afc8ea6b6d
   en: Keep the prepared split's provenance and feature-generation procedure with your experiment. This loader does not establish whether upstream descriptor selection or target scaling used only training data. If you regenerate features, fit preprocessing on training molecules and apply the same fitted transformation to validation and test molecules. Preserve the intended molecular split rather than replacing it with a random row split.
@@ -196,9 +196,9 @@
   status: machine
 - id: 4b8472795c503ca2
   en: 'For a larger study, increase the candidate and sampling budgets, select hyperparameters on a separate validation split, and evaluate the test split once. Preserve candidates, seeds, optimized weights, target transforms, and noise settings with the results. Existing TorchQuantum checkpoints and device mappings are not consumed by this tutorial: reusing a particular legacy circuit requires translating its ordered gates and parameter bounds into a `Program` and verifying its outputs before retraining.'
-  zh: 开展更大规模研究时，增加候选和采样预算，在独立验证集上选择超参数，最后只评估一次测试集。随结果保存候选、种子、优化后的权重、目标变换和噪声设置。本教程不读取已有的 TorchQuantum 检查点和设备映射：若要复用某个旧电路，需要将其有序门序列与参数界限转换为 `Program`，并在重新训练前验证输出。
+  zh: 开展更大规模研究时，增加候选和采样预算，在独立验证集上选择超参数，最后只评估一次测试集。随结果保存候选、种子、优化后的权重、目标变换和噪声设置。本教程不读取已有的 TorchQuantum 检查点和设备映射：若要复用某个旧线路，需要将其有序门序列与参数界限转换为 `Program`，并在重新训练前验证输出。
   status: machine
 - id: 83b5bcbb76a87626
   en: Next, use [ideal and noisy simulation](../guide/ideal-and-noisy.md) to evaluate the fitted circuit under the same noise model used for selection, or [the Estimator reference](../api/estimator.md) to introduce sampled expectations. When sampling sweeps, reusing a seed can correlate errors between rows; exact expectations here avoid that issue.
-  zh: 接下来，可用[理想与含噪模拟](../guide/ideal-and-noisy.md)，在选择时使用的同一噪声模型下评估拟合电路；或参考[估计器文档](../api/estimator.md)引入采样期望值。进行采样扫描时，复用种子可能使行间误差相关；这里使用精确期望值，避免了这一问题。
+  zh: 接下来，可用[理想与含噪模拟](../guide/ideal-and-noisy.md)，在选择时使用的同一噪声模型下评估拟合线路；或参考[估计器文档](../api/estimator.md)引入采样期望值。进行采样扫描时，复用种子可能使行间误差相关；这里使用精确期望值，避免了这一问题。
   status: machine

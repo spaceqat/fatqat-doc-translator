@@ -173,10 +173,10 @@
 - id: 3f3ef4f6afcc37a8
   en: 'Specialized representations can save much more than runtime tuning. For linear optics, `LOSimulator` uses fixed-photon states by default: four photons in twelve modes require just 1,365 amplitudes. See [Simulate larger interferometers](linear-optics.md#simulate-larger-interferometers). For physical models, first [choose how much physics to model](execution-models.md); extra physical levels and pulse integration change the cost of the problem.'
   ko: 문제에 맞는 전용 표현을 사용하면 런타임 조정보다 훨씬 큰 절감 효과를 얻을 수 있습니다. 선형 광학에서 `LOSimulator`는 기본적으로 고정 광자 수 상태를 사용합니다. 모드 열두 개에 광자 네 개가 있으면 진폭은 1,365개만 필요합니다. [더 큰 간섭계 시뮬레이션하기](linear-optics.md#simulate-larger-interferometers)를 참고하세요. 물리 모델을 사용할 때는 먼저 [물리 현상을 어느 수준까지 모델링할지 선택하세요](execution-models.md). 추가 물리 준위와 펄스 적분은 문제의 계산 비용을 바꿉니다.
-  status: machine
+  status: retired
 - id: 4ff7b5d50fd53b4c
   en: FatQat offers two CPU runtimes. NumPy starts executing directly, which makes it useful when compilation startup would dominate the workload. Numba compiles numerical kernels on first use and spreads that startup cost over repeated work. The initial simulator default is Numba; set `runtime` explicitly when comparing them.
-  ko: FatQat은 두 가지 CPU 런타임을 제공합니다. NumPy는 바로 실행하므로 컴파일 시작 비용이 전체 작업 시간을 좌우할 때 유용합니다. Numba는 처음 사용할 때 수치 커널을 컴파일하고, 반복 작업을 통해 시작 비용을 분산합니다. 시뮬레이터의 초기 기본값은 Numba입니다. 두 런타임을 비교할 때는 `runtime`을 명시하세요.
+  ko: FatQat은 CPU 런타임 두 가지를 제공합니다. NumPy는 바로 실행하므로 컴파일 준비 시간이 큰 비중을 차지하는 작업에 적합합니다. Numba는 처음 사용할 때 수치 커널을 컴파일하고, 이후 반복 계산에서 이를 재사용해 초기 비용을 분산합니다. 시뮬레이터의 초기 기본값은 Numba입니다. 두 방식을 비교할 때는 `runtime`을 직접 지정하세요.
   status: machine
 - id: 1d29f73c8c51454e
   en: The runtime and the execution workflow serve different roles. A **kernel** does numerical work, such as applying a gate to a state. A **workflow** sequences those operations and handles repeated shots or parameter points. NumPy uses Python workflows with NumPy numerical operations. Numba uses compiled kernels, with compiled workflows for eligible statevector trajectories and parameter batches.
@@ -212,7 +212,7 @@
   status: machine
 - id: 9b3583c3c431ba72
   en: Requesting final states retains one state per parameter point. Use an estimator sweep when you only need energies or correlations. See [Sweep without rebuilding](simulation.md#sweep-without-rebuilding) for a worked example.
-  ko: 최종 상태를 요청하면 매개변수 지점마다 상태 하나가 저장됩니다. 에너지나 상관관계만 필요하다면 추정기 스윕을 사용하세요. 구체적인 예제는 [다시 만들지 않고 스윕하기](simulation.md#sweep-without-rebuilding)를 참고하세요.
+  ko: 최종 상태를 요청하면 매개변수 지점마다 상태 하나를 보관합니다. 에너지나 상관관계만 필요하다면 Estimator 스윕을 사용하세요. 예제는 [다시 만들지 않고 스윕하기](simulation.md#sweep-without-rebuilding)를 참고하세요.
   status: machine
 - id: dd56efe05718e9b7
   en: Evaluate observables together
@@ -264,9 +264,17 @@
   status: machine
 - id: 410cdda346a8789a
   en: Parallelism pays off when there is enough work across state entries or independent shots to outweigh worker overhead. Choose one parallel axis at a time. The [Simulator API](../api/simulator.md#runtime-and-execution) lists the supported combinations.
-  ko: 상태 원소나 독립적인 샷에 걸친 계산량이 작업자 오버헤드를 상쇄할 만큼 커야 병렬화의 이점이 있습니다. 한 번에 하나의 축으로 병렬화하세요. 지원되는 조합은 [Simulator API](../api/simulator.md#runtime-and-execution)에 나와 있습니다.
+  ko: 병렬 실행을 준비하고 관리하는 데에도 비용이 듭니다. 상태 원소나 독립적인 샷에 대한 계산량이 이 비용을 상쇄할 만큼 클 때 병렬화가 도움이 됩니다. 한 번에 하나의 축으로 병렬화하세요. 지원되는 조합은 [Simulator API](../api/simulator.md#runtime-and-execution)를 참고하세요.
   status: machine
 - id: d1de9a51288c7828
   en: 'When comparing sampled runs, set `execution_config["seed"]` and compare observables or distributions: changing runtime or parallel mode can change the individual samples. For deterministic runs, compare final states within floating-point tolerance.'
   ko: 샘플링 실행을 비교할 때는 `execution_config["seed"]`를 설정하고 관측량이나 분포를 비교하세요. 런타임이나 병렬 모드를 바꾸면 개별 표본은 달라질 수 있습니다. 결정론적 실행에서는 부동소수점 허용 오차 안에서 최종 상태를 비교하세요.
+  status: machine
+- id: 27b31e61a58319d7
+  en: As the number of qubits grows or you repeat a calculation for many parameter values, simulation time and memory use can rise quickly. A method that works well for a small example may become too costly for a larger study.
+  ko: 큐비트 수가 늘어나거나 여러 매개변수 값으로 계산을 반복하면 실행 시간과 메모리 사용량이 빠르게 증가할 수 있습니다. 작은 예제에 적합했던 방법도 더 큰 계산에서는 비용이 너무 커질 수 있습니다.
+  status: machine
+- id: 72508469d889168a
+  en: 'Specialized representations can save much more than runtime tuning. For linear optics, `LOSimulator` uses fixed-photon states by default: four photons in twelve modes require just 1,365 amplitudes. See [Simulate larger interferometers](linear-optics.md#simulate-larger-interferometers). For physical models, first [choose a simulation or emulation approach](execution-models.md); extra physical levels and pulse integration change the cost of the problem.'
+  ko: "문제에 맞는 전용 표현을 사용하면 런타임 조정보다 훨씬 큰 절감 효과를 얻을 수 있습니다. 선형 광학에서 `LOSimulator`는 기본적으로 고정 광자 수 상태를 사용합니다. 모드 열두 개에 광자 네 개가 있으면 진폭은 1,365개만 필요합니다. [더 큰 간섭계 시뮬레이션하기](linear-optics.md#simulate-larger-interferometers)를 참고하세요. 물리 모델을 사용할 때는 먼저 [시뮬레이션과 에뮬레이션 방식을 선택하세요](execution-models.md). 추가 물리 준위와 펄스 적분은 문제의 계산 비용을 바꿉니다."
   status: machine

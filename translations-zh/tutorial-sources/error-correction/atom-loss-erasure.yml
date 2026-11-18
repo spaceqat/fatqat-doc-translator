@@ -16,7 +16,7 @@
   status: machine
 - id: b1a55137c3a54145
   en: 'Erasures are easier to correct than errors at unknown locations. A code of distance $d$ corrects any $\lfloor (d-1)/2 \rfloor$ errors at unknown locations, but up to $d-1$ erasures. This tutorial shows what that means in a small memory experiment. We run a bit-flip repetition code, lose atoms during its entangling gates, and look at the loss from two sides: what the parity checks reveal while the circuit runs, and what the erasure flag in the final readout is worth to a decoder.'
-  zh: "擦除比位置未知的错误更容易纠正。码距为 $d$ 的码可以纠正任意 $\\lfloor (d-1)/2 \\rfloor$ 个位置未知的错误，而最多可以纠正 $d-1$ 个擦除。本教程用一个小型存储实验展示这一区别。我们运行比特翻转重复码，让原子在纠缠门期间丢失，并从两个角度观察：电路运行时，奇偶校验能揭示什么；最终读出的擦除标记对解码器有多大帮助。"
+  zh: "擦除比位置未知的错误更容易纠正。码距为 $d$ 的码可以纠正任意 $\\lfloor (d-1)/2 \\rfloor$ 个位置未知的错误，而最多可以纠正 $d-1$ 个擦除。本教程用一个小型存储实验展示这一区别。我们运行比特翻转重复码，让原子在纠缠门期间丢失，并从两个角度观察：线路运行时，奇偶校验能揭示什么；最终读出的擦除标记对解码器有多大帮助。"
   status: machine
 - id: 29e4558fd9e4781e
   en: Imports and settings
@@ -132,7 +132,7 @@
   status: machine
 - id: 219d0e0547a29def
   en: While the circuit runs, loss is harder to read. A lost ancilla is flagged in its own round, but a lost data atom shows up in the checks only as a changed parity, which depends on the state the atom held. A decoder that uses the syndrome history must therefore treat a data-atom loss as a set of possible error patterns, one for each time at which the atom may have been lost. Such decoders go beyond this tutorial.
-  zh: "电路运行期间，丢失信息更难解读。辅助原子丢失会在当轮被标记，而数据原子丢失只会通过奇偶校验变化体现，并且取决于原子原先存储的态。因此，使用综合征历史的解码器必须将数据原子丢失视为一组可能的错误模式，每种模式对应一种可能的丢失时刻。这类解码器超出了本教程的范围。"
+  zh: "线路运行期间，丢失信息更难解读。辅助原子丢失会在当轮被标记，而数据原子丢失只会通过奇偶校验变化体现，并且取决于原子原先存储的态。因此，使用综合征历史的解码器必须将数据原子丢失视为一组可能的错误模式，每种模式对应一种可能的丢失时刻。这类解码器超出了本教程的范围。"
   status: machine
 - id: a488990ff955dfb5
   en: To explore further, attach `Loss` to `Pair` and `Unpair` to model the cost of transport, as in the [eight-atom GHZ tutorial](atom-array-ghz8.md). You can also raise `ROUNDS` to see loss accumulate over a longer memory, or replace the majority vote with a decoder that reads the syndrome history and compare its error rate with the curves above.

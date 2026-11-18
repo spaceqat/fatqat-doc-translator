@@ -22,10 +22,13 @@ terms:
   Lindblad: Lindblad
   qubit: 量子比特
   register: 寄存器
-  circuit: 电路
+  circuit: 线路
   measurement: 测量
   noise model: 噪声模型
   noise: 噪声
+  hardware profile: 设备模型
+  hardware-profile simulation: 硬件约束模拟
+  hardware-profile simulator: 硬件约束模拟器
   simulator: 模拟器
   emulator: 仿真器
   simulation: 模拟

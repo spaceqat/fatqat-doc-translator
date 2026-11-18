@@ -1,0 +1,76 @@
+- id: 46e654f58d3fa657
+  en: Simulate with hardware constraints
+  ko: 하드웨어 제약을 고려한 시뮬레이션
+  status: machine
+- id: 393825375b5dd384
+  en: A circuit can produce the expected result and still be unsuitable for a device. The device may support only some gates, or require two qubits to occupy connected positions. Hardware-constrained simulation lets you account for these rules while studying the computation.
+  ko: ''
+  status: retired
+- id: 7c636c8314d2a46c
+  en: 'Superconducting and neutral-atom gate simulations still use matrix-based methods to calculate how the quantum state changes. For example, a statevector or density matrix represents the state, and gates and noise channels act on it. The simulator also checks device rules: is the operation supported, are the target positions connected, and have the required atoms been loaded?'
+  ko: 초전도와 중성 원자의 게이트 수준 시뮬레이션은 행렬 기반 방법으로 양자 상태의 변화를 계산합니다. 예를 들어 상태 벡터나 밀도 행렬로 상태를 표현하고, 게이트와 잡음 채널의 작용을 계산합니다. 여기에 장치 규칙 검사도 더해집니다. 해당 게이트가 지원되는지, 대상 위치가 연결되어 있는지, 필요한 원자가 로딩되어 있는지 확인합니다.
+  status: machine
+- id: 500ff026bfbe8e5c
+  en: For example, a two-qubit gate may run in the general simulator but fail on a superconducting device model because the selected positions are not connected. This makes the constraint visible during simulation, so you can adjust the Program or qubit placement.
+  ko: 예를 들어 두 큐비트 게이트가 범용 시뮬레이터에서는 실행되지만, 초전도 장치 모델에서는 두 위치가 연결되지 않아 오류가 날 수 있습니다. 이렇게 시뮬레이션 중에 하드웨어 제약으로 인한 문제를 확인하고 프로그램이나 큐비트 배치를 조정할 수 있습니다.
+  status: machine
+- id: 384c47ad7d77982f
+  en: This section covers superconducting devices, neutral atoms, and linear optics. Linear optics represents photons in optical modes and can use a specialized fixed-photon-number representation to reduce the computation. These simulators do not resolve the effects of pulse shape and duration on the physical state; use Hamiltonian emulation when those dynamics matter.
+  ko: ''
+  status: retired
+- id: cb32e03a895accba
+  en: '[Superconducting simulation](superconducting-simulation.md): native gates and fixed connectivity.'
+  ko: ''
+  status: retired
+- id: 90e24d00035866e8
+  en: '[Neutral-atom simulation](atom-array-simulation.md): atom loading, pairing, and loss.'
+  ko: ''
+  status: retired
+- id: 83aacd07e613aa9e
+  en: '[Linear optics simulation](linear-optics.md): photons, optical modes, and interference.'
+  ko: ''
+  status: retired
+- id: 0cf685d87d0dfd95
+  en: A circuit can produce the expected result and still be unsuitable for a device. The device may support only some gates, or require two qubits to occupy connected positions.
+  ko: 회로가 올바른 결과를 내더라도 특정 장치에서 그대로 실행할 수 있는 것은 아닙니다. 장치는 일부 게이트만 지원하거나 두 큐비트가 서로 연결된 위치에 있어야 한다는 조건을 둘 수 있습니다.
+  status: machine
+- id: d77248d9d74cbbce
+  en: This section covers superconducting devices, neutral atoms, and linear optics. Linear optics represents photons in optical modes and can use a specialized fixed-photon-number representation to reduce the computation. Use Hamiltonian emulation when you need to study how pulse shape and duration affect the quantum state.
+  ko: 이 절에서는 초전도, 중성 원자, 선형 광학을 각각 다룹니다. 선형 광학은 광학 모드로 광자를 표현하며, 고정 광자 수에 맞춘 전용 표현으로 계산량을 줄일 수 있습니다. 펄스의 모양과 지속 시간이 양자 상태에 미치는 영향을 연구하려면 해밀토니안 에뮬레이션을 사용하세요.
+  status: machine
+- id: 65dceb371bdd93dc
+  en: Examples and compilation
+  ko: 예제와 컴파일
+  status: machine
+- id: 4fd58836e56a731c
+  en: '[Superconducting simulation](superconducting-simulation.md)'
+  ko: '[초전도 시뮬레이션](superconducting-simulation.md)'
+  status: retired
+- id: 2eace7a826e16d94
+  en: '[Neutral-atom simulation](atom-array-simulation.md)'
+  ko: '[중성 원자 시뮬레이션](atom-array-simulation.md)'
+  status: retired
+- id: 5f84fb98ebf0737a
+  en: '[Linear optics simulation](linear-optics.md)'
+  ko: '[선형 광학 시뮬레이션](linear-optics.md)'
+  status: retired
+- id: 735a76310f6c5803
+  en: '[Compile and run a logical circuit](compiler.md)'
+  ko: '[논리 회로 컴파일과 실행](compiler.md)'
+  status: retired
+- id: 4e927684d098a7c8
+  en: '[Superconducting qubits](superconducting-simulation.md)'
+  ko: "[초전도 시뮬레이션](superconducting-simulation.md)"
+  status: machine
+- id: aec85dad2bc42319
+  en: '[Neutral-atom arrays](atom-array-simulation.md)'
+  ko: "[중성 원자 시뮬레이션](atom-array-simulation.md)"
+  status: machine
+- id: 937455c682a1f41c
+  en: '[Linear optics](linear-optics.md)'
+  ko: "[선형 광학 시뮬레이션](linear-optics.md)"
+  status: machine
+- id: a60db591b68d1337
+  en: '[Compile circuits](compiler.md)'
+  ko: "[논리 회로 컴파일과 실행](compiler.md)"
+  status: machine

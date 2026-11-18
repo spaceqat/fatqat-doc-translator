@@ -4,11 +4,11 @@
   status: machine
 - id: 2020ccebf6b55c20
   en: '[`Program`][fatqat.Program] is the object you build and pass to every FatQat backend. If you are used to a `Circuit` class, this is the object you are looking for. FatQat uses the broader name because a Program can describe more than circuit gates: measurements and classical conditions, symbolic parameters, qubits and qudits, and direct physical controls. It records the logical system and its instructions in execution order without choosing how a backend will execute them.'
-  zh: '[`Program`][fatqat.Program] 是你构建并传递给每个 FatQat 后端的对象。如果你习惯使用 `Circuit` 类，那么它就是你要找的对象。FatQat 采用这个更宽泛的名字，是因为 Program 能描述的不止电路门：还包括测量与经典条件、符号参数、量子比特与 qudit，以及直接的物理控制。它按执行顺序记录逻辑系统及其指令，而不决定后端将如何执行它们。'
+  zh: '[`Program`][fatqat.Program] 是你创建并传递给每个 FatQat 后端的对象。如果你习惯使用 `Circuit` 类，那么它就是你要找的对象。FatQat 采用这个更宽泛的名字，是因为 Program 能描述的不止线路门：还包括测量与经典条件、符号参数、量子比特与 qudit，以及直接的物理控制。它按执行顺序记录逻辑系统及其指令，而不决定后端将如何执行它们。'
   status: retired
 - id: 879eccff578f87fb
   en: Start with a familiar qubit circuit, then add registers, feedforward, parameters, mixed local dimensions, drawing, and direct controls without changing the authoring pattern.
-  zh: 先从熟悉的量子比特电路开始，然后在不改变编写模式的前提下加入寄存器、前馈、参数、混合局部维度、绘图和直接控制。
+  zh: 先从熟悉的量子比特线路开始，然后在不改变编写模式的前提下加入寄存器、前馈、参数、混合局部维度、绘图和直接控制。
   status: retired
 - id: 746ccf1e2b979ff9
   en: Declare the logical system
@@ -16,7 +16,7 @@
   status: retired
 - id: 7190292da56939d3
   en: 'For a small qubit circuit, counts are convenient shorthand:'
-  zh: 对于小型量子比特电路，直接给出数量是一种方便的简写：
+  zh: 对于小型量子比特线路，直接给出数量是一种方便的简写：
   status: retired
 - id: ac51f351132458ba
   en: 'Explicit registers give resources useful names and become necessary when a Program contains more than one register:'
@@ -28,7 +28,7 @@
   status: retired
 - id: 72840607d65bd7c2
   en: Need rows and columns?
-  zh: 需要行和列？
+  zh: 按行或列选择资源
   status: machine
 - id: 3436efe88a916d36
   en: 'A [`GridRegister`][fatqat.GridRegister] adds logical row and column selections:'
@@ -40,11 +40,11 @@
   status: retired
 - id: ed8928f7c3a1e60a
   en: Compose operations in order
-  zh: "按执行顺序添加量子门"
+  zh: 按执行顺序添加量子门
   status: machine
 - id: 06bf43c433b8c380
   en: 'Add operations in the order they should occur:'
-  zh: "按执行顺序添加量子门："
+  zh: 按照希望执行的先后顺序，把量子门添加到 Program 中：
   status: machine
 - id: a0951ce272211e92
   en: Fixed gates such as `H` and `CX` are ready-to-use values. Parameterized gates such as `RY` are created with their numeric argument. A multi-target operation receives one tuple in operand order; for `CX`, the control comes first and the target second.
@@ -52,7 +52,7 @@
   status: retired
 - id: 71196d79c0fcd8ed
   en: These few operations illustrate the calling pattern. The [operations API reference](../api/operations.md) lists the complete operation set and exact definitions.
-  zh: "这几个量子门展示了调用方式。[Operations API 参考](../api/operations.md)列出了所有支持的类型及其精确定义。"
+  zh: 其他操作也采用类似的调用方式。完整列表和具体定义可以查阅 [Operations API 参考](../api/operations.md)。
   status: machine
 - id: 1a7ba221568ab0c2
   en: Observe and react inside a Program
@@ -60,7 +60,7 @@
   status: retired
 - id: 716e1274d306454c
   en: 'Measurement is another ordered instruction. It can finish a circuit, or it can supply a classical value to a later condition:'
-  zh: 测量同样是一条按顺序排列的指令。它可以作为电路的结尾，也可以为后续条件提供经典值：
+  zh: 测量同样是一条按顺序排列的指令。它可以作为线路的结尾，也可以为后续条件提供经典值：
   status: retired
 - id: 34fc96bc584d7806
   en: 'On each shot, the `X` acts on qubit 1 only if the earlier measurement wrote `1` to classical bit 0. Reset then prepares qubit 0 in `|0>` without erasing the stored classical value. The final measurement shows that classical bit 1 follows bit 0:'
@@ -92,7 +92,7 @@
   status: retired
 - id: 3bbc771c57608492
   en: '`X` prepares the qubit in `|1>`, while the dimension-generic `Shift(2)` maps the qutrit from `|0>` to `|2>`. Measurement pairs each quantum slot with a classical slot of the same dimension:'
-  zh: '`X` 将量子比特制备到 `|1>`，而维度通用的 `Shift(2)` 把 qutrit 从 `|0>` 映射到 `|2>`。测量把每个量子槽位与相同维度的经典槽位配对：'
+  zh: 这里，`X` 把量子比特从初态变为 `|1>`；支持不同维数的 `Shift(2)` 则把 qutrit 从 `|0>` 变为 `|2>`。测量时，每个量子系统的结果都写入相同维数的经典 Register 成员：
   status: machine
 - id: ea95cbaf8322b2d7
   en: Tuple keys put the flattened classical slots in declaration order, making the qubit value `1` and qutrit value `2` explicit. Operations decide which local dimensions they accept, so use the [qudit operation reference](../api/operations/qudit-gates.md) when you move beyond `Shift`.
@@ -116,7 +116,7 @@
   status: machine
 - id: cf783b62e0cac8b7
   en: The circuit drawing uses one wire per quantum or classical slot and does not display a register's local dimension. Qubit and qutrit wires therefore look the same. Qudit and custom operations appear as labeled boxes. A [`PulseOperation`][fatqat.operations.PulseOperation] cannot be represented by this circuit renderer.
-  zh: "电路图为每个量子或经典槽位使用一条线，并且不显示 Register 的局部维度。因此量子比特线和 qutrit 线看起来相同。qudit 操作和自定义操作显示为带标签的方框。[`PulseOperation`][fatqat.operations.PulseOperation] 无法由这个电路渲染器表示。"
+  zh: 图中的每条线对应一个量子或经典 Register 成员，但不会标出它的维数，所以量子比特和 qutrit 的线看起来一样。qudit 操作和自定义操作会显示为带名称的方框。这个线路绘图工具无法绘制 [`PulseOperation`][fatqat.operations.PulseOperation]。
   status: machine
 - id: 4c91cfc1affdf8ad
   en: Direct physical controls still enter the same Program as a `PulseOperation`, added without logical targets because its control channels identify physical resources. The [Hamiltonian-emulation chapter](hamiltonian-emulation.md) visualizes those controls as waveforms and timelines instead.
@@ -136,63 +136,63 @@
   status: retired
 - id: b9912f2fba2cec5a
   en: '[`Program`][fatqat.Program] is what you build and pass to every FatQat backend. If you are used to a `Circuit` class, this is FatQat''s broader equivalent: it can contain circuit gates, measurements, classical conditions, symbolic parameters, qubits and qudits, and direct physical controls. A Program records its resources and ordered instructions without deciding how a backend will execute them.'
-  zh: '[`Program`][fatqat.Program] 是你构建并传给各个 FatQat 后端的对象。如果你熟悉 `Circuit` 类，可以把它看作 FatQat 中范围更广的对应物：它可以包含电路门、测量、经典条件、符号参数、量子比特和 qudit，以及直接物理控制。Program 记录资源及有序指令，而不决定后端如何执行。'
-  status: machine
+  zh: 你可以用 [`Program`][fatqat.Program] 编写计算，再交给 FatQat 的后端运行。如果你熟悉其他工具中的 `Circuit` 类，可以从这个概念来理解 Program。不过，Program 能表达的不只是量子门，还包括测量、经典条件、符号参数、量子比特和 qudit，以及直接的物理控制。
+  status: retired
 - id: 109a1529621b961b
   en: If you want the compiler to map and route a static gate circuit before it is run, use [`LogicalProgram`][fatqat.LogicalProgram] and the [compiler workflow](compiler.md). `Program` remains the execution and direct-control interface; users do not manually convert between the two.
   zh: ''
   status: retired
 - id: e29ef5a5261b411b
   en: This chapter begins with a small qubit circuit, then introduces registers, feedforward, reusable parameters, mixed local dimensions, drawing, and direct controls.
-  zh: "本章从一个小型量子比特电路开始，随后介绍 Register、前馈、可复用参数、混合局域维数、绘图和直接控制。"
-  status: machine
+  zh: <!-- 省略章节内容预告。 -->
+  status: retired
 - id: cc4cc06be2b48a97
   en: Declare the program's resources
-  zh: 声明程序资源
+  zh: 为 Program 准备资源
   status: machine
 - id: 8d5880aa0cded5d8
   en: 'For a small program, pass the number of quantum and classical slots directly:'
-  zh: 对于小型程序，可以直接传入量子和经典槽位的数量：
+  zh: 先从一个小例子开始。创建 Program 时，直接给出量子比特和经典比特的数量即可：
   status: machine
 - id: 68577afbcf2e87fd
   en: 'As a Program grows, explicit registers give its resources useful names and let it contain more than one quantum or classical register:'
-  zh: "随着 Program 增大，可以用 Register 将量子或经典资源分组并命名。同一个 Program 可以包含多个这样的资源组："
+  zh: 当你需要管理更多资源时，可以用 Register 为它们分组并命名。一个 Program 可以包含多个量子或经典 Register：
   status: machine
 - id: ad276f55bdb12cff
   en: Indexing a register identifies one of its slots. Explicit references such as `data[0]` remain unambiguous as the Program grows. Use a bare integer only when the Program has a single register of that kind.
-  zh: "通过 Register 索引可以指定其中一个槽位。随着 Program 增大，`data[0]` 这样的显式引用仍不会产生歧义。只有当 Program 中该类 Register 唯一时，才使用裸整数。"
+  zh: 用索引就能选中 Register 中的成员，例如 `data[0]`。这种写法明确指出了成员属于哪个 Register，资源变多时也容易分辨。只有当某一类 Register 恰好只有一个时，才可以直接用整数索引来指定其中的成员。
   status: machine
 - id: c825f9e5aa4eaaf0
   en: 'A [`GridRegister`][fatqat.GridRegister] adds row and column views:'
-  zh: '[`GridRegister`][fatqat.GridRegister] 增加了行、列视图：'
+  zh: 如果你希望按行或列来组织资源，可以使用 [`GridRegister`][fatqat.GridRegister]：
   status: machine
 - id: 16933fd1d886d050
   en: The row view groups several targets for one operation. It describes structure inside the Program, not placement on a physical device. Choose physical placement when executing the Program.
-  zh: "行视图将多个目标组合起来，供同一个量子门使用。它描述 Program 内部的结构，并不表示物理设备上的放置。物理放置在执行 Program 时选择。"
+  zh: 这里用行视图一次选中了多个目标，再对它们施加操作。这样的行列结构只是 Program 中组织资源的方式，并不代表它们在设备上的实际位置；物理位置在执行 Program 时指定。
   status: machine
 - id: 0836fb5929d57f7b
   en: Fixed gates such as `H` and `CX` can be added directly. Create a parameterized gate such as `RY` by passing its angle. For an operation with several targets, pass one tuple in operand order. For `CX`, the control comes first and the target second.
-  zh: "`H` 和 `CX` 等固定门可以直接添加。对于 `RY` 等带参数的门，传入角度即可创建。对于有多个目标的门，按操作数顺序传入一个元组。`CX` 的控制位在前，目标位在后。"
+  zh: '`H` 和 `CX` 可以直接添加；`RY` 这样的参数化门则需要先传入旋转角度。操作涉及多个目标时，把它们按顺序放进一个元组。比如 `CX`，第一个是控制位，第二个是目标位。'
   status: machine
 - id: e1f84b6dc7b78431
   en: Use mid-circuit measurement and feedforward
-  zh: 使用电路中途测量与前馈
+  zh: 在运行中测量，并根据结果执行操作
   status: machine
 - id: 297ffd4dc55bd52f
   en: 'A measurement is an ordered Program instruction, just like a gate. It can end a circuit or store a value that controls a later operation:'
-  zh: "测量与门一样，是一条有序的 Program 指令。它可以位于电路末尾，也可以存储一个用于控制后续指令的值："
+  zh: 测量和量子门一样，都会按加入 Program 的顺序执行。你既可以在线路末尾测量，也可以在中途测量，把结果存下来，作为后续操作的条件。这种根据测量结果控制后续操作的方式称为经典前馈：
   status: machine
 - id: cca45e87ca4dc475
   en: 'On each shot, the first measurement writes the result from qubit 0 to classical bit 0. When that value is `1`, `X` flips qubit 1. Reset then returns qubit 0 to `|0>` without changing the stored value. The final measurement writes qubit 1 to classical bit 1, so the two classical bits agree:'
-  zh: 每次采样中，第一次测量将量子比特 0 的结果写入经典位 0。当该值为 `1` 时，`X` 翻转量子比特 1。随后重置将量子比特 0 恢复为 `|0>`，但不改变已存储的值。最后的测量将量子比特 1 写入经典位 1，因此两个经典位一致：
+  zh: 每次运行时，先测量量子比特 0，并把结果写入经典比特 0。如果结果是 `1`，就用 `X` 翻转量子比特 1。接着，Reset 将量子比特 0 恢复到 `|0>`，但保留之前存下的测量结果。最后测量量子比特 1，把结果写入经典比特 1。这样，两个经典比特的值就会相同：
   status: machine
 - id: 4b37fa8dc353bf48
   en: Not every backend supports this mid-program behavior. If measurement, reset, or classical feedforward is unavailable, the backend rejects the Program rather than silently changing it.
-  zh: 并非所有后端都支持这种程序中途的行为。如果不支持测量、重置或经典前馈，后端会拒绝 Program，而不会悄悄修改它。
+  zh: 使用这类 Program 前，需要确认后端支持测量、重置和经典前馈。如果某项功能不受支持，后端会拒绝执行，并不会自行改写 Program。
   status: machine
 - id: f567a51d74da92a1
   en: Mid-circuit measurement can make execution dynamic because later operations may depend on a sampled outcome. Estimating the resulting distribution therefore requires repeated shots of the same Program.
-  zh: "电路中途测量可以使执行过程动态化，因为后续指令可能依赖采样结果。因此，估计结果分布需要对同一 Program 重复采样。"
+  zh: 中途测量的结果可能每次都不同，后面的操作也会随之变化。因此，想了解最终结果的概率分布，需要对同一个 Program 重复采样。
   status: machine
 - id: fa8f5d62a31ce854
   en: Reuse a parameterized Program
@@ -200,35 +200,35 @@
   status: machine
 - id: f9dd500b9e2de9ec
   en: 'A [`Parameter`][fatqat.Parameter] acts as a placeholder for a numeric operation argument. Calling `assign_parameters` returns a new Program, so the original template remains available for other values:'
-  zh: "[`Parameter`][fatqat.Parameter] 用于表示 Operation 的数值参数占位符。调用 `assign_parameters` 会返回一个新 Program，因此原始模板仍可用于其他值："
+  zh: 如果想尝试不同的参数值，不必每次重写 Program。先用 [`Parameter`][fatqat.Parameter] 为 Operation 的数值参数留一个位置，再通过 `assign_parameters` 填入具体数值。这个方法会返回新的 Program，原来的模板仍可以继续使用：
   status: machine
 - id: e929be41cae0d862
   en: 'The binding map uses the parameter object, as in `{theta: value}`, rather than its display name. Reuse one object in several gates when they should share a value. Use [`ParameterVector`][fatqat.ParameterVector] for an explicitly ordered group. The [simulation chapter](simulation.md) shows how [`run_sweep`][fatqat.simulator.Simulator.run_sweep] evaluates a batch of parameter values from the same template without rebuilding the Program.'
-  zh: '绑定映射以参数对象为键，例如 `{theta: value}`，而非其显示名称。如果多个门应共享一个值，请复用同一对象。需要显式有序的参数组时，使用 [`ParameterVector`][fatqat.ParameterVector]。[模拟章节](simulation.md)展示了如何用 [`run_sweep`][fatqat.simulator.Simulator.run_sweep] 从同一模板计算一批参数值，而无需重新构建 Program。'
+  zh: '绑定参数时，要用参数对象作为字典的键，例如 `{theta: value}`，而不是用它的名称字符串。如果几个门需要共享同一个值，就在这些门中使用同一个参数对象；需要一组有明确顺序的参数时，可以使用 [`ParameterVector`][fatqat.ParameterVector]。想一次尝试多组数值，可以参考[模拟章节](simulation.md)中的 [`run_sweep`][fatqat.simulator.Simulator.run_sweep]，它可以直接复用同一个 Program 模板。'
   status: machine
 - id: fb56d7ad0a04cc71
   en: 'A register''s `dim` gives the number of states available to each slot. With the default `dim=2`, a quantum slot is a qubit and a classical slot is a bit. Setting `dim=3` creates a qutrit or a classical trit. Registers with different dimensions can coexist in one Program:'
-  zh: "Register 的 `dim` 表示每个槽位可用的状态数。默认 `dim=2` 时，量子槽位是量子比特，经典槽位是位。设为 `dim=3` 则创建 qutrit 或经典三进制位。不同维数的 Register 可以共存于同一个 Program："
+  zh: Register 的 `dim` 决定每个成员可以取多少种状态。默认的 `dim=2` 对应量子比特或经典比特；设为 `dim=3`，就可以表示 qutrit（量子三能级系统）或经典三进制位。你也可以在同一个 Program 中使用不同维数的 Register：
   status: machine
 - id: a15ce72b4c2f7d39
   en: Tuple keys list the flattened classical slots in declaration order, making the qubit value `1` and qutrit value `2` explicit. String keys use the same left-to-right order. Each operation determines which local dimensions it accepts, so consult the [qudit operation reference](../api/operations/qudit-gates.md) when you move beyond `Shift`.
-  zh: 元组键按声明顺序列出展平后的经典槽位，明确给出量子比特值 `1` 和 qutrit 值 `2`。字符串键也按相同的从左到右顺序排列。每种操作决定自身接受的局域维数，因此使用 `Shift` 以外的操作时，请查阅 [qudit 操作参考](../api/operations/qudit-gates.md)。
+  zh: 结果元组按照经典 Register 及其成员的声明顺序排列：量子比特的结果是 `1`，qutrit 的结果是 `2`。字符串结果也采用相同的从左到右顺序。不同操作支持的维数可能不同；使用 `Shift` 以外的操作时，可以查阅 [qudit 操作参考](../api/operations/qudit-gates.md)。
   status: machine
 - id: 6f9a0c6ec4a3809b
   en: Draw a Program
-  zh: 绘制 Program
+  zh: 画出 Program 的线路
   status: machine
 - id: 114233a7d9d3616d
   en: 'Drawing lets you check the instruction order and classical conditions before execution. Under the hood, FatQat adapts the Program to QuTiP-QIP''s circuit-drawing tools. The examples below use this Program:'
-  zh: 绘图可以在执行前帮助检查指令顺序和经典条件。FatQat 内部将 Program 适配到 QuTiP-QIP 的电路绘图工具。下面的示例使用此 Program：
+  zh: 把线路画出来，可以更直观地检查指令顺序和经典条件。Program 的绘图功能使用 QuTiP-QIP。我们用下面这个 Program 来看看两种绘图方式：
   status: machine
 - id: 468c50d1e473c32e
   en: Text renderer
-  zh: 文本渲染器
+  zh: 在终端中查看
   status: machine
 - id: 328396664adf9575
   en: 'Pass `"text"` to return a terminal-friendly string, then print it:'
-  zh: 传入 `"text"` 返回适合终端显示的字符串，再将其打印：
+  zh: 传入 `"text"` 就能得到线路的文本表示，再用 print 打印出来：
   status: machine
 - id: 603cb5f55e365748
   en: Reproduce this output
@@ -236,41 +236,53 @@
   status: machine
 - id: 91da30cd46354062
   en: The condition appears directly on `X`, and the vertical connector shows that classical bit 0 controls whether the gate is applied.
-  zh: 条件直接显示在 `X` 上，竖直连线表示经典位 0 控制该门是否施加。
+  zh: 你可以在 `X` 旁边看到执行条件。竖直连线则表示：是否执行这个门，取决于经典比特 0 的值。
   status: machine
 - id: 28ff495657da7408
   en: Matplotlib renderer
-  zh: Matplotlib 渲染器
+  zh: 使用 Matplotlib 显示
   status: machine
 - id: 4bce074e37e2af00
   en: 'With no renderer argument, `draw()` returns a Matplotlib figure:'
-  zh: 不指定渲染器参数时，`draw()` 返回 Matplotlib 图对象：
+  zh: 不指定绘图方式时，`draw()` 默认返回 Matplotlib 图对象，可以直接显示：
   status: machine
 - id: 05d16ae24c652e8d
   en: '![Circuit drawing of a two-qubit Program with measurement, classical feedforward, reset, and final measurement.](../assets/generated/guide/program-drawing.png)'
-  zh: '![双量子比特 Program 的电路图，包含测量、经典前馈、重置和最终测量。](../assets/generated/guide/program-drawing.png)'
+  zh: '![双量子比特 Program 的线路图，包含测量、经典前馈、重置和最终测量。](../assets/generated/guide/program-drawing.png)'
   status: machine
 - id: 0210454e29d89499
   en: Both renderers show the instructions recorded in the Program, not the result of executing them.
   zh: 两种渲染器显示的都是 Program 中记录的指令，而不是执行结果。
-  status: machine
+  status: retired
 - id: 49c1fcef33757eb6
   en: A Program can also contain direct physical controls. Add them as `PulseOperation` instructions without quantum targets; their control channels identify the physical resources. The [Hamiltonian-emulation chapter](hamiltonian-emulation.md) visualizes these controls as waveforms and timelines instead.
-  zh: "Program 也可以包含直接物理控制。将其作为不带量子目标的 `PulseOperation` 指令添加；控制通道（control channel）会标识物理资源。[哈密顿量仿真章节](hamiltonian-emulation.md)将这些控制可视化为波形与时间线。"
+  zh: 如果要加入直接的物理控制，也可以把它写成 `PulseOperation` 放进 Program。这时不需要另行指定量子目标，因为控制通道（control channel）本身就指明了作用的物理资源。这类控制适合用波形和时间线展示，示例见[哈密顿量仿真](hamiltonian-emulation.md)。
   status: machine
 - id: bb3faf82be97c5f3
   en: Understand validation
-  zh: 理解验证机制
+  zh: Program 会检查哪些问题
   status: machine
 - id: 9cc6a277c928a718
   en: '`Program` validates structure as you build it: references must belong to the Program, each operation must receive the expected number of targets, and measured quantum and classical dimensions must agree. The selected backend then checks whether it supports those operations, dimensions, controls, and classical behavior.'
-  zh: '`Program` 在构建过程中验证结构：引用必须属于该 Program，每个操作必须收到预期数量的目标，被测量子与经典维数必须一致。所选后端随后检查是否支持这些操作、维数、控制和经典行为。'
+  zh: 编写 `Program` 时，它会检查引用的资源是否属于当前 Program、操作的目标数量是否正确，以及测量时量子资源与接收结果的经典资源维数是否匹配。选定后端后，后端还会检查自己是否支持这些操作、维数、物理控制和经典条件等行为。
   status: machine
 - id: 7257fdf13a23ce2a
   en: Continue with [choose how much physics to model](execution-models.md) to see how different backends interpret a Program. Use the [Program API](../api/program.md) when you need exact accepted forms or validation behavior.
-  zh: 继续阅读[选择需要建模的物理细节](execution-models.md)，了解不同后端如何解释 Program。确切的输入形式和验证行为见 [Program API](../api/program.md)。
-  status: machine
+  zh: <!-- 省略下一章预告：[选择需要建模的物理细节](execution-models.md)。 --> 具体的输入格式和检查规则可以查阅 [Program API](../api/program.md)。
+  status: retired
 - id: 946d69fe8e75bd5d
   en: If you want the compiler to map and route a static gate circuit before it is run, construct a [`LogicalProgram`][fatqat.LogicalProgram] instead. It keeps the same register and authoring model while restricting operations to the device-independent compiler frontend. The [compiler workflow](compiler.md) describes its supported gates and source restrictions.
-  zh: "如果希望编译器在运行前为静态门电路执行映射和路由，请改为构建 [`LogicalProgram`][fatqat.LogicalProgram]。它保留相同的 Register 和编写模型，同时将操作限制为设备无关的编译器前端支持的范围。[编译器工作流程](compiler.md)介绍了支持的门和源程序限制。"
+  zh: <!-- 本页省略编译器分支说明：[`LogicalProgram`][fatqat.LogicalProgram]；[编译器工作流程](compiler.md)。 -->
+  status: retired
+- id: 42c2029756994ba5
+  en: '[`Program`][fatqat.Program] is what you build and pass to every FatQat backend. If you are used to a `Circuit` class, this is FatQat''s broader equivalent: it can contain circuit gates, measurements, classical conditions, symbolic parameters, qubits and qudits, and direct physical controls.'
+  zh: 你可以用 [`Program`][fatqat.Program] 编写计算，再交给 FatQat 的后端运行。如果你熟悉其他工具中的 `Circuit` 类，可以从这个概念来理解 Program。不过，Program 能表达的不只是量子门，还包括测量、经典条件、符号参数、量子比特和 qudit，以及直接的物理控制。
+  status: retired
+- id: e92f47aeadf8199a
+  en: See the [Program API](../api/program.md) for accepted input forms and validation rules.
+  zh: 具体的输入格式和检查规则可以查阅 [Program API](../api/program.md)。
+  status: machine
+- id: 7ac9f246d982cb62
+  en: '[`Program`][fatqat.Program] is the object used to describe a quantum computation in FatQat. If you are used to a `Circuit` class, this is FatQat''s broader equivalent: it can contain circuit gates, measurements, classical conditions, symbolic parameters, qubits and qudits, and direct physical controls.'
+  zh: "[`Program`][fatqat.Program] 是 FatQat 中用于描述量子计算的对象。如果你熟悉其他工具中的 `Circuit` 类，可以从这个概念来理解 Program。不过，Program 能表达的不只是量子门，还包括测量、经典条件、符号参数、量子比特和 qudit，以及直接的物理控制。"
   status: machine

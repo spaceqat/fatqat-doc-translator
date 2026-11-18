@@ -20,7 +20,7 @@
   status: machine
 - id: 6cffdd317d1dc07e
   en: 'The variational quantum eigensolver (VQE) estimates the ground-state energy of a Hamiltonian $H$ by making the variational principle $E(\theta) \geq E_0$ do the work: a parameterized circuit prepares $|\psi(\theta)\rangle$, the energy'
-  zh: "变分量子本征求解器（VQE）利用变分原理 $E(\\theta) \\geq E_0$，估计哈密顿量 $H$ 的基态能量。参数化电路先制备 $|\\psi(\\theta)\\rangle$，对应能量为"
+  zh: "变分量子本征求解器（VQE）利用变分原理 $E(\\theta) \\geq E_0$，估计哈密顿量 $H$ 的基态能量。参数化线路先制备 $|\\psi(\\theta)\\rangle$，对应能量为"
   status: machine
 - id: 6521b6b039748329
   en: is evaluated on the quantum processor, and a classical optimizer walks $\theta$ downhill. The lowest energy found is an upper bound on the true ground-state energy $E_0$.
@@ -32,7 +32,7 @@
   status: machine
 - id: 16dec6792c30bda5
   en: so the energy is a weighted sum of expectation values — exactly what an Estimator computes against one circuit evaluation.
-  zh: 因此能量是期望值的加权和——这正是 Estimator 针对一次电路求值所计算的东西。
+  zh: 因此能量是期望值的加权和——这正是 Estimator 针对一次线路求值所计算的东西。
   status: machine
 - id: 5b00ff3de9375c2a
   en: 'The tutorial source contains three executable acts:'
@@ -76,7 +76,7 @@
   status: machine
 - id: 7920fd66521fc517
   en: 'Each non-identity Pauli term becomes one `fq.Observable`, built with `from_sparse`: only the non-identity factors are named, as explicit `(pauli, (qubit,), coefficient)` entries. The explicit qubit index sidesteps the string-endianness trap noted above (`IZ` means *Z on qubit 1*). One entry is a product — `("ZZ", (0, 1), 1.0)` is the single term $Z_0 Z_1$, while two entries would sum. Every observable carries coefficient 1.0; the Hamiltonian coefficients live in `COEFFS` and are applied classically, so the energy is `OFFSET` plus the weighted sum of the four expectations.'
-  zh: 每个非恒等 Pauli 项都变成一个用 `from_sparse` 构建的 `fq.Observable`：只需列出非恒等因子，以显式的 `(pauli, (qubit,), coefficient)` 条目给出。显式的量子比特索引避开了上文提到的字符串端序陷阱（`IZ` 表示 *Z 作用于量子比特 1*）。一个条目表示乘积——`("ZZ", (0, 1), 1.0)` 是单个项 $Z_0 Z_1$，而两个条目则表示求和。每个可观测量的系数都取 1.0；哈密顿量的系数存放在 `COEFFS` 中并在经典侧应用，因此能量等于 `OFFSET` 加上四个期望值的加权和。
+  zh: "每个非恒等 Pauli 项都变成一个用 `from_sparse` 创建的 `fq.Observable`：只需列出非恒等因子，以显式的 `(pauli, (qubit,), coefficient)` 条目给出。显式的量子比特索引避开了上文提到的字符串端序陷阱（`IZ` 表示 *Z 作用于量子比特 1*）。一个条目表示乘积——`(\"ZZ\", (0, 1), 1.0)` 是单个项 $Z_0 Z_1$，而两个条目则表示求和。每个可观测量的系数都取 1.0；哈密顿量的系数存放在 `COEFFS` 中并在经典侧应用，因此能量等于 `OFFSET` 加上四个期望值的加权和。"
   status: machine
 - id: f1a61aaa1fe53e25
   en: 'The ansatz: a parameterized template'
@@ -84,7 +84,7 @@
   status: machine
 - id: 15440def4f0678ba
   en: '`THETA` is a `fq.ParameterVector` of length 4 — a group of named placeholders. `build_template()` assembles the two-qubit ansatz with the placeholders in place of angles: two layers, each applying `RY` on both wires (one parameter each) and closing with `CX` from qubit 0 to qubit 1. The template is built once; binding it returns a new program and never mutates it.'
-  zh: '`THETA` 是长度为 4 的 `fq.ParameterVector`——一组具名占位符。`build_template()` 用占位符代替角度组装双量子比特拟设：共两层，每层在两条线路上各应用一个 `RY`（各带一个参数），并以从量子比特 0 到量子比特 1 的 `CX` 收尾。模板只构建一次；绑定它会返回新程序，绝不修改模板本身。'
+  zh: "`THETA` 是长度为 4 的 `fq.ParameterVector`——一组具名占位符。`build_template()` 用占位符代替角度组装双量子比特拟设：共两层，每层在两条线路上各应用一个 `RY`（各带一个参数），并以从量子比特 0 到量子比特 1 的 `CX` 收尾。模板只创建一次；绑定它会返回新程序，绝不修改模板本身。"
   status: machine
 - id: 47fe1a12dcbf9023
   en: Because the Hamiltonian is real, its ground state can be chosen real, and four `RY` angles interleaved with an entangler span every real two-qubit state — so this ansatz can reach $E_0$ in principle.
@@ -128,7 +128,7 @@
   status: machine
 - id: 56cd44d7fea98e8f
   en: 'Noise is declared independently of the program: a `fq.NoiseModel` holds physical declarations — here `fq.noise.Depolarizing` after every `RY` ($p = 0.01$) and, more strongly, after every `CX` ($p = 0.05$) — and the same template runs on a density-matrix simulator constructed with that model. A density-matrix Estimator in `shots=0` mode returns the noise-averaged expectation exactly: no sampling is needed to *see* the noise. See [ideal and noisy execution](../guide/ideal-and-noisy.md) for the full workflow.'
-  zh: 噪声的声明独立于程序：`fq.NoiseModel` 保存物理声明——这里是在每个 `RY` 之后附加 `fq.noise.Depolarizing`（$p = 0.01$），并在每个 `CX` 之后附加更强的一份（$p = 0.05$）——同一个模板随后在用该模型构建的密度矩阵模拟器上运行。密度矩阵 Estimator 在 `shots=0` 模式下精确返回噪声平均后的期望值：无需采样即可*看到*噪声。完整工作流参见[理想与含噪执行](../guide/ideal-and-noisy.md)。
+  zh: "噪声的声明独立于程序：`fq.NoiseModel` 保存物理声明——这里是在每个 `RY` 之后附加 `fq.noise.Depolarizing`（$p = 0.01$），并在每个 `CX` 之后附加更强的一份（$p = 0.05$）——同一个模板随后在用该模型创建的密度矩阵模拟器上运行。密度矩阵 Estimator 在 `shots=0` 模式下精确返回噪声平均后的期望值：无需采样即可*看到*噪声。完整工作流参见[理想与含噪执行](../guide/ideal-and-noisy.md)。"
   status: machine
 - id: 02f9374ac261d1d1
   en: 'First, the degradation: the exact-VQE minimum is re-evaluated under noise. Then COBYLA re-optimizes under noise — and recovers essentially nothing: a variational ansatz cannot rotate unital noise away, so the lifted floor is there to stay (it can only be mitigated classically, not optimized away).'

@@ -10,7 +10,7 @@ ui:
 index:
   zh:
     title: 教程
-    description: 可执行的 FatQat 案例研究，从第一个电路到多体动力学。
+    description: 可执行的 FatQat 案例研究，从第一个线路到多体动力学。
     introduction: 超越面向任务的用户指南，学习完整、可执行的案例研究。每张卡片和运行结果面板 都是从其分类目录下的 Markdown 源文件自动发现的。
     tip_title: 选择一条路径
     tip: 如果你刚接触 FatQat，请从贝尔态开始。算法系列复用同一执行模型，而中性原子 系列则逐步深入多体硬件物理。
@@ -19,7 +19,7 @@ categories:
   foundations:
     zh:
       title: 基础
-      description: 从一个小巧的电路开始，它的量子态、采样结果和可视化解读都可以手工验证。
+      description: 从一个小巧的线路开始，它的量子态、采样结果和可视化解读都可以手工验证。
   algorithms:
     zh:
       title: 算法

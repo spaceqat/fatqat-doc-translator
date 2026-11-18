@@ -1,10 +1,10 @@
 - id: 5957e98c8cd785a4
   en: Build a Toffoli gate by borrowing a third level
-  zh: 借用第三能级构建 Toffoli 门
+  zh: "借用第三能级实现 Toffoli 门"
   status: machine
 - id: 6f9e94b452777c0d
   en: Use a qubit–qutrit–qubit register to construct Toffoli with three qubit–qutrit interactions, then verify its relative phases and return from the borrowed level.
-  zh: 使用量子比特–qutrit–量子比特寄存器，以三次量子比特–qutrit 相互作用构建 Toffoli 门，再验证相对相位以及从借用能级返回的过程。
+  zh: "使用量子比特–qutrit–量子比特寄存器，以三次量子比特–qutrit 相互作用实现 Toffoli 门，再验证相对相位以及从借用能级返回的过程。"
   status: machine
 - id: efab3866fc676b1c
   en: One simulated input follows 110, 120, 121, and 111 at the input, controlled level exchange, target flip, and restoration checkpoints; the middle system's level-2 population is zero, one, one, and zero.
@@ -16,7 +16,7 @@
   status: machine
 - id: c950dc7048298eec
   en: 'In this tutorial, we build a Toffoli gate with three qubit–qutrit interactions and verify its action on quantum states. The middle system is a qutrit: it has levels $|0\rangle$, $|1\rangle$, and $|2\rangle$. We use its first two levels as a logical qubit and borrow the third during the gate. The final checks will show that we recover the required logical output, including its relative phases, and empty the borrowed level.'
-  zh: 本教程用三次量子比特–qutrit 相互作用构建 Toffoli 门，并验证其对量子态的作用。中间系统是 qutrit，具有 $|0\rangle$、$|1\rangle$ 和 $|2\rangle$ 三个能级。以前两个能级作为逻辑量子比特，在执行门时借用第三能级。最终检查将表明，我们恢复了所需的逻辑输出及其相对相位，并清空了借用能级。
+  zh: "本教程用三次量子比特–qutrit 相互作用实现 Toffoli 门，并验证其对量子态的作用。中间系统是 qutrit，具有 $|0\\rangle$、$|1\\rangle$ 和 $|2\\rangle$ 三个能级。以前两个能级作为逻辑量子比特，在执行门时借用第三能级。最终检查将表明，我们恢复了所需的逻辑输出及其相对相位，并清空了借用能级。"
   status: machine
 - id: 14ffde9c6d006100
   en: You should be familiar with qubit basis states, superpositions, and basic single-qubit gates. Here we use ideal gate simulation to study a register with different local dimensions.
@@ -32,7 +32,7 @@
   status: machine
 - id: c1d9d69314c8946b
   en: 'We give the middle control, $b$, access to $|2\rangle$ and construct the gate in three steps:'
-  zh: 让中间控制位 $b$ 可以访问 $|2\rangle$，分三步构建该门：
+  zh: "让中间控制位 $b$ 可以访问 $|2\\rangle$，分三步实现该门："
   status: machine
 - id: 44935bbba4649d2b
   en: '**Borrow the third level.** When the input has $a=1$ and $b=1$, move $b$ from $|1\rangle$ to $|2\rangle$.'
@@ -80,7 +80,7 @@
   status: machine
 - id: 1b0c318dec2ac0a6
   en: We can build the controlled exchange from two rotations and a controlled phase. `SubspaceRY(theta, (1, 2))` applies the usual qubit $R_y$ rotation within the ordered pair $(|1\rangle,|2\rangle)$ of `b`, leaving its $|0\rangle$ level untouched.
-  zh: 受控交换可由两次旋转和一个受控相位构建。`SubspaceRY(theta, (1, 2))` 在 `b` 的有序能级对 $(|1\rangle,|2\rangle)$ 内施加通常的量子比特 $R_y$ 旋转，保持 $|0\rangle$ 能级不变。
+  zh: "受控交换可由两次旋转和一个受控相位实现。`SubspaceRY(theta, (1, 2))` 在 `b` 的有序能级对 $(|1\\rangle,|2\\rangle)$ 内施加通常的量子比特 $R_y$ 旋转，保持 $|0\\rangle$ 能级不变。"
   status: machine
 - id: ca8c278f17e42153
   en: 'Between the rotations, we use `CClock(1)` to change a sign when `a=1`. Its second operand''s dimension sets the phase''s root of unity. We put the qutrit first and the qubit second, `(b[0], a[0])`, to obtain the binary phases $\pm1$:'
@@ -256,7 +256,7 @@
   status: machine
 - id: a606760d4ee43586
   en: Having verified the gate, we can count the operations needed to construct it. Each `CClock` couples the qutrit `b` to one qubit, either `a` or `t`. The other gates act on one subsystem at a time. We count these groups in the same `sequence` we simulated, using each operation's `num_subsystems` value. The count covers the gate itself; input preparation is separate.
-  zh: 验证该门后，可以统计构建它所需的操作。每个 `CClock` 将 qutrit `b` 与量子比特 `a` 或 `t` 耦合，其他门每次只作用于一个子系统。在模拟使用的同一个 `sequence` 中，依据各操作的 `num_subsystems` 值分类计数。统计只覆盖门本身，输入制备单独处理。
+  zh: "验证该门后，可以统计实现它所需的操作。每个 `CClock` 将 qutrit `b` 与量子比特 `a` 或 `t` 耦合，其他门每次只作用于一个子系统。在模拟使用的同一个 `sequence` 中，依据各操作的 `num_subsystems` 值分类计数。统计只覆盖门本身，输入制备单独处理。"
   status: machine
 - id: 73aea9e3ee2c5a40
   en: 'There are eleven primitive instructions: three qubit–qutrit interactions, two single-qubit gates (`H` on `t`), and six single-qutrit gates (four rotations and two level swaps on `b`). Each of the three blocks uses one interaction, with local gates selecting how it acts on the logical states.'

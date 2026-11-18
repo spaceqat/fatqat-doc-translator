@@ -20,7 +20,7 @@
   status: machine
 - id: 0d3b34f11ebce4c5
   en: '[`Simulator`][fatqat.simulator.Simulator], the two superconducting profiles, and [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] share these channel rules. The profiles may impose additional operation, placement, and dimension limits.'
-  zh: '[`Simulator`][fatqat.simulator.Simulator]、两个超导配置以及 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 共享这些信道规则。这些配置可能施加额外的操作、放置与维度限制。'
+  zh: "[`Simulator`][fatqat.simulator.Simulator]、两个超导设备模型以及 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 共享这些信道规则。这些配置可能施加额外的操作、放置与维度限制。"
   status: retired
 - id: e420516e225ad18e
   en: '**Built-in simulator channels**'
@@ -48,7 +48,7 @@
   status: machine
 - id: ac7d35b392ad9f96
   en: Pulse emulators use local Lindblad operators built from supported rates and times. They do not infer a rate from a probability. Built-in probability forms, [`PauliChannel`][fatqat.noise.PauliChannel], and [`Loss`][fatqat.noise.Loss] are unsupported. Each emulator family owns its continuous-noise realizations.
-  zh: "脉冲仿真器使用由受支持的速率与时间构建的局部 Lindblad 算符。它们不会从概率推断速率。内置概率形式、[`PauliChannel`][fatqat.noise.PauliChannel] 与 [`Loss`][fatqat.noise.Loss] 均不受支持。每个仿真器类型拥有各自的连续噪声实现。"
+  zh: "脉冲仿真器使用由受支持的速率与时间生成的局部 Lindblad 算符。它们不会从概率推断速率。内置概率形式、[`PauliChannel`][fatqat.noise.PauliChannel] 与 [`Loss`][fatqat.noise.Loss] 均不受支持。每个仿真器类型拥有各自的连续噪声实现。"
   status: machine
 - id: a97a21f3c246baba
   en: '**Emulator support**'
@@ -92,7 +92,7 @@
   status: machine
 - id: 53687c485439c166
   en: '| [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] | **Built in.** Applies universally or to one measured operand. The matrix size must equal the reported digit dimension; the superconducting profiles therefore require `2 x 2`. |'
-  zh: '| [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] | **内置。**全局应用，或作用于一个被测量的操作数。矩阵尺寸必须等于报告数位的维度；因此超导配置要求 `2 x 2`。 |'
+  zh: "| [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] | **内置。**全局应用，或作用于一个被测量的操作数。矩阵尺寸必须等于报告数位的维度；因此超导设备模型要求 `2 x 2`。 |"
   status: retired
 - id: ec8caf51af802596
   en: '| Backend | Built-in Lindblad-operator behavior | Readout and limits |'
@@ -112,7 +112,7 @@
   status: machine
 - id: 273b17439d3ec7d8
   en: '[`Simulator`][fatqat.simulator.Simulator], [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator], and [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] share these channel rules. The two hardware profiles may impose additional operation, placement, and dimension limits.'
-  zh: '[`Simulator`][fatqat.simulator.Simulator]、[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 和 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 共用这些信道规则。两种硬件配置还可能施加额外的操作、放置和维数限制。'
+  zh: "[`Simulator`][fatqat.simulator.Simulator]、[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 和 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 共用这些信道规则。两种设备模型还可能施加额外的操作、放置和维数限制。"
   status: machine
 - id: 0fdcea30a08f4c2b
   en: '| [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] `(p)` | **Built in for qubits.** Applies the conventional finite amplitude-damping channel to one selected operand. |'

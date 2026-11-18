@@ -4,7 +4,7 @@
   status: machine
 - id: d9b3fc77fc4a2779
   en: Use dynamic Pair and Unpair operations to build an eight-atom GHZ state, then test both its correlations and coherent phase.
-  zh: 使用动态的 Pair 与 Unpair 操作构建八原子 GHZ 态，然后同时检验它的关联与相干相位。
+  zh: "使用动态的 Pair 与 Unpair 操作制备八原子 GHZ 态，然后同时检验它的关联与相干相位。"
   status: machine
 - id: 39c2bd539a54affe
   en: Eight-atom GHZ measurement frequencies
@@ -12,7 +12,7 @@
   status: machine
 - id: 0eb30251770f4475
   en: 'This tutorial builds an eight-atom Greenberger-Horne-Zeilinger (GHZ) state on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator], fatqat''s neutral-atom execution target. It is a step up from the two-qubit Bell tutorial in two ways: the state spans eight atoms instead of two, and the circuit runs on a backend whose two-qubit-gate connectivity is *reconfigured mid-circuit* rather than fixed.'
-  zh: 本教程在 fatqat 的中性原子执行目标 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上构建八原子 Greenberger-Horne-Zeilinger（GHZ）态。相比双量子比特 Bell 教程，它在两方面更进一步：量子态跨越八个原子而非两个，并且电路运行在一个双量子比特门连通性*在电路中途重新配置*而非固定不变的后端上。
+  zh: "本教程在 fatqat 的中性原子执行目标 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上创建八原子 Greenberger-Horne-Zeilinger（GHZ）态。相比双量子比特 Bell 教程，它在两方面更进一步：量子态跨越八个原子而非两个，并且线路运行在一个双量子比特门连通性*在线路中途重新配置*而非固定不变的后端上。"
   status: retired
 - id: 77d0ab522b46a87b
   en: The GHZ state generalises the Bell state to $n$ qubits,
@@ -24,11 +24,11 @@
   status: machine
 - id: 01a623fbeec22d0c
   en: The neutral-atom twist is connectivity. On this backend a `CZ` acts only on a pair of atoms that is currently *paired*. The [`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] operations update that pairing state as the circuit runs. Physically, `Pair` stands for "move these two atoms into a shared entangling zone" and `Unpair` for "move them apart again" -- the atom transport that gives a reconfigurable neutral-atom processor its programmable connectivity. We exploit exactly this to entangle atoms that no fixed one-dimensional layout would place next to each other.
-  zh: 中性原子的特别之处在于连通性。在这个后端上，`CZ` 只能作用于当前处于*配对*状态的一对原子。[`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] 操作会在电路运行过程中更新这一配对状态。物理上，`Pair` 表示“把这两个原子移入共享的纠缠区”，`Unpair` 表示“再把它们分开”——正是这种原子输运赋予可重构中性原子处理器可编程的连通性。我们恰恰利用这一点来纠缠那些任何固定一维布局都不会放在相邻位置的原子。
+  zh: 中性原子的特别之处在于连通性。在这个后端上，`CZ` 只能作用于当前处于*配对*状态的一对原子。[`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] 操作会在线路运行过程中更新这一配对状态。物理上，`Pair` 表示“把这两个原子移入共享的纠缠区”，`Unpair` 表示“再把它们分开”——正是这种原子输运赋予可重构中性原子处理器可编程的连通性。我们恰恰利用这一点来纠缠那些任何固定一维布局都不会放在相邻位置的原子。
   status: machine
 - id: d75587ca82ded376
   en: A [`fatqat.Program`][fatqat.Program] is the backend-independent circuit description. Gate values live in [`fatqat.operations`](../api/operations.md). NumPy helps us tabulate expectation values, and Matplotlib supplies the captured runtime figure.
-  zh: "[`fatqat.Program`][fatqat.Program] 描述电路，不依赖具体后端。量子门对象位于 [`fatqat.operations`](../api/operations.md)。下面用 NumPy 整理期望值数据，用 Matplotlib 绘制运行结果。"
+  zh: "[`fatqat.Program`][fatqat.Program] 描述线路，不依赖具体后端。量子门对象位于 [`fatqat.operations`](../api/operations.md)。下面用 NumPy 整理期望值数据，用 Matplotlib 绘制运行结果。"
   status: machine
 - id: beb520b9b0176ac8
   en: The native gate set
@@ -40,7 +40,7 @@
   status: machine
 - id: c0b3b0e4427d8dc4
   en: Writing these as small helpers keeps the circuit-building code below readable.
-  zh: 把它们写成小的辅助函数，能让下面的电路构建代码保持易读。
+  zh: "把它们写成小的辅助函数，能让下面的编写线路的代码保持易读。"
   status: machine
 - id: 201659d345e0999f
   en: A log-depth entangling tree
@@ -72,7 +72,7 @@
   status: machine
 - id: 14e55ecad568b0f9
   en: We run the measured program on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator], sized to eight trap sites. A fixed seed keeps this page's numbers stable across repeated tutorial runs; drop it for independent experimental samples. Because the circuit is noiseless, every one of the 2000 shots lands on one of the two GHZ branches -- no other bitstring appears.
-  zh: 我们在配置为八个阱位的 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上运行带测量的程序。固定的种子使本页面的数字在多次教程运行之间保持稳定；如需独立的实验样本可以去掉它。由于电路无噪声，2000 次测量中的每一次都落在两个 GHZ 分支之一上——不会出现其他比特串。
+  zh: 我们在配置为八个阱位的 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上运行带测量的程序。固定的种子使本页面的数字在多次教程运行之间保持稳定；如需独立的实验样本可以去掉它。由于线路无噪声，2000 次测量中的每一次都落在两个 GHZ 分支之一上——不会出现其他比特串。
   status: retired
 - id: 404426e0944e91ee
   en: Only `00000000` and `11111111` occur, each in roughly half the shots. The bars below show the observed frequencies against the ideal $1/2$; finite-shot sampling nudges each bar slightly off that line, while every intermediate bitstring stays empty.
@@ -120,5 +120,5 @@
   status: machine
 - id: 480ed78355df5857
   en: We run the measured program on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]; its eight quantum resources also determine the array size. A fixed seed keeps the numbers stable across tutorial runs, while omitting it produces independent samples. Because the circuit is noiseless, all 2000 shots land on one of the two GHZ branches and no other bitstring appears.
-  zh: 我们在 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上运行带测量的程序；它的八个量子资源也决定了阵列规模。固定的种子使数字在多次教程运行之间保持稳定，而省略它则会产生相互独立的样本。由于电路无噪声，全部 2000 次测量都落在两个 GHZ 分支之一上，不会出现其他比特串。
+  zh: 我们在 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上运行带测量的程序；它的八个量子资源也决定了阵列规模。固定的种子使数字在多次教程运行之间保持稳定，而省略它则会产生相互独立的样本。由于线路无噪声，全部 2000 次测量都落在两个 GHZ 分支之一上，不会出现其他比特串。
   status: machine

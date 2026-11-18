@@ -317,7 +317,7 @@
 - id: f38b09c990d4b16e
   en: The two-level atom backend also accepts an optional gate implementation map. It has its own continuous-noise implementations. `Atom2LevelEmulator` has an empty built-in gate map and global direct controls; user-supplied maps can add gate rules. See [Neutral-atom emulator](atom-emulators.md) for its API and [Choose and run a neutral-atom workflow](../guide/neutral-atom-emulation.md) for the complete workflow.
   ko: 2준위 원자 백엔드도 선택적으로 게이트 구현 맵을 받으며, 자체 연속시간 잡음 구현을 제공합니다. `Atom2LevelEmulator`의 내장 게이트 맵은 비어 있고 직접 제어는 전역적으로 작용합니다. 사용자 맵으로 게이트 규칙을 추가할 수 있습니다. API는 [중성 원자 에뮬레이터](atom-emulators.md), 전체 과정은 [중성 원자 작업 흐름 선택 및 실행](../guide/neutral-atom-emulation.md)을 참고하세요.
-  status: machine
+  status: retired
 - id: cc989fb46ac977ae
   en: Simulation methods
   ko: 시뮬레이션 방법
@@ -333,4 +333,8 @@
 - id: bc841cae20b62870
   en: '**`execution_config` keys**'
   ko: '**`execution_config` 키**'
+  status: machine
+- id: b5030ca4886fbc7d
+  en: The two-level atom backend also accepts an optional gate implementation map. It has its own continuous-noise implementations. `Atom2LevelEmulator` has an empty built-in gate map and global direct controls; user-supplied maps can add gate rules. See [Neutral-atom emulator](atom-emulators.md) for its API and [Emulate neutral atoms with laser pulses](../guide/neutral-atom-emulation.md) for the complete workflow.
+  ko: "2준위 원자 백엔드는 선택적으로 게이트 구현 맵을 받으며 자체 연속 잡음 구현을 갖습니다. `Atom2LevelEmulator`는 전역 제어를 직접 지정할 수 있고 내장 게이트 맵은 비어 있습니다. 사용자가 게이트 구현 맵으로 규칙을 추가할 수 있습니다. API는 [중성 원자 에뮬레이터](atom-emulators.md), 전체 절차는 [레이저 펄스로 중성 원자 에뮬레이션하기](../guide/neutral-atom-emulation.md)를 참고하세요."
   status: machine

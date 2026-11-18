@@ -5,7 +5,7 @@
 - id: 9bf34699612b6c6b
   en: Start with [Choose how much physics to model](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/hardware-profile-simulation.md) for the profile workflow.
   ko: 실행 수준을 정하려면 [모델링할 물리 수준 선택](../../guide/execution-models.md)을, 프로필 사용 과정을 보려면 [하드웨어 프로필로 Program 검사](../../guide/hardware-profile-simulation.md)를 참고하세요.
-  status: machine
+  status: retired
 - id: e5bbaff4b52ca744
   en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] uses a configurable superconducting coupling graph and accepts `X`, `SX`, virtual `RZ`, and coupled `CZ`. It offers an optional reference noise model.'
   ko: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]는 설정 가능한 초전도 결합 그래프를 사용하며 `X`, `SX`, 가상 `RZ`, 결합된 `CZ`를 받습니다. 선택적인 참조 잡음 모델도 제공합니다.'
@@ -57,4 +57,12 @@
 - id: e91038f7c32db28c
   en: '[LOSimulator](linear-optics.md)'
   ko: '[LOSimulator](linear-optics.md)'
+  status: machine
+- id: 510055bee9f4640c
+  en: Start with [Choose how much physics to model](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/superconducting-simulation.md) for the profile workflow.
+  ko: 실행 수준을 정하려면 [모델링할 물리 수준 선택](../../guide/execution-models.md)을, 프로필 사용 과정을 보려면 [하드웨어 프로필로 Program 검사](../../guide/superconducting-simulation.md)를 참고하세요.
+  status: retired
+- id: abea5b4fb1e7da50
+  en: Start with [Choose a simulation or emulation approach](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/superconducting-simulation.md) for the profile workflow.
+  ko: "먼저 [시뮬레이션과 에뮬레이션 방식 선택하기](../../guide/execution-models.md)에서 실행 방식을 고르거나, [하드웨어 제약으로 Program 검증하기](../../guide/superconducting-simulation.md)를 통해 장치 모델의 사용 과정을 살펴보세요."
   status: machine

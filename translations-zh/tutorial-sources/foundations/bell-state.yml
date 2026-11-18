@@ -12,7 +12,7 @@
   status: retired
 - id: 956547c1ccb4be6d
   en: This tutorial builds the smallest entangled quantum system and follows it from an exact statevector to finite-shot measurement data. Along the way, it shows the distinction between a quantum state and the classical evidence collected from repeated measurements.
-  zh: 本教程构建最小的纠缠量子系统，并跟踪它从精确态矢量到有限次测量数据的全过程。在此过程中，教程展示了量子态与从重复测量中收集到的经典证据之间的区别。
+  zh: "本教程创建最小的纠缠量子系统，并跟踪它从精确态矢量到有限次测量数据的全过程。在此过程中，教程展示了量子态与从重复测量中收集到的经典证据之间的区别。"
   status: retired
 - id: 8d3c38839aff0ea7
   en: For two qubits, the Bell state used here is
@@ -32,11 +32,11 @@
   status: machine
 - id: 14a2201da41c34ca
   en: A `fatqat.Program` is the backend-independent circuit description. Gate values live in `fatqat.operations`; fixed gates such as `H` and `CX` are passed directly rather than constructed. NumPy helps us check the state, and Matplotlib supplies the captured runtime figure.
-  zh: '`fatqat.Program` 是与后端无关的电路描述。门的取值位于 `fatqat.operations` 中；诸如 `H` 和 `CX` 之类的固定门直接传入而无需构造。NumPy 帮助我们检查量子态，Matplotlib 则提供捕获的运行时图像。'
+  zh: '`fatqat.Program` 是与后端无关的线路描述。门的取值位于 `fatqat.operations` 中；诸如 `H` 和 `CX` 之类的固定门直接传入而无需构造。NumPy 帮助我们检查量子态，Matplotlib 则提供捕获的运行时图像。'
   status: retired
 - id: 37b77839e1a80338
   en: Build the entangling circuit
-  zh: 构建纠缠电路
+  zh: "创建纠缠线路"
   status: retired
 - id: ecad94f81e911ca9
   en: The system begins in $|00\rangle$. Applying a Hadamard gate to qubit zero creates
@@ -84,7 +84,7 @@
   status: retired
 - id: 3a72a926e22f1764
   en: estimates the Born probability. The dashed line marks the ideal probability $1/2$ for both allowed outcomes. Sampling noise moves each bar slightly away from that value, while the impossible `01` and `10` outcomes remain absent in this noiseless circuit.
-  zh: 用于估计 Born 概率。虚线标出两个允许结果的理想概率 $1/2$。采样噪声使每个柱条略微偏离该值，而不可能出现的 `01` 和 `10` 结果在这个无噪声电路中始终不出现。
+  zh: 用于估计 Born 概率。虚线标出两个允许结果的理想概率 $1/2$。采样噪声使每个柱条略微偏离该值，而不可能出现的 `01` 和 `10` 结果在这个无噪声线路中始终不出现。
   status: retired
 - id: c059a947e7deaac3
   en: The exact statevector and the sampled histogram answer different questions. The vector describes the coherent state before observation, including its amplitudes and relative phases. Counts describe classical outcomes after measurement, and their precision is limited by `shots`. Increasing the shot count narrows the statistical fluctuations but does not reveal phase information; experiments that target phase require a different measurement basis.
@@ -100,5 +100,5 @@
   status: retired
 - id: e99de0bdf6967497
   en: A sampled program needs two classical bits. We rebuild the short program so its quantum instructions are unchanged, then measure quantum slots zero and one into classical slots zero and one. Count strings are displayed with classical slot zero on the left, so the correlated results appear as `"00"` and `"11"`.
-  zh: 采样程序需要两个经典位。我们重新构建这个短程序，保持量子指令不变，再将量子槽位零和一分别测量到经典槽位零和一。计数字符串将经典槽位零显示在最左侧，因此关联结果显示为 `"00"` 和 `"11"`。
+  zh: "采样程序需要两个经典位。我们重新创建这个短程序，保持量子指令不变，再将量子槽位零和一分别测量到经典槽位零和一。计数字符串将经典槽位零显示在最左侧，因此关联结果显示为 `\"00\"` 和 `\"11\"`。"
   status: retired

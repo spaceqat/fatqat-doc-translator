@@ -4,7 +4,7 @@
   status: machine
 - id: f9afa8402798aeb5
   en: Train a data-reuploading circuit to distinguish handwritten 3s and 6s while evaluating a whole parameter batch with one sweep.
-  zh: 训练一个数据重上传电路来区分手写数字 3 和 6，并用一次扫描评估整批参数。
+  zh: 训练一个数据重上传线路来区分手写数字 3 和 6，并用一次扫描评估整批参数。
   status: machine
 - id: dc23d7d1d2c68a7b
   en: Average-pooled handwritten digit inputs
@@ -20,11 +20,11 @@
   status: machine
 - id: a87da96845755370
   en: A quantum neural network (QNN) classifier is an ordinary parameterized function $f(x;\theta)$ — the twist is that the function is evaluated by a quantum circuit. The input features $x$ and the trainable weights $\theta$ both enter the circuit as rotation angles, and the class scores are read off the final state as expectation values.
-  zh: 量子神经网络（QNN）分类器是一个普通的参数化函数 $f(x;\theta)$——特别之处在于这个函数由量子电路来求值。输入特征 $x$ 和可训练权重 $\theta$ 都以旋转角度的形式进入电路，而类别得分则以期望值的形式从最终态读出。
+  zh: 量子神经网络（QNN）分类器是一个普通的参数化函数 $f(x;\theta)$——特别之处在于这个函数由线路来求值。输入特征 $x$ 和可训练权重 $\theta$ 都以旋转角度的形式进入线路，而类别得分则以期望值的形式从最终态读出。
   status: machine
 - id: eaf0fccde7501325
   en: 'This tutorial trains such a classifier to tell the handwritten digits 3 and 6 apart, and it showcases the piece fatqat contributes beyond a plain "build one circuit per sample" workflow: **the circuit is built once as a parameterized template, and a whole batch of inputs is evaluated with a single** `run_sweep` **call**.'
-  zh: "本教程训练一个分类器来区分手写数字 3 和 6，并展示 fatqat 如何省去逐样本构建电路的重复工作：**只构建一次参数化电路模板，再通过一次** `run_sweep` **调用评估整批输入**。"
+  zh: "本教程训练一个分类器来区分手写数字 3 和 6，并展示 fatqat 如何省去逐样本创建线路的重复工作：**只创建一次参数化线路模板，再通过一次** `run_sweep` **调用评估整批输入**。"
   status: machine
 - id: 1ba70b3e6cfc2bb1
   en: The model
@@ -36,7 +36,7 @@
   status: machine
 - id: 02227a745fdc83b8
   en: so the 16 features and 16 weights are consumed one per qubit per round. Re-uploading the same features in every round lets a small circuit fit a nonlinear decision boundary.
-  zh: "这样，16 个特征和 16 个权重就分配到了各轮的量子比特上，每轮每个量子比特各用一个。在各轮中重复编码相同特征，小电路也能拟合非线性决策边界。"
+  zh: "这样，16 个特征和 16 个权重就分配到了各轮的量子比特上，每轮每个量子比特各用一个。在各轮中重复编码相同特征，小线路也能拟合非线性决策边界。"
   status: machine
 - id: 07facfe486b5561d
   en: 'The readout follows Farhi & Neven ([arXiv:1802.06002](https://arxiv.org/abs/1802.06002)): measure the four single-qubit expectations $\langle Z_q\rangle$ and fold them into two class logits,'
@@ -44,7 +44,7 @@
   status: machine
 - id: 0e5a5ca1098c1a06
   en: Training minimizes the mean cross-entropy $-\frac{1}{N}\sum_i \log p_i(\text{label}_i)$ with the gradient-free COBYLA optimizer — the loss is a black box, so no circuit differentiation is needed.
-  zh: 训练使用无梯度的 COBYLA 优化器最小化平均交叉熵 $-\frac{1}{N}\sum_i \log p_i(\text{label}_i)$——损失是一个黑盒，因此不需要对电路求导。
+  zh: 训练使用无梯度的 COBYLA 优化器最小化平均交叉熵 $-\frac{1}{N}\sum_i \log p_i(\text{label}_i)$——损失是一个黑盒，因此不需要对线路求导。
   status: machine
 - id: 1cd7775fc5b6834a
   en: 'The data are the 8x8 handwritten digits bundled with scikit-learn: real scans, but bundled locally, so this page is fully reproducible with no download. Every source of randomness is seeded.'
@@ -60,7 +60,7 @@
   status: machine
 - id: caa982bc367bdc6b
   en: This 4x4 pooling — not the original 8x8 scan — is what the circuit sees.
-  zh: 电路看到的是这个 4x4 池化结果，而不是原始的 8x8 扫描图像。
+  zh: 线路看到的是这个 4x4 池化结果，而不是原始的 8x8 扫描图像。
   status: machine
 - id: bfc6e7e1af3e2bf2
   en: 'The ansatz: one parameterized template'
@@ -80,7 +80,7 @@
   status: machine
 - id: 8e2732f05840050d
   en: 'Within one optimizer step the weights are fixed, so they are bound once with `assign_parameters`. The batch then sweeps only the features: `run_sweep` takes the entire `(N, 16)` feature array as one binding and returns an ordered list of results — one ordinary `Result` per sample. The parameters have become *data*: plain NumPy arrays flowing through one call, instead of circuit structure rebuilt per sample.'
-  zh: 在一个优化器步骤内权重是固定的，因此先用 `assign_parameters` 一次性绑定权重。随后批处理只扫描特征：`run_sweep` 把整个 `(N, 16)` 特征数组作为一次绑定接收，并返回一个有序的结果列表——每个样本对应一个普通的 `Result`。参数变成了*数据*：普通的 NumPy 数组通过一次调用流动，而不是为每个样本重建电路结构。
+  zh: 在一个优化器步骤内权重是固定的，因此先用 `assign_parameters` 一次性绑定权重。随后批处理只扫描特征：`run_sweep` 把整个 `(N, 16)` 特征数组作为一次绑定接收，并返回一个有序的结果列表——每个样本对应一个普通的 `Result`。参数变成了*数据*：普通的 NumPy 数组通过一次调用流动，而不是为每个样本重建线路结构。
   status: retired
 - id: 8558caaf550ae037
   en: (In this fatqat version `run_sweep` still lowers and executes row by row; the win today is the single-template workflow and one-call batch interface, which is also where fused batched execution will land. For observable-centric workflows, [`fatqat.Estimator`][fatqat.Estimator] offers the same batching as `Estimator.run_sweep`; see [the simulation guide](../guide/simulation.md).)
@@ -88,7 +88,7 @@
   status: retired
 - id: 3ad062f431e84703
   en: 'A small check with random initial weights: the logits start near zero, as expected for an untrained circuit.'
-  zh: 用随机初始权重做一个小检查：logits 起始接近零，这正是未训练电路的预期表现。
+  zh: 用随机初始权重做一个小检查：logits 起始接近零，这正是未训练线路的预期表现。
   status: machine
 - id: 36a798e3f39239cc
   en: Training
@@ -140,7 +140,7 @@
   status: machine
 - id: ff09d29b4f321b3c
   en: 'Within one optimizer step the weights are fixed, so they are bound once with `assign_parameters`. The batch then sweeps only the features: [`Estimator`][fatqat.Estimator] takes the two class observables alongside the entire `(N, 16)` feature array and returns an ordered list of results — one ordinary [`Result`][fatqat.Result] per sample. Each result contains the two expectation values, which a short list comprehension collects into the `(N, 2)` logit array. The parameters have become *data*: plain NumPy arrays flowing through one call, instead of circuit structure rebuilt per sample.'
-  zh: 在一次优化器步骤内，权重固定，因此用 `assign_parameters` 绑定一次即可。随后批次只扫描特征：[`Estimator`][fatqat.Estimator] 接收两个类别可观测量和完整的 `(N, 16)` 特征数组，返回有序结果列表，每个样本对应一个普通 [`Result`][fatqat.Result]。每个结果包含两个期望值，用简短的列表推导式即可收集为 `(N, 2)` logit 数组。参数变成了*数据*：普通 NumPy 数组通过一次调用传入，而不再为每个样本重建电路结构。
+  zh: 在一次优化器步骤内，权重固定，因此用 `assign_parameters` 绑定一次即可。随后批次只扫描特征：[`Estimator`][fatqat.Estimator] 接收两个类别可观测量和完整的 `(N, 16)` 特征数组，返回有序结果列表，每个样本对应一个普通 [`Result`][fatqat.Result]。每个结果包含两个期望值，用简短的列表推导式即可收集为 `(N, 2)` logit 数组。参数变成了*数据*：普通 NumPy 数组通过一次调用传入，而不再为每个样本重建线路结构。
   status: machine
 - id: adb221d68af7fcd3
   en: (In this fatqat version `run_sweep` still lowers and executes row by row; the win today is the single-template workflow and one-call batch interface, which is also where fused batched execution will land. The estimator handles final-state evolution and observable contraction; see [interpreting results](../guide/interpret-results.md).)

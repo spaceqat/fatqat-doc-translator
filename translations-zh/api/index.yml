@@ -4,11 +4,11 @@
   status: machine
 - id: ca37bacacdd660c6
   en: Use this reference to look up FATQAT's public classes, functions, and exceptions. Start with the [Build, draw, and run one Program](../guide/quickstart.md) for an end-to-end workflow.
-  zh: 使用本参考查阅 FATQAT 的公开类、函数与异常。要了解端到端工作流，请从[构建、绘制并运行一个 Program](../guide/quickstart.md)开始。
+  zh: 使用本参考查阅 FATQAT 的公开类、函数与异常。要了解端到端工作流，请从[编写、绘制并运行一个 Program](../guide/quickstart.md)开始。
   status: machine
 - id: 6fe91b0d0b79509a
   en: Build programs
-  zh: 构建程序
+  zh: 编写程序
   status: machine
 - id: eb7cb9071f67eaa1
   en: '[Program](program.md)'
@@ -44,7 +44,7 @@
   status: machine
 - id: 99f87dc5da4b1949
   en: '[Observables and estimation](estimator.md)'
-  zh: '[Estimator：计算期望值](estimator.md)'
+  zh: '[Estimator](estimator.md)'
   status: machine
 - id: cdd1f57e618ef827
   en: '[Job](job.md)'
@@ -61,7 +61,7 @@
 - id: 04846f2e25dba217
   en: '[Interoperability](interoperability/index.md)'
   zh: '[互操作性](interoperability/index.md)'
-  status: machine
+  status: retired
 - id: 712e144b920e9d96
   en: '[Matrix implementations](implementation.md)'
   zh: '[矩阵实现](implementation.md)'
@@ -88,5 +88,9 @@
   status: machine
 - id: 88faf43201ee8ac5
   en: '[Backend](backend.md)'
-  zh: "[Backend](backend.md)"
+  zh: '[Backend](backend.md)'
+  status: machine
+- id: b99fbe2efc494048
+  en: '[OpenQASM & Qiskit](interoperability/index.md)'
+  zh: "[互操作性](interoperability/index.md)"
   status: machine

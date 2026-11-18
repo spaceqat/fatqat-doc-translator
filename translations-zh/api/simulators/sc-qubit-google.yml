@@ -40,7 +40,7 @@
   status: machine
 - id: 3e07c0fc4f62be5c
   en: The profile uses `T1 = 60 us` and `T2 = 48 us`. Each call returns a fresh [`NoiseModel`][fatqat.NoiseModel] that you can extend before passing it to the simulator.
-  zh: 该配置使用 `T1 = 60 us` 和 `T2 = 48 us`。每次调用都返回一个全新的 [`NoiseModel`][fatqat.NoiseModel]，你可以在把它传给模拟器之前对其进行扩展。
+  zh: "该设备模型使用 `T1 = 60 us` 和 `T2 = 48 us`。每次调用都返回一个全新的 [`NoiseModel`][fatqat.NoiseModel]，你可以在把它传给模拟器之前对其进行扩展。"
   status: machine
 - id: e36a14de3e722e02
   en: '**Built-in profile**'
@@ -48,7 +48,7 @@
   status: machine
 - id: 809fe44757c6233b
   en: Unlike the IBM-style profile, `RZ` is a physical, noisy 20 ns rotation in this profile. See [Noise](../noise.md) for method-dependent channel execution.
-  zh: 与 IBM 风格配置不同，在此配置中 `RZ` 是一个物理的、有噪声的 20 ns 旋转。与方法相关的信道执行方式参见[噪声](../noise.md)。
+  zh: "与 IBM 风格配置不同，在此设备模型中 `RZ` 是一个物理的、有噪声的 20 ns 旋转。与方法相关的信道执行方式参见[噪声](../noise.md)。"
   status: retired
 - id: d25e8da8c3b9eff2
   en: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`SCQubitGoogleSimulator.implementation_map`][fatqat.simulator.SCQubitGoogleSimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], and [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] follow the general Simulator API and are included below for a complete class reference.'

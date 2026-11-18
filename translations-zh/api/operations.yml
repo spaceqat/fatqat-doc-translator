@@ -48,7 +48,7 @@
   status: machine
 - id: f7b72fa50fc6eb9f
   en: Every built-in unitary gate accepts [`RegisterView`](registers.md#fatqat.RegisterView) targets. A unary gate acts on each selected member. A multi-target gate accepts one compatible view per operand and zips their members in order. See [Registers](registers.md) for the compatibility rules and [Write quantum computations with Program](../guide/program.md) for the ordinary construction workflow.
-  zh: "每个内置的酉门都接受 [`RegisterView`](registers.md#fatqat.RegisterView) 目标。一元门作用于每个选中的成员。多目标门为每个操作数接受一个兼容视图，并将它们的成员按序配对。有关兼容性规则，参见[Registers](registers.md)；有关常规构建工作流，参见[使用 Program 编写量子计算](../guide/program.md)。"
+  zh: "每个内置的酉门都接受 [`RegisterView`](registers.md#fatqat.RegisterView) 目标。一元门作用于每个选中的成员。多目标门为每个操作数接受一个兼容视图，并将它们的成员按序配对。有关兼容性规则，参见[Registers](registers.md)；有关常规编写工作流，参见[使用 Program 编写量子计算](../guide/program.md)。"
   status: machine
 - id: 3ec8fc994e977af6
   en: Operation base
