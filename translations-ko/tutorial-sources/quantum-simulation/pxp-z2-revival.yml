@@ -281,7 +281,7 @@
 - id: 0c47095fd6a38e57
   en: Summary and next steps
   ko: 정리와 다음 단계
-  status: machine
+  status: retired
 - id: e7c414bdcd1265ae
   en: 'A Trotterized PXP chain on FatQat''s gate-level simulator reproduces the exact quench dynamics from $|Z_2\rangle$: periodic, slowly decaying returns to the initial state, and entanglement that grows more slowly near each return. Custom operations with a `MatrixImplementationMap` and a chosen `initial_state` make it possible to study a constrained model that the pulse emulators cannot start from.'
   ko: FatQat의 게이트 수준 시뮬레이터에서 Trotter 분해한 PXP 사슬은 $|Z_2\rangle$에서 시작하는 정확한 퀜치 동역학을 재현합니다. 초기 상태로 주기적으로 되돌아오면서 그 크기가 천천히 줄고, 되돌아올 때마다 얽힘의 증가가 느려집니다. `MatrixImplementationMap`으로 정의한 사용자 정의 연산과 직접 지정한 `initial_state` 덕분에, 펄스 에뮬레이터로는 시작 상태를 만들 수 없는 제약된 모델도 다룰 수 있습니다.
@@ -289,15 +289,15 @@
 - id: 408858461c1b6e72
   en: 'Two extensions use the same code:'
   ko: 같은 코드로 두 가지를 더 시험해 볼 수 있습니다.
-  status: machine
+  status: retired
 - id: 687dcbb1de62ee84
   en: Increase `DT_TROTTER` to `0.05` µs, one Trotter step per sampling interval, and compare the printed fidelity gap with the run above to see how the Trotter error grows with the step size.
   ko: '`DT_TROTTER`를 `0.05` µs로 늘려 표본 구간마다 Trotter 단계를 한 번만 적용하고, 출력되는 충실도 차이를 위 실행과 비교해 단계 크기에 따라 Trotter 오차가 어떻게 커지는지 확인해 보세요.'
-  status: machine
+  status: retired
 - id: 69c9bc3ee43183f6
   en: Set `NUM_SITES` to 12 and compare the revival fidelities and entropy with the ten-site results to see how the decay of the revivals depends on the chain length.
   ko: '`NUM_SITES`를 12로 바꾸고 재현 충실도와 엔트로피를 사이트 열 개 결과와 비교해, 재현이 감쇠하는 정도가 사슬 길이에 어떻게 의존하는지 살펴보세요.'
-  status: machine
+  status: retired
 - id: 743b37f3cf964d30
   en: In the strong-coupling limit of the Rydberg blockade, the Rydberg Hamiltonian reduces to the PXP model, and quenching it from the Néel state produces persistent many-body revivals.
   ko: Rydberg 봉쇄의 강한 커플링 극한에서 Rydberg 해밀토니안은 PXP 모델로 줄어들며, 이 모델을 Néel 상태에서 퀜치하면 오래 지속되는 다체 재현이 나타납니다.
@@ -389,4 +389,4 @@
 - id: a558db3e392ae1be
   en: Custom operations with a `MatrixImplementationMap` and a chosen `initial_state` let FatQat's gate-level simulator study a constrained model that the pulse emulators cannot start from.
   ko: '`MatrixImplementationMap`으로 정의한 사용자 정의 연산과 직접 지정한 `initial_state`를 사용하면, 펄스 에뮬레이터로는 시작할 수 없는 제약된 모델을 FatQat의 게이트 수준 시뮬레이터로 연구할 수 있습니다.'
-  status: machine
+  status: retired

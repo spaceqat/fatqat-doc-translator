@@ -297,7 +297,7 @@
 - id: 0c47095fd6a38e57
   en: Summary and next steps
   zh: 总结与后续
-  status: machine
+  status: retired
 - id: e7c414bdcd1265ae
   en: 'A Trotterized PXP chain on FatQat''s gate-level simulator reproduces the exact quench dynamics from $|Z_2\rangle$: periodic, slowly decaying returns to the initial state, and entanglement that grows more slowly near each return. Custom operations with a `MatrixImplementationMap` and a chosen `initial_state` make it possible to study a constrained model that the pulse emulators cannot start from.'
   zh: 在 FatQat 门级模拟器上对 PXP 链做 Trotter 演化，重现了从 $|Z_2\rangle$ 出发的精确淬火动力学：态周期性地返回初态附近，返回程度缓慢衰减；纠缠在每次返回附近增长变慢。借助 `MatrixImplementationMap` 定义的自定义操作和指定的 `initial_state`，可以研究脉冲仿真器无法从所需初态开始的受约束模型。
@@ -305,15 +305,15 @@
 - id: 408858461c1b6e72
   en: 'Two extensions use the same code:'
   zh: 以下两个扩展使用相同的代码：
-  status: machine
+  status: retired
 - id: 687dcbb1de62ee84
   en: Increase `DT_TROTTER` to `0.05` µs, one Trotter step per sampling interval, and compare the printed fidelity gap with the run above to see how the Trotter error grows with the step size.
   zh: 将 `DT_TROTTER` 增大到 `0.05` µs，即每个采样间隔只有一个 Trotter 步，再把输出的保真度差距与上面的运行比较，观察 Trotter 误差如何随步长增大。
-  status: machine
+  status: retired
 - id: 69c9bc3ee43183f6
   en: Set `NUM_SITES` to 12 and compare the revival fidelities and entropy with the ten-site results to see how the decay of the revivals depends on the chain length.
   zh: 将 `NUM_SITES` 设为 12，把复苏保真度和纠缠熵与十格点的结果比较，观察复苏的衰减如何依赖于链长。
-  status: machine
+  status: retired
 - id: 743b37f3cf964d30
   en: In the strong-coupling limit of the Rydberg blockade, the Rydberg Hamiltonian reduces to the PXP model, and quenching it from the Néel state produces persistent many-body revivals.
   zh: 在里德堡阻塞的强耦合极限下，里德堡哈密顿量约化为 PXP 模型；从 Néel 态出发对其做淬火，会产生持续的多体复苏。
@@ -405,4 +405,4 @@
 - id: a558db3e392ae1be
   en: Custom operations with a `MatrixImplementationMap` and a chosen `initial_state` let FatQat's gate-level simulator study a constrained model that the pulse emulators cannot start from.
   zh: 借助 `MatrixImplementationMap` 定义的自定义操作和指定的 `initial_state`，FatQat 的门级模拟器可以研究脉冲仿真器无法从所需初态开始的受约束模型。
-  status: machine
+  status: retired
