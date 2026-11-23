@@ -414,3 +414,11 @@
   en: Pulse programs
   ko: "펄스 프로그램 작성과 실행"
   status: machine
+- id: 8bc2234815dbbd89
+  en: Contributing and development
+  ko: 기여와 개발
+  status: machine
+- id: b361713af8473025
+  en: Developer guide
+  ko: 개발자 가이드
+  status: machine

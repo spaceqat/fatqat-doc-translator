@@ -470,3 +470,11 @@
   en: Pulse programs
   zh: "编写和运行脉冲程序"
   status: machine
+- id: 8bc2234815dbbd89
+  en: Contributing and development
+  zh: 贡献与开发
+  status: machine
+- id: b361713af8473025
+  en: Developer guide
+  zh: 开发者指南
+  status: machine
