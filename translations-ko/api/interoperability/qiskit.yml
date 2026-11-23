@@ -264,7 +264,7 @@
   status: machine
 - id: cd2552843c090ca1
   en: Transpile the circuit for the backend's `target`. To include noise, pass a FatQat [`NoiseModel`][fatqat.NoiseModel] as `noise_model` when you create the backend. Then submit one or more circuits with [`run()`][fatqat.qiskit.FatqatBackend.run]. Its reference lists the settings for shot count, measurement memory, and the random seed.
-  ko: 먼저 백엔드의 `target`에 맞춰 회로를 트랜스파일하세요. 잡음을 포함하려면 백엔드를 만들 때 FatQat [`NoiseModel`][fatqat.NoiseModel]을 `noise_model`로 전달합니다. [`run()`][fatqat.qiskit.FatqatBackend.run]으로 회로 하나 또는 여러 개를 제출하세요. 샷 수, 개별 측정 결과 저장, 난수 시드 옵션은 메서드 설명을 참고하세요.
+  ko: 먼저 백엔드의 `target`에 맞춰 회로를 트랜스파일하세요. 노이즈를 포함하려면 백엔드를 만들 때 FatQat [`NoiseModel`][fatqat.NoiseModel]을 `noise_model`로 전달합니다. [`run()`][fatqat.qiskit.FatqatBackend.run]으로 회로 하나 또는 여러 개를 제출하세요. 샷 수, 개별 측정 결과 저장, 난수 시드 옵션은 메서드 설명을 참고하세요.
   status: machine
 - id: aff9071a2db74cd7
   en: If `run_input` is empty or contains non-circuit values, or if a run option is invalid, the backend raises [`QiskitBackendError`][fatqat.qiskit.QiskitBackendError] before returning a job. If conversion or execution fails after that, [`FatqatJob.result()`][fatqat.qiskit.FatqatJob.result] raises a Qiskit `QiskitError` and retains the original exception as its cause.

@@ -11,7 +11,10 @@ terms:
   expectation value: 기댓값
   circuit: 회로
   measurement: 측정
-  noise: 잡음
+  noise: 노이즈
+  noise model: 노이즈 모델
+  coupling: 커플링
+  coupler: 커플러
   simulator: 시뮬레이터
   emulator: 에뮬레이터
   simulation: 시뮬레이션
@@ -25,5 +28,10 @@ terms:
   leakage: 누설
   neutral atom: 중성 원자
   superconducting: 초전도
+  transmon: 트랜스몬
+  native gate: 네이티브 게이트
+  native operation: 네이티브 연산
+  Bell state: 벨 상태
+  qudit: 큐디트
   readout: 판독
   feedforward: 피드포워드

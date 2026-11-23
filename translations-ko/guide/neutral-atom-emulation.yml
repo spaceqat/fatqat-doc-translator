@@ -160,5 +160,5 @@
   status: machine
 - id: dae0075b5254578e
   en: For units, channel limits, noise, and measurement support, see the [neutral-atom emulator API](../api/atom-emulators.md).
-  ko: "단위, 채널 제한, 잡음 및 측정에 관한 내용은 [중성 원자 에뮬레이터 API](../api/atom-emulators.md)를 참고하세요."
+  ko: "단위, 채널 제한, 노이즈 및 측정에 관한 내용은 [중성 원자 에뮬레이터 API](../api/atom-emulators.md)를 참고하세요."
   status: machine

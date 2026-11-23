@@ -140,7 +140,7 @@
   status: retired
 - id: 69f77a98367e8460
   en: The adapter accepts static circuits with bound parameters. Transpile each circuit for the backend's target, and use a FatQat `NoiseModel` for noisy runs. The [Qiskit API reference](../api/interoperability/qiskit.md) describes supported instructions, noise, run options, and result formats.
-  ko: 이 어댑터는 매개변수가 바인딩된 정적 회로를 받습니다. 백엔드의 타깃에 맞게 회로를 트랜스파일하고, 잡음을 포함하려면 FatQat의 `NoiseModel`을 사용하세요. 지원하는 명령, 잡음, 실행 옵션 및 결과 형식은 [Qiskit API 레퍼런스](../api/interoperability/qiskit.md)를 참고하세요.
+  ko: 이 어댑터는 매개변수가 바인딩된 정적 회로를 받습니다. 백엔드의 타깃에 맞게 회로를 트랜스파일하고, 노이즈를 포함하려면 FatQat의 `NoiseModel`을 사용하세요. 지원하는 명령, 노이즈, 실행 옵션 및 결과 형식은 [Qiskit API 레퍼런스](../api/interoperability/qiskit.md)를 참고하세요.
   status: machine
 - id: db950fdbfc3739db
   en: If you already have a quantum algorithm written in OpenQASM 3 or as a Qiskit circuit, you can bring the circuit into FatQat to run it and analyse the results. You can also take a supported FatQat Program to another platform by exporting it as OpenQASM 3 and loading the circuit in a tool that supports it.

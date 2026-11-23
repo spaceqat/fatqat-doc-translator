@@ -4,7 +4,7 @@
   status: machine
 - id: e54b56dfd0b67b54
   en: Run exact, finite-shot, and noisy VQE loops for molecular hydrogen and make the variational bound and sampling uncertainty explicit.
-  ko: 수소 분자에 대해 정확한 계산, 유한 샷 계산, 잡음이 있는 계산으로 VQE를 실행하고 변분 상한과 표본 추출의 불확실성을 확인합니다.
+  ko: 수소 분자에 대해 정확한 계산, 유한 샷 계산, 노이즈가 있는 계산으로 VQE를 실행하고 변분 상한과 표본 추출의 불확실성을 확인합니다.
   status: machine
 - id: 323bd496a43afb78
   en: Parameterized two-qubit VQE ansatz
@@ -20,7 +20,7 @@
   status: machine
 - id: 271fc2ac7c22fcea
   en: Noiseless and depolarizing-noise VQE energy traces
-  ko: 잡음이 없을 때와 탈분극 잡음이 있을 때의 VQE 에너지 추이
+  ko: 노이즈가 없을 때와 탈분극 노이즈가 있을 때의 VQE 에너지 추이
   status: machine
 - id: 6cffdd317d1dc07e
   en: 'The variational quantum eigensolver (VQE) estimates the ground-state energy of a Hamiltonian $H$ by making the variational principle $E(\theta) \geq E_0$ do the work: a parameterized circuit prepares $|\psi(\theta)\rangle$, the energy'
@@ -52,7 +52,7 @@
   status: machine
 - id: f0d9187f27f688a5
   en: '**VQE under noise** — a depolarizing noise model is attached to the simulator, and the energy floor moves up: a two-line summary of why NISQ chemistry is hard.'
-  ko: '**잡음이 있는 VQE** — 시뮬레이터에 탈분극 잡음 모델을 추가하면 도달 가능한 최저 에너지가 높아집니다. NISQ 화학 계산이 어려운 이유를 간단히 보여 줍니다.'
+  ko: '**노이즈가 있는 VQE** — 시뮬레이터에 탈분극 노이즈 모델을 추가하면 도달 가능한 최저 에너지가 높아집니다. NISQ 화학 계산이 어려운 이유를 간단히 보여 줍니다.'
   status: machine
 - id: a8f123ba36178e9b
   en: Everything is seeded and runs in seconds on a laptop CPU.
@@ -124,19 +124,19 @@
   status: retired
 - id: add004053ba85637
   en: The same COBYLA run, now optimizing the noisy objective. Note that what matters at the end is the *exact* energy of the point found — the shot noise only steers the search.
-  ko: 이번에는 같은 COBYLA 과정으로 잡음이 있는 목적 함수를 최적화합니다. 최종적으로 중요한 값은 찾은 지점의 *정확한* 에너지입니다. 샷 잡음은 탐색 방향에만 영향을 줍니다.
+  ko: 이번에는 같은 COBYLA 과정으로 노이즈가 있는 목적 함수를 최적화합니다. 최종적으로 중요한 값은 찾은 지점의 *정확한* 에너지입니다. 샷 노이즈는 탐색 방향에만 영향을 줍니다.
   status: machine
 - id: 46118b07138cb7d8
   en: A depolarizing noise model
-  ko: 탈분극 잡음 모델
+  ko: 탈분극 노이즈 모델
   status: machine
 - id: 56cd44d7fea98e8f
   en: 'Noise is declared independently of the program: a `fq.NoiseModel` holds physical declarations — here `fq.noise.Depolarizing` after every `RY` ($p = 0.01$) and, more strongly, after every `CX` ($p = 0.05$) — and the same template runs on a density-matrix simulator constructed with that model. A density-matrix Estimator in `shots=0` mode returns the noise-averaged expectation exactly: no sampling is needed to *see* the noise. See [ideal and noisy execution](../guide/ideal-and-noisy.md) for the full workflow.'
-  ko: 잡음은 프로그램과 별도로 선언합니다. `fq.NoiseModel`에 물리적 잡음 규칙을 담는데, 여기서는 모든 `RY` 뒤에 `fq.noise.Depolarizing`을 $p = 0.01$로, 모든 `CX` 뒤에는 더 강한 $p = 0.05$로 적용합니다. 같은 템플릿을 이 모델로 구성한 밀도 행렬 시뮬레이터에서 실행합니다. 밀도 행렬 Estimator의 `shots=0` 모드는 잡음에 대해 평균한 기댓값을 정확히 반환하므로, 잡음의 영향을 *확인*하는 데 표본 추출이 필요하지 않습니다. 전체 과정은 [이상적인 실행과 잡음이 있는 실행](../guide/ideal-and-noisy.md)을 참고하세요.
+  ko: 노이즈는 프로그램과 별도로 선언합니다. `fq.NoiseModel`에 물리적 노이즈 규칙을 담는데, 여기서는 모든 `RY` 뒤에 `fq.noise.Depolarizing`을 $p = 0.01$로, 모든 `CX` 뒤에는 더 강한 $p = 0.05$로 적용합니다. 같은 템플릿을 이 모델로 구성한 밀도 행렬 시뮬레이터에서 실행합니다. 밀도 행렬 Estimator의 `shots=0` 모드는 노이즈에 대해 평균한 기댓값을 정확히 반환하므로, 노이즈의 영향을 *확인*하는 데 표본 추출이 필요하지 않습니다. 전체 과정은 [이상적인 실행과 노이즈가 있는 실행](../guide/ideal-and-noisy.md)을 참고하세요.
   status: machine
 - id: 02f9374ac261d1d1
   en: 'First, the degradation: the exact-VQE minimum is re-evaluated under noise. Then COBYLA re-optimizes under noise — and recovers essentially nothing: a variational ansatz cannot rotate unital noise away, so the lifted floor is there to stay (it can only be mitigated classically, not optimized away).'
-  ko: 먼저 정확한 VQE로 찾은 최솟값 지점을 잡음이 있는 조건에서 다시 평가해 성능 저하를 확인합니다. 이어서 잡음이 있는 조건에서 COBYLA로 다시 최적화해도 개선은 거의 없습니다. 변분 변분 회로의 회전으로는 항등 보존(unital) 잡음을 제거할 수 없어 높아진 최저 에너지가 그대로 남습니다. 고전적 오차 완화는 가능하지만 최적화만으로 없앨 수는 없습니다.
+  ko: 먼저 정확한 VQE로 찾은 최솟값 지점을 노이즈가 있는 조건에서 다시 평가해 성능 저하를 확인합니다. 이어서 노이즈가 있는 조건에서 COBYLA로 다시 최적화해도 개선은 거의 없습니다. 변분 변분 회로의 회전으로는 항등 보존(unital) 노이즈를 제거할 수 없어 높아진 최저 에너지가 그대로 남습니다. 고전적 오차 완화는 가능하지만 최적화만으로 없앨 수는 없습니다.
   status: machine
 - id: 175956a7ad13988f
   en: Bigger molecules need a chemistry package to produce the Pauli sum and a physically motivated ansatz (e.g. UCCSD) instead of the hardware-efficient one used here.
@@ -148,5 +148,5 @@
   status: machine
 - id: 4185706d3abc4f67
   en: 'The same energy, estimated the way hardware would deliver it: every expectation comes from 1024 measurement shots. `shots` is a per-run option, not an estimator property, so the same estimator serves exact and sampled evaluations. An explicit `execution_config={"seed": ...}` reuses the same randomness at every evaluation, keeping the optimizer''s landscape deterministic. `sampled_std` propagates the per-observable standard errors (`get_standard_error()`) through the weights in quadrature — $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$ — the scale of the error bar on the noisy objective.'
-  ko: '같은 에너지를 실제 하드웨어처럼 추정합니다. 각 기댓값은 1024회의 측정 샷에서 얻습니다. `shots`는 추정기 자체의 속성이 아니라 실행별 옵션이므로, 같은 추정기로 정확한 평가와 표본 기반 평가를 모두 수행할 수 있습니다. `execution_config={"seed": ...}`를 명시하면 평가마다 같은 난수를 사용하여 최적화기가 보는 목적 함수가 결정적으로 유지됩니다. `sampled_std`는 관측량별 표준 오차(`get_standard_error()`)를 가중치와 함께 제곱합으로 전파합니다. 즉 $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$이며, 잡음이 있는 목적 함수의 오차 막대 크기에 해당합니다.'
+  ko: '같은 에너지를 실제 하드웨어처럼 추정합니다. 각 기댓값은 1024회의 측정 샷에서 얻습니다. `shots`는 추정기 자체의 속성이 아니라 실행별 옵션이므로, 같은 추정기로 정확한 평가와 표본 기반 평가를 모두 수행할 수 있습니다. `execution_config={"seed": ...}`를 명시하면 평가마다 같은 난수를 사용하여 최적화기가 보는 목적 함수가 결정적으로 유지됩니다. `sampled_std`는 관측량별 표준 오차(`get_standard_error()`)를 가중치와 함께 제곱합으로 전파합니다. 즉 $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$이며, 노이즈가 있는 목적 함수의 오차 막대 크기에 해당합니다.'
   status: machine

@@ -36,7 +36,7 @@
   status: retired
 - id: cd492ef391c8cf3d
   en: '![Hardware topology with supported and unsupported couplings](../assets/generated/guide/guide-path-hardware.png){ loading=lazy width="490" height="400" }'
-  ko: '![지원되는 결합과 지원되지 않는 결합을 표시한 하드웨어 토폴로지](../assets/generated/guide/guide-path-hardware.png){ loading=lazy width="490" height="400" }'
+  ko: '![지원되는 커플링과 지원되지 않는 커플링을 표시한 하드웨어 토폴로지](../assets/generated/guide/guide-path-hardware.png){ loading=lazy width="490" height="400" }'
   status: machine
 - id: 6f2626281db49f9c
   en: ':material-chip: **Test hardware constraints**'
@@ -196,7 +196,7 @@
   status: retired
 - id: 2d5c199ea29af3bf
   en: In FatQat, you can change the conditions of a run while keeping the calculation you wrote. To see how noise affects measurement outcomes, run the same [`Program`][fatqat.Program] with and without a noise model. In a pulse experiment, you can keep the laser drive fixed, change the distance between two atoms, and see how likely both atoms are to be excited.
-  ko: FatQat에서는 작성한 계산을 그대로 두고 실행 조건을 바꿀 수 있습니다. 잡음이 측정 결과에 미치는 영향을 보려면 같은 [`Program`][fatqat.Program]을 잡음 모델을 켠 경우와 끈 경우에 각각 실행해 보세요. 펄스 실험에서는 레이저 구동을 그대로 두고 두 원자 사이의 거리만 바꿔 두 원자가 동시에 들뜰 확률이 어떻게 달라지는지 살펴볼 수 있습니다.
+  ko: FatQat에서는 작성한 계산을 그대로 두고 실행 조건을 바꿀 수 있습니다. 노이즈가 측정 결과에 미치는 영향을 보려면 같은 [`Program`][fatqat.Program]을 노이즈 모델을 켠 경우와 끈 경우에 각각 실행해 보세요. 펄스 실험에서는 레이저 구동을 그대로 두고 두 원자 사이의 거리만 바꿔 두 원자가 동시에 들뜰 확률이 어떻게 달라지는지 살펴볼 수 있습니다.
   status: machine
 - id: c3b62edf1be27f3a
   en: The question also determines which result to read. Measurement counts show how often each outcome appears. An expectation value can reveal differences that counts in one basis miss. When the control pulse itself matters, you can compare the final states for different pulse shapes or durations.
@@ -220,7 +220,7 @@
   status: machine
 - id: d1960dd047c976fd
   en: '[Simulate programs](simulation.md) · [Estimate observables](interpret-results.md) · [Compare ideal and noisy runs](ideal-and-noisy.md) · [Visualize results](visualization.md) · [Improve performance](performance.md)'
-  ko: '[양자 프로그램 시뮬레이션](simulation.md) · [관측량 추정](interpret-results.md) · [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md) · [시각화](visualization.md) · [성능 최적화](performance.md)'
+  ko: '[양자 프로그램 시뮬레이션](simulation.md) · [관측량 추정](interpret-results.md) · [이상적 실행과 노이즈가 있는 실행](ideal-and-noisy.md) · [시각화](visualization.md) · [성능 최적화](performance.md)'
   status: machine
 - id: 65fe9498495d7a47
   en: Check which gates a device supports and where they can run. Use a [`LogicalProgram`][fatqat.LogicalProgram] if you want the compiler to adapt a logical circuit to the device.

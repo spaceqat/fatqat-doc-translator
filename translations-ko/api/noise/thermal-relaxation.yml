@@ -12,7 +12,7 @@
   status: machine
 - id: 124fa6141bdfdaa7
   en: '`t1` and `t2` are finite positive values in the same unit; they have no intrinsic unit of their own. When registering the noise with an emulator, use the emulator model''s time unit. Physical consistency requires'
-  ko: '`t1`과 `t2`는 같은 단위를 사용하는 유한한 양수이며, 그 자체에 고정된 단위는 없습니다. 에뮬레이터에 잡음을 등록할 때는 에뮬레이터 모델의 시간 단위를 사용하세요. 물리적으로 일관되려면 다음 조건을 만족해야 합니다.'
+  ko: '`t1`과 `t2`는 같은 단위를 사용하는 유한한 양수이며, 그 자체에 고정된 단위는 없습니다. 에뮬레이터에 노이즈를 등록할 때는 에뮬레이터 모델의 시간 단위를 사용하세요. 물리적으로 일관되려면 다음 조건을 만족해야 합니다.'
   status: machine
 - id: e6cfa2ffe9bf5c6d
   en: The derived rates are
@@ -28,7 +28,7 @@
   status: machine
 - id: c7761915bf8cba35
   en: 'The second operator is omitted when $\gamma_\phi=0$. This is a local, zero-temperature model: it includes downward relaxation but no thermal excitation or equilibrium-population parameter. Built-in support is limited to background noise on [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator].'
-  ko: $\gamma_\phi=0$이면 두 번째 연산자는 생략합니다. 이는 국소 영온 모델로, 하향 이완만 포함하며 열적 여기나 평형 점유 확률 매개변수는 없습니다. 내장 지원은 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]의 배경 잡음으로 제한됩니다.
+  ko: $\gamma_\phi=0$이면 두 번째 연산자는 생략합니다. 이는 국소 영온 모델로, 하향 이완만 포함하며 열적 여기나 평형 점유 확률 매개변수는 없습니다. 내장 지원은 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]의 배경 노이즈로 제한됩니다.
   status: machine
 - id: 37bd756f29254a0a
   en: Matrix simulators

@@ -24,7 +24,7 @@
   status: machine
 - id: c45e41626076b96f
   en: 'This Bell-state circuit will be used for both targets:'
-  ko: 다음 Bell 상태 회로를 두 종류의 타깃에 맞게 컴파일해 보겠습니다.
+  ko: 다음 벨 상태 회로를 두 종류의 타깃에 맞게 컴파일해 보겠습니다.
   status: machine
 - id: 3a35aa51796c2a74
   en: '`LogicalProgram` uses the same circuit-building interface as [`Program`][fatqat.Program]. You can simulate it directly while developing an algorithm, then compile it when you are ready to run against a hardware profile. Compilation does not modify the circuit, so it can be reused with more than one target.'
@@ -144,7 +144,7 @@
   status: machine
 - id: a5e94adfcf8d9e58
   en: You can choose how to simulate the circuit after compiling it. Create an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] with the sites and connections the compiled circuit uses, then choose its runtime, method, and noise settings for the run.
-  ko: 회로를 컴파일한 다음에 시뮬레이션 방식을 정해도 됩니다. 컴파일된 회로가 사용하는 사이트와 연결을 갖춘 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]를 만든 뒤, 실행에 사용할 런타임, 시뮬레이션 방법, 잡음 설정을 고르세요.
+  ko: 회로를 컴파일한 다음에 시뮬레이션 방식을 정해도 됩니다. 컴파일된 회로가 사용하는 사이트와 연결을 갖춘 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]를 만든 뒤, 실행에 사용할 런타임, 시뮬레이션 방법, 노이즈 설정을 고르세요.
   status: machine
 - id: 4933ba83e76143c8
   en: 'If you already have a simulator, call [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target] to reuse its sites and connections. Pass the simulator itself when you want its implementation map to constrain routing and the emitted gates:'

@@ -12,7 +12,7 @@
   status: machine
 - id: f7314f40d54dd6bf
   en: A User Guide page usually focuses on one FatQat capability, such as noisy simulation, circuit compilation, or visualization. Explain what it helps readers do and when they would use it, then walk through an example and make sense of its results. Use an approachable teaching voice and explain why the key steps are needed. A guide to noisy simulation can run the same circuit with and without noise and explain why the measurement counts differ.
-  ko: 사용자 가이드 한 페이지에서는 대개 잡음 시뮬레이션, 회로 컴파일, 시각화처럼 FatQat의 기능 하나를 중심으로 설명합니다. 이 기능으로 무엇을 할 수 있고 어떤 상황에 쓰는지 소개합니다. 그런 다음 예제를 따라 실행하고 결과를 해석하는 과정을 보여 줍니다. 설명은 독자가 따라가기 쉽게 쓰고, 중요한 단계마다 그 이유를 밝힙니다. 예를 들어 잡음 시뮬레이션을 소개할 때는 같은 회로를 이상적인 조건과 잡음이 있는 조건에서 각각 실행하고, 측정 결과별 횟수가 왜 다른지 설명할 수 있습니다.
+  ko: 사용자 가이드 한 페이지에서는 대개 노이즈 시뮬레이션, 회로 컴파일, 시각화처럼 FatQat의 기능 하나를 중심으로 설명합니다. 이 기능으로 무엇을 할 수 있고 어떤 상황에 쓰는지 소개합니다. 그런 다음 예제를 따라 실행하고 결과를 해석하는 과정을 보여 줍니다. 설명은 독자가 따라가기 쉽게 쓰고, 중요한 단계마다 그 이유를 밝힙니다. 예를 들어 노이즈 시뮬레이션을 소개할 때는 같은 회로를 이상적인 조건과 노이즈가 있는 조건에서 각각 실행하고, 측정 결과별 횟수가 왜 다른지 설명할 수 있습니다.
   status: machine
 - id: c26448d907f9f337
   en: Start with the reader's goal and give enough context to make the first example meaningful. Introduce a new concept when it first matters, and use a small example to connect it to the next step. In the [compiler guide](../guide/compiler.md), for instance, a three-site chain shows which pairs can run a gate directly and why routing matters before readers see the simulator call. Put supporting details where readers first need them, and link to the API for exact signatures, defaults, and errors.
@@ -68,7 +68,7 @@
   status: machine
 - id: fc16b1aed85f4e45
   en: Explain which errors occur and when. Put each rule with the interface that owns it. For example, measurement order belongs to `Measurement`; how readout noise changes reported values belongs to `ReadoutConfusion`.
-  ko: 어떤 상황에서 어떤 오류가 발생하는지 설명합니다. 규칙은 그 규칙을 정의하는 인터페이스에 둡니다. 예를 들어 측정 순서는 `Measurement`에, 판독 잡음이 보고되는 값을 어떻게 바꾸는지는 `ReadoutConfusion`에 설명합니다.
+  ko: 어떤 상황에서 어떤 오류가 발생하는지 설명합니다. 규칙은 그 규칙을 정의하는 인터페이스에 둡니다. 예를 들어 측정 순서는 `Measurement`에, 판독 노이즈가 보고되는 값을 어떻게 바꾸는지는 `ReadoutConfusion`에 설명합니다.
   status: machine
 - id: 00570f6feebfea41
   en: Use short, executable `Examples` for behavior a signature cannot show, such as selecting a group of targets or using a measurement as a condition. Show output when it helps the reader check the result.

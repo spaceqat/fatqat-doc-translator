@@ -16,11 +16,11 @@
   status: machine
 - id: 77d0ab522b46a87b
   en: The GHZ state generalises the Bell state to $n$ qubits,
-  ko: GHZ 상태는 Bell 상태를 $n$개의 큐비트로 일반화한 것입니다.
+  ko: GHZ 상태는 벨 상태를 $n$개의 큐비트로 일반화한 것입니다.
   status: machine
 - id: de4d7d92069e01ea
   en: Like the Bell state it cannot be factored into independent single-atom states. Measuring all eight atoms yields *only* `00000000` or `11111111`, each with probability one half, so every atom's outcome is perfectly correlated with every other. That correlation alone, however, is also produced by a classical coin flip that sets all eight bits together; what makes the GHZ state quantum is that the two branches are held in *coherent superposition*, with a definite relative phase. We will confirm the correlations with sampled counts and then confirm the coherence with exact expectation values.
-  ko: Bell 상태처럼 이 상태도 서로 독립인 단일 원자 상태의 곱으로 분해할 수 없습니다. 여덟 원자를 모두 측정하면 *오직* `00000000` 또는 `11111111`이 각각 절반의 확률로 나오므로 모든 원자의 결과가 완벽하게 상관됩니다. 그러나 여덟 비트를 한꺼번에 정하는 고전적인 동전 던지기도 같은 상관을 만듭니다. GHZ 상태의 양자적 특성은 두 분기가 일정한 상대 위상을 가진 *결맞은 중첩*이라는 점입니다. 샘플링한 횟수로 상관을 확인하고 정확한 기댓값으로 결맞음을 확인하겠습니다.
+  ko: 벨 상태처럼 이 상태도 서로 독립인 단일 원자 상태의 곱으로 분해할 수 없습니다. 여덟 원자를 모두 측정하면 *오직* `00000000` 또는 `11111111`이 각각 절반의 확률로 나오므로 모든 원자의 결과가 완벽하게 상관됩니다. 그러나 여덟 비트를 한꺼번에 정하는 고전적인 동전 던지기도 같은 상관을 만듭니다. GHZ 상태의 양자적 특성은 두 분기가 일정한 상대 위상을 가진 *결맞은 중첩*이라는 점입니다. 샘플링한 횟수로 상관을 확인하고 정확한 기댓값으로 결맞음을 확인하겠습니다.
   status: machine
 - id: 01a623fbeec22d0c
   en: The neutral-atom twist is connectivity. On this backend a `CZ` acts only on a pair of atoms that is currently *paired*. The [`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] operations update that pairing state as the circuit runs. Physically, `Pair` stands for "move these two atoms into a shared entangling zone" and `Unpair` for "move them apart again" -- the atom transport that gives a reconfigurable neutral-atom processor its programmable connectivity. We exploit exactly this to entangle atoms that no fixed one-dimensional layout would place next to each other.
@@ -76,7 +76,7 @@
   status: machine
 - id: 480ed78355df5857
   en: We run the measured program on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]; its eight quantum resources also determine the array size. A fixed seed keeps the numbers stable across tutorial runs, while omitting it produces independent samples. Because the circuit is noiseless, all 2000 shots land on one of the two GHZ branches and no other bitstring appears.
-  ko: 측정이 포함된 프로그램을 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]에서 실행합니다. 프로그램의 여덟 양자 자원이 배열 크기도 결정합니다. 시드를 고정하면 반복 실행에서도 수치가 일정하며, 시드를 생략하면 독립적인 표본을 얻습니다. 이 회로에는 잡음이 없으므로 2000개 샷 모두 두 GHZ 분기 중 하나에 도달하고 다른 비트열은 나오지 않습니다.
+  ko: 측정이 포함된 프로그램을 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]에서 실행합니다. 프로그램의 여덟 양자 자원이 배열 크기도 결정합니다. 시드를 고정하면 반복 실행에서도 수치가 일정하며, 시드를 생략하면 독립적인 표본을 얻습니다. 이 회로에는 노이즈가 없으므로 2000개 샷 모두 두 GHZ 분기 중 하나에 도달하고 다른 비트열은 나오지 않습니다.
   status: machine
 - id: 404426e0944e91ee
   en: Only `00000000` and `11111111` occur, each in roughly half the shots. The bars below show the observed frequencies against the ideal $1/2$; finite-shot sampling nudges each bar slightly off that line, while every intermediate bitstring stays empty.
@@ -104,7 +104,7 @@
   status: machine
 - id: 647d8b9ec9fd13f5
   en: 'Reconfigurable connectivity is not free: each transport step risks losing an atom from its trap. We model that by attaching [`Loss`][fatqat.noise.Loss] to the `Pair` and `Unpair` operations, which ejects an atom with some probability whenever it is moved. Only this neutral-atom backend models atom loss; a generic simulator rejects the same noise model.'
-  ko: 연결 구조를 재구성하는 데에는 대가가 있습니다. 이동할 때마다 원자가 트랩에서 빠져나갈 위험이 있습니다. 이를 [`Loss`][fatqat.noise.Loss]를 `Pair` 및 `Unpair` 연산에 붙여 모델링합니다. 이동할 때마다 일정 확률로 원자가 제거됩니다. 원자 손실은 이 중성 원자 백엔드에서만 지원하며, 일반 시뮬레이터는 같은 잡음 모델을 거부합니다.
+  ko: 연결 구조를 재구성하는 데에는 대가가 있습니다. 이동할 때마다 원자가 트랩에서 빠져나갈 위험이 있습니다. 이를 [`Loss`][fatqat.noise.Loss]를 `Pair` 및 `Unpair` 연산에 붙여 모델링합니다. 이동할 때마다 일정 확률로 원자가 제거됩니다. 원자 손실은 이 중성 원자 백엔드에서만 지원하며, 일반 시뮬레이터는 같은 노이즈 모델을 거부합니다.
   status: machine
 - id: d81ba845d3a73382
   en: 'A lost atom is not a `|0>` and not a `|1>`: it is *gone*, and reads out as the erasure digit `2`, distinct from either computational outcome. Any shot whose bitstring contains a `2` therefore had at least one atom fall out during transport.'

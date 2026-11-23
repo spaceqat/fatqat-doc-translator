@@ -52,7 +52,7 @@
   status: machine
 - id: 59654309ae31ebf7
   en: Use `statevector` or `density_matrix` for a dense initial state, for reset or noise channels, or for a program that mixes modes with qubits. The simulator also provides the [operator methods](../simulator.md#methods).
-  ko: 배열로 초기 상태를 지정하거나 리셋 또는 잡음 채널을 적용할 때, 혹은 한 프로그램에서 모드와 큐비트를 함께 다룰 때는 `statevector` 또는 `density_matrix`를 사용합니다. [연산자 계산 방법](../simulator.md#methods)도 지원합니다.
+  ko: 배열로 초기 상태를 지정하거나 리셋 또는 노이즈 채널을 적용할 때, 혹은 한 프로그램에서 모드와 큐비트를 함께 다룰 때는 `statevector` 또는 `density_matrix`를 사용합니다. [연산자 계산 방법](../simulator.md#methods)도 지원합니다.
   status: machine
 - id: 5be366c37c77c943
   en: Set the photon cutoff
@@ -108,7 +108,7 @@
   status: machine
 - id: 3ab407b9e63bd350
   en: When passing a `noise` model, use device labels to select optical modes.
-  ko: '`noise`로 잡음 모델을 전달할 때는 장치 레이블로 광학 모드를 지정합니다.'
+  ko: '`noise`로 노이즈 모델을 전달할 때는 장치 레이블로 광학 모드를 지정합니다.'
   status: machine
 - id: 33d0762e53b0d0e9
   en: Pass the photon counts in the mode order recorded in `metadata["state_axes"]`.

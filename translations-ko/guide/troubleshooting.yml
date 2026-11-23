@@ -112,7 +112,7 @@
   status: retired
 - id: bc40669ff86b00da
   en: A statevector is unavailable for a noisy or dynamic run
-  ko: "잡음이나 중간 측정을 추가한 후 상태 벡터를 얻을 수 없음"
+  ko: "노이즈이나 중간 측정을 추가한 후 상태 벡터를 얻을 수 없음"
   status: machine
 - id: 3b7bb637f15070e0
   en: After measurement, reset, or trajectory noise, one statevector is only one sampled history. Request it with `shots=1` when that single history is what you want. Use density-matrix simulation for an exact mixed state.
@@ -244,7 +244,7 @@
   status: machine
 - id: 16ddb2d7b6ab19e7
   en: To inspect one trajectory after measurement, reset, or trajectory noise, run with `shots=1` and request the final state. Use density-matrix simulation when you need the mixed state averaged over trajectories.
-  ko: "측정, 리셋 또는 궤적 잡음이 있는 실행에서 궤적 하나를 보려면 `shots=1`로 실행하고 최종 상태를 요청합니다. 궤적을 평균한 혼합 상태가 필요하면 밀도 행렬 시뮬레이션을 사용합니다."
+  ko: "측정, 리셋 또는 궤적 노이즈가 있는 실행에서 궤적 하나를 보려면 `shots=1`로 실행하고 최종 상태를 요청합니다. 궤적을 평균한 혼합 상태가 필요하면 밀도 행렬 시뮬레이션을 사용합니다."
   status: machine
 - id: 6c144add8d7aa576
   en: Run the same workload once before timing it. Numba compiles kernels the first time they run. To time a one-off run, try NumPy. See [Performance and scaling](performance.md) for the benchmark setup.

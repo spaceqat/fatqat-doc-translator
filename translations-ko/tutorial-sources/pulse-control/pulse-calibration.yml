@@ -24,7 +24,7 @@
   status: machine
 - id: 6729271bb3084c4a
   en: You need basic Python, qubit states, and X rotations. The [quickstart](../guide/quickstart.md) introduces the program and result workflow. We use FatQat's supplied single-transmon model, which includes an extra energy level \(|2\rangle\) beyond the two qubit states. Population can enter this level during a pulse; we call it **leakage**. All calibration results here refer to this simulation model.
-  ko: 기본 Python, 큐비트 상태, X 회전을 알고 있다고 가정합니다. 프로그램과 결과 처리 흐름은 [빠른 시작](../guide/quickstart.md)에서 소개합니다. FatQat의 단일 transmon 모델은 두 큐비트 상태 외에 추가 에너지 준위 \(|2\rangle\)를 포함합니다. 펄스 도중 점유가 이 준위로 들어갈 수 있으며 이를 **누설**이라 부릅니다. 여기의 보정 결과는 모두 이 시뮬레이션 모델에 대한 것입니다.
+  ko: 기본 Python, 큐비트 상태, X 회전을 알고 있다고 가정합니다. 프로그램과 결과 처리 흐름은 [빠른 시작](../guide/quickstart.md)에서 소개합니다. FatQat의 단일 트랜스몬 모델은 두 큐비트 상태 외에 추가 에너지 준위 \(|2\rangle\)를 포함합니다. 펄스 도중 점유가 이 준위로 들어갈 수 있으며 이를 **누설**이라 부릅니다. 여기의 보정 결과는 모두 이 시뮬레이션 모델에 대한 것입니다.
   status: machine
 - id: 2f275d3f5c7d4921
   en: Define the target
@@ -44,7 +44,7 @@
   status: machine
 - id: 8d2bd3978e308737
   en: Next, load the transmon model and create a statevector emulator. Each run starts in physical \(|0\rangle\). We leave noise and measurement out of these runs so that we can inspect the pulse's final amplitudes. See the [transmon guide](../guide/transmon-emulation.md) for more on the model setup.
-  ko: 다음으로 transmon 모델을 불러와 상태 벡터 에뮬레이터를 만듭니다. 각 실행은 물리적 \(|0\rangle\)에서 시작합니다. 펄스의 최종 진폭을 살펴보기 위해 잡음과 측정을 넣지 않습니다. 모델 설정은 [transmon 안내](../guide/transmon-emulation.md)를 참고하세요.
+  ko: 다음으로 트랜스몬 모델을 불러와 상태 벡터 에뮬레이터를 만듭니다. 각 실행은 물리적 \(|0\rangle\)에서 시작합니다. 펄스의 최종 진폭을 살펴보기 위해 노이즈와 측정을 넣지 않습니다. 모델 설정은 [트랜스몬 안내](../guide/transmon-emulation.md)를 참고하세요.
   status: machine
 - id: 7e3faeb954204653
   en: 'We use a smooth envelope that starts and ends at zero. The duration \(T\) stays fixed at 12 nanoseconds (ns); the dimensionless scale \(a\) controls the amplitude:'
@@ -56,7 +56,7 @@
   status: machine
 - id: 07739155afb9a2f0
   en: The waveform gives the full Rabi rate in radians per nanosecond (rad/ns). FatQat includes the factor of one half when applying the drive Hamiltonian. At \(a=1\), the envelope has area \(\pi\), which would give the desired rotation for an ideal resonantly driven two-level system. Coupling to the third level makes this a starting estimate for the transmon pulse.
-  ko: 파형은 전체 Rabi 각주파수를 rad/ns 단위로 지정합니다. FatQat은 구동 해밀토니안을 적용할 때 1/2 계수를 포함합니다. \(a=1\)이면 포락선 면적은 \(\pi\)이며, 이상적인 공명 구동 2준위 계에서는 원하는 회전을 만듭니다. transmon은 세 번째 준위에도 결합하므로 이 값은 transmon 펄스의 초기 추정으로 사용합니다.
+  ko: 파형은 전체 Rabi 각주파수를 rad/ns 단위로 지정합니다. FatQat은 구동 해밀토니안을 적용할 때 1/2 계수를 포함합니다. \(a=1\)이면 포락선 면적은 \(\pi\)이며, 이상적인 공명 구동 2준위 계에서는 원하는 회전을 만듭니다. 트랜스몬은 세 번째 준위에도 커플링하므로 이 값은 트랜스몬 펄스의 초기 추정으로 사용합니다.
   status: machine
 - id: 9b53d2f34c5d5b88
   en: We sample the envelope at 81 times and connect it to the drive on `q0` through `PulseControl`. `SampledWaveform` interpolates between the samples. The helpers below put the pulse in a `Program` with `PulseOperation` and return its final statevector. We start at an amplitude scale of 0.8.
@@ -84,7 +84,7 @@
   status: machine
 - id: b9eda2618b1d3e1e
   en: The scan uses probabilities calculated from the statevector, so it has no shot noise. Numerical integration error remains. Our selection applies to this model, pulse duration, and grid; a finer grid could refine the amplitude.
-  ko: 스캔은 상태 벡터에서 계산한 확률을 사용하므로 샷 잡음은 없습니다. 수치 적분 오차는 남습니다. 선택 결과는 이 모델, 펄스 지속 시간, 격자에 대한 것이며 더 촘촘한 격자로 진폭을 세밀하게 조정할 수 있습니다.
+  ko: 스캔은 상태 벡터에서 계산한 확률을 사용하므로 샷 노이즈는 없습니다. 수치 적분 오차는 남습니다. 선택 결과는 이 모델, 펄스 지속 시간, 격자에 대한 것이며 더 촘촘한 격자로 진폭을 세밀하게 조정할 수 있습니다.
   status: machine
 - id: f00b2a42ab6f318c
   en: Validate the operation on other inputs
@@ -144,7 +144,7 @@
   status: machine
 - id: 1ff8dd44510e7a8d
   en: The measured frequency agrees with `P1 + P2` within shot noise. For this pulse and shot count, the sampling uncertainty exceeds the leakage contribution, so the counts cannot resolve the difference between `P1` and `P1 + P2`.
-  ko: 측정 빈도는 샷 잡음 범위에서 `P1 + P2`와 일치합니다. 이 펄스와 샷 수에서는 샘플링 불확실성이 누설 기여보다 크므로 측정 횟수만으로 `P1`과 `P1 + P2`의 차이를 구분할 수 없습니다.
+  ko: 측정 빈도는 샷 노이즈 범위에서 `P1 + P2`와 일치합니다. 이 펄스와 샷 수에서는 샘플링 불확실성이 누설 기여보다 크므로 측정 횟수만으로 `P1`과 `P1 + P2`의 차이를 구분할 수 없습니다.
   status: machine
 - id: 56ac7c4d33c5b5bb
   en: Amplitude tuning has improved transfer and coherent X overlap, with some coherent error and leakage remaining. The optional extension below uses a second pulse parameter to reduce those errors.

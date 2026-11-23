@@ -60,7 +60,7 @@
   status: retired
 - id: 3466154a2a2059dc
   en: Use the inverse of the model's time unit for `rate`. The built-in [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] accepts this form as background noise.
-  ko: '`rate`는 모델 시간 단위의 역수로 지정합니다. 내장 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]는 이 형태를 배경 잡음으로 받습니다.'
+  ko: '`rate`는 모델 시간 단위의 역수로 지정합니다. 내장 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]는 이 형태를 배경 노이즈로 받습니다.'
   status: machine
 - id: 33b921b0e65c3c89
   en: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] models the decay of one qubit from $|1\rangle$ to $|0\rangle$.'

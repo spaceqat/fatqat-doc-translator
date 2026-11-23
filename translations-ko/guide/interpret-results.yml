@@ -8,7 +8,7 @@
   status: retired
 - id: a013c4a700936969
   en: 'The examples below use the general-purpose `Simulator` and two Bell states. Adding a `Z` operation to the Bell circuit changes its relative phase while leaving its computational-basis probabilities unchanged:'
-  ko: 범용 `Simulator`로 두 Bell 상태를 비교해 보겠습니다. 원래 Bell 회로에 `Z`를 추가하면 상대 위상은 바뀌지만, 계산 기저에서 각 결과를 얻을 확률은 그대로입니다.
+  ko: 범용 `Simulator`로 두 벨 상태를 비교해 보겠습니다. 원래 벨 회로에 `Z`를 추가하면 상대 위상은 바뀌지만, 계산 기저에서 각 결과를 얻을 확률은 그대로입니다.
   status: machine
 - id: 9641ba0b9862ff14
   en: Both states give `00` or `11` with equal probability. Their state vectors are \((|00\rangle + |11\rangle)/\sqrt{2}\) and \((|00\rangle - |11\rangle)/\sqrt{2}\). To distinguish them, we need to measure in another basis.
@@ -28,7 +28,7 @@
   status: machine
 - id: 96fd6aadd7b6c8a3
   en: 'The results follow the order `[zz, xx]`. Both states have `ZZ = 1`: their Z outcomes always agree. The `XX` values distinguish them. X outcomes always agree for the original Bell state and are always opposite for the phase-flipped state.'
-  ko: 결과는 `[zz, xx]` 순서로 반환됩니다. 두 상태 모두 `ZZ = 1`이므로 Z 측정값은 항상 같습니다. 둘을 구별하는 것은 `XX` 값입니다. 원래 Bell 상태에서는 X 측정값이 항상 같고, 위상이 뒤집힌 상태에서는 항상 반대입니다.
+  ko: 결과는 `[zz, xx]` 순서로 반환됩니다. 두 상태 모두 `ZZ = 1`이므로 Z 측정값은 항상 같습니다. 둘을 구별하는 것은 `XX` 값입니다. 원래 벨 상태에서는 X 측정값이 항상 같고, 위상이 뒤집힌 상태에서는 항상 반대입니다.
   status: machine
 - id: 08d74c6033fdb016
   en: 'Each tuple in an `Observable` contains a Pauli label and its real coefficient. Labels follow qubit order from left to right, and `I` is the identity: `ZI` measures Z on qubit 0 alone. To calculate a weighted sum, such as an energy, include its terms in the same `Observable`. The [Estimator API](../api/estimator.md#construct-an-observable) describes the other ways to write an observable.'
@@ -64,7 +64,7 @@
   status: machine
 - id: 0b0418d8a9138516
   en: Circuit noise can change the expectation itself. Configure noise on the estimator's backend as described in [Ideal and noisy runs](ideal-and-noisy.md). A density-matrix backend can calculate the expectation with noise channels directly; increasing the shot count improves the precision of a sampled estimate of that noisy expectation.
-  ko: 회로 잡음은 기댓값 자체를 바꿀 수 있습니다. [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md)에서 설명한 대로 Estimator의 백엔드에 잡음을 설정하세요. 밀도 행렬 백엔드는 잡음 채널이 있는 기댓값도 직접 계산할 수 있습니다. 이 기댓값을 샘플링으로 추정한다면 샷 수를 늘려 추정 정밀도를 높일 수 있습니다.
+  ko: 회로 노이즈는 기댓값 자체를 바꿀 수 있습니다. [이상적 실행과 노이즈가 있는 실행](ideal-and-noisy.md)에서 설명한 대로 Estimator의 백엔드에 노이즈를 설정하세요. 밀도 행렬 백엔드는 노이즈 채널이 있는 기댓값도 직접 계산할 수 있습니다. 이 기댓값을 샘플링으로 추정한다면 샷 수를 늘려 추정 정밀도를 높일 수 있습니다.
   status: machine
 - id: 040de4c07b00d573
   en: See the [Estimator API](../api/estimator.md) for supported backends, observable construction, and run options.
@@ -72,7 +72,7 @@
   status: retired
 - id: a43562e0f07390b8
   en: 'Set `shots` to a positive integer to estimate an expectation from sampled measurements. For `ZI` on the original Bell state, each shot gives `+1` or `-1` with equal probability. The exact expectation is zero, up to floating-point rounding, but a finite sample usually gives a small nonzero mean:'
-  ko: '`shots`를 양의 정수로 설정하면 샘플링한 측정값으로 기댓값을 추정합니다. 원래 Bell 상태에서 `ZI`를 측정하면 각 샷에서 `+1`과 `-1`이 같은 확률로 나옵니다. 부동소수점 반올림 오차를 제외하면 정확한 기댓값은 0이지만, 유한한 표본의 평균은 대개 0에서 조금 벗어납니다.'
+  ko: '`shots`를 양의 정수로 설정하면 샘플링한 측정값으로 기댓값을 추정합니다. 원래 벨 상태에서 `ZI`를 측정하면 각 샷에서 `+1`과 `-1`이 같은 확률로 나옵니다. 부동소수점 반올림 오차를 제외하면 정확한 기댓값은 0이지만, 유한한 표본의 평균은 대개 0에서 조금 벗어납니다.'
   status: machine
 - id: 97824855439ee406
   en: Many quantum-physics problems ask about quantities such as energy or spin correlations, rather than every component of the quantum state. For these tasks, you often need only the expectation value of one observable or a group of observables, without requesting the full state as an output.

@@ -176,7 +176,7 @@
   status: retired
 - id: 5558f6ca0291ac31
   en: Lindblad noise
-  ko: Lindblad 잡음
+  ko: Lindblad 노이즈
   status: machine
 - id: 4248dfb14cfee1f9
   en: The built-in forms are listed under [Pulse emulators](noise/backend-support.md#noise-emulator-support). Each background registration names one site; enumerate sites explicitly to apply the same noise at several sites. Rates use inverse microseconds and relaxation times use microseconds. Finite-probability (`p`) forms are not converted into rates from the pulse duration. Binary [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] is a classical report channel applied only to the reported digit after physical collapse, not a Lindblad operator.
@@ -268,7 +268,7 @@
   status: machine
 - id: 927b0e27c680c336
   en: Each run starts with every atom in the ground level. Use [`run()`][fatqat.emulator.Atom2LevelEmulator.run] to schedule the program and request output. The per-run interaction cutoff lets you change which couplings the Hamiltonian includes.
-  ko: 실행을 시작할 때 모든 원자는 바닥 준위에 있습니다. [`run()`][fatqat.emulator.Atom2LevelEmulator.run]으로 프로그램의 시간 배치와 출력을 지정합니다. 실행마다 상호작용 상한을 정해 해밀토니안에 포함할 결합을 바꿀 수 있습니다.
+  ko: 실행을 시작할 때 모든 원자는 바닥 준위에 있습니다. [`run()`][fatqat.emulator.Atom2LevelEmulator.run]으로 프로그램의 시간 배치와 출력을 지정합니다. 실행마다 상호작용 상한을 정해 해밀토니안에 포함할 커플링을 바꿀 수 있습니다.
   status: machine
 - id: 0adeb6bb48cceb34
   en: 'Set `execution_config={"interaction_cutoff": ...}` to keep only pairs at or below a distance in micrometres. `None` keeps the full interaction Hamiltonian and `0.0` disables pair interactions. On a rectangular grid with equal spacing, using that spacing as the cutoff keeps the horizontal and vertical nearest neighbors.'
@@ -276,7 +276,7 @@
   status: machine
 - id: f47842f101d9a699
   en: For continuous noise, register a background source for each site you want to affect. Rates are in inverse microseconds and relaxation times are in microseconds. See [Pulse emulator noise](noise/backend-support.md#noise-emulator-support) for the supported channel forms and readout noise.
-  ko: 연속 시간 잡음을 추가하려면 영향을 줄 사이트마다 배경 잡음을 등록합니다. 잡음률은 마이크로초의 역수, 완화 시간은 마이크로초 단위입니다. 지원하는 채널 형태와 판독 잡음은 [펄스 에뮬레이터 잡음](noise/backend-support.md#noise-emulator-support)을 참조하세요.
+  ko: 연속 시간 노이즈를 추가하려면 영향을 줄 사이트마다 배경 노이즈를 등록합니다. 노이즈율은 마이크로초의 역수, 완화 시간은 마이크로초 단위입니다. 지원하는 채널 형태와 판독 노이즈는 [펄스 에뮬레이터 노이즈](noise/backend-support.md#noise-emulator-support)을 참조하세요.
   status: machine
 - id: e7c17a74611ec5ed
   en: Read atom array results

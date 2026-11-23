@@ -4,7 +4,7 @@
   status: machine
 - id: 45249067ee17d922
   en: '[`PauliChannel`][fatqat.noise.PauliChannel] represents a stochastic mixture of Pauli-string errors. It is useful for biased or correlated qubit noise that uniform [`Depolarizing`][fatqat.noise.Depolarizing] cannot express.'
-  ko: '[`PauliChannel`][fatqat.noise.PauliChannel]은 Pauli 문자열 오류의 확률적 혼합을 나타냅니다. 균일한 [`Depolarizing`][fatqat.noise.Depolarizing]으로 표현할 수 없는 편향되거나 상관된 큐비트 잡음에 유용합니다.'
+  ko: '[`PauliChannel`][fatqat.noise.PauliChannel]은 Pauli 문자열 오류의 확률적 혼합을 나타냅니다. 균일한 [`Depolarizing`][fatqat.noise.Depolarizing]으로 표현할 수 없는 편향되거나 상관된 큐비트 노이즈에 유용합니다.'
   status: machine
 - id: ede5489964834a51
   en: Terms

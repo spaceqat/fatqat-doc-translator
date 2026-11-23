@@ -64,7 +64,7 @@
   status: retired
 - id: a9369d5400c85395
   en: Drift and background continuous noise evolve throughout elapsed time. On an emulator that supports classical conditions, a false condition can skip a control block without deleting its duration, so the model still evolves during the interval. This lets you study the effect of elapsed time even when no control is active.
-  ko: 드리프트와 배경 연속 잡음은 전체 실행 시간 동안 작용합니다. 고전 조건을 지원하는 에뮬레이터에서는 조건이 거짓일 때 제어를 건너뛰어도 해당 시간 구간은 유지될 수 있습니다. 그동안에도 모델의 상태는 계속 변하므로, 제어를 가하지 않고 기다리는 시간이 미치는 영향을 살펴볼 수 있습니다.
+  ko: 드리프트와 배경 연속 노이즈는 전체 실행 시간 동안 작용합니다. 고전 조건을 지원하는 에뮬레이터에서는 조건이 거짓일 때 제어를 건너뛰어도 해당 시간 구간은 유지될 수 있습니다. 그동안에도 모델의 상태는 계속 변하므로, 제어를 가하지 않고 기다리는 시간이 미치는 영향을 살펴볼 수 있습니다.
   status: machine
 - id: 9e73b4f96f6c735a
   en: 'The constructor''s `method` selects the mathematical representation and Result accessor: `statevector` (the default), `density_matrix`, or `unitary`. It does not select an internal differential-equation solver.'
@@ -108,7 +108,7 @@
   status: machine
 - id: 61525e7e5dd36beb
   en: A FatQat emulator takes a [`Program`][fatqat.Program] and follows the state while the controls are applied. You can use it to see how pulse duration and coupling affect the result, or how much population leaks into higher levels. It can also include noise that acts continuously during the evolution.
-  ko: FatQat 에뮬레이터는 [`Program`][fatqat.Program]을 받아 제어 신호를 적용하는 동안 상태를 추적합니다. 펄스 길이와 결합이 결과에 어떤 영향을 주는지, 더 높은 준위로 얼마나 누설되는지 살펴볼 수 있습니다. 진화 중 계속 작용하는 잡음도 포함할 수 있습니다.
+  ko: FatQat 에뮬레이터는 [`Program`][fatqat.Program]을 받아 제어 신호를 적용하는 동안 상태를 추적합니다. 펄스 길이와 커플링이 결과에 어떤 영향을 주는지, 더 높은 준위로 얼마나 누설되는지 살펴볼 수 있습니다. 진화 중 계속 작용하는 노이즈도 포함할 수 있습니다.
   status: machine
 - id: a862bd73c328c473
   en: In digital quantum computation, you describe the computation with gates. At the pulse level, a gate calibration tells the emulator which control signals realize each gate. In analog quantum computation, you work with the system's evolution directly and can specify control pulses to shape its Hamiltonian over time.
@@ -120,11 +120,11 @@
   status: machine
 - id: 097e78760378fe3d
   en: Start with a one-qubit Program that applies a single `RX` gate. We run it with a built-in model of two three-level transmons. The model defines the physical levels, units, drift, control channels, and coupling.
-  ko: 먼저 큐비트 하나에 `RX` 게이트를 한 번 적용하는 Program을 작성합니다. 여기서는 3준위 Transmon 두 개가 들어 있는 내장 모델로 실행합니다. 모델은 계의 물리적 준위, 단위, 드리프트, 제어 채널과 결합을 정의합니다.
+  ko: 먼저 큐비트 하나에 `RX` 게이트를 한 번 적용하는 Program을 작성합니다. 여기서는 3준위 트랜스몬 두 개가 들어 있는 내장 모델로 실행합니다. 모델은 계의 물리적 준위, 단위, 드리프트, 제어 채널과 커플링을 정의합니다.
   status: machine
 - id: 7025ef57907ef691
   en: When the emulator runs `RX`, its gate implementation map supplies a calibrated pulse on the drive channel for the addressed transmon. The returned state is a QuTiP ket `Qobj` with $3^2$ amplitudes because it describes both three-level transmons in the model. Including the third level lets you see population leak out of the qubit states `|0>` and `|1>`.
-  ko: 에뮬레이터가 `RX`를 실행할 때 게이트 구현 맵은 대상 Transmon의 구동 채널에 적용할 보정 펄스를 제공합니다. 반환되는 상태는 QuTiP의 켓 `Qobj`이며, 모델에 있는 두 3준위 Transmon을 함께 표현하므로 진폭이 $3^2$개입니다. 세 번째 준위까지 포함하면 큐비트 상태 `|0>`과 `|1>` 밖으로 얼마나 누설되는지 확인할 수 있습니다.
+  ko: 에뮬레이터가 `RX`를 실행할 때 게이트 구현 맵은 대상 트랜스몬의 구동 채널에 적용할 보정 펄스를 제공합니다. 반환되는 상태는 QuTiP의 켓 `Qobj`이며, 모델에 있는 두 3준위 트랜스몬을 함께 표현하므로 진폭이 $3^2$개입니다. 세 번째 준위까지 포함하면 큐비트 상태 `|0>`과 `|1>` 밖으로 얼마나 누설되는지 확인할 수 있습니다.
   status: machine
 - id: 9563dc68fe860d38
   en: To model a different system or use a different calibration, supply its model document and gate implementation map.
@@ -136,11 +136,11 @@
   status: machine
 - id: 24bb2019ee05b43e
   en: Use the same model to see how a waveform of your choice drives a transmon. A [`SampledWaveform`][fatqat.emulator.SampledWaveform] sets the signal at three times. A [`PulseControl`][fatqat.emulator.PulseControl] sends it to a physical drive channel, and a [`PulseOperation`][fatqat.operations.PulseOperation] sets the duration of the control block.
-  ko: 같은 모델에서 원하는 파형으로 Transmon을 구동해 봅니다. [`SampledWaveform`][fatqat.emulator.SampledWaveform]으로 세 시점의 신호값을 지정하고, [`PulseControl`][fatqat.emulator.PulseControl]로 파형을 물리적 구동 채널에 연결합니다. [`PulseOperation`][fatqat.operations.PulseOperation]으로 제어 블록의 길이를 정합니다.
+  ko: 같은 모델에서 원하는 파형으로 트랜스몬을 구동해 봅니다. [`SampledWaveform`][fatqat.emulator.SampledWaveform]으로 세 시점의 신호값을 지정하고, [`PulseControl`][fatqat.emulator.PulseControl]로 파형을 물리적 구동 채널에 연결합니다. [`PulseOperation`][fatqat.operations.PulseOperation]으로 제어 블록의 길이를 정합니다.
   status: machine
 - id: 12026d136652fd8e
   en: In `direct_program.add(pulse)`, the drive channel already specifies physical transmon `q0`. A [`ResourceLayout`][fatqat.ResourceLayout] maps logical qubits to physical positions. The pulse uses the physical address and the time and signal units defined by the model and its channel.
-  ko: '`direct_program.add(pulse)`를 호출할 때 구동 채널이 이미 물리 Transmon `q0`을 지정합니다. [`ResourceLayout`][fatqat.ResourceLayout]은 논리 큐비트를 물리 위치에 배치하는 데 쓰입니다. 여기서 펄스는 물리 주소를 직접 사용하며 시간과 신호의 단위는 모델과 채널에서 정합니다.'
+  ko: '`direct_program.add(pulse)`를 호출할 때 구동 채널이 이미 물리 트랜스몬 `q0`을 지정합니다. [`ResourceLayout`][fatqat.ResourceLayout]은 논리 큐비트를 물리 위치에 배치하는 데 쓰입니다. 여기서 펄스는 물리 주소를 직접 사용하며 시간과 신호의 단위는 모델과 채널에서 정합니다.'
   status: machine
 - id: c7e5eb799cf75bd9
   en: How the state evolves during a pulse
@@ -164,7 +164,7 @@
   status: machine
 - id: dcac8f1c5ddcc0ea
   en: In the example above, the drive is zero at time 0, reaches 0.02 at time 10, and returns to zero at time 20. The emulator interpolates between those three samples to get a continuous waveform. At each instant, the drive combines with drift and coupling to determine the Hamiltonian and how the quantum state changes.
-  ko: 위 예제에서 구동 진폭은 시각 0에 0이고, 시각 10에 0.02까지 올라갔다가 시각 20에 다시 0이 됩니다. 에뮬레이터는 세 표본 사이를 보간해 연속적인 파형을 얻습니다. 각 시점의 구동, 드리프트, 결합이 해밀토니안을 정하며, 에뮬레이터는 이를 바탕으로 상태의 시간 변화를 계산합니다.
+  ko: 위 예제에서 구동 진폭은 시각 0에 0이고, 시각 10에 0.02까지 올라갔다가 시각 20에 다시 0이 됩니다. 에뮬레이터는 세 표본 사이를 보간해 연속적인 파형을 얻습니다. 각 시점의 구동, 드리프트, 커플링이 해밀토니안을 정하며, 에뮬레이터는 이를 바탕으로 상태의 시간 변화를 계산합니다.
   status: machine
 - id: 170bff526716f555
   en: The schedule determines when each pulse block starts. Two blocks that use the same drive channel run one after the other, in Program order. Blocks can overlap when their physical resources are independent. Use `execution_config` to choose `"ASAP"` or `"ALAP"` for the earliest or latest valid start times. Within one `PulseOperation`, use `start_offset` to delay an individual waveform relative to the start of that block.

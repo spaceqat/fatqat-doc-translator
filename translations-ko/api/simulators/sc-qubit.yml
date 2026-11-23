@@ -56,7 +56,7 @@
   status: retired
 - id: 51c8d2a23cdcfa44
   en: Built-in noise
-  ko: 내장 잡음
+  ko: 내장 노이즈
   status: machine
 - id: 3022f53494bdf396
   en: 'The simulator remains ideal unless a noise model is supplied. To use the built-in profile, request it explicitly:'
@@ -144,7 +144,7 @@
   status: retired
 - id: 82bd0285247375ad
   en: Configure layout and noise
-  ko: 배치와 잡음 설정
+  ko: 배치와 노이즈 설정
   status: machine
 - id: 91956d0136ea8720
   en: Choose the number of qubit sites and which pairs can interact. The default is a 4×4 nearest-neighbor grid, with sites numbered from 0 to 15 in row order. To use another graph, set `num_qubits` and `couplings`.

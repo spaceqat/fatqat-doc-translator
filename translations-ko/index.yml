@@ -40,7 +40,7 @@
   status: machine
 - id: af4632c2080ff5a0
   en: states · counts · noise
-  ko: 상태 · 측정 횟수 · 잡음
+  ko: 상태 · 측정 횟수 · 노이즈
   status: machine
 - id: df0d0dbabfe89fbf
   en: Hardware-profile simulation
@@ -164,11 +164,11 @@
   status: machine
 - id: fa32672227a9ed82
   en: '![The SCQubitSimulator result gives the target outcome 101 a probability of 81.65 percent with 200-microsecond coherence times and additional CZ depolarizing noise of 0.003 on both edges.](assets/generated/home/grover-sc-profile.png){ loading=lazy width=714 height=515 }'
-  ko: '![SCQubitSimulator에서 결맞음 시간을 200마이크로초로 두고 양쪽 연결에 0.003의 CZ 탈분극 잡음을 추가하면 목표 결과 101의 확률은 81.65퍼센트입니다.](assets/generated/home/grover-sc-profile.png){ loading=lazy width=714 height=515 }'
+  ko: '![SCQubitSimulator에서 결맞음 시간을 200마이크로초로 두고 양쪽 연결에 0.003의 CZ 탈분극 노이즈를 추가하면 목표 결과 101의 확률은 81.65퍼센트입니다.](assets/generated/home/grover-sc-profile.png){ loading=lazy width=714 height=515 }'
   status: machine
 - id: e0dd853dd661f302
   en: With `T1 = T2 = 200 µs`, we add CZ depolarizing noise with `p = 0.003`. Compiled native-gate simulation then returns `101` with **81.65%** probability.
-  ko: '`T1 = T2 = 200 µs`로 두고 `p = 0.003`의 CZ 탈분극 잡음을 추가합니다. 컴파일된 네이티브 게이트 시뮬레이션에서는 **81.65%**의 확률로 `101`을 얻습니다.'
+  ko: '`T1 = T2 = 200 µs`로 두고 `p = 0.003`의 CZ 탈분극 노이즈를 추가합니다. 컴파일된 네이티브 게이트 시뮬레이션에서는 **81.65%**의 확률로 `101`을 얻습니다.'
   status: machine
 - id: 5727a0b51520e3b5
   en: '![The three-level TransmonEmulator result gives the target outcome 101 a probability of about 64.05 percent with the same coherence times.](assets/generated/home/grover-transmon.png){ loading=lazy width=714 height=515 }'
@@ -180,7 +180,7 @@
   status: retired
 - id: 7b314aaff7ff66e9
   en: With the fixed routing seed, compilation produces **51 CZ**, **172 SX**, and **383 RZ** gates. These results use the same compiled circuit for both hardware models; the SC noise channels and the Transmon pulse dynamics model different physical effects. The Transmon model also uses 60 ns CZ pulses, while the SC coherence channels use a 50 ns CZ duration. Compilation preserves ideal algorithm behavior, but the gate decomposition and routing affect noisy results.
-  ko: 라우팅 시드를 고정하면 컴파일 결과는 **51개의 CZ**, **172개의 SX**, **383개의 RZ** 게이트입니다. 두 하드웨어 모델은 같은 컴파일된 회로를 사용하지만, SC 잡음 채널과 Transmon 펄스 동역학은 서로 다른 물리적 효과를 모델링합니다. Transmon 모델의 CZ 펄스 길이는 60 ns이며 SC 결맞음 채널의 CZ 지속 시간은 50 ns입니다. 컴파일은 이상적인 알고리즘 동작을 보존하지만, 게이트 분해와 라우팅은 잡음이 있는 결과에 영향을 줍니다.
+  ko: 라우팅 시드를 고정하면 컴파일 결과는 **51개의 CZ**, **172개의 SX**, **383개의 RZ** 게이트입니다. 두 하드웨어 모델은 같은 컴파일된 회로를 사용하지만, SC 노이즈 채널과 트랜스몬 펄스 동역학은 서로 다른 물리적 효과를 모델링합니다. 트랜스몬 모델의 CZ 펄스 길이는 60 ns이며 SC 결맞음 채널의 CZ 지속 시간은 50 ns입니다. 컴파일은 이상적인 알고리즘 동작을 보존하지만, 게이트 분해와 라우팅은 노이즈가 있는 결과에 영향을 줍니다.
   status: machine
 - id: 51ffc6eebdfdbcd9
   en: Shared algorithm source — `home_grover_program.py`
@@ -188,7 +188,7 @@
   status: machine
 - id: 7cc9bf4b96af55d4
   en: All three scripts start from the same compact `LogicalProgram` shown above. General simulation runs it directly; the SC and Transmon scripts use `compile_to_sc()` to decompose its Toffoli gates and route the circuit onto the three-site line. The routing seed is fixed for reproducible results. The shared axis helper restores logical qubit order when reading a compiled final state.
-  ko: 세 스크립트는 모두 위에 보인 간결한 `LogicalProgram`에서 시작합니다. 일반 시뮬레이션은 이를 직접 실행하고, SC 및 Transmon 스크립트는 `compile_to_sc()`로 Toffoli 게이트를 분해한 뒤 회로를 세 위치의 선형 연결에 라우팅합니다. 재현성을 위해 라우팅 시드를 고정합니다. 공통 축 헬퍼는 컴파일된 최종 상태를 읽을 때 논리 큐비트 순서를 복원합니다.
+  ko: 세 스크립트는 모두 위에 보인 간결한 `LogicalProgram`에서 시작합니다. 일반 시뮬레이션은 이를 직접 실행하고, SC 및 트랜스몬 스크립트는 `compile_to_sc()`로 Toffoli 게이트를 분해한 뒤 회로를 세 위치의 선형 연결에 라우팅합니다. 재현성을 위해 라우팅 시드를 고정합니다. 공통 축 헬퍼는 컴파일된 최종 상태를 읽을 때 논리 큐비트 순서를 복원합니다.
   status: machine
 - id: 3c5e118fd497f10a
   en: Run each execution model independently
@@ -196,7 +196,7 @@
   status: machine
 - id: 68adc938030ac905
   en: Each tab is a top-to-bottom script. The general script also verifies that ideal compiled execution matches the source state up to a global phase. The Transmon script binds compiled sites to model subsystems and supplies X/SX pulse definitions using its calibrated RX recipe.
-  ko: 각 탭은 위에서 아래로 실행하는 완전한 스크립트입니다. 일반 스크립트는 이상적인 컴파일 실행이 전역 위상을 제외하고 원본 상태와 일치하는지도 검증합니다. Transmon 스크립트는 컴파일된 위치를 모델의 부분계에 연결하고, 보정된 RX 구현으로 X/SX 펄스를 정의합니다.
+  ko: 각 탭은 위에서 아래로 실행하는 완전한 스크립트입니다. 일반 스크립트는 이상적인 컴파일 실행이 전역 위상을 제외하고 원본 상태와 일치하는지도 검증합니다. 트랜스몬 스크립트는 컴파일된 위치를 모델의 부분계에 연결하고, 보정된 RX 구현으로 X/SX 펄스를 정의합니다.
   status: machine
 - id: 960c98ad9d1c39bc
   en: General `Simulator`
@@ -212,11 +212,11 @@
   status: retired
 - id: bbae73316352950c
   en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] provides one example. Sites begin empty, so `Put` loads the atoms; `Pair` makes native `CZ` available, and `Unpair` removes that connection. Noise attached to these operations can perturb the state or remove an atom from the array.'
-  ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]가 그 예입니다. 각 위치는 비어 있는 상태로 시작하므로 `Put`으로 원자를 적재합니다. `Pair`는 네이티브 `CZ`를 사용할 수 있게 연결하고, `Unpair`는 그 연결을 해제합니다. 이 연산에 붙인 잡음은 상태를 교란하거나 배열에서 원자를 제거할 수 있습니다.'
+  ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]가 그 예입니다. 각 위치는 비어 있는 상태로 시작하므로 `Put`으로 원자를 적재합니다. `Pair`는 네이티브 `CZ`를 사용할 수 있게 연결하고, `Unpair`는 그 연결을 해제합니다. 이 연산에 붙인 노이즈는 상태를 교란하거나 배열에서 원자를 제거할 수 있습니다.'
   status: machine
 - id: 7a8db953a972dfce
   en: '![Two occupied atoms begin separated, pair so that CZ becomes legal, and unpair while optional depolarizing noise follows the pairing operations.](assets/generated/guide/atom-pairing-lifecycle.svg){ loading=lazy width=960 height=306 }'
-  ko: '![처음에는 떨어져 있던 두 원자를 쌍으로 묶어 CZ를 허용한 뒤 다시 분리합니다. 선택적으로 쌍 구성 연산 뒤에 탈분극 잡음을 적용할 수 있습니다.](assets/generated/guide/atom-pairing-lifecycle.svg){ loading=lazy width=960 height=306 }'
+  ko: '![처음에는 떨어져 있던 두 원자를 쌍으로 묶어 CZ를 허용한 뒤 다시 분리합니다. 선택적으로 쌍 구성 연산 뒤에 탈분극 노이즈를 적용할 수 있습니다.](assets/generated/guide/atom-pairing-lifecycle.svg){ loading=lazy width=960 height=306 }'
   status: machine
 - id: 680d0ffc9139960f
   en: Occupancy stays explicit while pairing changes which native interactions are legal.
@@ -356,7 +356,7 @@
   status: machine
 - id: 26babd904bce2032
   en: Express gates, measurements, classical conditions, and parameters in a `Program`, alongside qudits and direct physical controls.
-  ko: '`Program`으로 게이트, 측정, 고전 조건, 매개변수를 표현하고, qudit과 직접적인 물리 제어도 다룰 수 있습니다.'
+  ko: '`Program`으로 게이트, 측정, 고전 조건, 매개변수를 표현하고, 큐디트와 직접적인 물리 제어도 다룰 수 있습니다.'
   status: machine
 - id: 6092cbf75654a29c
   en: Study an algorithm at the circuit level, check whether operations obey device rules, or follow the dynamics during a control pulse.
@@ -376,7 +376,7 @@
   status: machine
 - id: acb99e68150d0462
   en: Understand an algorithm through quantum states and measurement outcomes, and explore how noise changes its behavior.
-  ko: 양자 상태와 측정 결과로 알고리즘을 이해하고, 잡음이 동작에 어떤 영향을 주는지 살펴보세요.
+  ko: 양자 상태와 측정 결과로 알고리즘을 이해하고, 노이즈가 동작에 어떤 영향을 주는지 살펴보세요.
   status: machine
 - id: 4390e4d612bf7a31
   en: Check supported gates and connectivity, or track atom loading, pairing, and loss as part of the computation.
@@ -388,7 +388,7 @@
   status: machine
 - id: c81ad0ce6d65deb1
   en: How does an algorithm behave when it meets a device model? This three-qubit Grover search starts with all eight bit strings equally likely, then marks and amplifies `101` over two iterations. Starting from the same algorithm, the examples below compare ideal circuit evolution, noisy native gates, and calibrated control pulses. Each model reveals different effects on the result.
-  ko: 알고리즘을 구체적인 장치 모델에서 실행하면 결과는 어떻게 달라질까요? 이 3큐비트 Grover 탐색은 여덟 비트열의 확률이 같은 상태에서 시작해 두 번의 반복으로 `101`을 표시하고 증폭합니다. 아래 예제는 같은 알고리즘에서 출발해 이상적인 회로 진화, 잡음이 있는 네이티브 게이트, 보정된 제어 펄스를 비교합니다. 각 모델은 결과에 영향을 주는 서로 다른 효과를 보여 줍니다.
+  ko: 알고리즘을 구체적인 장치 모델에서 실행하면 결과는 어떻게 달라질까요? 이 3큐비트 Grover 탐색은 여덟 비트열의 확률이 같은 상태에서 시작해 두 번의 반복으로 `101`을 표시하고 증폭합니다. 아래 예제는 같은 알고리즘에서 출발해 이상적인 회로 진화, 노이즈가 있는 네이티브 게이트, 보정된 제어 펄스를 비교합니다. 각 모델은 결과에 영향을 주는 서로 다른 효과를 보여 줍니다.
   status: machine
 - id: 96aec914867cdf7a
   en: Make hardware operations part of the program

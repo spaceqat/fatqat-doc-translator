@@ -16,7 +16,7 @@
   status: machine
 - id: f7500f6c9589f841
   en: '[`Loss`][fatqat.noise.Loss] can be attached only to matching operations; it cannot be registered as background noise. A condition on the matching operation also controls its loss: a false condition skips the attached loss.'
-  ko: '[`Loss`][fatqat.noise.Loss]는 매칭되는 연산에만 연결할 수 있으며 배경 잡음으로 등록할 수 없습니다. 매칭되는 연산의 조건은 손실에도 적용되므로, 조건이 거짓이면 연결된 손실도 건너뜁니다.'
+  ko: '[`Loss`][fatqat.noise.Loss]는 매칭되는 연산에만 연결할 수 있으며 배경 노이즈로 등록할 수 없습니다. 매칭되는 연산의 조건은 손실에도 적용되므로, 조건이 거짓이면 연결된 손실도 건너뜁니다.'
   status: machine
 - id: db39bca666b4c5a4
   en: '`Loss` requires a backend that tracks occupancy. See [backend support](backend-support.md#noise-simulator-support) for supported backends and [the occupancy lifecycle](../simulators/atom-array.md#occupancy-and-loss) for loading, later operations, measurement, and result behavior.'

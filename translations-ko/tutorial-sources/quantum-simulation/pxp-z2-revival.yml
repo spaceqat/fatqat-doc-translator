@@ -12,7 +12,7 @@
   status: machine
 - id: 748713a02a43f493
   en: Push the Rydberg blockade to its strong-coupling extreme and you are left with the PXP model, and quenching it from the Neel state produces one of the strangest sights in many-body physics.
-  ko: Rydberg 봉쇄의 강결합 극한에서 PXP 모델을 얻습니다. 이 모델을 Neel 상태에서 퀀치하면 다체 물리의 독특한 현상이 나타납니다.
+  ko: Rydberg 봉쇄의 강한 커플링 극한에서 PXP 모델을 얻습니다. 이 모델을 Neel 상태에서 퀀치하면 다체 물리의 독특한 현상이 나타납니다.
   status: machine
 - id: af849073a702e725
   en: 'You would expect a ten-site chain to scramble and forget where it started. The PXP chain, for the most part, does exactly that -- except when it starts from $|Z_2\rangle = |r\,g\,r\,g\,\ldots\rangle$. That state keeps snapping back to itself at regular intervals, a phenomenon tied to quantum many-body scars (see [Turner et al., Nature Physics 14, 745 (2018)](https://doi.org/10.1038/s41567-018-0137-5)). Entanglement grows during the quench, but it is not a one-way street either: every revival comes with a visible dip in the half-chain entropy.'
@@ -120,7 +120,7 @@
   status: machine
 - id: 54738af626f46c87
   en: Build one Trotter program for the interval between samples. Starting from $|Z_2\rangle$, pass each final state into the next run through `initial_state`. For this noiseless, time-independent quench, a uniform, Trotter-aligned grid gives the same ordered evolution at each sample as restarting from the initial state.
-  ko: 표본 사이 구간에 대한 Trotter 프로그램 하나를 만듭니다. $|Z_2\rangle$에서 시작해 각 최종 상태를 `initial_state`로 다음 실행에 넘깁니다. 잡음이 없고 시간에 무관한 이 퀀치에서는 Trotter 단계에 맞춘 균일 격자를 사용하면 매번 초기 상태에서 다시 시작했을 때와 같은 순서의 시간 진화를 각 표본에서 얻습니다.
+  ko: 표본 사이 구간에 대한 Trotter 프로그램 하나를 만듭니다. $|Z_2\rangle$에서 시작해 각 최종 상태를 `initial_state`로 다음 실행에 넘깁니다. 노이즈가 없고 시간에 무관한 이 퀀치에서는 Trotter 단계에 맞춘 균일 격자를 사용하면 매번 초기 상태에서 다시 시작했을 때와 같은 순서의 시간 진화를 각 표본에서 얻습니다.
   status: machine
 - id: a105df806941eff7
   en: Revival peaks are just local maxima of the fidelity after the initial decay. Notice that each peak lands on the *same* Neel branch -- the twin-branch fidelity stays negligible there, so the state really does come back to where it started.

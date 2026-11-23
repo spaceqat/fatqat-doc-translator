@@ -164,7 +164,7 @@
   status: retired
 - id: 891ca72ae7f54de9
   en: '**Gate-level simulators:** Use `statevector` or `density_matrix`. For an exact result with stochastic reset or gate noise, use `density_matrix`. A statevector method can sample those runs with positive `shots`. Programs that use custom operations are unsupported.'
-  ko: '**게이트 수준 시뮬레이터.** `statevector` 또는 `density_matrix`를 사용합니다. 재설정이나 게이트 잡음으로 진화에 무작위성이 생기면 `density_matrix`로 정확한 값을 계산하세요. 상태 벡터 방식에서는 양수 `shots`로 표본을 추출할 수 있습니다. 사용자 정의 연산이 있는 프로그램은 지원하지 않습니다.'
+  ko: '**게이트 수준 시뮬레이터.** `statevector` 또는 `density_matrix`를 사용합니다. 재설정이나 게이트 노이즈로 진화에 무작위성이 생기면 `density_matrix`로 정확한 값을 계산하세요. 상태 벡터 방식에서는 양수 `shots`로 표본을 추출할 수 있습니다. 사용자 정의 연산이 있는 프로그램은 지원하지 않습니다.'
   status: machine
 - id: ef31669a1b0ba211
   en: '**Linear optics:** [`LOSimulator`][fatqat.simulator.LOSimulator] also supports `fixed_photon_state`. To evaluate an optical mode, use [`NumberOperator`][fatqat.observable.NumberOperator] or a [`Projector`][fatqat.observable.Projector] with a level at or below the photon cutoff. Set the input photons with `initial_state`.'
@@ -176,11 +176,11 @@
   status: machine
 - id: 0f8f2a5e6c625ea9
   en: '**Pulse emulation:** [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] supports both state methods, without reset. Use a density matrix for exact evaluation with Lindblad noise, or sample with positive `shots`. Sampled runs accept only diagonal operators, including `Z`, `Projector(0)`, `Projector(1)`, and `NumberOperator()`. Transmon and three-level atom pulse models are unsupported.'
-  ko: '**펄스 에뮬레이션.** [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]는 재설정이 없는 프로그램에서 두 상태 방식을 모두 지원합니다. Lindblad 잡음이 있으면 밀도 행렬로 정확히 계산하거나 양수 `shots`로 표본을 추출하세요. 표본 실행에는 `Z`, `Projector(0)`, `Projector(1)`, `NumberOperator()`를 비롯한 대각 연산자만 사용할 수 있습니다. 트랜스몬과 3준위 원자 펄스 모델은 지원하지 않습니다.'
+  ko: '**펄스 에뮬레이션.** [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]는 재설정이 없는 프로그램에서 두 상태 방식을 모두 지원합니다. Lindblad 노이즈가 있으면 밀도 행렬로 정확히 계산하거나 양수 `shots`로 표본을 추출하세요. 표본 실행에는 `Z`, `Projector(0)`, `Projector(1)`, `NumberOperator()`를 비롯한 대각 연산자만 사용할 수 있습니다. 트랜스몬과 3준위 원자 펄스 모델은 지원하지 않습니다.'
   status: machine
 - id: 659b99f273e7eaa9
   en: When readout confusion applies to an observable, use positive `shots`. Gate-level simulators measure sampled `X` and `Y` terms after ideal basis changes. Gate noise acts on the program's operations but leaves those basis changes ideal.
-  ko: 관측량의 측정에 판독 혼동이 적용되면 양수 `shots`를 사용하세요. 게이트 수준 시뮬레이터는 `X`와 `Y` 항을 표본 추출할 때 이상적인 기저 변환을 한 뒤 측정합니다. 게이트 잡음은 프로그램의 연산에 작용하며 이 기저 변환에는 영향을 주지 않습니다.
+  ko: 관측량의 측정에 판독 혼동이 적용되면 양수 `shots`를 사용하세요. 게이트 수준 시뮬레이터는 `X`와 `Y` 항을 표본 추출할 때 이상적인 기저 변환을 한 뒤 측정합니다. 게이트 노이즈는 프로그램의 연산에 작용하며 이 기저 변환에는 영향을 주지 않습니다.
   status: machine
 - id: 220c293e8b9c4884
   en: Use [`run_sweep()`][fatqat.Estimator.run_sweep] to evaluate the same observables at several parameter settings. Each binding row gives one result, in input order.
@@ -216,5 +216,5 @@
   status: machine
 - id: 5530343c68bb4c0b
   en: Set the method, numerical runtime, and noise on the backend. Pass per-run options such as the seed through `execution_config`. Simulators also accept an `initial_state`.
-  ko: 시뮬레이션 방식, 수치 런타임, 잡음은 백엔드에서 설정합니다. 시드처럼 실행마다 지정하는 옵션은 `execution_config`로 전달하세요. 시뮬레이터는 `initial_state`도 받습니다.
+  ko: 시뮬레이션 방식, 수치 런타임, 노이즈는 백엔드에서 설정합니다. 시드처럼 실행마다 지정하는 옵션은 `execution_config`로 전달하세요. 시뮬레이터는 `initial_state`도 받습니다.
   status: machine

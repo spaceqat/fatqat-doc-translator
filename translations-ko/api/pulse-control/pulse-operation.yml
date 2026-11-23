@@ -12,15 +12,15 @@
   status: retired
 - id: f2ac3265eee2f5c8
   en: Conditions and noise
-  ko: 조건과 잡음
+  ko: 조건과 노이즈
   status: machine
 - id: 4fb9067c07fb39a4
   en: '`TransmonEmulator` allows `program.add(operation, condition=...)`. If the condition is false, the controls are skipped but the block still takes its full duration. Model drift and background Lindblad noise continue during that time. `Atom2LevelEmulator` does not support conditions.'
-  ko: '`TransmonEmulator`에서는 `program.add(operation, condition=...)`을 사용할 수 있습니다. 조건이 거짓이면 제어는 건너뛰지만 블록의 전체 지속시간은 그대로 소요됩니다. 그동안 모델 드리프트와 배경 Lindblad 잡음은 계속 작용합니다. `Atom2LevelEmulator`는 조건을 지원하지 않습니다.'
+  ko: '`TransmonEmulator`에서는 `program.add(operation, condition=...)`을 사용할 수 있습니다. 조건이 거짓이면 제어는 건너뛰지만 블록의 전체 지속시간은 그대로 소요됩니다. 그동안 모델 드리프트와 배경 Lindblad 노이즈는 계속 작용합니다. `Atom2LevelEmulator`는 조건을 지원하지 않습니다.'
   status: machine
 - id: 1202290d63b86101
   en: Operation-scoped noise cannot be attached to a direct pulse block, so `noise.add(..., operation=ops.PulseOperation)` raises `ValueError`. Background noise selected by target or device label still applies.
-  ko: 직접 펄스 블록에는 연산 범위 잡음을 붙일 수 없으므로 `noise.add(..., operation=ops.PulseOperation)`은 `ValueError`를 발생시킵니다. 대상이나 장치 라벨로 선택한 배경 잡음은 여전히 적용됩니다.
+  ko: 직접 펄스 블록에는 연산 범위 노이즈를 붙일 수 없으므로 `noise.add(..., operation=ops.PulseOperation)`은 `ValueError`를 발생시킵니다. 대상이나 장치 라벨로 선택한 배경 노이즈는 여전히 적용됩니다.
   status: machine
 - id: be91940b79f46910
   en: Support

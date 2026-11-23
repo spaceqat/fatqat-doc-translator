@@ -80,7 +80,7 @@
   status: machine
 - id: 4d8961598550e3c3
   en: Continuous-time noise
-  ko: 연속시간 잡음
+  ko: 연속시간 노이즈
   status: machine
 - id: 2d512d6140f104a8
   en: 'Pulse emulators evolve noise over time, so their family-owned Lindblad realizations use rates or relaxation times. They do not infer a rate from a finite probability. In particular, [`PauliChannel`][fatqat.noise.PauliChannel] remains a discrete Simulator channel: its probabilities do not specify a duration or conversion convention. Use [`Simulator`][fatqat.simulator.Simulator] for discrete Pauli noise, or a rate-form declaration listed for the pulse-emulator family in [Pulse emulators](../noise/backend-support.md#noise-emulator-support).'
@@ -144,7 +144,7 @@
   status: retired
 - id: 5deb65e708e98c80
   en: Pulse emulators use Lindblad noise specified by rates or relaxation times. See the [supported pulse noise models](../noise/backend-support.md#noise-emulator-support) for each emulator.
-  ko: 펄스 에뮬레이터는 Lindblad 잡음을 잡음률이나 이완 시간으로 지정합니다. 에뮬레이터별로 [지원되는 펄스 잡음 모델](../noise/backend-support.md#noise-emulator-support)을 참고하세요.
+  ko: 펄스 에뮬레이터는 Lindblad 노이즈를 노이즈율이나 이완 시간으로 지정합니다. 에뮬레이터별로 [지원되는 펄스 노이즈 모델](../noise/backend-support.md#noise-emulator-support)을 참고하세요.
   status: machine
 - id: 281e97d5f458eecc
   en: A pulse emulator runs physical controls with specified waveforms, channels, and timing. When the program contains a gate, the emulator uses the gate's pulse implementation to obtain those controls. A direct pulse operation specifies the controls in the program.

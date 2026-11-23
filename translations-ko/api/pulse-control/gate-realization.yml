@@ -68,7 +68,7 @@
   status: machine
 - id: 8e031c56bd472103
   en: Specify the duration and physical controls in a [`PulseDefinition`][fatqat.emulator.PulseDefinition]. A definition can also apply frame actions after the pulse interval. `PhaseShift` shifts one frame and `PhaseSwap` exchanges two frames. Conditions and noise remain on the original gate operation in the program.
-  ko: '[`PulseDefinition`][fatqat.emulator.PulseDefinition]에 지속 시간과 물리 제어를 지정합니다. 펄스 구간 뒤에 프레임 동작을 적용할 수도 있습니다. `PhaseShift`는 한 프레임의 위상을 바꾸고 `PhaseSwap`은 두 프레임을 맞바꿉니다. 조건과 잡음은 프로그램의 원래 게이트에 그대로 적용됩니다.'
+  ko: '[`PulseDefinition`][fatqat.emulator.PulseDefinition]에 지속 시간과 물리 제어를 지정합니다. 펄스 구간 뒤에 프레임 동작을 적용할 수도 있습니다. `PhaseShift`는 한 프레임의 위상을 바꾸고 `PhaseSwap`은 두 프레임을 맞바꿉니다. 조건과 노이즈는 프로그램의 원래 게이트에 그대로 적용됩니다.'
   status: machine
 - id: ec43595dbd5bfe20
   en: Register the implementation

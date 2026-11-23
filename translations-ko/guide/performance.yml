@@ -148,11 +148,11 @@
   status: machine
 - id: beecfcd8e765ecd8
   en: '| `statevector` | `D` | Evolve a pure state or sample noisy trajectories |'
-  ko: '| `statevector` | `D` | 순수 상태를 시간에 따라 변화시키거나 잡음 궤적 샘플링 |'
+  ko: '| `statevector` | `D` | 순수 상태를 시간에 따라 변화시키거나 노이즈 궤적 샘플링 |'
   status: machine
 - id: a5f332670af9bcbb
   en: '| `density_matrix` | `D**2` | Evolve a mixed state and apply noise channels directly |'
-  ko: '| `density_matrix` | `D**2` | 혼합 상태를 시간에 따라 변화시키고 잡음 채널을 직접 적용 |'
+  ko: '| `density_matrix` | `D**2` | 혼합 상태를 시간에 따라 변화시키고 노이즈 채널을 직접 적용 |'
   status: machine
 - id: c564664de59db197
   en: '| `unitary` | `D**2` | Find the circuit''s action on every input state |'
@@ -164,7 +164,7 @@
   status: machine
 - id: 835ad335d74867a9
   en: For example, 20 qubits need about 16 MiB for a complex128 statevector alone. A density matrix of the same system needs about 16 TiB. Temporary arrays add to these storage costs. For noisy simulations, this makes statevector trajectories useful at sizes where a density matrix is too large; the tradeoff is sampling uncertainty.
-  ko: 예를 들어 큐비트 20개의 complex128 상태 벡터만 저장하는 데 약 16 MiB가 필요합니다. 같은 시스템의 밀도 행렬에는 약 16 TiB가 필요하며, 임시 배열이 추가 메모리를 사용합니다. 따라서 잡음 시뮬레이션에서는 밀도 행렬이 너무 커지는 규모에서도 상태 벡터 궤적을 활용할 수 있습니다. 대신 샘플링 불확실성이 생깁니다.
+  ko: 예를 들어 큐비트 20개의 complex128 상태 벡터만 저장하는 데 약 16 MiB가 필요합니다. 같은 시스템의 밀도 행렬에는 약 16 TiB가 필요하며, 임시 배열이 추가 메모리를 사용합니다. 따라서 노이즈 시뮬레이션에서는 밀도 행렬이 너무 커지는 규모에서도 상태 벡터 궤적을 활용할 수 있습니다. 대신 샘플링 불확실성이 생깁니다.
   status: machine
 - id: 84ef938187f919bb
   en: 'Choose results to match the question. Use counts for a measurement distribution, an Estimator for correlations or energies, and a final state when you need the quantum state itself. A counts-only run can use `result_config={"counts": True, "final_state": False}`. This avoids retaining a final quantum array in the result, although simulation still needs a state while it runs.'
@@ -188,7 +188,7 @@
   status: machine
 - id: 18b284f41d6e5fca
   en: For repeated runs, parameter sweeps, or many independent shots, start with Numba and automatic execution settings. Even small circuits can benefit from compiled workflows and shot parallelism when each shot evolves a separate noisy trajectory or follows measurement-dependent control flow.
-  ko: 반복 실행, 매개변수 스윕, 독립적인 샷이 많은 작업에는 Numba와 자동 실행 설정부터 사용하세요. 각 샷이 별도의 잡음 궤적을 따르거나 측정 결과에 따라 제어 흐름이 달라진다면, 작은 회로도 컴파일된 실행 흐름과 샷 병렬화의 이점을 얻을 수 있습니다.
+  ko: 반복 실행, 매개변수 스윕, 독립적인 샷이 많은 작업에는 Numba와 자동 실행 설정부터 사용하세요. 각 샷이 별도의 노이즈 궤적을 따르거나 측정 결과에 따라 제어 흐름이 달라진다면, 작은 회로도 컴파일된 실행 흐름과 샷 병렬화의 이점을 얻을 수 있습니다.
   status: machine
 - id: 9ac1c27ec2830957
   en: 'Workflow selection is automatic: you choose the runtime and parallelism options, and the simulator selects the workflow. For parallelism choices, see [Match parallelism to the work](#match-parallelism-to-the-work).'
@@ -224,7 +224,7 @@
   status: machine
 - id: 6434926fc96fb15c
   en: '`shots=0` calculates expectations without shot sampling. Positive shots introduce measurement sampling and give a standard error alongside each estimate. For exact expectations with stochastic channels or reset, choose a density-matrix backend; use positive shots for noisy statevector trajectories.'
-  ko: '`shots=0`은 샷 샘플링 없이 기댓값을 계산합니다. 샷 수가 양수이면 측정 샘플링이 적용되며 각 추정값과 함께 표준 오차가 제공됩니다. 확률적 채널이나 리셋이 있을 때 정확한 기댓값을 구하려면 밀도 행렬 백엔드를 선택하세요. 잡음이 있는 상태 벡터 궤적에는 양의 샷 수를 사용하세요.'
+  ko: '`shots=0`은 샷 샘플링 없이 기댓값을 계산합니다. 샷 수가 양수이면 측정 샘플링이 적용되며 각 추정값과 함께 표준 오차가 제공됩니다. 확률적 채널이나 리셋이 있을 때 정확한 기댓값을 구하려면 밀도 행렬 백엔드를 선택하세요. 노이즈가 있는 상태 벡터 궤적에는 양의 샷 수를 사용하세요.'
   status: machine
 - id: e460225d79321cba
   en: '`Estimator.run_sweep()` retains expectation results instead of a final state for every point, saving memory in large scans. See [Estimate observables](interpret-results.md) for examples and uncertainty, and the [Estimator API](../api/estimator.md#parameter-sweeps) for sweeps.'

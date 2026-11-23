@@ -1,22 +1,22 @@
 - id: 1b44e748262b4a4c
   en: Compare the same Program ideally and noisily
-  ko: 같은 Program의 이상적 실행과 잡음이 있는 실행 비교하기
+  ko: 같은 Program의 이상적 실행과 노이즈가 있는 실행 비교하기
   status: machine
 - id: a83fe45d6b81b590
   en: Attach a [`NoiseModel`][fatqat.NoiseModel] to a simulator to study how errors affect your results. The model specifies which errors occur and where they apply; you can run the same [`Program`][fatqat.Program] with or without it.
-  ko: 시뮬레이터에 [`NoiseModel`][fatqat.NoiseModel]을 추가하면 오류가 결과에 미치는 영향을 살펴볼 수 있습니다. 오류의 종류와 적용 위치를 지정한 뒤, 같은 [`Program`][fatqat.Program]을 잡음이 있을 때와 없을 때 각각 실행해 비교하세요.
+  ko: 시뮬레이터에 [`NoiseModel`][fatqat.NoiseModel]을 추가하면 오류가 결과에 미치는 영향을 살펴볼 수 있습니다. 오류의 종류와 적용 위치를 지정한 뒤, 같은 [`Program`][fatqat.Program]을 노이즈가 있을 때와 없을 때 각각 실행해 비교하세요.
   status: machine
 - id: 56ffcffd79e25721
   en: This example compares measurements of a Bell pair before and after adding gate noise and readout errors.
-  ko: Bell 상태의 두 큐비트로, 게이트 잡음과 판독 오류를 넣기 전후의 측정 결과를 비교해 보겠습니다.
+  ko: 벨 상태의 두 큐비트로, 게이트 노이즈와 판독 오류를 넣기 전후의 측정 결과를 비교해 보겠습니다.
   status: machine
 - id: 0dbc48399605c860
   en: Establish an ideal baseline
-  ko: 먼저 잡음 없이 실행하기
+  ko: 먼저 노이즈 없이 실행하기
   status: machine
 - id: 4e260352eaa9d4a2
   en: 'Prepare a Bell pair and measure both qubits:'
-  ko: 먼저 Bell 상태를 준비하고 두 큐비트를 측정하세요.
+  ko: 먼저 벨 상태를 준비하고 두 큐비트를 측정하세요.
   status: machine
 - id: 610c7d6a5bd6e229
   en: The two measured bits always agree. Each outcome has exact probability 0.5, but their counts differ slightly because the simulator samples 4,000 shots.
@@ -24,11 +24,11 @@
   status: machine
 - id: 6b94605643630ccf
   en: Add gate and readout noise
-  ko: 게이트 잡음과 판독 잡음 추가하기
+  ko: 게이트 노이즈와 판독 노이즈 추가하기
   status: machine
 - id: 34b0b23d88ccdee2
   en: Use `operation=ops.CX` to apply depolarizing noise after each `CX` gate. Here, `p=0.12` mixes 88% of the two-qubit state with 12% of the maximally mixed state, which gives all four computational-basis outcomes equal probability. This acts jointly on the gate's two operands.
-  ko: '`operation=ops.CX`를 지정하면 각 `CX` 게이트 뒤에 탈분극 잡음이 적용됩니다. `p=0.12`는 원래 두 큐비트 상태에 88%, 최대 혼합 상태에 12%의 가중치를 주어 섞는다는 뜻입니다. 최대 혼합 상태에서는 네 계산 기저 결과의 확률이 같습니다. 이 잡음은 두 큐비트에 함께 작용합니다.'
+  ko: '`operation=ops.CX`를 지정하면 각 `CX` 게이트 뒤에 탈분극 노이즈가 적용됩니다. `p=0.12`는 원래 두 큐비트 상태에 88%, 최대 혼합 상태에 12%의 가중치를 주어 섞는다는 뜻입니다. 최대 혼합 상태에서는 네 계산 기저 결과의 확률이 같습니다. 이 노이즈는 두 큐비트에 함께 작용합니다.'
   status: machine
 - id: 3958fc75a81809e7
   en: 'Add readout confusion to model incorrectly reported bits. In the matrix below, columns identify the true bit and rows identify the reported bit: a true `0` is reported as `1` with probability 0.02, and a true `1` as `0` with probability 0.04. Without a target selector, this applies to each measured qubit.'
@@ -36,15 +36,15 @@
   status: machine
 - id: ffd76383c2484ce0
   en: 'Pass the noise model to another simulator:'
-  ko: 잡음 모델을 다른 시뮬레이터에 전달합니다.
+  ko: 노이즈 모델을 다른 시뮬레이터에 전달합니다.
   status: machine
 - id: ade20d954f414ccd
   en: The reported bits disagree in about 10.1% of these shots. Gate noise changes the quantum state, while readout confusion changes the reported bits. Both can produce `01` and `10`, so these counts alone do not tell you which error occurred. The unequal readout probabilities also favor reported zeros, shifting the balance between `00` and `11`.
-  ko: 이번에는 약 10.1%의 샷에서 보고된 두 비트가 다릅니다. 게이트 잡음은 양자 상태를, 판독 오류는 보고되는 값을 바꿉니다. 둘 다 `01`과 `10`을 만들 수 있으므로 횟수만 보고 원인을 구분할 수는 없습니다. 두 판독 오류의 확률도 달라서 0이 더 자주 보고되고, `00`과 `11`의 비율이 바뀝니다.
+  ko: 이번에는 약 10.1%의 샷에서 보고된 두 비트가 다릅니다. 게이트 노이즈는 양자 상태를, 판독 오류는 보고되는 값을 바꿉니다. 둘 다 `01`과 `10`을 만들 수 있으므로 횟수만 보고 원인을 구분할 수는 없습니다. 두 판독 오류의 확률도 달라서 0이 더 자주 보고되고, `00`과 `11`의 비율이 바뀝니다.
   status: machine
 - id: b846c737ede73dfa
   en: '![Side-by-side Bell-state histograms show only zero-zero and one-one ideally, while the noisy run also contains zero-one and one-zero outcomes.](../assets/generated/guide/ideal-and-noisy-1.png)'
-  ko: '![나란히 놓인 Bell 상태 히스토그램에서 이상적 실행에는 00과 11만 나타나지만, 잡음이 있는 실행에는 01과 10도 나타납니다.](../assets/generated/guide/ideal-and-noisy-1.png)'
+  ko: '![나란히 놓인 벨 상태 히스토그램에서 이상적 실행에는 00과 11만 나타나지만, 노이즈가 있는 실행에는 01과 10도 나타납니다.](../assets/generated/guide/ideal-and-noisy-1.png)'
   status: machine
 - id: 28561e682e0a4d7b
   en: Density matrices and sampled trajectories
@@ -52,23 +52,23 @@
   status: machine
 - id: fd74b89af290d2fb
   en: The density-matrix method used here calculates the noisy state directly. Measurement counts are still sampled, so repeating a run with a different seed changes the counts.
-  ko: 여기서 사용한 밀도 행렬 방법은 잡음이 있는 상태를 직접 계산합니다. 측정 카운트는 여전히 샘플링하므로, 다른 시드로 실행하면 카운트가 바뀝니다.
+  ko: 여기서 사용한 밀도 행렬 방법은 노이즈가 있는 상태를 직접 계산합니다. 측정 카운트는 여전히 샘플링하므로, 다른 시드로 실행하면 카운트가 바뀝니다.
   status: machine
 - id: b6cdf7c55dcf3f4b
   en: A statevector simulator can also run this noise model. It samples individual noise trajectories, using less memory to represent the state. This is useful for larger circuits where storing a density matrix is too expensive. More shots improve the precision of the sampled distribution.
-  ko: 상태 벡터 시뮬레이터에서도 이 잡음 모델을 실행할 수 있습니다. 개별 잡음 궤적을 샘플링하므로 상태를 표현하는 데 메모리가 덜 필요합니다. 밀도 행렬을 저장하기 부담스러운 큰 회로에 유용합니다. 샷 수를 늘리면 샘플링 분포의 정밀도가 높아집니다.
+  ko: 상태 벡터 시뮬레이터에서도 이 노이즈 모델을 실행할 수 있습니다. 개별 노이즈 궤적을 샘플링하므로 상태를 표현하는 데 메모리가 덜 필요합니다. 밀도 행렬을 저장하기 부담스러운 큰 회로에 유용합니다. 샷 수를 늘리면 샘플링 분포의 정밀도가 높아집니다.
   status: machine
 - id: 91880175ee75ad76
   en: Both methods describe the same noise model and should give statistically consistent measurement frequencies. Use a density matrix when you need the noisy state or an expectation value without sampling noise trajectories.
-  ko: 두 방법은 같은 잡음 모델을 표현하므로 측정 빈도가 통계적으로 일치해야 합니다. 잡음 궤적을 샘플링하지 않고 잡음이 있는 상태나 기댓값을 구하려면 밀도 행렬을 사용하세요.
+  ko: 두 방법은 같은 노이즈 모델을 표현하므로 측정 빈도가 통계적으로 일치해야 합니다. 노이즈 궤적을 샘플링하지 않고 노이즈가 있는 상태나 기댓값을 구하려면 밀도 행렬을 사용하세요.
   status: machine
 - id: d41dba8651230fe9
   en: Circuit channels and continuous noise
-  ko: 회로 채널과 연속 잡음
+  ko: 회로 채널과 연속 노이즈
   status: machine
 - id: 2ff18aadc59bcdf5
   en: '| Execution level | Noise description | Where it acts |'
-  ko: '| 실행 수준 | 잡음 표현 | 작용 시점 |'
+  ko: '| 실행 수준 | 노이즈 표현 | 작용 시점 |'
   status: machine
 - id: 437e184cfeafd1be
   en: '| Circuit simulator | finite probabilities and channels | at matched operation boundaries |'
@@ -84,9 +84,9 @@
   status: retired
 - id: ab606c2415f9d233
   en: Real quantum devices are affected by their environment, imperfect controls, and measurement errors. These effects can change the state or the recorded outcomes. An ideal simulation helps you understand the intended computation; adding a noise model lets you study how selected imperfections affect it and bring the simulation closer to the conditions of an implementation. Which effects it captures depends on the model and parameters you choose.
-  ko: 실제 양자 장치는 환경, 불완전한 제어, 측정 오류의 영향을 받으며, 이로 인해 양자 상태나 기록된 결과가 달라질 수 있습니다. 이상적인 시뮬레이션으로 계산에서 기대하는 결과를 이해하고, 잡음 모델을 더해 선택한 오류가 결과에 미치는 영향을 살펴볼 수 있습니다. 이렇게 실제 구현 조건에 더 가까운 시뮬레이션을 할 수 있지만, 어떤 효과를 반영하는지는 선택한 모델과 매개변수에 따라 달라집니다.
+  ko: 실제 양자 장치는 환경, 불완전한 제어, 측정 오류의 영향을 받으며, 이로 인해 양자 상태나 기록된 결과가 달라질 수 있습니다. 이상적인 시뮬레이션으로 계산에서 기대하는 결과를 이해하고, 노이즈 모델을 더해 선택한 오류가 결과에 미치는 영향을 살펴볼 수 있습니다. 이렇게 실제 구현 조건에 더 가까운 시뮬레이션을 할 수 있지만, 어떤 효과를 반영하는지는 선택한 모델과 매개변수에 따라 달라집니다.
   status: machine
 - id: 692fa8b18f04c0a8
   en: Use [Hamiltonian-level emulation](hamiltonian-emulation.md) to study how noise accumulates during pulses and idle periods. Start with the [pulse-emulator configuration example](../api/noise.md#during-pulse-evolution) for a rate-based model. The [backend support table](../api/noise/backend-support.md#noise-backend-support) lists available noise forms, and the [NoiseModel API](../api/noise/model.md) explains how to select operations and targets.
-  ko: 펄스가 작용하는 구간과 유휴 구간에 잡음이 어떻게 누적되는지 보려면 [해밀토니안 에뮬레이션](hamiltonian-emulation.md)을 사용하세요. [펄스 에뮬레이터 설정 예제](../api/noise.md#during-pulse-evolution)에서 비율을 지정하는 방법을 확인할 수 있습니다. [백엔드 지원 표](../api/noise/backend-support.md#noise-backend-support)는 사용할 수 있는 잡음 형태를, [NoiseModel API](../api/noise/model.md)는 연산과 대상을 선택하는 방법을 설명합니다.
+  ko: 펄스가 작용하는 구간과 유휴 구간에 노이즈가 어떻게 누적되는지 보려면 [해밀토니안 에뮬레이션](hamiltonian-emulation.md)을 사용하세요. [펄스 에뮬레이터 설정 예제](../api/noise.md#during-pulse-evolution)에서 비율을 지정하는 방법을 확인할 수 있습니다. [백엔드 지원 표](../api/noise/backend-support.md#noise-backend-support)는 사용할 수 있는 노이즈 형태를, [NoiseModel API](../api/noise/model.md)는 연산과 대상을 선택하는 방법을 설명합니다.
   status: machine

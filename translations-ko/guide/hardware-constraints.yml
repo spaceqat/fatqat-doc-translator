@@ -8,7 +8,7 @@
   status: retired
 - id: 7c636c8314d2a46c
   en: 'Superconducting and neutral-atom gate simulations still use matrix-based methods to calculate how the quantum state changes. For example, a statevector or density matrix represents the state, and gates and noise channels act on it. The simulator also checks device rules: is the operation supported, are the target positions connected, and have the required atoms been loaded?'
-  ko: 초전도와 중성 원자의 게이트 수준 시뮬레이션은 행렬 기반 방법으로 양자 상태의 변화를 계산합니다. 예를 들어 상태 벡터나 밀도 행렬로 상태를 표현하고, 게이트와 잡음 채널의 작용을 계산합니다. 여기에 장치 규칙 검사도 더해집니다. 해당 게이트가 지원되는지, 대상 위치가 연결되어 있는지, 필요한 원자가 로딩되어 있는지 확인합니다.
+  ko: 초전도와 중성 원자의 게이트 수준 시뮬레이션은 행렬 기반 방법으로 양자 상태의 변화를 계산합니다. 예를 들어 상태 벡터나 밀도 행렬로 상태를 표현하고, 게이트와 노이즈 채널의 작용을 계산합니다. 여기에 장치 규칙 검사도 더해집니다. 해당 게이트가 지원되는지, 대상 위치가 연결되어 있는지, 필요한 원자가 로딩되어 있는지 확인합니다.
   status: machine
 - id: 500ff026bfbe8e5c
   en: For example, a two-qubit gate may run in the general simulator but fail on a superconducting device model because the selected positions are not connected. This makes the constraint visible during simulation, so you can adjust the Program or qubit placement.

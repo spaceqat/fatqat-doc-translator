@@ -17,6 +17,9 @@ Use glossary.yml for conceptual terms. Exact API identifiers take precedence:
 Simulator, Estimator, Register, Operation, and their plural API page titles keep
 their spelling. Distinguish quantum channels (양자 채널) from control channels
 (제어 채널), and simulation (시뮬레이션) from emulation (에뮬레이션).
+Follow the Korean README's established wording for shared terms: 노이즈,
+커플링, 트랜스몬, 네이티브 연산, and 벨 상태. Write 큐디트(qudit, 다준위 양자 시스템) at the
+first mention on a page when readers may not know the term.
 Use ordinary Korean punctuation and spacing. Attach Korean particles naturally
 to identifiers and code spans without altering the protected text itself.
 

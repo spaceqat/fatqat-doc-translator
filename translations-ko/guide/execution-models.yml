@@ -12,19 +12,19 @@
   status: machine
 - id: 5ab28df054323251
   en: '| whether a circuit produces the intended result, or how noise channels change it | the general simulator | circuit operations on qubits or qudits, with optional noise channels |'
-  ko: '| 회로가 의도한 결과를 내는지, 잡음 채널이 결과를 어떻게 바꾸는지 | 범용 시뮬레이터 | 큐비트 또는 큐디트의 회로 연산과 선택적 잡음 채널 |'
+  ko: '| 회로가 의도한 결과를 내는지, 노이즈 채널이 결과를 어떻게 바꾸는지 | 범용 시뮬레이터 | 큐비트 또는 큐디트의 회로 연산과 선택적 노이즈 채널 |'
   status: machine
 - id: 5d7581d48c9830da
   en: '| whether a Program uses a device''s supported operations and resources | a hardware-profile simulator | circuit evolution with native-operation, placement, connectivity, capacity, and occupancy checks, plus optional noise |'
-  ko: '| Program이 장치에서 지원하는 연산과 자원을 사용하는지 | 하드웨어 프로파일 시뮬레이터 | 회로의 상태 변화, 네이티브 연산·배치·연결성·용량·점유 상태 검사, 선택적 잡음 |'
+  ko: '| Program이 장치에서 지원하는 연산과 자원을 사용하는지 | 하드웨어 프로파일 시뮬레이터 | 회로의 상태 변화, 네이티브 연산·배치·연결성·용량·점유 상태 검사, 선택적 노이즈 |'
   status: machine
 - id: 052fcfd174480246
   en: '| how pulse shape, duration, or drift affects the state during execution | a physical emulator | time-dependent evolution of the model''s physical levels under controls, coupling, and compatible continuous noise |'
-  ko: '| 펄스 모양, 길이, 드리프트가 실행 중 상태에 미치는 영향 | 물리 에뮬레이터 | 제어, 결합, 호환되는 연속 잡음에 따른 모델의 물리 준위의 시간 변화 |'
+  ko: '| 펄스 모양, 길이, 드리프트가 실행 중 상태에 미치는 영향 | 물리 에뮬레이터 | 제어, 커플링, 호환되는 연속 노이즈에 따른 모델의 물리 준위의 시간 변화 |'
   status: machine
 - id: 951beefcb985cacd
   en: 'These are choices for different questions. You can begin with any of them. In particular, studying noise does not by itself require an emulator: both circuit simulators and hardware profiles support noise channels. Use physical emulation when you need to resolve dynamics over elapsed time, such as excitation during a pulse or relaxation during an idle interval.'
-  ko: 세 모델은 서로 다른 질문에 답하므로 정해진 순서대로 사용할 필요는 없습니다. 잡음만 연구한다면 회로 시뮬레이터나 하드웨어 프로파일의 잡음 채널로도 충분할 수 있습니다. 펄스 중의 여기나 유휴 시간의 이완처럼 시간에 따른 상태 변화가 중요할 때 물리 에뮬레이션을 선택하세요.
+  ko: 세 모델은 서로 다른 질문에 답하므로 정해진 순서대로 사용할 필요는 없습니다. 노이즈만 연구한다면 회로 시뮬레이터나 하드웨어 프로파일의 노이즈 채널로도 충분할 수 있습니다. 펄스 중의 여기나 유휴 시간의 이완처럼 시간에 따른 상태 변화가 중요할 때 물리 에뮬레이션을 선택하세요.
   status: machine
 - id: 5353f853279f27bd
   en: Compare a single-qubit rotation
@@ -40,7 +40,7 @@
   status: machine
 - id: 43a8951cb014fca3
   en: 'The general [`Simulator`][fatqat.simulator.Simulator] applies the circuit operation without assigning the qubit to a particular device. With no noise model, this run gives the ideal probabilities:'
-  ko: 범용 [`Simulator`][fatqat.simulator.Simulator]는 큐비트를 특정 장치에 배치하지 않고 회로 연산을 적용합니다. 잡음 모델을 지정하지 않으면 이상적인 확률이 나옵니다.
+  ko: 범용 [`Simulator`][fatqat.simulator.Simulator]는 큐비트를 특정 장치에 배치하지 않고 회로 연산을 적용합니다. 노이즈 모델을 지정하지 않으면 이상적인 확률이 나옵니다.
   status: machine
 - id: 8e2a7685bdbb5b7f
   en: Hardware profile
@@ -68,11 +68,11 @@
   status: machine
 - id: b5d0b180c2c28030
   en: The Program declares one qubit with two basis states. The reference model contains two physical transmons with three levels each, so the returned state has nine amplitudes. Reshaping it gives populations indexed by the levels of `q0` and `q1`; summing over `q1` leaves the three populations on `q0` shown above.
-  ko: Program은 두 기저 상태를 갖는 큐비트 하나를 선언합니다. 기준 모델에는 각각 3준위인 물리 transmon 두 개가 있으므로 반환되는 상태에는 진폭이 9개 있습니다. 배열의 모양을 바꾸면 `q0`와 `q1`의 준위를 인덱스로 하는 점유 확률을 얻습니다. `q1`에 대해 합하면 위에 표시한 `q0`의 세 준위 점유 확률이 됩니다.
+  ko: Program은 두 기저 상태를 갖는 큐비트 하나를 선언합니다. 기준 모델에는 각각 3준위인 물리 트랜스몬 두 개가 있으므로 반환되는 상태에는 진폭이 9개 있습니다. 배열의 모양을 바꾸면 `q0`와 `q1`의 준위를 인덱스로 하는 점유 확률을 얻습니다. `q1`에 대해 합하면 위에 표시한 `q0`의 세 준위 점유 확률이 됩니다.
   status: machine
 - id: ea4c36e4a8340d3e
   en: Level `|2>` represents leakage out of the qubit's `|0>`, `|1>` subspace. Retaining that physical level does not make the Program a qutrit program. The second transmon also remains in the state even though this Program does not address it. For this reference pulse, the final populations are close to the ideal values and the leakage rounds to zero at this precision. The packaged calibration supplies a reproducible simulation example, not a current hardware characterization.
-  ko: 준위 `|2>`는 큐비트의 `|0>`, `|1>` 부분공간 밖으로의 누설을 나타냅니다. 이 물리 준위를 유지한다고 해서 Program이 큐트릿 프로그램이 되는 것은 아닙니다. Program이 두 번째 transmon을 직접 지정하지 않아도 그 transmon은 상태에 남아 있습니다. 이 기준 펄스의 최종 점유 확률은 이상적인 값에 가깝고, 누설은 표시된 정밀도에서 반올림하면 0입니다. 패키지의 보정값은 재현 가능한 시뮬레이션 예제를 제공하기 위한 것이며, 현재 하드웨어의 특성을 측정한 값은 아닙니다.
+  ko: 준위 `|2>`는 큐비트의 `|0>`, `|1>` 부분공간 밖으로의 누설을 나타냅니다. 이 물리 준위를 유지한다고 해서 Program이 큐트릿 프로그램이 되는 것은 아닙니다. Program이 두 번째 트랜스몬을 직접 지정하지 않아도 그 트랜스몬은 상태에 남아 있습니다. 이 기준 펄스의 최종 점유 확률은 이상적인 값에 가깝고, 누설은 표시된 정밀도에서 반올림하면 0입니다. 패키지의 보정값은 재현 가능한 시뮬레이션 예제를 제공하기 위한 것이며, 현재 하드웨어의 특성을 측정한 값은 아닙니다.
   status: machine
 - id: 003b362bb9868027
   en: See what happens during a pulse
@@ -92,7 +92,7 @@
   status: machine
 - id: 0837bc9b7b3982cb
   en: The left panel shows population moving between the qubit levels. The right panel uses a smaller scale to reveal population in `|2>`. This leakage arises from the driven three-level dynamics, even though no noise model is attached. To compare shaped controls with the calibrated rotation, continue with [Transmon emulation](transmon-emulation.md#drive-the-transmon-directly).
-  ko: 왼쪽 패널은 큐비트 준위 사이에서 점유 확률이 이동하는 모습을 보여 줍니다. 오른쪽 패널은 더 작은 눈금을 사용해 `|2>`의 점유 확률을 보여 줍니다. 잡음 모델을 연결하지 않아도, 구동되는 3준위 계의 동역학 때문에 누설이 발생합니다. 모양을 조절한 제어와 보정된 회전을 비교하려면 [Transmon 에뮬레이션](transmon-emulation.md#drive-the-transmon-directly)을 계속 읽어 보세요.
+  ko: 왼쪽 패널은 큐비트 준위 사이에서 점유 확률이 이동하는 모습을 보여 줍니다. 오른쪽 패널은 더 작은 눈금을 사용해 `|2>`의 점유 확률을 보여 줍니다. 노이즈 모델을 연결하지 않아도, 구동되는 3준위 계의 동역학 때문에 누설이 발생합니다. 모양을 조절한 제어와 보정된 회전을 비교하려면 [트랜스몬 에뮬레이션](transmon-emulation.md#drive-the-transmon-directly)을 계속 읽어 보세요.
   status: machine
 - id: 675c77f83f739082
   en: Moving between models
@@ -104,7 +104,7 @@
   status: retired
 - id: bb4d371d405cf66b
   en: For circuit evolution and noise channels, see [Simulation](simulation.md) and [Ideal and noisy runs](ideal-and-noisy.md). For calibrated gates and direct controls, see [Hamiltonian emulation](hamiltonian-emulation.md). The [backend noise-support table](../api/noise/backend-support.md#noise-backend-support) helps you choose compatible noise declarations when changing models.
-  ko: 회로의 상태 변화와 잡음 채널은 [시뮬레이션](simulation.md)과 [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md)을 참고하세요. 보정된 게이트와 직접 제어는 [해밀토니안 에뮬레이션](hamiltonian-emulation.md)에서 설명합니다. 모델을 바꿀 때는 [백엔드별 잡음 지원 표](../api/noise/backend-support.md#noise-backend-support)를 보고 호환되는 잡음 선언을 선택하세요.
+  ko: 회로의 상태 변화와 노이즈 채널은 [시뮬레이션](simulation.md)과 [이상적 실행과 노이즈가 있는 실행](ideal-and-noisy.md)을 참고하세요. 보정된 게이트와 직접 제어는 [해밀토니안 에뮬레이션](hamiltonian-emulation.md)에서 설명합니다. 모델을 바꿀 때는 [백엔드별 노이즈 지원 표](../api/noise/backend-support.md#noise-backend-support)를 보고 호환되는 노이즈 선언을 선택하세요.
   status: machine
 - id: 56d11707a112387c
   en: You can reuse a Program when the destination backend supports its operations and resources. Otherwise, express the computation using operations it accepts, as `SX` does for the superconducting profile above. When program resources need specific device locations, a [`ResourceLayout`][fatqat.ResourceLayout] binds them to device labels. [Hardware-profile simulation](superconducting-simulation.md) walks through a placement error and its correction.

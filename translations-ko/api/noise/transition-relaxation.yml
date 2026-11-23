@@ -20,7 +20,7 @@
   status: machine
 - id: 98837e96b2e95a26
   en: 'Terms in one descriptor are components of one coherent jump operator. For example, a truncated bosonic lowering operator for a transmon-like model can contain both ladder transitions, while two uncorrelated atom-like decay branches use separate descriptors:'
-  ko: 선언 하나의 각 항은 하나의 결맞음 점프 연산자를 구성합니다. 예를 들어 transmon과 비슷한 모델의 잘린 보손 하강 연산자에는 두 사다리 전이를 함께 넣을 수 있지만, 서로 상관없는 원자형 감쇠 분기 두 개에는 별도 선언을 사용합니다.
+  ko: 선언 하나의 각 항은 하나의 결맞음 점프 연산자를 구성합니다. 예를 들어 트랜스몬과 비슷한 모델의 잘린 보손 하강 연산자에는 두 사다리 전이를 함께 넣을 수 있지만, 서로 상관없는 원자형 감쇠 분기 두 개에는 별도 선언을 사용합니다.
   status: machine
 - id: f5ee9bd697b43f21
   en: In rate mode, the two atom descriptors become separate collapse operators and dissipators, with no cross terms. In finite mode, they become sequential channel applications in registration order. Putting both atom transitions in one descriptor would instead make them components of one coherent jump and can produce coherence between the destination states.

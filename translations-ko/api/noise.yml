@@ -1,6 +1,6 @@
 - id: 9ada8e83c1186cd6
   en: Noise
-  ko: 잡음
+  ko: 노이즈
   status: machine
 - id: dd12920a0bc8b9ef
   en: FatQat keeps noise separate from [`Program`][fatqat.Program]. Add the noise sources you need to a [`NoiseModel`][fatqat.NoiseModel], then pass that model to a compatible simulator or emulator with `noise=...`. You can reuse the same program for ideal and noisy runs.
@@ -16,7 +16,7 @@
   status: retired
 - id: 0a4958e8792e912a
   en: Choose a noise type
-  ko: 잡음 타입 선택
+  ko: 노이즈 타입 선택
   status: machine
 - id: 5002d68269ebe1c9
   en: Probabilities describe one simulator channel application after a matched operation. Rates and relaxation times describe local Lindblad operators that act over emulator time. Backends do not convert between these forms.
@@ -24,11 +24,11 @@
   status: retired
 - id: 3e8eac22ec87e872
   en: '**Built-in noise types**'
-  ko: '**내장 잡음 타입**'
+  ko: '**내장 노이즈 타입**'
   status: machine
 - id: 923e0b10256db3ec
   en: '| Noise type | Accepted parameters | Applies to | User-visible effect |'
-  ko: '| 잡음 타입 | 허용 매개변수 | 적용 대상 | 효과 |'
+  ko: '| 노이즈 타입 | 허용 매개변수 | 적용 대상 | 효과 |'
   status: machine
 - id: 156c15a252c49924
   en: '| [`Depolarizing`][fatqat.noise.Depolarizing] | Exactly one of `p` or `rate` | `p`: the selected operands; `rate`: one subsystem | Uniform mixing toward the maximally mixed state |'
@@ -64,7 +64,7 @@
   status: machine
 - id: 3266089454f9c4c6
   en: See [Noise model](noise/model.md) for operation and background noise, target selection, composition, conflicts, and validation timing. Each noise-type page covers its parameters, units, and mathematical definition.
-  ko: 연산 잡음과 배경 잡음, 대상 선택, 합성, 충돌, 검증 시점은 [잡음 모델](noise/model.md)을 참고하세요. 각 잡음 타입의 매개변수, 단위, 수학적 정의는 개별 페이지에서 설명합니다.
+  ko: 연산 노이즈와 배경 노이즈, 대상 선택, 합성, 충돌, 검증 시점은 [노이즈 모델](noise/model.md)을 참고하세요. 각 노이즈 타입의 매개변수, 단위, 수학적 정의는 개별 페이지에서 설명합니다.
   status: machine
 - id: c9366d3f412ef90e
   en: Support depends on the noise form, where it applies, and the backend. The [Backend support](noise/backend-support.md#noise-backend-support) tables show the built-in behavior and unsupported forms for each backend family. Pulse-emulator continuous-noise realizations are family-owned rather than user-replaceable.
@@ -92,7 +92,7 @@
   status: machine
 - id: c67c1acc10c1ae15
   en: '[Noise model](noise/model.md)'
-  ko: '[잡음 모델](noise/model.md)'
+  ko: '[노이즈 모델](noise/model.md)'
   status: machine
 - id: eb7185f556bc31fe
   en: '[Backend support](noise/backend-support.md)'
@@ -132,35 +132,35 @@
   status: machine
 - id: d08ff5c91fb4d5a7
   en: '[Custom noise implementations](noise/custom-implementations.md)'
-  ko: '[사용자 정의 잡음 구현](noise/custom-implementations.md)'
+  ko: '[사용자 정의 노이즈 구현](noise/custom-implementations.md)'
   status: machine
 - id: 0fb9b9d4a3969e53
   en: Use a `NoiseModel` to vary the noise in a run while keeping the same [`Program`][fatqat.Program]. Simulators can apply a channel after an operation. Pulse emulators can evolve the state with continuous noise, including during idle time. Readout confusion changes the reported digits in either case.
-  ko: '`NoiseModel`을 사용하면 같은 [`Program`][fatqat.Program]을 여러 잡음 조건에서 실행할 수 있습니다. 시뮬레이터는 연산 뒤에 양자 채널을 적용할 수 있습니다. 펄스 에뮬레이터는 유휴 시간을 포함해 연속 잡음이 작용하는 동안 상태를 진화시킬 수 있습니다. 두 경우 모두 판독 혼동으로 보고되는 값을 바꿀 수 있습니다.'
+  ko: '`NoiseModel`을 사용하면 같은 [`Program`][fatqat.Program]을 여러 노이즈 조건에서 실행할 수 있습니다. 시뮬레이터는 연산 뒤에 양자 채널을 적용할 수 있습니다. 펄스 에뮬레이터는 유휴 시간을 포함해 연속 노이즈가 작용하는 동안 상태를 진화시킬 수 있습니다. 두 경우 모두 판독 혼동으로 보고되는 값을 바꿀 수 있습니다.'
   status: machine
 - id: 02106b968d931d5b
   en: Noise types are available in `fatqat.noise`. Pass a [`NoiseModel`][fatqat.NoiseModel] to the backend with `noise=...`.
-  ko: 잡음 유형은 `fatqat.noise`에 있습니다. [`NoiseModel`][fatqat.NoiseModel]을 `noise=...`로 백엔드에 전달하세요.
+  ko: 노이즈 유형은 `fatqat.noise`에 있습니다. [`NoiseModel`][fatqat.NoiseModel]을 `noise=...`로 백엔드에 전달하세요.
   status: machine
 - id: 160ec68daf42959e
   en: Choose a type by the effect you want to model. For a type with both forms, use a probability for a single channel application or a rate or relaxation time for continuous evolution. Follow the definition for your backend on the type's page.
-  ko: 먼저 모형에 넣으려는 효과에 맞는 잡음 유형을 고르세요. 두 형태를 모두 제공하는 유형은 한 번의 채널 적용에 확률을, 연속 시간 진화에 비율이나 이완 시간을 사용합니다. 각 유형 페이지에서 백엔드에 해당하는 정의를 확인할 수 있습니다.
+  ko: 먼저 모형에 넣으려는 효과에 맞는 노이즈 유형을 고르세요. 두 형태를 모두 제공하는 유형은 한 번의 채널 적용에 확률을, 연속 시간 진화에 비율이나 이완 시간을 사용합니다. 각 유형 페이지에서 백엔드에 해당하는 정의를 확인할 수 있습니다.
   status: machine
 - id: f64b397bb3b7412b
   en: Check [Backend support](noise/backend-support.md#noise-backend-support) for the forms, scopes, and target dimensions your backend accepts.
-  ko: '[백엔드 지원 범위](noise/backend-support.md#noise-backend-support)에서 사용할 백엔드가 받는 잡음 형태, 적용 범위, 대상 차원을 확인하세요.'
+  ko: '[백엔드 지원 범위](noise/backend-support.md#noise-backend-support)에서 사용할 백엔드가 받는 노이즈 형태, 적용 범위, 대상 차원을 확인하세요.'
   status: machine
 - id: f46f649b5bdcf20b
   en: After an operation
-  ko: 연산 뒤에 잡음 적용
+  ko: 연산 뒤에 노이즈 적용
   status: machine
 - id: 33f5fab7bc7eb06e
   en: Pass `operation=ops.CX` to apply a depolarizing channel jointly to the two operands after each `CX`. For a full comparison, see [Ideal and noisy runs](../guide/ideal-and-noisy.md).
-  ko: '`operation=ops.CX`를 지정하면 각 `CX` 연산 뒤에 두 피연산자에 하나의 탈분극 채널을 함께 적용합니다. 전체 비교 예제는 [이상적 실행과 잡음이 있는 실행](../guide/ideal-and-noisy.md)을 참고하세요.'
+  ko: '`operation=ops.CX`를 지정하면 각 `CX` 연산 뒤에 두 피연산자에 하나의 탈분극 채널을 함께 적용합니다. 전체 비교 예제는 [이상적 실행과 노이즈가 있는 실행](../guide/ideal-and-noisy.md)을 참고하세요.'
   status: machine
 - id: be67945c3e0deae0
   en: During pulse evolution
-  ko: 펄스 진화 중에 잡음 적용
+  ko: 펄스 진화 중에 노이즈 적용
   status: machine
 - id: 4684600942117fcd
   en: Omit `operation` to keep relaxation active on `"q0"` throughout the elapsed time, including idle periods. The reference transmon model uses nanoseconds, so `rate` is in inverse nanoseconds.

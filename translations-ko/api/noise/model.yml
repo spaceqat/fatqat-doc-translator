@@ -1,6 +1,6 @@
 - id: f840c2e5c2d13e69
   en: Noise model
-  ko: 잡음 모델
+  ko: 노이즈 모델
   status: machine
 - id: 871bfe559385ca54
   en: '[`NoiseModel`][fatqat.NoiseModel] collects noise rules and says where each one applies: on matching operations, throughout pulse time, or when reporting measurements. A model can combine simulator channels, emulator Lindblad operators, carrier loss, and readout confusion. Each backend accepts only the rules it can implement.'
@@ -16,7 +16,7 @@
   status: retired
 - id: c51f9e545eaeaef5
   en: Where noise applies
-  ko: 잡음 적용 범위
+  ko: 노이즈 적용 범위
   status: machine
 - id: b632bca81b5aa192
   en: Pass `operation` for noise tied to a matching operation. A simulator applies a channel or samples loss after the operation; an emulator keeps the matching Lindblad operators active during the pulse. Omit `operation` for background noise; this does not mean “on every gate.” Readout confusion always applies at measurement.
@@ -24,11 +24,11 @@
   status: retired
 - id: 4796572d4bd078a9
   en: '**Noise scopes**'
-  ko: '**잡음 범위**'
+  ko: '**노이즈 범위**'
   status: machine
 - id: 099be14f1ad0a8d6
   en: '| Scope | Noise type | `operation` | `targets` | `target_positions` |'
-  ko: '| 범위 | 잡음 타입 | `operation` | `targets` | `target_positions` |'
+  ko: '| 범위 | 노이즈 타입 | `operation` | `targets` | `target_positions` |'
   status: machine
 - id: a5903660e729c725
   en: '| On matching operations | [`Channel`][fatqat.noise.Channel] or [`Loss`][fatqat.noise.Loss] | Required operation instance or subclass | Optional exact ordered target selector | Optional affected positions in the operation''s target order |'
@@ -36,7 +36,7 @@
   status: machine
 - id: 82cae8ad6ef89a0a
   en: '| During pulse time (background) | A [`Channel`][fatqat.noise.Channel] that acts on one subsystem | Omitted or `None` | Exactly one logical reference or device label | Must be omitted or `None` |'
-  ko: '| 펄스 시간 중 배경 잡음 | 부분계 하나에 작용하는 [`Channel`][fatqat.noise.Channel] | 생략 또는 `None` | 논리 참조 또는 장치 레이블 정확히 하나 | 생략하거나 `None`이어야 함 |'
+  ko: '| 펄스 시간 중 배경 노이즈 | 부분계 하나에 작용하는 [`Channel`][fatqat.noise.Channel] | 생략 또는 `None` | 논리 참조 또는 장치 레이블 정확히 하나 | 생략하거나 `None`이어야 함 |'
   status: machine
 - id: b7e18b79a0a9ebdf
   en: '| At measurement (readout) | [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] | Must be omitted | Omitted for universal readout, or one scalar selector | Must be omitted |'
@@ -156,7 +156,7 @@
   status: retired
 - id: ce28e4e0ea52d4d0
   en: Combine noise sources
-  ko: 여러 잡음원 함께 사용하기
+  ko: 여러 노이즈원 함께 사용하기
   status: machine
 - id: 179c995173e35c98
   en: '[`add`][fatqat.NoiseModel.add] appends; it never replaces a registration. Different noise types may act on the same operation. The same type may also be used on disjoint targets or operand positions. Background and operation noise are independent, so the same type can appear in both scopes.'
@@ -232,7 +232,7 @@
   status: retired
 - id: 81c43b8793915df7
   en: A [`NoiseModel`][fatqat.NoiseModel] holds the noise rules for a run. Use [`add()`][fatqat.NoiseModel.add] to specify the noise type, when it acts, and which operands receive it. When you pass the model to a built-in backend, the backend takes a copy of the registrations. To try new rules, pass the updated model to a new backend.
-  ko: '[`NoiseModel`][fatqat.NoiseModel]은 실행에 사용할 잡음 규칙을 담습니다. [`add()`][fatqat.NoiseModel.add]로 잡음 유형과 적용 시점, 적용 대상을 지정하세요. 내장 백엔드는 생성할 때 등록된 규칙을 복사합니다. 규칙을 바꿔 보려면 수정한 모델을 새 백엔드에 전달하세요.'
+  ko: '[`NoiseModel`][fatqat.NoiseModel]은 실행에 사용할 노이즈 규칙을 담습니다. [`add()`][fatqat.NoiseModel.add]로 노이즈 유형과 적용 시점, 적용 대상을 지정하세요. 내장 백엔드는 생성할 때 등록된 규칙을 복사합니다. 규칙을 바꿔 보려면 수정한 모델을 새 백엔드에 전달하세요.'
   status: machine
 - id: 37bf5987241d8a2a
   en: The first rule applies to every `RX`. The second applies to the second operand of every `CZ`. The third applies when measuring `q[0]`.
@@ -240,15 +240,15 @@
   status: machine
 - id: 49ed05af903c98fd
   en: A simulator applies operation noise after a matching operation. A pulse emulator applies operation noise during the matching pulse and background noise throughout elapsed time. See [Backend support](backend-support.md#noise-backend-support) for available scopes.
-  ko: 시뮬레이터는 일치하는 연산이 끝난 뒤에 연산 잡음을 적용합니다. 펄스 에뮬레이터는 일치하는 펄스가 작용하는 동안 연산 잡음을, 전체 경과 시간 동안 배경 잡음을 적용합니다. 지원 범위는 [백엔드 지원 범위](backend-support.md#noise-backend-support)를 참고하세요.
+  ko: 시뮬레이터는 일치하는 연산이 끝난 뒤에 연산 노이즈를 적용합니다. 펄스 에뮬레이터는 일치하는 펄스가 작용하는 동안 연산 노이즈를, 전체 경과 시간 동안 배경 노이즈를 적용합니다. 지원 범위는 [백엔드 지원 범위](backend-support.md#noise-backend-support)를 참고하세요.
   status: machine
 - id: c8947befbdb40379
   en: Use `operation=ops.RX` to match every `RX(...)`, regardless of angle. Passing an operation instance also matches its exact class. When a classical condition skips an operation, its attached noise is skipped too.
-  ko: '`operation=ops.RX`는 각도와 관계없이 모든 `RX(...)`에 적용됩니다. 연산 인스턴스를 전달해도 그 인스턴스의 정확한 클래스로 일치 여부를 정합니다. 고전 조건으로 연산을 건너뛰면 그 연산에 붙은 잡음도 건너뜁니다.'
+  ko: '`operation=ops.RX`는 각도와 관계없이 모든 `RX(...)`에 적용됩니다. 연산 인스턴스를 전달해도 그 인스턴스의 정확한 클래스로 일치 여부를 정합니다. 고전 조건으로 연산을 건너뛰면 그 연산에 붙은 노이즈도 건너뜁니다.'
   status: machine
 - id: c1039c09f44faa26
   en: Use `targets` to pick which occurrences receive noise. A logical [`RegisterRef`][fatqat.RegisterRef] follows the program operand. A device label follows the physical location chosen by the [`ResourceLayout`][fatqat.ResourceLayout]. An ordered pair such as `(q[0], q[1])` matches only that operand order.
-  ko: '`targets`로 어떤 연산에 잡음이 적용될지 고릅니다. 논리 [`RegisterRef`][fatqat.RegisterRef]는 프로그램의 피연산자를 따라가고, 장치 레이블은 [`ResourceLayout`][fatqat.ResourceLayout]이 지정한 물리적 위치를 가리킵니다. `(q[0], q[1])` 같은 순서쌍은 피연산자 순서까지 일치해야 합니다.'
+  ko: '`targets`로 어떤 연산에 노이즈가 적용될지 고릅니다. 논리 [`RegisterRef`][fatqat.RegisterRef]는 프로그램의 피연산자를 따라가고, 장치 레이블은 [`ResourceLayout`][fatqat.ResourceLayout]이 지정한 물리적 위치를 가리킵니다. `(q[0], q[1])` 같은 순서쌍은 피연산자 순서까지 일치해야 합니다.'
   status: machine
 - id: 0c2f5814388d0d43
   en: '| [`Simulator`][fatqat.simulator.Simulator] or [`LOSimulator`][fatqat.simulator.LOSimulator] | Labels in the effective resource layout |'
@@ -260,11 +260,11 @@
   status: machine
 - id: 688e4aedb57370ac
   en: Once an operation matches, `target_positions` picks the affected operands by zero-based position. For example, `target_positions=1` applies the channel only to the second operand, as in the `CZ` rule above. Omit it to use all operands. The number selected must match the width of the noise type.
-  ko: 연산이 일치하면 `target_positions`로 실제 잡음이 적용될 피연산자를 0부터 시작하는 위치로 고릅니다. 위 `CZ` 규칙에서 `target_positions=1`은 두 번째 피연산자에만 채널을 적용합니다. 생략하면 모든 피연산자를 선택합니다. 선택한 개수는 잡음 유형이 요구하는 폭과 일치해야 합니다.
+  ko: 연산이 일치하면 `target_positions`로 실제 노이즈가 적용될 피연산자를 0부터 시작하는 위치로 고릅니다. 위 `CZ` 규칙에서 `target_positions=1`은 두 번째 피연산자에만 채널을 적용합니다. 생략하면 모든 피연산자를 선택합니다. 선택한 개수는 노이즈 유형이 요구하는 폭과 일치해야 합니다.
   status: machine
 - id: 4af0fc8ad9152ed1
   en: '[`add()`][fatqat.NoiseModel.add] appends rules. Different noise types can affect the same operand. Rules of the same type can use disjoint operands or separate scopes. Overlapping rules of the same type in the same scope are rejected, except that each [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] adds its own jump. Only one readout rule can apply to a measured operand.'
-  ko: '[`add()`][fatqat.NoiseModel.add]는 규칙을 추가합니다. 서로 다른 잡음 유형은 같은 피연산자에 적용될 수 있습니다. 같은 유형의 규칙은 겹치지 않는 피연산자나 서로 다른 범위에 사용할 수 있습니다. 같은 유형의 규칙이 같은 범위에서 겹치면 오류가 발생하지만, [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation]은 등록마다 별도 점프를 추가합니다. 측정 대상 하나에는 판독 규칙 하나만 적용할 수 있습니다.'
+  ko: '[`add()`][fatqat.NoiseModel.add]는 규칙을 추가합니다. 서로 다른 노이즈 유형은 같은 피연산자에 적용될 수 있습니다. 같은 유형의 규칙은 겹치지 않는 피연산자나 서로 다른 범위에 사용할 수 있습니다. 같은 유형의 규칙이 같은 범위에서 겹치면 오류가 발생하지만, [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation]은 등록마다 별도 점프를 추가합니다. 측정 대상 하나에는 판독 규칙 하나만 적용할 수 있습니다.'
   status: machine
 - id: 7ea9d366242bfa61
   en: <a id="when-validation-happens"></a>

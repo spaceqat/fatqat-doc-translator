@@ -24,7 +24,7 @@
   status: machine
 - id: f69cc19c296f6fca
   en: '| Noise type and form | Support |'
-  ko: '| 잡음 타입과 형식 | 지원 범위 |'
+  ko: '| 노이즈 타입과 형식 | 지원 범위 |'
   status: machine
 - id: 49afff269f2988a5
   en: '| [`Depolarizing`][fatqat.noise.Depolarizing] `(p)` | **Built in.** Applies jointly to the selected operands after a matching operation. |'
@@ -76,7 +76,7 @@
   status: machine
 - id: ac7d35b392ad9f96
   en: Pulse emulators use local Lindblad operators built from supported rates and times. They do not infer a rate from a probability. Built-in probability forms, [`PauliChannel`][fatqat.noise.PauliChannel], and [`Loss`][fatqat.noise.Loss] are unsupported. Each emulator family owns its continuous-noise realizations.
-  ko: 펄스 에뮬레이터는 지원되는 비율과 시간으로 구성한 국소 Lindblad 연산자를 사용합니다. 확률에서 비율을 추론하지 않습니다. 내장 확률 형식, [`PauliChannel`][fatqat.noise.PauliChannel], [`Loss`][fatqat.noise.Loss]는 지원하지 않습니다. 각 에뮬레이터 계열이 자신의 연속 잡음 구현을 관리합니다.
+  ko: 펄스 에뮬레이터는 지원되는 비율과 시간으로 구성한 국소 Lindblad 연산자를 사용합니다. 확률에서 비율을 추론하지 않습니다. 내장 확률 형식, [`PauliChannel`][fatqat.noise.PauliChannel], [`Loss`][fatqat.noise.Loss]는 지원하지 않습니다. 각 에뮬레이터 계열이 자신의 연속 노이즈 구현을 관리합니다.
   status: machine
 - id: a97a21f3c246baba
   en: '**Emulator support**'
@@ -92,11 +92,11 @@
   status: machine
 - id: de86eab7ed62de42
   en: '| [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] | Background scope: qubit [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] `(rate)`, explicit [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] `(rate)`, [`PhaseDamping`][fatqat.noise.PhaseDamping] `(rate or t_phi)`, qubit [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation], and [`Depolarizing`][fatqat.noise.Depolarizing] `(rate)`. | Operation-scoped continuous noise is unsupported. Readout confusion is built in and `2 x 2` only. |'
-  ko: '| [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] | 배경 범위: 큐비트 [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] `(rate)`, 명시적 [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] `(rate)`, [`PhaseDamping`][fatqat.noise.PhaseDamping] `(rate or t_phi)`, 큐비트 [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation], [`Depolarizing`][fatqat.noise.Depolarizing] `(rate)`. | 연산 범위의 연속 잡음은 지원하지 않습니다. 판독 혼동은 `2 x 2`만 내장 지원합니다. |'
+  ko: '| [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] | 배경 범위: 큐비트 [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] `(rate)`, 명시적 [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] `(rate)`, [`PhaseDamping`][fatqat.noise.PhaseDamping] `(rate or t_phi)`, 큐비트 [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation], [`Depolarizing`][fatqat.noise.Depolarizing] `(rate)`. | 연산 범위의 연속 노이즈는 지원하지 않습니다. 판독 혼동은 `2 x 2`만 내장 지원합니다. |'
   status: machine
 - id: b8ff4b37fe98062f
   en: Each supported background declaration selects one site. Transmon operation-scoped noise is active only during matching pulse windows. Readout confusion may apply to every measurement or one operand; correlated multi-operand readout is not supported.
-  ko: 지원되는 각 배경 잡음 선언은 사이트 하나를 선택합니다. Transmon의 연산 범위 잡음은 매칭되는 펄스 구간에만 활성화됩니다. 판독 혼동은 모든 측정 또는 피연산자 하나에 적용할 수 있으며, 여러 피연산자의 상관 판독은 지원하지 않습니다.
+  ko: 지원되는 각 배경 노이즈 선언은 사이트 하나를 선택합니다. 트랜스몬의 연산 범위 노이즈는 매칭되는 펄스 구간에만 활성화됩니다. 판독 혼동은 모든 측정 또는 피연산자 하나에 적용할 수 있으며, 여러 피연산자의 상관 판독은 지원하지 않습니다.
   status: machine
 - id: 84d7bbbb460f5231
   en: Rates use the inverse of the model's time unit. `t_phi`, `t1`, and `t2` use that unit directly on families that accept them. The reference [`time_unit`][fatqat.emulator.TransmonModel.time_unit] is nanoseconds, while [`time_unit`][fatqat.emulator.Atom2LevelModel.time_unit] is microseconds. Read the chosen model's `time_unit` rather than guessing from a value's magnitude.
@@ -112,11 +112,11 @@
   status: retired
 - id: 48c855fa7066e639
   en: Simulation method also matters. `statevector` samples one Kraus trajectory per noisy shot, while `density_matrix` and `superop` apply probability-form channels exactly. `unitary` rejects any channel that matches the program. Only `statevector` and `density_matrix` support the AtomArray occupancy lifecycle; requesting a final state with loss requires `shots == 1`.
-  ko: 시뮬레이션 방법도 중요합니다. `statevector`는 잡음이 있는 샷마다 Kraus 궤적 하나를 샘플링하고, `density_matrix`와 `superop`은 확률 형식 채널을 정확히 적용합니다. `unitary`는 프로그램과 매칭되는 채널을 모두 거부합니다. AtomArray 점유 수명 주기는 `statevector`와 `density_matrix`만 지원합니다. 손실이 있을 때 최종 상태를 요청하려면 `shots == 1`이어야 합니다.
+  ko: 시뮬레이션 방법도 중요합니다. `statevector`는 노이즈가 있는 샷마다 Kraus 궤적 하나를 샘플링하고, `density_matrix`와 `superop`은 확률 형식 채널을 정확히 적용합니다. `unitary`는 프로그램과 매칭되는 채널을 모두 거부합니다. AtomArray 점유 수명 주기는 `statevector`와 `density_matrix`만 지원합니다. 손실이 있을 때 최종 상태를 요청하려면 `shots == 1`이어야 합니다.
   status: machine
 - id: 1c8b8c32560a5854
   en: Use this page to check which noise forms a backend accepts. You can also call [`validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] on a simulator or [`validate_noise_model`][fatqat.emulator.TransmonEmulator.validate_noise_model] on a pulse emulator before running a program. Program-specific constraints, such as target dimensions, apply at run time.
-  ko: 이 페이지에서 백엔드가 어떤 잡음 형태를 받는지 확인할 수 있습니다. 프로그램을 실행하기 전에 시뮬레이터의 [`validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] 또는 펄스 에뮬레이터의 [`validate_noise_model`][fatqat.emulator.TransmonEmulator.validate_noise_model]을 호출할 수도 있습니다. 대상 차원처럼 프로그램에 따라 달라지는 제약은 실행 시 적용됩니다.
+  ko: 이 페이지에서 백엔드가 어떤 노이즈 형태를 받는지 확인할 수 있습니다. 프로그램을 실행하기 전에 시뮬레이터의 [`validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] 또는 펄스 에뮬레이터의 [`validate_noise_model`][fatqat.emulator.TransmonEmulator.validate_noise_model]을 호출할 수도 있습니다. 대상 차원처럼 프로그램에 따라 달라지는 제약은 실행 시 적용됩니다.
   status: machine
 - id: 9048494afd7819c0
   en: '[`Simulator`][fatqat.simulator.Simulator] and [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] use the finite channel forms below. [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] and [`LOSimulator`][fatqat.simulator.LOSimulator] have additional restrictions described after the table.'

@@ -164,7 +164,7 @@
   status: machine
 - id: d93241cd22bebe9f
   en: To follow the borrowed level, we need the complex state after each block. The `statevector` method returns this vector. In `evolve`, `initial_state` chooses the input, and `result_config` requests the final state and disables counts. These ideal runs contain no measurements or noise, so they have no sampling uncertainty and need no random seed. We can use the same helper for the full gate or a prefix of its instructions.
-  ko: 빌린 준위를 추적하려면 각 블록 뒤의 복소 상태가 필요합니다. `statevector` 방법이 이 벡터를 반환합니다. `evolve`에서 `initial_state`로 입력을 고르고, `result_config`로 최종 상태를 요청하며 측정 횟수 출력을 끕니다. 측정과 잡음이 없는 이상적 실행이므로 샘플링 불확실성이 없고 난수 시드도 필요하지 않습니다. 같은 헬퍼로 전체 게이트나 앞부분의 명령만 실행할 수 있습니다.
+  ko: 빌린 준위를 추적하려면 각 블록 뒤의 복소 상태가 필요합니다. `statevector` 방법이 이 벡터를 반환합니다. `evolve`에서 `initial_state`로 입력을 고르고, `result_config`로 최종 상태를 요청하며 측정 횟수 출력을 끕니다. 측정과 노이즈가 없는 이상적 실행이므로 샘플링 불확실성이 없고 난수 시드도 필요하지 않습니다. 같은 헬퍼로 전체 게이트나 앞부분의 명령만 실행할 수 있습니다.
   status: machine
 - id: 74fa2e592a4a866b
   en: Follow one input through the borrowed level
@@ -256,7 +256,7 @@
   status: machine
 - id: a606760d4ee43586
   en: Having verified the gate, we can count the operations needed to construct it. Each `CClock` couples the qutrit `b` to one qubit, either `a` or `t`. The other gates act on one subsystem at a time. We count these groups in the same `sequence` we simulated, using each operation's `num_subsystems` value. The count covers the gate itself; input preparation is separate.
-  ko: 게이트를 검증했으니 구성에 필요한 연산 수를 셀 수 있습니다. 각 `CClock`은 큐트릿 `b`를 큐비트 `a` 또는 `t`에 결합합니다. 다른 게이트는 한 번에 하나의 부분계에 작용합니다. 시뮬레이션한 동일한 `sequence`에서 각 연산의 `num_subsystems`로 이들을 구분해 셉니다. 여기에는 게이트 자체만 포함하고 입력 준비는 제외합니다.
+  ko: 게이트를 검증했으니 구성에 필요한 연산 수를 셀 수 있습니다. 각 `CClock`은 큐트릿 `b`를 큐비트 `a` 또는 `t`에 커플링합니다. 다른 게이트는 한 번에 하나의 부분계에 작용합니다. 시뮬레이션한 동일한 `sequence`에서 각 연산의 `num_subsystems`로 이들을 구분해 셉니다. 여기에는 게이트 자체만 포함하고 입력 준비는 제외합니다.
   status: machine
 - id: 73aea9e3ee2c5a40
   en: 'There are eleven primitive instructions: three qubit–qutrit interactions, two single-qubit gates (`H` on `t`), and six single-qutrit gates (four rotations and two level swaps on `b`). Each of the three blocks uses one interaction, with local gates selecting how it acts on the logical states.'

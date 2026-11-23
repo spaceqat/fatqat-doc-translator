@@ -28,7 +28,7 @@
   status: retired
 - id: 0b450ba46b4d6b79
   en: Ideal and noisy runs
-  ko: 이상적인 실행과 잡음이 있는 실행
+  ko: 이상적인 실행과 노이즈가 있는 실행
   status: machine
 - id: 442aded87a55aa8c
   en: Performance
@@ -44,7 +44,7 @@
   status: retired
 - id: 348c1c6d71f05569
   en: Transmon emulation
-  ko: Transmon 에뮬레이션
+  ko: 트랜스몬 에뮬레이션
   status: machine
 - id: 2eab1e06090bdc3d
   en: Neutral-atom emulation
@@ -96,7 +96,7 @@
   status: machine
 - id: 00a5ef93df74d61e
   en: Transmon emulator
-  ko: Transmon 에뮬레이터
+  ko: 트랜스몬 에뮬레이터
   status: machine
 - id: 8de013e1075dfe0d
   en: Neutral-atom emulators
@@ -232,7 +232,7 @@
   status: machine
 - id: a1a6016e838e11b5
   en: Design and calibrate control pulses, then check their action on quantum states in transmon and Rydberg models.
-  ko: 제어 펄스를 설계하고 보정한 뒤, transmon 및 Rydberg 모델에서 양자 상태에 미치는 작용을 확인합니다.
+  ko: 제어 펄스를 설계하고 보정한 뒤, 트랜스몬 및 Rydberg 모델에서 양자 상태에 미치는 작용을 확인합니다.
   status: machine
 - id: b04e22341893dba7
   en: Simulate and analyze

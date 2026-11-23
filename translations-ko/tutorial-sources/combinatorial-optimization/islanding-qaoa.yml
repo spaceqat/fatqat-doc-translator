@@ -52,7 +52,7 @@
   status: machine
 - id: 30da50f22d0bd5cf
   en: 'The circuit construction is exactly the one from the QUBO tutorial: substitute $x_i = (1 - z_i)/2$ to get an Ising Hamiltonian, then emit an `RZ` per field term, a `CX`-`RZ`-`CX` ladder per coupling, and an `RX` mixer per layer.'
-  ko: 회로 구성은 QUBO 튜토리얼과 같습니다. $x_i = (1 - z_i)/2$를 대입해 Ising 해밀토니안을 얻고, 각 층에 장 항별 `RZ`, 결합 항별 `CX`-`RZ`-`CX`, `RX` 혼합기를 배치합니다.
+  ko: 회로 구성은 QUBO 튜토리얼과 같습니다. $x_i = (1 - z_i)/2$를 대입해 Ising 해밀토니안을 얻고, 각 층에 장 항별 `RZ`, 커플링 항별 `CX`-`RZ`-`CX`, `RX` 혼합기를 배치합니다.
   status: machine
 - id: dfaf8ba2fd91a8f3
   en: The target to aim at is the best feasible split, not the QUBO ground state, so that is what the probability below is measured against. Depth is grown one layer at a time, seeding each depth from the previous solution.
@@ -168,7 +168,7 @@
   status: machine
 - id: d173b4faa8036430
   en: '**Noise.** Every run here is noiseless. Attaching a `fatqat.NoiseModel` to the simulator turns the same code into a study of how much depth this problem can actually afford on hardware.'
-  ko: '**잡음.** 여기의 모든 실행에는 잡음이 없습니다. 시뮬레이터에 `fatqat.NoiseModel`을 붙이면 같은 코드로 실제 하드웨어에서 어느 정도 깊이까지 견딜 수 있는지 연구할 수 있습니다.'
+  ko: '**노이즈.** 여기의 모든 실행에는 노이즈가 없습니다. 시뮬레이터에 `fatqat.NoiseModel`을 붙이면 같은 코드로 실제 하드웨어에서 어느 정도 깊이까지 견딜 수 있는지 연구할 수 있습니다.'
   status: machine
 - id: 31f572540763fefb
   en: 'Y. Jiang, Y. Zhang, Z. Liang, Q. Guan, Y. Li, and G. K. Venayagamoorthy, "REGRID-QAOA: A Resource-Efficient Hybrid QAOA Framework for Physics-Constrained Power System Islanding", [arXiv:2606.15083](https://arxiv.org/abs/2606.15083) (2026). The hybrid pipeline this tutorial implements.'

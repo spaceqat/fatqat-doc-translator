@@ -68,7 +68,7 @@
   status: retired
 - id: f77c41b4e8b91770
   en: '![Bell-state measurement frequencies with bars for the zero-zero and one-one outcomes.](../assets/generated/guide/visualization-counts.png)'
-  ko: '![00과 11 결과를 막대로 표시한 Bell 상태의 측정 빈도.](../assets/generated/guide/visualization-counts.png)'
+  ko: '![00과 11 결과를 막대로 표시한 벨 상태의 측정 빈도.](../assets/generated/guide/visualization-counts.png)'
   status: machine
 - id: 1978a84f230517b5
   en: '`stat="frequencies"` divides each count by the total number of shots; omit it to show raw counts.'

@@ -48,7 +48,7 @@
   status: machine
 - id: 302d311ac4e62b55
   en: 'To see the Pauli coupling, substitute $n=(I-Z)/2$:'
-  ko: Pauli 결합을 확인하려면 $n=(I-Z)/2$를 대입합니다.
+  ko: Pauli 커플링을 확인하려면 $n=(I-Z)/2$를 대입합니다.
   status: machine
 - id: e42f6c65d99ff2f8
   en: The coefficient multiplying $Z_iZ_j$ is therefore $J_{ZZ}=U_{ij}/4$, not $U_{ij}$. We choose a round peak drive $\Omega_{max}=2\pi$ rad/us. Its transverse-field coefficient is $h_x=\Omega_{max}/2$. Matching $J_{ZZ}=h_x$ requires $U=2\Omega_{max}$. The corresponding spacing follows from the model rather than being a magic number.

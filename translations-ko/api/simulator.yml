@@ -228,11 +228,11 @@
   status: machine
 - id: d50134bdec8b1028
   en: '| `statevector` (default) | A final pure state. Reset and noise channels may sample a trajectory. | `(D,)` |'
-  ko: '| `statevector`(기본값) | 최종 순수 상태. 초기화와 잡음 채널이 있으면 궤적 하나를 샘플링할 수 있습니다. | `(D,)` |'
+  ko: '| `statevector`(기본값) | 최종 순수 상태. 초기화와 노이즈 채널이 있으면 궤적 하나를 샘플링할 수 있습니다. | `(D,)` |'
   status: machine
 - id: f05e5846b23ec1d9
   en: '| `density_matrix` | A final density matrix. Reset and noise channels act directly on the density matrix. | `(D, D)` |'
-  ko: '| `density_matrix` | 최종 밀도 행렬. 초기화와 잡음 채널을 밀도 행렬에 직접 적용합니다. | `(D, D)` |'
+  ko: '| `density_matrix` | 최종 밀도 행렬. 초기화와 노이즈 채널을 밀도 행렬에 직접 적용합니다. | `(D, D)` |'
   status: machine
 - id: 360549b04e8a9264
   en: '| `unitary` | The matrix of a program made up of unitary operations. | `(D, D)` |'
@@ -240,7 +240,7 @@
   status: machine
 - id: 28492700c0f10f9e
   en: '| `superop` | The linear map on density matrices, including reset and finite noise channels. | `(D**2, D**2)` |'
-  ko: '| `superop` | 밀도 행렬에 작용하는 선형 사상. 초기화와 유한 잡음 채널의 작용도 포함합니다. | `(D**2, D**2)` |'
+  ko: '| `superop` | 밀도 행렬에 작용하는 선형 사상. 초기화와 유한 노이즈 채널의 작용도 포함합니다. | `(D**2, D**2)` |'
   status: machine
 - id: 7d040c2da93c070a
   en: Both state methods support measurement and classical conditions. Both operator methods require a program without measurements or classical conditions, and return the map without taking an initial state or producing counts. Their memory use grows with the size of the returned matrix.
@@ -300,7 +300,7 @@
   status: machine
 - id: c6479879035e39d6
   en: Pass a [`NoiseModel`][fatqat.NoiseModel] through the constructor's `noise` argument to use it on every run. Matrix simulation uses probability-form channels applied at operation boundaries. See [Noise](noise.md#backend-support) for supported noise sources.
-  ko: 시뮬레이터를 만들 때 `noise`에 [`NoiseModel`][fatqat.NoiseModel]을 전달하면 모든 실행에 같은 모델을 사용합니다. 행렬 시뮬레이션에서는 연산 경계에서 확률로 지정한 잡음 채널을 적용합니다. 지원하는 잡음 유형은 [잡음](noise.md#backend-support)을 참조하세요.
+  ko: 시뮬레이터를 만들 때 `noise`에 [`NoiseModel`][fatqat.NoiseModel]을 전달하면 모든 실행에 같은 모델을 사용합니다. 행렬 시뮬레이션에서는 연산 경계에서 확률로 지정한 노이즈 채널을 적용합니다. 지원하는 노이즈 유형은 [노이즈](noise.md#backend-support)을 참조하세요.
   status: machine
 - id: 72ba3e1e02ed2417
   en: <a id="customize-the-backend"></a>

@@ -4,7 +4,7 @@
   status: machine
 - id: 87292fa005592633
   en: 'Use the general-purpose [`Simulator`][fatqat.simulator.Simulator] to study circuit behavior, with or without noise. Start here with an ideal single-qubit rotation: calculate its exact probabilities, sample measurement outcomes, then vary the rotation angle to see how the probabilities change.'
-  ko: "회로가 이상적인 조건이나 잡음이 있는 조건에서 어떻게 동작하는지 알아보려면 범용 [`Simulator`][fatqat.simulator.Simulator]를 사용하세요. 먼저 단일 큐비트의 이상적인 회전으로 정확한 확률을 구하고 측정을 샘플링한 뒤, 회전 각도에 따라 결과가 어떻게 바뀌는지 살펴보겠습니다."
+  ko: "회로가 이상적인 조건이나 노이즈가 있는 조건에서 어떻게 동작하는지 알아보려면 범용 [`Simulator`][fatqat.simulator.Simulator]를 사용하세요. 먼저 단일 큐비트의 이상적인 회전으로 정확한 확률을 구하고 측정을 샘플링한 뒤, 회전 각도에 따라 결과가 어떻게 바뀌는지 살펴보겠습니다."
   status: machine
 - id: 8ac32dd5d2b43ede
   en: 'The statevector contains an amplitude for each basis state. Its squared magnitudes give the probabilities of measuring `0` and `1`: here, one half each. No measurements were sampled to obtain these probabilities. The classical bit declared by `Program(1, 1)` will hold the measurement outcome in the next example.'
@@ -28,11 +28,11 @@
   status: machine
 - id: 4e1b06b65f64402c
   en: '**`statevector`** represents a pure state. With noise, it samples individual noise trajectories.'
-  ko: '**`statevector`**는 순수 상태를 표현합니다. 잡음이 있으면 개별 잡음 궤적을 샘플링합니다.'
+  ko: '**`statevector`**는 순수 상태를 표현합니다. 노이즈가 있으면 개별 노이즈 궤적을 샘플링합니다.'
   status: machine
 - id: f16addc9014c09ef
   en: '**`density_matrix`** represents a mixed state and applies noise channels directly, without sampling trajectories.'
-  ko: '**`density_matrix`**는 혼합 상태를 표현하며, 궤적을 샘플링하지 않고 잡음 채널을 직접 적용합니다.'
+  ko: '**`density_matrix`**는 혼합 상태를 표현하며, 궤적을 샘플링하지 않고 노이즈 채널을 직접 적용합니다.'
   status: machine
 - id: 39d06ef230a0cc0e
   en: Use `unitary` or `superop` when you need the circuit's full transformation rather than its output state.
@@ -40,7 +40,7 @@
   status: machine
 - id: 2717d780dc95b264
   en: For a worked example using a density matrix to study noise, see [Ideal and noisy runs](ideal-and-noisy.md).
-  ko: 밀도 행렬로 잡음을 연구하는 예제는 [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md)을 참고하세요.
+  ko: 밀도 행렬로 노이즈를 연구하는 예제는 [이상적 실행과 노이즈가 있는 실행](ideal-and-noisy.md)을 참고하세요.
   status: machine
 - id: b6d344af5f9bb899
   en: Measure a distribution
@@ -52,7 +52,7 @@
   status: machine
 - id: 6fc50a3fc7697b8b
   en: The counts record how many shots produced each outcome. Divide them by the number of shots to obtain the observed frequencies. These fluctuate around the exact probabilities because measurement is sampled, even though the circuit has no noise. More shots generally reduce the sampling fluctuations; they do not change the underlying probabilities. The seed makes this example repeatable.
-  ko: "카운트는 각 결과가 나온 횟수입니다. 전체 샷 수로 나누면 관측 빈도가 됩니다. 잡음이 없어도 측정의 무작위성 때문에 빈도는 실제 확률 주변에서 달라집니다. 샷 수를 늘리면 보통 이 변동이 줄어들지만 실제 확률은 그대로입니다. 난수 시드를 고정하면 예제의 결과를 재현할 수 있습니다."
+  ko: "카운트는 각 결과가 나온 횟수입니다. 전체 샷 수로 나누면 관측 빈도가 됩니다. 노이즈가 없어도 측정의 무작위성 때문에 빈도는 실제 확률 주변에서 달라집니다. 샷 수를 늘리면 보통 이 변동이 줄어들지만 실제 확률은 그대로입니다. 난수 시드를 고정하면 예제의 결과를 재현할 수 있습니다."
   status: machine
 - id: fc583207e249f7ee
   en: '[`Result.draw()`][fatqat.Result.draw] can display the counts as frequencies. The dashed line below marks the exact probability for both outcomes:'

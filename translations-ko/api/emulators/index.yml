@@ -20,7 +20,7 @@
   status: retired
 - id: ee7a5643d1f134d9
   en: A control pulse can rotate a qubit, couple two transmons, or drive an array of atoms. FatQat's pulse emulators calculate how the quantum state changes during those controls. They use a Hamiltonian for the physical system, so the pulse shape, strength, and timing can all affect the result.
-  ko: 제어 펄스로 큐비트를 회전시키거나 두 트랜스몬을 결합하거나 원자 배열을 구동할 수 있습니다. FatQat의 펄스 에뮬레이터는 물리계의 해밀토니안을 사용해 제어 중 양자 상태가 시간에 따라 어떻게 변하는지 계산합니다. 펄스의 형태와 세기, 시간 배치가 결과에 영향을 줄 수 있습니다.
+  ko: 제어 펄스로 큐비트를 회전시키거나 두 트랜스몬을 커플링하거나 원자 배열을 구동할 수 있습니다. FatQat의 펄스 에뮬레이터는 물리계의 해밀토니안을 사용해 제어 중 양자 상태가 시간에 따라 어떻게 변하는지 계산합니다. 펄스의 형태와 세기, 시간 배치가 결과에 영향을 줄 수 있습니다.
   status: machine
 - id: 1d06ad36d9950cf2
   en: '| Emulator | What it models |'
@@ -28,7 +28,7 @@
   status: machine
 - id: bbce9989681c7832
   en: '| [`TransmonEmulator`](../pulse-emulator.md) | Three levels per transmon, with calibrated gates and channel-addressed pulses. Use it to study rotations, coupled gates, and leakage. |'
-  ko: '| [`TransmonEmulator`](../pulse-emulator.md) | 트랜스몬마다 세 준위를 사용합니다. 보정된 게이트나 채널을 지정한 펄스로 회전, 결합 게이트 및 누설을 연구할 수 있습니다. |'
+  ko: '| [`TransmonEmulator`](../pulse-emulator.md) | 트랜스몬마다 세 준위를 사용합니다. 보정된 게이트나 채널을 지정한 펄스로 회전, 커플링 게이트 및 누설을 연구할 수 있습니다. |'
   status: machine
 - id: f7f48da822fe81d1
   en: '| [`Atom2LevelEmulator`](../atom-emulators.md) | Two-level Rydberg atoms at fixed positions. Use it to study how global laser pulses and distance-dependent interactions affect an array. |'
@@ -52,15 +52,15 @@
   status: machine
 - id: 52b51ece0d27fee6
   en: '| `statevector` (default) | Follow a pure state or sample one trajectory when Lindblad noise can act. | [`get_statevector()`][fatqat.Result.get_statevector] |'
-  ko: '| `statevector`(기본값) | 순수 상태의 진화를 계산하거나 Lindblad 잡음이 작용할 때 궤적 하나를 샘플링합니다. | [`get_statevector()`][fatqat.Result.get_statevector] |'
+  ko: '| `statevector`(기본값) | 순수 상태의 진화를 계산하거나 Lindblad 노이즈가 작용할 때 궤적 하나를 샘플링합니다. | [`get_statevector()`][fatqat.Result.get_statevector] |'
   status: machine
 - id: d2e49a9b2c73f7bb
   en: '| `density_matrix` | Compute the ensemble state under supported Lindblad noise. | [`get_density_matrix()`][fatqat.Result.get_density_matrix] |'
-  ko: '| `density_matrix` | 지원하는 Lindblad 잡음 아래에서 앙상블 상태를 계산합니다. | [`get_density_matrix()`][fatqat.Result.get_density_matrix] |'
+  ko: '| `density_matrix` | 지원하는 Lindblad 노이즈 아래에서 앙상블 상태를 계산합니다. | [`get_density_matrix()`][fatqat.Result.get_density_matrix] |'
   status: machine
 - id: 4df01386776b009f
   en: '| `unitary` | Compute the coherent evolution operator for a program without measurement, reset, classical conditions, or potentially active Lindblad noise. | [`get_unitary()`][fatqat.Result.get_unitary] |'
-  ko: '| `unitary` | 측정, 리셋, 고전 조건 또는 작용할 수 있는 Lindblad 잡음이 없는 프로그램의 결맞은 진화 연산자를 계산합니다. | [`get_unitary()`][fatqat.Result.get_unitary] |'
+  ko: '| `unitary` | 측정, 리셋, 고전 조건 또는 작용할 수 있는 Lindblad 노이즈가 없는 프로그램의 결맞은 진화 연산자를 계산합니다. | [`get_unitary()`][fatqat.Result.get_unitary] |'
   status: machine
 - id: a5b5c398620e2ea2
   en: 'These accessors return QuTiP `Qobj` values. Use `.full()` for a NumPy array. Measurement counts are returned by default when the program measures. To retain a stochastic final state from one shot, pass `result_config={"final_state": True}` and `shots=1`.'

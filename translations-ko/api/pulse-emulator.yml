@@ -344,7 +344,7 @@
   status: retired
 - id: c0ee7cf18b1f9c0c
   en: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator] models each transmon with three energy levels. Use it to study how a control pulse rotates a qubit, drives a coupled gate, or moves population into the third level. You can run calibrated gates or specify the control waveforms directly.'
-  ko: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 각 트랜스몬을 세 에너지 준위로 모델링합니다. 제어 펄스가 큐비트를 회전시키거나 결합 게이트를 구현하는 방식, 또는 세 번째 준위로 누설이 생기는 과정을 살펴볼 수 있습니다. 보정된 게이트를 실행하거나 제어 파형을 직접 지정할 수 있습니다.'
+  ko: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 각 트랜스몬을 세 에너지 준위로 모델링합니다. 제어 펄스가 큐비트를 회전시키거나 커플링 게이트를 구현하는 방식, 또는 세 번째 준위로 누설이 생기는 과정을 살펴볼 수 있습니다. 보정된 게이트를 실행하거나 제어 파형을 직접 지정할 수 있습니다.'
   status: machine
 - id: cf4ba1b57f7d4d3d
   en: Configure the transmon model
@@ -388,7 +388,7 @@
   status: machine
 - id: abd5ed64862fab5b
   en: For a directly authored [`PulseOperation`][fatqat.operations.PulseOperation], use `model.control` to address physical channels. `drive` and `detuning` take one transmon label. `exchange` takes two labels on a declared coupling. `model.frame(...)` selects the phase reference for a virtual drive update.
-  ko: 직접 작성한 [`PulseOperation`][fatqat.operations.PulseOperation]에서는 `model.control`로 물리 채널을 지정합니다. `drive`와 `detuning`은 트랜스몬 레이블 하나를 받고, `exchange`는 연결이 선언된 레이블 두 개를 받습니다. `model.frame(...)`으로 구동 위상을 가상으로 조정할 때 사용할 기준을 선택합니다.
+  ko: 직접 작성한 [`PulseOperation`][fatqat.operations.PulseOperation]에서는 `model.control`로 물리 채널을 지정합니다. `drive`와 `detuning`은 트랜스몬 레이블 하나를 받고, `exchange`는 커플링이 선언된 레이블 두 개를 받습니다. `model.frame(...)`으로 구동 위상을 가상으로 조정할 때 사용할 기준을 선택합니다.
   status: machine
 - id: dfba446254264d2a
   en: Times are in nanoseconds and the built-in waveforms use `rad/ns`. Convert a value in GHz to an angular rate with [`angular_rate_from_ghz()`][fatqat.emulator.superconducting.angular_rate_from_ghz]. The drive envelope is the full complex Rabi rate \(\Omega(t)\), with \(\operatorname{Re}\Omega/2\) and \(\operatorname{Im}\Omega/2\) in the two quadratures. Detuning and exchange use real Hamiltonian coefficients.
@@ -408,7 +408,7 @@
   status: machine
 - id: 99ec10235b2cb086
   en: Pass a `noise` model to add continuous evolution from background or operation-scoped noise. Rates are in inverse nanoseconds. Rate-form depolarization acts on all three levels and can populate the third level. For accepted forms and model validation, see [Pulse emulator noise](noise/backend-support.md#noise-emulator-support).
-  ko: '`noise` 모델을 전달하면 배경에 적용되거나 특정 연산 중에 작용하는 연속 시간 잡음을 추가할 수 있습니다. 잡음률의 단위는 나노초의 역수입니다. 잡음률로 지정한 탈분극은 세 준위 모두에 작용하며 세 번째 준위의 점유를 만들 수 있습니다. 지원 형태와 모델 검증은 [펄스 에뮬레이터 잡음](noise/backend-support.md#noise-emulator-support)을 참조하세요.'
+  ko: '`noise` 모델을 전달하면 배경에 적용되거나 특정 연산 중에 작용하는 연속 시간 노이즈를 추가할 수 있습니다. 노이즈율의 단위는 나노초의 역수입니다. 노이즈율로 지정한 탈분극은 세 준위 모두에 작용하며 세 번째 준위의 점유를 만들 수 있습니다. 지원 형태와 모델 검증은 [펄스 에뮬레이터 노이즈](noise/backend-support.md#noise-emulator-support)을 참조하세요.'
   status: machine
 - id: 4c28c22e3d0decc3
   en: Read transmon results
@@ -424,7 +424,7 @@
   status: machine
 - id: e454b83e9f39065e
   en: Measurement maps physical levels `0`, `1`, and `2` to the reported digits `0`, `1`, and `1`, before readout noise is applied. To examine leakage into level `2`, read the physical state from an unmeasured run. Reset prepares the physical ground state.
-  ko: 측정에서는 물리 준위 `0`, `1`, `2`를 각각 `0`, `1`, `1`로 기록한 뒤 판독 잡음을 적용합니다. 준위 `2`로의 누설을 확인하려면 측정 연산 없이 실행해 물리 상태를 읽습니다. 리셋은 트랜스몬을 물리적 바닥 상태로 되돌립니다.
+  ko: 측정에서는 물리 준위 `0`, `1`, `2`를 각각 `0`, `1`, `1`로 기록한 뒤 판독 노이즈를 적용합니다. 준위 `2`로의 누설을 확인하려면 측정 연산 없이 실행해 물리 상태를 읽습니다. 리셋은 트랜스몬을 물리적 바닥 상태로 되돌립니다.
   status: machine
 - id: cb6df11827920e15
   en: <a id="neutral-atom-pulse-emulator"></a>

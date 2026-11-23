@@ -48,7 +48,7 @@
   status: machine
 - id: 18be77b87f0337d7
   en: '**Build.** Turn each Ising term into gates: an `RZ` per field term, a `CX`-`RZ`-`CX` ladder per coupling, and an `RX` mixer.'
-  ko: '**구성.** Ising 항을 게이트로 바꿉니다. 장 항에는 `RZ`, 결합 항에는 `CX`-`RZ`-`CX`, 혼합기에는 `RX`를 사용합니다.'
+  ko: '**구성.** Ising 항을 게이트로 바꿉니다. 장 항에는 `RZ`, 커플링 항에는 `CX`-`RZ`-`CX`, 혼합기에는 `RX`를 사용합니다.'
   status: machine
 - id: 42cdb00b080fe2a6
   en: '**Evaluate.** Get the energy from `fatqat.Estimator`, or read the whole outcome distribution from the simulator.'
@@ -116,7 +116,7 @@
   status: machine
 - id: 65fef8a013e37e82
   en: 'The field is identically zero. That is the side-relabeling symmetry again: the problem cannot prefer $z$ over $-z$, so no single-spin term survives, and the whole Hamiltonian lives in the couplings. Nothing in what follows depends on that, but it is a useful check that the model says what it was meant to say.'
-  ko: 장은 모든 위치에서 0입니다. 두 부분의 이름을 바꾸는 대칭 때문입니다. 문제는 $z$와 $-z$ 중 하나를 선호할 수 없으므로 단일 스핀 항이 남지 않고 해밀토니안 전체가 결합 항으로 이루어집니다. 이후 절차가 이 성질에 의존하지는 않지만 모델이 의도대로 표현되었는지 확인하는 데 유용합니다.
+  ko: 장은 모든 위치에서 0입니다. 두 부분의 이름을 바꾸는 대칭 때문입니다. 문제는 $z$와 $-z$ 중 하나를 선호할 수 없으므로 단일 스핀 항이 남지 않고 해밀토니안 전체가 커플링 항으로 이루어집니다. 이후 절차가 이 성질에 의존하지는 않지만 모델이 의도대로 표현되었는지 확인하는 데 유용합니다.
   status: machine
 - id: 52df780071c96174
   en: The QAOA program
@@ -128,7 +128,7 @@
   status: machine
 - id: 763583154f288566
   en: Both pieces are elementary gates. FatQat's `RZ(theta)` is $\mathrm{diag}(e^{-i\theta/2}, e^{+i\theta/2})$, so a field term needs `RZ(2*gamma*h)`. A coupling term is the same rotation conjugated by a `CX` pair, which writes the parity of the two qubits onto the target before rotating it. The mixer is `RX(2*beta)` on every qubit.
-  ko: 둘 다 기본 게이트로 구현합니다. FatQat의 `RZ(theta)`는 $\mathrm{diag}(e^{-i\theta/2}, e^{+i\theta/2})$이므로 장 항에는 `RZ(2*gamma*h)`가 필요합니다. 결합 항에는 같은 회전 앞뒤에 `CX`를 놓습니다. 회전 전에 두 큐비트의 패리티를 타깃에 기록하는 방식입니다. 혼합기는 모든 큐비트에 적용하는 `RX(2*beta)`입니다.
+  ko: 둘 다 기본 게이트로 구현합니다. FatQat의 `RZ(theta)`는 $\mathrm{diag}(e^{-i\theta/2}, e^{+i\theta/2})$이므로 장 항에는 `RZ(2*gamma*h)`가 필요합니다. 커플링 항에는 같은 회전 앞뒤에 `CX`를 놓습니다. 회전 전에 두 큐비트의 패리티를 타깃에 기록하는 방식입니다. 혼합기는 모든 큐비트에 적용하는 `RX(2*beta)`입니다.
   status: machine
 - id: 2e08ba49437a0646
   en: Program qubit $i$ is variable $i$, and FatQat keeps qubit 0 leftmost in a counts string and most significant in a statevector index — the same order the enumeration above already uses.
@@ -136,7 +136,7 @@
   status: machine
 - id: 0fce656469c0cefe
   en: A parameter cannot be scaled inside a gate argument — FatQat gate angles take a number or a bare `fatqat.Parameter`, not an expression — and every phase rotation here needs $\gamma$ multiplied by its own coupling. The program is therefore rebuilt for each set of angles, which costs about a millisecond and disappears next to the simulation.
-  ko: 게이트 인수 안에서 매개변수에 배율을 곱할 수는 없습니다. FatQat의 게이트 각도는 수치나 단독 `fatqat.Parameter`를 받으며 표현식은 받지 않습니다. 여기서는 각 위상 회전마다 $\gamma$에 해당 결합값을 곱해야 하므로 각도 집합이 바뀔 때마다 프로그램을 다시 만듭니다. 약 1밀리초의 비용으로 시뮬레이션 시간에 비하면 작습니다.
+  ko: 게이트 인수 안에서 매개변수에 배율을 곱할 수는 없습니다. FatQat의 게이트 각도는 수치나 단독 `fatqat.Parameter`를 받으며 표현식은 받지 않습니다. 여기서는 각 위상 회전마다 $\gamma$에 해당 커플링 값을 곱해야 하므로 각도 집합이 바뀔 때마다 프로그램을 다시 만듭니다. 약 1밀리초의 비용으로 시뮬레이션 시간에 비하면 작습니다.
   status: machine
 - id: 6a488f9a52e374bb
   en: Two ways to get the energy
@@ -164,11 +164,11 @@
   status: machine
 - id: 03451b75f080b63a
   en: 'At $p = 1$ there are only two angles, so the entire landscape can be drawn. This is the cheapest way to learn the scale a problem wants: $\gamma$ enters the circuit multiplied by a coupling, so a Hamiltonian with large couplings has its structure squeezed into small $\gamma$, and an optimizer started on the wrong scale will wander over featureless terrain.'
-  ko: $p = 1$에서는 각도가 두 개뿐이므로 전체 지형을 그릴 수 있습니다. 문제에 맞는 척도를 알아보는 가장 저렴한 방법입니다. 회로에서 $\gamma$는 결합 계수와 곱해지므로 결합이 큰 해밀토니안의 구조는 작은 $\gamma$ 영역에 압축됩니다. 잘못된 척도에서 시작한 최적화기는 특징 없는 영역을 헤맬 수 있습니다.
+  ko: $p = 1$에서는 각도가 두 개뿐이므로 전체 지형을 그릴 수 있습니다. 문제에 맞는 척도를 알아보는 가장 저렴한 방법입니다. 회로에서 $\gamma$는 커플링 계수와 곱해지므로 커플링이 큰 해밀토니안의 구조는 작은 $\gamma$ 영역에 압축됩니다. 잘못된 척도에서 시작한 최적화기는 특징 없는 영역을 헤맬 수 있습니다.
   status: machine
 - id: a191f3c66af164f9
   en: The landscape is smooth and periodic in $\beta$ with period $\pi$, and its structure in $\gamma$ repeats on the scale set by the couplings. The minimum is a broad basin, which is why a gradient-free optimizer started anywhere sensible finds it.
-  ko: 지형은 매끄럽고 $\beta$에 대해 주기 $\pi$를 가지며, $\gamma$ 방향의 구조는 결합 계수가 정하는 척도에서 반복됩니다. 최솟값 주변이 넓은 골짜기이므로 합리적인 위치에서 시작한 무미분 최적화기가 이를 찾을 수 있습니다.
+  ko: 지형은 매끄럽고 $\beta$에 대해 주기 $\pi$를 가지며, $\gamma$ 방향의 구조는 커플링 계수가 정하는 척도에서 반복됩니다. 최솟값 주변이 넓은 골짜기이므로 합리적인 위치에서 시작한 무미분 최적화기가 이를 찾을 수 있습니다.
   status: machine
 - id: 513f1d4f6822692c
   en: Optimizing, one layer at a time

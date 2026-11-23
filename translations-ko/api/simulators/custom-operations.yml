@@ -72,7 +72,7 @@
   status: machine
 - id: 6010313cb898bd69
   en: Use `context.targets` to locate operands and `context.rng` for random draws that follow the simulation seed. The operation's classical condition is checked before `execute`. Attached noise runs afterward and evaluates its conditions on the updated classical register.
-  ko: '`context.targets`에서 연산 대상을 찾고, 시뮬레이션 시드를 따르는 난수는 `context.rng`로 뽑습니다. 연산의 고전 조건은 `execute`를 호출하기 전에 확인합니다. 연산에 붙인 잡음은 그 뒤에 적용하며, 그 조건은 갱신된 고전 레지스터로 판단합니다.'
+  ko: '`context.targets`에서 연산 대상을 찾고, 시뮬레이션 시드를 따르는 난수는 `context.rng`로 뽑습니다. 연산의 고전 조건은 `execute`를 호출하기 전에 확인합니다. 연산에 붙인 노이즈는 그 뒤에 적용하며, 그 조건은 갱신된 고전 레지스터로 판단합니다.'
   status: machine
 - id: 3635a451554ad034
   en: Run and request results

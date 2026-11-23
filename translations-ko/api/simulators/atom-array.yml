@@ -180,11 +180,11 @@
   status: machine
 - id: 16875e5e44a29750
   en: A valid gate or reset leaves the state unchanged if a required site is empty. Gate support and pairing still apply. To model failed loading or subsequent loss, attach [`Loss`][fatqat.noise.Loss] to the operation where it can occur. For the rules on other channels, see [Noise support](../noise/backend-support.md#simulators).
-  ko: 필요한 사이트가 비어 있으면 실행 가능한 게이트나 리셋도 양자 상태를 바꾸지 않습니다. 게이트 지원 및 페어링 규칙은 그대로 적용됩니다. 로딩 실패나 실행 중 손실을 모델링하려면 해당 연산에 [`Loss`][fatqat.noise.Loss]를 붙입니다. 그 밖의 채널 규칙은 [잡음 지원](../noise/backend-support.md#simulators)을 참조하세요.
+  ko: 필요한 사이트가 비어 있으면 실행 가능한 게이트나 리셋도 양자 상태를 바꾸지 않습니다. 게이트 지원 및 페어링 규칙은 그대로 적용됩니다. 로딩 실패나 실행 중 손실을 모델링하려면 해당 연산에 [`Loss`][fatqat.noise.Loss]를 붙입니다. 그 밖의 채널 규칙은 [노이즈 지원](../noise/backend-support.md#simulators)을 참조하세요.
   status: machine
 - id: e3883347f93a3469
   en: Measurement reports `2` for an empty site. This erasure value bypasses readout noise. The example loads site 0 in the ground state and leaves site 1 empty, so each shot reports `02`.
-  ko: 빈 사이트를 측정하면 `2`가 나옵니다. 이 소거 값에는 판독 잡음이 적용되지 않습니다. 아래 예제는 사이트 0에만 바닥 상태의 원자를 로딩하고 사이트 1은 비워 두므로 매번 `02`가 나옵니다.
+  ko: 빈 사이트를 측정하면 `2`가 나옵니다. 이 소거 값에는 판독 노이즈가 적용되지 않습니다. 아래 예제는 사이트 0에만 바닥 상태의 원자를 로딩하고 사이트 1은 비워 두므로 매번 `02`가 나옵니다.
   status: machine
 - id: 67d1b9ef9e62c296
   en: To read which sites still contain atoms, request `final_classical_state` and call [`Result.get_classical_state()`][fatqat.Result.get_classical_state]. For a final quantum state from a lossy run, request `final_state=True` with `shots=1`.

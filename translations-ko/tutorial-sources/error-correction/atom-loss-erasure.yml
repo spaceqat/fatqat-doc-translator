@@ -40,7 +40,7 @@
   status: machine
 - id: 79246318e9a3f395
   en: 'Count keys list the classical registers in declaration order: three rounds of two syndrome bits, then the three data bits. Without noise every check reports even parity and the data atoms read `111`.'
-  ko: 측정 횟수의 키는 고전 레지스터 선언 순서를 따릅니다. 두 신드롬 비트씩 세 라운드가 먼저 오고, 세 데이터 비트가 뒤따릅니다. 잡음이 없으면 모든 검사는 짝수 패리티이고 데이터 판독은 `111`입니다.
+  ko: 측정 횟수의 키는 고전 레지스터 선언 순서를 따릅니다. 두 신드롬 비트씩 세 라운드가 먼저 오고, 세 데이터 비트가 뒤따릅니다. 노이즈가 없으면 모든 검사는 짝수 패리티이고 데이터 판독은 `111`입니다.
   status: machine
 - id: 296ed536f64782ff
   en: Lose atoms during the entangling gates
@@ -76,7 +76,7 @@
   status: machine
 - id: 97bedd95528c8b9b
   en: 'A *decoder* maps the recorded outcomes of a shot to a guess of the stored logical bit. Its *logical error rate* (LER) is the probability that the guess is wrong. The LER is a property of the decoder as much as of the noise: the same shots decoded two ways give two error rates.'
-  ko: '*디코더*는 한 샷의 측정 기록에서 저장된 논리 비트를 추정합니다. *논리 오류율*(LER)은 그 추정이 틀릴 확률입니다. LER은 잡음뿐 아니라 디코더의 성질이기도 합니다. 같은 샷을 두 방식으로 디코딩하면 두 오류율을 얻습니다.'
+  ko: '*디코더*는 한 샷의 측정 기록에서 저장된 논리 비트를 추정합니다. *논리 오류율*(LER)은 그 추정이 틀릴 확률입니다. LER은 노이즈뿐 아니라 디코더의 성질이기도 합니다. 같은 샷을 두 방식으로 디코딩하면 두 오류율을 얻습니다.'
   status: machine
 - id: 066a6fe98c231ccd
   en: 'This tutorial uses the simplest decoder for a repetition code: a majority vote over the final data readout. For the repetition code this is the minimum-weight correction of the last syndrome, which the final readout determines. It ignores the syndrome history, so it is not the best possible decoder, even without loss. What it offers here is a controlled comparison. We run the same vote in two versions that differ only in whether they use the erasure flag:'
@@ -96,7 +96,7 @@
   status: machine
 - id: 54e07674d729d016
   en: When loss is the only noise, every surviving atom reads the stored value. The erasure-aware vote then fails only when all $d$ data atoms are lost and it has to guess. No decoder that sees only the final readout can do better, since such a shot contains no information about the logical bit. A decoder that also reads the syndrome history can do better, because of the leak described in the previous section, so this is not a lower bound on the LER of the experiment.
-  ko: 잡음이 손실뿐이면 살아남은 원자는 모두 저장된 값을 읽습니다. 소실을 아는 다수결은 $d$개 데이터 원자를 모두 잃어 추측해야 할 때만 실패합니다. 최종 판독만 보는 디코더는 이보다 나을 수 없습니다. 그런 샷에는 논리 비트 정보가 전혀 없기 때문입니다. 다만 신드롬 이력까지 보는 디코더는 앞 절의 정보 유출을 이용해 더 나을 수 있으므로, 이것이 전체 실험 LER의 하한은 아닙니다.
+  ko: 노이즈가 손실뿐이면 살아남은 원자는 모두 저장된 값을 읽습니다. 소실을 아는 다수결은 $d$개 데이터 원자를 모두 잃어 추측해야 할 때만 실패합니다. 최종 판독만 보는 디코더는 이보다 나을 수 없습니다. 그런 샷에는 논리 비트 정보가 전혀 없기 때문입니다. 다만 신드롬 이력까지 보는 디코더는 앞 절의 정보 유출을 이용해 더 나을 수 있으므로, 이것이 전체 실험 LER의 하한은 아닙니다.
   status: machine
 - id: 7cd9505044c9e26e
   en: 'The two error rates also have exact values under pure loss. Data atom $i$ takes part in $n_i$ `CZ` gates: $R$ at either end of the chain and $2R$ in between, for $R$ rounds. It is lost with probability $q_i = 1-(1-p)^{n_i}$, independently of the others, and each decoder fails on a known set of loss patterns. The loss-unaware vote fails when at least $(d+1)/2$ of the random bits that replace lost atoms are wrong. The erasure-aware vote fails with probability $1/2$ when every atom is lost.'

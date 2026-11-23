@@ -1,6 +1,6 @@
 - id: 77bf7237305df63a
   en: Custom noise implementations
-  ko: 사용자 정의 잡음 구현
+  ko: 사용자 정의 노이즈 구현
   status: machine
 - id: a203ab4324b74c2c
   en: This page is for simulator extension authors. Most applications need only FATQAT's built-in noise types. Use this API to define a new [`Channel`][fatqat.noise.Channel] or change how a matrix simulator applies an existing type. Pulse-emulator continuous-noise realizations are family-owned and are not a public extension surface.
@@ -8,11 +8,11 @@
   status: retired
 - id: d7c2eb84ee360300
   en: Define a custom noise type
-  ko: 사용자 정의 잡음 타입 정의하기
+  ko: 사용자 정의 노이즈 타입 정의하기
   status: machine
 - id: a4e6471416ed6d4a
   en: A custom noise type subclasses [`Channel`][fatqat.noise.Channel] and stores its physical parameters. Set `Channel.num_subsystems` to the fixed number of targets, leave it as `None` to use the matched operation's width, or expose a property when the instance determines the width. Treat instances as immutable after adding them to a [`NoiseModel`][fatqat.NoiseModel].
-  ko: 사용자 정의 잡음 타입은 [`Channel`][fatqat.noise.Channel]의 하위 클래스로 만들고 물리 매개변수를 저장합니다. `Channel.num_subsystems`에 고정 대상 수를 지정하거나, 매칭된 연산의 너비를 사용하도록 `None`으로 두세요. 인스턴스가 너비를 결정한다면 속성으로 제공할 수도 있습니다. [`NoiseModel`][fatqat.NoiseModel]에 추가한 뒤에는 인스턴스를 불변으로 취급하세요.
+  ko: 사용자 정의 노이즈 타입은 [`Channel`][fatqat.noise.Channel]의 하위 클래스로 만들고 물리 매개변수를 저장합니다. `Channel.num_subsystems`에 고정 대상 수를 지정하거나, 매칭된 연산의 너비를 사용하도록 `None`으로 두세요. 인스턴스가 너비를 결정한다면 속성으로 제공할 수도 있습니다. [`NoiseModel`][fatqat.NoiseModel]에 추가한 뒤에는 인스턴스를 불변으로 취급하세요.
   status: machine
 - id: 84a48b6d4f821e66
   en: Register each concrete channel class; a base-class registration does not cover subclasses.
@@ -52,7 +52,7 @@
   status: machine
 - id: e432d162ee5b8226
   en: 'This custom qubit channel and rule add bit-flip noise while retaining all built-in gate and channel implementations:'
-  ko: 다음 사용자 정의 큐비트 채널과 규칙은 모든 내장 게이트·채널 구현을 유지하면서 비트 플립 잡음을 추가합니다.
+  ko: 다음 사용자 정의 큐비트 채널과 규칙은 모든 내장 게이트·채널 구현을 유지하면서 비트 플립 노이즈를 추가합니다.
   status: machine
 - id: 77839e213e980a1c
   en: Simulator types
@@ -60,7 +60,7 @@
   status: machine
 - id: e2f2d3f876b7c22e
   en: Use a custom [`Channel`][fatqat.noise.Channel] when you need a finite noise channel beyond the built-in types, or register a different rule for an existing type. These extensions are for matrix simulators.
-  ko: 내장 유형에 없는 유한 잡음 채널이 필요하면 [`Channel`][fatqat.noise.Channel]을 정의하거나 기존 유형에 다른 규칙을 등록하세요. 이 확장은 행렬 시뮬레이터에서 사용할 수 있습니다.
+  ko: 내장 유형에 없는 유한 노이즈 채널이 필요하면 [`Channel`][fatqat.noise.Channel]을 정의하거나 기존 유형에 다른 규칙을 등록하세요. 이 확장은 행렬 시뮬레이터에서 사용할 수 있습니다.
   status: machine
 - id: 2531d5c6ca228ee7
   en: For ordered target dimensions `d_0, d_1, ...`, return at least one NumPy array of shape `(D, D)`, where `D = d_0 * d_1 * ...`. Use the target order for the tensor factors. Supply a valid Kraus representation satisfying $\sum_i K_i^\dagger K_i = I$ for a trace-preserving channel.

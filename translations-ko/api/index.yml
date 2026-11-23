@@ -124,7 +124,7 @@
   status: machine
 - id: 162ab2d9db917f29
   en: '[Noise](noise.md) – Choose a noise model and check backend support.'
-  ko: '[잡음](noise.md) – 잡음 모델을 선택하고 백엔드별 지원 범위를 확인합니다.'
+  ko: '[노이즈](noise.md) – 노이즈 모델을 선택하고 백엔드별 지원 범위를 확인합니다.'
   status: machine
 - id: 750cd04bdefccb93
   en: '[Estimator](estimator.md) – Compute expectation values of observables.'

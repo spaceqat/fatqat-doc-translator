@@ -132,5 +132,5 @@
   status: machine
 - id: fd88e61ef11029fd
   en: 'Natural extensions: more rounds or qubits, a noise model passed to the simulator, or sampled (`shots > 0`) expectations to study shot noise on the training curve.'
-  ko: 라운드나 큐비트 수를 늘리거나, 시뮬레이터에 잡음 모델을 전달해 보세요. 표본 기반 기댓값(`shots > 0`)을 사용하면 샷 잡음이 학습 곡선에 미치는 영향도 분석할 수 있습니다.
+  ko: 라운드나 큐비트 수를 늘리거나, 시뮬레이터에 노이즈 모델을 전달해 보세요. 표본 기반 기댓값(`shots > 0`)을 사용하면 샷 노이즈가 학습 곡선에 미치는 영향도 분석할 수 있습니다.
   status: machine
