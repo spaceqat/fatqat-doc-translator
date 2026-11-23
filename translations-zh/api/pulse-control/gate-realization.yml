@@ -1,6 +1,6 @@
 - id: f9ae020319d767a3
   en: Gate realization
-  zh: 门实现
+  zh: 量子门的脉冲实现
   status: machine
 - id: da9acabe4b0038b5
   en: '[`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] maps ordinary gates to pulse definitions. A direct [PulseOperation](pulse-operation.md) already contains its controls and does not use this map.'
@@ -24,7 +24,7 @@
   status: machine
 - id: d7e74cff60a094dc
   en: '`PhaseShift` changes one model frame after the pulse. `PhaseSwap` exchanges two frames. Direct pulse operations do not have post-actions.'
-  zh: "`PhaseShift` 在脉冲结束后改变一个模型参考系，`PhaseSwap` 则交换两个参考系。直接脉冲操作不包含这类后续动作。"
+  zh: '`PhaseShift` 在脉冲结束后改变一个模型参考系，`PhaseSwap` 则交换两个参考系。直接脉冲操作不包含这类后续动作。'
   status: machine
 - id: 5f94377411a3958a
   en: The emulator calls and validates a selected rule when the gate is used. Raise [`BackendValidationError`][fatqat.errors.BackendValidationError] to report unsupported operands or parameters. Other exceptions and return values that are not `PulseDefinition` are reported as `PulseImplementationError`.
@@ -40,9 +40,45 @@
   status: machine
 - id: 822ba8cbdf4f8d59
   en: The pulse control module is under active development. Its interfaces and supported behavior may change between releases. Pin an exact FatQat version when reproducibility matters.
-  zh: "脉冲控制模块仍在持续开发，其接口和支持的行为可能随版本变化。如果需要可复现性，请固定 FatQat 的具体版本。"
+  zh: 脉冲控制模块仍在持续开发，其接口和支持的行为可能随版本变化。如果需要可复现性，请固定 FatQat 的具体版本。
   status: machine
 - id: d513be446bd35769
   en: Both modes accept `num_subsystems=None`; device-specific tuples may then have different lengths. Otherwise, each tuple must match the declared target count.
   zh: 两种模式都接受 `num_subsystems=None`，此时按设备指定的目标元组可以有不同的长度；否则，每个元组的长度都必须与声明的目标数量一致。
+  status: machine
+- id: 73de97887a4a7a1c
+  en: Use a general rule if the same callable can handle every device-operand tuple. Use device-specific rules to register a pulse definition for an ordered tuple of physical labels, such as `("q0", "q1")`. See [`PulseImplementationMap.add()`][fatqat.emulator.PulseImplementationMap.add] for the accepted rule forms and tuple lengths.
+  zh: 同一个可调用对象能处理所有设备目标组合时，可以注册通用规则。要为特定位置提供脉冲定义，则按有序的物理标签注册规则，例如 `("q0", "q1")`。可用的规则形式和标签数量见 [`PulseImplementationMap.add()`][fatqat.emulator.PulseImplementationMap.add]。
+  status: machine
+- id: 7a92264a1edfcd27
+  en: The emulator calls and validates the selected rule when the gate is used. See [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] for errors that can occur when a rule runs.
+  zh: 执行量子门时，仿真器会调用选中的规则并验证结果。规则执行时可能出现的错误见 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap]。
+  status: machine
+- id: 4f6580d6f7c419b5
+  en: Custom gate pulses
+  zh: 自定义门脉冲
+  status: machine
+- id: e8cd0475bb740148
+  en: Use a [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] when you want to supply your own waveform for a gate or choose a different pulse for a particular physical target. The program still specifies gates and logical targets. When the emulator prepares the program, it uses the gate and its mapped physical targets to select a pulse definition. To drive a channel directly from the program, use a [PulseOperation](pulse-operation.md).
+  zh: 如果想为某个量子门指定自己的波形，或者让同一个门在特定物理位置使用不同的脉冲，可以用 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap]。程序里仍然写量子门和逻辑目标。仿真器准备执行时，根据这个门和目标映射到的物理位置选择对应的脉冲定义。要在程序中直接驱动某个通道，可以用 [PulseOperation](pulse-operation.md)。
+  status: machine
+- id: e92376cd3875ce9c
+  en: Define the pulse
+  zh: 定义脉冲
+  status: machine
+- id: 8e031c56bd472103
+  en: Specify the duration and physical controls in a [`PulseDefinition`][fatqat.emulator.PulseDefinition]. A definition can also apply frame actions after the pulse interval. `PhaseShift` shifts one frame and `PhaseSwap` exchanges two frames. Conditions and noise remain on the original gate operation in the program.
+  zh: 用 [`PulseDefinition`][fatqat.emulator.PulseDefinition] 指定脉冲的时长和施加到物理通道上的控制。也可以在脉冲结束后调整参考系，`PhaseShift` 改变一个参考系的相位，`PhaseSwap` 交换两个参考系。条件和噪声仍附在程序里的原量子门上。
+  status: machine
+- id: ec43595dbd5bfe20
+  en: Register the implementation
+  zh: 注册门的实现
+  status: machine
+- id: 96c9cabb545afc81
+  en: Use a general rule if the same callable can handle every device-operand tuple. To supply a pulse for an ordered set of physical labels, such as `("q0", "q1")`, register it as a device-specific rule. Pass the map to the emulator as `gate_implementation_map=`. The [`PulseImplementationMap` example][fatqat.emulator.PulseImplementationMap] below registers a fixed definition and runs the gate with that map. See [`PulseImplementationMap.add()`][fatqat.emulator.PulseImplementationMap.add] for the accepted rule forms and tuple lengths.
+  zh: 如果同一个可调用对象能处理所有设备目标组合，可以注册一条通用规则。要为一组有序的物理标签指定脉冲，例如 `("q0", "q1")`，则注册一条针对这些位置的规则。创建仿真器时，通过 `gate_implementation_map=` 传入映射。下方的 [`PulseImplementationMap` 示例][fatqat.emulator.PulseImplementationMap] 注册了一个固定脉冲定义，并用这个映射运行量子门。可用的规则形式和标签数量见 [`PulseImplementationMap.add()`][fatqat.emulator.PulseImplementationMap.add]。
+  status: machine
+- id: 7ceb796bd31c51f7
+  en: The [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) API pages describe the default maps and constructor options for each emulator.
+  zh: 各仿真器的默认映射和初始化选项见 [Transmon](../pulse-emulator.md) 和[中性原子](../atom-emulators.md)的 API 页面。
   status: machine

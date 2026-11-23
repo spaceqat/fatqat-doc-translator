@@ -210,3 +210,71 @@
   en: A run request was rejected before execution. This is a [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError].
   zh: 运行请求在执行前被拒绝。这是一个 [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError]。
   status: machine
+- id: 6546c0fefd45dbf8
+  en: Install Qiskit to use `fatqat.qiskit`. Use [`circuit_to_program()`][fatqat.qiskit.circuit_to_program] to run a converted circuit with FatQat's own result API. Use [`FatqatBackend`][fatqat.qiskit.FatqatBackend] to keep Qiskit's transpiler, job, and result APIs while running on the FatQat gate-level simulator.
+  zh: 使用 `fatqat.qiskit` 需要安装 Qiskit。用 [`circuit_to_program()`][fatqat.qiskit.circuit_to_program] 转换线路后，可以用 FatQat 运行并读取结果。如果想继续用 Qiskit 转译线路、提交作业和读结果，可以用 [`FatqatBackend`][fatqat.qiskit.FatqatBackend]，由 FatQat 的门级模拟器执行。
+  status: machine
+- id: 4125b5375a1fbc2d
+  en: Bind circuit parameters before conversion and transpile gates outside the basis of [`build_simulator_target()`][fatqat.qiskit.build_simulator_target]. Named registers are preserved. The circuit's global phase is recorded in `program.metadata["qiskit_global_phase"]`. FatQat executes the converted operations without that overall phase.
+  zh: 转换前先绑定线路里的参数。门超出 [`build_simulator_target()`][fatqat.qiskit.build_simulator_target] 支持的范围时，先转译线路。转换会保留有名称的寄存器，并把全局相位记录在 `program.metadata["qiskit_global_phase"]` 中。FatQat 执行转换后的操作时不施加这个整体相位。
+  status: machine
+- id: 1391c53efe0052b2
+  en: Transpile to the backend's `target`. Pass a FatQat [`NoiseModel`][fatqat.NoiseModel] as `noise_model` for noisy runs. [`run()`][fatqat.qiskit.FatqatBackend.run] accepts one circuit or a batch, and documents the shot, memory, and seed settings.
+  zh: 先按后端的 `target` 转译线路。需要模拟噪声时，通过 `noise_model` 传入 FatQat 的 [`NoiseModel`][fatqat.NoiseModel]。[`run()`][fatqat.qiskit.FatqatBackend.run] 可以接收一条线路或一批线路，采样次数、逐次测量结果和随机种子的设置也在该方法下说明。
+  status: machine
+- id: 8dd1fd53c51668ed
+  en: Invalid inputs or options raise [`QiskitBackendError`][fatqat.qiskit.QiskitBackendError] before a job is returned. A later conversion or execution failure is raised by [`FatqatJob.result()`][fatqat.qiskit.FatqatJob.result] as Qiskit's `QiskitError`, with the original error attached.
+  zh: 输入或选项不合法时，会在返回作业前抛出 [`QiskitBackendError`][fatqat.qiskit.QiskitBackendError]。如果后续转换或执行失败，调用 [`FatqatJob.result()`][fatqat.qiskit.FatqatJob.result] 时会抛出 Qiskit 的 `QiskitError`，并保留原始异常作为原因。
+  status: machine
+- id: 91f1b11787bc7b24
+  en: <a id="jobs-and-provider-helper"></a>
+  zh: <a id="jobs-and-provider-helper"></a>
+  status: machine
+- id: cfe3b4fb51cdf3dd
+  en: '[`FatqatProvider`][fatqat.qiskit.FatqatProvider] creates configured backends for code that uses a provider interface.'
+  zh: 如果现有代码通过 provider 获取后端，可以用 [`FatqatProvider`][fatqat.qiskit.FatqatProvider] 创建带默认设置的后端。
+  status: machine
+- id: cf8fa432f836195f
+  en: Compare bit and basis order
+  zh: 对照比特和基底顺序
+  status: machine
+- id: d891c99744cea625
+  en: For a single two-bit classical register with bit 0 set, FatQat displays `"10"` and Qiskit displays `"01"`. For several registers, use Qiskit's register grouping when reading its count strings. FatQat's [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] keeps the classical member order in a tuple.
+  zh: 如果只有一个两比特经典寄存器，且仅比特 0 为 1，FatQat 显示 `"10"`，Qiskit 显示 `"01"`。有多个寄存器时，按 Qiskit 的寄存器分组读它的计数字符串。FatQat 的 [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] 用元组保留经典寄存器成员的顺序。
+  status: machine
+- id: dd55c72d17ef67de
+  en: For two qubits, Z on qubit 0 is `"ZI"` in FatQat and `"IZ"` in Qiskit. Statevectors also use opposite tensor-factor order for the same qubits. To compare arrays, reverse the qubit axes of the reshaped statevector. For a matrix, reverse the qubit axes separately on the row and column sides.
+  zh: 以两个量子比特为例，第 0 个量子比特上的 Z 在 FatQat 中写作 `"ZI"`，在 Qiskit 中写作 `"IZ"`。两边的态矢量也采用相反的张量因子顺序。对照数组时，先将态矢量按量子比特拆成多个轴，再反转这些轴。比较矩阵时，分别反转行、列各自对应的量子比特轴。
+  status: machine
+- id: ca784ad6555f888b
+  en: A Qiskit circuit can run in FatQat through either API. Use [`circuit_to_program()`][fatqat.qiskit.circuit_to_program] when you want a FatQat program and want to read results in FatQat. Use [`FatqatBackend`][fatqat.qiskit.FatqatBackend] to keep working with Qiskit's transpiler, jobs, and results while FatQat runs the circuit. Both routes use `fatqat.qiskit` and require Qiskit to be installed.
+  zh: 手头有 Qiskit 线路时，可以按你想在哪里读结果来选接口。想用 FatQat 的运行和结果接口，就用 [`circuit_to_program()`][fatqat.qiskit.circuit_to_program] 把线路转成 FatQat 程序。想继续用 Qiskit 转译线路、提交作业和读取结果，就把 [`FatqatBackend`][fatqat.qiskit.FatqatBackend] 作为后端。两种方式都使用 `fatqat.qiskit`，需要先安装 Qiskit。
+  status: machine
+- id: 7ee59c7444628c3c
+  en: Convert a circuit
+  zh: 转换线路
+  status: machine
+- id: 7cee27aef6223a3c
+  en: Bind the parameters before converting the circuit. If the circuit contains gates outside the basis returned by [`build_simulator_target()`][fatqat.qiskit.build_simulator_target], transpile it to that basis first. The converter keeps named registers and stores the circuit's global phase in `program.metadata["qiskit_global_phase"]`. The returned state omits that overall phase.
+  zh: 转换线路前先绑定参数。如果线路含有 [`build_simulator_target()`][fatqat.qiskit.build_simulator_target] 门集之外的门，先转译到该门集。转换会保留命名寄存器，并把线路的全局相位记在 `program.metadata["qiskit_global_phase"]` 中。运行得到的量子态不带这个全局相位。
+  status: machine
+- id: 35d619850b6e947e
+  en: Run through Qiskit
+  zh: 通过 Qiskit 运行
+  status: machine
+- id: cd2552843c090ca1
+  en: Transpile the circuit for the backend's `target`. To include noise, pass a FatQat [`NoiseModel`][fatqat.NoiseModel] as `noise_model` when you create the backend. Then submit one or more circuits with [`run()`][fatqat.qiskit.FatqatBackend.run]. Its reference lists the settings for shot count, measurement memory, and the random seed.
+  zh: 先按后端的 `target` 转译线路。需要模拟噪声时，在创建后端时用 `noise_model` 传入 FatQat 的 [`NoiseModel`][fatqat.NoiseModel]。然后通过 [`run()`][fatqat.qiskit.FatqatBackend.run] 提交一条或多条线路。采样次数、逐次测量结果和随机种子的选项都列在该方法的说明里。
+  status: machine
+- id: aff9071a2db74cd7
+  en: If `run_input` is empty or contains non-circuit values, or if a run option is invalid, the backend raises [`QiskitBackendError`][fatqat.qiskit.QiskitBackendError] before returning a job. If conversion or execution fails after that, [`FatqatJob.result()`][fatqat.qiskit.FatqatJob.result] raises a Qiskit `QiskitError` and retains the original exception as its cause.
+  zh: 如果 `run_input` 是空批次、含有非线路对象，或运行选项不合法，后端会直接抛出 [`QiskitBackendError`][fatqat.qiskit.QiskitBackendError]。如果请求通过校验，但转换或执行失败，调用 [`FatqatJob.result()`][fatqat.qiskit.FatqatJob.result] 时才会抛出 Qiskit 的 `QiskitError`。原始异常会保留在异常链里。
+  status: machine
+- id: b2044730049f1c4c
+  en: In a single two-bit classical register, a 1 in bit 0 appears as `"10"` in FatQat and `"01"` in Qiskit. With multiple registers, read the groups in the Qiskit count string separately. FatQat's [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] gives each outcome as a tuple in classical register order.
+  zh: 以一个两比特经典寄存器为例。如果只有比特 0 为 1，FatQat 显示 `"10"`，Qiskit 显示 `"01"`。如果有多个经典寄存器，Qiskit 的计数字符串要按寄存器分组来读。FatQat 的 [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] 则用元组表示每个测量结果，元组里的各个值按经典寄存器成员顺序排列。
+  status: machine
+- id: d3da4d4677078c73
+  en: For the same two qubits, Z on qubit 0 is `"ZI"` in FatQat and `"IZ"` in Qiskit. To compare statevectors, reshape each into one axis per qubit, then reverse the axis order in one of the arrays. For a matrix, do this separately for the qubit axes on the row side and the column side.
+  zh: 两个量子比特中，如果 Z 只作用于第 0 个，FatQat 写成 `"ZI"`，Qiskit 写成 `"IZ"`。对照态矢量时，先把两边的数组拆成每个量子比特一个轴，再把其中一边的轴顺序倒过来。对照矩阵时，对行和列分别这么做。
+  status: machine

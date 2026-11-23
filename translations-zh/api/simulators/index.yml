@@ -92,5 +92,57 @@
   status: retired
 - id: abea5b4fb1e7da50
   en: Start with [Choose a simulation or emulation approach](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/superconducting-simulation.md) for the profile workflow.
-  zh: "可以先阅读[选择模拟与仿真方式](../../guide/execution-models.md)，确定所需的执行方式；也可以通过[用硬件约束模拟检验 Program](../../guide/superconducting-simulation.md)了解设备模型的使用流程。"
+  zh: 可以先阅读[选择模拟与仿真方式](../../guide/execution-models.md)，确定所需的执行方式；也可以通过[用硬件约束模拟检验 Program](../../guide/superconducting-simulation.md)了解设备模型的使用流程。
+  status: machine
+- id: 5f3a5dd290f7a73f
+  en: Choose a simulator according to what your program needs to represent. A general circuit can run directly, while a device-specific simulator adds rules such as which qubit sites can interact. Optical programs describe photons in modes. All four simulators use the same basic run and result interface.
+  zh: 先看程序需要描述什么。通用模拟器可以直接运行门级线路，专用模拟器可以进一步处理设备规则，例如哪些量子比特位置能相互作用。光学程序则用模式描述光子。四种模拟器使用相同的基本运行和结果接口。
+  status: machine
+- id: 567c137aa090ceba
+  en: '| Simulator | Use it to |'
+  zh: '| 模拟器 | 主要用途 |'
+  status: machine
+- id: d7f6400f3bd979c5
+  en: '| [`Simulator`](../simulator.md) | Run gate-level programs with qubits, qudits, or mixed dimensions. |'
+  zh: '| [`Simulator`](../simulator.md) | 运行由量子比特、多能级量子系统或不同维度的子系统组成的门级程序。 |'
+  status: machine
+- id: 988bb5d8fdf97283
+  en: '| [`SCQubitSimulator`](sc-qubit.md) | Check superconducting native gates and qubit connectivity. |'
+  zh: '| [`SCQubitSimulator`](sc-qubit.md) | 检查超导比特线路的原生门和连通性。 |'
+  status: machine
+- id: 9c9d2b3059e923bb
+  en: '| [`AtomArraySimulator`](atom-array.md) | Model which sites contain neutral atoms and which pairs can interact during a run. |'
+  zh: '| [`AtomArraySimulator`](atom-array.md) | 模拟运行过程中哪些位置有中性原子，以及哪些原子可以成对相互作用。 |'
+  status: machine
+- id: 39bf8379592bd1aa
+  en: '| [`LOSimulator`](linear-optics.md) | Simulate how optical operations redistribute photons across modes. |'
+  zh: '| [`LOSimulator`](linear-optics.md) | 模拟光学操作如何改变光子在各模式中的分布。 |'
+  status: machine
+- id: b1a7ff4668d0f18b
+  en: To add an operation that needs access to the state of an individual shot, see [Custom operations](custom-operations.md). For pulse timing and Hamiltonian evolution, see [Emulators](../emulators/index.md).
+  zh: 如果要添加能读取或修改单次运行状态的操作，可查阅[自定义操作](custom-operations.md)。要研究脉冲时序和哈密顿量演化，可查阅[仿真器](../emulators/index.md)。
+  status: machine
+- id: 2d6af6a012a91ee8
+  en: FatQat's simulators run general quantum circuits and can account for the rules of a device. On a superconducting layout, for example, a `CZ` can act only on two connected sites. FatQat also simulates linear-optical circuits, following how photons are distributed across modes after passing through optical components.
+  zh: 在 FatQat 里，你可以直接模拟一条量子线路，也可以把设备的规则考虑进去。比如，在超导比特模拟器中，`CZ` 只能作用在两个相连的位置上。FatQat 也可以模拟线性光学线路，看看光子经过光学元件后会怎样分布在各个模式中。
+  status: machine
+- id: f65004252e0cf4de
+  en: All four simulators execute programs with `run()` and use the same interface to read results. The table shows what each simulator is suited to.
+  zh: 这四种模拟器都用 `run()` 运行程序，也用同一套接口读取结果。它们各自适合做什么，可以从下面的表里找到。
+  status: machine
+- id: f04bf2c64422415f
+  en: '| [`Simulator`](../simulator.md) | Run gate-level programs with qubits, qudits, or a mix of subsystem dimensions. |'
+  zh: '| [`Simulator`](../simulator.md) | 运行使用量子比特或多能级量子系统的门级程序，支持混合维度。 |'
+  status: machine
+- id: 8e00c39f02151d8d
+  en: '| [`AtomArraySimulator`](atom-array.md) | Model neutral-atom loading, pairing, and loss during a run. |'
+  zh: '| [`AtomArraySimulator`](atom-array.md) | 模拟运行过程中中性原子的装载、配对和丢失。 |'
+  status: machine
+- id: f2e268d2394eb5a5
+  en: '| [`LOSimulator`](linear-optics.md) | Compute photon counts and quantum states for optical modes. |'
+  zh: '| [`LOSimulator`](linear-optics.md) | 计算光学模式的光子计数和量子态。 |'
+  status: machine
+- id: 5bdc3913c85f2741
+  en: A program can also include [custom operations](custom-operations.md) that read or update the state of an individual shot. If the question is how pulses drive a system over time, the [emulators](../emulators/index.md) describe that evolution with a Hamiltonian.
+  zh: 程序里也可以加入[自定义操作](custom-operations.md)，例如读取或更新单次运行的状态。如果你想研究脉冲怎样驱动系统随时间演化，可以用[仿真器](../emulators/index.md)计算哈密顿量演化。
   status: machine

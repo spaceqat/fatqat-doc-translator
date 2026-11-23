@@ -20,5 +20,33 @@
   status: machine
 - id: 32243bde8f0ac0af
   en: Import or export supported OpenQASM, convert compatible Qiskit circuits, or use FatQat through Qiskit's backend interface. See [Connect FatQat with OpenQASM and Qiskit](../../guide/interoperability.md) for the guided workflows.
-  zh: "FatQat 支持导入和导出 OpenQASM、转换兼容的 Qiskit 线路，以及通过 Qiskit 的后端接口运行 FatQat。示例见[对接 OpenQASM 和 Qiskit](../../guide/interoperability.md)。"
+  zh: FatQat 支持导入和导出 OpenQASM、转换兼容的 Qiskit 线路，以及通过 Qiskit 的后端接口运行 FatQat。示例见[对接 OpenQASM 和 Qiskit](../../guide/interoperability.md)。
+  status: machine
+- id: ebc3867854e2c6e2
+  en: FatQat can read and write OpenQASM 2 and 3 and accept Qiskit circuits. Choose an interface based on the input you have and the result API you want to use.
+  zh: FatQat 可以读写 OpenQASM 2 和 3，也可以接收 Qiskit 线路。根据手头的输入，以及你想用哪套接口读结果，选择合适的方式。
+  status: machine
+- id: 2c0407caafc3b3a2
+  en: '[OpenQASM](openqasm.md) describes importing source text or files and exporting a FatQat program.'
+  zh: '[OpenQASM](openqasm.md) 介绍如何导入源代码或文件，以及如何导出 FatQat 程序。'
+  status: machine
+- id: e45aacb870d7cf97
+  en: '[Qiskit](qiskit.md) describes converting a circuit to a program or running it through Qiskit''s backend interface.'
+  zh: '[Qiskit](qiskit.md) 介绍如何把线路转成程序，也说明怎样通过 Qiskit 的后端接口运行线路。'
+  status: machine
+- id: bb8a5ac1c033e91e
+  en: The [connection guide](../../guide/interoperability.md) runs the same measured circuit through these routes.
+  zh: '[对接指南](../../guide/interoperability.md)用同一条带测量的线路演示这几种方式。'
+  status: machine
+- id: 9d34f333e9d63b1d
+  en: OpenQASM and Qiskit give you two ways to bring an existing circuit into FatQat. The interface to use depends on how the circuit is written and where you want to read the results.
+  zh: 已有的线路可以通过 OpenQASM 或 Qiskit 接入 FatQat。先看线路用什么格式写成，再决定用哪套接口读取结果。
+  status: machine
+- id: a7caaeb0ac4db0ef
+  en: '[OpenQASM](openqasm.md) covers import from source text or a file and export to OpenQASM 2 or 3.'
+  zh: '[OpenQASM](openqasm.md) 可从源代码或文件导入，也可将 FatQat 程序导出为 OpenQASM 2 或 3。'
+  status: machine
+- id: d57382ba017009b2
+  en: '[Qiskit](qiskit.md) covers conversion to a FatQat program and running a circuit through the Qiskit backend API.'
+  zh: '[Qiskit](qiskit.md) 可将线路转成 FatQat 程序，也可沿用 Qiskit 的后端接口运行线路。'
   status: machine

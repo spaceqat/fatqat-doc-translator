@@ -62,3 +62,35 @@
   en: Rate mode requires a registered Lindblad implementation. See [Pulse emulators](backend-support.md#noise-emulator-support) for built-in and custom-map availability.
   ko: 비율 형식에는 등록된 Lindblad 구현이 필요합니다. 내장 및 사용자 정의 맵 지원 범위는 [펄스 에뮬레이터](backend-support.md#noise-emulator-support)를 참고하세요.
   status: machine
+- id: 9371e8823fa644b0
+  en: See [Simulators](backend-support.md#noise-simulator-support) for method and backend support.
+  ko: 시뮬레이션 방식과 백엔드별 지원 범위는 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.
+  status: machine
+- id: 00e5821cdb5f2553
+  en: See [Pulse emulators](backend-support.md#noise-emulator-support) for the supported scopes and local dimensions.
+  ko: 지원하는 적용 범위와 국소 차원은 [펄스 에뮬레이터](backend-support.md#noise-emulator-support)를 참고하세요.
+  status: machine
+- id: 4ef04709559fd638
+  en: '[`Depolarizing`][fatqat.noise.Depolarizing] mixes the quantum state with the maximally mixed state.'
+  ko: '[`Depolarizing`][fatqat.noise.Depolarizing]은 양자 상태에 최대 혼합 상태를 섞습니다.'
+  status: machine
+- id: 75ae42ff617bb350
+  en: <a id="choose-a-form"></a>
+  ko: <a id="choose-a-form"></a>
+  status: machine
+- id: 7278e24cdf0df15f
+  en: Supply exactly one parameter. Use `p` for a single channel application in a simulator, or `rate` for continuous noise in a pulse emulator.
+  ko: 매개변수는 하나만 지정합니다. 시뮬레이터에서 채널을 한 번 적용하려면 `p`를, 펄스 에뮬레이터에서 연속 잡음을 모형화하려면 `rate`를 사용하세요.
+  status: machine
+- id: fde1b53c73105902
+  en: '`p` is the weight of complete depolarization and lies in `[0, 1]`. For selected operands with combined dimension $d$, the channel is'
+  ko: '`p`는 완전 탈분극의 가중치이며 범위는 `[0, 1]`입니다. 선택한 피연산자의 전체 차원이 $d$일 때 채널은 다음과 같습니다.'
+  status: machine
+- id: 41b1a8e20bd08678
+  en: '`rate` is finite and nonnegative, in the inverse of the model''s time unit. It acts on one subsystem. For local dimension $d$, the Lindblad generator is'
+  ko: '`rate`는 유한한 음이 아닌 값이며 모델 시간 단위의 역수로 표시합니다. 잡음은 하위 시스템 하나에 작용합니다. 국소 차원이 $d$일 때 Lindblad 생성자는 다음과 같습니다.'
+  status: machine
+- id: 438db5770d372cfc
+  en: For depolarizing noise acting on its own for a duration $t$, the corresponding probability parameter is
+  ko: 탈분극 잡음만 시간 $t$ 동안 작용할 때 이에 해당하는 확률 매개변수는 다음과 같습니다.
+  status: machine

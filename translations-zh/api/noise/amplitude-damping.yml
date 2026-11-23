@@ -92,7 +92,7 @@
   status: machine
 - id: 313ddab25b6bfca3
   en: The channel acts on one selected qubit; use `target_positions` to choose an operand of a multi-operand gate. See [Simulators](backend-support.md#noise-simulator-support) for built-in availability.
-  zh: 信道作用于一个选定的量子比特；对于多操作数门，可用 `target_positions` 选择其中一个操作数。内置支持情况见[模拟器](backend-support.md#noise-simulator-support)。
+  zh: 这个信道只作用于一个量子比特。若量子门涉及多个量子比特，可以用 `target_positions` 选出其中一个。各后端的支持情况见[模拟器](backend-support.md#noise-simulator-support)。
   status: machine
 - id: 720a2f3b88368712
   en: For rate $r$, a compatible pulse backend uses the local Lindblad operator
@@ -101,4 +101,24 @@
 - id: 7683a67311c9e3a4
   en: This is the exact isolated qubit amplitude-damping relation. Applying the resulting channel after a driven operation is not generally equivalent to simultaneous Hamiltonian and Lindblad evolution.
   zh: 这是孤立量子比特振幅阻尼的精确关系。在驱动操作之后施加所得信道，通常不等同于同时进行哈密顿量与 Lindblad 演化。
+  status: machine
+- id: 18c5887764f37016
+  en: Choose `p` or `rate` for decay on one qubit. To specify your own transitions or work with more than two levels, use [`TransitionRelaxation`](transition-relaxation.md).
+  zh: 在单个量子比特上模拟衰减时，指定 `p` 或 `rate`。要自行指定跃迁，或处理两个以上的能级，请用 [`TransitionRelaxation`](transition-relaxation.md)。
+  status: machine
+- id: 3466154a2a2059dc
+  en: Use the inverse of the model's time unit for `rate`. The built-in [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] accepts this form as background noise.
+  zh: '`rate` 的单位是模型时间单位的倒数。内置的 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 接受这种形式的背景噪声。'
+  status: machine
+- id: 33b921b0e65c3c89
+  en: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] models the decay of one qubit from $|1\rangle$ to $|0\rangle$.'
+  zh: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] 描述单个量子比特从 $|1\rangle$ 衰减到 $|0\rangle$ 的过程。'
+  status: machine
+- id: 6cd175cdb085578d
+  en: <a id="choose-probabilities-or-rates"></a>
+  zh: <a id="choose-probabilities-or-rates"></a>
+  status: machine
+- id: ef96ac0d30f8acdc
+  en: To specify your own transitions or work with more than two levels, use [`TransitionRelaxation`](transition-relaxation.md).
+  zh: 要自行指定跃迁，或描述两个以上的能级，请用 [`TransitionRelaxation`](transition-relaxation.md)。
   status: machine

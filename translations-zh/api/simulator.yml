@@ -4,11 +4,11 @@
   status: machine
 - id: cd6db36d8ee186bf
   en: '[`Simulator`][fatqat.simulator.Simulator] runs gate-level programs with matrix operations and finite noise channels. It supports qubits, qudits, mixed register dimensions, and custom implementation maps. It runs the program as written; it does not transpile or route it.'
-  zh: "[`Simulator`][fatqat.simulator.Simulator] 通过矩阵运算和有限噪声信道运行门级程序，支持量子比特、qudit、混合维数寄存器和自定义实现映射。它按程序中已有的指令执行，不会自动转译或路由。"
+  zh: '[`Simulator`][fatqat.simulator.Simulator] 通过矩阵运算和有限噪声信道运行门级程序，支持量子比特、qudit、混合维数寄存器和自定义实现映射。它按程序中已有的指令执行，不会自动转译或路由。'
   status: retired
 - id: 640495aae22d27e3
   en: The default implementation map covers FATQAT's built-in matrix gates. State methods also support measurement, reset, and classical conditions. `Barrier` has no numerical effect.
-  zh: "默认实现映射包含 FATQAT 内置的矩阵门。量子态演化方法还支持测量、重置和经典条件。`Barrier` 不参与数值计算。"
+  zh: 默认实现映射包含 FATQAT 内置的矩阵门。量子态演化方法还支持测量、重置和经典条件。`Barrier` 不参与数值计算。
   status: machine
 - id: 8696622f344183c4
   en: Methods
@@ -36,7 +36,7 @@
   status: machine
 - id: c40efbe94fb5d350
   en: '`runtime` is chosen when the backend is created. `"numba"` is the default for [`Simulator`][fatqat.simulator.Simulator] and the superconducting profiles; it compiles kernels on first use and supports threaded kernels. `"numpy"` runs directly without compilation and is the default for [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]. Both runtimes support all four methods, but need not produce bit-identical floating-point or sampled results.'
-  zh: "`runtime` 在创建后端时选定。`\"numba\"` 是 [`Simulator`][fatqat.simulator.Simulator] 和各超导设备模型的默认值；它在首次使用时编译内核，并支持多线程内核。`\"numpy\"` 无需编译直接运行，是 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 的默认值。两种运行时都支持全部四种方法，但不保证产生逐位一致的浮点或采样结果。"
+  zh: '`runtime` 在创建后端时选定。`"numba"` 是 [`Simulator`][fatqat.simulator.Simulator] 和各超导设备模型的默认值；它在首次使用时编译内核，并支持多线程内核。`"numpy"` 无需编译直接运行，是 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 的默认值。两种运行时都支持全部四种方法，但不保证产生逐位一致的浮点或采样结果。'
   status: retired
 - id: 08eacd9ef7ec9459
   en: '`simulation_config` changes one call to [`Simulator.run`][fatqat.simulator.Simulator.run]. Its string values are case-sensitive.'
@@ -200,7 +200,7 @@
   status: machine
 - id: e21a4ad23236a543
   en: '`runtime` is chosen when the backend is created. `"numba"` is the default for [`Simulator`][fatqat.simulator.Simulator] and all three hardware profiles, including [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]. It compiles kernels on first use and supports threaded kernels. `"numpy"` runs directly without compilation. Both runtimes support the methods offered by each backend, but need not produce bit-identical floating-point or sampled results.'
-  zh: "`runtime` 在创建后端时选定。`\"numba\"` 是 [`Simulator`][fatqat.simulator.Simulator] 以及包括 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 在内的全部三种设备模型的默认值。它在首次使用时编译内核，并支持多线程内核。`\"numpy\"` 无需编译直接运行。两种运行时都支持各后端提供的方法，但不保证产生逐位一致的浮点或采样结果。"
+  zh: '`runtime` 在创建后端时选定。`"numba"` 是 [`Simulator`][fatqat.simulator.Simulator] 以及包括 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 在内的全部三种设备模型的默认值。它在首次使用时编译内核，并支持多线程内核。`"numpy"` 无需编译直接运行。两种运行时都支持各后端提供的方法，但不保证产生逐位一致的浮点或采样结果。'
   status: retired
 - id: 49b080718d774ff4
   en: All returned quantum arrays list subsystem 0 as the most-significant factor. For two qubits, `X(q0)|00>` is nonzero at flat index 2, while `X(q1)|00>` is nonzero at index 1. For dimensions `(3, 2)`, digits `(1, 0)` and `(0, 1)` likewise have indices 2 and 1. Ordinary NumPy C-order reshape follows this order.
@@ -325,4 +325,108 @@
 - id: a3699637677bfc48
   en: 'Besides `execution_config`, [`Simulator.run`][fatqat.simulator.Simulator.run] accepts:'
   zh: 除 `execution_config` 外，[`Simulator.run`][fatqat.simulator.Simulator.run] 还接受：
+  status: machine
+- id: 9da81a6e19bfa312
+  en: '[`Simulator`][fatqat.simulator.Simulator] runs a [`Program`][fatqat.Program] at the gate level. It supports qubits, qudits, and registers whose members have different dimensions. It executes the operations as written, without imposing a device topology.'
+  zh: '[`Simulator`][fatqat.simulator.Simulator] 在门层级运行 [`Program`][fatqat.Program]。无论寄存器里用的是量子比特还是多能级量子系统，各成员的维度都可以不同。模拟器按程序写出的顺序执行操作，无需指定设备拓扑。'
+  status: machine
+- id: ea51af51d6eadb86
+  en: Use `statevector` or `density_matrix` to follow the evolution of a state. Use `unitary` or `superop` to compute the action of the entire program on an arbitrary input. In the table, `D` is the product of the subsystem dimensions.
+  zh: 如果要看量子态如何演化，用 `statevector` 或 `density_matrix`。如果要知道整个程序对任意输入态的作用，用 `unitary` 或 `superop`。表中的 `D` 是各个子系统维度的乘积。
+  status: machine
+- id: 399da1c005617ece
+  en: '| Method | What it computes | Result shape |'
+  zh: '| 方法 | 计算内容 | 返回数组的形状 |'
+  status: machine
+- id: d50134bdec8b1028
+  en: '| `statevector` (default) | A final pure state. Reset and noise channels may sample a trajectory. | `(D,)` |'
+  zh: '| `statevector`（默认） | 最终纯态。重置和噪声信道可能需要采样一条演化轨迹。 | `(D,)` |'
+  status: machine
+- id: f05e5846b23ec1d9
+  en: '| `density_matrix` | A final density matrix. Reset and noise channels act directly on the density matrix. | `(D, D)` |'
+  zh: '| `density_matrix` | 最终密度矩阵。重置和噪声信道直接作用于密度矩阵。 | `(D, D)` |'
+  status: machine
+- id: 360549b04e8a9264
+  en: '| `unitary` | The matrix of a program made up of unitary operations. | `(D, D)` |'
+  zh: '| `unitary` | 由幺正操作组成的程序所对应的矩阵。 | `(D, D)` |'
+  status: machine
+- id: 28492700c0f10f9e
+  en: '| `superop` | The linear map on density matrices, including reset and finite noise channels. | `(D**2, D**2)` |'
+  zh: '| `superop` | 程序对密度矩阵的线性作用，包含重置和有限噪声信道的影响。 | `(D**2, D**2)` |'
+  status: machine
+- id: 7d040c2da93c070a
+  en: Both state methods support measurement and classical conditions. Both operator methods require a program without measurements or classical conditions, and return the map without taking an initial state or producing counts. Their memory use grows with the size of the returned matrix.
+  zh: 两种量子态演化方法都支持测量和经典条件。两种算符方法要求程序不含测量或经典条件，会直接返回算符，无需提供初态，也不会生成测量计数。返回的矩阵越大，所需的内存越多。
+  status: machine
+- id: a1f524402c7e4542
+  en: To apply a `superop` to a density matrix `rho`, flatten it by stacking its columns and reshape the result in the same order.
+  zh: 要把 `superop` 作用到密度矩阵 `rho` 上，先按列把矩阵排成向量，再把计算结果按同样的顺序还原成矩阵。
+  status: machine
+- id: a554394c3a7f6306
+  en: See [Result](result.md#ordering-and-mutable-values) for the basis order used by states and operators.
+  zh: 量子态和算符的基底顺序见 [Result](result.md#ordering-and-mutable-values)。
+  status: machine
+- id: 4cc4f068fa6743a9
+  en: <a id="quick-start"></a>
+  zh: <a id="quick-start"></a>
+  status: machine
+- id: 2105043482ed04f1
+  en: Run and read results
+  zh: 运行程序并读取结果
+  status: machine
+- id: 4908874ae37bc6f8
+  en: '[`run()`][fatqat.simulator.Simulator.run] accepts a `Program` or an [`ExecutableProgram`][fatqat.ExecutableProgram] that carries its own resource layout. It returns a completed job. This example reads the measurement counts from a Bell-state program.'
+  zh: '[`run()`][fatqat.simulator.Simulator.run] 接受 `Program`，也接受自带资源布局的 [`ExecutableProgram`][fatqat.ExecutableProgram]。方法返回时，任务已执行完毕。下面读取一个贝尔态程序的测量计数。'
+  status: machine
+- id: e0933cf916557139
+  en: 'A program with measurements returns counts by default. A run with a deterministic final state or operator returns that result by default. To inspect the final state of a single sampled trajectory, request `result_config={"final_state": True}` with `shots=1`. See [Result](result.md) for the available fields and their accessors.'
+  zh: '程序包含测量时，默认返回测量计数。最终量子态或算符可以确定时，也会默认返回。要查看某次随机演化得到的最终态，传入 `result_config={"final_state": True}`，并将运行次数设为 `shots=1`。各结果字段及其读取方法见 [Result](result.md)。'
+  status: machine
+- id: 14cba0ff0f9587fb
+  en: The simulator starts in the ground state by default. Pass a [`BasisState`][fatqat.simulator.BasisState] as `initial_state` to select a level for each subsystem by register reference.
+  zh: 模拟默认从基态开始。要指定初态，可把 [`BasisState`][fatqat.simulator.BasisState] 传给 `initial_state`，用寄存器引用为各个子系统指定能级。
+  status: machine
+- id: f4cdfc06cb78e5c2
+  en: <a id="sweeps"></a>
+  zh: <a id="sweeps"></a>
+  status: machine
+- id: d419fa15df650528
+  en: Use [`run_sweep()`][fatqat.simulator.Simulator.run_sweep] to run a parameterized program for several sets of values and read the results in the same order.
+  zh: 用 [`run_sweep()`][fatqat.simulator.Simulator.run_sweep] 将同一个参数化程序运行多次，每次使用一组参数值。结果按参数组的输入顺序返回。
+  status: machine
+- id: 7e446755d27306a2
+  en: Configure a run
+  zh: 配置运行
+  status: machine
+- id: 29e1f250ccf0b307
+  en: The constructor's `runtime` selects NumPy or Numba for numerical execution. If you omit it, new simulators use the current default, initially Numba. Use [`set_default_runtime()`][fatqat.simulator.set_default_runtime] to change the default for new simulators.
+  zh: 创建模拟器时，用 `runtime` 选择 NumPy 或 Numba。省略这个参数时，新建的模拟器使用当前默认值，初始为 Numba。可用 [`set_default_runtime()`][fatqat.simulator.set_default_runtime] 为之后创建的模拟器设置默认值。
+  status: machine
+- id: b1e1a1096fbc39a3
+  en: Pass `execution_config` to [`run()`][fatqat.simulator.Simulator.run] to set a sampling seed, choose parallelism, or control error handling for that call. The `run()` entry below lists the accepted keys, defaults, and restrictions.
+  zh: 调用 [`run()`][fatqat.simulator.Simulator.run] 时，可以通过 `execution_config` 为这次运行指定随机种子、选择并行方式或设置错误处理方式。下方的 `run()` 条目列出了可用选项、默认值和约束。
+  status: machine
+- id: 461cd83313f7611b
+  en: <a id="noise"></a>
+  zh: <a id="noise"></a>
+  status: machine
+- id: c6479879035e39d6
+  en: Pass a [`NoiseModel`][fatqat.NoiseModel] through the constructor's `noise` argument to use it on every run. Matrix simulation uses probability-form channels applied at operation boundaries. See [Noise](noise.md#backend-support) for supported noise sources.
+  zh: 创建模拟器时，通过 `noise` 传入 [`NoiseModel`][fatqat.NoiseModel]，每次运行都会使用这个模型。矩阵模拟在操作边界施加以概率为参数的噪声信道。支持的噪声类型见[噪声](noise.md#backend-support)。
+  status: machine
+- id: 72ba3e1e02ed2417
+  en: <a id="customize-the-backend"></a>
+  zh: <a id="customize-the-backend"></a>
+  status: machine
+- id: 2a10ad9ab116f5c6
+  en: Use `implementation_map` to supply your own matrices, channels, or [custom operations](simulators/custom-operations.md).
+  zh: 用 `implementation_map` 注册自己的矩阵、信道或[自定义操作](simulators/custom-operations.md)。
+  status: machine
+- id: 14c346e809f4076c
+  en: For a program of unitary operations, the superoperator is `numpy.kron(unitary.conj(), unitary)`.
+  zh: 对于只含幺正操作的程序，可以用 `numpy.kron(unitary.conj(), unitary)` 从幺正矩阵得到超算符。
+  status: machine
+- id: fe3a96b9513b94b1
+  en: With the automatic settings, the simulator uses at most one kind of parallelism, either across shots or within one evolution. See [Performance and scaling](../guide/performance.md#match-parallelism-to-the-work) for examples of matching parallelism to a workload.
+  zh: 使用自动设置时，模拟器最多采用一种并行方式，可以并行运行多次采样，也可以并行处理单次演化中的计算。不同任务适合哪种方式，见[性能与扩展性](../guide/performance.md#match-parallelism-to-the-work)中的示例。
   status: machine

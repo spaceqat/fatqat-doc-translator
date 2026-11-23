@@ -32,7 +32,7 @@
   status: machine
 - id: c9366d3f412ef90e
   en: Support depends on the noise form, where it applies, and the backend. The [Backend support](noise/backend-support.md#noise-backend-support) tables show the built-in behavior and unsupported forms for each backend family. Pulse-emulator continuous-noise realizations are family-owned rather than user-replaceable.
-  zh: "支持情况取决于噪声形式、作用位置以及后端。[后端支持](noise/backend-support.md#noise-backend-support)中的表格展示了每个后端类型的内置行为与不受支持的形式。脉冲仿真器的连续噪声实现由各类后端自行管理，用户不可替换。"
+  zh: 支持情况取决于噪声形式、作用位置以及后端。[后端支持](noise/backend-support.md#noise-backend-support)中的表格展示了每个后端类型的内置行为与不受支持的形式。脉冲仿真器的连续噪声实现由各类后端自行管理，用户不可替换。
   status: machine
 - id: 0eb95fb6244c03f1
   en: Quick start
@@ -52,7 +52,7 @@
   status: machine
 - id: aa0fda68c27da5fc
   en: API pages
-  zh: API 页面
+  zh: API 参考页
   status: machine
 - id: c67c1acc10c1ae15
   en: '[Noise model](noise/model.md)'
@@ -68,7 +68,7 @@
   status: machine
 - id: fa13cc87bf406f0c
   en: '[PauliChannel](noise/pauli-channel.md)'
-  zh: '[PauliChannel](noise/pauli-channel.md)'
+  zh: '[Pauli 噪声](noise/pauli-channel.md)'
   status: machine
 - id: 489dfd1112340932
   en: '[AmplitudeDamping](noise/amplitude-damping.md)'
@@ -104,7 +104,7 @@
   status: machine
 - id: 9aabbed5deff741d
   en: '| [`PauliChannel`][fatqat.noise.PauliChannel] | Pauli-string probability mapping or pair sequence | One qubit per string character | A stochastic mixture of `I`, `X`, `Y`, and `Z` strings |'
-  zh: '| [`PauliChannel`][fatqat.noise.PauliChannel] | Pauli 串到概率的映射，或键值对序列 | 字符串中每个字符对应一个量子比特 | `I`、`X`、`Y` 与 `Z` 串的随机混合 |'
+  zh: '| [`PauliChannel`][fatqat.noise.PauliChannel] | 算符串及其概率，可用映射或成对提供 | 算符串中的每个字符对应一个量子比特 | 按给定概率施加由 `I`、`X`、`Y` 和 `Z` 组成的算符串 |'
   status: machine
 - id: 6cbdd4700b1ba810
   en: '| [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] | Exactly one of `p` or `rate`, with one value per adjacent transition | One subsystem | Ladder decay from level `k` to `k - 1` |'
@@ -120,7 +120,7 @@
   status: retired
 - id: eebe1848a578f638
   en: '| [`Loss`][fatqat.noise.Loss] | Per-carrier probability `p` | Every selected carrier in a matched operation | Persistent carrier removal on an occupancy-aware backend |'
-  zh: "| [`Loss`][fatqat.noise.Loss] | 每个载体各自的概率 `p` | 匹配操作中每个被选中的载体 | 在跟踪占据状态的后端上持久移除载体 |"
+  zh: '| [`Loss`][fatqat.noise.Loss] | 每个载体各自的概率 `p` | 匹配操作中每个被选中的载体 | 在跟踪占据状态的后端上持久移除载体 |'
   status: machine
 - id: bfe822216ede4f67
   en: '| [`ReadoutConfusion`][fatqat.noise.ReadoutConfusion] | Column-stochastic report matrix | Each measured subsystem independently, or one selected subsystem | Classical resampling of the reported digit after physical collapse |'
@@ -141,4 +141,36 @@
 - id: cb50d52d143477c2
   en: '[TransitionRelaxation](noise/transition-relaxation.md)'
   zh: '[TransitionRelaxation](noise/transition-relaxation.md)'
+  status: machine
+- id: 0fb9b9d4a3969e53
+  en: Use a `NoiseModel` to vary the noise in a run while keeping the same [`Program`][fatqat.Program]. Simulators can apply a channel after an operation. Pulse emulators can evolve the state with continuous noise, including during idle time. Readout confusion changes the reported digits in either case.
+  zh: 用 `NoiseModel` 可以在同一个 [`Program`][fatqat.Program] 上更换噪声设置。模拟器可以在操作之后施加量子信道，脉冲仿真器则可以让量子态在连续噪声下演化，空闲时段也包括在内。两类后端都可以用读出混淆改变报告的数值。
+  status: machine
+- id: 02106b968d931d5b
+  en: Noise types are available in `fatqat.noise`. Pass a [`NoiseModel`][fatqat.NoiseModel] to the backend with `noise=...`.
+  zh: 噪声类型定义在 `fatqat.noise` 中。用 `noise=...` 将 [`NoiseModel`][fatqat.NoiseModel] 传给后端。
+  status: machine
+- id: 160ec68daf42959e
+  en: Choose a type by the effect you want to model. For a type with both forms, use a probability for a single channel application or a rate or relaxation time for continuous evolution. Follow the definition for your backend on the type's page.
+  zh: 先想清楚要模拟哪种效应，再选噪声类型。对于有两种形式的类型，单次施加信道用概率，连续演化用速率或弛豫时间。各类型页面分别说明了这两种形式的定义。
+  status: machine
+- id: f64b397bb3b7412b
+  en: Check [Backend support](noise/backend-support.md#noise-backend-support) for the forms, scopes, and target dimensions your backend accepts.
+  zh: 可在[后端支持情况](noise/backend-support.md#noise-backend-support)中查看后端接受哪些噪声形式、作用范围和目标维度。
+  status: machine
+- id: f46f649b5bdcf20b
+  en: After an operation
+  zh: 在操作之后施加噪声
+  status: machine
+- id: 33f5fab7bc7eb06e
+  en: Pass `operation=ops.CX` to apply a depolarizing channel jointly to the two operands after each `CX`. For a full comparison, see [Ideal and noisy runs](../guide/ideal-and-noisy.md).
+  zh: 传入 `operation=ops.CX` 后，每次执行 `CX` 都会对两个操作对象共同施加一个退极化信道。完整的对比示例见[理想运行与含噪运行](../guide/ideal-and-noisy.md)。
+  status: machine
+- id: be67945c3e0deae0
+  en: During pulse evolution
+  zh: 在脉冲演化期间施加噪声
+  status: machine
+- id: 4684600942117fcd
+  en: Omit `operation` to keep relaxation active on `"q0"` throughout the elapsed time, including idle periods. The reference transmon model uses nanoseconds, so `rate` is in inverse nanoseconds.
+  zh: 省略 `operation` 后，`"q0"` 在整个演化期间都会受到弛豫的影响，空闲时也一样。参考 Transmon 模型以纳秒为时间单位，因此 `rate` 的单位是纳秒的倒数。
   status: machine

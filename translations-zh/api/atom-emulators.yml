@@ -124,7 +124,7 @@
   status: retired
 - id: c8e5998f6a3955c2
   en: API
-  zh: API
+  zh: API 参考
   status: machine
 - id: 9f6c47f84aa83bb1
   en: '| Key | Type | Default | Effect and constraints |'
@@ -252,9 +252,73 @@
   status: machine
 - id: e7f8ca00d7494d04
   en: Use [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] for directly authored global controls in the physical `|g>, |r>` model. See [Emulate neutral atoms with laser pulses](../guide/neutral-atom-emulation.md) for a complete executable example.
-  zh: "在物理 `|g>, |r>` 模型中，使用 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 运行直接编写的全局控制脉冲。完整示例见[用激光脉冲仿真中性原子](../guide/neutral-atom-emulation.md)。"
+  zh: 在物理 `|g>, |r>` 模型中，使用 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 运行直接编写的全局控制脉冲。完整示例见[用激光脉冲仿真中性原子](../guide/neutral-atom-emulation.md)。
   status: machine
 - id: 704e5956b808493e
   en: See [Pulse control](pulse-control/index.md) for direct pulse authoring. For the complete two-level workflow, see [Emulate neutral atoms with laser pulses](../guide/neutral-atom-emulation.md).
-  zh: "直接编写脉冲的接口见[脉冲控制](pulse-control/index.md)。完整的二能级仿真流程见[用激光脉冲仿真中性原子](../guide/neutral-atom-emulation.md)。"
+  zh: 直接编写脉冲的接口见[脉冲控制](pulse-control/index.md)。完整的二能级仿真流程见[用激光脉冲仿真中性原子](../guide/neutral-atom-emulation.md)。
+  status: machine
+- id: 4eac98bda4283e34
+  en: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] models atoms at fixed positions with a ground level and a Rydberg level. Use it to study how a laser pulse drives the whole array and how the distance between atoms changes their interactions.'
+  zh: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 把固定位置上的每个原子表示为基态和里德堡态两个能级。你可以用它研究同一束激光如何驱动整个阵列，以及原子间的距离怎样影响相互作用。'
+  status: machine
+- id: 8348ac564091cca7
+  en: <a id="two-level-atom-emulator"></a>
+  zh: <a id="two-level-atom-emulator"></a>
+  status: machine
+- id: 4ebb65c8e4d853e3
+  en: Configure the model and arrangement
+  zh: 设置模型与原子排布
+  status: machine
+- id: 64f66030db20c20a
+  en: The model defines the energy levels, controls, and interaction law. The arrangement defines where the atoms sit. Load `atom2level.reference` with [`load_model_document()`][fatqat.emulator.load_model_document] and pass the decoded model document to [`Atom2LevelModel.from_document()`][fatqat.emulator.Atom2LevelModel.from_document].
+  zh: 模型定义能级、控制方式和相互作用规律，排布则指定原子的位置。可以用 [`load_model_document()`][fatqat.emulator.load_model_document] 读取 `atom2level.reference`，再把读出的模型文件内容传给 [`Atom2LevelModel.from_document()`][fatqat.emulator.Atom2LevelModel.from_document]。
+  status: machine
+- id: e451b53937e0c7f7
+  en: Use [`AtomArrangement.chain()`][fatqat.emulator.AtomArrangement.chain] or [`rectangular()`][fatqat.emulator.AtomArrangement.rectangular] for regular layouts. Use [`from_coordinates()`][fatqat.emulator.AtomArrangement.from_coordinates] for explicit 2D or 3D sites and [`combine()`][fatqat.emulator.AtomArrangement.combine] to join labeled layouts. Coordinates are in micrometres, and their order defines the site indices.
+  zh: 规则排布可用 [`AtomArrangement.chain()`][fatqat.emulator.AtomArrangement.chain] 或 [`rectangular()`][fatqat.emulator.AtomArrangement.rectangular]。要直接给出二维或三维坐标，可用 [`from_coordinates()`][fatqat.emulator.AtomArrangement.from_coordinates]。要合并带标签的排布，可用 [`combine()`][fatqat.emulator.AtomArrangement.combine]。坐标的单位是微米，坐标的顺序决定位置编号。
+  status: machine
+- id: 684277f969031de3
+  en: Declare one qubit per site in the program. The default binding uses program declaration order. An explicit [`ResourceLayout`][fatqat.ResourceLayout] must cover every site exactly once.
+  zh: 在程序中为每个位置声明一个量子比特。默认按声明顺序分配位置。如果显式传入 [`ResourceLayout`][fatqat.ResourceLayout]，每个位置都要恰好分配一次。
+  status: machine
+- id: 8411ed876f7642dc
+  en: Address global controls
+  zh: 指定全局控制
+  status: machine
+- id: f4a77f96b964e3e0
+  en: Both global channels act on every atom. Use `model.control.drive()` for a complex Rabi envelope and `model.control.detuning()` for a real detuning waveform. Time is in microseconds and both waveforms use `rad/us`. Add the [`PulseOperation`][fatqat.operations.PulseOperation] directly to the program.
+  zh: 两个全局通道都作用于所有原子。用 `model.control.drive()` 指定复数 Rabi 包络，用 `model.control.detuning()` 指定实数失谐波形。时间单位是微秒，两种波形都用 `rad/us`。将 [`PulseOperation`][fatqat.operations.PulseOperation] 直接加入程序即可。
+  status: machine
+- id: 2c5087ef0ff22862
+  en: Place measurements after the pulse blocks. The two-level emulator runs unconditional operations. To use an ordinary gate, supply its pulse rule in `gate_implementation_map`.
+  zh: 测量放在脉冲块之后。二能级仿真器执行不带经典条件的操作。要使用普通门，可以通过 `gate_implementation_map` 提供它对应的脉冲规则。
+  status: machine
+- id: 654ea1472004407c
+  en: Use [Pulse control](pulse-control/index.md) to specify the waveform and timing. For an example that compares drives at different atom separations, see [Emulate neutral atoms with laser pulses](../guide/neutral-atom-emulation.md).
+  zh: 波形和时序的写法见[脉冲控制](pulse-control/index.md)。[用激光脉冲仿真中性原子](../guide/neutral-atom-emulation.md)展示了在不同原子间距下施加驱动的例子。
+  status: machine
+- id: 0bc2c8fca705fd79
+  en: Run on an atom arrangement
+  zh: 运行原子阵列程序
+  status: machine
+- id: 927b0e27c680c336
+  en: Each run starts with every atom in the ground level. Use [`run()`][fatqat.emulator.Atom2LevelEmulator.run] to schedule the program and request output. The per-run interaction cutoff lets you change which couplings the Hamiltonian includes.
+  zh: 每次运行开始时，所有原子都处于基态。用 [`run()`][fatqat.emulator.Atom2LevelEmulator.run] 调度程序并指定要读取的结果。每次运行还可以设置相互作用截断，选择哈密顿量中保留哪些原子之间的相互作用。
+  status: machine
+- id: 0adeb6bb48cceb34
+  en: 'Set `execution_config={"interaction_cutoff": ...}` to keep only pairs at or below a distance in micrometres. `None` keeps the full interaction Hamiltonian and `0.0` disables pair interactions. On a rectangular grid with equal spacing, using that spacing as the cutoff keeps the horizontal and vertical nearest neighbors.'
+  zh: '通过 `execution_config={"interaction_cutoff": ...}` 只保留距离在指定范围内的原子对，距离以微米计。`None` 保留完整的相互作用哈密顿量，`0.0` 关闭原子间的成对相互作用。如果矩形网格横纵间距相同，把截断距离设成该间距即可只保留水平和垂直方向的最近邻。'
+  status: machine
+- id: f47842f101d9a699
+  en: For continuous noise, register a background source for each site you want to affect. Rates are in inverse microseconds and relaxation times are in microseconds. See [Pulse emulator noise](noise/backend-support.md#noise-emulator-support) for the supported channel forms and readout noise.
+  zh: 要加入连续时间噪声，可在需要施加噪声的位置逐一注册背景噪声。速率的单位是微秒的倒数，弛豫时间用微秒。支持的信道形式和读出噪声见[脉冲仿真器的噪声](noise/backend-support.md#noise-emulator-support)。
+  status: machine
+- id: e7c17a74611ec5ed
+  en: Read atom array results
+  zh: 读取原子阵列仿真结果
+  status: machine
+- id: a0d55b930545e20d
+  en: With any [result method](emulators/index.md#choose-a-result), every site contributes two basis levels in the order `("g", "r")`. The state dimension is `2**N` for `N` sites. Use `metadata["state_axes"]` for the order of the sites in the returned state or operator.
+  zh: 无论选择哪种[结果表示](emulators/index.md#choose-a-result)，每个位置都对应两个能级，基底顺序是 `("g", "r")`。阵列有 `N` 个位置时，量子态空间的维度为 `2**N`。返回的量子态或算符采用的位置顺序可通过 `metadata["state_axes"]` 查看。
   status: machine

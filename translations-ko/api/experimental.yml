@@ -32,9 +32,57 @@
   status: machine
 - id: b4075750b3d45a43
   en: '[Gate realization](pulse-control/gate-realization.md) for custom pulse definitions'
-  ko: 사용자 정의 펄스를 위한 [게이트 구현](pulse-control/gate-realization.md)
+  ko: 사용자 정의 펄스를 위한 [게이트의 펄스 구현](pulse-control/gate-realization.md)
   status: machine
 - id: 0917ebcfd35f26c9
   en: Built-in pulse maps are listed under [Emulators](emulators/index.md).
   ko: 내장 펄스 맵은 [에뮬레이터](emulators/index.md)에 정리되어 있습니다.
+  status: machine
+- id: 90c607d7f9637cad
+  en: '[Matrix implementation maps](implementation.md) for custom matrices and device-specific gate rules'
+  ko: 사용자 정의 행렬과 장치별 게이트 규칙을 위한 [행렬 구현 맵](implementation.md)
+  status: machine
+- id: 8e9e7c8491393d88
+  en: '[Custom gate pulses](pulse-control/gate-realization.md) for custom pulse definitions'
+  ko: 사용자 정의 펄스를 위한 [사용자 정의 게이트 펄스](pulse-control/gate-realization.md)
+  status: machine
+- id: 04c438669dfb24a8
+  en: The public APIs on this page are still evolving. Their signatures or behavior may change between releases.
+  ko: 이 페이지에 나열한 공개 API는 아직 개발 중입니다. 릴리스에 따라 호출 방식이나 동작이 달라질 수 있습니다.
+  status: machine
+- id: 6e7322c5d9ab733f
+  en: Use [LogicalProgram](logical-program.md) for device-independent gates written in Python. Use an OpenQASM entry point when starting from source text. The [compiler pipelines](compiler-pipelines.md) page lists the inputs for each target.
+  ko: Python에서 장치 독립적인 게이트를 작성하려면 [LogicalProgram](logical-program.md)을 사용하세요. OpenQASM 소스에서 시작하는 경우 해당 컴파일 진입점을 사용합니다. 각 타깃의 입력은 [컴파일러 파이프라인](compiler-pipelines.md)을 참고하세요.
+  status: machine
+- id: 8e6d8257508adc4b
+  en: Custom backends
+  ko: 사용자 정의 백엔드
+  status: machine
+- id: d0b80bdd2c8f3eae
+  en: If you implement a [`Backend`][fatqat.Backend], create a [`Result`][fatqat.Result] for the fields it produces and return it in a successful [`Job`][fatqat.Job]. Use `Job("DONE", result=value)` for success or `Job("ERROR", error=exc)` for a recorded failure.
+  ko: '[`Backend`][fatqat.Backend]를 구현한다면 백엔드가 생성한 필드를 [`Result`][fatqat.Result]에 담아 성공한 [`Job`][fatqat.Job]으로 반환하세요. 성공에는 `Job("DONE", result=value)`를, 실패를 기록할 때는 `Job("ERROR", error=exc)`를 사용합니다.'
+  status: machine
+- id: 9b14d082b53b797a
+  en: These APIs are available for use while their interfaces are under development. Their signatures and behavior may change between releases.
+  ko: 여기에 나오는 API는 사용할 수 있지만 인터페이스는 아직 개발 중입니다. 릴리스에 따라 시그니처와 동작이 달라질 수 있습니다.
+  status: machine
+- id: 0f006c783a509b3e
+  en: Start with [LogicalProgram](logical-program.md) if you write the logical gates in Python. If you already have OpenQASM source, choose the OpenQASM entry point for your target. [Compiler pipelines](compiler-pipelines.md) lists the inputs each entry point accepts.
+  ko: Python으로 논리 게이트를 작성한다면 [LogicalProgram](logical-program.md)에서 시작하세요. 이미 OpenQASM 소스가 있다면 컴파일 대상에 맞는 OpenQASM 진입점을 고릅니다. 각 진입점이 받는 입력은 [컴파일러 파이프라인](compiler-pipelines.md)에 나와 있습니다.
+  status: machine
+- id: 5408a99eb6fbb9a0
+  en: An implementation of [`Backend`][fatqat.Backend] puts its output fields in a [`Result`][fatqat.Result] and returns a [`Job`][fatqat.Job]. Use `Job("DONE", result=value)` to return the result. To store an execution failure for the caller, use `Job("ERROR", error=exc)`.
+  ko: '[`Backend`][fatqat.Backend]를 구현할 때는 출력 필드를 [`Result`][fatqat.Result]에 담고 [`Job`][fatqat.Job]을 반환합니다. 결과를 반환할 때는 `Job("DONE", result=value)`를 사용하세요. 호출자가 처리할 실행 오류를 저장하려면 `Job("ERROR", error=exc)`를 사용합니다.'
+  status: machine
+- id: 4f6c1fa68dd58c83
+  en: Extend a backend
+  ko: 백엔드 확장
+  status: machine
+- id: e8472e4a67ebfe13
+  en: '[Matrix implementation maps](implementation.md) let a simulator use your own gate matrices or pick a rule for a specific device location.'
+  ko: 시뮬레이터에 직접 작성한 게이트 행렬을 쓰거나 장치의 특정 위치에 규칙을 지정하려면 [행렬 구현 맵](implementation.md)을 사용하세요.
+  status: machine
+- id: 4146f09ac9036301
+  en: '[Custom gate pulses](pulse-control/gate-realization.md) let you specify the physical controls that implement a gate. The [emulator pages](emulators/index.md) describe the built-in gate-to-pulse maps.'
+  ko: 게이트를 구현하는 물리 제어 신호를 직접 지정하려면 [사용자 정의 게이트 펄스](pulse-control/gate-realization.md)를 사용하세요. 내장 게이트-펄스 맵은 [에뮬레이터 페이지](emulators/index.md)에 설명되어 있습니다.
   status: machine

@@ -24,5 +24,9 @@
   status: machine
 - id: f86676a69ca8eb46
   en: 'Omitting `Pair` before `CZ` is a program error. A missing atom is different: supported gates find nothing to act on, and measurement reports the erasure digit `2`.'
-  ko: "`CZ` 전에 `Pair`를 생략하면 프로그램 오류입니다. 원자가 없는 경우는 다릅니다. 지원되는 게이트는 작용할 대상이 없고, 측정은 소실을 나타내는 숫자 `2`를 보고합니다."
+  ko: '`CZ` 전에 `Pair`를 생략하면 프로그램 오류입니다. 원자가 없는 경우는 다릅니다. 지원되는 게이트는 작용할 대상이 없고, 측정은 소실을 나타내는 숫자 `2`를 보고합니다.'
+  status: machine
+- id: 72334d141f3f5a64
+  en: In the diagram, bringing the atoms together represents creating a pair. The program below loads an atom at each site and then uses `Pair` to make `CZ` available on those sites. `Unpair` removes that connection.
+  ko: 그림에서 두 원자를 가까이 가져가는 것은 페어링을 나타냅니다. 아래 프로그램은 각 사이트에 원자를 하나씩 로딩한 뒤 `Pair`를 적용해 그 쌍에서 `CZ`를 사용할 수 있게 합니다. `Unpair`는 이 연결을 해제합니다.
   status: machine

@@ -20,7 +20,7 @@
   status: machine
 - id: d8534fe0be7d1001
   en: All populations are unchanged, and every off-diagonal entry is multiplied by $1-p$, regardless of the separation between its two levels. The channel acts on one selected operand.
-  zh: 所有布居保持不变，每个非对角元都乘以 $1-p$，与其对应两能级之间的间隔无关。该信道作用于一个选定的操作数。
+  zh: 这个信道作用于单个子系统。各能级的占据概率保持不变，密度矩阵的每个非对角元都乘以 $1-p$，与对应能级的编号之差无关。
   status: machine
 - id: 9e9e97eecb04c37f
   en: The `rate` and `t_phi` forms use the local Lindblad operator
@@ -57,4 +57,24 @@
 - id: d096f4115e763b42
   en: '| `t_phi` | Pure-dephasing time, normalized to `rate = 1 / t_phi` | Finite positive real in the backend''s time unit |'
   zh: '| `t_phi` | 纯退相位时间，按 `rate = 1 / t_phi` 归一化 | 以后端时间单位计的有限正实数 |'
+  status: machine
+- id: 751372c0f2862098
+  en: See [Pulse emulators](backend-support.md#noise-emulator-support) for the supported scopes.
+  zh: 各后端支持的作用范围见[脉冲仿真器](backend-support.md#noise-emulator-support)。
+  status: machine
+- id: df1815ad6749aba6
+  en: '[`PhaseDamping`][fatqat.noise.PhaseDamping] reduces coherence between energy levels without changing the probability of finding the system in each level.'
+  zh: '[`PhaseDamping`][fatqat.noise.PhaseDamping] 让不同能级之间的相干性减弱，各能级的占据概率保持不变。'
+  status: machine
+- id: 14a8aa91b2fa681f
+  en: Supply exactly one parameter. Use `p` in a simulator. In a pulse emulator, specify the rate with `rate` or the pure-dephasing time with `t_phi`. In a multilevel system, the simulator and emulator describe different coherence decay.
+  zh: 三个参数只选一个。模拟器用 `p`，脉冲仿真器可以用 `rate` 指定速率，也可以用 `t_phi` 指定纯退相位时间。在多能级系统里，两种后端的相干性衰减规律不同。
+  status: machine
+- id: 0b65ab0633be2f45
+  en: '`p` is the weight of complete dephasing in one channel application. It must be finite and in `[0, 1]`. For a target of dimension $d$, the channel is'
+  zh: '`p` 表示一次信道作用中完全退相位所占的权重，必须是 `[0, 1]` 内的有限值。设目标的维度为 $d$，则信道定义为'
+  status: machine
+- id: ef01f84a8f11db6c
+  en: Pass a finite nonnegative `rate` in inverse time or a finite positive `t_phi` in the model's time unit. If you supply a time, the object stores `rate = 1 / t_phi`. The local Lindblad operator for rate $r$ is
+  zh: '`rate` 是有限的非负值，单位为模型时间单位的倒数。也可以用模型的时间单位传入有限的正数 `t_phi`，此时对象会保存换算后的 `rate = 1 / t_phi`。速率为 $r$ 时，局部 Lindblad 算符为'
   status: machine

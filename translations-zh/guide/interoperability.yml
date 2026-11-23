@@ -152,17 +152,21 @@
   status: machine
 - id: 2a7a267cce9e19dd
   en: If you already have a quantum algorithm written in OpenQASM 2 or 3, or as a Qiskit circuit, you can bring the circuit into FatQat to run it and analyse the results. To take a supported FatQat Program to another platform, export it in the OpenQASM version that the other tool expects.
-  zh: "如果已经用 OpenQASM 2 或 3 写好了量子算法，或者手头有现成的 Qiskit 线路，可以把它导入 FatQat，再运行和分析结果。想把 FatQat 里的线路拿到另一个平台运行时，可以把受支持的 Program 导出为对方工具使用的 OpenQASM 版本。"
+  zh: 如果已经用 OpenQASM 2 或 3 写好了量子算法，或者手头有现成的 Qiskit 线路，可以把它导入 FatQat，再运行和分析结果。想把 FatQat 里的线路拿到另一个平台运行时，可以把受支持的 Program 导出为对方工具使用的 OpenQASM 版本。
   status: machine
 - id: 67b8a19e64fca8aa
   en: '**OpenQASM 2 or 3 source.** Import it into FatQat and run it. You can also export a Program in either version.'
-  zh: "**OpenQASM 2 或 3 源码。** 可以导入 FatQat 运行，也可以把 Program 导出为其中任一版本。"
+  zh: '**OpenQASM 2 或 3 源码。** 可以导入 FatQat 运行，也可以把 Program 导出为其中任一版本。'
   status: machine
 - id: aab3b7a2cbf3a650
   en: FatQat's built-in `from_qasm` reads both OpenQASM 2 and 3. This example uses OpenQASM 3 to describe the measured Bell circuit from the quickstart.
-  zh: "FatQat 自带的 `from_qasm` 可以读入 OpenQASM 2 和 3。下面用 OpenQASM 3 写出快速入门里那条带测量的贝尔态线路。"
+  zh: FatQat 自带的 `from_qasm` 可以读入 OpenQASM 2 和 3。下面用 OpenQASM 3 写出快速入门里那条带测量的贝尔态线路。
   status: machine
 - id: b042db8f21f2f1c8
   en: Use `to_qasm` to export a supported Program. It writes OpenQASM 3 by default. For a tool that expects OpenQASM 2, pass `version=2`.
-  zh: "用 `to_qasm` 可以导出受支持的 Program。默认导出为 OpenQASM 3。如果对方工具用的是 OpenQASM 2，就传入 `version=2`。"
+  zh: 用 `to_qasm` 可以导出受支持的 Program。默认导出为 OpenQASM 3。如果对方工具用的是 OpenQASM 2，就传入 `version=2`。
+  status: machine
+- id: b0544ee43704bfb4
+  en: When using an asymmetric circuit, compare the [bit and basis order](../api/interoperability/qiskit.md#compare-bit-and-basis-order) before comparing counts, arrays, or Pauli labels.
+  zh: 用非对称线路时，先核对两边的[比特和基底顺序](../api/interoperability/qiskit.md#compare-bit-and-basis-order)，再比较测量计数、数组或 Pauli 标签。
   status: machine

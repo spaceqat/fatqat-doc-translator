@@ -54,3 +54,23 @@
   en: Duration must be finite and nonnegative. A probability of 1 has no finite rate, and a nonzero probability cannot be converted to a finite rate at zero duration.
   ko: 지속 시간은 유한한 비음수여야 합니다. 확률 1에 대응하는 유한한 비율은 없으며, 지속 시간이 0일 때 0이 아닌 확률을 유한한 비율로 변환할 수 없습니다.
   status: machine
+- id: 18c5887764f37016
+  en: Choose `p` or `rate` for decay on one qubit. To specify your own transitions or work with more than two levels, use [`TransitionRelaxation`](transition-relaxation.md).
+  ko: 큐비트 하나의 감쇠에는 `p` 또는 `rate`를 지정합니다. 전이를 직접 지정하거나 준위가 셋 이상이면 [`TransitionRelaxation`](transition-relaxation.md)을 사용하세요.
+  status: machine
+- id: 3466154a2a2059dc
+  en: Use the inverse of the model's time unit for `rate`. The built-in [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] accepts this form as background noise.
+  ko: '`rate`는 모델 시간 단위의 역수로 지정합니다. 내장 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]는 이 형태를 배경 잡음으로 받습니다.'
+  status: machine
+- id: 33b921b0e65c3c89
+  en: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] models the decay of one qubit from $|1\rangle$ to $|0\rangle$.'
+  ko: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping]은 큐비트 하나가 $|1\rangle$에서 $|0\rangle$으로 감쇠하는 과정을 모형화합니다.'
+  status: machine
+- id: 6cd175cdb085578d
+  en: <a id="choose-probabilities-or-rates"></a>
+  ko: <a id="choose-probabilities-or-rates"></a>
+  status: machine
+- id: ef96ac0d30f8acdc
+  en: To specify your own transitions or work with more than two levels, use [`TransitionRelaxation`](transition-relaxation.md).
+  ko: 전이를 직접 지정하거나 준위가 셋 이상인 경우에는 [`TransitionRelaxation`](transition-relaxation.md)을 사용하세요.
+  status: machine

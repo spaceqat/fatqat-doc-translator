@@ -4,11 +4,11 @@
   status: machine
 - id: a203ab4324b74c2c
   en: This page is for simulator extension authors. Most applications need only FATQAT's built-in noise types. Use this API to define a new [`Channel`][fatqat.noise.Channel] or change how a matrix simulator applies an existing type. Pulse-emulator continuous-noise realizations are family-owned and are not a public extension surface.
-  zh: "本页面面向模拟器扩展作者。大多数应用只需 FATQAT 的内置噪声类型。使用此 API 可定义新的 [`Channel`][fatqat.noise.Channel]，或更改矩阵模拟器应用现有类型的方式。脉冲仿真器的连续噪声实现由各后端类型自行管理，不属于公开的扩展接口。"
+  zh: 本页面面向模拟器扩展作者。大多数应用只需 FATQAT 的内置噪声类型。使用此 API 可定义新的 [`Channel`][fatqat.noise.Channel]，或更改矩阵模拟器应用现有类型的方式。脉冲仿真器的连续噪声实现由各后端类型自行管理，不属于公开的扩展接口。
   status: machine
 - id: eba3bd7e42ac6531
   en: Simulator implementation map
-  zh: "Simulator 实现映射"
+  zh: Simulator 实现映射
   status: retired
 - id: ecdec387b694378c
   en: A [`ChannelImplementationMap`][fatqat.noise.ChannelImplementationMap] rule receives `(channel, *, targets)`, where `targets` is the ordered tuple of program [`RegisterRef`][fatqat.RegisterRef] objects, and returns a nonempty tuple of Kraus matrices acting on the combined target space. It represents one finite channel application; it is not used as a pulse-emulator Lindblad fallback.
@@ -40,7 +40,7 @@
   status: retired
 - id: 2164f7b527ede062
   en: Simulator rules
-  zh: "Simulator 规则"
+  zh: Simulator 规则
   status: machine
 - id: 29e3c9f91b482299
   en: 'A matrix rule returns Kraus operators for the matching operation:'
@@ -64,7 +64,7 @@
   status: retired
 - id: 77839e213e980a1c
   en: Simulator types
-  zh: "Simulator 类型"
+  zh: Simulator 类型
   status: machine
 - id: 6123a79a5c2b97ef
   en: '| Method | Contract |'
@@ -109,4 +109,12 @@
 - id: e432d162ee5b8226
   en: 'This custom qubit channel and rule add bit-flip noise while retaining all built-in gate and channel implementations:'
   zh: 下面定义一个自定义量子比特信道及其规则，在保留所有内置门和信道实现的同时添加比特翻转噪声：
+  status: machine
+- id: e2f2d3f876b7c22e
+  en: Use a custom [`Channel`][fatqat.noise.Channel] when you need a finite noise channel beyond the built-in types, or register a different rule for an existing type. These extensions are for matrix simulators.
+  zh: 需要内置类型之外的有限信道时，可以定义自己的 [`Channel`][fatqat.noise.Channel]，也可以给已有类型注册另一条规则。这些扩展适用于矩阵模拟器。
+  status: machine
+- id: 2531d5c6ca228ee7
+  en: For ordered target dimensions `d_0, d_1, ...`, return at least one NumPy array of shape `(D, D)`, where `D = d_0 * d_1 * ...`. Use the target order for the tensor factors. Supply a valid Kraus representation satisfying $\sum_i K_i^\dagger K_i = I$ for a trace-preserving channel.
+  zh: 目标维度依次为 `d_0, d_1, ...` 时，至少返回一个形状为 `(D, D)` 的 NumPy 数组，其中 `D = d_0 * d_1 * ...`。张量因子的顺序要与目标顺序一致。保迹信道的 Kraus 算符应满足 $\sum_i K_i^\dagger K_i = I$。
   status: machine

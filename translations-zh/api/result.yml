@@ -4,7 +4,7 @@
   status: machine
 - id: 3b7a454557263109
   en: '**Result fields**'
-  zh: "**Result 字段**"
+  zh: '**Result 字段**'
   status: machine
 - id: 1ddc6eaa4ff2a32f
   en: '`"final_state"` is a request name, not an available-data name. A produced state or operator uses its concrete representation name from the table. Deterministic unmeasured runs enable method-native output by default. A stochastic pulse-emulator state—caused by measurement, statevector reset, or potentially active statevector Lindblad evolution—must be requested explicitly with `shots=1`.'
@@ -36,27 +36,27 @@
   status: retired
 - id: 40369ad6f52e64a0
   en: '| Field | Accessor | Produced by |'
-  zh: "| 字段 | 访问器 | 何时产生 |"
+  zh: '| 字段 | 读取方法 | 何时可读 |'
   status: machine
 - id: 233d89ec76db9dfc
   en: '| `"counts"` | [`get_counts`][fatqat.Result.get_counts] or [`get_counts_as_tuples`][fatqat.Result.get_counts_as_tuples] | A backend run with measurement counts |'
-  zh: '| `"counts"` | [`get_counts`][fatqat.Result.get_counts] 或 [`get_counts_as_tuples`][fatqat.Result.get_counts_as_tuples] | 带测量计数的后端运行 |'
+  zh: '| `"counts"` | [`get_counts`][fatqat.Result.get_counts] 或 [`get_counts_as_tuples`][fatqat.Result.get_counts_as_tuples] | 后端返回测量计数时 |'
   status: machine
 - id: 4fb9b5bc156f9d91
   en: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | A statevector run with final-state output enabled |'
-  zh: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | 启用末态输出的态矢量运行 |'
+  zh: '| `"statevector"` | [`get_statevector`][fatqat.Result.get_statevector] | 用态矢量方法运行并返回最终态时 |'
   status: machine
 - id: f297810ede9611c0
   en: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | A density-matrix run with final-state output enabled |'
-  zh: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | 启用末态输出的密度矩阵运行 |'
+  zh: '| `"density_matrix"` | [`get_density_matrix`][fatqat.Result.get_density_matrix] | 用密度矩阵方法运行并返回最终态时 |'
   status: machine
 - id: cd02fa05eeac25a1
   en: '| `"unitary"` | [`get_unitary`][fatqat.Result.get_unitary] | A unitary run with final-state output enabled |'
-  zh: '| `"unitary"` | [`get_unitary`][fatqat.Result.get_unitary] | 启用末态输出的酉矩阵运行 |'
+  zh: '| `"unitary"` | [`get_unitary`][fatqat.Result.get_unitary] | 用酉算符方法运行并返回算符时 |'
   status: machine
 - id: f685fd710727d4a6
   en: '| `"superop"` | [`get_superop`][fatqat.Result.get_superop] | A super-operator run with final-state output enabled |'
-  zh: '| `"superop"` | [`get_superop`][fatqat.Result.get_superop] | 启用末态输出的超算符运行 |'
+  zh: '| `"superop"` | [`get_superop`][fatqat.Result.get_superop] | 用超算符方法运行并返回算符时 |'
   status: machine
 - id: 49f6fc1f36b304c1
   en: '| `"expectation"` and `"std"` | [`get_expectation`][fatqat.Result.get_expectation] and [`get_std`][fatqat.Result.get_std] | An [`Estimator`][fatqat.Estimator] run |'
@@ -64,7 +64,7 @@
   status: retired
 - id: 0ccd0b6f582217aa
   en: '| Backend extension name | [`get_data`][fatqat.Result.get_data] | A backend extension |'
-  zh: '| 后端扩展名称 | [`get_data`][fatqat.Result.get_data] | 后端扩展 |'
+  zh: '| 扩展字段名 | [`get_data`][fatqat.Result.get_data] | 后端提供额外字段时 |'
   status: machine
 - id: 77e311af3bb766d4
   en: Draw counts
@@ -80,7 +80,7 @@
   status: retired
 - id: 9ba33e6a0ef5dc20
   en: '| `"expectation"` and `"standard_error"` | [`get_expectation`][fatqat.Result.get_expectation] and [`get_standard_error`][fatqat.Result.get_standard_error] | An [`Estimator`][fatqat.Estimator] run |'
-  zh: '| `"expectation"` 和 `"standard_error"` | [`get_expectation`][fatqat.Result.get_expectation] 和 [`get_standard_error`][fatqat.Result.get_standard_error] | 一次 [`Estimator`][fatqat.Estimator] 运行 |'
+  zh: '| `"expectation"` 和 `"standard_error"` | [`get_expectation`][fatqat.Result.get_expectation] 和 [`get_standard_error`][fatqat.Result.get_standard_error] | [`Estimator`][fatqat.Estimator] 计算期望值时 |'
   status: machine
 - id: 9fcf992034de7df2
   en: '[`get_counts`][fatqat.Result.get_counts] returns a new dictionary of display strings. Classical slot 0 is on the left, matching tuple position 0 from [`get_counts_as_tuples`][fatqat.Result.get_counts_as_tuples]. Thus tuple `(1, 0)` renders as `"10"`, and `(0, 1)` renders as `"01"`. If any classical dimension is at least 10, commas make multi-digit outcomes unambiguous: `(10, 3)` renders as `"10,3"`.'
@@ -113,4 +113,92 @@
 - id: dab3b6195075ac6d
   en: Most other accessors return the value stored in the result. Copy arrays or dictionaries before changing them if you need to preserve the original. Metadata from a direct backend run records the normalized `execution_config` and `result_config`; the deprecated key `simulation_config` holds a copy of `execution_config` until it is removed before FATQAT 0.1.0. Backend extensions may add fields. Pulse-emulator metadata records `runtime="qutip"` and a `runtime_details` mapping with `solver` and `solver_options`. A run that invokes multiple solvers reports their names as a tuple. These numerical-runtime details are informational. Keep the model, arrangement, controls, and application metadata alongside a result when they are needed to reproduce a physical run.
   zh: 其他大多数访问方法返回结果中存储的值。如果需要保留原始内容，请在修改前复制数组或字典。直接调用后端运行时，元数据记录规范化的 `execution_config` 和 `result_config`；已弃用的键 `simulation_config` 保存一份 `execution_config` 的副本，并将在 FATQAT 0.1.0 发布前移除。后端扩展可能添加字段。脉冲仿真器元数据记录 `runtime="qutip"`，以及包含 `solver` 和 `solver_options` 的 `runtime_details` 映射。调用多个求解器的运行以元组报告其名称。这些数值运行时细节仅供参考。如果复现物理运行需要模型、排列、控制和应用元数据，请将它们与结果一起保存。
+  status: machine
+- id: fa2676e477dfd94c
+  en: A [`Result`][fatqat.Result] holds the data produced by one backend or estimator run. Use the accessor for the data you requested. If a field is optional, check `available_data` for its name before reading it. A missing field raises [`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError].
+  zh: '[`Result`][fatqat.Result] 保存后端或 Estimator 单次运行产生的数据。用对应的方法读取所需数据即可。读取可选字段前，可以先在 `available_data` 里查它的名称。读取缺失字段会抛出 [`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError]。'
+  status: machine
+- id: b2c93d5cab3db6a7
+  en: Find result fields
+  zh: 查找结果字段
+  status: machine
+- id: 8a62ea8e861cc0e5
+  en: '| `"fixed_photon_state"` | [`get_fixed_photon_state`][fatqat.Result.get_fixed_photon_state] | A linear-optics run that returns fixed-photon amplitudes |'
+  zh: '| `"fixed_photon_state"` | [`get_fixed_photon_state`][fatqat.Result.get_fixed_photon_state] | 线性光学模拟返回固定光子数态的振幅时 |'
+  status: machine
+- id: cc0de38757632cfc
+  en: A backend's `result_config` uses `"final_state"` to request a state or operator. Look for its representation name in `available_data`, such as `"statevector"` or `"fixed_photon_state"`. The [simulator](simulator.md#run-inputs-and-results) and [pulse emulator](emulators/index.md#choose-a-result) pages describe the defaults and how to request a single trajectory.
+  zh: 在后端的 `result_config` 中用 `"final_state"` 请求返回量子态或算符。在 `available_data` 里要查找对应的表示名称，例如 `"statevector"` 或 `"fixed_photon_state"`。[模拟器](simulator.md#run-inputs-and-results)和[脉冲仿真器](emulators/index.md#choose-a-result)页面说明了默认返回什么、如何获取单条轨迹。
+  status: machine
+- id: 8487ec3c4f198635
+  en: <a id="ordering-and-mutable-values"></a>
+  zh: <a id="ordering-and-mutable-values"></a>
+  status: machine
+- id: 6462073bd95ad300
+  en: Read counts and states
+  zh: 读取计数和量子态
+  status: machine
+- id: 8ba71505307c673e
+  en: Count keys
+  zh: 测量计数的键
+  status: machine
+- id: 3525cb4ec5194013
+  en: '[`get_counts()`][fatqat.Result.get_counts] returns a new dictionary with string keys. The first classical register member is on the left. For example, the tuple key `(1, 0)` from [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] is displayed as `"10"`. When any classical dimension is at least 10, commas separate the digits, as in `"10,3"`.'
+  zh: '[`get_counts()`][fatqat.Result.get_counts] 返回一个新字典，用字符串作为键。从左往右，第一个数字对应第一个经典寄存器成员。例如，[`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] 返回的元组键 `(1, 0)` 会显示为 `"10"`。只要有一个经典寄存器成员的维度达到 10，就会用逗号分开各个值，例如 `"10,3"`。'
+  status: machine
+- id: e0d53f871ea10e03
+  en: A classical register member that no measurement writes stays at zero. Pulse emulators also issue a `UserWarning` if you request counts without a final state and leave a declared member unwritten.
+  zh: 测量没有写入的经典寄存器成员保持为零。如果用脉冲仿真器只请求计数，而程序有已声明的成员从未被测量写入，还会收到 `UserWarning`。
+  status: machine
+- id: 47c03d6a2f273729
+  en: State axes
+  zh: 量子态的子系统顺序
+  status: machine
+- id: 2d9fc6b1f62e76ef
+  en: Simulators return NumPy arrays. For statevectors, density matrices, and unitaries, pulse emulators return QuTiP `Qobj` values. The individual state accessors document the shapes and how to convert to arrays.
+  zh: 模拟器返回 NumPy 数组。脉冲仿真器返回的态矢量、密度矩阵和酉算符都是 QuTiP 的 `Qobj`。各读取方法的说明列出了返回值的形状和转成数组的方法。
+  status: machine
+- id: d7997fc1eacdfaaf
+  en: Result metadata
+  zh: 查看运行信息
+  status: machine
+- id: 5b82c4ab34c05821
+  en: '`metadata` records details of the run. Built-in simulators and pulse emulators record normalized `execution_config` and `result_config` on direct runs. A pulse run also records `runtime="qutip"` and, when a solver runs, the solver names and options in `runtime_details`. Estimator results carry their own run metadata.'
+  zh: '`metadata` 记录运行信息。直接调用内置模拟器或脉冲仿真器时，其中包含整理后的 `execution_config` 和 `result_config`。脉冲仿真还记录 `runtime="qutip"`，并在调用求解器时把名称和选项写入 `runtime_details`。Estimator 的结果记录它自身的运行信息。'
+  status: machine
+- id: 161d6f141b421da3
+  en: Accessors generally return the stored objects. Copy an array or a dictionary such as `metadata` before editing it if you need to preserve its original contents.
+  zh: 读取方法通常直接返回结果里保存的对象。如果要保留原始数据，请先复制数组或 `metadata` 这类字典，再修改副本。
+  status: machine
+- id: edfe96bf6c14704b
+  en: Call [`draw()`][fatqat.Result.draw] on a result with counts to get a Matplotlib figure. Use `stat="frequencies"` to show relative frequencies, or `number_to_keep` to group less frequent outcomes into an `other` bar.
+  zh: 对包含计数的结果调用 [`draw()`][fatqat.Result.draw] 会返回一张 Matplotlib 图。用 `stat="frequencies"` 显示相对频率，或用 `number_to_keep` 把较少出现的结果合并到 `other` 柱中。
+  status: machine
+- id: 93ad39827f2faf13
+  en: A [`Result`][fatqat.Result] contains the data produced by one execution, such as measurement counts, a final state, or expectation values. Its `available_data` lists the fields you can read. Accessing a missing field raises [`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError].
+  zh: '[`Result`][fatqat.Result] 保存一次执行产生的数据，例如测量计数、最终量子态或期望值。用 `available_data` 可以查看这次有哪些字段可读。读取缺失字段会抛出 [`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError]。'
+  status: machine
+- id: cadd8e7f66592426
+  en: Choose [`get_counts()`][fatqat.Result.get_counts] for display strings or [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] for integer tuples. Both follow classical register order. A tuple key `(1, 0)` is displayed as `"10"` in a binary register.
+  zh: 需要显示测量计数时，用 [`get_counts()`][fatqat.Result.get_counts] 取得字符串键。需要逐个处理整数时，用 [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] 取得元组键。两种写法都按经典寄存器成员的顺序排列。例如，在二值寄存器中，元组键 `(1, 0)` 显示为 `"10"`。
+  status: machine
+- id: 761ed3581beca8d5
+  en: Read `metadata["state_axes"]` to match state and operator entries to physical subsystems. Each entry gives a device label (`device_operand`) and its program reference (`register_ref`). An unused physical subsystem has reference `None`. The first subsystem is the most significant in the basis index. For dimensions `dims`, position `q` has place value `prod(dims[q + 1:])`. This order applies to statevectors, both axes of density matrices and unitaries, and the underlying basis of superoperators.
+  zh: 用 `metadata["state_axes"]` 可以把量子态或算符里的数据对应到物理子系统。列表中的每一项给出设备标签（`device_operand`）和对应的程序引用（`register_ref`）。如果程序没有用到这个物理子系统，对应的引用就是 `None`。第一个子系统在基底索引中占最高位。各子系统的维度为 `dims` 时，位置 `q` 的权重是 `prod(dims[q + 1:])`。态矢量、密度矩阵和酉算符的两个轴，以及超算符所用的基底，都按这个顺序排列。
+  status: machine
+- id: 8beea139218e27ed
+  en: On a direct backend run, check `metadata` for the effective `execution_config` and `result_config`. The [`Result`][fatqat.Result] reference below describes the solver information that pulse results can also carry. Copy stored arrays or dictionaries before editing them if you want to preserve the original values.
+  zh: 直接调用后端后，可在 `metadata` 中查看生效的 `execution_config` 和 `result_config`。下面的 [`Result`][fatqat.Result] 参考还说明了脉冲仿真可能记录的求解器信息。如果需要保留原始数据，请复制结果里的数组或字典，再改副本。
+  status: machine
+- id: 631e64de360e40eb
+  en: A result with measurement counts can plot them with [`draw()`][fatqat.Result.draw].
+  zh: 要把测量计数画成图，可以调用 [`draw()`][fatqat.Result.draw]。
+  status: machine
+- id: 75daa038e789d2b9
+  en: Built-in simulators and pulse emulators record the effective `execution_config` and `result_config` in `metadata` for direct runs. The [`Result`][fatqat.Result] reference also describes solver information available from pulse runs. If you plan to edit a stored array or dictionary, copy it first to preserve the original.
+  zh: 直接运行内置模拟器或脉冲仿真器时，可以在 `metadata` 里查到实际使用的 `execution_config` 和 `result_config`。脉冲仿真的求解器信息见 [`Result`][fatqat.Result] 的接口说明。要保留原始数据，可以先复制数组或字典，再修改副本。
+  status: machine
+- id: e4cbf64703ce1a3b
+  en: <a id="draw-counts"></a>
+  zh: <a id="draw-counts"></a>
   status: machine

@@ -4,7 +4,7 @@
   status: machine
 - id: 8dc6eae65ae75c28
   en: '[`SampledWaveform`][fatqat.emulator.SampledWaveform] describes a signal on a local time grid. Times use the model''s time unit, while the channel determines the sample unit and whether values may be complex.'
-  zh: "[`SampledWaveform`][fatqat.emulator.SampledWaveform] 在局部时间网格上描述一个信号。时间使用模型的时间单位，而采样单位以及取值是否可以为复数由通道决定。"
+  zh: '[`SampledWaveform`][fatqat.emulator.SampledWaveform] 在局部时间网格上描述一个信号。时间使用模型的时间单位，而采样单位以及取值是否可以为复数由通道决定。'
   status: machine
 - id: 10a8eec8b07a4d49
   en: Interpolation
@@ -25,4 +25,24 @@
 - id: 0ca833ecdc811b1b
   en: '`Atom2LevelEmulator` uses zero outside the sample interval. `TransmonEmulator` holds the nearest endpoint within the enclosing pulse block, so use zero first and last samples when a control should be off outside its grid. Every control is zero outside its block, allowing sequential pulse operations to compose without one block contributing during another. These rules do not change the operation''s duration.'
   zh: '`Atom2LevelEmulator` 在采样区间外取零。`TransmonEmulator` 在所属脉冲块内沿用最近端点的值，因此，如果控制信号在采样网格外应为零，请将首尾采样值设为零。所有控制信号在所属脉冲块外均为零，使顺序执行的脉冲能够组合，而不会在其他脉冲块期间继续起作用。这些规则不改变指令的持续时间。'
+  status: machine
+- id: 28ee66f7935388c9
+  en: See the [`SampledWaveform` reference][fatqat.emulator.SampledWaveform] for the spline degree used between samples. Outside the sample interval, emulators handle controls differently.
+  zh: 采样点之间采用样条插值，插值阶数见 [`SampledWaveform` 的 API 说明][fatqat.emulator.SampledWaveform]。在采样区间外，两种仿真器采用不同的取值规则。
+  status: machine
+- id: 15a14cc68b39d7c8
+  en: '`Atom2LevelEmulator` uses zero.'
+  zh: '`Atom2LevelEmulator` 在采样区间外取零。'
+  status: machine
+- id: 017e1c286d41893b
+  en: '`TransmonEmulator` holds the nearest endpoint within the pulse block. Set the first and last samples to zero if the control should be off outside the sample interval.'
+  zh: '`TransmonEmulator` 在脉冲块内沿用最近的端点值。若希望采样区间外停止驱动，把首尾采样值都设为零。'
+  status: machine
+- id: d85453ebe172648d
+  en: Every control is zero outside its block. The block duration is set by the enclosing pulse operation or definition.
+  zh: 控制信号在脉冲块外为零。脉冲块的时长由所属的脉冲操作或脉冲定义决定。
+  status: machine
+- id: d80da27d2e608ffb
+  en: '[`SampledWaveform`][fatqat.emulator.SampledWaveform] describes a signal on a local time grid. Times use the model''s time unit, while the channel determines the sample unit and whether values may be complex. The sample grid starts at zero, and a [`PulseControl`][fatqat.emulator.PulseControl] places it at an offset within the enclosing pulse block.'
+  zh: '[`SampledWaveform`][fatqat.emulator.SampledWaveform] 用一组采样时刻和对应的采样值描述波形。时间使用模型的单位，采样值的单位及是否可以用复数由通道决定。采样时间从零开始，由 [`PulseControl`][fatqat.emulator.PulseControl] 指定波形从脉冲块内的哪个时刻开始。'
   status: machine

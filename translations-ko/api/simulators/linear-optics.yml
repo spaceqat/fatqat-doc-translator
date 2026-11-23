@@ -38,3 +38,79 @@
   en: '| `execution_config` | Adds `"cutoff"` |'
   ko: '| `execution_config` | `"cutoff"` 추가 |'
   status: machine
+- id: df1c2f9aec65aba2
+  en: '[`LOSimulator`][fatqat.simulator.LOSimulator] runs programs that describe photons in optical modes. Use it to calculate how operations such as beam splitters and phase shifters change the distribution of photons across modes.'
+  ko: '[`LOSimulator`][fatqat.simulator.LOSimulator]는 광학 모드에서 광자를 다루는 프로그램을 실행합니다. 빔 스플리터나 위상 시프터를 지날 때 모드별 광자 분포가 어떻게 변하는지 계산할 수 있습니다.'
+  status: machine
+- id: bc104aa146b9230d
+  en: Choose an optical simulation method
+  ko: 광학 시뮬레이션 방법 선택
+  status: machine
+- id: 40b7f1d716afe15f
+  en: Use the default `fixed_photon_state` method when the program uses only a [`ModeRegister`][fatqat.ModeRegister] or several such registers, starts in a [`BasisState`][fatqat.simulator.BasisState] or the vacuum, and preserves the total photon number. It stores amplitudes only for the arrangements possible at that photon number.
+  ko: 프로그램의 양자 레지스터가 모두 [`ModeRegister`][fatqat.ModeRegister]이고, [`BasisState`][fatqat.simulator.BasisState] 또는 진공에서 시작해 총 광자 수를 보존한다면 기본 방법인 `fixed_photon_state`를 사용합니다. 주어진 광자 수에서 가능한 배치의 진폭만 저장합니다.
+  status: machine
+- id: 59654309ae31ebf7
+  en: Use `statevector` or `density_matrix` for a dense initial state, for reset or noise channels, or for a program that mixes modes with qubits. The simulator also provides the [operator methods](../simulator.md#methods).
+  ko: 배열로 초기 상태를 지정하거나 리셋 또는 잡음 채널을 적용할 때, 혹은 한 프로그램에서 모드와 큐비트를 함께 다룰 때는 `statevector` 또는 `density_matrix`를 사용합니다. [연산자 계산 방법](../simulator.md#methods)도 지원합니다.
+  status: machine
+- id: 5be366c37c77c943
+  en: Set the photon cutoff
+  ko: 광자 수 상한 설정
+  status: machine
+- id: 184d79b5ca5f6fe9
+  en: The `cutoff` sets the maximum number of photons per mode for one run. Pass it in `execution_config` to set the range from `0` through `cutoff` for each mode and each entry in a [`CountRegister`][fatqat.CountRegister].
+  ko: '`cutoff`는 한 번의 실행에서 모드 하나에 들어갈 수 있는 최대 광자 수입니다. `execution_config`에 전달하면 각 모드와 [`CountRegister`][fatqat.CountRegister]의 각 항목이 `0`에서 `cutoff`까지의 광자 수를 나타냅니다.'
+  status: machine
+- id: 3091fe0ed82a8127
+  en: When you supply a `BasisState`, the simulator can infer the cutoff from the total number of photons, with a minimum of one. It can also infer the cutoff from a compatible dense initial array. For a vacuum run with no `initial_state`, set `cutoff` explicitly.
+  ko: '`BasisState`를 전달하면 총 광자 수로 상한을 정할 수 있고, 최솟값은 1입니다. 크기가 맞는 초기 상태 배열로도 상한을 추론할 수 있습니다. `initial_state`를 생략하고 진공에서 시작하려면 `cutoff`를 직접 지정합니다.'
+  status: machine
+- id: 69e5582d2a32a5bc
+  en: Read optical results
+  ko: 광학 시뮬레이션 결과 읽기
+  status: machine
+- id: 9f1c0128038d16f2
+  en: For the fixed-photon method, [`Result.get_fixed_photon_state()`][fatqat.Result.get_fixed_photon_state] gives one amplitude per arrangement of photons. Use [`fixed_photon_index()`][fatqat.simulator.fixed_photon_index] to find an arrangement's position, and [`fixed_photon_occupation()`][fatqat.simulator.fixed_photon_occupation] to find the arrangement at a given position.
+  ko: 고정 광자 수 방법에서는 [`Result.get_fixed_photon_state()`][fatqat.Result.get_fixed_photon_state]로 광자 배치마다 하나의 진폭을 얻습니다. 주어진 배치의 인덱스는 [`fixed_photon_index()`][fatqat.simulator.fixed_photon_index]로 찾고, 인덱스에 해당하는 배치는 [`fixed_photon_occupation()`][fatqat.simulator.fixed_photon_occupation]으로 찾습니다.
+  status: machine
+- id: f94c3a4139464601
+  en: To calculate an observable on a mode, use [`Estimator`][fatqat.Estimator] with [`NumberOperator`][fatqat.observable.NumberOperator] or a [`Projector`][fatqat.observable.Projector] up to the cutoff. In a noise model, select modes by device label.
+  ko: 모드의 관측량을 계산하려면 [`Estimator`][fatqat.Estimator]에 [`NumberOperator`][fatqat.observable.NumberOperator] 또는 상한 이하 준위에 대한 [`Projector`][fatqat.observable.Projector]를 사용합니다. 잡음 모델에서는 장치 레이블로 모드를 지정합니다.
+  status: machine
+- id: 2f44d47fa52e23cc
+  en: <a id="fatqat.simulator.LOSimulator.method"></a>
+  ko: <a id="fatqat.simulator.LOSimulator.method"></a>
+  status: machine
+- id: c3125969fe0b426b
+  en: <a id="fatqat.simulator.LOSimulator.run"></a>
+  ko: <a id="fatqat.simulator.LOSimulator.run"></a>
+  status: machine
+- id: a3fd297c66df7d2f
+  en: <a id="fatqat.simulator.LOSimulator.run_sweep"></a>
+  ko: <a id="fatqat.simulator.LOSimulator.run_sweep"></a>
+  status: machine
+- id: 6ebf9cdae085cea6
+  en: <a id="fatqat.simulator.LOSimulator.validate_noise_model"></a>
+  ko: <a id="fatqat.simulator.LOSimulator.validate_noise_model"></a>
+  status: machine
+- id: 72e1dc699fb37306
+  en: Use [`Simulator.run()`][fatqat.simulator.Simulator.run] and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep] to run an optical program. The class reference below covers the optical method and cutoff, and includes a two-photon beam splitter example.
+  ko: 광학 프로그램은 [`Simulator.run()`][fatqat.simulator.Simulator.run]과 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]으로 실행합니다. 아래 클래스 항목에는 광학 시뮬레이션 방법과 광자 수 상한, 두 광자가 빔 스플리터에 들어오는 예제가 있습니다.
+  status: machine
+- id: 5b4a57c92b175783
+  en: '[`LOSimulator`][fatqat.simulator.LOSimulator] runs programs with photons in optical modes. Use it to compute the output photon counts or amplitudes of a linear-optical circuit.'
+  ko: '[`LOSimulator`][fatqat.simulator.LOSimulator]는 광학 모드의 광자를 다루는 프로그램을 실행합니다. 선형 광학 회로의 출력 광자 수나 진폭을 계산할 수 있습니다.'
+  status: machine
+- id: 84f0aeee1b2415a2
+  en: Configure an optical run
+  ko: 광학 시뮬레이션 설정
+  status: machine
+- id: 3ab407b9e63bd350
+  en: When passing a `noise` model, use device labels to select optical modes.
+  ko: '`noise`로 잡음 모델을 전달할 때는 장치 레이블로 광학 모드를 지정합니다.'
+  status: machine
+- id: 33d0762e53b0d0e9
+  en: Pass the photon counts in the mode order recorded in `metadata["state_axes"]`.
+  ko: 모드별 광자 수는 `metadata["state_axes"]`에 기록된 모드 순서대로 전달합니다.
+  status: machine

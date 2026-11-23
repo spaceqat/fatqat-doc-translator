@@ -4,43 +4,43 @@
   status: machine
 - id: 45249067ee17d922
   en: '[`PauliChannel`][fatqat.noise.PauliChannel] represents a stochastic mixture of Pauli-string errors. It is useful for biased or correlated qubit noise that uniform [`Depolarizing`][fatqat.noise.Depolarizing] cannot express.'
-  zh: '[`PauliChannel`][fatqat.noise.PauliChannel] 表示 Pauli 串错误的随机混合。它适用于均匀的 [`Depolarizing`][fatqat.noise.Depolarizing] 无法表达的有偏或关联量子比特噪声。'
+  zh: 用 [`PauliChannel`][fatqat.noise.PauliChannel] 可以按给定概率施加不同的 Pauli 算符串。对于均匀退极化噪声 [`Depolarizing`][fatqat.noise.Depolarizing] 难以表示的误差，例如不同 Pauli 误差出现的概率不同，或多个量子比特上的误差互相关联，可以用这种方式来描述。
   status: machine
 - id: ede5489964834a51
   en: Terms
-  zh: 项
+  zh: 指定算符串和概率
   status: machine
 - id: 09f27571a4665cbd
   en: 'Pass either a mapping or an iterable of `(string, probability)` pairs. Every string must:'
-  zh: 传入一个映射，或由 `(string, probability)` 对组成的可迭代对象。每个字符串必须：
+  zh: 可以传入从 Pauli 算符串到概率的映射，也可以传入一组 `(string, probability)` 对。每个算符串都要满足以下条件。
   status: machine
 - id: d7578b87868d12b5
   en: be nonempty;
-  zh: 非空；
+  zh: 至少有一个字符
   status: machine
 - id: 3ceb2f01bbf964b6
   en: contain only uppercase `I`, `X`, `Y`, and `Z`;
-  zh: 只包含大写的 `I`、`X`、`Y` 和 `Z`；
+  zh: 只含大写字母 `I`、`X`、`Y` 和 `Z`
   status: machine
 - id: c3670b004025b65e
   en: have the same width as every other string.
-  zh: 与其他所有字符串具有相同的宽度。
+  zh: 长度相同
   status: machine
 - id: 15a9df1e2d069e66
   en: Each probability is an `int` or `float` other than `bool` and must be finite and in `[0, 1]`. Duplicate strings are an error. Nonidentity probabilities may sum to less than 1; FATQAT assigns the remaining weight to the all-identity string. An explicitly supplied identity term must agree with that implied value. Small floating-point round-off is tolerated.
-  zh: 每个概率必须是 `int` 或 `float`（不包括 `bool`），且必须有限并位于 `[0, 1]` 内。重复的字符串会引发错误。非恒等项的概率之和可以小于 1；FATQAT 会将剩余权重分配给全恒等字符串。显式提供的恒等项必须与该隐含值一致。允许微小的浮点舍入误差。
+  zh: 概率须为 `int` 或 `float`（不接受 `bool`），并且是 `[0, 1]` 内的有限值。每个算符串只能指定一次。把含有 X、Y 或 Z 的算符串的概率加在一起。如果总和小于 1，FatQat 会把剩余概率分给全为 I 的算符串。也可以显式指定这个概率，但必须与剩余值一致。允许微小的浮点舍入误差。
   status: machine
 - id: 2a962cd046b64376
   en: 'FATQAT consumes the input and stores `PauliChannel.terms` as an immutable tuple. The identity term comes first; the other terms keep their input order:'
-  zh: "FATQAT 读取输入后，将 `PauliChannel.terms` 保存为不可变元组。恒等项排在最前，其余项保持输入顺序："
+  zh: FatQat 将算符串及其概率保存为不可变元组，可通过 `PauliChannel.terms` 读取。全为 I 的算符串排在第一位，其余按输入顺序排列。
   status: machine
 - id: 4b568d7c224c31e2
   en: After the identity weight has been filled in, the channel is
-  zh: 补齐恒等权重后，该信道为
+  zh: 补齐全为 I 的算符串的概率后，量子态按下式变化。
   status: machine
 - id: 0011ac1dd6d07dfd
   en: Compatible simulators apply this channel after the matched operation. See [Simulators](backend-support.md#noise-simulator-support) for built-in availability and scope.
-  zh: 兼容的模拟器在匹配的操作之后应用此信道。内置可用性及作用范围参见[模拟器](backend-support.md#noise-simulator-support)。
+  zh: 支持 Pauli 噪声的模拟器会在匹配的操作完成后施加这个信道。各后端的支持范围见[模拟器](backend-support.md#noise-simulator-support)。
   status: machine
 - id: a74b73e80c205cdb
   en: Target order
@@ -48,11 +48,11 @@
   status: machine
 - id: c38c572b72b88980
   en: 'The string width determines the number of targets, and every target must be a qubit. The first character describes the first target and forms the most-significant tensor factor. For targets `(q0, q1)`:'
-  zh: 字符串宽度决定目标数量，且每个目标都必须是量子比特。第一个字符描述第一个目标，并构成最高位的张量因子。对于目标 `(q0, q1)`：
+  zh: 算符串有几个字符，就作用于几个量子比特。从左到右，第一个字符作用于第一个目标，对应张量积的最高位。下表以目标 `(q0, q1)` 为例。
   status: machine
 - id: be659940ef48e72a
   en: '**Two-qubit ordering**'
-  zh: '**双量子比特顺序**'
+  zh: '**两个量子比特上的算符顺序**'
   status: machine
 - id: 70476e17e763b335
   en: This left-to-right convention is the reverse of Qiskit's displayed Pauli strings. FATQAT checks the target count and qubit dimensions when the program runs.
@@ -60,7 +60,7 @@
   status: retired
 - id: 7c907406f6b8a059
   en: '| String | First target `q0` | Second target `q1` |'
-  zh: '| 字符串 | 第一个目标 `q0` | 第二个目标 `q1` |'
+  zh: '| 算符串 | 第一个目标 `q0` | 第二个目标 `q1` |'
   status: machine
 - id: fdee45cae9f155c3
   en: 'The string width determines the number of targets, and every target must be a qubit. Strings follow Qiskit''s displayed Pauli-string convention, the same reading as [`Observable`][fatqat.Observable] labels: the rightmost character describes the first target. For targets `(q0, q1)`:'

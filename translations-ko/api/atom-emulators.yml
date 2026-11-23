@@ -196,7 +196,7 @@
   status: retired
 - id: c8e5998f6a3955c2
   en: API
-  ko: API
+  ko: API 레퍼런스
   status: machine
 - id: ce49c929949d348d
   en: The `run()` method has the signature `(program, *, shots=1024, resource_layout=None, execution_config=None, result_config=None)`. The optional layout must still cover every arrangement site exactly once; the default uses declaration order. Validation errors are raised directly from `run()` before a job is returned. A failure after execution starts is represented by a failed job, and `job.result()` raises [`BackendExecutionError`][fatqat.errors.BackendExecutionError].
@@ -216,9 +216,73 @@
   status: machine
 - id: e7f8ca00d7494d04
   en: Use [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] for directly authored global controls in the physical `|g>, |r>` model. See [Emulate neutral atoms with laser pulses](../guide/neutral-atom-emulation.md) for a complete executable example.
-  ko: "물리적 `|g>, |r>` 모델에서 직접 작성한 전역 제어 펄스를 실행하려면 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]를 사용합니다. 전체 실행 예제는 [레이저 펄스로 중성 원자 에뮬레이션하기](../guide/neutral-atom-emulation.md)를 참고하세요."
+  ko: 물리적 `|g>, |r>` 모델에서 직접 작성한 전역 제어 펄스를 실행하려면 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]를 사용합니다. 전체 실행 예제는 [레이저 펄스로 중성 원자 에뮬레이션하기](../guide/neutral-atom-emulation.md)를 참고하세요.
   status: machine
 - id: 704e5956b808493e
   en: See [Pulse control](pulse-control/index.md) for direct pulse authoring. For the complete two-level workflow, see [Emulate neutral atoms with laser pulses](../guide/neutral-atom-emulation.md).
-  ko: "펄스를 직접 작성하는 방법은 [펄스 제어](pulse-control/index.md)를 참고하세요. 전체 2준위 에뮬레이션 절차는 [레이저 펄스로 중성 원자 에뮬레이션하기](../guide/neutral-atom-emulation.md)에 있습니다."
+  ko: 펄스를 직접 작성하는 방법은 [펄스 제어](pulse-control/index.md)를 참고하세요. 전체 2준위 에뮬레이션 절차는 [레이저 펄스로 중성 원자 에뮬레이션하기](../guide/neutral-atom-emulation.md)에 있습니다.
+  status: machine
+- id: 4eac98bda4283e34
+  en: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] models atoms at fixed positions with a ground level and a Rydberg level. Use it to study how a laser pulse drives the whole array and how the distance between atoms changes their interactions.'
+  ko: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]는 고정된 위치의 각 원자를 바닥 준위와 리드베리 준위로 모델링합니다. 레이저 펄스가 배열 전체를 어떻게 구동하며 원자 사이의 거리가 상호작용에 어떤 영향을 주는지 연구할 수 있습니다.'
+  status: machine
+- id: 8348ac564091cca7
+  en: <a id="two-level-atom-emulator"></a>
+  ko: <a id="two-level-atom-emulator"></a>
+  status: machine
+- id: 4ebb65c8e4d853e3
+  en: Configure the model and arrangement
+  ko: 모델과 원자 배열 설정
+  status: machine
+- id: 64f66030db20c20a
+  en: The model defines the energy levels, controls, and interaction law. The arrangement defines where the atoms sit. Load `atom2level.reference` with [`load_model_document()`][fatqat.emulator.load_model_document] and pass the decoded model document to [`Atom2LevelModel.from_document()`][fatqat.emulator.Atom2LevelModel.from_document].
+  ko: 모델은 에너지 준위, 제어 방식, 상호작용 법칙을 정하고 배열은 원자의 위치를 정합니다. [`load_model_document()`][fatqat.emulator.load_model_document]로 `atom2level.reference`를 읽고, 읽어 온 모델 문서를 [`Atom2LevelModel.from_document()`][fatqat.emulator.Atom2LevelModel.from_document]에 전달합니다.
+  status: machine
+- id: e451b53937e0c7f7
+  en: Use [`AtomArrangement.chain()`][fatqat.emulator.AtomArrangement.chain] or [`rectangular()`][fatqat.emulator.AtomArrangement.rectangular] for regular layouts. Use [`from_coordinates()`][fatqat.emulator.AtomArrangement.from_coordinates] for explicit 2D or 3D sites and [`combine()`][fatqat.emulator.AtomArrangement.combine] to join labeled layouts. Coordinates are in micrometres, and their order defines the site indices.
+  ko: 규칙적인 배열은 [`AtomArrangement.chain()`][fatqat.emulator.AtomArrangement.chain] 또는 [`rectangular()`][fatqat.emulator.AtomArrangement.rectangular]로 만듭니다. 2차원이나 3차원 좌표를 직접 지정하려면 [`from_coordinates()`][fatqat.emulator.AtomArrangement.from_coordinates]를, 레이블이 붙은 배열들을 이어 붙이려면 [`combine()`][fatqat.emulator.AtomArrangement.combine]을 사용합니다. 좌표 단위는 마이크로미터이며 좌표 순서가 사이트 번호를 정합니다.
+  status: machine
+- id: 684277f969031de3
+  en: Declare one qubit per site in the program. The default binding uses program declaration order. An explicit [`ResourceLayout`][fatqat.ResourceLayout] must cover every site exactly once.
+  ko: 프로그램에서 사이트마다 큐비트 하나를 선언합니다. 기본적으로 프로그램의 선언 순서대로 사이트에 배치합니다. [`ResourceLayout`][fatqat.ResourceLayout]을 직접 전달할 때는 각 사이트에 큐비트를 정확히 하나씩 배정해야 합니다.
+  status: machine
+- id: 8411ed876f7642dc
+  en: Address global controls
+  ko: 전역 제어 지정
+  status: machine
+- id: f4a77f96b964e3e0
+  en: Both global channels act on every atom. Use `model.control.drive()` for a complex Rabi envelope and `model.control.detuning()` for a real detuning waveform. Time is in microseconds and both waveforms use `rad/us`. Add the [`PulseOperation`][fatqat.operations.PulseOperation] directly to the program.
+  ko: 두 전역 채널 모두 모든 원자에 작용합니다. 복소 라비 엔벨로프에는 `model.control.drive()`를, 실수 디튜닝 파형에는 `model.control.detuning()`을 사용합니다. 시간은 마이크로초 단위이고 두 파형은 모두 `rad/us`를 사용합니다. [`PulseOperation`][fatqat.operations.PulseOperation]을 프로그램에 직접 추가합니다.
+  status: machine
+- id: 2c5087ef0ff22862
+  en: Place measurements after the pulse blocks. The two-level emulator runs unconditional operations. To use an ordinary gate, supply its pulse rule in `gate_implementation_map`.
+  ko: 측정은 펄스 블록 뒤에 배치합니다. 두 준위 에뮬레이터는 고전 조건이 없는 연산을 실행합니다. 일반 게이트를 사용하려면 그 펄스 규칙을 `gate_implementation_map`으로 전달합니다.
+  status: machine
+- id: 654ea1472004407c
+  en: Use [Pulse control](pulse-control/index.md) to specify the waveform and timing. For an example that compares drives at different atom separations, see [Emulate neutral atoms with laser pulses](../guide/neutral-atom-emulation.md).
+  ko: 파형과 시간 배치는 [펄스 제어](pulse-control/index.md)를 참조하세요. 원자 간격을 바꿔 구동 결과를 비교하는 예는 [레이저 펄스로 중성 원자 에뮬레이션](../guide/neutral-atom-emulation.md)에 있습니다.
+  status: machine
+- id: 0bc2c8fca705fd79
+  en: Run on an atom arrangement
+  ko: 원자 배열 프로그램 실행
+  status: machine
+- id: 927b0e27c680c336
+  en: Each run starts with every atom in the ground level. Use [`run()`][fatqat.emulator.Atom2LevelEmulator.run] to schedule the program and request output. The per-run interaction cutoff lets you change which couplings the Hamiltonian includes.
+  ko: 실행을 시작할 때 모든 원자는 바닥 준위에 있습니다. [`run()`][fatqat.emulator.Atom2LevelEmulator.run]으로 프로그램의 시간 배치와 출력을 지정합니다. 실행마다 상호작용 상한을 정해 해밀토니안에 포함할 결합을 바꿀 수 있습니다.
+  status: machine
+- id: 0adeb6bb48cceb34
+  en: 'Set `execution_config={"interaction_cutoff": ...}` to keep only pairs at or below a distance in micrometres. `None` keeps the full interaction Hamiltonian and `0.0` disables pair interactions. On a rectangular grid with equal spacing, using that spacing as the cutoff keeps the horizontal and vertical nearest neighbors.'
+  ko: '마이크로미터 단위의 거리 상한은 `execution_config={"interaction_cutoff": ...}`로 설정합니다. 그 거리 이내인 쌍만 남습니다. `None`은 전체 상호작용 해밀토니안을 유지하고 `0.0`은 쌍 상호작용을 끕니다. 가로와 세로 간격이 같은 직사각형 격자에서 그 간격을 상한으로 쓰면 가로와 세로의 최근접 이웃만 남습니다.'
+  status: machine
+- id: f47842f101d9a699
+  en: For continuous noise, register a background source for each site you want to affect. Rates are in inverse microseconds and relaxation times are in microseconds. See [Pulse emulator noise](noise/backend-support.md#noise-emulator-support) for the supported channel forms and readout noise.
+  ko: 연속 시간 잡음을 추가하려면 영향을 줄 사이트마다 배경 잡음을 등록합니다. 잡음률은 마이크로초의 역수, 완화 시간은 마이크로초 단위입니다. 지원하는 채널 형태와 판독 잡음은 [펄스 에뮬레이터 잡음](noise/backend-support.md#noise-emulator-support)을 참조하세요.
+  status: machine
+- id: e7c17a74611ec5ed
+  en: Read atom array results
+  ko: 원자 배열 결과 읽기
+  status: machine
+- id: a0d55b930545e20d
+  en: With any [result method](emulators/index.md#choose-a-result), every site contributes two basis levels in the order `("g", "r")`. The state dimension is `2**N` for `N` sites. Use `metadata["state_axes"]` for the order of the sites in the returned state or operator.
+  ko: 어떤 [결과 표현](emulators/index.md#choose-a-result)을 선택해도 사이트마다 `("g", "r")` 순서의 두 기저 준위가 있습니다. 사이트가 `N`개라면 상태 공간의 차원은 `2**N`입니다. 반환된 상태나 연산자의 사이트 순서는 `metadata["state_axes"]`에서 확인할 수 있습니다.
   status: machine

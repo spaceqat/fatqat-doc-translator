@@ -74,3 +74,23 @@
   en: See [Backend support](backend-support.md) for accepted forms and scopes.
   ko: 허용되는 형식과 범위는 [백엔드 지원 범위](backend-support.md)를 참고하세요.
   status: machine
+- id: 423a365db191b8f6
+  en: Supply the transition coefficients directly. Their values determine the relative strength and phase of the terms in the jump.
+  ko: 전이 계수를 직접 지정하세요. 계수는 점프 연산자를 이루는 각 항의 상대 세기와 위상을 정합니다.
+  status: machine
+- id: 2eddd5731a6c3aee
+  en: A [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] describes one local jump operator from the transition coefficients you supply. The same interface can describe a transmon ladder or a decay branch in an atom.
+  ko: '[`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] 하나는 입력한 전이 계수로 국소 점프 연산자 하나를 정의합니다. 트랜스몬의 인접 준위 사이 전이나 원자의 붕괴 경로 하나를 같은 인터페이스로 기술할 수 있습니다.'
+  status: machine
+- id: cc9b0c9fa6e532f8
+  en: Choose either `p` for the jump strength of a finite simulator channel or `rate` for continuous evolution in a pulse emulator.
+  ko: 점프의 세기는 두 형태 중 하나로 지정합니다. 시뮬레이터의 유한 채널에는 `p`를, 펄스 에뮬레이터의 연속 진화에는 `rate`를 사용하세요.
+  status: machine
+- id: 2d28a7a38a6b0fee
+  en: <a id="finite-channel-form"></a>
+  ko: <a id="finite-channel-form"></a>
+  status: machine
+- id: 4a32bb4205342d0c
+  en: <a id="continuous-form"></a>
+  ko: <a id="continuous-form"></a>
+  status: machine

@@ -16,5 +16,57 @@
   status: machine
 - id: 1cad86828c664ecb
   en: FatQat provides [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) pulse emulators. See [Pulse control](../pulse-control/index.md) for shared control values, or [Simulators](../simulators/index.md) for gate-level simulation. The guided path begins with [Write and run pulse programs](../../guide/hamiltonian-emulation.md).
-  ko: "FatQat은 [transmon](../pulse-emulator.md)과 [중성 원자](../atom-emulators.md) 펄스 에뮬레이터를 제공합니다. 공통 제어 값은 [펄스 제어](../pulse-control/index.md), 게이트 수준 시뮬레이션은 [시뮬레이터](../simulators/index.md)를 참고하세요. 단계별 학습은 [펄스 프로그램 작성과 실행](../../guide/hamiltonian-emulation.md)에서 시작합니다."
+  ko: FatQat은 [transmon](../pulse-emulator.md)과 [중성 원자](../atom-emulators.md) 펄스 에뮬레이터를 제공합니다. 공통 제어 값은 [펄스 제어](../pulse-control/index.md), 게이트 수준 시뮬레이션은 [시뮬레이터](../simulators/index.md)를 참고하세요. 단계별 학습은 [펄스 프로그램 작성과 실행](../../guide/hamiltonian-emulation.md)에서 시작합니다.
+  status: machine
+- id: ee7a5643d1f134d9
+  en: A control pulse can rotate a qubit, couple two transmons, or drive an array of atoms. FatQat's pulse emulators calculate how the quantum state changes during those controls. They use a Hamiltonian for the physical system, so the pulse shape, strength, and timing can all affect the result.
+  ko: 제어 펄스로 큐비트를 회전시키거나 두 트랜스몬을 결합하거나 원자 배열을 구동할 수 있습니다. FatQat의 펄스 에뮬레이터는 물리계의 해밀토니안을 사용해 제어 중 양자 상태가 시간에 따라 어떻게 변하는지 계산합니다. 펄스의 형태와 세기, 시간 배치가 결과에 영향을 줄 수 있습니다.
+  status: machine
+- id: 1d06ad36d9950cf2
+  en: '| Emulator | What it models |'
+  ko: '| 에뮬레이터 | 모델링 대상 |'
+  status: machine
+- id: bbce9989681c7832
+  en: '| [`TransmonEmulator`](../pulse-emulator.md) | Three levels per transmon, with calibrated gates and channel-addressed pulses. Use it to study rotations, coupled gates, and leakage. |'
+  ko: '| [`TransmonEmulator`](../pulse-emulator.md) | 트랜스몬마다 세 준위를 사용합니다. 보정된 게이트나 채널을 지정한 펄스로 회전, 결합 게이트 및 누설을 연구할 수 있습니다. |'
+  status: machine
+- id: f7f48da822fe81d1
+  en: '| [`Atom2LevelEmulator`](../atom-emulators.md) | Two-level Rydberg atoms at fixed positions. Use it to study how global laser pulses and distance-dependent interactions affect an array. |'
+  ko: '| [`Atom2LevelEmulator`](../atom-emulators.md) | 고정된 위치에 놓인 두 준위 리드베리 원자를 다룹니다. 전역 레이저 펄스와 거리에 따라 달라지는 상호작용이 배열에 미치는 영향을 연구할 수 있습니다. |'
+  status: machine
+- id: e66b86b0290af7fd
+  en: See [Pulse control](../pulse-control/index.md) to choose how to specify a pulse, or [Write and run pulse programs](../../guide/hamiltonian-emulation.md) for a complete example.
+  ko: 펄스를 지정하는 방법은 [펄스 제어](../pulse-control/index.md)를 참조하세요. [펄스 프로그램 작성과 실행](../../guide/hamiltonian-emulation.md)에서는 펄스를 지정하고 프로그램을 실행하는 과정을 예제로 보여 줍니다.
+  status: machine
+- id: 031684dbd2c9da8e
+  en: Choose a result
+  ko: 읽을 결과 선택
+  status: machine
+- id: f243ec003b460897
+  en: Both emulators take a `Program` and return a completed job from `run()`. The `method` selects the form of the state or operator you can read from `job.result()`.
+  ko: 두 에뮬레이터 모두 `run()`에 `Program`을 받아 실행을 마친 작업을 반환합니다. `method`는 `job.result()`에서 읽을 상태 또는 연산자의 형태를 정합니다.
+  status: machine
+- id: 3b6ad1a884c8a2d6
+  en: '| Method | Use it for | Result accessor |'
+  ko: '| 방법 | 주요 용도 | 결과 접근 메서드 |'
+  status: machine
+- id: 52b51ece0d27fee6
+  en: '| `statevector` (default) | Follow a pure state or sample one trajectory when Lindblad noise can act. | [`get_statevector()`][fatqat.Result.get_statevector] |'
+  ko: '| `statevector`(기본값) | 순수 상태의 진화를 계산하거나 Lindblad 잡음이 작용할 때 궤적 하나를 샘플링합니다. | [`get_statevector()`][fatqat.Result.get_statevector] |'
+  status: machine
+- id: d2e49a9b2c73f7bb
+  en: '| `density_matrix` | Compute the ensemble state under supported Lindblad noise. | [`get_density_matrix()`][fatqat.Result.get_density_matrix] |'
+  ko: '| `density_matrix` | 지원하는 Lindblad 잡음 아래에서 앙상블 상태를 계산합니다. | [`get_density_matrix()`][fatqat.Result.get_density_matrix] |'
+  status: machine
+- id: 4df01386776b009f
+  en: '| `unitary` | Compute the coherent evolution operator for a program without measurement, reset, classical conditions, or potentially active Lindblad noise. | [`get_unitary()`][fatqat.Result.get_unitary] |'
+  ko: '| `unitary` | 측정, 리셋, 고전 조건 또는 작용할 수 있는 Lindblad 잡음이 없는 프로그램의 결맞은 진화 연산자를 계산합니다. | [`get_unitary()`][fatqat.Result.get_unitary] |'
+  status: machine
+- id: a5b5c398620e2ea2
+  en: 'These accessors return QuTiP `Qobj` values. Use `.full()` for a NumPy array. Measurement counts are returned by default when the program measures. To retain a stochastic final state from one shot, pass `result_config={"final_state": True}` and `shots=1`.'
+  ko: '이 메서드들은 QuTiP의 `Qobj`를 반환합니다. NumPy 배열로 바꾸려면 `.full()`을 사용합니다. 프로그램에 측정이 있으면 기본적으로 측정 결과를 집계합니다. 샷 하나의 확률적 최종 상태를 남기려면 `result_config={"final_state": True}`와 `shots=1`을 전달합니다.'
+  status: machine
+- id: 9e482bd77f5d98d6
+  en: For the run options, see [`TransmonEmulator.run()`][fatqat.emulator.TransmonEmulator.run] or [`Atom2LevelEmulator.run()`][fatqat.emulator.Atom2LevelEmulator.run].
+  ko: 실행 옵션은 [`TransmonEmulator.run()`][fatqat.emulator.TransmonEmulator.run] 또는 [`Atom2LevelEmulator.run()`][fatqat.emulator.Atom2LevelEmulator.run]을 참조하세요.
   status: machine

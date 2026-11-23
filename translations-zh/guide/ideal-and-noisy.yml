@@ -128,5 +128,9 @@
   status: machine
 - id: ab606c2415f9d233
   en: Real quantum devices are affected by their environment, imperfect controls, and measurement errors. These effects can change the state or the recorded outcomes. An ideal simulation helps you understand the intended computation; adding a noise model lets you study how selected imperfections affect it and bring the simulation closer to the conditions of an implementation. Which effects it captures depends on the model and parameters you choose.
-  zh: "实际量子设备会受到环境、控制误差和测量误差的影响，使量子态或记录的结果发生变化。理想模拟帮助我们理解计算原本应有的结果；加入噪声模型后，就可以研究这些误差带来的影响，让模拟更贴近实际实现。具体能反映哪些影响，取决于所选的模型和参数。"
+  zh: 实际量子设备会受到环境、控制误差和测量误差的影响，使量子态或记录的结果发生变化。理想模拟帮助我们理解计算原本应有的结果；加入噪声模型后，就可以研究这些误差带来的影响，让模拟更贴近实际实现。具体能反映哪些影响，取决于所选的模型和参数。
+  status: machine
+- id: 692fa8b18f04c0a8
+  en: Use [Hamiltonian-level emulation](hamiltonian-emulation.md) to study how noise accumulates during pulses and idle periods. Start with the [pulse-emulator configuration example](../api/noise.md#during-pulse-evolution) for a rate-based model. The [backend support table](../api/noise/backend-support.md#noise-backend-support) lists available noise forms, and the [NoiseModel API](../api/noise/model.md) explains how to select operations and targets.
+  zh: 想研究噪声如何在脉冲和空闲时段累积，可以用[哈密顿量仿真](hamiltonian-emulation.md)。[脉冲仿真器的配置示例](../api/noise.md#during-pulse-evolution)演示了怎样设置速率。[后端支持表](../api/noise/backend-support.md#noise-backend-support)列出可用的噪声形式，[NoiseModel API](../api/noise/model.md)介绍怎样选择操作和目标。
   status: machine

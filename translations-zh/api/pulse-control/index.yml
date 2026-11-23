@@ -28,7 +28,7 @@
   status: machine
 - id: b3f98df09d60e20c
   en: To implement an ordinary gate with pulses, register a [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] rule that returns a [`PulseDefinition`][fatqat.emulator.PulseDefinition]. See [Gate realization](gate-realization.md).
-  zh: 要用脉冲实现普通门，请注册一条返回 [`PulseDefinition`][fatqat.emulator.PulseDefinition] 的 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] 规则。参见[门实现](gate-realization.md)。
+  zh: 要用脉冲实现普通门，请注册一条返回 [`PulseDefinition`][fatqat.emulator.PulseDefinition] 的 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] 规则。参见[量子门的脉冲实现](gate-realization.md)。
   status: machine
 - id: 68e1ca575295bb56
   en: Validation
@@ -84,7 +84,7 @@
   status: machine
 - id: 959453f771a8926b
   en: '[Gate realization](gate-realization.md)'
-  zh: '[门实现](gate-realization.md)'
+  zh: '[量子门的脉冲实现](gate-realization.md)'
   status: machine
 - id: 4b1c4d82399781ac
   en: '| Backend | Channels | Time / sample units | Conditions in `run()` |'
@@ -104,5 +104,85 @@
   status: machine
 - id: 5bf59d5d33dffe89
   en: Read [Write and run pulse programs](../../guide/hamiltonian-emulation.md) first for the gate-calibration, direct-control, and scheduling workflow. This section defines the exact pulse objects and validation rules.
-  zh: "请先阅读[编写和运行脉冲程序](../../guide/hamiltonian-emulation.md)，了解门校准、直接控制与调度工作流。本节定义确切的脉冲对象及其验证规则。"
+  zh: 请先阅读[编写和运行脉冲程序](../../guide/hamiltonian-emulation.md)，了解门校准、直接控制与调度工作流。本节定义确切的脉冲对象及其验证规则。
+  status: machine
+- id: 10bac4d706037c88
+  en: Use the pulse APIs to drive physical channels directly or to specify the pulses that implement a gate.
+  zh: 脉冲 API 可以直接驱动物理通道，也可以指定实现某个量子门所需的脉冲。
+  status: machine
+- id: 1c67165cf16676a0
+  en: Direct pulses and gate pulses
+  zh: 直接脉冲与门的脉冲实现
+  status: machine
+- id: 4841e7f8ac5da796
+  en: '**Drive a physical channel.** Create a [SampledWaveform](sampled-waveform.md) for the signal and a [PulseControl](pulse-control.md) to assign it to a channel. A [PulseOperation](pulse-operation.md) groups one or more such controls into a timed program instruction. Its channels identify the physical resources it drives.'
+  zh: '**直接驱动通道。** 用 [SampledWaveform](sampled-waveform.md) 描述信号，再用 [PulseControl](pulse-control.md) 将它分配给一个通道。[PulseOperation](pulse-operation.md) 将一个或多个控制合为一条有明确时长的程序指令，控制通道指明要驱动的物理资源。'
+  status: machine
+- id: 23d6a0d642a449aa
+  en: '**Supply pulses for a gate.** Register a rule in a [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap]. The rule returns a [`PulseDefinition`][fatqat.emulator.PulseDefinition] for the gate. See [Gate realization](gate-realization.md) for the forms a rule can take.'
+  zh: '**用脉冲实现量子门。** 在 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] 中注册一条规则，为量子门返回对应的 [`PulseDefinition`][fatqat.emulator.PulseDefinition]。规则的写法见[量子门的脉冲实现](gate-realization.md)。'
+  status: machine
+- id: 5d6d37370663eb08
+  en: The value constructors check the sample grid, offsets, and block timing, including whether controls fit within the block and use distinct channels. Channel selectors check the form of an address, such as whether a subsystem label is nonempty. When the emulator prepares the block for execution, it checks the channel's model family and whether the named resources exist. It also checks real or complex sample requirements, amplitude and duration limits, and which channels can run together.
+  zh: 创建波形、控制和脉冲块时，FatQat 会检查采样时间、偏移量和块的时序，包括每个控制是否在块内结束、通道是否重复。通道选择器只检查地址的形式，例如子系统标签是否为空。仿真器准备执行脉冲块时，再检查通道是否适用于该类模型、指定的资源是否存在，并核对采样值的实数或复数要求、振幅和时长限制，以及各通道能否同时使用。
+  status: machine
+- id: f108e755c218ae72
+  en: Direct pulse support
+  zh: 直接脉冲支持
+  status: machine
+- id: 24b5418927229d3b
+  en: Durations, offsets, and sample times use the model's time unit. Waveform values use the channel's unit. The table lists the built-in channels and whether programs can use classical conditions on direct pulses.
+  zh: 时长、偏移量和采样时间使用模型的时间单位，波形值使用对应通道的单位。下表列出内置通道，以及各后端是否支持用经典条件控制直接脉冲。
+  status: machine
+- id: 511c916a9fa661ae
+  en: '| Backend | Channels | Time / sample units | Classical conditions |'
+  zh: '| 后端 | 通道 | 时间与采样值的单位 | 经典条件 |'
+  status: machine
+- id: 14b71d86321750c6
+  en: Pulse emulators use Lindblad noise specified by rates or relaxation times. For a finite channel such as [`PauliChannel`][fatqat.noise.PauliChannel], converting a probability to a rate requires a duration and a conversion convention. Use [`Simulator`][fatqat.simulator.Simulator] for discrete Pauli noise. For continuous noise, see the [supported pulse noise models](../noise/backend-support.md#noise-emulator-support) for each emulator.
+  zh: 脉冲仿真器使用由速率或弛豫时间指定的 Lindblad 噪声。对于 [`PauliChannel`][fatqat.noise.PauliChannel] 这类有限信道，将概率换算为速率需要给定时长和换算约定。离散 Pauli 噪声可用 [`Simulator`][fatqat.simulator.Simulator] 模拟。连续噪声的适用范围见各仿真器[支持的脉冲噪声模型](../noise/backend-support.md#noise-emulator-support)。
+  status: machine
+- id: 5deb65e708e98c80
+  en: Pulse emulators use Lindblad noise specified by rates or relaxation times. See the [supported pulse noise models](../noise/backend-support.md#noise-emulator-support) for each emulator.
+  zh: 脉冲仿真器用 Lindblad 噪声描述连续时间演化，参数以速率或弛豫时间给出。各仿真器支持的形式见[脉冲噪声模型](../noise/backend-support.md#noise-emulator-support)。
+  status: machine
+- id: 281e97d5f458eecc
+  en: A pulse emulator runs physical controls with specified waveforms, channels, and timing. When the program contains a gate, the emulator uses the gate's pulse implementation to obtain those controls. A direct pulse operation specifies the controls in the program.
+  zh: 脉冲仿真需要知道施加什么波形、用哪个通道，以及何时施加。程序里写的是量子门时，仿真器根据门的脉冲实现取得这些控制信息。也可以在程序里直接添加脉冲操作，由操作指定要施加的控制。
+  status: machine
+- id: 0876bbefb4d30f2c
+  en: Choose a pulse interface
+  zh: 选择脉冲接口
+  status: machine
+- id: 085c33f66be27514
+  en: '| What you want to do | What goes in the program | Where the pulse comes from |'
+  zh: '| 要做什么 | 程序里写什么 | 脉冲从哪里来 |'
+  status: machine
+- id: a840355abcba3075
+  en: '| Run a gate with its existing pulse implementation | A gate and its logical targets, such as `program.add(ops.X, 0)` | The emulator''s gate implementation map |'
+  zh: '| 用现有的脉冲实现运行量子门 | 量子门和逻辑目标，例如 `program.add(ops.X, 0)` | 仿真器使用的门实现映射 |'
+  status: machine
+- id: a5d97fd235808ef8
+  en: '| Specify a waveform on a physical channel | A [PulseOperation](pulse-operation.md) | A [SampledWaveform](sampled-waveform.md) assigned to a channel through [PulseControl](pulse-control.md) |'
+  zh: '| 在物理通道上直接指定波形 | [PulseOperation](pulse-operation.md) | 用 [SampledWaveform](sampled-waveform.md) 表示波形，再用 [PulseControl](pulse-control.md) 指定通道 |'
+  status: machine
+- id: 502dccac273b4052
+  en: '| Supply your own pulses for a gate | A gate and its logical targets | A [`PulseDefinition`][fatqat.emulator.PulseDefinition] registered in a [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap]. See [Custom gate pulses](gate-realization.md). |'
+  zh: '| 为量子门提供自己的脉冲 | 量子门和逻辑目标 | 在 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] 中注册的 [`PulseDefinition`][fatqat.emulator.PulseDefinition]。见[自定义门脉冲](gate-realization.md)。 |'
+  status: machine
+- id: 06496ef431b94f17
+  en: For example, suppose logical target `0` maps to physical transmon `q0`. For `program.add(ops.X, 0)`, the emulator looks up the `X` implementation for `q0` when it prepares the program. For a direct pulse, select `model.control.drive("q0")` when creating the `PulseControl`, then add its block with `program.add(pulse)`. The control already carries the physical channel.
+  zh: 例如，假设逻辑目标 `0` 映射到物理 Transmon `q0`。对 `program.add(ops.X, 0)`，仿真器在准备执行时会查找 `q0` 上的 `X` 门实现。直接指定脉冲时，在创建 `PulseControl` 时用 `model.control.drive("q0")` 选定通道，再用 `program.add(pulse)` 加入脉冲块。要驱动哪个物理通道，已经由这个控制指定。
+  status: machine
+- id: 10d4947bfbc41872
+  en: By default, [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] provides a built-in gate implementation map. The default map for [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] is empty, so ordinary gates there require a custom map.
+  zh: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator] 默认提供内置门实现映射。[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 的默认映射为空，运行普通量子门需要提供自定义映射。'
+  status: machine
+- id: 507ce4c945a9386e
+  en: <a id="built-in-support"></a>
+  zh: <a id="built-in-support"></a>
+  status: machine
+- id: e945b479d84781da
+  en: Durations, offsets, and sample times use the model's time unit. For channels, waveform units, and limits, see [Transmon controls](../pulse-emulator.md#direct-controls) or [two-level atom controls](../atom-emulators.md#model-and-controls).
+  zh: 时长、偏移量和采样时刻都使用模型的时间单位。通道、波形的单位和取值限制见 [Transmon 控制通道](../pulse-emulator.md#direct-controls)或[两能级原子控制通道](../atom-emulators.md#model-and-controls)。
   status: machine

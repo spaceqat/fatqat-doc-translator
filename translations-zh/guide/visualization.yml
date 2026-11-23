@@ -104,9 +104,13 @@
   status: machine
 - id: b63f379d75a1e532
   en: Visualization helps you check a program and understand its results. A circuit diagram makes the gate order, measurement positions, and classical conditions easier to follow. Plotting measurement outcomes shows which results are more common and how their frequencies differ. For longer programs, an interaction graph also helps you see which logical qubits often take part in operations together.
-  zh: "可视化能帮助你检查程序，也能让运行结果更容易理解。画出线路后，门的顺序、测量的位置和经典条件会更直观；把测量结果画成图，可以看出哪些结果更常见，以及它们的频率有多大差别。对于较长的程序，相互作用图还能帮助你看清哪些逻辑量子比特经常一起参与操作。"
+  zh: 可视化能帮助你检查程序，也能让运行结果更容易理解。画出线路后，门的顺序、测量的位置和经典条件会更直观；把测量结果画成图，可以看出哪些结果更常见，以及它们的频率有多大差别。对于较长的程序，相互作用图还能帮助你看清哪些逻辑量子比特经常一起参与操作。
   status: machine
 - id: df851d8e85e86515
   en: 'FatQat provides drawing methods for these tasks: use a [`Program`][fatqat.Program] to draw circuits and logical interactions, and a [`Result`][fatqat.Result] to plot the measurement outcomes from one run.'
-  zh: "FatQat 为这些任务提供了相应的绘图方法：通过 [`Program`][fatqat.Program] 绘制线路和逻辑相互作用，通过 [`Result`][fatqat.Result] 绘制一次运行的测量结果。"
+  zh: FatQat 为这些任务提供了相应的绘图方法：通过 [`Program`][fatqat.Program] 绘制线路和逻辑相互作用，通过 [`Result`][fatqat.Result] 绘制一次运行的测量结果。
+  status: machine
+- id: d7f8296846c731be
+  en: '`number_to_keep` keeps the most frequent outcomes and groups the rest into an `other` bar. All plot options are listed under [`Result.draw()`][fatqat.Result.draw].'
+  zh: '`number_to_keep` 保留出现最频繁的结果，其余结果合并成一根 `other` 柱。完整的绘图选项见 [`Result.draw()`][fatqat.Result.draw]。'
   status: machine

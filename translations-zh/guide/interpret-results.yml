@@ -176,9 +176,13 @@
   status: machine
 - id: 97824855439ee406
   en: Many quantum-physics problems ask about quantities such as energy or spin correlations, rather than every component of the quantum state. For these tasks, you often need only the expectation value of one observable or a group of observables, without requesting the full state as an output.
-  zh: "许多量子物理问题关心的是能量、自旋关联等物理量，而不是量子态的每一个分量。对这类问题，我们通常只需要一个或一组可观测量的期望值，不必把完整的量子态作为结果取出。"
+  zh: 许多量子物理问题关心的是能量、自旋关联等物理量，而不是量子态的每一个分量。对这类问题，我们通常只需要一个或一组可观测量的期望值，不必把完整的量子态作为结果取出。
   status: machine
 - id: 0ae9c3bcfb647097
   en: Use [`Estimator`][fatqat.Estimator] to calculate these expectation values. Define each quantity with an [`Observable`][fatqat.Observable], then supply a Program and a [compatible simulator or emulator](../api/estimator.md#backend-support). You can calculate the expectation directly from the state or estimate it from a finite number of measurement shots.
-  zh: "[`Estimator`][fatqat.Estimator] 可以计算这些期望值。用 [`Observable`][fatqat.Observable] 定义要研究的物理量，再提供 Program 和[兼容的模拟器或仿真器](../api/estimator.md#backend-support)。你可以直接从量子态计算期望值，也可以通过有限次测量采样来估计。"
+  zh: '[`Estimator`][fatqat.Estimator] 可以计算这些期望值。用 [`Observable`][fatqat.Observable] 定义要研究的物理量，再提供 Program 和[兼容的模拟器或仿真器](../api/estimator.md#backend-support)。你可以直接从量子态计算期望值，也可以通过有限次测量采样来估计。'
+  status: machine
+- id: 9e2e15991977fc32
+  en: To compare expectation values at different parameter settings, pass the parameterized program and its binding values to [`Estimator.run_sweep()`][fatqat.Estimator.run_sweep].
+  zh: 想比较不同参数下的期望值时，可以把含参数的程序和各组参数值传给 [`Estimator.run_sweep()`][fatqat.Estimator.run_sweep]。
   status: machine

@@ -96,7 +96,7 @@
   status: machine
 - id: 71bf90935fc231d2
   en: Reference
-  ko: 레퍼런스
+  ko: API 레퍼런스
   status: machine
 - id: 70db4dffbad4eba5
   en: data `fatqat.implementation.DeviceOperands`
@@ -105,4 +105,48 @@
 - id: c8d39d581916d005
   en: Alias for an ordered tuple of hashable backend-defined physical labels.
   ko: 백엔드가 정의한 해시 가능한 물리적 라벨을 순서대로 담는 튜플의 별칭입니다.
+  status: machine
+- id: 5c4c675315c95649
+  en: Matrix implementation maps
+  ko: 행렬 구현 맵
+  status: machine
+- id: 4eca2c94120f12aa
+  en: A [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] tells a matrix simulator how to apply an operation or noise channel. Use it to register a custom rule, replace a built-in one, or give different device locations different implementations of the same operation. Pass the map as `implementation_map` when creating a simulator. A `NoiseModel` still determines when and where a channel applies.
+  ko: '[`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]은 행렬 시뮬레이터가 연산이나 잡음 채널을 적용하는 방법을 정합니다. 사용자 정의 규칙을 등록하거나 내장 규칙을 교체하고, 같은 연산에도 물리 장치 위치별로 다른 구현을 지정할 수 있습니다. 시뮬레이터를 만들 때 `implementation_map`으로 맵을 전달하세요. 채널을 적용할 시점과 위치는 `NoiseModel`이 계속 정합니다.'
+  status: machine
+- id: b1a65ddcabb5f2c3
+  en: Start with [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map] to keep the built-in gate and channel rules, or create an empty [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to define the whole set yourself. The simulator copies the registrations when it is created. Adding or removing a rule from the original map later does not update an existing simulator.
+  ko: 내장 게이트와 채널 규칙을 유지하려면 [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map]에서 시작하세요. 전체 규칙을 직접 정의하려면 빈 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]을 만드세요. 시뮬레이터는 생성할 때 등록 내용을 복사하므로 원래 맵에서 나중에 규칙을 추가하거나 삭제해도 이미 만든 시뮬레이터에는 반영되지 않습니다.
+  status: machine
+- id: f40a9da80ceb688a
+  en: '[`add()`][fatqat.implementation.MatrixImplementationMap.add] checks the registration when you add it. A rule that raises while the backend prepares an operation can produce [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]. A matrix with the wrong shape raises [`BackendValidationError`][fatqat.errors.BackendValidationError], and an unregistered operation raises [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError].'
+  ko: '[`add()`][fatqat.implementation.MatrixImplementationMap.add]는 등록할 때 규칙을 검사합니다. 백엔드가 연산을 준비하는 동안 규칙에서 예외가 발생하면 [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]가 발생할 수 있습니다. 행렬 모양이 맞지 않으면 [`BackendValidationError`][fatqat.errors.BackendValidationError], 등록되지 않은 연산에는 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]가 발생합니다.'
+  status: machine
+- id: 56497e2eae3f315e
+  en: When a simulator encounters a gate, its implementation map determines which matrix to apply. With [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap], you can add a rule, change a built-in one, or use different matrices for the same gate at different device locations. Pass the map as `implementation_map` when you create the simulator. The map also supplies channel rules. The `NoiseModel` determines when a channel acts and which targets it affects.
+  ko: 시뮬레이터가 게이트를 실행할 때 구현 맵에서 적용할 행렬을 찾습니다. [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]으로 규칙을 추가하거나 내장 규칙을 바꾸고, 같은 게이트에도 장치 위치에 따라 다른 행렬을 지정할 수 있습니다. 시뮬레이터를 만들 때 `implementation_map`으로 맵을 전달하세요. 채널 구현도 이 맵에 등록할 수 있습니다. 채널을 언제 어디에 적용할지는 `NoiseModel`이 정합니다.
+  status: machine
+- id: dbfd687cdc799f58
+  en: Choose a starting map
+  ko: 시작할 맵 선택
+  status: machine
+- id: 132de6bafd924ad4
+  en: To keep the built-in gate and channel rules, start with [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map]. To provide every rule yourself, create an empty [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]. The simulator uses a copy of the registrations made before it was created. Additions and removals you make later affect only the original map.
+  ko: 내장 게이트와 채널 규칙에 손을 보려면 [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map]에서 시작하세요. 모든 규칙을 직접 제공하려면 빈 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]을 만드세요. 시뮬레이터는 생성할 때 등록 내용을 복사합니다. 나중에 규칙을 추가하거나 삭제하면 원래 맵만 바뀝니다.
+  status: machine
+- id: 598ab5fcbbae0aef
+  en: Register a rule with [`MatrixImplementationMap.add()`][fatqat.implementation.MatrixImplementationMap.add]. You can pass an operation or channel instance, or its class. For an operation implemented with a matrix, choose one of the following forms.
+  ko: '[`MatrixImplementationMap.add()`][fatqat.implementation.MatrixImplementationMap.add]로 규칙을 등록합니다. 연산이나 채널의 인스턴스 또는 클래스를 전달할 수 있습니다. 행렬로 구현하는 연산에는 아래 형태 중 하나를 사용하세요.'
+  status: machine
+- id: 729694e213b728eb
+  en: Use a callable that returns Kraus matrices for a [custom channel](noise/custom-implementations.md). To update the quantum and classical state together, register a `CustomOperationImplementation`. See [Custom operations](simulators/custom-operations.md) for that interface.
+  ko: '[사용자 정의 채널](noise/custom-implementations.md)은 Kraus 행렬을 반환하는 호출 가능 객체로 구현합니다. 양자 상태와 고전 상태를 함께 갱신하려면 `CustomOperationImplementation`을 등록하세요. 인터페이스는 [사용자 정의 연산](simulators/custom-operations.md)에 설명되어 있습니다.'
+  status: machine
+- id: c14e77884dfb0917
+  en: In a matrix rule, `op` is the operation instance, including any parameters such as a rotation angle. `targets` gives one [`RegisterRef`][fatqat.RegisterRef] per operand, in program order. Read `target.register.dim` if the matrix depends on a target's dimension.
+  ko: 행렬 규칙에서 `op`는 회전각 등의 매개변수를 포함한 연산 인스턴스입니다. `targets`에는 프로그램 순서대로 피연산자마다 [`RegisterRef`][fatqat.RegisterRef] 하나가 들어 있습니다. 행렬이 대상 차원에 따라 달라지면 `target.register.dim`을 읽으세요.
+  status: machine
+- id: f2336c17e484067b
+  en: Registration and run errors
+  ko: 등록 및 실행 오류
   status: machine

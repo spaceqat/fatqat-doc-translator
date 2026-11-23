@@ -8,7 +8,7 @@
   status: retired
 - id: f4ada25b182909a0
   en: '**Hardware profile**'
-  zh: "**设备模型**"
+  zh: '**设备模型**'
   status: machine
 - id: 7fb9681ce592bd60
   en: Capacity, mapping, and native operations
@@ -28,7 +28,7 @@
   status: retired
 - id: eb4ff8c75cb7ea4a
   en: Occupancy and loss
-  zh: 占据与丢失
+  zh: 原子装载状态与丢失
   status: machine
 - id: 877edc05a034a14c
   en: 'Occupancy is tracked separately for every shot. Its initial value depends on whether the program uses the atom lifecycle:'
@@ -120,7 +120,7 @@
   status: machine
 - id: f58814884b104747
   en: Program size, mapping, and native operations
-  zh: "Program 规模、映射与原生操作"
+  zh: Program 规模、映射与原生操作
   status: machine
 - id: 1d9e37fc50bf9906
   en: The quantum resources in each program define the array size, so the backend needs no separate site-count or capacity setting. Registers map to integer device labels in declaration order. A [`GridRegister`][fatqat.GridRegister] is flattened because its coordinates have no physical meaning on this backend.
@@ -160,7 +160,7 @@
   status: machine
 - id: 7224480823a92682
   en: Occupancy is tracked outside the quantum-state representation. Final statevectors and density matrices still include one qubit subsystem per declared site, whether or not an atom is present. With the default initial state, a never-loaded site is represented by `|0>`, but measuring it returns `2`. These quantum-state exports cannot reveal whether a site is occupied; use measurements and counts for that distinction.
-  zh: '占据状态独立于量子态表示进行跟踪。最终态矢量和密度矩阵仍为每个声明的位点保留一个量子比特子系统，无论该位点是否存在原子。使用默认初态时，从未装载的位点以 `|0>` 表示，但测量它会返回 `2`。这些导出的量子态无法反映位点是否被占据；请用测量结果和计数来区分。'
+  zh: 占据状态独立于量子态表示进行跟踪。最终态矢量和密度矩阵仍为每个声明的位点保留一个量子比特子系统，无论该位点是否存在原子。使用默认初态时，从未装载的位点以 `|0>` 表示，但测量它会返回 `2`。这些导出的量子态无法反映位点是否被占据；请用测量结果和计数来区分。
   status: retired
 - id: ddcedf9103f9c8b4
   en: '[`Estimator`][fatqat.Estimator] supports loss-free programs only. It preserves both quantum state and occupancy when reusing a base execution. An observable targeting an unloaded site raises [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] before execution.'
@@ -172,7 +172,7 @@
   status: machine
 - id: f4402208f155c77f
   en: Noise channels can act on only one qubit. For a two-qubit operation, add noise for each qubit separately, using `target_positions` to select it. If one atom is missing, the gate is skipped, but noise still applies to the remaining atom. `Loss` can act on multiple atoms.
-  zh: '噪声信道只能作用于单个量子比特。对于双量子比特指令，使用 `target_positions` 分别为两个量子比特添加噪声。如果一个原子缺失，量子门会被跳过，但噪声仍作用于剩余原子。`Loss` 可以作用于多个原子。'
+  zh: 噪声信道只能作用于单个量子比特。对于双量子比特指令，使用 `target_positions` 分别为两个量子比特添加噪声。如果一个原子缺失，量子门会被跳过，但噪声仍作用于剩余原子。`Loss` 可以作用于多个原子。
   status: machine
 - id: c3df3543b143f41d
   en: The default gate set contains `RX`, `RY`, `RZ`, and `CZ`. The simulator does not decompose other gates, so it rejects `CX` unless an implementation is supplied. [`AtomArraySimulator.implementation_map`][fatqat.simulator.AtomArraySimulator.implementation_map] exposes this gate set, while the current `Pair` graph determines where `CZ` is legal. Add rules to this independent map and pass it as `implementation_map=` to extend the default, including [custom operations](custom-operations.md).
@@ -189,4 +189,92 @@
 - id: a91dda99b3da420e
   en: '| Runtime | Global default (`numba` unless configured); explicit `numpy` or `numba` overrides it |'
   zh: '| 运行时 | 使用全局默认值，未配置时为 `numba`；显式指定 `numpy` 或 `numba` 可覆盖默认值 |'
+  status: machine
+- id: 06c3203f4c571e5d
+  en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] models neutral-atom arrays at the gate level. Use it when a program''s behavior depends on where atoms have been loaded, which pairs can interact, or whether an atom is lost during a shot.'
+  zh: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 在门层级模拟中性原子阵列。当程序的结果取决于哪些位置已装载原子、哪些原子可以成对相互作用，或某次运行中是否发生原子丢失时，可以使用这个模拟器。'
+  status: machine
+- id: 1d788f888667656e
+  en: Sites and native gates
+  zh: 阵列位置与原生门
+  status: machine
+- id: 4adbd367de87e2cf
+  en: The program declares the number of sites. Quantum registers must contain qubits, and a [`GridRegister`][fatqat.GridRegister] maps to consecutive integer labels, just like other registers. Use `statevector` or `density_matrix` to evolve the state.
+  zh: 程序声明的量子比特数就是阵列的位置数。量子寄存器的成员必须是量子比特。[`GridRegister`][fatqat.GridRegister] 与其他寄存器一样，按声明顺序映射到连续的整数编号。量子态可以用 `statevector` 或 `density_matrix` 演化。
+  status: machine
+- id: 1d599b32da5a9688
+  en: The native gates are `RX`, `RY`, `RZ`, and `CZ`. To extend them, add rules to the copy returned by [`implementation_map`][fatqat.simulator.AtomArraySimulator.implementation_map] and pass it to the constructor.
+  zh: 原生门包括 `RX`、`RY`、`RZ` 和 `CZ`。要添加其他门，可以在 [`implementation_map`][fatqat.simulator.AtomArraySimulator.implementation_map] 返回的副本中加入规则，再将它传给构造函数。
+  status: machine
+- id: bde716f7c94eadee
+  en: Use unconditional [`Pair`][fatqat.operations.Pair] and [`Unpair`][fatqat.operations.Unpair] operations to change which sites can run `CZ` as the program executes. Pairing changes the connection between sites, independently of whether they currently contain atoms.
+  zh: 运行过程中，可以用不带经典条件的 [`Pair`][fatqat.operations.Pair] 和 [`Unpair`][fatqat.operations.Unpair] 改变哪些位置之间能执行 `CZ`。配对描述的是位置之间的连接，位置上有没有原子是另一回事。
+  status: machine
+- id: c1223d08b81254fe
+  en: Track atoms and loss
+  zh: 原子装载与丢失
+  status: machine
+- id: 496cc0474e7af92d
+  en: Each shot starts with empty sites. Use [`Put`][fatqat.operations.Put] to load an atom in the ground state or pass an [`EvolutionState`][fatqat.simulator.EvolutionState] with `classical.occupied` set to the initially occupied sites. `Put` leaves an occupied site unchanged.
+  zh: 每次运行默认从空阵列开始。可以用 [`Put`][fatqat.operations.Put] 在指定位置装载处于基态的原子，也可以传入 [`EvolutionState`][fatqat.simulator.EvolutionState]，用 `classical.occupied` 指定起初已有原子的位置。对已有原子的位置执行 `Put` 会保持原样。
+  status: machine
+- id: 0baa8e505652f998
+  en: A valid gate or reset leaves the state unchanged if a required site is empty. The simulator still checks gate support and pairing. Measurement on an empty site reports `2`, an erasure digit that bypasses readout noise. To read which sites remain occupied, request `final_classical_state` and call [`Result.get_classical_state()`][fatqat.Result.get_classical_state].
+  zh: 如果所需的位置为空，符合设备规则的门或重置操作会保持量子态原样。模拟器仍会检查操作是否受支持，以及相应位置是否满足配对要求。测量空位置会得到 `2`，这个标记表示原子缺失，不会再经过读出噪声处理。要查看运行结束时哪些位置仍有原子，可请求 `final_classical_state`，再调用 [`Result.get_classical_state()`][fatqat.Result.get_classical_state]。
+  status: machine
+- id: c53f74f3323f47fc
+  en: Attach [`Loss`][fatqat.noise.Loss] to an operation to model an atom leaving the array or failing to load. It samples loss separately for each selected atom. For other noise channels on multi-qubit operations, use `target_positions` to select one qubit per channel. A channel can still act on a present atom when another target is absent.
+  zh: 可以把 [`Loss`][fatqat.noise.Loss] 加到相应操作上，模拟原子离开阵列或装载失败。每个被选中的原子单独采样。为多比特操作添加其他噪声信道时，用 `target_positions` 为每个信道指定一个量子比特。某个目标位置为空时，信道仍可作用于其余位置上的原子。
+  status: machine
+- id: bf33f48d4689b394
+  en: Loss makes the final state stochastic. To read it, request `final_state=True` with `shots=1`. For an expectation value with [`Estimator`][fatqat.Estimator], use a loss-free program and target a loaded site.
+  zh: 原子丢失会让最终态随采样而变。要读取某次运行的最终态，请用 `shots=1` 并请求 `final_state=True`。如果用 [`Estimator`][fatqat.Estimator] 求期望值，程序需采用无丢失设置，可观测量的目标需已装载原子。
+  status: machine
+- id: 86ae5abb115f1562
+  en: Read an empty-site measurement
+  zh: 读取空位置的测量结果
+  status: machine
+- id: bc8e12e8d7f0ce11
+  en: This program loads site 0 and pairs it with site 1. The pair allows `CZ`, and the empty second site is reported as `2` in every shot.
+  zh: 这个程序在位置 0 装载原子，并把它与位置 1 配对，所以允许执行 `CZ`。由于位置 1 始终为空，每次测量都会在第二位读到 `2`。
+  status: machine
+- id: eead170bd9700068
+  en: <a id="fatqat.simulator.AtomArraySimulator.method"></a>
+  zh: <a id="fatqat.simulator.AtomArraySimulator.method"></a>
+  status: machine
+- id: 3b7ab993be765e4e
+  en: <a id="fatqat.simulator.AtomArraySimulator.run"></a>
+  zh: <a id="fatqat.simulator.AtomArraySimulator.run"></a>
+  status: machine
+- id: f8f261f524379f45
+  en: <a id="fatqat.simulator.AtomArraySimulator.run_sweep"></a>
+  zh: <a id="fatqat.simulator.AtomArraySimulator.run_sweep"></a>
+  status: machine
+- id: 9cde8b047d5ff5a5
+  en: <a id="fatqat.simulator.AtomArraySimulator.validate_noise_model"></a>
+  zh: <a id="fatqat.simulator.AtomArraySimulator.validate_noise_model"></a>
+  status: machine
+- id: cc60dc5c52048a63
+  en: This class defines the array rules and native operation map. For the shared execution and result options, see [`Simulator.run()`][fatqat.simulator.Simulator.run] and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep].
+  zh: 这个类定义阵列规则和原生操作。通用的运行选项与结果设置见 [`Simulator.run()`][fatqat.simulator.Simulator.run] 和 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]。
+  status: machine
+- id: c7ae198ce6dd198b
+  en: Configure the array
+  zh: 设置原子阵列
+  status: machine
+- id: 95add6204e60257d
+  en: Load and pair atoms
+  zh: 装载与配对原子
+  status: machine
+- id: 16875e5e44a29750
+  en: A valid gate or reset leaves the state unchanged if a required site is empty. Gate support and pairing still apply. To model failed loading or subsequent loss, attach [`Loss`][fatqat.noise.Loss] to the operation where it can occur. For the rules on other channels, see [Noise support](../noise/backend-support.md#simulators).
+  zh: 如果所需的位置为空，符合设备规则的门或重置操作会保持量子态原样。原生门和配对规则仍然适用。要模拟装载失败或运行中的原子丢失，可在可能发生丢失的操作上添加 [`Loss`][fatqat.noise.Loss]。其他信道的使用规则见[噪声支持](../noise/backend-support.md#simulators)。
+  status: machine
+- id: e3883347f93a3469
+  en: Measurement reports `2` for an empty site. This erasure value bypasses readout noise. The example loads site 0 in the ground state and leaves site 1 empty, so each shot reports `02`.
+  zh: 测量空位置时会读出 `2`。这个值表示所在位置没有原子，不受读出噪声影响。下面只在位置 0 装载处于基态的原子，位置 1 保持为空，因此每次运行都读出 `02`。
+  status: machine
+- id: 67d1b9ef9e62c296
+  en: To read which sites still contain atoms, request `final_classical_state` and call [`Result.get_classical_state()`][fatqat.Result.get_classical_state]. For a final quantum state from a lossy run, request `final_state=True` with `shots=1`.
+  zh: 要查看运行结束时哪些位置仍有原子，可请求 `final_classical_state`，再调用 [`Result.get_classical_state()`][fatqat.Result.get_classical_state]。如果要读取存在原子丢失时的最终量子态，请设 `shots=1` 并请求 `final_state=True`。
   status: machine

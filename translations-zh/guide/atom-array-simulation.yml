@@ -24,5 +24,9 @@
   status: machine
 - id: f86676a69ca8eb46
   en: 'Omitting `Pair` before `CZ` is a program error. A missing atom is different: supported gates find nothing to act on, and measurement reports the erasure digit `2`.'
-  zh: "在 `CZ` 之前遗漏 `Pair` 是程序错误。原子缺失则是另一回事：受支持的门找不到可作用的原子，而测量会报告擦除数字 `2`。"
+  zh: 在 `CZ` 之前遗漏 `Pair` 是程序错误。原子缺失则是另一回事：受支持的门找不到可作用的原子，而测量会报告擦除数字 `2`。
+  status: machine
+- id: 72334d141f3f5a64
+  en: In the diagram, bringing the atoms together represents creating a pair. The program below loads an atom at each site and then uses `Pair` to make `CZ` available on those sites. `Unpair` removes that connection.
+  zh: 图中让两个原子靠近，表示把它们配成一对。下面的程序先在两个位置各装载一个原子，再用 `Pair` 配对，这样就可以在这两个位置执行 `CZ`。`Unpair` 会解除配对。
   status: machine

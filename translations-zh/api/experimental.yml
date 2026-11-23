@@ -20,7 +20,7 @@
   status: machine
 - id: ce1eccee9e09a4a2
   en: 'The following extension points are also evolving:'
-  zh: 以下扩展点也在演进中：
+  zh: 下面两类接口仍在开发中。
   status: machine
 - id: 28fbe3b3cd28700e
   en: '[Matrix implementations](implementation.md) for custom matrices and device-specific gate rules'
@@ -28,13 +28,61 @@
   status: machine
 - id: b4075750b3d45a43
   en: '[Gate realization](pulse-control/gate-realization.md) for custom pulse definitions'
-  zh: '[门实现](pulse-control/gate-realization.md)：用于自定义脉冲定义'
+  zh: '[量子门的脉冲实现](pulse-control/gate-realization.md)：用于自定义脉冲定义'
   status: machine
 - id: 0917ebcfd35f26c9
   en: Built-in pulse maps are listed under [Emulators](emulators/index.md).
-  zh: 内置的脉冲映射列于[仿真器](emulators/index.md)之下。
+  zh: 内置的脉冲实现映射见[仿真器](emulators/index.md)。
   status: machine
 - id: 91343bb1092934bf
   en: The [compiler](compiler.md) is under development; its interfaces and supported behavior may change. Its [LogicalProgram](logical-program.md) frontend accepts built-in device-independent operations and is required by the Python compiler entry points.
   zh: '[编译器](compiler.md)仍在开发中，其接口和支持的行为可能发生变化。[LogicalProgram](logical-program.md) 前端接受内置的设备无关操作，是 Python 编译器入口所要求的输入。'
+  status: machine
+- id: 90c607d7f9637cad
+  en: '[Matrix implementation maps](implementation.md) for custom matrices and device-specific gate rules'
+  zh: '[矩阵实现映射](implementation.md)用于添加自定义矩阵，或为设备上的特定位置指定门规则。'
+  status: machine
+- id: 8e9e7c8491393d88
+  en: '[Custom gate pulses](pulse-control/gate-realization.md) for custom pulse definitions'
+  zh: '[自定义门脉冲](pulse-control/gate-realization.md)用于给门指定自己的脉冲。'
+  status: machine
+- id: 04c438669dfb24a8
+  en: The public APIs on this page are still evolving. Their signatures or behavior may change between releases.
+  zh: 本页列出的都是公开 API，目前仍在开发，调用方式或行为可能随版本变化。
+  status: machine
+- id: 6e7322c5d9ab733f
+  en: Use [LogicalProgram](logical-program.md) for device-independent gates written in Python. Use an OpenQASM entry point when starting from source text. The [compiler pipelines](compiler-pipelines.md) page lists the inputs for each target.
+  zh: 用 Python 编写与设备无关的门操作时，使用 [LogicalProgram](logical-program.md)。已有 OpenQASM 源代码时，可以用相应的编译入口。各目标接受哪些输入，见[编译流程](compiler-pipelines.md)。
+  status: machine
+- id: 8e6d8257508adc4b
+  en: Custom backends
+  zh: 自定义后端
+  status: machine
+- id: d0b80bdd2c8f3eae
+  en: If you implement a [`Backend`][fatqat.Backend], create a [`Result`][fatqat.Result] for the fields it produces and return it in a successful [`Job`][fatqat.Job]. Use `Job("DONE", result=value)` for success or `Job("ERROR", error=exc)` for a recorded failure.
+  zh: 实现 [`Backend`][fatqat.Backend] 时，把后端产生的数据放入 [`Result`][fatqat.Result]，再通过 [`Job`][fatqat.Job] 返回。成功时用 `Job("DONE", result=value)`。需要把执行错误保存在作业中时，用 `Job("ERROR", error=exc)`。
+  status: machine
+- id: 9b14d082b53b797a
+  en: These APIs are available for use while their interfaces are under development. Their signatures and behavior may change between releases.
+  zh: 这里列出的 API 已经可以使用，接口仍在开发中。调用签名和行为可能随版本变化。
+  status: machine
+- id: 0f006c783a509b3e
+  en: Start with [LogicalProgram](logical-program.md) if you write the logical gates in Python. If you already have OpenQASM source, choose the OpenQASM entry point for your target. [Compiler pipelines](compiler-pipelines.md) lists the inputs each entry point accepts.
+  zh: 如果用 Python 写逻辑门，从 [LogicalProgram](logical-program.md) 开始。手头已有 OpenQASM 源代码时，选择对应编译目标的 OpenQASM 入口。各入口接受什么输入，见[编译流程](compiler-pipelines.md)。
+  status: machine
+- id: 5408a99eb6fbb9a0
+  en: An implementation of [`Backend`][fatqat.Backend] puts its output fields in a [`Result`][fatqat.Result] and returns a [`Job`][fatqat.Job]. Use `Job("DONE", result=value)` to return the result. To store an execution failure for the caller, use `Job("ERROR", error=exc)`.
+  zh: 实现 [`Backend`][fatqat.Backend] 时，先把后端产生的数据放进 [`Result`][fatqat.Result]，再通过 [`Job`][fatqat.Job] 返回这次执行的结果。成功时用 `Job("DONE", result=value)` 返回数据。需要把执行错误留给调用方处理时，用 `Job("ERROR", error=exc)` 保存异常。
+  status: machine
+- id: 4f6c1fa68dd58c83
+  en: Extend a backend
+  zh: 扩展后端
+  status: machine
+- id: e8472e4a67ebfe13
+  en: '[Matrix implementation maps](implementation.md) let a simulator use your own gate matrices or pick a rule for a specific device location.'
+  zh: 想让模拟器使用自己的门矩阵，或为特定设备位置指定门规则，可以用[矩阵实现映射](implementation.md)。
+  status: machine
+- id: 4146f09ac9036301
+  en: '[Custom gate pulses](pulse-control/gate-realization.md) let you specify the physical controls that implement a gate. The [emulator pages](emulators/index.md) describe the built-in gate-to-pulse maps.'
+  zh: 想指定一个门由哪些物理控制信号实现，可以用[自定义门脉冲](pulse-control/gate-realization.md)。内置的门到脉冲映射见[仿真器页面](emulators/index.md)。
   status: machine

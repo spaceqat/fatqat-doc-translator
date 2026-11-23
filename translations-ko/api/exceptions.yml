@@ -10,3 +10,47 @@
   en: '[`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] is a subtype of [`BackendValidationError`][fatqat.errors.BackendValidationError]. A backend normally raises validation errors before `run` returns a job. A later execution failure may be stored on the returned [`Job`][fatqat.Job] and raised by [`result`][fatqat.Job.result].'
   ko: '[`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]는 [`BackendValidationError`][fatqat.errors.BackendValidationError]의 하위 타입입니다. 백엔드는 보통 `run`이 Job을 반환하기 전에 검증 오류를 발생시킵니다. 이후 실행 중 발생한 실패는 반환된 [`Job`][fatqat.Job]에 저장되었다가 [`result`][fatqat.Job.result] 호출 시 발생할 수 있습니다.'
   status: machine
+- id: c98b8e5a1ab5f6a5
+  en: The execution and conversion exceptions covered here inherit from [`FatqatError`][fatqat.errors.FatqatError]. Catch that base class to handle them together, or catch a more specific exception when your response depends on the failure. Invalid Python argument types or values can raise `TypeError` or `ValueError`.
+  ko: 여기에서 설명하는 실행과 변환 예외는 [`FatqatError`][fatqat.errors.FatqatError]를 상속합니다. 함께 처리하려면 이 기본 클래스를, 원인별로 처리하려면 해당 하위 클래스를 잡으세요. Python 인자의 타입이나 값이 잘못되면 `TypeError`나 `ValueError`가 발생할 수 있습니다.
+  status: machine
+- id: 1014089f2104912e
+  en: Errors when running a program
+  ko: 프로그램 실행 중 오류
+  status: machine
+- id: 1a7f64d3eb16ae47
+  en: '[`BackendValidationError`][fatqat.errors.BackendValidationError] means the backend rejects the request before it runs. Its subclass [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] identifies an operation or feature the backend does not support.'
+  ko: '[`BackendValidationError`][fatqat.errors.BackendValidationError]는 백엔드가 실행 전에 요청을 거부했다는 뜻입니다. 그 하위 클래스인 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]는 백엔드가 해당 연산이나 기능을 지원하지 않음을 나타냅니다.'
+  status: machine
+- id: 04706116a760934f
+  en: An execution error can be raised by the run call or stored in a [`Job`][fatqat.Job] and raised by [`result()`][fatqat.Job.result]. The backend's error policy determines which behavior you get.
+  ko: 실행 오류는 실행 호출에서 바로 발생하거나 [`Job`][fatqat.Job]에 저장되었다가 [`result()`][fatqat.Job.result]를 호출할 때 발생할 수 있습니다. 어느 쪽인지는 백엔드의 오류 처리 설정에 따라 달라집니다.
+  status: machine
+- id: b9d1507e5967ce0c
+  en: '[`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError] means the run produced a result without the requested field. Check `available_data` to see what the result contains.'
+  ko: '[`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError]는 실행 결과에 요청한 필드가 없다는 뜻입니다. `available_data`에서 결과에 들어 있는 필드를 확인하세요.'
+  status: machine
+- id: 7f96f550d7d72d23
+  en: For conversion errors, see [OpenQASM](interoperability/openqasm.md#errors) and [Qiskit](interoperability/qiskit.md#backend-execution). The [compiler](compiler.md) has a separate exception hierarchy.
+  ko: 변환 오류는 [OpenQASM](interoperability/openqasm.md#errors)과 [Qiskit](interoperability/qiskit.md#backend-execution)을 참고하세요. [컴파일러](compiler.md)는 자체 예외 계층을 사용합니다.
+  status: machine
+- id: beab00c7e44fe149
+  en: Catch [`FatqatError`][fatqat.errors.FatqatError] when you handle FatQat's execution and conversion errors in the same way. Catch a specific subclass when the action depends on what failed. An invalid argument type or value can also raise Python's `TypeError` or `ValueError`.
+  ko: FatQat의 실행 오류와 변환 오류를 같은 방식으로 처리하려면 [`FatqatError`][fatqat.errors.FatqatError]를 사용하세요. 실패 원인에 따라 처리 방법이 다르면 해당 하위 클래스를 사용합니다. 인자의 타입이나 값이 잘못된 경우 Python의 `TypeError`나 `ValueError`가 발생할 수도 있습니다.
+  status: machine
+- id: 6e841a0086b2f6fd
+  en: Run and result errors
+  ko: 실행과 결과 읽기에서 발생하는 오류
+  status: machine
+- id: 0680b334f62b31f6
+  en: '**Before execution.** [`BackendValidationError`][fatqat.errors.BackendValidationError] means the backend cannot run the request as supplied. [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] is the subclass for an operation or feature the backend does not support.'
+  ko: '**실행 전.** 백엔드가 받은 요청을 그대로 실행할 수 없으면 [`BackendValidationError`][fatqat.errors.BackendValidationError]가 발생합니다. 지원하지 않는 연산이나 기능이 원인이라면 그 하위 클래스인 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]가 발생합니다.'
+  status: machine
+- id: 51c3e4bbf581a9b2
+  en: '**During execution.** The backend''s error settings determine whether the run call raises an execution error directly or returns a failed [`Job`][fatqat.Job]. For a failed job, [`result()`][fatqat.Job.result] raises the stored error.'
+  ko: '**실행 중.** 백엔드의 오류 처리 설정에 따라 실행 호출에서 오류가 바로 발생하거나 실패한 [`Job`][fatqat.Job]이 반환됩니다. 실패한 작업에서 [`result()`][fatqat.Job.result]를 호출하면 저장된 오류가 발생합니다.'
+  status: machine
+- id: c8be280bea86fbc8
+  en: '**Reading results.** [`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError] means the requested field is absent from the result. Use `available_data` to see what the run produced.'
+  ko: '**결과를 읽을 때.** 요청한 필드가 결과에 없으면 [`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError]가 발생합니다. `available_data`에서 이번 실행이 반환한 필드를 확인하세요.'
+  status: machine

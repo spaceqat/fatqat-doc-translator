@@ -24,7 +24,7 @@
   status: machine
 - id: 528cb063ebb3a15e
   en: The channel acts jointly on all selected operands. Applying `Depolarizing(p=...)` to two qubits therefore uses $d=4$; it does not create two independent single-qubit channels. For independent local noise, use `target_positions` or separate registrations.
-  zh: 该信道联合作用于所有选定的操作数。因此，将 `Depolarizing(p=...)` 应用于两个量子比特时使用 $d=4$，而不会创建两个独立的单量子比特信道。若需独立的局部噪声，请使用 `target_positions` 或分开注册。
+  zh: 这个信道对选中的操作对象整体施加噪声。对两个量子比特使用 `Depolarizing(p=...)` 时，两个量子比特共同使用维度为 $d=4$ 的信道。要让噪声分别作用于单个对象，可以用 `target_positions` 选出目标，或分别注册噪声。
   status: machine
 - id: c0d7ecf9de6aa514
   en: Here `p` is the weight of complete depolarization, not the probability of choosing a nonidentity error. For one qubit, the total probability assigned to the nonidentity branches is $3p/4$.
@@ -61,4 +61,36 @@
 - id: 4a0cc5c07dc57769
   en: '| `rate` | Finite, nonnegative rate scaling local depolarization Lindblad operators | One subsystem | Lindblad-capable pulse emulator |'
   zh: '| `rate` | 缩放局部退极化 Lindblad 算符的有限非负速率 | 单个子系统 | 支持 Lindblad 的脉冲仿真器 |'
+  status: machine
+- id: 9371e8823fa644b0
+  en: See [Simulators](backend-support.md#noise-simulator-support) for method and backend support.
+  zh: 各模拟方法和后端的支持情况见[模拟器](backend-support.md#noise-simulator-support)。
+  status: machine
+- id: 00e5821cdb5f2553
+  en: See [Pulse emulators](backend-support.md#noise-emulator-support) for the supported scopes and local dimensions.
+  zh: 支持的作用范围和局部维度见[脉冲仿真器](backend-support.md#noise-emulator-support)。
+  status: machine
+- id: 4ef04709559fd638
+  en: '[`Depolarizing`][fatqat.noise.Depolarizing] mixes the quantum state with the maximally mixed state.'
+  zh: '[`Depolarizing`][fatqat.noise.Depolarizing] 让量子态向最大混合态靠近。'
+  status: machine
+- id: 75ae42ff617bb350
+  en: <a id="choose-a-form"></a>
+  zh: <a id="choose-a-form"></a>
+  status: machine
+- id: 7278e24cdf0df15f
+  en: Supply exactly one parameter. Use `p` for a single channel application in a simulator, or `rate` for continuous noise in a pulse emulator.
+  zh: 只需指定一个参数。模拟器用 `p` 描述一次信道的作用，脉冲仿真器用 `rate` 描述连续噪声。
+  status: machine
+- id: fde1b53c73105902
+  en: '`p` is the weight of complete depolarization and lies in `[0, 1]`. For selected operands with combined dimension $d$, the channel is'
+  zh: '`p` 是完全退极化所占的权重，取值范围为 `[0, 1]`。设所选操作对象的总维度为 $d$，则信道定义为'
+  status: machine
+- id: 41b1a8e20bd08678
+  en: '`rate` is finite and nonnegative, in the inverse of the model''s time unit. It acts on one subsystem. For local dimension $d$, the Lindblad generator is'
+  zh: '`rate` 是有限的非负速率，单位是模型时间单位的倒数。这种噪声作用于单个子系统。设子系统的维度为 $d$，则 Lindblad 生成元为'
+  status: machine
+- id: 438db5770d372cfc
+  en: For depolarizing noise acting on its own for a duration $t$, the corresponding probability parameter is
+  zh: 如果只有退极化噪声，作用时间为 $t$ 时，对应的概率参数为
   status: machine

@@ -20,5 +20,33 @@
   status: machine
 - id: 32243bde8f0ac0af
   en: Import or export supported OpenQASM, convert compatible Qiskit circuits, or use FatQat through Qiskit's backend interface. See [Connect FatQat with OpenQASM and Qiskit](../../guide/interoperability.md) for the guided workflows.
-  ko: "지원되는 OpenQASM을 가져오거나 내보내고, 호환되는 Qiskit 회로를 변환하거나 Qiskit 백엔드 인터페이스로 FatQat을 실행할 수 있습니다. 예제는 [FatQat을 OpenQASM 및 Qiskit과 연동하기](../../guide/interoperability.md)를 참고하세요."
+  ko: 지원되는 OpenQASM을 가져오거나 내보내고, 호환되는 Qiskit 회로를 변환하거나 Qiskit 백엔드 인터페이스로 FatQat을 실행할 수 있습니다. 예제는 [FatQat을 OpenQASM 및 Qiskit과 연동하기](../../guide/interoperability.md)를 참고하세요.
+  status: machine
+- id: ebc3867854e2c6e2
+  en: FatQat can read and write OpenQASM 2 and 3 and accept Qiskit circuits. Choose an interface based on the input you have and the result API you want to use.
+  ko: FatQat은 OpenQASM 2와 3을 읽고 쓸 수 있으며 Qiskit 회로도 받습니다. 입력 형식과 사용하려는 결과 API에 맞춰 인터페이스를 고르세요.
+  status: machine
+- id: 2c0407caafc3b3a2
+  en: '[OpenQASM](openqasm.md) describes importing source text or files and exporting a FatQat program.'
+  ko: '[OpenQASM](openqasm.md)에서는 소스 텍스트나 파일을 가져오고 FatQat 프로그램을 내보내는 방법을 설명합니다.'
+  status: machine
+- id: e45aacb870d7cf97
+  en: '[Qiskit](qiskit.md) describes converting a circuit to a program or running it through Qiskit''s backend interface.'
+  ko: '[Qiskit](qiskit.md)에서는 회로를 프로그램으로 변환하거나 Qiskit 백엔드 인터페이스로 실행하는 방법을 설명합니다.'
+  status: machine
+- id: bb8a5ac1c033e91e
+  en: The [connection guide](../../guide/interoperability.md) runs the same measured circuit through these routes.
+  ko: '[연동 가이드](../../guide/interoperability.md)에서는 측정이 포함된 같은 회로를 각 방식으로 실행합니다.'
+  status: machine
+- id: 9d34f333e9d63b1d
+  en: OpenQASM and Qiskit give you two ways to bring an existing circuit into FatQat. The interface to use depends on how the circuit is written and where you want to read the results.
+  ko: 기존 회로는 OpenQASM이나 Qiskit을 통해 FatQat에 가져올 수 있습니다. 회로가 어떤 형식인지, 결과를 어느 쪽 API에서 읽을지에 따라 방법을 고르세요.
+  status: machine
+- id: a7caaeb0ac4db0ef
+  en: '[OpenQASM](openqasm.md) covers import from source text or a file and export to OpenQASM 2 or 3.'
+  ko: '[OpenQASM](openqasm.md)에서는 소스 텍스트나 파일을 가져오고 FatQat 프로그램을 OpenQASM 2나 3으로 내보내는 방법을 설명합니다.'
+  status: machine
+- id: d57382ba017009b2
+  en: '[Qiskit](qiskit.md) covers conversion to a FatQat program and running a circuit through the Qiskit backend API.'
+  ko: '[Qiskit](qiskit.md)에서는 회로를 FatQat 프로그램으로 변환하거나 Qiskit의 백엔드 API로 실행하는 방법을 설명합니다.'
   status: machine

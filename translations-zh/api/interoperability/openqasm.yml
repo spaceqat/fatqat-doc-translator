@@ -44,13 +44,73 @@
   status: machine
 - id: b3772ff5f56d4097
   en: Catch [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError] to handle either conversion error. Catch [`QASMTranspileError`][fatqat.qasm.QASMTranspileError] to handle translator rejection separately from [`QasmExportError`][fatqat.qasm.QasmExportError], which reports a program that cannot be represented. For compatibility, [`QASMTranspileError`][fatqat.qasm.QASMTranspileError] is also a [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError).
-  zh: 捕获 [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError] 可处理任一转换错误。捕获 [`QASMTranspileError`][fatqat.qasm.QASMTranspileError] 可将翻译器的拒绝与 [`QasmExportError`][fatqat.qasm.QasmExportError] 分开处理，后者报告无法表示的程序。出于兼容性考虑，[`QASMTranspileError`][fatqat.qasm.QASMTranspileError] 同时也是 [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)。
+  zh: 要统一处理导入和导出的转换异常，可以捕获 [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError]。需要分别处理时，导入遇到不支持的语句或表达式会抛出 [`QASMTranspileError`][fatqat.qasm.QASMTranspileError]，无法用 OpenQASM 表示的程序在导出时会抛出 [`QasmExportError`][fatqat.qasm.QasmExportError]。为兼容已有代码，[`QASMTranspileError`][fatqat.qasm.QASMTranspileError] 也继承自 [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)。
   status: machine
 - id: 716184e5f6a64e93
   en: File I/O and text-decoding failures from [`from_qasm_file`][fatqat.qasm.from_qasm_file] use the underlying Python exceptions.
-  zh: '[`from_qasm_file`][fatqat.qasm.from_qasm_file] 的文件 I/O 和文本解码失败使用底层的 Python 异常。'
+  zh: 如果文件无法读取，或内容无法按指定编码解码，[`from_qasm_file`][fatqat.qasm.from_qasm_file] 会直接抛出相应的 Python 异常。
   status: machine
 - id: 1a3d2dace00aec2d
   en: 'Quantum operands remain positional: `cx q[0], q[1]` keeps q0 as the first operand. OpenQASM whole-register condition integers use the language''s classical weighting, where bit `i` contributes `2**i`. Thus `(c0, c1) = (1, 0)` exports as `if (c == 1)`, while `(0, 1)` exports as `if (c == 2)`. FATQAT count strings still display `c0` first.'
   zh: 量子操作数仍按位置解释：`cx q[0], q[1]` 保持 q0 为第一个操作数。OpenQASM 对整个寄存器的条件整数使用其经典位权约定，即位 `i` 的贡献为 `2**i`。因此，`(c0, c1) = (1, 0)` 导出为 `if (c == 1)`，而 `(0, 1)` 导出为 `if (c == 2)`。FATQAT 的计数字符串仍将 `c0` 显示在最左侧。
+  status: machine
+- id: e012a301602578ae
+  en: Use [`from_qasm()`][fatqat.qasm.from_qasm] to read OpenQASM source text or [`from_qasm_file()`][fatqat.qasm.from_qasm_file] to read a file. Both produce a [`Program`][fatqat.Program] from OpenQASM 2 or 3. Use [`to_qasm()`][fatqat.qasm.to_qasm] to export a program as source text. These functions work without Qiskit.
+  zh: 用 [`from_qasm()`][fatqat.qasm.from_qasm] 读取 OpenQASM 源代码，或用 [`from_qasm_file()`][fatqat.qasm.from_qasm_file] 读取文件。两者都可以将 OpenQASM 2 或 3 转成 [`Program`][fatqat.Program]。用 [`to_qasm()`][fatqat.qasm.to_qasm] 可将程序导出为源代码。这些函数无需安装 Qiskit。
+  status: machine
+- id: 0c4c2130ab3f8144
+  en: '`qasm_to_program` and `program_to_qasm` are aliases for the text conversion functions.'
+  zh: '`qasm_to_program` 和 `program_to_qasm` 分别是导入和导出源代码的函数别名。'
+  status: machine
+- id: 955bd18301c00a47
+  en: Import creates dimension-two registers. It accepts measurements, resets, local `gate` definitions, and supported built-in gates. Gate calls can use scalar targets or whole registers of equal length. A scalar target can be used with each member of a whole-register target. `barrier` statements are accepted and discarded.
+  zh: 导入后的寄存器维度为 2。输入可包含测量、重置、本地 `gate` 定义，以及受支持的内置门。门操作可以作用于单个寄存器成员，也可以作用于等长的整个寄存器。单个目标和整个寄存器一起使用时，会与寄存器中的每个成员分别配对。导入时会忽略 `barrier` 语句。
+  status: machine
+- id: 43d12ff28e302c44
+  en: A condition can guard one gate or reset using whole-register equality or an AND of bit comparisons. `include` statements do not load files. A gate must be built in or defined in the source. The [`from_qasm()`][fatqat.qasm.from_qasm] reference lists accepted expressions and gates.
+  zh: 条件可以控制一个门或一次重置。条件可以比较整个寄存器是否等于某个值，也可以要求多个比特比较同时成立。`include` 不会读取外部文件，因此门必须是内置门，或在源代码里有定义。支持的表达式和门见 [`from_qasm()`][fatqat.qasm.from_qasm]。
+  status: machine
+- id: 7c5fd16123811cf6
+  en: '[`to_qasm()`][fatqat.qasm.to_qasm] writes OpenQASM 3 by default. Use `version=2` when the receiving tool needs OpenQASM 2 and each condition fixes every bit of one classical register. OpenQASM 3 can represent combinations of individual bit comparisons.'
+  zh: '[`to_qasm()`][fatqat.qasm.to_qasm] 默认输出 OpenQASM 3。如果目标工具要求 OpenQASM 2，且每条条件都指定了某个经典寄存器内所有比特的值，可以用 `version=2`。OpenQASM 3 可以表示多条单比特比较的组合。'
+  status: machine
+- id: 6e2b02e557e3a57e
+  en: A program must have bound parameters, dimension-two registers, and targets specified as individual register members. `Barrier` exports as a native `barrier` statement. Direct pulse controls, [`RegisterView`](../registers.md#fatqat.RegisterView) targets, and operations without an OpenQASM representation are rejected. Export preserves operand order; register names may change and program metadata is omitted.
+  zh: 导出前需要绑定程序参数，所有寄存器的维度必须为 2，操作目标须指定为单个寄存器成员。`Barrier` 导出为原生 `barrier` 语句。直接指定的脉冲控制、以 [`RegisterView`](../registers.md#fatqat.RegisterView) 为目标的操作，以及无法用 OpenQASM 表示的操作都不能导出。导出会保留操作目标的顺序，寄存器可能重命名，导出的源代码不含程序元数据。
+  status: machine
+- id: e6e6178db0f1800b
+  en: In a whole-register condition, bit `i` contributes `2**i` to the integer. For example, `(c0, c1) = (1, 0)` becomes `if (c == 1)`. FatQat still puts `c0` on the left when displaying counts.
+  zh: 把整个寄存器写成条件中的整数时，比特 `i` 的权重是 `2**i`。例如，`(c0, c1) = (1, 0)` 会写成 `if (c == 1)`。FatQat 显示测量计数时，仍将 `c0` 放在最左边。
+  status: machine
+- id: d4436d9da43cba88
+  en: OpenQASM 2 and 3 both use the same conversion functions. Read source text with [`from_qasm()`][fatqat.qasm.from_qasm] or a file with [`from_qasm_file()`][fatqat.qasm.from_qasm_file]. These return a [`Program`][fatqat.Program]. To turn a program back into OpenQASM text, use [`to_qasm()`][fatqat.qasm.to_qasm]. All three functions work without Qiskit.
+  zh: OpenQASM 2 和 3 使用同一组转换接口。手头是源代码时，用 [`from_qasm()`][fatqat.qasm.from_qasm]。已有文件时，用 [`from_qasm_file()`][fatqat.qasm.from_qasm_file]。两者都返回 [`Program`][fatqat.Program]。要把程序导出为 OpenQASM 源代码，用 [`to_qasm()`][fatqat.qasm.to_qasm]。这三个函数都可以独立于 Qiskit 使用。
+  status: machine
+- id: a622ce1f64ed8ca4
+  en: Import a circuit
+  zh: 导入线路
+  status: machine
+- id: fb9597b81274aa50
+  en: Imported quantum and classical registers have dimension two. Along with the supported built-in gates, you can import measurements, resets, and local `gate` definitions. A gate can target a single register member or act element by element on equal-length registers. If a call combines a single member with a whole register, FatQat reuses that member for each application. Import skips `barrier` statements.
+  zh: 导入的量子寄存器和经典寄存器维度都是 2。除了支持的内置门，源代码还可以包含测量、重置和本地 `gate` 定义。门可以作用于单个寄存器成员，也可以对等长的寄存器逐个成员执行。如果同一条门指令同时指定了单个成员和整个寄存器，就会让这个成员与寄存器中的各成员分别配对执行。导入时跳过 `barrier` 语句。
+  status: machine
+- id: 53b2e0af8c1c9247
+  en: You can condition a gate or reset on a whole register equaling a value, or on several bit comparisons that must all hold. The importer skips `include` directives, so the source must define any gate that FatQat does not provide. See [`from_qasm()`][fatqat.qasm.from_qasm] for the supported expressions and gates.
+  zh: 可以给一个门或一次重置加条件。条件可以比较整个寄存器是否等于某个值，也可以要求多个比特比较同时成立。导入时会跳过 `include` 指令，因此 FatQat 没有内置的门需要在源代码里定义。支持的表达式和门见 [`from_qasm()`][fatqat.qasm.from_qasm]。
+  status: machine
+- id: d9bb5ac5b1503068
+  en: Export a program
+  zh: 导出程序
+  status: machine
+- id: 6458d8d41af58be1
+  en: Handle conversion errors
+  zh: 处理转换异常
+  status: machine
+- id: 8cdd0fc095bb0ab1
+  en: '[`QASMTranspileError`][fatqat.qasm.QASMTranspileError] reports source that FatQat cannot import. [`QasmExportError`][fatqat.qasm.QasmExportError] reports a program that cannot be written in the requested version. Catch [`FatqatError`][fatqat.errors.FatqatError] to handle both. Existing import handlers can also catch [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError).'
+  zh: 导入时，FatQat 无法转换源代码会抛出 [`QASMTranspileError`][fatqat.qasm.QASMTranspileError]。导出时，如果程序无法用指定的 OpenQASM 版本表示，会抛出 [`QasmExportError`][fatqat.qasm.QasmExportError]。可以用 [`FatqatError`][fatqat.errors.FatqatError] 统一处理这两种异常。已有的导入代码也可以继续捕获 [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)。
+  status: machine
+- id: eb60c0250844a7b6
+  en: If [`from_qasm_file()`][fatqat.qasm.from_qasm_file] cannot read or decode the file, it raises the corresponding Python exception.
+  zh: 如果 [`from_qasm_file()`][fatqat.qasm.from_qasm_file] 无法读取文件，或无法按指定编码解码，会直接抛出相应的 Python 异常。
   status: machine

@@ -98,3 +98,71 @@
   en: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], and [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] follow the general Simulator API and are included below for a complete class reference.'
   ko: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model]은 일반 Simulator API를 따릅니다. 전체 클래스 참조를 위해 아래에도 포함했습니다.'
   status: machine
+- id: 1c306dc2e5588b2a
+  en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] runs gate-level programs on a configurable superconducting qubit layout. Use it to check whether a program fits the available qubit sites, uses native gates, and applies `CZ` only between connected sites.'
+  ko: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]는 설정 가능한 초전도 큐비트 배치에서 게이트 수준 프로그램을 실행합니다. 프로그램에 필요한 사이트가 충분한지, 네이티브 게이트를 사용하는지, `CZ`가 연결된 사이트 사이에서만 실행되는지 확인할 수 있습니다.'
+  status: machine
+- id: 972be5733617b195
+  en: The layout determines where a program's qubits can interact. The default device has 16 sites on a 4×4 nearest-neighbor grid. You can supply another undirected coupling graph through `num_qubits` and `couplings`.
+  ko: 배치에 따라 프로그램의 큐비트가 어느 위치에서 상호작용할 수 있는지가 정해집니다. 기본 장치는 4×4 격자에 배치된 16개 사이트를 가지며, 이웃한 사이트가 연결됩니다. `num_qubits`와 `couplings`로 다른 무방향 결합 그래프를 지정할 수 있습니다.
+  status: machine
+- id: 9fcafb476098f381
+  en: The simulator accepts `X`, `SX`, and `RZ` at every site. A `CZ` accepts either order of a connected pair, such as `(0, 1)` or `(1, 0)` on the default grid. Measurement and reset follow the [rules for the chosen simulation method](../simulator.md#methods).
+  ko: 모든 사이트에서 `X`, `SX`, `RZ`를 사용할 수 있습니다. `CZ`에는 연결된 쌍의 두 순서를 모두 전달할 수 있습니다. 기본 격자의 `(0, 1)`과 `(1, 0)`이 그 예입니다. 측정과 리셋은 [선택한 시뮬레이션 방법의 규칙](../simulator.md#methods)을 따릅니다.
+  status: machine
+- id: 42dc035315e7f533
+  en: By default, qubits map to consecutive device labels in register declaration order, including the members of a [`GridRegister`][fatqat.GridRegister]. Pass a complete [`ResourceLayout`][fatqat.ResourceLayout] to place those qubits at other sites. To compile a logical circuit for the same layout, pass the target returned by [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target] to the compiler.
+  ko: 기본적으로 레지스터를 선언한 순서대로 큐비트에 연속된 장치 번호를 부여합니다. [`GridRegister`][fatqat.GridRegister]의 구성원도 같은 규칙을 따릅니다. 큐비트를 다른 사이트에 놓으려면 완전한 [`ResourceLayout`][fatqat.ResourceLayout]을 전달합니다. 같은 배치에 맞게 논리 회로를 컴파일하려면 [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target]이 반환한 타깃을 컴파일러에 전달합니다.
+  status: machine
+- id: aad9874a78a6d968
+  en: Use [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map] to check a gate family or a specific device pair before running the program.
+  ko: 프로그램을 실행하기 전에 [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map]으로 특정 게이트 계열이나 장치 사이트 쌍에서 연산을 사용할 수 있는지 확인할 수 있습니다.
+  status: machine
+- id: 9ed05194329b7e5d
+  en: Use the built-in model to compare ideal and noisy results on the same program. The simulator runs ideally by default. To include gate damping and readout errors, pass a fresh model from [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] through `noise`.
+  ko: 내장 잡음 모델로 같은 프로그램의 이상적인 결과와 잡음이 포함된 결과를 비교할 수 있습니다. 기본값은 이상적인 실행입니다. 게이트 감쇠와 판독 오류를 포함하려면 [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model]이 반환한 모델을 `noise`에 전달합니다.
+  status: machine
+- id: 0107b3564749502e
+  en: <a id="fatqat.simulator.SCQubitSimulator.method"></a>
+  ko: <a id="fatqat.simulator.SCQubitSimulator.method"></a>
+  status: machine
+- id: 466f0cda52ea3e97
+  en: <a id="fatqat.simulator.SCQubitSimulator.run"></a>
+  ko: <a id="fatqat.simulator.SCQubitSimulator.run"></a>
+  status: machine
+- id: 371997c8c7dbe753
+  en: <a id="fatqat.simulator.SCQubitSimulator.run_sweep"></a>
+  ko: <a id="fatqat.simulator.SCQubitSimulator.run_sweep"></a>
+  status: machine
+- id: 505f7e3cc0584695
+  en: <a id="fatqat.simulator.SCQubitSimulator.validate_noise_model"></a>
+  ko: <a id="fatqat.simulator.SCQubitSimulator.validate_noise_model"></a>
+  status: machine
+- id: 08d9aa6d60d43373
+  en: For execution and results, see [`Simulator.run()`][fatqat.simulator.Simulator.run] and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]. The entries below cover the device layout, native operations, and reference noise model.
+  ko: 실행과 결과는 [`Simulator.run()`][fatqat.simulator.Simulator.run]과 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]을 참조하세요. 아래 항목에서는 장치 배치, 네이티브 연산과 기준 잡음 모델을 설명합니다.
+  status: machine
+- id: 82bd0285247375ad
+  en: Configure layout and noise
+  ko: 배치와 잡음 설정
+  status: machine
+- id: 91956d0136ea8720
+  en: Choose the number of qubit sites and which pairs can interact. The default is a 4×4 nearest-neighbor grid, with sites numbered from 0 to 15 in row order. To use another graph, set `num_qubits` and `couplings`.
+  ko: 큐비트 사이트 수와 상호작용할 수 있는 사이트 쌍을 정합니다. 기본값은 이웃한 사이트가 연결된 4×4 격자이며, 행 순서대로 0부터 15까지 번호를 붙입니다. 다른 연결 구조를 사용하려면 `num_qubits`와 `couplings`를 지정합니다.
+  status: machine
+- id: b5226fbc5c438379
+  en: To include gate damping and readout errors, pass the model returned by [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] as `noise`. Its API entry lists the gate and readout parameters.
+  ko: 게이트 감쇠와 판독 오류를 포함하려면 [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model]이 반환한 모델을 `noise`에 전달합니다. 게이트 및 판독 매개변수는 해당 API 항목에서 확인할 수 있습니다.
+  status: machine
+- id: ac65d65e975cc563
+  en: Check native gates
+  ko: 네이티브 게이트 확인
+  status: machine
+- id: 6bb36596509fbdff
+  en: To check a pair before running a program, query [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map]. On the default grid, sites 0 and 5 are diagonal neighbors, so this pair cannot run `CZ`.
+  ko: 프로그램을 실행하기 전에 [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map]으로 특정 사이트 쌍에서 게이트를 실행할 수 있는지 확인합니다. 기본 격자에서 사이트 0과 5는 대각선에 있으므로 이 쌍에는 `CZ`를 적용할 수 없습니다.
+  status: machine
+- id: 4a6714c498cfe66f
+  en: Use [`Simulator.run()`][fatqat.simulator.Simulator.run] for a single program and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep] for a parameter sweep. The entries below cover the simulator-specific interfaces.
+  ko: 프로그램 하나를 실행하려면 [`Simulator.run()`][fatqat.simulator.Simulator.run]을, 매개변수를 스윕하려면 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]을 사용합니다. 아래에는 이 시뮬레이터에서 제공하는 전용 인터페이스를 정리했습니다.
+  status: machine

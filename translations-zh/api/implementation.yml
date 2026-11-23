@@ -28,7 +28,7 @@
   status: machine
 - id: 6dc0a44677c7c095
   en: '`op` is the applied operation value, so it contains parameters such as a rotation angle. `targets` contains scalar program [`RegisterRef`][fatqat.RegisterRef] objects in operand order; a rule can inspect `target.register.dim` when its matrix depends on subsystem dimension.'
-  zh: "`op` 是当前要执行的 Operation 对象，其中包含旋转角等参数。`targets` 按操作数顺序给出程序中的标量 [`RegisterRef`][fatqat.RegisterRef]。若矩阵形式取决于子系统维数，可以读取 `target.register.dim`。"
+  zh: '`op` 是当前要执行的 Operation 对象，其中包含旋转角等参数。`targets` 按操作数顺序给出程序中的标量 [`RegisterRef`][fatqat.RegisterRef]。若矩阵形式取决于子系统维数，可以读取 `target.register.dim`。'
   status: machine
 - id: 2950147f148b66c8
   en: Local basis order
@@ -48,7 +48,7 @@
   status: machine
 - id: bf3586251296875b
   en: 'Pass `device_operands=` to `add` to register a rule only for that exact ordered tuple of backend-defined physical labels. These labels are not program register references. One operation family uses exactly one registration mode:'
-  zh: "向 `add` 传入 `device_operands=`，可仅针对该确切有序的、由后端定义的物理标签元组注册规则。这些标签不是程序寄存器引用。一个操作类型只能使用一种注册模式："
+  zh: 向 `add` 传入 `device_operands=`，可仅针对该确切有序的、由后端定义的物理标签元组注册规则。这些标签不是程序寄存器引用。一个操作类型只能使用一种注册模式：
   status: machine
 - id: 0d324fe487f3d1c0
   en: A *uniform* rule, added without `device_operands`, matches every physical tuple of the correct arity.
@@ -60,7 +60,7 @@
   status: machine
 - id: bd6928b5d5312b1f
   en: Call [`remove`][fatqat.implementation.MatrixImplementationMap.remove] before switching a family between these modes.
-  zh: "在这两种模式之间切换某个操作类型之前，先调用 [`remove`][fatqat.implementation.MatrixImplementationMap.remove]。"
+  zh: 在这两种模式之间切换某个操作类型之前，先调用 [`remove`][fatqat.implementation.MatrixImplementationMap.remove]。
   status: machine
 - id: 03d8783769910f22
   en: Validation timing
@@ -72,7 +72,7 @@
   status: retired
 - id: 71bf90935fc231d2
   en: Reference
-  zh: 参考
+  zh: API 参考
   status: machine
 - id: 70db4dffbad4eba5
   en: data `fatqat.implementation.DeviceOperands`
@@ -80,7 +80,7 @@
   status: machine
 - id: c8d39d581916d005
   en: Alias for an ordered tuple of hashable backend-defined physical labels.
-  zh: "有序元组的类型别名；每个元素是后端定义的、可哈希的物理标签。"
+  zh: 有序元组的类型别名；每个元素是后端定义的、可哈希的物理标签。
   status: machine
 - id: 50cbd645e833b814
   en: '| Form | Use it for | Value passed to `add` |'
@@ -125,4 +125,48 @@
 - id: eb9d12d01172db20
   en: '`add` rejects an invalid registration immediately with `TypeError` or `ValueError`. Matrix and channel rules run when a backend prepares a program. A matrix rule that raises produces [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError], an array with the wrong target shape produces [`BackendValidationError`][fatqat.errors.BackendValidationError], and a missing rule produces [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]. These errors occur before `run` returns a [`Job`][fatqat.Job].'
   zh: 注册不合法时，`add` 会立即抛出 `TypeError` 或 `ValueError`。矩阵规则和信道规则在后端准备程序时执行。矩阵规则自身抛出异常时，会报 [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]；返回数组的形状与目标不匹配时，会报 [`BackendValidationError`][fatqat.errors.BackendValidationError]；找不到规则时，会报 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]。这些错误都会在 `run` 返回 [`Job`][fatqat.Job] 之前发生。
+  status: machine
+- id: 5c4c675315c95649
+  en: Matrix implementation maps
+  zh: 矩阵实现映射
+  status: machine
+- id: 4eca2c94120f12aa
+  en: A [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] tells a matrix simulator how to apply an operation or noise channel. Use it to register a custom rule, replace a built-in one, or give different device locations different implementations of the same operation. Pass the map as `implementation_map` when creating a simulator. A `NoiseModel` still determines when and where a channel applies.
+  zh: '[`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] 告诉矩阵模拟器怎样执行操作或施加量子信道。你可以添加自己的规则、替换内置规则，也可以为同一操作在不同设备位置指定不同实现。创建模拟器时，用 `implementation_map` 传入映射。信道何时作用、作用于哪些目标，仍由 `NoiseModel` 决定。'
+  status: machine
+- id: b1a65ddcabb5f2c3
+  en: Start with [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map] to keep the built-in gate and channel rules, or create an empty [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to define the whole set yourself. The simulator copies the registrations when it is created. Adding or removing a rule from the original map later does not update an existing simulator.
+  zh: 想保留内置的门和信道规则，可以从 [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map] 开始。如果想自行提供全部规则，就创建空的 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]。模拟器在创建时复制注册表，之后在原映射上添加或删除规则，不会更新已创建的模拟器。
+  status: machine
+- id: f40a9da80ceb688a
+  en: '[`add()`][fatqat.implementation.MatrixImplementationMap.add] checks the registration when you add it. A rule that raises while the backend prepares an operation can produce [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]. A matrix with the wrong shape raises [`BackendValidationError`][fatqat.errors.BackendValidationError], and an unregistered operation raises [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError].'
+  zh: '[`add()`][fatqat.implementation.MatrixImplementationMap.add] 会在注册时检查规则。后端准备操作时，如果规则抛出异常，可能收到 [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]。矩阵形状不符会抛出 [`BackendValidationError`][fatqat.errors.BackendValidationError]，操作没有匹配的规则则会抛出 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]。'
+  status: machine
+- id: 56497e2eae3f315e
+  en: When a simulator encounters a gate, its implementation map determines which matrix to apply. With [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap], you can add a rule, change a built-in one, or use different matrices for the same gate at different device locations. Pass the map as `implementation_map` when you create the simulator. The map also supplies channel rules. The `NoiseModel` determines when a channel acts and which targets it affects.
+  zh: 模拟器执行一个门时，会通过实现映射选出要用的矩阵。用 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] 可以添加规则、替换内置规则，也可以为同一个门在不同设备位置指定不同的矩阵。创建模拟器时，通过 `implementation_map` 传入映射。量子信道的实现也可以在这里注册。信道何时施加、作用于哪些目标，由 `NoiseModel` 决定。
+  status: machine
+- id: dbfd687cdc799f58
+  en: Choose a starting map
+  zh: 从哪种映射开始
+  status: machine
+- id: 132de6bafd924ad4
+  en: To keep the built-in gate and channel rules, start with [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map]. To provide every rule yourself, create an empty [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]. The simulator uses a copy of the registrations made before it was created. Additions and removals you make later affect only the original map.
+  zh: 想在内置的门和信道规则上做调整，就从 [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map] 开始。想自己提供全部规则，就创建一个空的 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]。模拟器会复制创建时已有的规则。之后在原映射上添加或删除规则，只会改动原映射。
+  status: machine
+- id: 598ab5fcbbae0aef
+  en: Register a rule with [`MatrixImplementationMap.add()`][fatqat.implementation.MatrixImplementationMap.add]. You can pass an operation or channel instance, or its class. For an operation implemented with a matrix, choose one of the following forms.
+  zh: 用 [`MatrixImplementationMap.add()`][fatqat.implementation.MatrixImplementationMap.add] 注册规则。操作或信道既可以传入实例，也可以传入类型。用矩阵实现操作时，可以用下表中的任一种写法。
+  status: machine
+- id: 729694e213b728eb
+  en: Use a callable that returns Kraus matrices for a [custom channel](noise/custom-implementations.md). To update the quantum and classical state together, register a `CustomOperationImplementation`. See [Custom operations](simulators/custom-operations.md) for that interface.
+  zh: '[自定义量子信道](noise/custom-implementations.md)用返回 Kraus 矩阵的可调用对象来实现。需要同时更新量子态和经典状态时，注册 `CustomOperationImplementation`。这套接口见[自定义操作](simulators/custom-operations.md)。'
+  status: machine
+- id: c14e77884dfb0917
+  en: In a matrix rule, `op` is the operation instance, including any parameters such as a rotation angle. `targets` gives one [`RegisterRef`][fatqat.RegisterRef] per operand, in program order. Read `target.register.dim` if the matrix depends on a target's dimension.
+  zh: 矩阵规则接收的 `op` 是操作实例，其中包含转角等参数。`targets` 按程序中的目标顺序给出每个操作对象的 [`RegisterRef`][fatqat.RegisterRef]。如果矩阵随目标维度变化，可以读取 `target.register.dim`。
+  status: machine
+- id: f2336c17e484067b
+  en: Registration and run errors
+  zh: 注册与运行时的异常
   status: machine

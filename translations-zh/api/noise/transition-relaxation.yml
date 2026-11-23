@@ -48,7 +48,7 @@
   status: machine
 - id: 7d7a34d8d92ab44d
   en: The operator under the square root must be positive semidefinite. When several declarations match the same target, the simulator applies their channels sequentially in authored (registration) order. For two unit-coefficient branches from the same source level, survival is $(1-p_1)(1-p_2)$ rather than $1-p_1-p_2$, a discrepancy of $p_1p_2$. Destination populations can also depend on registration order, with those differences beginning at second order. Sequential composition therefore agrees with simultaneous independent decay only to first order for small probabilities. Use rate mode on a pulse emulator when accurate continuous competing-decay dynamics matter.
-  zh: 平方根下的算符必须为半正定。当多个声明匹配同一目标时，模拟器按指定的注册顺序依次施加其信道。对于从同一源能级出发、系数均为一的两个分支，存活概率为 $(1-p_1)(1-p_2)$，而不是 $1-p_1-p_2$，差值为 $p_1p_2$。目标态布居也可能依赖注册顺序，这种差异从二阶开始出现。因此，只有在小概率下一阶近似的意义上，顺序复合才与同时发生的独立衰减一致。如果需要准确的连续竞争衰减动力学，请在脉冲仿真器上使用速率模式。
+  zh: 平方根下的算符必须为半正定。当多个声明匹配同一目标时，模拟器按指定的注册顺序依次施加其信道。对于从同一源能级出发、系数均为一的两个分支，存活概率为 $(1-p_1)(1-p_2)$，而不是 $1-p_1-p_2$，差值为 $p_1p_2$。到达各目标态的概率也可能随注册顺序而变，这种差异从二阶开始出现。因此，只有在小概率下一阶近似的意义上，顺序复合才与同时发生的独立衰减一致。如果需要准确的连续竞争衰减动力学，请在脉冲仿真器上使用速率模式。
   status: machine
 - id: c10715c519f9c6ad
   en: '`p` is a dimensionless jump strength rather than necessarily the total jump probability. For a basis state $|s\rangle$, the jump probability is'
@@ -73,4 +73,24 @@
 - id: f09d8d3805d810dd
   en: See [Backend support](backend-support.md) for accepted forms and scopes.
   zh: 支持的形式和作用域见[后端支持](backend-support.md)。
+  status: machine
+- id: 423a365db191b8f6
+  en: Supply the transition coefficients directly. Their values determine the relative strength and phase of the terms in the jump.
+  zh: 直接给出各跃迁的系数。它们决定同一个跃迁算符中各项的相对强度和相位。
+  status: machine
+- id: 2eddd5731a6c3aee
+  en: A [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] describes one local jump operator from the transition coefficients you supply. The same interface can describe a transmon ladder or a decay branch in an atom.
+  zh: 一个 [`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] 根据你给出的跃迁系数定义一个局部跃迁算符。可以用它描述 Transmon 相邻能级之间的跃迁，也可以描述原子的一条衰变路径。
+  status: machine
+- id: cc9b0c9fa6e532f8
+  en: Choose either `p` for the jump strength of a finite simulator channel or `rate` for continuous evolution in a pulse emulator.
+  zh: 跃迁强度有两种写法，只能选一种。模拟器用 `p` 设置有限信道的跃迁强度，脉冲仿真器用 `rate` 设置连续演化的速率。
+  status: machine
+- id: 2d28a7a38a6b0fee
+  en: <a id="finite-channel-form"></a>
+  zh: <a id="finite-channel-form"></a>
+  status: machine
+- id: 4a32bb4205342d0c
+  en: <a id="continuous-form"></a>
+  zh: <a id="continuous-form"></a>
   status: machine

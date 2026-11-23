@@ -54,3 +54,47 @@
   en: Process execution requires serializable operations, implementations, and initial data. Define classes at module level when using it.
   zh: 使用进程执行时，Operation、实现对象和初始数据都必须可序列化，相关类应定义在模块顶层。
   status: machine
+- id: 023ab5f5995ee969
+  en: Use a custom operation when a circuit step needs to work directly with the current shot. It can update the quantum state, write a classical result, or carry data from one step to the next. The `CustomOperation` describes the instruction, and a `CustomOperationImplementation` defines what it does when the simulator runs it.
+  zh: 如果线路中的某一步需要直接处理这次运行的状态，可以使用自定义操作。它可以更新量子态、写入经典结果，也可以把数据留给同一次运行中的后续步骤。`CustomOperation` 描述操作指令，`CustomOperationImplementation` 定义模拟器执行这条指令时的行为。
+  status: machine
+- id: 30d53fa057bc0661
+  en: Register the implementation in the simulator's [`MatrixImplementationMap`](../implementation.md) so it can dispatch the instruction. This example defines an operation with no quantum targets. Each call adds one to a per-shot counter and writes the value to the first classical register entry.
+  zh: 把实现注册到模拟器的 [`MatrixImplementationMap`](../implementation.md) 中，模拟器就能找到这条指令对应的实现。下面的操作无需量子目标。每调用一次，就将本次运行的计数加一，并把它写入经典寄存器的第一个成员。
+  status: machine
+- id: 2f7e403f52e72844
+  en: Work with shot state
+  zh: 读写单次运行的状态
+  status: machine
+- id: 2676952b1cbb58c8
+  en: Use `execute(operation, state, context)` to read or update the current shot. Return the updated `state` or a replacement `EvolutionState`. Keep per-shot data in `state.classical`, as the same operation and implementation can be reused across shots. Values written to `clbits` appear in the counts when requested.
+  zh: 通过 `execute(operation, state, context)` 读取或更新这次运行的状态，返回更新后的 `state` 或一个新的 `EvolutionState`。同一个操作及其实现可能被多次运行共用，因此每次运行自己的数据应保存在 `state.classical` 中。请求计数时，写入 `clbits` 的值会出现在计数结果里。
+  status: machine
+- id: 6010313cb898bd69
+  en: Use `context.targets` to locate operands and `context.rng` for random draws that follow the simulation seed. The operation's classical condition is checked before `execute`. Attached noise runs afterward and evaluates its conditions on the updated classical register.
+  zh: 用 `context.targets` 查找操作的目标，用 `context.rng` 按模拟设置的种子取随机数。操作的经典条件在调用 `execute` 前检查。附加的噪声随后施加，其条件以更新后的经典寄存器为准。
+  status: machine
+- id: 3635a451554ad034
+  en: Run and request results
+  zh: 运行与读取结果
+  status: machine
+- id: 27e8fac16f63a945
+  en: Use a statevector or density-matrix run on `Simulator` or `AtomArraySimulator`, with either NumPy or Numba. On an atom array, start with the simulator's `implementation_map`. Your implementation is responsible for checking whether its sites contain atoms and whether they are paired.
+  zh: 使用 `Simulator` 或 `AtomArraySimulator` 的态矢量或密度矩阵方法，NumPy 和 Numba 均可。如果要扩展原子阵列模拟器，请从它的 `implementation_map` 开始注册。操作的实现负责检查目标位置有无原子，以及位置之间是否满足配对要求。
+  status: machine
+- id: 9e022cfd98a316ab
+  en: Custom operations support direct `run()` calls. Parameter sweeps, operator methods, and expectation calculations require other operation types.
+  zh: 自定义操作可以通过 `run()` 直接运行。参数扫描、算符方法和期望值计算需使用其他类型的操作。
+  status: machine
+- id: eac583f24611c7cf
+  en: 'To inspect a final state, use `shots=1` and `result_config={"final_state": True}`. To report counts from a program that has no measurement operations, request `result_config={"counts": True}`.'
+  zh: '要读取最终态，可以设 `shots=1`，并传入 `result_config={"final_state": True}`。如果程序没有测量操作，但需要返回计数，请传入 `result_config={"counts": True}`。'
+  status: machine
+- id: e7f087c71aabbdbe
+  en: For process parallelism, define operation and implementation classes at module level and use serializable initial data.
+  zh: 使用进程并行时，在模块顶层定义操作类和实现类，并使用可序列化的初始数据。
+  status: machine
+- id: e2b1502eff2af87d
+  en: The entries below describe how to define an instruction, implement its behavior, and read the state and context passed to it.
+  zh: 下面的条目说明如何定义指令、实现它的行为，以及如何读取执行时传入的状态和上下文。
+  status: machine

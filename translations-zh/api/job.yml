@@ -12,5 +12,13 @@
   status: machine
 - id: 98a03d4e150ad576
   en: The Job API is under active development. Its interfaces and supported behavior may change between releases. Pin an exact FatQat version when reproducibility matters.
-  zh: "Job API 仍在持续开发，其接口和支持的行为可能随版本变化。如果需要可复现性，请固定 FatQat 的具体版本。"
+  zh: Job API 仍在持续开发，其接口和支持的行为可能随版本变化。如果需要可复现性，请固定 FatQat 的具体版本。
+  status: machine
+- id: 10a587f024f6f6fe
+  en: A [`Job`][fatqat.Job] holds the outcome of a submission. Jobs returned by built-in backends and [`Estimator`][fatqat.Estimator] are already complete. Call [`result()`][fatqat.Job.result] to read the value or raise the execution error stored in the job.
+  zh: '[`Job`][fatqat.Job] 保存一次提交的执行结果。内置后端和 [`Estimator`][fatqat.Estimator] 返回的 Job 已执行完毕。调用 [`result()`][fatqat.Job.result] 即可读取结果。如果 Job 保存了执行错误，这个方法会抛出该错误。'
+  status: machine
+- id: 28efb9a15b6400de
+  en: A successful single run returns one [`Result`][fatqat.Result] through `result()`. A successful sweep returns a list in input order. Invalid inputs can raise before a job is returned. Whether an execution error is raised immediately or stored in a job depends on the backend's error-handling option.
+  zh: 单次运行成功后，`result()` 返回一个 [`Result`][fatqat.Result]。参数扫描成功后，返回按输入顺序排列的结果列表。输入校验失败时，调用可能在返回 Job 前就抛出错误。执行错误是当场抛出还是留在 Job 里，由后端的错误处理选项决定。
   status: machine

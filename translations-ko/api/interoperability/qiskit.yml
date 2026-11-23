@@ -210,3 +210,71 @@
   en: A run request was rejected before execution. This is a [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError].
   ko: 실행 전에 실행 요청이 거부되었을 때 발생합니다. [`fatqat.errors.FatqatError`][fatqat.errors.FatqatError]입니다.
   status: machine
+- id: 6546c0fefd45dbf8
+  en: Install Qiskit to use `fatqat.qiskit`. Use [`circuit_to_program()`][fatqat.qiskit.circuit_to_program] to run a converted circuit with FatQat's own result API. Use [`FatqatBackend`][fatqat.qiskit.FatqatBackend] to keep Qiskit's transpiler, job, and result APIs while running on the FatQat gate-level simulator.
+  ko: '`fatqat.qiskit`을 사용하려면 Qiskit을 설치하세요. [`circuit_to_program()`][fatqat.qiskit.circuit_to_program]으로 회로를 변환하면 FatQat의 실행 및 결과 API를 쓸 수 있습니다. [`FatqatBackend`][fatqat.qiskit.FatqatBackend]를 사용하면 FatQat 게이트 수준 시뮬레이터로 실행하면서 Qiskit의 트랜스파일러, 작업 및 결과 API를 그대로 쓸 수 있습니다.'
+  status: machine
+- id: 4125b5375a1fbc2d
+  en: Bind circuit parameters before conversion and transpile gates outside the basis of [`build_simulator_target()`][fatqat.qiskit.build_simulator_target]. Named registers are preserved. The circuit's global phase is recorded in `program.metadata["qiskit_global_phase"]`. FatQat executes the converted operations without that overall phase.
+  ko: 변환 전에 회로의 매개변수를 바인딩하세요. [`build_simulator_target()`][fatqat.qiskit.build_simulator_target]의 게이트 기저에 없는 연산은 먼저 트랜스파일합니다. 이름이 있는 레지스터는 유지하며 회로의 전역 위상은 `program.metadata["qiskit_global_phase"]`에 기록합니다. FatQat은 변환된 연산을 실행할 때 이 전체 위상을 적용하지 않습니다.
+  status: machine
+- id: 1391c53efe0052b2
+  en: Transpile to the backend's `target`. Pass a FatQat [`NoiseModel`][fatqat.NoiseModel] as `noise_model` for noisy runs. [`run()`][fatqat.qiskit.FatqatBackend.run] accepts one circuit or a batch, and documents the shot, memory, and seed settings.
+  ko: 백엔드의 `target`에 맞춰 회로를 트랜스파일하세요. 잡음이 있는 실행에는 FatQat [`NoiseModel`][fatqat.NoiseModel]을 `noise_model`로 전달합니다. [`run()`][fatqat.qiskit.FatqatBackend.run]은 회로 하나나 배치를 받으며 샷, 메모리, 시드 설정도 이 항목에 설명되어 있습니다.
+  status: machine
+- id: 8dd1fd53c51668ed
+  en: Invalid inputs or options raise [`QiskitBackendError`][fatqat.qiskit.QiskitBackendError] before a job is returned. A later conversion or execution failure is raised by [`FatqatJob.result()`][fatqat.qiskit.FatqatJob.result] as Qiskit's `QiskitError`, with the original error attached.
+  ko: 입력이나 옵션이 잘못되면 작업을 반환하기 전에 [`QiskitBackendError`][fatqat.qiskit.QiskitBackendError]가 발생합니다. 이후 변환 또는 실행에 실패하면 [`FatqatJob.result()`][fatqat.qiskit.FatqatJob.result]가 원래 오류를 원인으로 연결한 Qiskit의 `QiskitError`를 일으킵니다.
+  status: machine
+- id: 91f1b11787bc7b24
+  en: <a id="jobs-and-provider-helper"></a>
+  ko: <a id="jobs-and-provider-helper"></a>
+  status: machine
+- id: cfe3b4fb51cdf3dd
+  en: '[`FatqatProvider`][fatqat.qiskit.FatqatProvider] creates configured backends for code that uses a provider interface.'
+  ko: 기존 코드에서 프로바이더를 통해 백엔드를 구한다면 [`FatqatProvider`][fatqat.qiskit.FatqatProvider]로 설정된 백엔드를 만들 수 있습니다.
+  status: machine
+- id: cf8fa432f836195f
+  en: Compare bit and basis order
+  ko: 비트와 기저 순서 비교
+  status: machine
+- id: d891c99744cea625
+  en: For a single two-bit classical register with bit 0 set, FatQat displays `"10"` and Qiskit displays `"01"`. For several registers, use Qiskit's register grouping when reading its count strings. FatQat's [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] keeps the classical member order in a tuple.
+  ko: 두 비트짜리 고전 레지스터 하나에서 비트 0만 1이면 FatQat은 `"10"`을, Qiskit은 `"01"`을 표시합니다. 레지스터가 여러 개라면 Qiskit의 레지스터 그룹에 따라 측정 횟수 문자열을 읽으세요. FatQat의 [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples]는 고전 레지스터 원소 순서를 튜플에 그대로 담습니다.
+  status: machine
+- id: dd55c72d17ef67de
+  en: For two qubits, Z on qubit 0 is `"ZI"` in FatQat and `"IZ"` in Qiskit. Statevectors also use opposite tensor-factor order for the same qubits. To compare arrays, reverse the qubit axes of the reshaped statevector. For a matrix, reverse the qubit axes separately on the row and column sides.
+  ko: 두 큐비트에서 0번 큐비트의 Z는 FatQat에서 `"ZI"`, Qiskit에서 `"IZ"`입니다. 같은 큐비트에 대한 상태 벡터도 텐서 인자 순서가 반대입니다. 배열을 비교하려면 상태 벡터를 큐비트별 축으로 펼친 뒤 축 순서를 뒤집으세요. 행렬은 행과 열에 해당하는 큐비트 축을 각각 뒤집습니다.
+  status: machine
+- id: ca784ad6555f888b
+  en: A Qiskit circuit can run in FatQat through either API. Use [`circuit_to_program()`][fatqat.qiskit.circuit_to_program] when you want a FatQat program and want to read results in FatQat. Use [`FatqatBackend`][fatqat.qiskit.FatqatBackend] to keep working with Qiskit's transpiler, jobs, and results while FatQat runs the circuit. Both routes use `fatqat.qiskit` and require Qiskit to be installed.
+  ko: Qiskit 회로를 실행할 때는 결과를 어느 API에서 읽을지에 따라 방법을 고르세요. FatQat으로 실행하고 결과를 확인하려면 [`circuit_to_program()`][fatqat.qiskit.circuit_to_program]으로 회로를 FatQat 프로그램으로 변환하세요. Qiskit에서 계속 트랜스파일하고 작업을 제출하고 결과를 확인하려면 [`FatqatBackend`][fatqat.qiskit.FatqatBackend]를 백엔드로 사용하세요. 두 방법 모두 `fatqat.qiskit`을 사용하므로 Qiskit을 먼저 설치해야 합니다.
+  status: machine
+- id: 7ee59c7444628c3c
+  en: Convert a circuit
+  ko: 회로 변환
+  status: machine
+- id: 7cee27aef6223a3c
+  en: Bind the parameters before converting the circuit. If the circuit contains gates outside the basis returned by [`build_simulator_target()`][fatqat.qiskit.build_simulator_target], transpile it to that basis first. The converter keeps named registers and stores the circuit's global phase in `program.metadata["qiskit_global_phase"]`. The returned state omits that overall phase.
+  ko: 회로를 변환하기 전에 매개변수를 바인딩하세요. 회로에 [`build_simulator_target()`][fatqat.qiskit.build_simulator_target]이 반환하는 게이트 기저에 없는 게이트가 있으면 먼저 해당 기저로 트랜스파일합니다. 변환할 때 이름이 지정된 레지스터는 유지하고 회로의 전역 위상은 `program.metadata["qiskit_global_phase"]`에 기록합니다. 실행 결과의 상태에는 이 위상이 적용되지 않습니다.
+  status: machine
+- id: 35d619850b6e947e
+  en: Run through Qiskit
+  ko: Qiskit에서 실행
+  status: machine
+- id: cd2552843c090ca1
+  en: Transpile the circuit for the backend's `target`. To include noise, pass a FatQat [`NoiseModel`][fatqat.NoiseModel] as `noise_model` when you create the backend. Then submit one or more circuits with [`run()`][fatqat.qiskit.FatqatBackend.run]. Its reference lists the settings for shot count, measurement memory, and the random seed.
+  ko: 먼저 백엔드의 `target`에 맞춰 회로를 트랜스파일하세요. 잡음을 포함하려면 백엔드를 만들 때 FatQat [`NoiseModel`][fatqat.NoiseModel]을 `noise_model`로 전달합니다. [`run()`][fatqat.qiskit.FatqatBackend.run]으로 회로 하나 또는 여러 개를 제출하세요. 샷 수, 개별 측정 결과 저장, 난수 시드 옵션은 메서드 설명을 참고하세요.
+  status: machine
+- id: aff9071a2db74cd7
+  en: If `run_input` is empty or contains non-circuit values, or if a run option is invalid, the backend raises [`QiskitBackendError`][fatqat.qiskit.QiskitBackendError] before returning a job. If conversion or execution fails after that, [`FatqatJob.result()`][fatqat.qiskit.FatqatJob.result] raises a Qiskit `QiskitError` and retains the original exception as its cause.
+  ko: '`run_input`이 비어 있거나 회로가 아닌 값을 포함하거나 실행 옵션이 잘못되면 백엔드는 작업을 반환하기 전에 [`QiskitBackendError`][fatqat.qiskit.QiskitBackendError]를 발생시킵니다. 요청을 받은 뒤 변환이나 실행에 실패하면 [`FatqatJob.result()`][fatqat.qiskit.FatqatJob.result]를 호출할 때 Qiskit의 `QiskitError`가 발생하며 원래 예외가 원인으로 연결됩니다.'
+  status: machine
+- id: b2044730049f1c4c
+  en: In a single two-bit classical register, a 1 in bit 0 appears as `"10"` in FatQat and `"01"` in Qiskit. With multiple registers, read the groups in the Qiskit count string separately. FatQat's [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples] gives each outcome as a tuple in classical register order.
+  ko: 두 비트짜리 고전 레지스터 하나에서 비트 0만 1이면 FatQat은 `"10"`, Qiskit은 `"01"`로 표시합니다. 레지스터가 여러 개면 Qiskit의 측정 횟수 문자열을 레지스터별로 묶어 읽으세요. FatQat의 [`get_counts_as_tuples()`][fatqat.Result.get_counts_as_tuples]는 각 측정 결과를 고전 레지스터 원소 순서대로 튜플에 담습니다.
+  status: machine
+- id: d3da4d4677078c73
+  en: For the same two qubits, Z on qubit 0 is `"ZI"` in FatQat and `"IZ"` in Qiskit. To compare statevectors, reshape each into one axis per qubit, then reverse the axis order in one of the arrays. For a matrix, do this separately for the qubit axes on the row side and the column side.
+  ko: 같은 두 큐비트에서 0번 큐비트에만 Z를 적용하면 FatQat에서는 `"ZI"`, Qiskit에서는 `"IZ"`로 씁니다. 상태 벡터를 비교하려면 각 벡터의 모양을 큐비트당 축 하나로 바꾼 뒤 한쪽 배열의 축 순서를 뒤집으세요. 행렬은 행 쪽과 열 쪽의 큐비트 축에 각각 같은 작업을 합니다.
+  status: machine

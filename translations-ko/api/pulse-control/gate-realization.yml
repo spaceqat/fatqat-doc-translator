@@ -1,6 +1,6 @@
 - id: f9ae020319d767a3
   en: Gate realization
-  ko: 게이트 구현
+  ko: 게이트의 펄스 구현
   status: machine
 - id: 9f5cbf686afafe35
   en: Pulse control under development
@@ -45,4 +45,40 @@
 - id: d05cc5dc2b2be67a
   en: The [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) pages show the built-in maps and full workflows.
   ko: 내장 맵과 전체 과정은 [transmon](../pulse-emulator.md) 및 [중성 원자](../atom-emulators.md) 페이지를 참고하세요.
+  status: machine
+- id: 73de97887a4a7a1c
+  en: Use a general rule if the same callable can handle every device-operand tuple. Use device-specific rules to register a pulse definition for an ordered tuple of physical labels, such as `("q0", "q1")`. See [`PulseImplementationMap.add()`][fatqat.emulator.PulseImplementationMap.add] for the accepted rule forms and tuple lengths.
+  ko: 같은 호출 가능 객체를 모든 장치 피연산자 조합에 쓸 수 있다면 공통 규칙을 등록합니다. 특정 위치에 펄스 정의를 지정하려면 `("q0", "q1")`처럼 순서가 있는 물리 레이블 튜플을 사용해 등록합니다. 허용되는 규칙 형식과 튜플 길이는 [`PulseImplementationMap.add()`][fatqat.emulator.PulseImplementationMap.add]를 참고하세요.
+  status: machine
+- id: 7a92264a1edfcd27
+  en: The emulator calls and validates the selected rule when the gate is used. See [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] for errors that can occur when a rule runs.
+  ko: 에뮬레이터는 게이트를 실행할 때 선택한 규칙을 호출하고 결과를 검사합니다. 규칙 실행 중 발생할 수 있는 오류는 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap]에 설명되어 있습니다.
+  status: machine
+- id: 4f6580d6f7c419b5
+  en: Custom gate pulses
+  ko: 사용자 정의 게이트 펄스
+  status: machine
+- id: e8cd0475bb740148
+  en: Use a [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap] when you want to supply your own waveform for a gate or choose a different pulse for a particular physical target. The program still specifies gates and logical targets. When the emulator prepares the program, it uses the gate and its mapped physical targets to select a pulse definition. To drive a channel directly from the program, use a [PulseOperation](pulse-operation.md).
+  ko: 게이트에 원하는 파형을 적용하거나 특정 물리 대상에 다른 펄스를 쓰려면 [`PulseImplementationMap`][fatqat.emulator.PulseImplementationMap]을 사용합니다. 프로그램에는 게이트와 논리 대상을 그대로 지정합니다. 에뮬레이터는 프로그램의 실행을 준비할 때 게이트와 매핑된 물리 대상에 맞는 펄스 정의를 고릅니다. 프로그램에서 채널을 직접 구동하려면 [PulseOperation](pulse-operation.md)을 사용합니다.
+  status: machine
+- id: e92376cd3875ce9c
+  en: Define the pulse
+  ko: 펄스 정의
+  status: machine
+- id: 8e031c56bd472103
+  en: Specify the duration and physical controls in a [`PulseDefinition`][fatqat.emulator.PulseDefinition]. A definition can also apply frame actions after the pulse interval. `PhaseShift` shifts one frame and `PhaseSwap` exchanges two frames. Conditions and noise remain on the original gate operation in the program.
+  ko: '[`PulseDefinition`][fatqat.emulator.PulseDefinition]에 지속 시간과 물리 제어를 지정합니다. 펄스 구간 뒤에 프레임 동작을 적용할 수도 있습니다. `PhaseShift`는 한 프레임의 위상을 바꾸고 `PhaseSwap`은 두 프레임을 맞바꿉니다. 조건과 잡음은 프로그램의 원래 게이트에 그대로 적용됩니다.'
+  status: machine
+- id: ec43595dbd5bfe20
+  en: Register the implementation
+  ko: 게이트 구현 등록
+  status: machine
+- id: 96c9cabb545afc81
+  en: Use a general rule if the same callable can handle every device-operand tuple. To supply a pulse for an ordered set of physical labels, such as `("q0", "q1")`, register it as a device-specific rule. Pass the map to the emulator as `gate_implementation_map=`. The [`PulseImplementationMap` example][fatqat.emulator.PulseImplementationMap] below registers a fixed definition and runs the gate with that map. See [`PulseImplementationMap.add()`][fatqat.emulator.PulseImplementationMap.add] for the accepted rule forms and tuple lengths.
+  ko: 같은 호출 가능 객체로 모든 장치 피연산자 조합을 처리할 수 있다면 공통 규칙을 등록합니다. `("q0", "q1")`처럼 순서가 있는 물리 레이블 조합에 펄스를 지정하려면 장치별 규칙을 사용합니다. 에뮬레이터를 만들 때 `gate_implementation_map=`으로 맵을 전달합니다. 아래의 [`PulseImplementationMap` 예제][fatqat.emulator.PulseImplementationMap]는 고정 펄스 정의를 등록한 뒤 해당 맵으로 게이트를 실행합니다. 허용되는 규칙 형식과 튜플 길이는 [`PulseImplementationMap.add()`][fatqat.emulator.PulseImplementationMap.add]에서 확인할 수 있습니다.
+  status: machine
+- id: 7ceb796bd31c51f7
+  en: The [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) API pages describe the default maps and constructor options for each emulator.
+  ko: 에뮬레이터별 기본 맵과 생성자 옵션은 [트랜스몬](../pulse-emulator.md) 및 [중성 원자](../atom-emulators.md) API 페이지를 참고하세요.
   status: machine

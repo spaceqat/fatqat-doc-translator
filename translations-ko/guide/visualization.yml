@@ -100,9 +100,13 @@
   status: machine
 - id: b63f379d75a1e532
   en: Visualization helps you check a program and understand its results. A circuit diagram makes the gate order, measurement positions, and classical conditions easier to follow. Plotting measurement outcomes shows which results are more common and how their frequencies differ. For longer programs, an interaction graph also helps you see which logical qubits often take part in operations together.
-  ko: "시각화는 프로그램을 점검하고 실행 결과를 이해하는 데 도움이 됩니다. 회로를 그리면 게이트 순서, 측정 위치, 고전 조건을 더 쉽게 파악할 수 있습니다. 측정 결과를 그래프로 보면 어떤 결과가 더 자주 나오고 빈도가 얼마나 다른지 알 수 있습니다. 긴 프로그램에서는 상호작용 그래프로 어떤 논리 큐비트가 연산에 자주 함께 참여하는지도 살펴볼 수 있습니다."
+  ko: 시각화는 프로그램을 점검하고 실행 결과를 이해하는 데 도움이 됩니다. 회로를 그리면 게이트 순서, 측정 위치, 고전 조건을 더 쉽게 파악할 수 있습니다. 측정 결과를 그래프로 보면 어떤 결과가 더 자주 나오고 빈도가 얼마나 다른지 알 수 있습니다. 긴 프로그램에서는 상호작용 그래프로 어떤 논리 큐비트가 연산에 자주 함께 참여하는지도 살펴볼 수 있습니다.
   status: machine
 - id: df851d8e85e86515
   en: 'FatQat provides drawing methods for these tasks: use a [`Program`][fatqat.Program] to draw circuits and logical interactions, and a [`Result`][fatqat.Result] to plot the measurement outcomes from one run.'
-  ko: "FatQat은 이를 위한 그리기 메서드를 제공합니다. [`Program`][fatqat.Program]으로 회로와 논리 상호작용을 그리고, [`Result`][fatqat.Result]로 한 번의 실행에서 얻은 측정 결과를 그릴 수 있습니다."
+  ko: FatQat은 이를 위한 그리기 메서드를 제공합니다. [`Program`][fatqat.Program]으로 회로와 논리 상호작용을 그리고, [`Result`][fatqat.Result]로 한 번의 실행에서 얻은 측정 결과를 그릴 수 있습니다.
+  status: machine
+- id: d7f8296846c731be
+  en: '`number_to_keep` keeps the most frequent outcomes and groups the rest into an `other` bar. All plot options are listed under [`Result.draw()`][fatqat.Result.draw].'
+  ko: '`number_to_keep`는 자주 나온 결과만 남기고 나머지는 `other` 막대로 묶습니다. 전체 그리기 옵션은 [`Result.draw()`][fatqat.Result.draw]에서 확인할 수 있습니다.'
   status: machine

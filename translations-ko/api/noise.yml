@@ -88,7 +88,7 @@
   status: machine
 - id: aa0fda68c27da5fc
   en: API pages
-  ko: API 페이지
+  ko: API 레퍼런스 페이지
   status: machine
 - id: c67c1acc10c1ae15
   en: '[Noise model](noise/model.md)'
@@ -133,4 +133,36 @@
 - id: d08ff5c91fb4d5a7
   en: '[Custom noise implementations](noise/custom-implementations.md)'
   ko: '[사용자 정의 잡음 구현](noise/custom-implementations.md)'
+  status: machine
+- id: 0fb9b9d4a3969e53
+  en: Use a `NoiseModel` to vary the noise in a run while keeping the same [`Program`][fatqat.Program]. Simulators can apply a channel after an operation. Pulse emulators can evolve the state with continuous noise, including during idle time. Readout confusion changes the reported digits in either case.
+  ko: '`NoiseModel`을 사용하면 같은 [`Program`][fatqat.Program]을 여러 잡음 조건에서 실행할 수 있습니다. 시뮬레이터는 연산 뒤에 양자 채널을 적용할 수 있습니다. 펄스 에뮬레이터는 유휴 시간을 포함해 연속 잡음이 작용하는 동안 상태를 진화시킬 수 있습니다. 두 경우 모두 판독 혼동으로 보고되는 값을 바꿀 수 있습니다.'
+  status: machine
+- id: 02106b968d931d5b
+  en: Noise types are available in `fatqat.noise`. Pass a [`NoiseModel`][fatqat.NoiseModel] to the backend with `noise=...`.
+  ko: 잡음 유형은 `fatqat.noise`에 있습니다. [`NoiseModel`][fatqat.NoiseModel]을 `noise=...`로 백엔드에 전달하세요.
+  status: machine
+- id: 160ec68daf42959e
+  en: Choose a type by the effect you want to model. For a type with both forms, use a probability for a single channel application or a rate or relaxation time for continuous evolution. Follow the definition for your backend on the type's page.
+  ko: 먼저 모형에 넣으려는 효과에 맞는 잡음 유형을 고르세요. 두 형태를 모두 제공하는 유형은 한 번의 채널 적용에 확률을, 연속 시간 진화에 비율이나 이완 시간을 사용합니다. 각 유형 페이지에서 백엔드에 해당하는 정의를 확인할 수 있습니다.
+  status: machine
+- id: f64b397bb3b7412b
+  en: Check [Backend support](noise/backend-support.md#noise-backend-support) for the forms, scopes, and target dimensions your backend accepts.
+  ko: '[백엔드 지원 범위](noise/backend-support.md#noise-backend-support)에서 사용할 백엔드가 받는 잡음 형태, 적용 범위, 대상 차원을 확인하세요.'
+  status: machine
+- id: f46f649b5bdcf20b
+  en: After an operation
+  ko: 연산 뒤에 잡음 적용
+  status: machine
+- id: 33f5fab7bc7eb06e
+  en: Pass `operation=ops.CX` to apply a depolarizing channel jointly to the two operands after each `CX`. For a full comparison, see [Ideal and noisy runs](../guide/ideal-and-noisy.md).
+  ko: '`operation=ops.CX`를 지정하면 각 `CX` 연산 뒤에 두 피연산자에 하나의 탈분극 채널을 함께 적용합니다. 전체 비교 예제는 [이상적 실행과 잡음이 있는 실행](../guide/ideal-and-noisy.md)을 참고하세요.'
+  status: machine
+- id: be67945c3e0deae0
+  en: During pulse evolution
+  ko: 펄스 진화 중에 잡음 적용
+  status: machine
+- id: 4684600942117fcd
+  en: Omit `operation` to keep relaxation active on `"q0"` throughout the elapsed time, including idle periods. The reference transmon model uses nanoseconds, so `rate` is in inverse nanoseconds.
+  ko: '`operation`을 생략하면 유휴 구간을 포함해 시간이 흐르는 동안 `"q0"`에 이완이 계속 작용합니다. 참조 트랜스몬 모델의 시간 단위는 나노초이므로 `rate`는 나노초의 역수로 표현합니다.'
   status: machine

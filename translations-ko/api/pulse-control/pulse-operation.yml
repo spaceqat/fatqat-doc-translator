@@ -30,3 +30,23 @@
   en: Direct `PulseOperation` blocks run on [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] and [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]. [Pulse control](index.md) compares their channels and units. [Matrix simulators and their device profiles](../simulators/index.md) do not accept direct pulse blocks, and neither circuit drawing nor OpenQASM export can represent them.
   ko: 직접 `PulseOperation` 블록은 [`TransmonEmulator`][fatqat.emulator.TransmonEmulator]와 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]에서 실행됩니다. 채널과 단위 비교는 [펄스 제어](index.md)를 참고하세요. [행렬 시뮬레이터와 장치 프로필](../simulators/index.md)은 직접 펄스 블록을 받지 않으며, 회로 그림이나 OpenQASM 내보내기로도 표현할 수 없습니다.
   status: machine
+- id: 8f362e07354d7a95
+  en: Add a [`PulseOperation`][fatqat.operations.PulseOperation] with `program.add(operation)`. Its controls already specify the physical channels to drive.
+  ko: '[`PulseOperation`][fatqat.operations.PulseOperation]은 `program.add(operation)`으로 프로그램에 추가합니다. 구동할 물리 채널은 각 제어에 지정되어 있습니다.'
+  status: machine
+- id: 825ffb36868c090f
+  en: The [direct pulse support table](index.md#built-in-support) lists compatible backends, channels, and units. Use supported gate-level operations for circuit drawing and OpenQASM export.
+  ko: 사용할 수 있는 백엔드, 채널, 단위는 [직접 펄스 지원 표](index.md#built-in-support)를 참고하세요. 회로를 그리거나 OpenQASM으로 내보낼 때는 해당 기능에서 지원하는 게이트 수준 연산을 사용합니다.
+  status: machine
+- id: 25883f6adc0895c9
+  en: Add a [`PulseOperation`][fatqat.operations.PulseOperation] with `program.add(operation)`. Its controls already specify the physical channels to drive. Put controls in the same block when they should share a time axis. Each control's `start_offset` is measured from the start of that block.
+  ko: '[`PulseOperation`][fatqat.operations.PulseOperation]은 `program.add(operation)`으로 프로그램에 추가합니다. 구동할 물리 채널은 각 제어에 지정되어 있습니다. 같은 시간축에서 제어를 배치하려면 하나의 블록에 넣습니다. 각 제어의 `start_offset`은 해당 블록의 시작 시점을 기준으로 합니다.'
+  status: machine
+- id: d0126b42c2b59f75
+  en: Drawing and export
+  ko: 회로 그리기와 내보내기
+  status: machine
+- id: 7793028760e72c18
+  en: Use supported gate-level operations for circuit drawing and OpenQASM export.
+  ko: 회로를 그리거나 OpenQASM으로 내보낼 때는 해당 기능에서 지원하는 게이트 수준 연산을 사용합니다.
+  status: machine

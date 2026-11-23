@@ -62,3 +62,15 @@
   en: Readout confusion remains a classical reporting step; it is not represented by a Lindblad operator. See [Pulse emulators](backend-support.md#noise-emulator-support) for each emulator's reported digit dimension and physical-level mapping.
   ko: 판독 혼동은 고전적인 보고 단계이며 Lindblad 연산자로 표현하지 않습니다. 에뮬레이터별 보고 숫자의 차원과 물리 준위 매핑은 [펄스 에뮬레이터](backend-support.md#noise-emulator-support)를 참고하세요.
   status: machine
+- id: a5a5b6dcce22244a
+  en: A later classical condition uses the reported digit. A later quantum operation on the measured subsystem starts from the state set by the true measurement outcome.
+  ko: 이후의 고전 조건은 보고된 값을 사용합니다. 측정한 하위 시스템에 다시 양자 연산을 적용하면 실제 측정 결과로 정해진 상태에서 시작합니다.
+  status: machine
+- id: 9c1b32913e5dabe8
+  en: For target selectors and overlapping rules, see [`NoiseModel.add()`][fatqat.NoiseModel.add].
+  ko: 대상 선택과 규칙이 겹치는 경우는 [`NoiseModel.add()`][fatqat.NoiseModel.add]를 참고하세요.
+  status: machine
+- id: d86536de3c6504c8
+  en: The built-in pulse emulators report binary digits, so they require a `2 x 2` matrix. [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] reports either excited level as `1` before readout confusion is applied.
+  ko: 내장 펄스 에뮬레이터는 이진 값을 보고하므로 `2 x 2` 행렬이 필요합니다. [`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 두 들뜬 준위를 모두 `1`로 변환한 뒤 판독 혼동을 적용합니다.
+  status: machine

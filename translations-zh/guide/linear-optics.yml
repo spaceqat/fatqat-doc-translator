@@ -104,17 +104,25 @@
   status: machine
 - id: cf676503cc0ae1a2
   en: '**A mode holds any number of photons.** Its level $n$ is a photon count, not one of two states.'
-  zh: "**一个模式可以容纳任意数量的光子。** 这里的 $n$ 表示模式中的光子数。"
+  zh: '**一个模式可以容纳任意数量的光子。** 这里的 $n$ 表示模式中的光子数。'
   status: machine
 - id: f53d1f2cfdae433a
   en: The cancellation is exact only for a balanced splitter. `BeamSplitter(theta)` reflects a photon with probability $R = \sin^2\theta$. The two histories that end in `"11"` have amplitudes $\cos^2\theta$ and $-\sin^2\theta$. For identical photons, add the amplitudes and then square to get the coincidence probability $(1 - 2R)^2$. For distinguishable particles, add the probabilities of the two histories to get $(1 - R)^2 + R^2$.
-  zh: "两条路径的振幅只有在 50:50 分束器上才会完全抵消。使用 `BeamSplitter(theta)` 时，单个光子被反射的概率为 $R = \\sin^2\\theta$。得到 `\"11\"` 的两条路径，振幅分别为 $\\cos^2\\theta$ 和 $-\\sin^2\\theta$。对于全同光子，先将振幅相加再平方，得到符合概率 $(1 - 2R)^2$。对于可区分的粒子，直接相加两条路径的概率，得到 $(1 - R)^2 + R^2$。"
+  zh: 两条路径的振幅只有在 50:50 分束器上才会完全抵消。使用 `BeamSplitter(theta)` 时，单个光子被反射的概率为 $R = \sin^2\theta$。得到 `"11"` 的两条路径，振幅分别为 $\cos^2\theta$ 和 $-\sin^2\theta$。对于全同光子，先将振幅相加再平方，得到符合概率 $(1 - 2R)^2$。对于可区分的粒子，直接相加两条路径的概率，得到 $(1 - R)^2 + R^2$。
   status: machine
 - id: ffbdce1e699e3e3a
   en: At $R = 0$ and $R = 1$ only one history is possible, so the two cases agree. In between, interference suppresses coincidences, and at $R = 0.5$ it removes them completely. In the laboratory, the Hong–Ou–Mandel dip is usually traced at a fixed 50:50 splitter by delaying one photon, which makes the photons partly distinguishable and brings the coincidences back.
-  zh: "当 $R = 0$ 或 $R = 1$ 时，只有一条路径可能发生，两种情况的符合概率相同。反射率介于两者之间时，干涉会降低符合概率。在 $R = 0.5$ 处，符合概率降为零。实验中通常固定使用 50:50 分束器，通过改变一个光子的到达时间来测量 Hong–Ou–Mandel 凹陷。两个光子越容易区分，符合事件就越常见。"
+  zh: 当 $R = 0$ 或 $R = 1$ 时，只有一条路径可能发生，两种情况的符合概率相同。反射率介于两者之间时，干涉会降低符合概率。在 $R = 0.5$ 处，符合概率降为零。实验中通常固定使用 50:50 分束器，通过改变一个光子的到达时间来测量 Hong–Ou–Mandel 凹陷。两个光子越容易区分，符合事件就越常见。
   status: machine
 - id: 0286a8e4c82ff89e
   en: 'A statevector stores every combination of photon counts, from `0` to the cutoff in each mode. Twelve modes with four photons would need $5^{12}$, about 244 million amplitudes or 3.9 GB, although almost all of them stay zero: beam splitters never change the total photon number.'
-  zh: "态矢量保存光子数的所有组合，每个模式的光子数从 `0` 到截断值。要在 12 个模式中模拟 4 个光子，就需要 $5^{12}$ 个振幅，约 2.44 亿个，占 3.9 GB。分束器保持总光子数不变，因此其中绝大多数振幅始终为零。"
+  zh: 态矢量保存光子数的所有组合，每个模式的光子数从 `0` 到截断值。要在 12 个模式中模拟 4 个光子，就需要 $5^{12}$ 个振幅，约 2.44 亿个，占 3.9 GB。分束器保持总光子数不变，因此其中绝大多数振幅始终为零。
+  status: machine
+- id: 4a97da5aa074a854
+  en: '**These operations conserve photon number.** A beam splitter mixes two modes. A phase shifter changes a mode''s phase and can affect the outcome when modes interfere later.'
+  zh: '**这些操作保持总光子数不变。** 分束器混合两个模式。相移器改变一个模式的相位，因此可以影响后续的干涉结果。'
+  status: machine
+- id: 1e399430ffd00c52
+  en: For help choosing a method or setting the photon cutoff for another program, see the [LOSimulator API](../api/simulators/linear-optics.md#choose-an-optical-simulation-method).
+  zh: 如果要为其他程序选择模拟方法或设置光子数上限，可以查阅 [LOSimulator API](../api/simulators/linear-optics.md#choose-an-optical-simulation-method)。
   status: machine

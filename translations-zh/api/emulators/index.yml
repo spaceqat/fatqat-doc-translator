@@ -16,5 +16,57 @@
   status: machine
 - id: 1cad86828c664ecb
   en: FatQat provides [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) pulse emulators. See [Pulse control](../pulse-control/index.md) for shared control values, or [Simulators](../simulators/index.md) for gate-level simulation. The guided path begins with [Write and run pulse programs](../../guide/hamiltonian-emulation.md).
-  zh: "FatQat 提供 [transmon](../pulse-emulator.md) 和[中性原子](../atom-emulators.md)脉冲仿真器。有关共享的控制值，参见[脉冲控制](../pulse-control/index.md)；有关门级模拟，参见[模拟器](../simulators/index.md)。入门讲解从[编写和运行脉冲程序](../../guide/hamiltonian-emulation.md)开始。"
+  zh: FatQat 提供 [transmon](../pulse-emulator.md) 和[中性原子](../atom-emulators.md)脉冲仿真器。有关共享的控制值，参见[脉冲控制](../pulse-control/index.md)；有关门级模拟，参见[模拟器](../simulators/index.md)。入门讲解从[编写和运行脉冲程序](../../guide/hamiltonian-emulation.md)开始。
+  status: machine
+- id: ee7a5643d1f134d9
+  en: A control pulse can rotate a qubit, couple two transmons, or drive an array of atoms. FatQat's pulse emulators calculate how the quantum state changes during those controls. They use a Hamiltonian for the physical system, so the pulse shape, strength, and timing can all affect the result.
+  zh: 一个控制脉冲可以旋转量子比特、耦合两个 Transmon，也可以驱动一组原子。FatQat 的脉冲仿真器用物理系统的哈密顿量计算量子态随时间的变化。脉冲的形状、强度和时序都会影响结果。
+  status: machine
+- id: 1d06ad36d9950cf2
+  en: '| Emulator | What it models |'
+  zh: '| 仿真器 | 主要用途 |'
+  status: machine
+- id: bbce9989681c7832
+  en: '| [`TransmonEmulator`](../pulse-emulator.md) | Three levels per transmon, with calibrated gates and channel-addressed pulses. Use it to study rotations, coupled gates, and leakage. |'
+  zh: '| [`TransmonEmulator`](../pulse-emulator.md) | 每个 Transmon 保留三个能级。可以用校准门脉冲或直接指定的波形，研究比特旋转、耦合门和态泄漏。 |'
+  status: machine
+- id: f7f48da822fe81d1
+  en: '| [`Atom2LevelEmulator`](../atom-emulators.md) | Two-level Rydberg atoms at fixed positions. Use it to study how global laser pulses and distance-dependent interactions affect an array. |'
+  zh: '| [`Atom2LevelEmulator`](../atom-emulators.md) | 每个原子用两个能级表示，位置固定。可以研究全局激光脉冲和随距离变化的原子间相互作用。 |'
+  status: machine
+- id: e66b86b0290af7fd
+  en: See [Pulse control](../pulse-control/index.md) to choose how to specify a pulse, or [Write and run pulse programs](../../guide/hamiltonian-emulation.md) for a complete example.
+  zh: 要了解脉冲有哪些写法，可以查阅[脉冲控制](../pulse-control/index.md)。[编写和运行脉冲程序](../../guide/hamiltonian-emulation.md)用完整示例串起了这一步和后续的运行过程。
+  status: machine
+- id: 031684dbd2c9da8e
+  en: Choose a result
+  zh: 选择要读取的结果
+  status: machine
+- id: f243ec003b460897
+  en: Both emulators take a `Program` and return a completed job from `run()`. The `method` selects the form of the state or operator you can read from `job.result()`.
+  zh: 两种仿真器都通过 `run()` 执行 `Program`，返回已执行完毕的任务。要从 `job.result()` 读取哪种量子态或算符，由 `method` 决定。
+  status: machine
+- id: 3b6ad1a884c8a2d6
+  en: '| Method | Use it for | Result accessor |'
+  zh: '| 方法 | 主要用途 | 结果读取接口 |'
+  status: machine
+- id: 52b51ece0d27fee6
+  en: '| `statevector` (default) | Follow a pure state or sample one trajectory when Lindblad noise can act. | [`get_statevector()`][fatqat.Result.get_statevector] |'
+  zh: '| `statevector`（默认） | 计算纯态的演化。有 Lindblad 噪声时，可采样一条演化轨迹。 | [`get_statevector()`][fatqat.Result.get_statevector] |'
+  status: machine
+- id: d2e49a9b2c73f7bb
+  en: '| `density_matrix` | Compute the ensemble state under supported Lindblad noise. | [`get_density_matrix()`][fatqat.Result.get_density_matrix] |'
+  zh: '| `density_matrix` | 计算受支持的 Lindblad 噪声下的系综态。 | [`get_density_matrix()`][fatqat.Result.get_density_matrix] |'
+  status: machine
+- id: 4df01386776b009f
+  en: '| `unitary` | Compute the coherent evolution operator for a program without measurement, reset, classical conditions, or potentially active Lindblad noise. | [`get_unitary()`][fatqat.Result.get_unitary] |'
+  zh: '| `unitary` | 计算相干演化算符，适用于不含测量、重置、经典条件或可能起作用的 Lindblad 噪声的程序。 | [`get_unitary()`][fatqat.Result.get_unitary] |'
+  status: machine
+- id: a5b5c398620e2ea2
+  en: 'These accessors return QuTiP `Qobj` values. Use `.full()` for a NumPy array. Measurement counts are returned by default when the program measures. To retain a stochastic final state from one shot, pass `result_config={"final_state": True}` and `shots=1`.'
+  zh: '这些接口返回 QuTiP 的 `Qobj`。要转换成 NumPy 数组，可以调用 `.full()`。程序包含测量时，默认返回测量计数。要保留某次随机演化得到的最终态，请传入 `result_config={"final_state": True}` 和 `shots=1`。'
+  status: machine
+- id: 9e482bd77f5d98d6
+  en: For the run options, see [`TransmonEmulator.run()`][fatqat.emulator.TransmonEmulator.run] or [`Atom2LevelEmulator.run()`][fatqat.emulator.Atom2LevelEmulator.run].
+  zh: 运行参数见 [`TransmonEmulator.run()`][fatqat.emulator.TransmonEmulator.run] 或 [`Atom2LevelEmulator.run()`][fatqat.emulator.Atom2LevelEmulator.run]。
   status: machine

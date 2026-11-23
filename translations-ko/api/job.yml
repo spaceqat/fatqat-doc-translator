@@ -14,3 +14,11 @@
   en: Native FATQAT backends and [`Estimator`][fatqat.Estimator] return a completed [`Job`][fatqat.Job]. Call [`result`][fatqat.Job.result] to obtain the result; it does not wait.
   ko: FATQAT 기본 백엔드와 [`Estimator`][fatqat.Estimator]는 실행이 완료된 [`Job`][fatqat.Job]을 반환합니다. 결과를 얻으려면 [`result`][fatqat.Job.result]를 호출하세요. 이 호출은 실행을 기다리지 않습니다.
   status: machine
+- id: 10a587f024f6f6fe
+  en: A [`Job`][fatqat.Job] holds the outcome of a submission. Jobs returned by built-in backends and [`Estimator`][fatqat.Estimator] are already complete. Call [`result()`][fatqat.Job.result] to read the value or raise the execution error stored in the job.
+  ko: '[`Job`][fatqat.Job]은 한 번 제출한 작업의 결과를 담습니다. 내장 백엔드와 [`Estimator`][fatqat.Estimator]가 반환하는 작업은 이미 실행이 끝난 상태입니다. [`result()`][fatqat.Job.result]를 호출하면 결과를 읽을 수 있고, 작업에 실행 오류가 저장되어 있으면 그 오류를 일으킵니다.'
+  status: machine
+- id: 28efb9a15b6400de
+  en: A successful single run returns one [`Result`][fatqat.Result] through `result()`. A successful sweep returns a list in input order. Invalid inputs can raise before a job is returned. Whether an execution error is raised immediately or stored in a job depends on the backend's error-handling option.
+  ko: 단일 실행에 성공하면 `result()`가 [`Result`][fatqat.Result] 하나를 반환합니다. 스윕에 성공하면 입력 순서대로 결과 목록을 반환합니다. 잘못된 입력은 작업을 반환하기 전에 오류를 일으킬 수 있습니다. 실행 오류를 즉시 일으킬지 작업에 담을지는 백엔드의 오류 처리 옵션에 따라 달라집니다.
+  status: machine

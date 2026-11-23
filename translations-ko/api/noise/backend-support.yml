@@ -60,7 +60,7 @@
   status: machine
 - id: 62f47db58934afab
   en: '`AtomArraySimulator` accepts only single-subsystem finite channels. Use `target_positions` to select an operand of a multi-subsystem operation; see [occupancy and loss](../simulators/atom-array.md#occupancy-and-loss) for an example and behavior when an atom is absent.'
-  ko: '`AtomArraySimulator`는 단일 부분계 유한 채널만 받습니다. 여러 부분계에 작용하는 연산에서 피연산자를 선택하려면 `target_positions`를 사용하세요. 예제와 원자가 없을 때의 동작은 [점유와 손실](../simulators/atom-array.md#occupancy-and-loss)을 참고하세요.'
+  ko: '`AtomArraySimulator`는 단일 부분계 유한 채널만 받습니다. 여러 부분계에 작용하는 연산에서 피연산자를 선택하려면 `target_positions`를 사용하세요. 예제와 원자가 없을 때의 동작은 [원자 점유 상태와 손실](../simulators/atom-array.md#occupancy-and-loss)을 참고하세요.'
   status: machine
 - id: 82c7c42462973cbf
   en: Attach every supported probability-form channel above to an operation; matrix backends reject background channels. A custom [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] can add a finite channel type or replace the rule for an existing one. It cannot override the rejection of built-in rate forms, background channels, or `ThermalRelaxation`. A custom type's parameter names are interpreted by its rule, whose result still represents one finite channel application. A supplied map replaces the default map and is copied when the backend is constructed.
@@ -113,4 +113,20 @@
 - id: 48c855fa7066e639
   en: Simulation method also matters. `statevector` samples one Kraus trajectory per noisy shot, while `density_matrix` and `superop` apply probability-form channels exactly. `unitary` rejects any channel that matches the program. Only `statevector` and `density_matrix` support the AtomArray occupancy lifecycle; requesting a final state with loss requires `shots == 1`.
   ko: 시뮬레이션 방법도 중요합니다. `statevector`는 잡음이 있는 샷마다 Kraus 궤적 하나를 샘플링하고, `density_matrix`와 `superop`은 확률 형식 채널을 정확히 적용합니다. `unitary`는 프로그램과 매칭되는 채널을 모두 거부합니다. AtomArray 점유 수명 주기는 `statevector`와 `density_matrix`만 지원합니다. 손실이 있을 때 최종 상태를 요청하려면 `shots == 1`이어야 합니다.
+  status: machine
+- id: 1c8b8c32560a5854
+  en: Use this page to check which noise forms a backend accepts. You can also call [`validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] on a simulator or [`validate_noise_model`][fatqat.emulator.TransmonEmulator.validate_noise_model] on a pulse emulator before running a program. Program-specific constraints, such as target dimensions, apply at run time.
+  ko: 이 페이지에서 백엔드가 어떤 잡음 형태를 받는지 확인할 수 있습니다. 프로그램을 실행하기 전에 시뮬레이터의 [`validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] 또는 펄스 에뮬레이터의 [`validate_noise_model`][fatqat.emulator.TransmonEmulator.validate_noise_model]을 호출할 수도 있습니다. 대상 차원처럼 프로그램에 따라 달라지는 제약은 실행 시 적용됩니다.
+  status: machine
+- id: 9048494afd7819c0
+  en: '[`Simulator`][fatqat.simulator.Simulator] and [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] use the finite channel forms below. [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] and [`LOSimulator`][fatqat.simulator.LOSimulator] have additional restrictions described after the table.'
+  ko: '[`Simulator`][fatqat.simulator.Simulator]와 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]는 아래의 유한 채널 형태를 사용합니다. [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]와 [`LOSimulator`][fatqat.simulator.LOSimulator]의 추가 제약은 표 아래에 있습니다.'
+  status: machine
+- id: 7f76651f17fc69ae
+  en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] accepts only single-subsystem finite channels. Use `target_positions` to select one operand of a multi-subsystem operation. It is also the only built-in simulator that supports [`Loss`][fatqat.noise.Loss]. Attach it to [`Put`][fatqat.operations.Put] to model loading failure. An empty site''s erasure digit `2` bypasses readout confusion. See [occupancy and loss](../simulators/atom-array.md#occupancy-and-loss).'
+  ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]는 단일 하위 시스템에 작용하는 유한 채널만 받습니다. 여러 하위 시스템에 작용하는 연산에서는 `target_positions`로 피연산자 하나를 고르세요. [`Loss`][fatqat.noise.Loss]를 지원하는 내장 시뮬레이터도 이 백엔드뿐입니다. [`Put`][fatqat.operations.Put]에 손실을 붙이면 적재 실패를 모형화할 수 있습니다. 빈 위치의 소거 값 `2`에는 판독 혼동이 적용되지 않습니다. [점유 상태와 손실](../simulators/atom-array.md#occupancy-and-loss)을 참고하세요.'
+  status: machine
+- id: 02775aa9a9dd5494
+  en: '[`LOSimulator`][fatqat.simulator.LOSimulator] uses its matrix methods for finite channels. When a selector names a mode, use its device label. For channel dimensions and method selection, see the [linear optics simulator](../simulators/linear-optics.md).'
+  ko: '[`LOSimulator`][fatqat.simulator.LOSimulator]는 행렬 방식으로 유한 채널을 적용합니다. 광학 모드를 선택할 때는 모드의 장치 레이블을 사용하세요. 채널 차원과 시뮬레이션 방식은 [선형 광학 시뮬레이터](../simulators/linear-optics.md)를 참고하세요.'
   status: machine

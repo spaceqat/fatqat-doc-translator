@@ -38,3 +38,79 @@
   en: '| `execution_config` | Adds `"cutoff"` |'
   zh: '| `execution_config` | 新增 `"cutoff"` |'
   status: machine
+- id: df1c2f9aec65aba2
+  en: '[`LOSimulator`][fatqat.simulator.LOSimulator] runs programs that describe photons in optical modes. Use it to calculate how operations such as beam splitters and phase shifters change the distribution of photons across modes.'
+  zh: '[`LOSimulator`][fatqat.simulator.LOSimulator] 运行用光学模式描述光子的程序。要计算分束器、相移器等操作如何改变光子在各模式中的分布，可以用这个模拟器。'
+  status: machine
+- id: bc104aa146b9230d
+  en: Choose an optical simulation method
+  zh: 选择光学模拟方法
+  status: machine
+- id: 40b7f1d716afe15f
+  en: Use the default `fixed_photon_state` method when the program uses only a [`ModeRegister`][fatqat.ModeRegister] or several such registers, starts in a [`BasisState`][fatqat.simulator.BasisState] or the vacuum, and preserves the total photon number. It stores amplitudes only for the arrangements possible at that photon number.
+  zh: 如果程序的量子寄存器都是 [`ModeRegister`][fatqat.ModeRegister]，初态为 [`BasisState`][fatqat.simulator.BasisState] 或真空态，且演化保持总光子数，可以用默认方法 `fixed_photon_state`。它只保存这个光子数下各种分布对应的振幅。
+  status: machine
+- id: 59654309ae31ebf7
+  en: Use `statevector` or `density_matrix` for a dense initial state, for reset or noise channels, or for a program that mixes modes with qubits. The simulator also provides the [operator methods](../simulator.md#methods).
+  zh: 如果要传入数组形式的初态、模拟重置或噪声信道，或在同一程序中混用光学模式和量子比特，可以用 `statevector` 或 `density_matrix`。模拟器也提供[算符方法](../simulator.md#methods)。
+  status: machine
+- id: 5be366c37c77c943
+  en: Set the photon cutoff
+  zh: 设置光子数上限
+  status: machine
+- id: 184d79b5ca5f6fe9
+  en: The `cutoff` sets the maximum number of photons per mode for one run. Pass it in `execution_config` to set the range from `0` through `cutoff` for each mode and each entry in a [`CountRegister`][fatqat.CountRegister].
+  zh: '`cutoff` 指定单次运行中每个模式能容纳的最大光子数。通过 `execution_config` 传入该值后，每个模式和 [`CountRegister`][fatqat.CountRegister] 的每个成员都可以表示从 `0` 到 `cutoff` 的光子数。'
+  status: machine
+- id: 3091fe0ed82a8127
+  en: When you supply a `BasisState`, the simulator can infer the cutoff from the total number of photons, with a minimum of one. It can also infer the cutoff from a compatible dense initial array. For a vacuum run with no `initial_state`, set `cutoff` explicitly.
+  zh: 传入 `BasisState` 时，模拟器可以用总光子数确定上限，最小取 1。也可以从维度合适的初态数组推断上限。如果省略 `initial_state`，直接从真空态开始运行，就需要显式设置 `cutoff`。
+  status: machine
+- id: 69e5582d2a32a5bc
+  en: Read optical results
+  zh: 读取光学模拟结果
+  status: machine
+- id: 9f1c0128038d16f2
+  en: For the fixed-photon method, [`Result.get_fixed_photon_state()`][fatqat.Result.get_fixed_photon_state] gives one amplitude per arrangement of photons. Use [`fixed_photon_index()`][fatqat.simulator.fixed_photon_index] to find an arrangement's position, and [`fixed_photon_occupation()`][fatqat.simulator.fixed_photon_occupation] to find the arrangement at a given position.
+  zh: 使用固定光子数方法时，[`Result.get_fixed_photon_state()`][fatqat.Result.get_fixed_photon_state] 返回各种光子分布对应的振幅。要查某种分布在数组中的下标，用 [`fixed_photon_index()`][fatqat.simulator.fixed_photon_index]。已知下标想查各模式的光子数，则用 [`fixed_photon_occupation()`][fatqat.simulator.fixed_photon_occupation]。
+  status: machine
+- id: f94c3a4139464601
+  en: To calculate an observable on a mode, use [`Estimator`][fatqat.Estimator] with [`NumberOperator`][fatqat.observable.NumberOperator] or a [`Projector`][fatqat.observable.Projector] up to the cutoff. In a noise model, select modes by device label.
+  zh: 要计算某个模式上的可观测量，可以在 [`Estimator`][fatqat.Estimator] 中使用 [`NumberOperator`][fatqat.observable.NumberOperator]，也可以用 [`Projector`][fatqat.observable.Projector] 投影到光子数上限以内的能级。噪声模型用设备标签选中模式。
+  status: machine
+- id: 2f44d47fa52e23cc
+  en: <a id="fatqat.simulator.LOSimulator.method"></a>
+  zh: <a id="fatqat.simulator.LOSimulator.method"></a>
+  status: machine
+- id: c3125969fe0b426b
+  en: <a id="fatqat.simulator.LOSimulator.run"></a>
+  zh: <a id="fatqat.simulator.LOSimulator.run"></a>
+  status: machine
+- id: a3fd297c66df7d2f
+  en: <a id="fatqat.simulator.LOSimulator.run_sweep"></a>
+  zh: <a id="fatqat.simulator.LOSimulator.run_sweep"></a>
+  status: machine
+- id: 6ebf9cdae085cea6
+  en: <a id="fatqat.simulator.LOSimulator.validate_noise_model"></a>
+  zh: <a id="fatqat.simulator.LOSimulator.validate_noise_model"></a>
+  status: machine
+- id: 72e1dc699fb37306
+  en: Use [`Simulator.run()`][fatqat.simulator.Simulator.run] and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep] to run an optical program. The class reference below covers the optical method and cutoff, and includes a two-photon beam splitter example.
+  zh: 运行光学程序沿用 [`Simulator.run()`][fatqat.simulator.Simulator.run] 和 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]。下面的类参考说明光学模拟方法和光子数上限，并给出两个光子进入分束器的例子。
+  status: machine
+- id: 5b4a57c92b175783
+  en: '[`LOSimulator`][fatqat.simulator.LOSimulator] runs programs with photons in optical modes. Use it to compute the output photon counts or amplitudes of a linear-optical circuit.'
+  zh: '[`LOSimulator`][fatqat.simulator.LOSimulator] 运行以光学模式描述光子的程序。可以用它计算线性光学线路输出的光子计数或振幅。'
+  status: machine
+- id: 84f0aeee1b2415a2
+  en: Configure an optical run
+  zh: 设置光学模拟
+  status: machine
+- id: 3ab407b9e63bd350
+  en: When passing a `noise` model, use device labels to select optical modes.
+  zh: 通过 `noise` 传入噪声模型时，用设备标签指定光学模式。
+  status: machine
+- id: 33d0762e53b0d0e9
+  en: Pass the photon counts in the mode order recorded in `metadata["state_axes"]`.
+  zh: 传入各模式的光子数时，按 `metadata["state_axes"]` 记录的模式顺序排列。
+  status: machine

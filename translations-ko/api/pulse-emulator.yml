@@ -284,7 +284,7 @@
   status: machine
 - id: 3b6bef749563f4e8
   en: See [Gate realization](pulse-control/gate-realization.md) for accepted rule forms and errors.
-  ko: 허용되는 규칙 형식과 오류는 [게이트 구현](pulse-control/gate-realization.md)을 참고하세요.
+  ko: 허용되는 규칙 형식과 오류는 [게이트의 펄스 구현](pulse-control/gate-realization.md)을 참고하세요.
   status: machine
 - id: f5912ee4b98adf75
   en: Direct controls
@@ -336,5 +336,97 @@
   status: machine
 - id: b5030ca4886fbc7d
   en: The two-level atom backend also accepts an optional gate implementation map. It has its own continuous-noise implementations. `Atom2LevelEmulator` has an empty built-in gate map and global direct controls; user-supplied maps can add gate rules. See [Neutral-atom emulator](atom-emulators.md) for its API and [Emulate neutral atoms with laser pulses](../guide/neutral-atom-emulation.md) for the complete workflow.
-  ko: "2준위 원자 백엔드는 선택적으로 게이트 구현 맵을 받으며 자체 연속 잡음 구현을 갖습니다. `Atom2LevelEmulator`는 전역 제어를 직접 지정할 수 있고 내장 게이트 맵은 비어 있습니다. 사용자가 게이트 구현 맵으로 규칙을 추가할 수 있습니다. API는 [중성 원자 에뮬레이터](atom-emulators.md), 전체 절차는 [레이저 펄스로 중성 원자 에뮬레이션하기](../guide/neutral-atom-emulation.md)를 참고하세요."
+  ko: 2준위 원자 백엔드는 선택적으로 게이트 구현 맵을 받으며 자체 연속 잡음 구현을 갖습니다. `Atom2LevelEmulator`는 전역 제어를 직접 지정할 수 있고 내장 게이트 맵은 비어 있습니다. 사용자가 게이트 구현 맵으로 규칙을 추가할 수 있습니다. API는 [중성 원자 에뮬레이터](atom-emulators.md), 전체 절차는 [레이저 펄스로 중성 원자 에뮬레이션하기](../guide/neutral-atom-emulation.md)를 참고하세요.
+  status: machine
+- id: 72dcbb9fd363242d
+  en: See [Custom gate pulses](pulse-control/gate-realization.md) for accepted rule forms and errors.
+  ko: 허용되는 규칙 형식과 오류는 [사용자 정의 게이트 펄스](pulse-control/gate-realization.md)을 참고하세요.
+  status: machine
+- id: c0ee7cf18b1f9c0c
+  en: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator] models each transmon with three energy levels. Use it to study how a control pulse rotates a qubit, drives a coupled gate, or moves population into the third level. You can run calibrated gates or specify the control waveforms directly.'
+  ko: '[`TransmonEmulator`][fatqat.emulator.TransmonEmulator]는 각 트랜스몬을 세 에너지 준위로 모델링합니다. 제어 펄스가 큐비트를 회전시키거나 결합 게이트를 구현하는 방식, 또는 세 번째 준위로 누설이 생기는 과정을 살펴볼 수 있습니다. 보정된 게이트를 실행하거나 제어 파형을 직접 지정할 수 있습니다.'
+  status: machine
+- id: cf4ba1b57f7d4d3d
+  en: Configure the transmon model
+  ko: 트랜스몬 모델 설정
+  status: machine
+- id: decafeee92042c15
+  en: <a id="physics-model-and-calibration"></a>
+  ko: <a id="physics-model-and-calibration"></a>
+  status: machine
+- id: 0f820d925ce36016
+  en: A model describes the transmons, their frequencies, and which pairs can be driven by an exchange control. Load `transmon.reference` with [`load_model_document()`][fatqat.emulator.load_model_document], then turn the document into a runtime model with [`TransmonModel.from_document()`][fatqat.emulator.TransmonModel.from_document]. Use [`available_model_documents()`][fatqat.emulator.available_model_documents] to find other packaged models. You can also pass a decoded dictionary from your own model file.
+  ko: 모델에는 트랜스몬, 각 주파수, 교환 제어를 걸 수 있는 쌍이 들어 있습니다. [`load_model_document()`][fatqat.emulator.load_model_document]로 `transmon.reference`를 읽은 뒤 [`TransmonModel.from_document()`][fatqat.emulator.TransmonModel.from_document]로 실행에 사용할 모델을 만듭니다. 다른 내장 모델은 [`available_model_documents()`][fatqat.emulator.available_model_documents]에서 확인할 수 있습니다. 자체 모델 파일에서 읽은 딕셔너리도 전달할 수 있습니다.
+  status: machine
+- id: 4b1bfce2d84cbc57
+  en: An edge permits a driven exchange on that pair. The resonant carriers come from the model frequencies, and the exchange coefficient comes from the control waveform. Keep the source document if you need the model ID, revision, or parameters after creating the runtime model.
+  ko: 모델의 연결은 해당 트랜스몬 쌍에 교환 제어를 걸 수 있다는 뜻입니다. 공명 반송파는 모델의 주파수에서, 교환 계수는 제어 파형에서 정해집니다. 실행 모델을 만든 뒤에도 모델 ID, 리비전, 매개변수가 필요하면 원본 문서를 보관합니다.
+  status: machine
+- id: 8f7430da535c7fd2
+  en: Generate a transmon grid
+  ko: 트랜스몬 격자 생성
+  status: machine
+- id: 29db21c36825c9ae
+  en: '[`generate_transmon_grid_documents()`][fatqat.emulator.generate_transmon_grid_documents] gives you a nearest-neighbor grid model and a matching reference calibration. Both are editable dictionaries. The generated pulse parameters are analytic starting values that you can refine for your model.'
+  ko: '[`generate_transmon_grid_documents()`][fatqat.emulator.generate_transmon_grid_documents]는 이웃 사이트가 연결된 격자 모델과 이에 맞는 기준 보정 문서를 반환합니다. 둘 다 편집할 수 있는 딕셔너리입니다. 생성된 펄스 매개변수는 해석적으로 계산한 시작값이며, 모델에 맞게 다듬을 수 있습니다.'
+  status: machine
+- id: 7585cf364e2cc34f
+  en: Calibrated gates
+  ko: 보정된 게이트
+  status: machine
+- id: 50382f31f805bfef
+  en: <a id="calibration-recipes"></a>
+  ko: <a id="calibration-recipes"></a>
+  status: machine
+- id: 88d8b06457239c49
+  en: To run ordinary gates, the emulator uses a gate-to-pulse map. The built-in map includes `RX`, `RY`, virtual `RZ`, `iSwap`, and `CZ`. To use your own calibration, pass a complete document to [`TransmonCalibration`][fatqat.emulator.TransmonCalibration], then give [`default_transmon_gate_implementation_map()`][fatqat.emulator.default_transmon_gate_implementation_map] the model and calibration. Pass the resulting map as `gate_implementation_map`.
+  ko: 일반 게이트는 게이트를 펄스로 바꾸는 구현 맵으로 실행합니다. 내장 맵에는 `RX`, `RY`, 가상 `RZ`, `iSwap`, `CZ`가 들어 있습니다. 자체 보정을 쓰려면 완전한 보정 문서를 [`TransmonCalibration`][fatqat.emulator.TransmonCalibration]에 전달한 뒤, 모델과 보정을 [`default_transmon_gate_implementation_map()`][fatqat.emulator.default_transmon_gate_implementation_map]에 전달합니다. 반환된 맵을 `gate_implementation_map`으로 지정합니다.
+  status: machine
+- id: c55ae8d6f1e44385
+  en: Address control channels
+  ko: 제어 채널 지정
+  status: machine
+- id: abd5ed64862fab5b
+  en: For a directly authored [`PulseOperation`][fatqat.operations.PulseOperation], use `model.control` to address physical channels. `drive` and `detuning` take one transmon label. `exchange` takes two labels on a declared coupling. `model.frame(...)` selects the phase reference for a virtual drive update.
+  ko: 직접 작성한 [`PulseOperation`][fatqat.operations.PulseOperation]에서는 `model.control`로 물리 채널을 지정합니다. `drive`와 `detuning`은 트랜스몬 레이블 하나를 받고, `exchange`는 연결이 선언된 레이블 두 개를 받습니다. `model.frame(...)`으로 구동 위상을 가상으로 조정할 때 사용할 기준을 선택합니다.
+  status: machine
+- id: dfba446254264d2a
+  en: Times are in nanoseconds and the built-in waveforms use `rad/ns`. Convert a value in GHz to an angular rate with [`angular_rate_from_ghz()`][fatqat.emulator.superconducting.angular_rate_from_ghz]. The drive envelope is the full complex Rabi rate \(\Omega(t)\), with \(\operatorname{Re}\Omega/2\) and \(\operatorname{Im}\Omega/2\) in the two quadratures. Detuning and exchange use real Hamiltonian coefficients.
+  ko: 시간은 나노초 단위이고 내장 채널의 파형은 `rad/ns`를 사용합니다. GHz 값을 각주파수로 바꾸려면 [`angular_rate_from_ghz()`][fatqat.emulator.superconducting.angular_rate_from_ghz]를 사용합니다. 구동 엔벨로프는 복소 라비율 \(\Omega(t)\) 전체이고 두 직교 성분의 계수는 각각 \(\operatorname{Re}\Omega/2\)와 \(\operatorname{Im}\Omega/2\)입니다. 디튜닝과 교환에는 실수 해밀토니안 계수를 사용합니다.
+  status: machine
+- id: aeffb3fd3384c398
+  en: Use `model.available_controls` to inspect the available selector kinds and their `coefficient_unit`. See [Pulse control](pulse-control/index.md) for the waveform and timing interfaces.
+  ko: '`model.available_controls`에서 사용할 수 있는 제어 유형과 각 `coefficient_unit`을 확인할 수 있습니다. 파형과 시간 배치 인터페이스는 [펄스 제어](pulse-control/index.md)를 참조하세요.'
+  status: machine
+- id: 72f7be90fd934f1c
+  en: Run a transmon program
+  ko: 트랜스몬 프로그램 실행
+  status: machine
+- id: af93dea6300d1194
+  en: Each run starts in the physical ground state. Program qubits bind to `model.subsystem_ids` in declaration order. To choose different positions, pass a [`ResourceLayout`][fatqat.ResourceLayout] whose device labels are model subsystem IDs. The [`run()`][fatqat.emulator.TransmonEmulator.run] entry lists the scheduling and output options.
+  ko: 각 실행은 물리적 바닥 상태에서 시작합니다. 프로그램의 큐비트는 선언 순서대로 `model.subsystem_ids`에 연결됩니다. 다른 사이트를 선택하려면 장치 레이블에 모델의 부분계 ID를 사용하는 [`ResourceLayout`][fatqat.ResourceLayout]을 전달합니다. 시간 배치와 출력 옵션은 [`run()`][fatqat.emulator.TransmonEmulator.run] 항목을 참조하세요.
+  status: machine
+- id: 99ec10235b2cb086
+  en: Pass a `noise` model to add continuous evolution from background or operation-scoped noise. Rates are in inverse nanoseconds. Rate-form depolarization acts on all three levels and can populate the third level. For accepted forms and model validation, see [Pulse emulator noise](noise/backend-support.md#noise-emulator-support).
+  ko: '`noise` 모델을 전달하면 배경에 적용되거나 특정 연산 중에 작용하는 연속 시간 잡음을 추가할 수 있습니다. 잡음률의 단위는 나노초의 역수입니다. 잡음률로 지정한 탈분극은 세 준위 모두에 작용하며 세 번째 준위의 점유를 만들 수 있습니다. 지원 형태와 모델 검증은 [펄스 에뮬레이터 잡음](noise/backend-support.md#noise-emulator-support)을 참조하세요.'
+  status: machine
+- id: 4c28c22e3d0decc3
+  en: Read transmon results
+  ko: 트랜스몬 결과 읽기
+  status: machine
+- id: f9147432b88cf638
+  en: With any [result method](emulators/index.md#choose-a-result), the result covers all transmons in the model. The state-space dimension for `m` transmons is `3**m`, even if the program addresses fewer qubits. The basis of each transmon is `("0", "1", "2")`. Use `metadata["state_axes"]` for the order of the transmons.
+  ko: 어떤 [결과 표현](emulators/index.md#choose-a-result)을 선택해도 모델에 있는 모든 트랜스몬을 결과에 포함합니다. 모델에 트랜스몬이 `m`개 있으면 프로그램이 일부만 사용해도 상태 공간의 차원은 `3**m`입니다. 각 트랜스몬의 기저 순서는 `("0", "1", "2")`이며, 트랜스몬의 순서는 `metadata["state_axes"]`에서 확인할 수 있습니다.
+  status: machine
+- id: e051a15a1a285243
+  en: Returned states and operators incorporate the final virtual-frame changes in the model's rotating-frame basis. To compare an operator with an ideal qubit gate such as `RZ`, allow for a global phase.
+  ko: 반환된 상태와 연산자는 모델의 회전 프레임 기저로 표현되며 실행 마지막의 가상 프레임 변화를 반영합니다. 연산자를 `RZ` 같은 이상적인 큐비트 게이트와 비교할 때는 전역 위상 차이를 허용합니다.
+  status: machine
+- id: e454b83e9f39065e
+  en: Measurement maps physical levels `0`, `1`, and `2` to the reported digits `0`, `1`, and `1`, before readout noise is applied. To examine leakage into level `2`, read the physical state from an unmeasured run. Reset prepares the physical ground state.
+  ko: 측정에서는 물리 준위 `0`, `1`, `2`를 각각 `0`, `1`, `1`로 기록한 뒤 판독 잡음을 적용합니다. 준위 `2`로의 누설을 확인하려면 측정 연산 없이 실행해 물리 상태를 읽습니다. 리셋은 트랜스몬을 물리적 바닥 상태로 되돌립니다.
+  status: machine
+- id: cb6df11827920e15
+  en: <a id="neutral-atom-pulse-emulator"></a>
+  ko: <a id="neutral-atom-pulse-emulator"></a>
   status: machine

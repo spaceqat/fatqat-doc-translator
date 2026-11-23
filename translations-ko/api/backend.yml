@@ -10,3 +10,11 @@
   en: 'Each backend defines its own keyword options, defaults, validation, and produced result fields. Import and instantiate the implementation directly, then pass it to code that accepts a `Backend`:'
   ko: '키워드 옵션, 기본값, 검증 방식, 반환할 결과 필드는 각 백엔드가 정합니다. 구현을 직접 가져와 인스턴스를 만든 다음 `Backend`를 받는 코드에 전달하세요:'
   status: machine
+- id: 75be06730d2723ad
+  en: Use [`Backend`][fatqat.Backend] as a type annotation when a function can run a [`Program`][fatqat.Program] on different execution backends. The shared call is `run(program)`, which returns a [`Job`][fatqat.Job] whose result is a [`Result`][fatqat.Result]. Any implementation with that interface satisfies the protocol.
+  ko: 함수가 서로 다른 백엔드에서 프로그램을 실행할 수 있음을 나타내려면 [`Backend`][fatqat.Backend]를 타입 힌트로 사용하세요. 공통 호출인 `run(program)`은 [`Program`][fatqat.Program]을 받아 [`Job`][fatqat.Job]을 반환합니다. 이 작업의 결과는 [`Result`][fatqat.Result]입니다. 이 인터페이스를 구현하면 프로토콜을 충족합니다.
+  status: machine
+- id: 88d3e59a9cc95ae0
+  en: The concrete backend defines any extra run options and which result fields it produces.
+  ko: 추가 실행 옵션과 반환되는 결과 필드는 구체적인 백엔드에서 정합니다.
+  status: machine

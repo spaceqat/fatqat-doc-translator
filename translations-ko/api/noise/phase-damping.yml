@@ -58,3 +58,23 @@
   en: Duration must be finite and nonnegative. Probability 1 has no finite rate, and a nonzero probability cannot be converted at zero duration.
   ko: 지속 시간은 유한한 비음수여야 합니다. 확률 1에 대응하는 유한한 비율은 없으며, 지속 시간이 0이면 0이 아닌 확률은 변환할 수 없습니다.
   status: machine
+- id: 751372c0f2862098
+  en: See [Pulse emulators](backend-support.md#noise-emulator-support) for the supported scopes.
+  ko: 백엔드별 적용 범위는 [펄스 에뮬레이터](backend-support.md#noise-emulator-support)를 참고하세요.
+  status: machine
+- id: df1815ad6749aba6
+  en: '[`PhaseDamping`][fatqat.noise.PhaseDamping] reduces coherence between energy levels without changing the probability of finding the system in each level.'
+  ko: '[`PhaseDamping`][fatqat.noise.PhaseDamping]은 에너지 준위 사이의 결맞음을 줄이지만 각 준위에서 계를 발견할 확률은 바꾸지 않습니다.'
+  status: machine
+- id: 14a8aa91b2fa681f
+  en: Supply exactly one parameter. Use `p` in a simulator. In a pulse emulator, specify the rate with `rate` or the pure-dephasing time with `t_phi`. In a multilevel system, the simulator and emulator describe different coherence decay.
+  ko: 세 매개변수 중 하나만 지정합니다. 시뮬레이터에는 `p`를 사용합니다. 펄스 에뮬레이터에는 `rate`로 비율을 지정하거나 `t_phi`로 순수 위상 감쇠 시간을 지정하세요. 여러 준위가 있는 계에서는 두 백엔드의 결맞음 감쇠 방식이 다릅니다.
+  status: machine
+- id: 0b65ab0633be2f45
+  en: '`p` is the weight of complete dephasing in one channel application. It must be finite and in `[0, 1]`. For a target of dimension $d$, the channel is'
+  ko: '`p`는 채널을 한 번 적용할 때 완전 위상 감쇠에 부여하는 가중치로, `[0, 1]` 범위의 유한한 값이어야 합니다. 대상 차원이 $d$일 때 채널은 다음과 같습니다.'
+  status: machine
+- id: ef01f84a8f11db6c
+  en: Pass a finite nonnegative `rate` in inverse time or a finite positive `t_phi` in the model's time unit. If you supply a time, the object stores `rate = 1 / t_phi`. The local Lindblad operator for rate $r$ is
+  ko: '`rate`는 시간 단위의 역수로 나타낸 유한한 음이 아닌 값입니다. 모델 시간 단위로 유한한 양수 `t_phi`를 전달할 수도 있습니다. 이 경우 객체는 변환된 `rate = 1 / t_phi`를 저장합니다. 비율이 $r$일 때 국소 Lindblad 연산자는 다음과 같습니다.'
+  status: machine

@@ -62,3 +62,15 @@
   en: Readout confusion remains a classical reporting step; it is not represented by a Lindblad operator. See [Pulse emulators](backend-support.md#noise-emulator-support) for each emulator's reported digit dimension and physical-level mapping.
   zh: 读出混淆始终是经典的报告步骤，不由 Lindblad 算符表示。各仿真器报告的数字维度及物理能级映射参见[脉冲仿真器](backend-support.md#noise-emulator-support)。
   status: machine
+- id: a5a5b6dcce22244a
+  en: A later classical condition uses the reported digit. A later quantum operation on the measured subsystem starts from the state set by the true measurement outcome.
+  zh: 后续的经典条件使用报告的数值。如果被测子系统还要执行量子操作，操作从真实测量结果决定的量子态开始。
+  status: machine
+- id: 9c1b32913e5dabe8
+  en: For target selectors and overlapping rules, see [`NoiseModel.add()`][fatqat.NoiseModel.add].
+  zh: 目标怎么选、规则重叠时怎么处理，见 [`NoiseModel.add()`][fatqat.NoiseModel.add]。
+  status: machine
+- id: d86536de3c6504c8
+  en: The built-in pulse emulators report binary digits, so they require a `2 x 2` matrix. [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] reports either excited level as `1` before readout confusion is applied.
+  zh: 内置的脉冲仿真器报告二进制数值，所以需要 `2 x 2` 矩阵。[`TransmonEmulator`][fatqat.emulator.TransmonEmulator] 会先把两个激发能级都记为 `1`，再施加读出混淆。
+  status: machine

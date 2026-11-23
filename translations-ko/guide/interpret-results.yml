@@ -76,9 +76,13 @@
   status: machine
 - id: 97824855439ee406
   en: Many quantum-physics problems ask about quantities such as energy or spin correlations, rather than every component of the quantum state. For these tasks, you often need only the expectation value of one observable or a group of observables, without requesting the full state as an output.
-  ko: "많은 양자 물리 문제에서는 양자 상태의 모든 성분보다 에너지나 스핀 상관관계 같은 물리량에 관심이 있습니다. 이런 경우에는 전체 상태를 결과로 가져올 필요 없이, 하나 또는 여러 관측량의 기댓값만 구하면 됩니다."
+  ko: 많은 양자 물리 문제에서는 양자 상태의 모든 성분보다 에너지나 스핀 상관관계 같은 물리량에 관심이 있습니다. 이런 경우에는 전체 상태를 결과로 가져올 필요 없이, 하나 또는 여러 관측량의 기댓값만 구하면 됩니다.
   status: machine
 - id: 0ae9c3bcfb647097
   en: Use [`Estimator`][fatqat.Estimator] to calculate these expectation values. Define each quantity with an [`Observable`][fatqat.Observable], then supply a Program and a [compatible simulator or emulator](../api/estimator.md#backend-support). You can calculate the expectation directly from the state or estimate it from a finite number of measurement shots.
-  ko: "[`Estimator`][fatqat.Estimator]로 이러한 기댓값을 계산할 수 있습니다. [`Observable`][fatqat.Observable]로 구하려는 물리량을 정의하고, Program과 [호환되는 시뮬레이터 또는 에뮬레이터](../api/estimator.md#backend-support)를 전달하세요. 상태에서 기댓값을 직접 계산하거나 유한한 횟수의 측정 샘플로 추정할 수 있습니다."
+  ko: '[`Estimator`][fatqat.Estimator]로 이러한 기댓값을 계산할 수 있습니다. [`Observable`][fatqat.Observable]로 구하려는 물리량을 정의하고, Program과 [호환되는 시뮬레이터 또는 에뮬레이터](../api/estimator.md#backend-support)를 전달하세요. 상태에서 기댓값을 직접 계산하거나 유한한 횟수의 측정 샘플로 추정할 수 있습니다.'
+  status: machine
+- id: 9e2e15991977fc32
+  en: To compare expectation values at different parameter settings, pass the parameterized program and its binding values to [`Estimator.run_sweep()`][fatqat.Estimator.run_sweep].
+  ko: 매개변수 설정마다 기댓값을 비교하려면 매개변수가 있는 프로그램과 바인딩 값을 [`Estimator.run_sweep()`][fatqat.Estimator.run_sweep]에 전달하세요.
   status: machine
