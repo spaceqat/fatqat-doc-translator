@@ -544,9 +544,9 @@
   status: machine
 - id: 3d78ecce289040c1
   en: One Program, from algorithm to hardware.
-  zh: 一个 Program，从算法到硬件。
+  zh: 同一个量子程序，从算法到硬件
   status: machine
 - id: 31aec51ad271652b
   en: Test algorithms under realistic device conditions, study how a device responds to controls and noise, or learn quantum computing from first circuits to device physics. FatQat runs one Program through the same interface on every backend.
-  zh: 在接近真实设备的条件下测试算法，研究设备对控制和噪声的响应，或从第一个线路一直学到设备物理，动手学习量子计算。FatQat 通过同一套接口，在每种后端上运行同一个 Program。
+  zh: 在接近真实设备的条件下验证算法，研究设备对控制和噪声的响应，或从第一个量子线路一直深入到设备物理，动手学习量子计算。FatQat 通过同一套接口，在各类后端上运行同一个量子程序。
   status: machine
