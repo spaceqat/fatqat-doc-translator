@@ -185,15 +185,15 @@
 - id: 2dea8262bfd52d6c
   en: 'The target describes only the device''s qubits and connections. Choose how to run the result separately: create an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] that provides the qubits and connections the result uses, and select its runtime, simulation method, and noise model there.'
   zh: 编译目标负责描述设备有哪些量子比特、它们如何连接。运行方式则由模拟器决定：创建 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]，确保它提供编译结果需要的量子比特和连接，再设置运行时、模拟方法和噪声模型。
-  status: machine
+  status: retired
 - id: bef30853ea8b21ce
   en: A simulator with more qubits or additional connections can run the same result. If the simulator lacks a qubit or connection that the result uses, `run()` raises an error immediately. The [SCTarget reference](../api/sc-target.md#when-errors-are-raised) lists these errors.
   zh: 具有更多量子比特或额外连接的模拟器也能运行同一个结果。如果模拟器缺少结果所用的某个量子比特或连接，`run()` 会立即抛出错误。[SCTarget 参考文档](../api/sc-target.md#when-errors-are-raised)列出了这些错误。
-  status: machine
+  status: retired
 - id: 5d2ca6e80653c2ea
   en: 'Code that passes a simulator to the compiler continues to work. The compiler then uses the simulator''s qubits and connections, and also checks the emitted gates against its implementation map:'
   zh: 将模拟器传给编译器的代码仍然可用。此时，编译器使用模拟器的量子比特与连接，并根据其实现映射检查生成的量子门：
-  status: machine
+  status: retired
 - id: f844f08569c20960
   en: A logical circuit describes which gates to apply to which qubits. To run it on a device model, the gates also need to fit the device's instruction set and layout. A superconducting device may use `CZ` as its native two-qubit gate, for example, and allow it only between directly connected qubits. The compiler translates the gates, assigns logical qubits to physical positions, and adds routing operations when needed.
   zh: "逻辑线路描述要对哪些量子比特施加哪些门。要把线路放到设备模型上运行，还得考虑设备支持哪些门，以及量子比特之间如何连接。比如，超导设备可能把 `CZ` 用作原生双量子比特门，而且只允许在直接相连的位置上执行。编译器会把线路中的门转换为设备支持的操作，把逻辑量子比特分配到物理位置，并在需要时加入路由操作。"

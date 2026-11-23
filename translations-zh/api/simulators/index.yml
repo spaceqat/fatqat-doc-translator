@@ -17,15 +17,15 @@
 - id: f1b9253556594d02
   en: 'The profiles validate the program as written: they do not transpile or route it, and they do not reproduce a named processor. Use the [pulse emulators](../emulators/index.md) when timing or Hamiltonian evolution matters.'
   zh: 设备模型按程序已有的指令进行验证，不会自动转译或路由，也不对应某一台实际处理器。若研究需要考虑时序或哈密顿量演化，请使用[脉冲仿真器](../emulators/index.md)。
-  status: machine
+  status: retired
 - id: b423a251c71fdae6
   en: '**Choose a simulator**'
   zh: '**选择模拟器**'
-  status: machine
+  status: retired
 - id: 650d8b10026d80f7
   en: '[Simulator](../simulator.md)'
   zh: '[Simulator](../simulator.md)'
-  status: machine
+  status: retired
 - id: 257cf06132c647fb
   en: '[SCQubitIBMSimulator](sc-qubit-ibm.md)'
   zh: '[SCQubitIBMSimulator](sc-qubit-ibm.md)'
@@ -37,15 +37,15 @@
 - id: 425f36f4b00a0954
   en: '[AtomArraySimulator](atom-array.md)'
   zh: '[AtomArraySimulator](atom-array.md)'
-  status: machine
+  status: retired
 - id: 8bc02a041b8d297e
   en: '| Class | Use it for | Main constraint |'
   zh: '| 类 | 适用场景 | 主要约束 |'
-  status: machine
+  status: retired
 - id: 88d56b8f26e8c3bd
   en: '| [`Simulator`][fatqat.simulator.Simulator] | General circuit simulation and custom matrix implementations | No device topology |'
   zh: '| [`Simulator`][fatqat.simulator.Simulator] | 通用线路模拟和自定义矩阵实现 | 无设备拓扑 |'
-  status: machine
+  status: retired
 - id: 557c0071ac36bd81
   en: '| [`SCQubitIBMSimulator`][fatqat.simulator.SCQubitIBMSimulator] | IBM-style native-gate and grid experiments | `X`, `SX`, `RZ`; nearest-neighbour `CZ` |'
   zh: '| [`SCQubitIBMSimulator`][fatqat.simulator.SCQubitIBMSimulator] | IBM 风格的原生门与网格实验 | `X`、`SX`、`RZ`；最近邻 `CZ` |'
@@ -57,35 +57,35 @@
 - id: d9451617863d6cb6
   en: '| [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] | Neutral-atom occupancy, loss, and dynamic connectivity | `RX`, `RY`, `RZ`, and paired `CZ` |'
   zh: '| [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] | 中性原子占据、丢失与动态连接性 | `RX`、`RY`、`RZ`，以及配对后的 `CZ` |'
-  status: machine
+  status: retired
 - id: 7ce4b36314516f41
   en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] has no fixed connectivity. Every program site starts empty: `Put` loads atoms, `Loss` removes them, and `Pair` and `Unpair` change which atoms can interact.'
   zh: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 没有固定的连接性。每个程序位点都从空状态开始：`Put` 装载原子，`Loss` 移除原子，而 `Pair` 和 `Unpair` 改变哪些原子可以相互作用。'
-  status: machine
+  status: retired
 - id: 933c61ba7f9876bb
   en: FatQat provides a general circuit simulator and two hardware profiles. They use the same run and result API. Choose [`Simulator`][fatqat.simulator.Simulator] for unrestricted gate-level work, or a profile when the program must obey a native gate set, layout, or connectivity rule.
   zh: FatQat 提供通用线路模拟器和两种设备模型，它们使用相同的运行与结果 API。无需考虑设备约束时，可用 [`Simulator`][fatqat.simulator.Simulator]；需要检查原生门集、布局或连接规则时，则选择对应的设备模型。
-  status: machine
+  status: retired
 - id: e5bbaff4b52ca744
   en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] uses a configurable superconducting coupling graph and accepts `X`, `SX`, virtual `RZ`, and coupled `CZ`. It offers an optional reference noise model.'
   zh: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 使用可配置的超导耦合图，接受 `X`、`SX`、虚拟 `RZ` 和耦合边上的 `CZ`，并提供可选的参考噪声模型。'
-  status: machine
+  status: retired
 - id: b541fb30f09be048
   en: '| [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] | Constrained superconducting native-gate experiments | `X`, `SX`, `RZ`; `CZ` on configured couplings |'
   zh: '| [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] | 受约束的超导原生门实验 | `X`、`SX`、`RZ`；配置耦合边上的 `CZ` |'
-  status: machine
+  status: retired
 - id: c46e1af5bbfcf962
   en: '[SCQubitSimulator](sc-qubit.md)'
   zh: '[SCQubitSimulator](sc-qubit.md)'
-  status: machine
+  status: retired
 - id: 3d99262bfbc113cf
   en: '| [`LOSimulator`][fatqat.simulator.LOSimulator] | Linear-optical Programs on photon modes | Modes truncated to a per-run photon cutoff |'
   zh: '| [`LOSimulator`][fatqat.simulator.LOSimulator] | 作用于光子模式的线性光学 Program | 每次运行按光子数截断各模式 |'
-  status: machine
+  status: retired
 - id: e91038f7c32db28c
   en: '[LOSimulator](linear-optics.md)'
   zh: '[LOSimulator](linear-optics.md)'
-  status: machine
+  status: retired
 - id: 510055bee9f4640c
   en: Start with [Choose how much physics to model](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/superconducting-simulation.md) for the profile workflow.
   zh: 请先阅读[选择需要建模的物理细节](../../guide/execution-models.md)来选定执行层级，或按照[用硬件约束模拟检验 Program](../../guide/superconducting-simulation.md)了解设备模型的工作流程。
@@ -93,11 +93,11 @@
 - id: abea5b4fb1e7da50
   en: Start with [Choose a simulation or emulation approach](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/superconducting-simulation.md) for the profile workflow.
   zh: 可以先阅读[选择模拟与仿真方式](../../guide/execution-models.md)，确定所需的执行方式；也可以通过[用硬件约束模拟检验 Program](../../guide/superconducting-simulation.md)了解设备模型的使用流程。
-  status: machine
+  status: retired
 - id: 5f3a5dd290f7a73f
   en: Choose a simulator according to what your program needs to represent. A general circuit can run directly, while a device-specific simulator adds rules such as which qubit sites can interact. Optical programs describe photons in modes. All four simulators use the same basic run and result interface.
   zh: 先看程序需要描述什么。通用模拟器可以直接运行门级线路，专用模拟器可以进一步处理设备规则，例如哪些量子比特位置能相互作用。光学程序则用模式描述光子。四种模拟器使用相同的基本运行和结果接口。
-  status: machine
+  status: retired
 - id: 567c137aa090ceba
   en: '| Simulator | Use it to |'
   zh: '| 模拟器 | 主要用途 |'
@@ -105,7 +105,7 @@
 - id: d7f6400f3bd979c5
   en: '| [`Simulator`](../simulator.md) | Run gate-level programs with qubits, qudits, or mixed dimensions. |'
   zh: '| [`Simulator`](../simulator.md) | 运行由量子比特、多能级量子系统或不同维度的子系统组成的门级程序。 |'
-  status: machine
+  status: retired
 - id: 988bb5d8fdf97283
   en: '| [`SCQubitSimulator`](sc-qubit.md) | Check superconducting native gates and qubit connectivity. |'
   zh: '| [`SCQubitSimulator`](sc-qubit.md) | 检查超导比特线路的原生门和连通性。 |'
@@ -113,15 +113,15 @@
 - id: 9c9d2b3059e923bb
   en: '| [`AtomArraySimulator`](atom-array.md) | Model which sites contain neutral atoms and which pairs can interact during a run. |'
   zh: '| [`AtomArraySimulator`](atom-array.md) | 模拟运行过程中哪些位置有中性原子，以及哪些原子可以成对相互作用。 |'
-  status: machine
+  status: retired
 - id: 39bf8379592bd1aa
   en: '| [`LOSimulator`](linear-optics.md) | Simulate how optical operations redistribute photons across modes. |'
   zh: '| [`LOSimulator`](linear-optics.md) | 模拟光学操作如何改变光子在各模式中的分布。 |'
-  status: machine
+  status: retired
 - id: b1a7ff4668d0f18b
   en: To add an operation that needs access to the state of an individual shot, see [Custom operations](custom-operations.md). For pulse timing and Hamiltonian evolution, see [Emulators](../emulators/index.md).
   zh: 如果要添加能读取或修改单次运行状态的操作，可查阅[自定义操作](custom-operations.md)。要研究脉冲时序和哈密顿量演化，可查阅[仿真器](../emulators/index.md)。
-  status: machine
+  status: retired
 - id: 2d6af6a012a91ee8
   en: FatQat's simulators run general quantum circuits and can account for the rules of a device. On a superconducting layout, for example, a `CZ` can act only on two connected sites. FatQat also simulates linear-optical circuits, following how photons are distributed across modes after passing through optical components.
   zh: 在 FatQat 里，你可以直接模拟一条量子线路，也可以把设备的规则考虑进去。比如，在超导比特模拟器中，`CZ` 只能作用在两个相连的位置上。FatQat 也可以模拟线性光学线路，看看光子经过光学元件后会怎样分布在各个模式中。

@@ -5,11 +5,11 @@
 - id: c42a34a9d32421d7
   en: Every gate on this page is defined for dimension-2 targets (qubits). [`add`][fatqat.Program.add] records the operation without checking target dimensions. The backend checks that requirement and any device-specific limits when the program runs.
   ko: 이 페이지의 모든 게이트는 차원이 2인 대상, 즉 큐비트에 정의됩니다. [`add`][fatqat.Program.add]는 대상 차원을 검사하지 않고 연산을 기록합니다. 프로그램 실행 시 백엔드가 차원 조건과 장치별 제한을 확인합니다.
-  status: machine
+  status: retired
 - id: 6f5e9b2a238bef11
   en: Every unary gate accepts either one scalar target or one [`RegisterView`](../registers.md#fatqat.RegisterView). Every multi-qubit gate accepts either scalar operands or one compatible view per operand and zips the views in order.
   ko: 모든 단항 게이트는 스칼라 대상 하나 또는 [`RegisterView`](../registers.md#fatqat.RegisterView) 하나를 받습니다. 다중 큐비트 게이트는 스칼라 피연산자들 또는 피연산자마다 호환되는 뷰 하나씩을 받고, 뷰의 원소를 순서대로 짝짓습니다.
-  status: machine
+  status: retired
 - id: 6429dc71b525a77e
   en: Fixed gates
   ko: 고정 게이트
@@ -17,7 +17,7 @@
 - id: ded2ecb0912285d5
   en: Fixed gates are ready-to-use values and must not be called. The single-qubit matrices use `|0>, |1>` basis order.
   ko: 고정 게이트는 바로 사용할 수 있는 값이므로 호출하지 않습니다. 단일 큐비트 행렬은 `|0>, |1>` 기저 순서를 사용합니다.
-  status: machine
+  status: retired
 - id: af8f7f7184b49c97
   en: '**Fixed single-qubit gates**'
   ko: '**고정 단일 큐비트 게이트**'
@@ -29,31 +29,31 @@
 - id: 254da98737f33b1b
   en: '| [`I`][fatqat.operations.I] | Leaves $\|0\rangle$ and $\|1\rangle$ unchanged. |'
   ko: '| [`I`][fatqat.operations.I] | $\|0\rangle$과 $\|1\rangle$을 그대로 둡니다. |'
-  status: machine
+  status: retired
 - id: 99b895100ba7e87a
   en: '| [`H`][fatqat.operations.H] | Maps $\|0\rangle$ to $(\|0\rangle+\|1\rangle)/\sqrt{2}$ and $\|1\rangle$ to $(\|0\rangle-\|1\rangle)/\sqrt{2}$. |'
   ko: '| [`H`][fatqat.operations.H] | $\|0\rangle$을 $(\|0\rangle+\|1\rangle)/\sqrt{2}$로, $\|1\rangle$을 $(\|0\rangle-\|1\rangle)/\sqrt{2}$로 보냅니다. |'
-  status: machine
+  status: retired
 - id: d68ed51817edce34
   en: '| [`X`][fatqat.operations.X] | Exchanges $\|0\rangle$ and $\|1\rangle$. |'
   ko: '| [`X`][fatqat.operations.X] | $\|0\rangle$과 $\|1\rangle$을 교환합니다. |'
-  status: machine
+  status: retired
 - id: 873dc47d62a7441f
   en: '| [`Y`][fatqat.operations.Y] | Maps $\|0\rangle$ to $i\|1\rangle$ and $\|1\rangle$ to $-i\|0\rangle$. |'
   ko: '| [`Y`][fatqat.operations.Y] | $\|0\rangle$을 $i\|1\rangle$로, $\|1\rangle$을 $-i\|0\rangle$로 보냅니다. |'
-  status: machine
+  status: retired
 - id: 12e09223ec1a305f
   en: '| [`Z`][fatqat.operations.Z] | Maps $\|1\rangle$ to $-\|1\rangle$. |'
   ko: '| [`Z`][fatqat.operations.Z] | $\|1\rangle$을 $-\|1\rangle$로 보냅니다. |'
-  status: machine
+  status: retired
 - id: 848034f1f6be5d2b
   en: '| [`S`][fatqat.operations.S] | Maps $\|1\rangle$ to $i\|1\rangle$. |'
   ko: '| [`S`][fatqat.operations.S] | $\|1\rangle$을 $i\|1\rangle$로 보냅니다. |'
-  status: machine
+  status: retired
 - id: 5ae4f1e60bb0f911
   en: '| [`Sdg`][fatqat.operations.Sdg] | Maps $\|1\rangle$ to $-i\|1\rangle$. |'
   ko: '| [`Sdg`][fatqat.operations.Sdg] | $\|1\rangle$을 $-i\|1\rangle$로 보냅니다. |'
-  status: machine
+  status: retired
 - id: 5cc89a5ab388590a
   en: '| [`SX`][fatqat.operations.SX] | Two applications have the same action as X. |'
   ko: '| [`SX`][fatqat.operations.SX] | 두 번 적용하면 X와 같습니다. |'
@@ -61,15 +61,15 @@
 - id: 3096793f1b42c9ab
   en: '| [`T`][fatqat.operations.T] | Maps $\|1\rangle$ to $e^{i\pi/4}\|1\rangle$. |'
   ko: '| [`T`][fatqat.operations.T] | $\|1\rangle$을 $e^{i\pi/4}\|1\rangle$로 보냅니다. |'
-  status: machine
+  status: retired
 - id: 567c4748eb54d919
   en: '| [`Tdg`][fatqat.operations.Tdg] | Maps $\|1\rangle$ to $e^{-i\pi/4}\|1\rangle$. |'
   ko: '| [`Tdg`][fatqat.operations.Tdg] | $\|1\rangle$을 $e^{-i\pi/4}\|1\rangle$로 보냅니다. |'
-  status: machine
+  status: retired
 - id: a29819d4e6637ad4
   en: For the multi-qubit values below, targets are ordered exactly as shown.
   ko: 아래 다중 큐비트 게이트의 대상 순서는 표에 표시된 그대로입니다.
-  status: machine
+  status: retired
 - id: ed49cb32eac69cdf
   en: '**Fixed multi-qubit gates**'
   ko: '**고정 다중 큐비트 게이트**'
@@ -81,19 +81,19 @@
 - id: 41c9b1a913de05c7
   en: '| [`CX`][fatqat.operations.CX] | `(control, target)` | Applies X to the target when the control is `\|1>`. |'
   ko: '| [`CX`][fatqat.operations.CX] | `(control, target)` | 제어가 `\|1>`이면 대상에 X를 적용합니다. |'
-  status: machine
+  status: retired
 - id: 1aedaa43b567b36f
   en: '| [`CY`][fatqat.operations.CY] | `(control, target)` | Applies Y to the target when the control is `\|1>`. |'
   ko: '| [`CY`][fatqat.operations.CY] | `(control, target)` | 제어가 `\|1>`이면 대상에 Y를 적용합니다. |'
-  status: machine
+  status: retired
 - id: 10e2634210013478
   en: '| [`CZ`][fatqat.operations.CZ] | `(control, target)` | Negates `\|11>`. |'
   ko: '| [`CZ`][fatqat.operations.CZ] | `(control, target)` | `\|11>`의 부호를 바꿉니다. |'
-  status: machine
+  status: retired
 - id: 94e2cdc02337b62b
   en: '| [`CS`][fatqat.operations.CS] | `(control, target)` | Applies S to the target when the control is `\|1>`. |'
   ko: '| [`CS`][fatqat.operations.CS] | `(control, target)` | 제어가 `\|1>`이면 대상에 S를 적용합니다. |'
-  status: machine
+  status: retired
 - id: d81e14bdf000ca22
   en: '| [`Swap`][fatqat.operations.Swap] | `(target0, target1)` | Exchanges the two target states. |'
   ko: '| [`Swap`][fatqat.operations.Swap] | `(target0, target1)` | 두 대상의 상태를 교환합니다. |'
@@ -101,15 +101,15 @@
 - id: b3082ec7e83f4164
   en: '| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | Maps `\|01>` to `i\|10>` and `\|10>` to `i\|01>`. |'
   ko: '| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | `\|01>`을 `i\|10>`으로, `\|10>`을 `i\|01>`로 보냅니다. |'
-  status: machine
+  status: retired
 - id: 6a34e74aeaabdf5b
   en: '| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli: applies X when both controls are `\|1>`. |'
   ko: '| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli: 두 제어가 모두 `\|1>`이면 X를 적용합니다. |'
-  status: machine
+  status: retired
 - id: bd1628539218f6c8
   en: '| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin: exchanges the two targets when the control is `\|1>`. |'
   ko: '| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin: 제어가 `\|1>`이면 두 대상을 교환합니다. |'
-  status: machine
+  status: retired
 - id: 4710714cf40a10fb
   en: Matrix definitions
   ko: 행렬 정의
@@ -185,7 +185,7 @@
 - id: fff46ca18fb46b1c
   en: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` scalars or compatible views | Multiplies $\|11\rangle$ by $e^{i\theta}$. |'
   ko: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` 스칼라 또는 호환되는 뷰 | $\|11\rangle$에 $e^{i\theta}$를 곱합니다. |'
-  status: machine
+  status: retired
 - id: 75c613a8bef7c752
   en: 'These matrices act on column state vectors. The single-qubit matrices below use row and column basis order $(|0\rangle,|1\rangle)$. Let $c=\cos(\theta/2)$ and $s=\sin(\theta/2)$:'
   ko: '이 행렬들은 열 상태 벡터에 작용합니다. 아래 단일 큐비트 행렬의 행과 열은 $(|0\rangle,|1\rangle)$ 기저 순서를 사용합니다. $c=\cos(\theta/2)$, $s=\sin(\theta/2)$라 두면:'

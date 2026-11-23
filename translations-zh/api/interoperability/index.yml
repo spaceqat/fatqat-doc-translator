@@ -9,11 +9,11 @@
 - id: 65b164c33af6024c
   en: '[OpenQASM](openqasm.md)'
   zh: '[OpenQASM](openqasm.md)'
-  status: machine
+  status: retired
 - id: 30e2ef0e4625c4c2
   en: '[Qiskit](qiskit.md)'
   zh: '[Qiskit](qiskit.md)'
-  status: machine
+  status: retired
 - id: 02c48536c1fb6b5d
   en: OpenQASM & Qiskit
   zh: OpenQASM 与 Qiskit
@@ -21,19 +21,19 @@
 - id: 32243bde8f0ac0af
   en: Import or export supported OpenQASM, convert compatible Qiskit circuits, or use FatQat through Qiskit's backend interface. See [Connect FatQat with OpenQASM and Qiskit](../../guide/interoperability.md) for the guided workflows.
   zh: FatQat 支持导入和导出 OpenQASM、转换兼容的 Qiskit 线路，以及通过 Qiskit 的后端接口运行 FatQat。示例见[对接 OpenQASM 和 Qiskit](../../guide/interoperability.md)。
-  status: machine
+  status: retired
 - id: ebc3867854e2c6e2
   en: FatQat can read and write OpenQASM 2 and 3 and accept Qiskit circuits. Choose an interface based on the input you have and the result API you want to use.
   zh: FatQat 可以读写 OpenQASM 2 和 3，也可以接收 Qiskit 线路。根据手头的输入，以及你想用哪套接口读结果，选择合适的方式。
-  status: machine
+  status: retired
 - id: 2c0407caafc3b3a2
   en: '[OpenQASM](openqasm.md) describes importing source text or files and exporting a FatQat program.'
   zh: '[OpenQASM](openqasm.md) 介绍如何导入源代码或文件，以及如何导出 FatQat 程序。'
-  status: machine
+  status: retired
 - id: e45aacb870d7cf97
   en: '[Qiskit](qiskit.md) describes converting a circuit to a program or running it through Qiskit''s backend interface.'
   zh: '[Qiskit](qiskit.md) 介绍如何把线路转成程序，也说明怎样通过 Qiskit 的后端接口运行线路。'
-  status: machine
+  status: retired
 - id: bb8a5ac1c033e91e
   en: The [connection guide](../../guide/interoperability.md) runs the same measured circuit through these routes.
   zh: '[对接指南](../../guide/interoperability.md)用同一条带测量的线路演示这几种方式。'

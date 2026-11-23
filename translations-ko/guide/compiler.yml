@@ -41,11 +41,11 @@
 - id: 2dea8262bfd52d6c
   en: 'The target describes only the device''s qubits and connections. Choose how to run the result separately: create an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] that provides the qubits and connections the result uses, and select its runtime, simulation method, and noise model there.'
   ko: 컴파일 타깃에는 장치의 큐비트와 연결을 지정합니다. 실행 방식은 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]에서 정하세요. 컴파일 결과에 필요한 큐비트와 연결을 제공한 뒤 런타임, 시뮬레이션 방법, 잡음 모델을 선택하면 됩니다.
-  status: machine
+  status: retired
 - id: bef30853ea8b21ce
   en: A simulator with more qubits or additional connections can run the same result. If the simulator lacks a qubit or connection that the result uses, `run()` raises an error immediately. The [SCTarget reference](../api/sc-target.md#when-errors-are-raised) lists these errors.
   ko: 큐비트나 연결이 더 많은 시뮬레이터에서도 같은 결과를 실행할 수 있습니다. 반대로 결과에서 사용하는 큐비트나 연결이 없으면 `run()`이 즉시 오류를 발생시킵니다. 오류 목록은 [SCTarget 참조](../api/sc-target.md#when-errors-are-raised)를 참고하세요.
-  status: machine
+  status: retired
 - id: a0eb5c50fd3df5ba
   en: '`couplings` can describe any valid graph; the topology does not need to be a grid. The current public SC profile uses X, SX, RZ, and CZ as its native gate set. Toffoli (`CCX`) gates are decomposed into one- and two-qubit gates before routing.'
   ko: '`couplings`에는 유효한 그래프라면 어떤 형태든 지정할 수 있으며, 격자 형태일 필요는 없습니다. 현재 공개된 SC 프로파일의 네이티브 게이트 집합은 X, SX, RZ, CZ입니다. Toffoli (`CCX`) 게이트는 라우팅 전에 단일 큐비트 및 2큐비트 게이트로 분해됩니다.'
@@ -53,7 +53,7 @@
 - id: 5d2ca6e80653c2ea
   en: 'Code that passes a simulator to the compiler continues to work. The compiler then uses the simulator''s qubits and connections, and also checks the emitted gates against its implementation map:'
   ko: 컴파일러에 시뮬레이터를 전달하던 기존 코드도 계속 사용할 수 있습니다. 이 경우 컴파일러는 시뮬레이터의 큐비트와 연결을 사용하고, 생성한 게이트가 구현 맵에서 지원되는지도 검사합니다.
-  status: machine
+  status: retired
 - id: 00360795314212b8
   en: Run on a neutral-atom architecture
   ko: 중성 원자 아키텍처에서 실행하기

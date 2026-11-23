@@ -5,7 +5,7 @@
 - id: a203ab4324b74c2c
   en: This page is for simulator extension authors. Most applications need only FATQAT's built-in noise types. Use this API to define a new [`Channel`][fatqat.noise.Channel] or change how a matrix simulator applies an existing type. Pulse-emulator continuous-noise realizations are family-owned and are not a public extension surface.
   ko: 이 페이지는 시뮬레이터 확장 작성자를 위한 것입니다. 대부분의 애플리케이션에는 FATQAT의 내장 잡음 타입이면 충분합니다. 새 [`Channel`][fatqat.noise.Channel]을 정의하거나 행렬 시뮬레이터가 기존 타입을 적용하는 방식을 바꾸려면 이 API를 사용하세요. 펄스 에뮬레이터의 연속 잡음 구현은 각 계열이 관리하며 공개 확장 인터페이스가 아닙니다.
-  status: machine
+  status: retired
 - id: d7c2eb84ee360300
   en: Define a custom noise type
   ko: 사용자 정의 잡음 타입 정의하기
@@ -41,7 +41,7 @@
 - id: f7ff3c774f44593c
   en: If the ordered targets have dimensions `d_0, d_1, ...`, their combined dimension is `D = d_0 * d_1 * ...`. The result must be nonempty, and every element must be a NumPy array with shape `(D, D)`. FATQAT checks only those structural requirements. It does not verify complete positivity, trace preservation, Hermiticity preservation, or any parameter convention for a custom rule.
   ko: 순서가 있는 대상의 차원이 `d_0, d_1, ...`이면 결합 차원은 `D = d_0 * d_1 * ...`입니다. 결과는 비어 있으면 안 되며, 모든 원소는 형태가 `(D, D)`인 NumPy 배열이어야 합니다. FATQAT은 이 구조적 조건만 검사합니다. 사용자 정의 규칙의 완전 양성성, 트레이스 보존, 에르미트성 보존, 매개변수 규약은 검증하지 않습니다.
-  status: machine
+  status: retired
 - id: b0426ebe47776df8
   en: Start with [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] when you want to keep FATQAT's built-in simulator rules. See [Simulators](backend-support.md#noise-simulator-support) for backend limits.
   ko: FATQAT의 내장 시뮬레이터 규칙을 유지하려면 [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map]에서 시작하세요. 백엔드 제약은 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.

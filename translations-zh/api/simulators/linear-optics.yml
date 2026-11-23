@@ -5,23 +5,23 @@
 - id: 9ac80e2eeb6f6fcc
   en: '[`LOSimulator`][fatqat.simulator.LOSimulator] is a [`Simulator`](../simulator.md) for Programs with optical modes. It runs, returns results, and handles noise and sweeps like `Simulator`, except as listed below. For a worked example, see [Simulate linear optics](../../guide/linear-optics.md).'
   zh: '[`LOSimulator`][fatqat.simulator.LOSimulator] 是用于含光学模式的 Program 的 [`Simulator`](../simulator.md)。除下列区别外，其执行、结果返回、噪声处理和参数扫描均与 `Simulator` 相同。完整示例见[线性光学模拟](../../guide/linear-optics.md)。'
-  status: machine
+  status: retired
 - id: bb075b3e25ea22b6
   en: '**Differences from `Simulator`**'
   zh: '**与 `Simulator` 的区别**'
-  status: machine
+  status: retired
 - id: 48db188c37d058f6
   en: '| Topic | `LOSimulator` |'
   zh: '| 项目 | `LOSimulator` |'
-  status: machine
+  status: retired
 - id: f0815e455eeb8172
   en: '| Registers | Also accepts [`ModeRegister`][fatqat.ModeRegister] and [`CountRegister`][fatqat.CountRegister]; `Simulator` rejects them |'
   zh: '| Registers | 还接受 [`ModeRegister`][fatqat.ModeRegister] 和 [`CountRegister`][fatqat.CountRegister]；`Simulator` 不接受这两种类型 |'
-  status: machine
+  status: retired
 - id: 7ccd76781c55737a
   en: '| Methods | Adds `"fixed_photon_state"`, the default |'
   zh: '| 方法 | 新增 `"fixed_photon_state"`，并将其作为默认方法 |'
-  status: machine
+  status: retired
 - id: c2be93767fa5a52f
   en: '| `simulation_config` | Adds `"cutoff"` |'
   zh: '| `simulation_config` | 新增 `"cutoff"` |'
@@ -29,23 +29,23 @@
 - id: ee698140cfa0afbf
   en: '| [`Estimator`][fatqat.Estimator] | On a mode, accepts [`NumberOperator`][fatqat.observable.NumberOperator] and [`Projector`][fatqat.observable.Projector] up to level `cutoff`; Pauli operators raise at any cutoff |'
   zh: '| [`Estimator`][fatqat.Estimator] | 对模式接受最高至 `cutoff` 能级的 [`NumberOperator`][fatqat.observable.NumberOperator] 和 [`Projector`][fatqat.observable.Projector]；无论截断值为多少，Pauli 算符都会报错 |'
-  status: machine
+  status: retired
 - id: f325511225173275
   en: '| Noise selectors | Select modes by device label; a `ModeRegister` reference is not supported |'
   zh: '| 噪声选择器 | 按设备标签选择模式；不支持 `ModeRegister` 引用 |'
-  status: machine
+  status: retired
 - id: 22823497e2d96b0a
   en: '| `execution_config` | Adds `"cutoff"` |'
   zh: '| `execution_config` | 新增 `"cutoff"` |'
-  status: machine
+  status: retired
 - id: df1c2f9aec65aba2
   en: '[`LOSimulator`][fatqat.simulator.LOSimulator] runs programs that describe photons in optical modes. Use it to calculate how operations such as beam splitters and phase shifters change the distribution of photons across modes.'
   zh: '[`LOSimulator`][fatqat.simulator.LOSimulator] 运行用光学模式描述光子的程序。要计算分束器、相移器等操作如何改变光子在各模式中的分布，可以用这个模拟器。'
-  status: machine
+  status: retired
 - id: bc104aa146b9230d
   en: Choose an optical simulation method
   zh: 选择光学模拟方法
-  status: machine
+  status: retired
 - id: 40b7f1d716afe15f
   en: Use the default `fixed_photon_state` method when the program uses only a [`ModeRegister`][fatqat.ModeRegister] or several such registers, starts in a [`BasisState`][fatqat.simulator.BasisState] or the vacuum, and preserves the total photon number. It stores amplitudes only for the arrangements possible at that photon number.
   zh: 如果程序的量子寄存器都是 [`ModeRegister`][fatqat.ModeRegister]，初态为 [`BasisState`][fatqat.simulator.BasisState] 或真空态，且演化保持总光子数，可以用默认方法 `fixed_photon_state`。它只保存这个光子数下各种分布对应的振幅。
@@ -77,7 +77,7 @@
 - id: f94c3a4139464601
   en: To calculate an observable on a mode, use [`Estimator`][fatqat.Estimator] with [`NumberOperator`][fatqat.observable.NumberOperator] or a [`Projector`][fatqat.observable.Projector] up to the cutoff. In a noise model, select modes by device label.
   zh: 要计算某个模式上的可观测量，可以在 [`Estimator`][fatqat.Estimator] 中使用 [`NumberOperator`][fatqat.observable.NumberOperator]，也可以用 [`Projector`][fatqat.observable.Projector] 投影到光子数上限以内的能级。噪声模型用设备标签选中模式。
-  status: machine
+  status: retired
 - id: 2f44d47fa52e23cc
   en: <a id="fatqat.simulator.LOSimulator.method"></a>
   zh: <a id="fatqat.simulator.LOSimulator.method"></a>
@@ -97,7 +97,7 @@
 - id: 72e1dc699fb37306
   en: Use [`Simulator.run()`][fatqat.simulator.Simulator.run] and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep] to run an optical program. The class reference below covers the optical method and cutoff, and includes a two-photon beam splitter example.
   zh: 运行光学程序沿用 [`Simulator.run()`][fatqat.simulator.Simulator.run] 和 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]。下面的类参考说明光学模拟方法和光子数上限，并给出两个光子进入分束器的例子。
-  status: machine
+  status: retired
 - id: 5b4a57c92b175783
   en: '[`LOSimulator`][fatqat.simulator.LOSimulator] runs programs with photons in optical modes. Use it to compute the output photon counts or amplitudes of a linear-optical circuit.'
   zh: '[`LOSimulator`][fatqat.simulator.LOSimulator] 运行以光学模式描述光子的程序。可以用它计算线性光学线路输出的光子计数或振幅。'

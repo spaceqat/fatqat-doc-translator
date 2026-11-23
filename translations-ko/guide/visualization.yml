@@ -65,7 +65,7 @@
 - id: 25045ed989ce293b
   en: '`number_to_keep` retains the most frequent outcomes and combines the remainder into an `other` bar. See [Result](../api/result.md#draw-counts) for the complete option reference.'
   ko: '`number_to_keep`는 가장 자주 나온 결과를 남기고 나머지를 `other` 막대로 합칩니다. 전체 옵션은 [Result](../api/result.md#draw-counts)를 참고하세요.'
-  status: machine
+  status: retired
 - id: f77c41b4e8b91770
   en: '![Bell-state measurement frequencies with bars for the zero-zero and one-one outcomes.](../assets/generated/guide/visualization-counts.png)'
   ko: '![00과 11 결과를 막대로 표시한 Bell 상태의 측정 빈도.](../assets/generated/guide/visualization-counts.png)'

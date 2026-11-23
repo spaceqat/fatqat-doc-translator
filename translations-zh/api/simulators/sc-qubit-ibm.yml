@@ -9,7 +9,7 @@
 - id: 60d8948358ff7f9e
   en: 'The default row-major numbering is:'
   zh: 默认的行主序编号为：
-  status: machine
+  status: retired
 - id: 93d239959f618e84
   en: Both operand orders of every grid edge are legal, so `CZ` is accepted on device labels `(0, 1)` and `(1, 0)`, but not `(0, 5)`. Any positive `grid_size=(rows, columns)` uses the same neighbour rule.
   zh: 每条网格边的两种操作数顺序都合法，因此 `CZ` 在设备标签 `(0, 1)` 和 `(1, 0)` 上被接受，但在 `(0, 5)` 上不被接受。任何正的 `grid_size=(rows, columns)` 都使用相同的相邻规则。
@@ -25,7 +25,7 @@
 - id: 19e9419278ad6ba2
   en: See [Noise](../noise.md) for how the selected simulation method applies this model.
   zh: 所选模拟方法如何应用该模型，参见[噪声](../noise.md)。
-  status: machine
+  status: retired
 - id: 9ba433e0c6fb6bc1
   en: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`SCQubitIBMSimulator.implementation_map`][fatqat.simulator.SCQubitIBMSimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], and [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] follow the general Simulator API and are included below for a complete class reference.'
   zh: '[`Simulator.method`][fatqat.simulator.Simulator.method]、[`SCQubitIBMSimulator.implementation_map`][fatqat.simulator.SCQubitIBMSimulator.implementation_map]、[`Simulator.run`][fatqat.simulator.Simulator.run]、[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] 和 [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] 遵循通用的 Simulator API，为提供完整的类参考，一并列在下方。'
@@ -33,7 +33,7 @@
 - id: 3ebbdb4e2335a7f6
   en: '| Uniform native gates | [`fatqat.operations.X`][fatqat.operations.X], [`fatqat.operations.SX`][fatqat.operations.SX], [`fatqat.operations.RZ`][fatqat.operations.RZ] |'
   zh: '| 全局可用的原生门 | [`fatqat.operations.X`][fatqat.operations.X], [`fatqat.operations.SX`][fatqat.operations.SX], [`fatqat.operations.RZ`][fatqat.operations.RZ] |'
-  status: machine
+  status: retired
 - id: cdda11a83339cc2c
   en: '| Connected native gate | [`fatqat.operations.CZ`][fatqat.operations.CZ] on horizontal or vertical neighbours |'
   zh: '| 受连接性限制的原生门 | 作用于水平或垂直相邻量子比特的 [`fatqat.operations.CZ`][fatqat.operations.CZ] |'
@@ -41,8 +41,8 @@
 - id: 9f342a572239bf97
   en: '| `X`, `SX` | 20 ns | T1/T2-derived amplitude and phase damping |'
   zh: '| `X`, `SX` | 20 ns | 由 T1/T2 导出的振幅阻尼和相位阻尼 |'
-  status: machine
+  status: retired
 - id: 1e03b9158161fd79
   en: '| `RZ` | 0 ns (virtual) | None |'
   zh: '| `RZ` | 0 ns（虚拟） | 无 |'
-  status: machine
+  status: retired

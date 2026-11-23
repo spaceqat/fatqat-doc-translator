@@ -5,7 +5,7 @@
 - id: 8d964a4dc44d98c7
   en: '[`TransitionRelaxation`][fatqat.noise.TransitionRelaxation] describes exactly one explicitly authored local jump operator. It is independent of hardware kind: the same interface can describe a transmon ladder, one atomic decay branch, or another finite-dimensional relaxation mechanism.'
   ko: '[`TransitionRelaxation`][fatqat.noise.TransitionRelaxation]은 명시적으로 작성한 국소 점프 연산자 정확히 하나를 나타냅니다. 하드웨어 종류와 독립적이므로 같은 인터페이스로 transmon 사다리, 원자 감쇠 분기 하나, 다른 유한 차원 이완 과정을 표현할 수 있습니다.'
-  status: machine
+  status: retired
 - id: e90bd0a91c88ea0f
   en: Each coefficient key is `(source, destination)`, and one descriptor defines
   ko: 각 계수의 키는 `(source, destination)`이며, 선언 하나는 다음을 정의합니다.
@@ -29,7 +29,7 @@
 - id: 81fa261e8ba5005e
   en: This distinction is explicit. FATQAT does not infer it from labels such as `atom` or `transmon`, and it does not insert harmonic-oscillator coefficients. Supply `1`, `sqrt(2)`, or measured matrix elements directly.
   ko: 이 구분은 직접 명시해야 합니다. FATQAT은 `atom`이나 `transmon` 같은 레이블로 이를 추론하거나 조화 진동자 계수를 자동으로 넣지 않습니다. `1`, `sqrt(2)`, 측정한 행렬 원소를 직접 지정하세요.
-  status: machine
+  status: retired
 - id: adf8d27d0bf6cec5
   en: 'Coefficient scale is not normalized: rescaling every coefficient by $\alpha\ne0$ and the strength by $1/|\alpha|^2$ leaves the channel or dissipator unchanged, subject to the finite-form bounds below.'
   ko: 계수 크기는 정규화하지 않습니다. 모든 계수를 $\alpha\ne0$배 하고 세기를 $1/|\alpha|^2$배 하면, 아래의 유한 형식 경계를 만족하는 한 채널이나 소산자는 달라지지 않습니다.
@@ -37,7 +37,7 @@
 - id: 186b7b6ad32dbc67
   en: Finite channel form
   ko: 유한 채널 형식
-  status: machine
+  status: retired
 - id: bc8b7fd28400fbd4
   en: Use a scalar `p` in `[0, 1]` for one elementary Kraus-channel application on a matrix simulator.
   ko: 행렬 시뮬레이터에서 기본 Kraus 채널을 한 번 적용하려면 `[0, 1]` 범위의 스칼라 `p`를 사용하세요.
@@ -57,7 +57,7 @@
 - id: 28792c3b6fcacbb0
   en: Continuous form
   ko: 연속 형식
-  status: machine
+  status: retired
 - id: fedf6aa4847067df
   en: Use a finite, nonnegative scalar `rate` on a compatible pulse emulator. One descriptor resolves to
   ko: 호환되는 펄스 에뮬레이터에서 유한한 비음수 스칼라 `rate`를 사용하세요. 선언 하나는 다음과 같이 해석됩니다.

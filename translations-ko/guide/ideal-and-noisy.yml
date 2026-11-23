@@ -81,7 +81,7 @@
 - id: e5f01d7d9052fc44
   en: Circuit noise probabilities and continuous-time rates require different inputs; FatQat does not convert between them automatically. Move to [Hamiltonian-level emulation](hamiltonian-emulation.md) for pulse duration, idle evolution, leakage, or continuous-time noise. For supported combinations, selectors, and validation rules, see the [noise-backend-support](../api/noise/backend-support.md#noise-backend-support) table and [Noise model API](../api/noise/model.md).
   ko: 회로 잡음은 확률로, 연속 시간 잡음은 변화율 등의 매개변수로 지정하며 FatQat이 둘을 자동 변환하지는 않습니다. 펄스 길이, 유휴 시간의 변화, 누설이나 연속 시간 잡음을 연구하려면 [해밀토니안 수준 에뮬레이션](hamiltonian-emulation.md)을 사용하세요. 지원 조합과 적용 대상 선택, 검사 규칙은 [백엔드별 잡음 지원 표](../api/noise/backend-support.md#noise-backend-support)와 [Noise model API](../api/noise/model.md)를 참고하세요.
-  status: machine
+  status: retired
 - id: ab606c2415f9d233
   en: Real quantum devices are affected by their environment, imperfect controls, and measurement errors. These effects can change the state or the recorded outcomes. An ideal simulation helps you understand the intended computation; adding a noise model lets you study how selected imperfections affect it and bring the simulation closer to the conditions of an implementation. Which effects it captures depends on the model and parameters you choose.
   ko: 실제 양자 장치는 환경, 불완전한 제어, 측정 오류의 영향을 받으며, 이로 인해 양자 상태나 기록된 결과가 달라질 수 있습니다. 이상적인 시뮬레이션으로 계산에서 기대하는 결과를 이해하고, 잡음 모델을 더해 선택한 오류가 결과에 미치는 영향을 살펴볼 수 있습니다. 이렇게 실제 구현 조건에 더 가까운 시뮬레이션을 할 수 있지만, 어떤 효과를 반영하는지는 선택한 모델과 매개변수에 따라 달라집니다.

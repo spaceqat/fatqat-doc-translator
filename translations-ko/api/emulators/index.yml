@@ -9,15 +9,15 @@
 - id: 46de0b9132fa953c
   en: '[Superconducting pulse emulator](../pulse-emulator.md)'
   ko: '[초전도 펄스 에뮬레이터](../pulse-emulator.md)'
-  status: machine
+  status: retired
 - id: a278a2f643790146
   en: '[Neutral-atom emulators](../atom-emulators.md)'
   ko: '[중성 원자 에뮬레이터](../atom-emulators.md)'
-  status: machine
+  status: retired
 - id: 1cad86828c664ecb
   en: FatQat provides [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) pulse emulators. See [Pulse control](../pulse-control/index.md) for shared control values, or [Simulators](../simulators/index.md) for gate-level simulation. The guided path begins with [Write and run pulse programs](../../guide/hamiltonian-emulation.md).
   ko: FatQat은 [transmon](../pulse-emulator.md)과 [중성 원자](../atom-emulators.md) 펄스 에뮬레이터를 제공합니다. 공통 제어 값은 [펄스 제어](../pulse-control/index.md), 게이트 수준 시뮬레이션은 [시뮬레이터](../simulators/index.md)를 참고하세요. 단계별 학습은 [펄스 프로그램 작성과 실행](../../guide/hamiltonian-emulation.md)에서 시작합니다.
-  status: machine
+  status: retired
 - id: ee7a5643d1f134d9
   en: A control pulse can rotate a qubit, couple two transmons, or drive an array of atoms. FatQat's pulse emulators calculate how the quantum state changes during those controls. They use a Hamiltonian for the physical system, so the pulse shape, strength, and timing can all affect the result.
   ko: 제어 펄스로 큐비트를 회전시키거나 두 트랜스몬을 결합하거나 원자 배열을 구동할 수 있습니다. FatQat의 펄스 에뮬레이터는 물리계의 해밀토니안을 사용해 제어 중 양자 상태가 시간에 따라 어떻게 변하는지 계산합니다. 펄스의 형태와 세기, 시간 배치가 결과에 영향을 줄 수 있습니다.

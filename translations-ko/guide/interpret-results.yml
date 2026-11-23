@@ -69,7 +69,7 @@
 - id: 040de4c07b00d573
   en: See the [Estimator API](../api/estimator.md) for supported backends, observable construction, and run options.
   ko: 지원 백엔드, 관측량 작성법, 실행 옵션은 [Estimator API](../api/estimator.md)를 참고하세요.
-  status: machine
+  status: retired
 - id: a43562e0f07390b8
   en: 'Set `shots` to a positive integer to estimate an expectation from sampled measurements. For `ZI` on the original Bell state, each shot gives `+1` or `-1` with equal probability. The exact expectation is zero, up to floating-point rounding, but a finite sample usually gives a small nonzero mean:'
   ko: '`shots`를 양의 정수로 설정하면 샘플링한 측정값으로 기댓값을 추정합니다. 원래 Bell 상태에서 `ZI`를 측정하면 각 샷에서 `+1`과 `-1`이 같은 확률로 나옵니다. 부동소수점 반올림 오차를 제외하면 정확한 기댓값은 0이지만, 유한한 표본의 평균은 대개 0에서 조금 벗어납니다.'

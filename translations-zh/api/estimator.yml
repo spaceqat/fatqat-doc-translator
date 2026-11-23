@@ -9,7 +9,7 @@
 - id: 021ea6651f894374
   en: Estimate an observable
   zh: 估计可观测量
-  status: machine
+  status: retired
 - id: 64ba577b3d92a793
   en: For a guided workflow, see [Ask questions of a run](../guide/interpret-results.md).
   zh: 有关引导式工作流，参见[向一次运行提问](../guide/interpret-results.md)。
@@ -29,7 +29,7 @@
 - id: 622c863621c52148
   en: Coefficients must be real.
   zh: 系数必须为实数。
-  status: machine
+  status: retired
 - id: 479684de59bfab33
   en: Exact and sampled results
   zh: 精确计算与采样
@@ -37,7 +37,7 @@
 - id: 06f36e9304d929af
   en: Pass one observable to receive scalar expectation and standard-error values, or a list or tuple to receive arrays in the same order.
   zh: 传入单个可观测量可得到标量的期望值和标准误差；传入列表或元组则按相同顺序得到数组。
-  status: machine
+  status: retired
 - id: cb6a6c49e63c571c
   en: '`shots=0` computes an exact value. A positive `shots` value samples each observable term, and [`get_std`][fatqat.Result.get_std] reports the resulting standard error. Set `simulation_config["seed"]` to reproduce a sampled run.'
   zh: '`shots=0` 计算精确值。正的 `shots` 值会对每个可观测量项进行采样，[`get_std`][fatqat.Result.get_std] 报告由此产生的标准误差。设置 `simulation_config["seed"]` 可重现一次采样运行。'
@@ -61,7 +61,7 @@
 - id: 72a7d5d9dd560aef
   en: Parameter sweeps
   zh: 参数扫描
-  status: machine
+  status: retired
 - id: 3a37a2050aedc2d7
   en: '[`run_sweep`][fatqat.Estimator.run_sweep] evaluates binding rows in input order. Validation errors raise directly; other row failures are raised by [`result`][fatqat.Job.result]. No partial result list is returned. See [Simulate a quantum program](../guide/simulation.md) for a guided parameter sweep; accepted binding shapes and seed behavior are specified here.'
   zh: '[`run_sweep`][fatqat.Estimator.run_sweep] 按输入顺序求值各绑定行。校验错误直接抛出；其他行的失败由 [`result`][fatqat.Job.result] 抛出。不会返回部分结果列表。有关引导式参数扫描，参见[模拟量子程序](../guide/simulation.md)；接受的绑定形状与种子行为以本页规定为准。'
@@ -69,7 +69,7 @@
 - id: 0512da99303af84f
   en: Detailed reference
   zh: API 参考
-  status: machine
+  status: retired
 - id: ac76151705ad5ea9
   en: Use [`Estimator`][fatqat.Estimator] to evaluate one or more [`Observable`][fatqat.Observable] values through a backend's native execution path. The program must be unmeasured, fully bound, and qubit-only. Built-in matrix simulators and the two-level atom pulse emulator implement this interface; physical models with higher local dimensions have no implicit qubit-observable embedding.
   zh: 使用 [`Estimator`][fatqat.Estimator]，通过后端原生执行路径计算一个或多个 [`Observable`][fatqat.Observable] 的值。程序必须没有测量、所有参数均已绑定，且仅包含量子比特。内置矩阵模拟器和二能级原子脉冲仿真器实现了此接口；局域维数更高的物理模型不会隐式嵌入量子比特可观测量。
@@ -77,7 +77,7 @@
 - id: 20a31d4ec63acf7d
   en: For a guided workflow, see [Estimate observables](../guide/interpret-results.md).
   zh: 操作流程示例见[估计可观测量](../guide/interpret-results.md)。
-  status: machine
+  status: retired
 - id: 0dddeb7c8feda0f2
   en: 'Dense labels run left to right in public qubit order: the character at position `q` acts on qubit `q`. They accept `I`, `X`, `Y`, and `Z`. These forms are equivalent:'
   zh: 稠密标签按公共量子比特顺序从左到右排列：位置 `q` 的字符作用于量子比特 `q`。支持的字符为 `I`、`X`、`Y` 和 `Z`。以下写法等价：
@@ -117,39 +117,39 @@
 - id: dc46617b715c12de
   en: '[`run_sweep`][fatqat.Estimator.run_sweep] evaluates binding rows in input order. Validation errors raise directly; execution errors follow the backend''s error-handling policy. No partial result list is returned. See [Simulate a quantum program](../guide/simulation.md) for a guided parameter sweep; accepted binding shapes and seed behavior are specified here.'
   zh: '[`run_sweep`][fatqat.Estimator.run_sweep] 按输入顺序计算每一行参数绑定。验证错误会直接抛出；执行错误按后端的错误处理策略处理，失败时不会返回部分结果。参数扫描的完整示例见[模拟量子程序](../guide/simulation.md)；可接受的参数形状和随机种子的行为见本页说明。'
-  status: machine
+  status: retired
 - id: 3c4e36c32357cbcc
   en: Use [`Estimator`][fatqat.Estimator] to evaluate one or more [`Observable`][fatqat.Observable] values on a backend. The program must be unmeasured and fully bound with no free Parameters.
   zh: 用 [`Estimator`][fatqat.Estimator] 在后端上计算一个或多个 [`Observable`][fatqat.Observable] 的值。程序不能包含测量，且所有 Parameters 都必须绑定，不能留有自由参数。
-  status: machine
+  status: retired
 - id: 4d1be4fea973dd2b
   en: 'An observable is a sum of real coefficients times products of local operators, each acting on one subsystem:'
   zh: 可观测量由若干项相加而成，每项是一个实数系数乘以局部算符的乘积，每个局部算符只作用于一个子系统：
-  status: machine
+  status: retired
 - id: 83fbba990d9b135f
   en: the Pauli operators `X`, `Y`, and `Z`, which act on qubits only;
   zh: Pauli 算符 `X`、`Y` 和 `Z`，仅作用于量子比特；
-  status: machine
+  status: retired
 - id: 43ddd0d4221fcfe5
   en: '[`Projector(level)`][fatqat.observable.Projector], the projector onto one level, with `ZERO` and `ONE` as names for `Projector(0)` and `Projector(1)`;'
   zh: '[`Projector(level)`][fatqat.observable.Projector]，投影到指定能级的投影算符，其中 `ZERO` 和 `ONE` 分别是 `Projector(0)` 和 `Projector(1)` 的别名；'
-  status: machine
+  status: retired
 - id: 3721333e65c553bb
   en: '[`NumberOperator()`][fatqat.observable.NumberOperator], `diag(0, 1, ..., d-1)` on a subsystem of dimension `d`: the mean level of a qudit, or `ONE` on a qubit.'
   zh: '[`NumberOperator()`][fatqat.observable.NumberOperator]，在维度为 `d` 的子系统上表示 `diag(0, 1, ..., d-1)`：可用于计算多能级量子单元的平均能级；在量子比特上等同于 `ONE`。'
-  status: machine
+  status: retired
 - id: 0d8172c0005fad09
   en: 'A string label gives one letter per subsystem, from `I`, `X`, `Y`, and `Z`. The character at position `q` acts on subsystem `q`, and subsystems past the end of the label carry the identity. `"XI"` means `X(q0) tensor I(q1)`; on the state `|10>`, `<ZI> = -1` and `<IZ> = +1`. These forms are equivalent:'
   zh: 字符串标签用 `I`、`X`、`Y`、`Z` 中的一个字母表示每个子系统上的算符。位置 `q` 的字符作用于子系统 `q`，标签未覆盖的后续子系统使用恒等算符。`"XI"` 表示 `X(q0) tensor I(q1)`；对于状态 `|10>`，`<ZI> = -1`，`<IZ> = +1`。以下写法等价：
-  status: machine
+  status: retired
 - id: 0eb2b4c3ed32e9f8
   en: '[`from_sparse`][fatqat.Observable.from_sparse] names each non-identity operator and its subsystem explicitly. A term''s operators can be a letter string such as `"XY"`, one operator object, or a sequence that mixes both. This is also how you write `Projector` and `NumberOperator` operators:'
   zh: '[`from_sparse`][fatqat.Observable.from_sparse] 显式指定每个非恒等算符及其子系统。一项中的算符可以写成 `"XY"` 这样的字母字符串、单个算符对象，或混合两种形式的序列。`Projector` 和 `NumberOperator` 也用这种方式指定：'
-  status: machine
+  status: retired
 - id: 3ef4dc8bfa8ad43a
   en: 'An observable has no width or subsystem dimensions of its own. The backend checks each local operator against the program: every index must name a program subsystem, Pauli operators need a qubit, and a projector level must be below its subsystem''s dimension. This lets one observable describe qudit programs:'
   zh: 可观测量本身不限定宽度或子系统维度。后端会根据程序检查各局部算符：每个索引必须对应程序中的子系统，Pauli 算符必须作用于量子比特，投影能级必须小于子系统维度。因此，同一个可观测量也能用于多能级程序：
-  status: machine
+  status: retired
 - id: 1b56b6f38a0057de
   en: '`shots=0` computes an exact value. A positive `shots` value samples each nonconstant term independently, and [`get_standard_error`][fatqat.Result.get_standard_error] reports the resulting sample standard error. Constant terms contribute zero standard error; one sample of a nonconstant term has undefined standard error and reports `nan`. Set `simulation_config["seed"]` to reproduce a sampled run.'
   zh: '`shots=0` 计算精确值。`shots` 为正时，对每个非常数项独立采样，[`get_standard_error`][fatqat.Result.get_standard_error] 返回由此得到的采样标准误差。常数项的标准误差为零；非常数项只有一次采样时，标准误差无定义，返回 `nan`。设置 `simulation_config["seed"]` 可复现采样运行。'
@@ -161,43 +161,43 @@
 - id: cc396809c6935a1a
   en: 'Read estimator results with [`get_expectation`][fatqat.Result.get_expectation] and [`get_standard_error`][fatqat.Result.get_standard_error]. Run the backend separately if you also need its final state. Result metadata is compact: backend name, method, runtime, and shots, plus the pulse solver for pulse executions.'
   zh: 通过 [`get_expectation`][fatqat.Result.get_expectation] 和 [`get_standard_error`][fatqat.Result.get_standard_error] 读取 Estimator 的结果。如果还需要最终量子态，请另行运行后端。结果元数据仅包含后端名称、方法、运行时和采样次数；脉冲执行还会记录脉冲求解器。
-  status: machine
+  status: retired
 - id: a45f5727b71f28ea
   en: '**Matrix simulators** support every operator, exact and sampled, with a statevector or density-matrix method. Unitary and superoperator methods raise [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] because they produce maps rather than states. For an exact expectation with reset or an applicable stochastic channel, use a density-matrix method; a statevector method can run those programs with positive shots. Programs with carrier loss are rejected.'
   zh: '**矩阵模拟器**在态矢量或密度矩阵方法下支持所有算符的精确计算和采样。酉矩阵和超算符方法产生的是映射而非量子态，因此会抛出 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]。程序包含重置或适用的随机信道时，要计算精确期望值，请使用密度矩阵方法；态矢量方法可在采样次数为正时运行这些程序。不支持含载体丢失的程序。'
-  status: machine
+  status: retired
 - id: 04baa45c97f86597
   en: '**The two-level atom pulse emulator** evaluates observables on its qubit programs with a statevector or density-matrix method. There, `NumberOperator()` equals `ONE`, and only levels 0 and 1 are valid projector levels.'
   zh: '**二能级原子脉冲仿真器**使用态矢量或密度矩阵方法，在量子比特程序上计算可观测量。这里 `NumberOperator()` 等同于 `ONE`，投影算符的有效能级仅为 0 和 1。'
-  status: machine
+  status: retired
 - id: 879881d16a619284
   en: Exact statevector evaluation rejects potentially active Lindblad evolution; use exact density-matrix execution or a positive-shot trajectory run.
   zh: 精确态矢量计算不允许可能生效的 Lindblad 演化；请改用精确密度矩阵执行，或采样次数为正的轨迹运行。
-  status: machine
+  status: retired
 - id: dacd89d9643cecf8
   en: Positive-shot evaluation supports the diagonal operators `Z`, `Projector(0)`, `Projector(1)`, and `NumberOperator()`.
   zh: 采样次数为正时，支持对角算符 `Z`、`Projector(0)`、`Projector(1)` 和 `NumberOperator()`。
-  status: machine
+  status: retired
 - id: 86eb367f6ecd93d4
   en: Reset is unsupported.
   zh: 不支持重置。
-  status: machine
+  status: retired
 - id: ba9641070a0beab6
   en: 'Transmon and three-level atom emulators are rejected: their local dimensions exceed the qubit observable space.'
   zh: 不支持 Transmon 和三能级原子仿真器，因为它们的局部维度超出了量子比特可观测量的空间。
-  status: machine
+  status: retired
 - id: b35d8307b89e7fad
   en: '**Readout noise.** Exact evaluation rejects readout-confusion noise, since it has no exact meaning. Positive-shot evaluation applies readout confusion to the measurements. On matrix simulators, a sampled `X` or `Y` is measured after an ideal basis change that gate noise does not affect.'
   zh: '**读出噪声。** 读出混淆噪声在精确计算中没有对应的精确定义，因此不被接受。采样次数为正时，读出混淆会应用于测量结果。在矩阵模拟器上，采样 `X` 或 `Y` 前会执行理想基变换，该变换不受门噪声影响。'
-  status: machine
+  status: retired
 - id: 386e9ea92863c559
   en: '`shots=0` computes an exact value. A positive `shots` value samples each nonconstant term independently, and [`get_standard_error`][fatqat.Result.get_standard_error] reports the resulting sample standard error. Constant terms contribute zero standard error; one sample of a nonconstant term has undefined standard error and reports `nan`. Set `execution_config["seed"]` to reproduce a sampled run.'
   zh: '`shots=0` 计算精确值。`shots` 为正时，对每个非常数项独立采样，[`get_standard_error`][fatqat.Result.get_standard_error] 返回由此得到的采样标准误差。常数项的标准误差为零；非常数项只有一次采样时，标准误差无定义，返回 `nan`。设置 `execution_config["seed"]` 可复现采样运行。'
-  status: machine
+  status: retired
 - id: 66bbc8c6461e37e4
   en: Configure the simulation method, runtime, and noise on the backend. The Estimator forwards `execution_config` to the backend and accepts the same keys as its normal `run()` path; see the tables for [matrix simulators](simulator.md#runtime-and-execution) and [the two-level atom emulator](atom-emulators.md#run-configuration-and-results). `result_config` is not accepted.
   zh: 在后端上配置模拟方法、运行时和噪声。Estimator 将 `execution_config` 传给后端，接受的键与后端普通 `run()` 路径相同，详见[矩阵模拟器](simulator.md#runtime-and-execution)和[二能级原子仿真器](atom-emulators.md#run-configuration-and-results)的配置表。不接受 `result_config`。
-  status: machine
+  status: retired
 - id: f4ae85f77a50d1f5
   en: Estimate an expectation value
   zh: 计算期望值
@@ -205,15 +205,15 @@
 - id: 1678e2a700ad248f
   en: '**Matrix simulators** evaluate observables exactly or by sampling with a state method. Unitary and superoperator methods raise [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] because they produce maps rather than states. For an exact expectation with reset or an applicable stochastic channel, use a density-matrix method. A statevector method can run those programs with positive shots.'
   zh: '**矩阵模拟器**使用量子态演化方法精确计算或采样估计可观测量。幺正算符和超算符方法返回映射，因此会抛出 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]。如果程序有重置操作或适用的随机信道，要精确计算期望值，请使用密度矩阵方法。态矢量方法可通过设置正数的采样次数来运行这类程序。'
-  status: machine
+  status: retired
 - id: cef2b35a9c4f0449
   en: On an optical mode with [`LOSimulator`][fatqat.simulator.LOSimulator], use [`NumberOperator`][fatqat.observable.NumberOperator] or [`Projector`][fatqat.observable.Projector] at a level within the photon cutoff. Supply the input photons through `initial_state`. On [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator], the observable must target loaded sites in a loss-free program.
   zh: 用 [`LOSimulator`][fatqat.simulator.LOSimulator] 估计光学模式上的可观测量时，可用 [`NumberOperator`][fatqat.observable.NumberOperator]，也可用 [`Projector`][fatqat.observable.Projector] 投影到光子数上限以内的能级。通过 `initial_state` 指定输入光子。使用 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 时，程序须采用无丢失设置，可观测量的目标位置须已装载原子。
-  status: machine
+  status: retired
 - id: b3d29efac3bb6295
   en: '[`Estimator`][fatqat.Estimator] computes the expectation values of one or more [`Observable`][fatqat.Observable] objects after a program runs. Use a fully bound program without measurement operations. Choose a compatible backend for the evolution, then choose exact or sampled evaluation with `shots`.'
   zh: '[`Estimator`][fatqat.Estimator] 计算程序执行后一个或多个 [`Observable`][fatqat.Observable] 的期望值。程序中的参数需要全部绑定，且不能含有测量操作。先选择支持该程序的后端，再用 `shots` 决定是直接计算还是通过采样估计。'
-  status: machine
+  status: retired
 - id: 2abf1df3a761f408
   en: Each term is the product of operators on individual subsystems, multiplied by a real coefficient. Use a dense string of `I`, `X`, `Y`, and `Z` for Pauli operators on qubits. The leftmost letter acts on subsystem 0. For example, `"XI"` applies X to the first qubit and the identity to the second.
   zh: 可观测量的每一项由若干子系统上的算符相乘，再乘以一个实系数。用 `I`、`X`、`Y` 和 `Z` 组成的字符串表示各量子比特上的 Pauli 算符。最左边的字符对应编号 0 的子系统。例如，`"XI"` 表示第一个量子比特用 X，第二个用恒等算符。
@@ -225,19 +225,19 @@
 - id: 736001f578ef6f32
   en: This example prepares one three-level subsystem in level 2 and reads both its mean level and its probability of being in level 2. Passing a list returns the values in that order.
   zh: 这个例子先把一个三能级系统制备在能级 2，再计算它的平均能级编号和处于能级 2 的概率。传入一个列表，结果就按列表顺序返回。
-  status: machine
+  status: retired
 - id: cf0177e5627d173c
   en: With `shots=0` (the default), the estimator calculates the expectation directly and returns zero standard error. With positive `shots`, it samples that many measurements per nonconstant term. One shot gives `nan` for a nonconstant term's standard error. Set `execution_config["seed"]` to reproduce sampled runs.
   zh: 默认的 `shots=0` 会直接计算期望值，标准误差为零。把 `shots` 设为正数后，每个非常数项都会按指定次数采样。如果某个非常数项只采样一次，它的标准误差为 `nan`。可以用 `execution_config["seed"]` 复现采样结果。
-  status: machine
+  status: retired
 - id: 3280856a71233fd1
   en: Read [`get_expectation()`][fatqat.Result.get_expectation] and [`get_standard_error()`][fatqat.Result.get_standard_error] from the result. One observable gives scalars. A list or tuple gives arrays in input order. Run the backend separately to obtain the final state.
   zh: 用 [`get_expectation()`][fatqat.Result.get_expectation] 读取期望值，用 [`get_standard_error()`][fatqat.Result.get_standard_error] 读取标准误差。传入一个可观测量时，两者都是标量。传入列表或元组时，两者都是按输入顺序排列的数组。要读取最终量子态，请直接调用后端运行程序。
-  status: machine
+  status: retired
 - id: 7d1ba99c7edc10c3
   en: Choose the simulation method, runtime, and noise on the backend. Per-run settings in `execution_config` are the same as for the backend's `run()` method. Use `initial_state` to choose a starting state on a simulator.
   zh: 模拟方法、运行时和噪声在后端上设置。单次运行的 `execution_config` 与后端 `run()` 接受的设置相同。使用模拟器时，还可以用 `initial_state` 指定初始态。
-  status: machine
+  status: retired
 - id: 891ca72ae7f54de9
   en: '**Gate-level simulators:** Use `statevector` or `density_matrix`. For an exact result with stochastic reset or gate noise, use `density_matrix`. A statevector method can sample those runs with positive `shots`. Programs that use custom operations are unsupported.'
   zh: '**门级模拟器。** 使用 `statevector` 或 `density_matrix`。如果重置或门噪声会使演化产生随机性，可用 `density_matrix` 精确计算。也可以用态矢量方法，把 `shots` 设为正数进行采样。含有自定义操作的程序不受支持。'
@@ -261,7 +261,7 @@
 - id: 220c293e8b9c4884
   en: Use [`run_sweep()`][fatqat.Estimator.run_sweep] to evaluate the same observables at several parameter settings. Each binding row gives one result, in input order.
   zh: 要在多组参数下计算相同的可观测量，可用 [`run_sweep()`][fatqat.Estimator.run_sweep]。每组参数对应一个结果，按输入顺序返回。
-  status: machine
+  status: retired
 - id: 2e51554f3353aee2
   en: '[`Estimator`][fatqat.Estimator] computes expectation values for one or more [`Observable`][fatqat.Observable] objects. Both entry points take a program without measurement operations. Choose the entry point by how you want to supply the program parameters.'
   zh: '[`Estimator`][fatqat.Estimator] 计算一个或多个 [`Observable`][fatqat.Observable] 的期望值。两种运行方式都要求程序不含测量操作。用哪个接口，取决于你怎样提供程序参数。'

@@ -77,7 +77,7 @@
 - id: c040dfa4d513350e
   en: The changing distance is a picture of the pairing intent, not a simulated trajectory. `AtomArraySimulator` records no coordinates or movement duration; `Pair` declares that the two occupied sites may execute native `CZ`, and `Unpair` removes that eligibility.
   zh: 图中的距离变化用来说明配对关系，不是真实运动轨迹。`AtomArraySimulator` 不记录坐标或移动时长；`Pair` 表示两个有原子的位点已允许执行原生 `CZ`，`Unpair` 则解除这一配对关系。
-  status: machine
+  status: retired
 - id: ca23cfc884492a91
   en: 'Pairing is ideal unless you attach a noise assumption. For example, apply a small depolarizing channel independently to each atom whenever either movement instruction occurs:'
   zh: 不添加噪声时，配对过程按理想情况处理。如果想考虑移动带来的扰动，可以在每次移动指令发生时，分别对两个原子施加一个较弱的退极化信道：

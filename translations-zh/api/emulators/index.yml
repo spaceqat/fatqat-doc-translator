@@ -9,15 +9,15 @@
 - id: 46de0b9132fa953c
   en: '[Superconducting pulse emulator](../pulse-emulator.md)'
   zh: '[超导脉冲仿真器](../pulse-emulator.md)'
-  status: machine
+  status: retired
 - id: a278a2f643790146
   en: '[Neutral-atom emulators](../atom-emulators.md)'
   zh: '[中性原子仿真器](../atom-emulators.md)'
-  status: machine
+  status: retired
 - id: 1cad86828c664ecb
   en: FatQat provides [transmon](../pulse-emulator.md) and [neutral-atom](../atom-emulators.md) pulse emulators. See [Pulse control](../pulse-control/index.md) for shared control values, or [Simulators](../simulators/index.md) for gate-level simulation. The guided path begins with [Write and run pulse programs](../../guide/hamiltonian-emulation.md).
   zh: FatQat 提供 [transmon](../pulse-emulator.md) 和[中性原子](../atom-emulators.md)脉冲仿真器。有关共享的控制值，参见[脉冲控制](../pulse-control/index.md)；有关门级模拟，参见[模拟器](../simulators/index.md)。入门讲解从[编写和运行脉冲程序](../../guide/hamiltonian-emulation.md)开始。
-  status: machine
+  status: retired
 - id: ee7a5643d1f134d9
   en: A control pulse can rotate a qubit, couple two transmons, or drive an array of atoms. FatQat's pulse emulators calculate how the quantum state changes during those controls. They use a Hamiltonian for the physical system, so the pulse shape, strength, and timing can all affect the result.
   zh: 一个控制脉冲可以旋转量子比特、耦合两个 Transmon，也可以驱动一组原子。FatQat 的脉冲仿真器用物理系统的哈密顿量计算量子态随时间的变化。脉冲的形状、强度和时序都会影响结果。

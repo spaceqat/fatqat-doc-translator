@@ -5,11 +5,11 @@
 - id: b29fa6ba8f162832
   en: '[`PulseOperation`][fatqat.operations.PulseOperation] adds an explicit pulse block to a program. Import it from `fatqat.operations`, normally as `ops.PulseOperation`.'
   zh: '[`PulseOperation`][fatqat.operations.PulseOperation] 向程序中添加一个显式脉冲块。请从 `fatqat.operations` 导入它，通常以 `ops.PulseOperation` 的形式使用。'
-  status: machine
+  status: retired
 - id: 12bfe14668e6bf66
   en: 'An ordinary gate is added by passing logical targets to `Program.add`. For a `PulseOperation`, do not pass targets: every [`PulseControl`][fatqat.emulator.PulseControl] already names the physical channel to drive. Add it with `program.add(operation)`. A [`ResourceLayout`][fatqat.ResourceLayout] does not remap its channels.'
   zh: 添加普通门时要向 `Program.add` 传递逻辑目标。而对于 `PulseOperation`，请不要传递目标：每个 [`PulseControl`][fatqat.emulator.PulseControl] 已经指明了要驱动的物理通道。使用 `program.add(operation)` 添加它。[`ResourceLayout`][fatqat.ResourceLayout] 不会重新映射其通道。
-  status: machine
+  status: retired
 - id: f2ac3265eee2f5c8
   en: Conditions and noise
   zh: 条件与噪声
@@ -29,15 +29,15 @@
 - id: dd171c59c706e434
   en: Direct `PulseOperation` blocks run on [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] and [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]. [Pulse control](index.md) compares their channels and units. [Matrix simulators and their device profiles](../simulators/index.md) do not accept direct pulse blocks, and neither circuit drawing nor OpenQASM export can represent them.
   zh: 直接的 `PulseOperation` 块可以在 [`TransmonEmulator`][fatqat.emulator.TransmonEmulator] 和 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 上运行。[脉冲控制](index.md)比较了它们的通道和单位。[矩阵模拟器及其设备模型](../simulators/index.md)不接受直接脉冲块，线路绘图和 OpenQASM 导出也无法表示它们。
-  status: machine
+  status: retired
 - id: 8f362e07354d7a95
   en: Add a [`PulseOperation`][fatqat.operations.PulseOperation] with `program.add(operation)`. Its controls already specify the physical channels to drive.
   zh: 用 `program.add(operation)` 将 [`PulseOperation`][fatqat.operations.PulseOperation] 加入程序。要驱动哪些物理通道，由其中的控制指定。
-  status: machine
+  status: retired
 - id: 825ffb36868c090f
   en: The [direct pulse support table](index.md#built-in-support) lists compatible backends, channels, and units. Use supported gate-level operations for circuit drawing and OpenQASM export.
   zh: 可用的后端、通道和单位见[直接脉冲支持表](index.md#built-in-support)。绘制线路或导出 OpenQASM 时，请使用受支持的门级操作。
-  status: machine
+  status: retired
 - id: 25883f6adc0895c9
   en: Add a [`PulseOperation`][fatqat.operations.PulseOperation] with `program.add(operation)`. Its controls already specify the physical channels to drive. Put controls in the same block when they should share a time axis. Each control's `start_offset` is measured from the start of that block.
   zh: 用 `program.add(operation)` 将 [`PulseOperation`][fatqat.operations.PulseOperation] 加入程序。脉冲块里的控制指定要驱动的物理通道。如果几个控制需要按同一条时间轴安排，就把它们放在同一个块里。每个控制的 `start_offset` 都从这个块的起点算起。

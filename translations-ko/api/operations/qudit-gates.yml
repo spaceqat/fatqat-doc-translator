@@ -5,15 +5,15 @@
 - id: b72a9bf3dad8276b
   en: These gates are defined for local dimensions `d >= 2`; the table gives any additional dimension rules. [`add`][fatqat.Program.add] records the operation, and the backend checks support when the program runs. Integer `power` values are reduced modulo the relevant target dimension, so negative and oversized values are valid.
   ko: 이 게이트들은 국소 차원 `d >= 2`에 정의되며 추가 차원 조건은 표에 표시되어 있습니다. [`add`][fatqat.Program.add]는 연산을 기록하고 실행 시 백엔드가 지원 여부를 확인합니다. 정수 `power`는 해당 대상 차원을 법으로 하는 나머지로 줄이므로 음수나 큰 값도 유효합니다.
-  status: machine
+  status: retired
 - id: 5c620dad1ce7b81a
   en: Unary gates accept one scalar target or one [`RegisterView`](../registers.md#fatqat.RegisterView). Two-target gates accept scalars or two compatible views and zip their members.
   ko: 단항 게이트는 스칼라 대상 하나 또는 [`RegisterView`](../registers.md#fatqat.RegisterView) 하나를 받습니다. 두 대상 게이트는 스칼라들 또는 호환되는 뷰 두 개를 받아 원소를 순서대로 짝짓습니다.
-  status: machine
+  status: retired
 - id: 9e08d15edb572c0e
   en: '**Qudit gates**'
   ko: '**큐디트 게이트**'
-  status: machine
+  status: retired
 - id: 918389d9a98f0804
   en: '| Value or constructor | Targets and constraints | Basis action |'
   ko: '| 값 또는 생성자 | 대상과 제약 | 기저에 대한 작용 |'
@@ -21,43 +21,43 @@
 - id: fb73586a7acf39ff
   en: '| [`Shift`][fatqat.operations.Shift] `(power)` | One scalar or view; any `d >= 2` | `\|k> -> \|(k + power) mod d>`. `Shift(1)` is X for `d=2`. |'
   ko: '| [`Shift`][fatqat.operations.Shift] `(power)` | 스칼라 또는 뷰 하나; 임의의 `d >= 2` | `\|k> -> \|(k + power) mod d>`. `d=2`에서 `Shift(1)`은 X입니다. |'
-  status: machine
+  status: retired
 - id: 9a38808a06abbc77
   en: '| [`Clock`][fatqat.operations.Clock] `(power)` | One scalar or view; any `d >= 2` | `\|k> -> omega**(k*power)\|k>`, `omega=exp(2*pi*i/d)`. `Clock(1)` is Z for `d=2`. |'
   ko: '| [`Clock`][fatqat.operations.Clock] `(power)` | 스칼라 또는 뷰 하나; 임의의 `d >= 2` | `\|k> -> omega**(k*power)\|k>`, `omega=exp(2*pi*i/d)`. `d=2`에서 `Clock(1)`은 Z입니다. |'
-  status: machine
+  status: retired
 - id: 373a32b7d8e66f74
   en: '| [`Sum`][fatqat.operations.Sum] | Scalar or view pair with equal dimensions | `\|i,j> -> \|i,(i+j) mod d>`. It is CX for `d=2`. |'
   ko: '| [`Sum`][fatqat.operations.Sum] | 차원이 같은 스칼라 또는 뷰 쌍 | `\|i,j> -> \|i,(i+j) mod d>`. `d=2`에서 CX입니다. |'
-  status: machine
+  status: retired
 - id: 630504439d1193d5
   en: '| [`SwapLevels`][fatqat.operations.SwapLevels] `(j, k)` | One scalar or view; `0 <= j,k < d` and `j != k` | Exchanges `\|j>` and `\|k>` and fixes every other level. |'
   ko: '| [`SwapLevels`][fatqat.operations.SwapLevels] `(j, k)` | 스칼라 또는 뷰 하나; `0 <= j,k < d`이고 `j != k` | `\|j>`와 `\|k>`를 교환하고 다른 준위는 그대로 둡니다. |'
-  status: machine
+  status: retired
 - id: 590e1d1cda481ac5
   en: '| [`Fourier`][fatqat.operations.Fourier] | One scalar or view; any `d >= 2` | `\|j> -> sum(exp(2*pi*i*j*k/d)\|k>) / sqrt(d)`. It is H for `d=2`. |'
   ko: '| [`Fourier`][fatqat.operations.Fourier] | 스칼라 또는 뷰 하나; 임의의 `d >= 2` | `\|j> -> sum(exp(2*pi*i*j*k/d)\|k>) / sqrt(d)`. `d=2`에서 H입니다. |'
-  status: machine
+  status: retired
 - id: 9ef4e451a8909d00
   en: '| [`InverseFourier`][fatqat.operations.InverseFourier] | One scalar or view; any `d >= 2` | Conjugate transpose of `Fourier`; uses the negative exponent. |'
   ko: '| [`InverseFourier`][fatqat.operations.InverseFourier] | 스칼라 또는 뷰 하나; 임의의 `d >= 2` | `Fourier`의 켤레전치이며 음의 지수를 사용합니다. |'
-  status: machine
+  status: retired
 - id: 1e4b22b4ea34b1e5
   en: '| [`SubspaceRX`][fatqat.operations.SubspaceRX] `(theta, (j, k))` | One scalar or view; two distinct in-range levels | With `c=cos(theta/2)`, `s=sin(theta/2)`: `\|j> -> c\|j>-i*s\|k>` and `\|k> -> -i*s\|j>+c\|k>`. |'
   ko: '| [`SubspaceRX`][fatqat.operations.SubspaceRX] `(theta, (j, k))` | 스칼라 또는 뷰 하나; 범위 안의 서로 다른 두 준위 | `c=cos(theta/2)`, `s=sin(theta/2)`일 때 `\|j> -> c\|j>-i*s\|k>`, `\|k> -> -i*s\|j>+c\|k>`. |'
-  status: machine
+  status: retired
 - id: a2f9e47da0b991f1
   en: '| [`SubspaceRY`][fatqat.operations.SubspaceRY] `(theta, (j, k))` | One scalar or view; two distinct in-range levels | `\|j> -> c\|j>+s\|k>` and `\|k> -> -s\|j>+c\|k>`. Reversing `(j, k)` reverses the rotation. |'
   ko: '| [`SubspaceRY`][fatqat.operations.SubspaceRY] `(theta, (j, k))` | 스칼라 또는 뷰 하나; 범위 안의 서로 다른 두 준위 | `\|j> -> c\|j>+s\|k>`, `\|k> -> -s\|j>+c\|k>`. `(j, k)`의 순서를 뒤집으면 회전도 반대가 됩니다. |'
-  status: machine
+  status: retired
 - id: e1d79a9aece490cb
   en: '| [`SubspaceRZ`][fatqat.operations.SubspaceRZ] `(theta, (j, k))` | One scalar or view; two distinct in-range levels | `\|j>` gains `exp(-i*theta/2)` and `\|k>` gains `exp(i*theta/2)`. Reversing the pair reverses the rotation. |'
   ko: '| [`SubspaceRZ`][fatqat.operations.SubspaceRZ] `(theta, (j, k))` | 스칼라 또는 뷰 하나; 범위 안의 서로 다른 두 준위 | `\|j>`에는 `exp(-i*theta/2)`, `\|k>`에는 `exp(i*theta/2)`가 곱해집니다. 쌍의 순서를 뒤집으면 회전도 반대가 됩니다. |'
-  status: machine
+  status: retired
 - id: f74152c4350f99e3
   en: '| [`CClock`][fatqat.operations.CClock] `(power)` | Scalar or view pair; dimensions may differ | `\|i,j>` gains `omega**(i*j*power)` using the target''s `omega=exp(2*pi*i/d_target)`. It is CZ for two qubits and power 1. |'
   ko: '| [`CClock`][fatqat.operations.CClock] `(power)` | 스칼라 또는 뷰 쌍; 차원이 달라도 됨 | 대상의 `omega=exp(2*pi*i/d_target)`를 사용해 `\|i,j>`에 `omega**(i*j*power)`를 곱합니다. 두 큐비트에서 power가 1이면 CZ입니다. |'
-  status: machine
+  status: retired
 - id: 6e6d70ea8b21d6e7
   en: Level pairs must contain distinct, non-negative integers. Equality and negativity are checked at construction, and the target dimension is checked when the operation is added. `Sum` requires equal control and target dimensions; the backend rejects a mismatch when the program runs.
   ko: 준위 쌍은 서로 다른 음이 아닌 정수여야 합니다. 생성 시 같은 값인지와 음수 여부를 확인하고, 연산 추가 시 대상 차원을 확인합니다. `Sum`은 제어와 대상의 차원이 같아야 하며, 다르면 실행 시 백엔드가 거부합니다.
@@ -117,7 +117,7 @@
 - id: 2b8b6cd965a01487
   en: These gates act on systems of dimension `d >= 2`. The table lists each gate's target count and any additional dimension or level requirements. For scalar and grouped targets, see [`Program.add()`][fatqat.Program.add]. Integer `power` values wrap modulo the relevant dimension, including negative values.
   ko: 이 게이트들은 차원이 `d >= 2`인 계에 적용합니다. 표에는 게이트마다 필요한 대상 수와 추가 차원·준위 조건을 정리했습니다. 대상을 개별적으로 또는 묶어서 지정하는 방법은 [`Program.add()`][fatqat.Program.add]를 참고하세요. 정수 `power`는 해당 차원에 대한 나머지로 처리하므로 음수도 쓸 수 있습니다.
-  status: machine
+  status: retired
 - id: 1600e278c1c9479b
   en: '| [`Shift`][fatqat.operations.Shift] `(power)` | One target | `\|k> -> \|(k + power) mod d>`. `Shift(1)` is X for `d=2`. |'
   ko: '| [`Shift`][fatqat.operations.Shift] `(power)` | 대상 하나 | `\|k> -> \|(k + power) mod d>`. `d=2`에서 `Shift(1)`은 X입니다. |'

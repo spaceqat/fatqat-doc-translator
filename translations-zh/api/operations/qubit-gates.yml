@@ -5,11 +5,11 @@
 - id: c42a34a9d32421d7
   en: Every gate on this page is defined for dimension-2 targets (qubits). [`add`][fatqat.Program.add] records the operation without checking target dimensions. The backend checks that requirement and any device-specific limits when the program runs.
   zh: 本页所有门均针对维度为 2 的目标（量子比特）定义。[`add`][fatqat.Program.add] 只记录操作，不检查目标维度。后端会在程序运行时检查该要求以及任何设备特定的限制。
-  status: machine
+  status: retired
 - id: 6f5e9b2a238bef11
   en: Every unary gate accepts either one scalar target or one [`RegisterView`](../registers.md#fatqat.RegisterView). Every multi-qubit gate accepts either scalar operands or one compatible view per operand and zips the views in order.
   zh: 每个一元门接受一个标量目标或一个 [`RegisterView`](../registers.md#fatqat.RegisterView)。每个多量子比特门接受标量操作数，或每个操作数各一个兼容视图，并按顺序将各视图的成员逐一配对。
-  status: machine
+  status: retired
 - id: 6429dc71b525a77e
   en: Fixed gates
   zh: 固定门
@@ -17,7 +17,7 @@
 - id: ded2ecb0912285d5
   en: Fixed gates are ready-to-use values and must not be called. The single-qubit matrices use `|0>, |1>` basis order.
   zh: 固定门是可直接使用的值，不得被调用。单量子比特矩阵采用 `|0>, |1>` 基顺序。
-  status: machine
+  status: retired
 - id: af8f7f7184b49c97
   en: '**Fixed single-qubit gates**'
   zh: '**固定单量子比特门**'
@@ -25,7 +25,7 @@
 - id: a29819d4e6637ad4
   en: For the multi-qubit values below, targets are ordered exactly as shown.
   zh: 对于下面的多量子比特值，目标顺序与所示完全一致。
-  status: machine
+  status: retired
 - id: ed49cb32eac69cdf
   en: '**Fixed multi-qubit gates**'
   zh: '**固定多量子比特门**'
@@ -101,31 +101,31 @@
 - id: 254da98737f33b1b
   en: '| [`I`][fatqat.operations.I] | Leaves $\|0\rangle$ and $\|1\rangle$ unchanged. |'
   zh: "| [`I`][fatqat.operations.I] | 保持 $\\|0\\rangle$ 和 $\\|1\\rangle$ 不变。 |"
-  status: machine
+  status: retired
 - id: 99b895100ba7e87a
   en: '| [`H`][fatqat.operations.H] | Maps $\|0\rangle$ to $(\|0\rangle+\|1\rangle)/\sqrt{2}$ and $\|1\rangle$ to $(\|0\rangle-\|1\rangle)/\sqrt{2}$. |'
   zh: "| [`H`][fatqat.operations.H] | 将 $\\|0\\rangle$ 映射为 $(\\|0\\rangle+\\|1\\rangle)/\\sqrt{2}$，并将 $\\|1\\rangle$ 映射为 $(\\|0\\rangle-\\|1\\rangle)/\\sqrt{2}$。 |"
-  status: machine
+  status: retired
 - id: d68ed51817edce34
   en: '| [`X`][fatqat.operations.X] | Exchanges $\|0\rangle$ and $\|1\rangle$. |'
   zh: "| [`X`][fatqat.operations.X] | 交换 $\\|0\\rangle$ 和 $\\|1\\rangle$。 |"
-  status: machine
+  status: retired
 - id: 873dc47d62a7441f
   en: '| [`Y`][fatqat.operations.Y] | Maps $\|0\rangle$ to $i\|1\rangle$ and $\|1\rangle$ to $-i\|0\rangle$. |'
   zh: "| [`Y`][fatqat.operations.Y] | 将 $\\|0\\rangle$ 映射为 $i\\|1\\rangle$，并将 $\\|1\\rangle$ 映射为 $-i\\|0\\rangle$。 |"
-  status: machine
+  status: retired
 - id: 12e09223ec1a305f
   en: '| [`Z`][fatqat.operations.Z] | Maps $\|1\rangle$ to $-\|1\rangle$. |'
   zh: "| [`Z`][fatqat.operations.Z] | 将 $\\|1\\rangle$ 映射为 $-\\|1\\rangle$。 |"
-  status: machine
+  status: retired
 - id: 848034f1f6be5d2b
   en: '| [`S`][fatqat.operations.S] | Maps $\|1\rangle$ to $i\|1\rangle$. |'
   zh: "| [`S`][fatqat.operations.S] | 将 $\\|1\\rangle$ 映射为 $i\\|1\\rangle$。 |"
-  status: machine
+  status: retired
 - id: 5ae4f1e60bb0f911
   en: '| [`Sdg`][fatqat.operations.Sdg] | Maps $\|1\rangle$ to $-i\|1\rangle$. |'
   zh: "| [`Sdg`][fatqat.operations.Sdg] | 将 $\\|1\\rangle$ 映射为 $-i\\|1\\rangle$。 |"
-  status: machine
+  status: retired
 - id: 5cc89a5ab388590a
   en: '| [`SX`][fatqat.operations.SX] | Two applications have the same action as X. |'
   zh: '| [`SX`][fatqat.operations.SX] | 连续作用两次与 X 的作用相同。 |'
@@ -133,11 +133,11 @@
 - id: 3096793f1b42c9ab
   en: '| [`T`][fatqat.operations.T] | Maps $\|1\rangle$ to $e^{i\pi/4}\|1\rangle$. |'
   zh: "| [`T`][fatqat.operations.T] | 将 $\\|1\\rangle$ 映射为 $e^{i\\pi/4}\\|1\\rangle$。 |"
-  status: machine
+  status: retired
 - id: 567c4748eb54d919
   en: '| [`Tdg`][fatqat.operations.Tdg] | Maps $\|1\rangle$ to $e^{-i\pi/4}\|1\rangle$. |'
   zh: "| [`Tdg`][fatqat.operations.Tdg] | 将 $\\|1\\rangle$ 映射为 $e^{-i\\pi/4}\\|1\\rangle$。 |"
-  status: machine
+  status: retired
 - id: eb7b260472eb3742
   en: '| Value | Target order | Basis action |'
   zh: '| 值 | 目标顺序 | 对基态的作用 |'
@@ -145,19 +145,19 @@
 - id: 41c9b1a913de05c7
   en: '| [`CX`][fatqat.operations.CX] | `(control, target)` | Applies X to the target when the control is `\|1>`. |'
   zh: "| [`CX`][fatqat.operations.CX] | `(control, target)` | 控制位为 `\\|1>` 时，对目标施加 X。 |"
-  status: machine
+  status: retired
 - id: 1aedaa43b567b36f
   en: '| [`CY`][fatqat.operations.CY] | `(control, target)` | Applies Y to the target when the control is `\|1>`. |'
   zh: "| [`CY`][fatqat.operations.CY] | `(control, target)` | 控制位为 `\\|1>` 时，对目标施加 Y。 |"
-  status: machine
+  status: retired
 - id: 10e2634210013478
   en: '| [`CZ`][fatqat.operations.CZ] | `(control, target)` | Negates `\|11>`. |'
   zh: "| [`CZ`][fatqat.operations.CZ] | `(control, target)` | 将 `\\|11>` 的振幅乘以负一。 |"
-  status: machine
+  status: retired
 - id: 94e2cdc02337b62b
   en: '| [`CS`][fatqat.operations.CS] | `(control, target)` | Applies S to the target when the control is `\|1>`. |'
   zh: "| [`CS`][fatqat.operations.CS] | `(control, target)` | 控制位为 `\\|1>` 时，对目标施加 S。 |"
-  status: machine
+  status: retired
 - id: d81e14bdf000ca22
   en: '| [`Swap`][fatqat.operations.Swap] | `(target0, target1)` | Exchanges the two target states. |'
   zh: '| [`Swap`][fatqat.operations.Swap] | `(target0, target1)` | 交换两个目标的状态。 |'
@@ -165,15 +165,15 @@
 - id: b3082ec7e83f4164
   en: '| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | Maps `\|01>` to `i\|10>` and `\|10>` to `i\|01>`. |'
   zh: "| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | 将 `\\|01>` 映射为 `i\\|10>`，将 `\\|10>` 映射为 `i\\|01>`。 |"
-  status: machine
+  status: retired
 - id: 6a34e74aeaabdf5b
   en: '| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli: applies X when both controls are `\|1>`. |'
   zh: "| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli 门：两个控制位均为 `\\|1>` 时，对目标施加 X。 |"
-  status: machine
+  status: retired
 - id: bd1628539218f6c8
   en: '| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin: exchanges the two targets when the control is `\|1>`. |'
   zh: "| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin 门：控制位为 `\\|1>` 时，交换两个目标。 |"
-  status: machine
+  status: retired
 - id: adb2d3d8f0948393
   en: '| Constructor | Targets | Definition |'
   zh: '| 构造函数 | 目标 | 定义 |'
@@ -213,7 +213,7 @@
 - id: fff46ca18fb46b1c
   en: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` scalars or compatible views | Multiplies $\|11\rangle$ by $e^{i\theta}$. |'
   zh: "| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)`：两个单独的目标，或两组可按位置配对的成员 | 将 $\\|11\\rangle$ 乘以 $e^{i\\theta}$。 |"
-  status: machine
+  status: retired
 - id: 6c9d67b99109aa1e
   en: These gates act on qubits (dimension 2). Choose the gate and operand order from the tables below. For grouped targets, see [`Program.add()`][fatqat.Program.add]. The backend checks dimensions and device support when the program runs.
   zh: 这些门作用于维数为 2 的量子比特。下表可查各门的用途和目标顺序。如何成组选取目标，见 [`Program.add()`][fatqat.Program.add]。运行时，后端会检查目标维数和设备是否支持这些门。

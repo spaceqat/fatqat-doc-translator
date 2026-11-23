@@ -13,7 +13,7 @@
 - id: 29a7e89d01af2bc6
   en: ':material-chart-bell-curve-cumulative: **Explore the algorithm**'
   zh: ':material-chart-bell-curve-cumulative: **探索算法**'
-  status: machine
+  status: retired
 - id: 0603685298480922
   en: Start with ideal circuit behavior, inspect states and measurements, then add controlled noise and measure performance.
   zh: 从理想线路行为开始，检查状态和测量，然后加入受控的噪声并衡量性能。
@@ -21,7 +21,7 @@
 - id: a55f972269404651
   en: '[Start with simulation :material-arrow-right:](simulation.md)'
   zh: '[从模拟开始 :material-arrow-right:](simulation.md)'
-  status: machine
+  status: retired
 - id: cd492ef391c8cf3d
   en: '![Hardware topology with supported and unsupported couplings](../assets/generated/guide/guide-path-hardware.png){ loading=lazy width="490" height="400" }'
   zh: '![标出支持与不支持耦合的硬件拓扑](../assets/generated/guide/guide-path-hardware.png){ loading=lazy width="490" height="400" }'
@@ -45,7 +45,7 @@
 - id: da25ed4fe7d38c9c
   en: ':material-atom: **Follow the physics**'
   zh: ':material-atom: **研究物理动力学**'
-  status: machine
+  status: retired
 - id: 82f31475a823abd7
   en: Resolve calibrated gates and direct pulse controls into continuous dynamics for transmons and neutral atoms.
   zh: 将校准的门和直接脉冲控制解析为 transmon 与中性原子的连续动力学。
@@ -73,11 +73,11 @@
 - id: 199aa25730d144d7
   en: '!!! tip'
   zh: '!!! tip'
-  status: machine
+  status: retired
 - id: b178c070c1fed1bf
   en: The guide teaches complete workflows and the reasoning behind them. Follow a link to the [API reference](../api/index.md) when you need a precise signature or contract. The [tutorials](../tutorials/index.md) are longer case studies built on the same features.
   zh: 本指南介绍完整的使用流程，并说明为什么这样做。需要查询函数签名或具体行为约定时，请查阅 [API 参考](../api/index.md)。[教程](../tutorials/index.md)则通过更完整的案例展示这些功能。
-  status: machine
+  status: retired
 - id: 1080a3d338cf5d1d
   en: '| Question | Execution target | Typical answer |'
   zh: '| 问题 | 执行目标 | 典型答案 |'
@@ -113,15 +113,15 @@
 - id: 77ca0539d56d4aa7
   en: Simulate states, measurements, observables, and parameter sweeps, then compare ideal and noisy results or tune performance.
   zh: 查看量子态、测量结果和可观测量，扫描不同参数，再比较理想与含噪结果，或优化运行性能。
-  status: machine
+  status: retired
 - id: 643afd5e2f430d6d
   en: Check native operations, placement, connectivity, capacity, atom occupancy, pairing, and reference noise.
   zh: 检查原生操作、放置、连接关系、容量、原子占据、配对和参考噪声。
-  status: machine
+  status: retired
 - id: aeff105564baafc7
   en: Follow calibrated transmon gates and direct pulse controls as continuous dynamics, with built-in models for transmons and neutral atoms.
   zh: 用内置的 transmon 和中性原子模型，研究校准门和直接脉冲控制过程中，物理状态如何随时间变化。
-  status: machine
+  status: retired
 - id: acd3ea8d36e24bf4
   en: '[Compare the execution levels](execution-models.md) if you are unsure which path contains the detail your study needs.'
   zh: 如果不确定哪条路径包含研究所需的细节，请先[比较执行层级](execution-models.md)。
@@ -161,7 +161,7 @@
 - id: 692fb192bcb3b4d0
   en: Choose the level of detail that answers your question. Direct simulation and physics workflows start from the same backend-independent [`Program`][fatqat.Program]. When mapping and routing are part of the question, author a [`LogicalProgram`][fatqat.LogicalProgram] for the [compiler](compiler.md).
   zh: 先确定你想研究什么，再选择所需的模拟细节。直接模拟和物理仿真都可以从不依赖后端的 [`Program`][fatqat.Program] 开始。如果还需要为设备进行映射和路由，则使用 [`LogicalProgram`][fatqat.LogicalProgram]，交给[编译器](compiler.md)处理。
-  status: machine
+  status: retired
 - id: 0cc09c11dc55235c
   en: '[Hardware profiles](hardware-profile-simulation.md) · [Linear optics](linear-optics.md) · [Hamiltonian emulation](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
   zh: '[硬件约束模拟](hardware-profile-simulation.md) · [线性光学](linear-optics.md) · [哈密顿量仿真](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
@@ -173,7 +173,7 @@
 - id: 3ace145f2523f878
   en: :material-memory:{ .lg .middle } **Hardware constraints**
   zh: :material-memory:{ .lg .middle } **硬件约束模拟**
-  status: machine
+  status: retired
 - id: cb5cf5dbd4815688
   en: '[Hardware-profile simulation](hardware-profile-simulation.md) · [Compile and run a logical circuit](compiler.md)'
   zh: '[硬件约束模拟](hardware-profile-simulation.md) · [编译与运行逻辑线路](compiler.md)'
@@ -181,7 +181,7 @@
 - id: 144bcada83b288c4
   en: :material-atom:{ .lg .middle } **Hamiltonian emulation**
   zh: :material-atom:{ .lg .middle } **哈密顿量仿真**
-  status: machine
+  status: retired
 - id: 31d4823f2bbd1646
   en: '[Pulse workflow](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
   zh: '[编写与运行脉冲](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
@@ -201,23 +201,23 @@
 - id: c1d0ebccf65829c6
   en: '[Build, draw, and run a Bell program](quickstart.md), then learn how to [write Programs and registers](program.md). When you are ready to compare backends, [choose a simulation or emulation approach](execution-models.md).'
   zh: 先[编写、绘制并运行一个贝尔态程序](quickstart.md)，再了解如何[编写 Program 并使用 Register](program.md)。需要比较不同后端时，可以阅读[选择模拟与仿真方式](execution-models.md)。
-  status: machine
+  status: retired
 - id: cbfe454a5b0b4bca
   en: Choose an approach
   zh: 选择执行路径
-  status: machine
+  status: retired
 - id: ded2b420d3b9c644
   en: '[Explore hardware constraints :material-arrow-right:](hardware-constraints.md)'
   zh: '[了解硬件约束模拟 :material-arrow-right:](hardware-constraints.md)'
-  status: machine
+  status: retired
 - id: 052c9f56ac0ab7bb
   en: '[Explore physical dynamics :material-arrow-right:](hamiltonian-emulation.md)'
   zh: '[打开哈密顿量仿真 :material-arrow-right:](hamiltonian-emulation.md)'
-  status: machine
+  status: retired
 - id: f0105a82ccf172b8
   en: '[Compare approaches](execution-models.md) if you are unsure which path contains the detail your study needs.'
   zh: 如果不确定哪条路径包含研究所需的细节，请先[比较执行层级](execution-models.md)。
-  status: machine
+  status: retired
 - id: e1aed4a008fad278
   en: Browse by task
   zh: 按任务查找
@@ -225,15 +225,15 @@
 - id: b18d2cad72a0742c
   en: :material-chart-box-outline:{ .lg .middle } **Run & analyze**
   zh: :material-chart-box-outline:{ .lg .middle } **模拟与分析**
-  status: machine
+  status: retired
 - id: 553499018434a22c
   en: '[Simulate programs](simulation.md) · [Observables](interpret-results.md) · [Ideal and noisy runs](ideal-and-noisy.md) · [Visualize results](visualization.md) · [Improve performance](performance.md)'
   zh: '[模拟量子程序](simulation.md) · [可观测量](interpret-results.md) · [理想运行与含噪运行](ideal-and-noisy.md) · [可视化](visualization.md) · [性能优化](performance.md)'
-  status: machine
+  status: retired
 - id: f879acfabb147e1c
   en: '[Superconducting qubits](superconducting-simulation.md) · [Neutral-atom arrays](atom-array-simulation.md) · [Linear optics](linear-optics.md) · [Compile circuits](compiler.md)'
   zh: '[超导比特模拟](superconducting-simulation.md) · [中性原子阵列模拟](atom-array-simulation.md) · [线性光学模拟](linear-optics.md) · [编译与运行逻辑线路](compiler.md)'
-  status: machine
+  status: retired
 - id: a787041f7fb55a66
   en: '[Write & run pulses](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
   zh: '[编写与运行脉冲](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
@@ -241,15 +241,15 @@
 - id: 6e0d31638a8f39c4
   en: :material-transit-connection-variant:{ .lg .middle } **Connect & debug**
   zh: :material-transit-connection-variant:{ .lg .middle } **工具对接与排查**
-  status: machine
+  status: retired
 - id: d517cf97b66e01ea
   en: '[OpenQASM & Qiskit](interoperability.md) · [Troubleshooting](troubleshooting.md)'
   zh: '[OpenQASM 与 Qiskit](interoperability.md) · [常见问题排查](troubleshooting.md)'
-  status: machine
+  status: retired
 - id: dcf33c47f716ac6c
   en: '[Pulse programs](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
   zh: '[编写和运行脉冲程序](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
-  status: machine
+  status: retired
 - id: 2d5c199ea29af3bf
   en: In FatQat, you can change the conditions of a run while keeping the calculation you wrote. To see how noise affects measurement outcomes, run the same [`Program`][fatqat.Program] with and without a noise model. In a pulse experiment, you can keep the laser drive fixed, change the distance between two atoms, and see how likely both atoms are to be excited.
   zh: 用 FatQat 做模拟时，可以保留写好的程序，只改变这次运行的条件。想看噪声会怎样影响测量结果，可以用同一个 [`Program`][fatqat.Program] 分别做理想运行和含噪运行。做脉冲实验时，也可以保持激光脉冲不变，只调整两个原子的间距，看看两个原子同时被激发的概率怎样变化。

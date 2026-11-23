@@ -157,7 +157,7 @@
 - id: 040de4c07b00d573
   en: See the [Estimator API](../api/estimator.md) for supported backends, observable construction, and run options.
   zh: 支持的后端、可观测量构造方式和运行选项见[Estimator API](../api/estimator.md)。
-  status: machine
+  status: retired
 - id: d417a73509b9443d
   en: Use [`Estimator`][fatqat.Estimator] to calculate expectation values, such as spin correlations or energies. Define the quantity with an [`Observable`][fatqat.Observable], then supply a Program and a [compatible simulator or emulator](../api/estimator.md#backend-support). You can calculate the expectation directly from the state or estimate it from a finite number of measurement shots.
   zh: 用 [`Estimator`][fatqat.Estimator] 计算期望值，例如自旋关联或能量。先用 [`Observable`][fatqat.Observable] 定义要计算的量，再提供 Program 和[兼容的模拟器或仿真器](../api/estimator.md#backend-support)。既可以直接从量子态计算期望值，也可以通过有限次测量采样进行估计。

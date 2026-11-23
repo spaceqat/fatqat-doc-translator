@@ -17,7 +17,7 @@
 - id: 4cdf4967d39c01ab
   en: Start with a registered superconducting or neutral-atom pipeline. Call `Compiler.compile()` with the pipeline name and a `CompileContext` that supplies the target and any options. Use `emit` to stop at a particular representation.
   zh: 可以从已注册的超导或中性原子管线开始。调用 `Compiler.compile()` 时，传入管线名称，再用 `CompileContext` 指定目标和所需选项。用 `emit` 指定编译在哪个表示阶段停止。
-  status: machine
+  status: retired
 - id: 04c6c53ab7eb461a
   en: Define passes and IRs
   zh: 定义编译步骤和 IR

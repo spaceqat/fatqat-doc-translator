@@ -5,7 +5,7 @@
 - id: ca37bacacdd660c6
   en: Use this reference to look up FATQAT's public classes, functions, and exceptions. Start with the [Build, draw, and run one Program](../guide/quickstart.md) for an end-to-end workflow.
   zh: 使用本参考查阅 FATQAT 的公开类、函数与异常。要了解端到端工作流，请从[编写、绘制并运行一个 Program](../guide/quickstart.md)开始。
-  status: machine
+  status: retired
 - id: 6fe91b0d0b79509a
   en: Build programs
   zh: 编写程序
@@ -25,7 +25,7 @@
 - id: a32cb77d2fe1e4ac
   en: '[Pulse control](pulse-control/index.md)'
   zh: '[脉冲控制](pulse-control/index.md)'
-  status: machine
+  status: retired
 - id: c464edd7f559fd16
   en: Run and inspect
   zh: 运行与分析
@@ -33,19 +33,19 @@
 - id: ace0363d8aa1505f
   en: '[Simulators](simulators/index.md)'
   zh: '[模拟器](simulators/index.md)'
-  status: machine
+  status: retired
 - id: 1d0abbf1a8b0c75e
   en: '[Emulators](emulators/index.md)'
   zh: '[仿真器](emulators/index.md)'
-  status: machine
+  status: retired
 - id: ebca03fb9c57fd70
   en: '[Noise](noise.md)'
   zh: '[噪声](noise.md)'
-  status: machine
+  status: retired
 - id: 99f87dc5da4b1949
   en: '[Observables and estimation](estimator.md)'
   zh: '[Estimator](estimator.md)'
-  status: machine
+  status: retired
 - id: cdd1f57e618ef827
   en: '[Job](job.md)'
   zh: '[Job](job.md)'
@@ -65,7 +65,7 @@
 - id: 712e144b920e9d96
   en: '[Matrix implementations](implementation.md)'
   zh: '[矩阵实现](implementation.md)'
-  status: machine
+  status: retired
 - id: 95bdcfcf91be2ef1
   en: Errors and stability
   zh: 错误与稳定性
@@ -81,7 +81,7 @@
 - id: f8b5f24857553948
   en: '[Compiler](compiler.md)'
   zh: '[编译器](compiler.md)'
-  status: machine
+  status: retired
 - id: 319c69b773f2423e
   en: '[LogicalProgram](logical-program.md)'
   zh: '[LogicalProgram](logical-program.md)'
@@ -93,7 +93,7 @@
 - id: b99fbe2efc494048
   en: '[OpenQASM & Qiskit](interoperability/index.md)'
   zh: '[互操作性](interoperability/index.md)'
-  status: machine
+  status: retired
 - id: e99ed4fbdaeab650
   en: '[SCTarget](sc-target.md)'
   zh: '[SCTarget](sc-target.md)'

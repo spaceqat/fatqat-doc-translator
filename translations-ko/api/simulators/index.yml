@@ -1,7 +1,7 @@
 - id: 933c61ba7f9876bb
   en: FatQat provides a general circuit simulator and two hardware profiles. They use the same run and result API. Choose [`Simulator`][fatqat.simulator.Simulator] for unrestricted gate-level work, or a profile when the program must obey a native gate set, layout, or connectivity rule.
   ko: FatQat은 범용 회로 시뮬레이터와 두 하드웨어 프로필을 제공합니다. 모두 같은 실행 및 결과 API를 사용합니다. 제약 없는 게이트 수준 작업에는 [`Simulator`][fatqat.simulator.Simulator]를, 네이티브 게이트 집합·배치·연결 규칙을 지켜야 할 때는 프로필을 선택하세요.
-  status: machine
+  status: retired
 - id: 9bf34699612b6c6b
   en: Start with [Choose how much physics to model](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/hardware-profile-simulation.md) for the profile workflow.
   ko: 실행 수준을 정하려면 [모델링할 물리 수준 선택](../../guide/execution-models.md)을, 프로필 사용 과정을 보려면 [하드웨어 프로필로 Program 검사](../../guide/hardware-profile-simulation.md)를 참고하세요.
@@ -9,55 +9,55 @@
 - id: e5bbaff4b52ca744
   en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] uses a configurable superconducting coupling graph and accepts `X`, `SX`, virtual `RZ`, and coupled `CZ`. It offers an optional reference noise model.'
   ko: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]는 설정 가능한 초전도 결합 그래프를 사용하며 `X`, `SX`, 가상 `RZ`, 결합된 `CZ`를 받습니다. 선택적인 참조 잡음 모델도 제공합니다.'
-  status: machine
+  status: retired
 - id: 7ce4b36314516f41
   en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] has no fixed connectivity. Every program site starts empty: `Put` loads atoms, `Loss` removes them, and `Pair` and `Unpair` change which atoms can interact.'
   ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]에는 고정 연결 관계가 없습니다. 모든 프로그램 사이트는 비어 있는 상태로 시작합니다. `Put`은 원자를 로딩하고 `Loss`는 제거하며, `Pair`와 `Unpair`는 상호작용 가능한 원자 쌍을 바꿉니다.'
-  status: machine
+  status: retired
 - id: f1b9253556594d02
   en: 'The profiles validate the program as written: they do not transpile or route it, and they do not reproduce a named processor. Use the [pulse emulators](../emulators/index.md) when timing or Hamiltonian evolution matters.'
   ko: 프로필은 작성된 프로그램 그대로를 검증합니다. 트랜스파일이나 라우팅을 수행하지 않으며 특정 프로세서를 재현하지도 않습니다. 타이밍이나 해밀토니안 진화가 중요하면 [펄스 에뮬레이터](../emulators/index.md)를 사용하세요.
-  status: machine
+  status: retired
 - id: b423a251c71fdae6
   en: '**Choose a simulator**'
   ko: '**시뮬레이터 선택**'
-  status: machine
+  status: retired
 - id: 8bc02a041b8d297e
   en: '| Class | Use it for | Main constraint |'
   ko: '| 클래스 | 용도 | 주요 제약 |'
-  status: machine
+  status: retired
 - id: 88d56b8f26e8c3bd
   en: '| [`Simulator`][fatqat.simulator.Simulator] | General circuit simulation and custom matrix implementations | No device topology |'
   ko: '| [`Simulator`][fatqat.simulator.Simulator] | 일반 회로 시뮬레이션과 사용자 정의 행렬 구현 | 장치 토폴로지 없음 |'
-  status: machine
+  status: retired
 - id: b541fb30f09be048
   en: '| [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] | Constrained superconducting native-gate experiments | `X`, `SX`, `RZ`; `CZ` on configured couplings |'
   ko: '| [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] | 초전도 네이티브 게이트 제약을 반영한 실험 | `X`, `SX`, `RZ`; 설정된 결합의 `CZ` |'
-  status: machine
+  status: retired
 - id: d9451617863d6cb6
   en: '| [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] | Neutral-atom occupancy, loss, and dynamic connectivity | `RX`, `RY`, `RZ`, and paired `CZ` |'
   ko: '| [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] | 중성 원자의 점유, 손실, 동적 연결 관계 | `RX`, `RY`, `RZ`, 페어링된 `CZ` |'
-  status: machine
+  status: retired
 - id: 3d99262bfbc113cf
   en: '| [`LOSimulator`][fatqat.simulator.LOSimulator] | Linear-optical Programs on photon modes | Modes truncated to a per-run photon cutoff |'
   ko: '| [`LOSimulator`][fatqat.simulator.LOSimulator] | 광자 모드의 선형광학 Program | 실행마다 광자 절단값으로 모드 제한 |'
-  status: machine
+  status: retired
 - id: 650d8b10026d80f7
   en: '[Simulator](../simulator.md)'
   ko: '[Simulator](../simulator.md)'
-  status: machine
+  status: retired
 - id: c46e1af5bbfcf962
   en: '[SCQubitSimulator](sc-qubit.md)'
   ko: '[SCQubitSimulator](sc-qubit.md)'
-  status: machine
+  status: retired
 - id: 425f36f4b00a0954
   en: '[AtomArraySimulator](atom-array.md)'
   ko: '[AtomArraySimulator](atom-array.md)'
-  status: machine
+  status: retired
 - id: e91038f7c32db28c
   en: '[LOSimulator](linear-optics.md)'
   ko: '[LOSimulator](linear-optics.md)'
-  status: machine
+  status: retired
 - id: 510055bee9f4640c
   en: Start with [Choose how much physics to model](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/superconducting-simulation.md) for the profile workflow.
   ko: 실행 수준을 정하려면 [모델링할 물리 수준 선택](../../guide/execution-models.md)을, 프로필 사용 과정을 보려면 [하드웨어 프로필로 Program 검사](../../guide/superconducting-simulation.md)를 참고하세요.
@@ -65,11 +65,11 @@
 - id: abea5b4fb1e7da50
   en: Start with [Choose a simulation or emulation approach](../../guide/execution-models.md) to choose an execution level, or follow [Test a Program against a hardware profile](../../guide/superconducting-simulation.md) for the profile workflow.
   ko: 먼저 [시뮬레이션과 에뮬레이션 방식 선택하기](../../guide/execution-models.md)에서 실행 방식을 고르거나, [하드웨어 제약으로 Program 검증하기](../../guide/superconducting-simulation.md)를 통해 장치 모델의 사용 과정을 살펴보세요.
-  status: machine
+  status: retired
 - id: 5f3a5dd290f7a73f
   en: Choose a simulator according to what your program needs to represent. A general circuit can run directly, while a device-specific simulator adds rules such as which qubit sites can interact. Optical programs describe photons in modes. All four simulators use the same basic run and result interface.
   ko: 프로그램에서 무엇을 모델링할지에 따라 시뮬레이터를 선택합니다. 일반 회로는 그대로 실행할 수 있고, 장치별 시뮬레이터에서는 어떤 큐비트 위치가 상호작용할 수 있는지 등 장치 규칙을 추가로 적용합니다. 광학 프로그램은 모드에 있는 광자를 다룹니다. 네 시뮬레이터는 기본 실행 및 결과 인터페이스를 공유합니다.
-  status: machine
+  status: retired
 - id: 567c137aa090ceba
   en: '| Simulator | Use it to |'
   ko: '| 시뮬레이터 | 주요 용도 |'
@@ -77,7 +77,7 @@
 - id: d7f6400f3bd979c5
   en: '| [`Simulator`](../simulator.md) | Run gate-level programs with qubits, qudits, or mixed dimensions. |'
   ko: '| [`Simulator`](../simulator.md) | 큐비트, 큐디트 또는 차원이 서로 다른 부분계를 사용하는 게이트 수준 프로그램을 실행합니다. |'
-  status: machine
+  status: retired
 - id: 988bb5d8fdf97283
   en: '| [`SCQubitSimulator`](sc-qubit.md) | Check superconducting native gates and qubit connectivity. |'
   ko: '| [`SCQubitSimulator`](sc-qubit.md) | 초전도 큐비트의 네이티브 게이트와 연결 관계를 확인합니다. |'
@@ -85,15 +85,15 @@
 - id: 9c9d2b3059e923bb
   en: '| [`AtomArraySimulator`](atom-array.md) | Model which sites contain neutral atoms and which pairs can interact during a run. |'
   ko: '| [`AtomArraySimulator`](atom-array.md) | 실행 중 어느 사이트에 중성 원자가 있고 어느 원자 쌍이 상호작용할 수 있는지 모델링합니다. |'
-  status: machine
+  status: retired
 - id: 39bf8379592bd1aa
   en: '| [`LOSimulator`](linear-optics.md) | Simulate how optical operations redistribute photons across modes. |'
   ko: '| [`LOSimulator`](linear-optics.md) | 광학 연산 후 광자가 모드별로 어떻게 분포하는지 시뮬레이션합니다. |'
-  status: machine
+  status: retired
 - id: b1a7ff4668d0f18b
   en: To add an operation that needs access to the state of an individual shot, see [Custom operations](custom-operations.md). For pulse timing and Hamiltonian evolution, see [Emulators](../emulators/index.md).
   ko: 개별 샷의 상태를 읽거나 수정하는 연산을 추가하려면 [사용자 정의 연산](custom-operations.md)을 참조하세요. 펄스 시간과 해밀토니안 진화를 다룰 때는 [에뮬레이터](../emulators/index.md)를 사용합니다.
-  status: machine
+  status: retired
 - id: 2d6af6a012a91ee8
   en: FatQat's simulators run general quantum circuits and can account for the rules of a device. On a superconducting layout, for example, a `CZ` can act only on two connected sites. FatQat also simulates linear-optical circuits, following how photons are distributed across modes after passing through optical components.
   ko: FatQat에서는 일반 양자 회로를 그대로 시뮬레이션할 수도 있고, 장치의 규칙을 함께 고려할 수도 있습니다. 예를 들어 초전도 큐비트 시뮬레이터에서 `CZ`는 연결된 두 사이트에만 적용할 수 있습니다. 선형 광학 회로에서는 광학 소자를 지난 광자가 각 모드에 어떻게 분포하는지 살펴볼 수 있습니다.

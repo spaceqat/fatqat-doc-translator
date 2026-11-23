@@ -9,15 +9,15 @@
 - id: 640495aae22d27e3
   en: The default implementation map covers FATQAT's built-in matrix gates. State methods also support measurement, reset, and classical conditions. `Barrier` has no numerical effect.
   zh: 默认实现映射包含 FATQAT 内置的矩阵门。量子态演化方法还支持测量、重置和经典条件。`Barrier` 不参与数值计算。
-  status: machine
+  status: retired
 - id: 8696622f344183c4
   en: Methods
   zh: 方法
-  status: machine
+  status: retired
 - id: f539d48a48407fc0
   en: 'Method names are case-insensitive. `SV` and `DM` are aliases; the read-only [`Simulator.method`][fatqat.simulator.Simulator.method] property returns the full name. If the program''s Hilbert-space dimension is `D`:'
   zh: 方法名不区分大小写。`SV` 和 `DM` 是别名；只读属性 [`Simulator.method`][fatqat.simulator.Simulator.method] 返回完整名称。若程序的希尔伯特空间维度为 `D`：
-  status: machine
+  status: retired
 - id: 79c62c31a6c29953
   en: '**Simulation methods**'
   zh: '**模拟方法**'
@@ -25,15 +25,15 @@
 - id: b7ee71f9225ab7d5
   en: 'Super-operators use column-stacking vectorization:'
   zh: 超算符采用按列堆叠的向量化方式：
-  status: machine
+  status: retired
 - id: 65b962e676f5ad13
   en: For a noise-free program, `superop` equals `numpy.kron(unitary.conj(), unitary)`. A unitary contains `4**n` complex entries for `n` qubits, while a super-operator contains `16**n`; use the operator methods only for programs small enough to hold the result.
   zh: 对于无噪声的程序，`superop` 等于 `numpy.kron(unitary.conj(), unitary)`。对 `n` 个量子比特，酉矩阵包含 `4**n` 个复数元素，而超算符包含 `16**n` 个；仅当程序规模小到足以容纳结果时才使用算符类方法。
-  status: machine
+  status: retired
 - id: fb278ded7840a962
   en: Runtime and execution
   zh: 运行时与执行
-  status: machine
+  status: retired
 - id: c40efbe94fb5d350
   en: '`runtime` is chosen when the backend is created. `"numba"` is the default for [`Simulator`][fatqat.simulator.Simulator] and the superconducting profiles; it compiles kernels on first use and supports threaded kernels. `"numpy"` runs directly without compilation and is the default for [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]. Both runtimes support all four methods, but need not produce bit-identical floating-point or sampled results.'
   zh: '`runtime` 在创建后端时选定。`"numba"` 是 [`Simulator`][fatqat.simulator.Simulator] 和各超导设备模型的默认值；它在首次使用时编译内核，并支持多线程内核。`"numpy"` 无需编译直接运行，是 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 的默认值。两种运行时都支持全部四种方法，但不保证产生逐位一致的浮点或采样结果。'
@@ -61,11 +61,11 @@
 - id: 10100f31c8586395
   en: Customize the backend
   zh: 自定义后端
-  status: machine
+  status: retired
 - id: d227fb578b77a38f
   en: 'The constructor also accepts:'
   zh: 构造函数还接受：
-  status: machine
+  status: retired
 - id: c6c12a35a8fcaa22
   en: '**Backend options**'
   zh: '**后端选项**'
@@ -73,7 +73,7 @@
 - id: fd0fcafbe51b2fcc
   en: Run inputs and results
   zh: 运行输入与结果
-  status: machine
+  status: retired
 - id: 201d48525c7cfdcf
   en: 'Besides `simulation_config`, [`Simulator.run`][fatqat.simulator.Simulator.run] accepts:'
   zh: 除 `simulation_config` 外，[`Simulator.run`][fatqat.simulator.Simulator.run] 还接受：
@@ -93,7 +93,7 @@
 - id: 8d653153cf00a8e9
   en: The concrete final-state field is named `statevector`, `density_matrix`, `unitary`, or `superop`. Check `fatqat.Result.available_data` before reading a field that may not have been requested.
   zh: 具体的最终态字段名为 `statevector`、`density_matrix`、`unitary` 或 `superop`。读取可能未被请求的字段前，请先检查 `fatqat.Result.available_data`。
-  status: machine
+  status: retired
 - id: fe063e9b9ffa4825
   en: '`run()` returns an eager [`Job`][fatqat.Job]. Program and option validation errors normally raise directly. Errors during execution or result assembly are stored on the job and re-raised by [`fatqat.Job.result`][fatqat.Job.result]. See [Ask questions of a run](../guide/interpret-results.md) for result accessors and count-order intuition. Exact state-axis metadata is specified in [Result](result.md).'
   zh: '`run()` 返回一个立即执行的 [`Job`][fatqat.Job]。程序和选项的验证错误通常直接抛出。执行或结果组装期间的错误会存储在 job 上，并由 [`fatqat.Job.result`][fatqat.Job.result] 重新抛出。结果访问器和计数顺序的直观说明参见[向一次运行提问](../guide/interpret-results.md)。精确的状态轴元数据在 [Result](result.md) 中给出。'
@@ -105,11 +105,11 @@
 - id: 95b25aa1a21bc4ec
   en: '[`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] validates a model without running a program. A method can still impose a stricter rule: for example, `unitary` rejects a finite channel that the backend otherwise recognizes when that channel matches the program. See [Noise](noise.md) for selectors and the support table.'
   zh: '[`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] 可在不运行程序的情况下验证噪声模型。方法仍可施加更严格的规则：例如，当某个有限信道与程序匹配时，即使后端本身识别该信道，`unitary` 也会拒绝它。选择器和支持表参见[噪声](noise.md)。'
-  status: machine
+  status: retired
 - id: fdbcace3dc45a825
   en: Sweeps
   zh: 扫描
-  status: machine
+  status: retired
 - id: 08f52163e4df3649
   en: '[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] binds each row of a complete object-keyed parameter batch and returns one eager job containing an ordered `list[Result]`. Batch and row validation errors raise directly; an execution failure produces a failed sweep job, and no partial result list is returned. It reuses a supplied seed for every row, so sampled errors can be correlated. See [Simulate a quantum program](../guide/simulation.md) for a guided sweep. Accepted batch shapes are specified above.'
   zh: '[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] 绑定完整的、以对象为键的参数批次中的每一行，并返回一个包含有序 `list[Result]` 的立即执行 job。批次和行的验证错误直接抛出；执行失败会产生一个失败的扫描 job，不会返回部分结果列表。它对每一行重复使用同一个提供的 seed，因此采样误差可能相互关联。引导式扫描示例参见[模拟量子程序](../guide/simulation.md)。接受的批次形状已在上文说明。'
@@ -117,27 +117,27 @@
 - id: c97c80aa7f86c80e
   en: '| Method | Result | Reset and finite channels | Restrictions |'
   zh: '| 方法 | 结果 | 复位与有限信道 | 限制 |'
-  status: machine
+  status: retired
 - id: 1ab58299d3ce77b2
   en: '| `statevector` / `SV` | `statevector`, shape `(D,)` | Samples one trajectory | A stochastic final state represents one shot |'
   zh: '| `statevector` / `SV` | `statevector`，形状为 `(D,)` | 采样一条轨迹 | 随机的最终态对应一次 shot |'
-  status: machine
+  status: retired
 - id: f19d6a5eece96727
   en: '| `density_matrix` / `DM` | `density_matrix`, shape `(D, D)` | Applies them exactly | Uses more memory than `statevector` |'
   zh: '| `density_matrix` / `DM` | `density_matrix`，形状为 `(D, D)` | 精确应用 | 比 `statevector` 占用更多内存 |'
-  status: machine
+  status: retired
 - id: e1a9e6327ca1af6d
   en: '| `unitary` | `unitary`, shape `(D, D)` | Rejected | Rejects measurement, conditions, counts, and `initial_state` |'
   zh: '| `unitary` | `unitary`，形状为 `(D, D)` | 拒绝 | 拒绝测量、条件、计数和 `initial_state` |'
-  status: machine
+  status: retired
 - id: 3b37d75a7e7540a2
   en: '| `superop` | `superop`, shape `(D**2, D**2)` | Applies them exactly | Rejects measurement, conditions, counts, and `initial_state` |'
   zh: '| `superop` | `superop`，形状为 `(D**2, D**2)` | 精确应用 | 拒绝测量、条件、计数和 `initial_state` |'
-  status: machine
+  status: retired
 - id: 972ff86231223e9d
   en: '| Key | Default | Accepted values and effect |'
   zh: '| 键 | 默认值 | 接受的值及其作用 |'
-  status: machine
+  status: retired
 - id: 17c2187e67376e0c
   en: '| `seed` | `None` | Use a non-negative `int` or `None`; booleans are rejected. It controls measurement, reset, channel, loss, and readout sampling. A negative value is rejected when execution starts, so [`fatqat.Job.result`][fatqat.Job.result] raises `ValueError`. |'
   zh: '| `seed` | `None` | 使用非负 `int` 或 `None`；布尔值会被拒绝。它控制测量、复位、信道、丢失和读出的采样。负值在执行开始时才被拒绝，因此 [`fatqat.Job.result`][fatqat.Job.result] 会抛出 `ValueError`。 |'
@@ -145,15 +145,15 @@
 - id: db74d7e2688e87f7
   en: '| `shot_parallelism` | `"auto"` | `"auto"`, `"serial"`, `"threads"`, or `"processes"`. Explicit parallel modes require an eligible counts-only, per-shot run with at least two shots and workers. Threads require a compatible Numba statevector run. |'
   zh: '| `shot_parallelism` | `"auto"` | `"auto"`、`"serial"`、`"threads"` 或 `"processes"`。显式并行模式要求运行符合条件：仅请求计数、按 shot 独立执行，且 shot 数和工作单元数均不少于 2。线程模式要求兼容的 Numba 态矢量运行。 |'
-  status: machine
+  status: retired
 - id: a00238cf51a08981
   en: '| `kernel_parallelism` | `"auto"` | `"auto"`, `"serial"`, or `"threads"`. Threads require Numba and cannot be requested together with parallel shots. |'
   zh: '| `kernel_parallelism` | `"auto"` | `"auto"`、`"serial"` 或 `"threads"`。线程模式需要 Numba，且不能与并行 shot 同时请求。 |'
-  status: machine
+  status: retired
 - id: 9f20f8775b0d3b26
   en: '| `max_workers` | `None` | `None` or a positive `int`. It caps the selected parallel mode; `1` conflicts with an explicitly parallel request. |'
   zh: '| `max_workers` | `None` | `None` 或正 `int`。它限定所选并行模式的并行度上限；`1` 与显式并行请求相冲突。 |'
-  status: machine
+  status: retired
 - id: 0f21d7cc610d7d62
   en: '| `fusion` | `False` | A `bool`. `True` combines compatible adjacent operations and is supported by Numba for `density_matrix`, `unitary`, and `superop`. |'
   zh: '| `fusion` | `False` | 一个 `bool`。`True` 会合并兼容的相邻操作，Numba 在 `density_matrix`、`unitary` 和 `superop` 方法下支持该功能。 |'
@@ -165,7 +165,7 @@
 - id: 6d99e87ea0cfb178
   en: '| `noise` | A [`NoiseModel`][fatqat.NoiseModel] used by every run. `None` is ideal. |'
   zh: '| `noise` | 供每次运行使用的 [`NoiseModel`][fatqat.NoiseModel]。`None` 表示理想（无噪声）。 |'
-  status: machine
+  status: retired
 - id: 96daba409a090e73
   en: '| `channel_implementation_map` | Rules that turn supported channel descriptors into finite channels. `None` uses FATQAT''s built-in rules. |'
   zh: '| `channel_implementation_map` | 将受支持的信道描述符转换为有限信道的规则。`None` 使用 FATQAT 的内置规则。 |'
@@ -173,15 +173,15 @@
 - id: 111031020f17d451
   en: '| Argument | Default | Meaning |'
   zh: '| 参数 | 默认值 | 含义 |'
-  status: machine
+  status: retired
 - id: 93ddbceecea48b3d
   en: '| `shots` | `1024` | Samples used for counts or a stochastic final state. A deterministic state-only or operator result does not use this value. |'
   zh: '| `shots` | `1024` | 用于计数或随机最终态的采样次数。确定性的纯状态结果或算符结果不使用该值。 |'
-  status: machine
+  status: retired
 - id: 05e5ef5dbc7ce91e
   en: '| `resource_layout` | `None` | Assigns every program quantum reference to a device label. The generic simulator uses integer labels in declaration order. A supplied layout must be complete, one-to-one, and compatible with the backend. |'
   zh: '| `resource_layout` | `None` | 将程序中的每个量子引用分配到一个设备标签。通用模拟器按声明顺序使用整数标签。提供的布局必须完整、一一对应，并与后端兼容。 |'
-  status: machine
+  status: retired
 - id: be32d991cd0c2153
   en: '| `initial_state` | `None` | Starts every shot from this state rather than the all-zero state. `statevector` accepts shape `(D,)`; `density_matrix` accepts `(D,)` or `(D, D)`. Operator methods reject it. |'
   zh: '| `initial_state` | `None` | 让每次 shot 从该状态而非全零态开始。`statevector` 接受形状 `(D,)`；`density_matrix` 接受 `(D,)` 或 `(D, D)`。算符类方法拒绝该参数。 |'
@@ -189,15 +189,15 @@
 - id: b3b7a302aaeb905b
   en: '| Key | Default | Constraint |'
   zh: '| 键 | 默认值 | 约束 |'
-  status: machine
+  status: retired
 - id: 4feddd8c3f790678
   en: '| `counts` | Enabled when the program measures | Requires an integer `shots > 0` |'
   zh: '| `counts` | 程序包含测量时启用 | 要求整数 `shots > 0` |'
-  status: machine
+  status: retired
 - id: c9cd3cd0581a597f
   en: '| `final_state` | Enabled when the method-native state or map is deterministic | A requested stochastic final state requires `shots == 1` |'
   zh: '| `final_state` | 当方法原生的状态或映射为确定性时启用 | 请求随机最终态时要求 `shots == 1` |'
-  status: machine
+  status: retired
 - id: e21a4ad23236a543
   en: '`runtime` is chosen when the backend is created. `"numba"` is the default for [`Simulator`][fatqat.simulator.Simulator] and all three hardware profiles, including [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]. It compiles kernels on first use and supports threaded kernels. `"numpy"` runs directly without compilation. Both runtimes support the methods offered by each backend, but need not produce bit-identical floating-point or sampled results.'
   zh: '`runtime` 在创建后端时选定。`"numba"` 是 [`Simulator`][fatqat.simulator.Simulator] 以及包括 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 在内的全部三种设备模型的默认值。它在首次使用时编译内核，并支持多线程内核。`"numpy"` 无需编译直接运行。两种运行时都支持各后端提供的方法，但不保证产生逐位一致的浮点或采样结果。'
@@ -205,11 +205,11 @@
 - id: 49b080718d774ff4
   en: All returned quantum arrays list subsystem 0 as the most-significant factor. For two qubits, `X(q0)|00>` is nonzero at flat index 2, while `X(q1)|00>` is nonzero at index 1. For dimensions `(3, 2)`, digits `(1, 0)` and `(0, 1)` likewise have indices 2 and 1. Ordinary NumPy C-order reshape follows this order.
   zh: 所有返回的量子数组都将子系统 0 作为最高有效位的张量因子。对于两个量子比特，`X(q0)|00>` 在展平索引 2 处非零，`X(q1)|00>` 则在索引 1 处非零。对于维数 `(3, 2)`，数位 `(1, 0)` 与 `(0, 1)` 的索引同样分别为 2 和 1。普通 NumPy C 顺序的 reshape 遵循此顺序。
-  status: machine
+  status: retired
 - id: dac62152406129ec
   en: The same basis applies to input states and to operator rows and columns. For an arbitrary state `psi`, a matrix acting on every subsystem satisfies `unitary @ psi == state_out`; density matrices satisfy `unitary @ rho @ unitary.conj().T == rho_out`.
   zh: 输入态和算符的行、列使用相同的基。对于任意态 `psi`，作用于所有子系统的矩阵满足 `unitary @ psi == state_out`；密度矩阵满足 `unitary @ rho @ unitary.conj().T == rho_out`。
-  status: machine
+  status: retired
 - id: e73ea6180967477e
   en: Choose `runtime` when creating the backend. `"numba"` is the default for [`Simulator`][fatqat.simulator.Simulator], [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator], and [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]. It compiles kernels on first use and supports threaded kernels. `"numpy"` runs directly without compilation. Both runtimes support the methods offered by each backend, but need not produce bit-identical floating-point or sampled results.
   zh: 创建后端时选择 `runtime`。[`Simulator`][fatqat.simulator.Simulator]、[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 和 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 默认使用 `"numba"`，它在首次使用时编译内核，并支持多线程内核。`"numpy"` 直接运行，无需编译。两种运行时均支持各后端提供的方法，但不保证浮点结果或采样结果逐位一致。
@@ -225,11 +225,11 @@
 - id: 3a565e17aba21e5b
   en: Matrix simulation has no physical timeline. Built-in damping and depolarizing descriptors therefore use their probability form and apply at operation boundaries. [`AmplitudeDamping(p=...)`][fatqat.noise.AmplitudeDamping] is the conventional finite qubit channel. Use [`TransitionRelaxation(p=..., coefficients=...)`](noise/transition-relaxation.md) for one explicit finite-dimensional jump. Matching transition descriptors are applied sequentially in registration order.
   zh: 矩阵模拟没有物理时间线，因此内置阻尼和退极化描述符使用概率形式，并在操作边界处施加。[`AmplitudeDamping(p=...)`][fatqat.noise.AmplitudeDamping] 是常规的有限量子比特信道。使用 [`TransitionRelaxation(p=..., coefficients=...)`](noise/transition-relaxation.md) 可以指定一个显式的有限维跃迁。匹配的跃迁描述符按注册顺序依次施加。
-  status: machine
+  status: retired
 - id: 5f397cb9df669fc8
   en: Rate forms, background sources, and [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation] are rejected. For a known qubit operation duration, add probability-form [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] and [`PhaseDamping`][fatqat.noise.PhaseDamping] descriptors to the relevant operation. Custom descriptors require a matching channel rule. [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] additionally supports atom loss.
   zh: 不接受速率形式、背景源和 [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation]。对于已知时长的量子比特操作，可向相关操作添加概率形式的 [`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] 和 [`PhaseDamping`][fatqat.noise.PhaseDamping] 描述符。自定义描述符需要匹配的信道规则。[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 还支持原子丢失。
-  status: machine
+  status: retired
 - id: 2b5aa00467c34bc5
   en: '[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] binds each row of a complete object-keyed parameter batch and returns one eager job containing an ordered `list[Result]`. The batch is validated once and the program is lowered once; each row then only re-realizes the matrices of its parameter-holding gates before execution, so layout resolution, implementation selection, and noise matching are not repeated per row. Batch and row validation errors raise directly; an execution failure produces a failed sweep job, and no partial result list is returned. It reuses a supplied seed for every row, so sampled errors can be correlated. See [Simulate a quantum program](../guide/simulation.md) for a guided example. Accepted batch shapes and validation rules are listed in the [`run_sweep`][fatqat.simulator.Simulator.run_sweep] reference below.'
   zh: '[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] 为以参数对象为键的完整参数批次逐行绑定，并返回一个立即执行的任务，其中包含有序的 `list[Result]`。批次只验证一次，程序也只降级转换一次；随后每一行只需在执行前重新生成含参数量子门的矩阵，无需逐行重复解析布局、选择实现和匹配噪声。批次及行验证错误直接抛出；执行失败会产生失败的扫描任务，不返回部分结果列表。每一行复用所提供的种子，因此采样误差可能相关。操作示例见[模拟量子程序](../guide/simulation.md)。可接受的批次形状及验证规则列于下方 [`run_sweep`][fatqat.simulator.Simulator.run_sweep] 参考文档。'
@@ -237,19 +237,19 @@
 - id: 496d6a0abe2d7d8e
   en: '| `seed` | `None` | Use a non-negative `int` or `None`; booleans are rejected. It controls measurement, reset, channel, loss, and readout sampling. A negative value fails when execution starts and follows `error_handling`. |'
   zh: '| `seed` | `None` | 接受非负 `int` 或 `None`，不接受布尔值。控制测量、重置、信道、丢失和读出过程中的随机采样。负值会在开始执行时报错，并按 `error_handling` 处理。 |'
-  status: machine
+  status: retired
 - id: f2b2f424f2948972
   en: '| `error_handling` | `"raise"` | `"raise"` or `"capture"`; see the error-handling contract in [`Simulator.run`][fatqat.simulator.Simulator.run]. |'
   zh: '| `error_handling` | `"raise"` | 可选 `"raise"` 或 `"capture"`；具体行为见 [`Simulator.run`][fatqat.simulator.Simulator.run] 的错误处理说明。 |'
-  status: machine
+  status: retired
 - id: 0ea5c426b2c6f649
   en: '| `fusion` | `False` | A `bool`. `True` combines compatible adjacent operations and is supported by Numba for `unitary` and `superop`. Statevector and density-matrix evolution do not support fusion. |'
   zh: '| `fusion` | `False` | `bool` 值。设为 `True` 时合并相邻且兼容的 Operation，目前仅 Numba 的 `unitary` 和 `superop` 方法支持。态矢量和密度矩阵演化不支持融合。 |'
-  status: machine
+  status: retired
 - id: 8137077908f1530c
   en: '| `implementation_map` | Matrix, channel, and [custom-operation implementations](simulators/custom-operations.md). `None` uses FATQAT''s built-in rules. |'
   zh: '| `implementation_map` | 矩阵、信道和[自定义 Operation 的实现](simulators/custom-operations.md)。设为 `None` 时使用 FATQAT 的内置规则。 |'
-  status: machine
+  status: retired
 - id: fcb4a95e221c31ac
   en: '| `initial_state` | `None` | Quantum array or [`EvolutionState`][fatqat.simulator.EvolutionState] supplying quantum and classical data for each shot. `None` selects the ground state. Operator methods reject an initial state. |'
   zh: '| `initial_state` | `None` | 表示量子态的数组，或为每次 shot 提供量子态及经典数据的 [`EvolutionState`][fatqat.simulator.EvolutionState]。`None` 表示从基态开始。算符方法不接受初态。 |'
@@ -261,15 +261,15 @@
 - id: 064bb1abf781849e
   en: '`result_config` accepts the keys below. `counts` and `final_state` accept `True`, `False`, or `None`; an omitted or `None` value uses the default shown. `final_classical_state` accepts only `True` or `False`.'
   zh: '`result_config` 支持下列配置项。`counts` 和 `final_state` 接受 `True`、`False` 或 `None`；省略或设为 `None` 时，采用表中的默认值。`final_classical_state` 只接受 `True` 或 `False`。'
-  status: machine
+  status: retired
 - id: b7792a5a3861b61c
   en: '| `final_classical_state` | Disabled | Requires `shots == 1` when the final state is stochastic; rejected by `unitary` and `superop` |'
   zh: '| `final_classical_state` | 默认关闭 | 最终状态具有随机性时，要求 `shots == 1`；`unitary` 和 `superop` 不支持此选项 |'
-  status: machine
+  status: retired
 - id: cfc34ffd9f6593f6
   en: '`final_classical_state=True` returns one shot''s final [`ClassicalState`][fatqat.simulator.ClassicalState] (register digits and site occupancy) through [`Result.get_classical_state`][fatqat.Result.get_classical_state].'
   zh: 设置 `final_classical_state=True` 后，可通过 [`Result.get_classical_state`][fatqat.Result.get_classical_state] 取得一次 shot 结束时的 [`ClassicalState`][fatqat.simulator.ClassicalState]，其中包含经典寄存器各位的值和站点占据情况。
-  status: machine
+  status: retired
 - id: b6f6de7fc6981161
   en: '`run()` returns an eager [`Job`][fatqat.Job]. Program and option validation errors raise directly. Execution and result-assembly errors follow `error_handling`, as specified in [`Simulator.run`][fatqat.simulator.Simulator.run]. See [Result](result.md) for available fields, accessors, count ordering, and state-axis metadata.'
   zh: '`run()` 返回已执行的 [`Job`][fatqat.Job]。程序和选项的验证错误会直接抛出；执行和组装结果时的错误按 `error_handling` 处理，具体约定见 [`Simulator.run`][fatqat.simulator.Simulator.run]。可用字段、访问方法、计数顺序和量子态轴信息见 [Result](result.md)。'
@@ -281,51 +281,51 @@
 - id: 817ff7c038496a24
   en: '[`Simulator`][fatqat.simulator.Simulator] runs gate-level programs with matrix operations and finite noise channels. It supports qubits, qudits, mixed register dimensions, and custom implementation maps. Programs run as written, without transpilation or routing.'
   zh: '[`Simulator`][fatqat.simulator.Simulator] 通过矩阵运算和有限噪声信道运行门级程序。它支持量子比特、多能级量子单元、混合寄存器维度和自定义实现映射。程序按原样执行，不进行转译或路由。'
-  status: machine
+  status: retired
 - id: 18be36a1dffb0544
   en: '`runtime` accepts `"numpy"` or `"numba"` (case-insensitive). `None` (default) uses the current simulator default, initially `"numba"`. See [Simulation](../guide/simulation.md) to set the default for a script or notebook.'
   zh: '`runtime` 接受 `"numpy"` 或 `"numba"`，不区分大小写。默认值 `None` 使用模拟器当前的默认运行时，初始为 `"numba"`。如何为脚本或笔记本设置默认值，见[模拟](../guide/simulation.md)。'
-  status: machine
+  status: retired
 - id: 9d99d48fc39cb2b3
   en: Shot parallelism requires counts and independent shot evolution, such as a program with mid-circuit measurement, reset, conditions, or stochastic channels. Programs with only terminal measurement sampling are not eligible. Threaded shots require a Numba statevector run without atom-occupancy operations; processes support other eligible workloads. Automatic selection uses at most one parallel axis. Unsupported explicit choices raise an error.
   zh: 采样并行要求输出计数，且各次采样独立演化，例如程序包含中途测量、重置、条件或随机信道。仅在末尾测量时采样的程序不满足条件。线程并行要求使用 Numba 态矢量执行，且不含原子占据操作；进程并行支持其他符合条件的任务。自动选择最多使用一个并行维度。显式指定不支持的选项会报错。
-  status: machine
+  status: retired
 - id: 9109f005413231c4
   en: A fixed `seed` reproduces sampled results when the program, configuration, FatQat version, and execution environment are the same. Different runtimes or parallel modes may produce different samples. Deterministic results are independent of the seed and subject to floating-point tolerances.
   zh: 当程序、配置、FatQat 版本及执行环境相同时，固定 `seed` 可复现采样结果。不同运行时或并行模式可能产生不同样本。确定性结果与种子无关，但仍受浮点误差影响。
-  status: machine
+  status: retired
 - id: e08d3877f9219ab5
   en: See [Performance and scaling](../guide/performance.md) for benchmarking guidance.
   zh: 基准测试建议见[性能与规模](../guide/performance.md)。
-  status: machine
+  status: retired
 - id: f8d330e384177d24
   en: '| `initial_state` | `None` | Quantum array, [`BasisState`][fatqat.simulator.BasisState], or [`EvolutionState`][fatqat.simulator.EvolutionState] supplying quantum and classical data for each shot. `None` selects the ground state. Operator methods reject an initial state. |'
   zh: '| `initial_state` | `None` | 量子数组、[`BasisState`][fatqat.simulator.BasisState] 或 [`EvolutionState`][fatqat.simulator.EvolutionState]，为每次采样提供量子和经典数据。`None` 选择基态。算符方法不接受初态。 |'
-  status: machine
+  status: retired
 - id: 0f471bbf31251383
   en: A `BasisState` names one level per subsystem by register reference, so it does not depend on subsystem order; unnamed subsystems start at level 0. Dense quantum input uses the public most-significant-first basis. `statevector` accepts shape `(D,)`; `density_matrix` accepts `(D,)` or `(D, D)`. Only the quantum shape is checked; you are responsible for normalization and, for density matrices, Hermiticity and positivity.
   zh: '`BasisState` 通过寄存器引用为各子系统指定能级，因此不依赖子系统顺序；未指定的子系统从能级 0 开始。稠密量子输入采用公开的最高位优先基序。`statevector` 接受形状 `(D,)`；`density_matrix` 接受 `(D,)` 或 `(D, D)`。系统只检查量子数组的形状；归一化以及密度矩阵的厄米性和半正定性由使用者保证。'
-  status: machine
+  status: retired
 - id: 49422c53dc3aa925
   en: '`run()` completes execution before returning a [`Job`][fatqat.Job]. Program and option validation errors raise directly. Execution errors follow `error_handling`, as specified in [`Simulator.run`][fatqat.simulator.Simulator.run]. See [Result](result.md) for available fields, accessors, count ordering, and state-axis metadata.'
   zh: '`run()` 完成执行后才返回 [`Job`][fatqat.Job]。程序和选项校验错误直接抛出；执行错误按 `error_handling` 处理，详见 [`Simulator.run`][fatqat.simulator.Simulator.run]。可用字段、访问方法、计数顺序和状态轴元数据见 [Result](result.md)。'
-  status: machine
+  status: retired
 - id: 2d38060a434f9a8e
   en: '[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] runs a program for each row of a parameter batch. It completes before returning a job containing a `list[Result]` in row order. Batch and row validation errors raise directly; execution errors follow `error_handling`. A failed sweep returns no partial result list. A supplied seed is reused for every row, so sampled errors can be correlated.'
   zh: '[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] 为参数批次的每一行运行一次程序，全部执行结束后返回 Job，其中的 `list[Result]` 按行顺序排列。批次和行校验错误直接抛出，执行错误按 `error_handling` 处理。扫描失败时不返回部分结果。若提供种子，每行都会复用该种子，因此采样误差可能相关。'
-  status: machine
+  status: retired
 - id: 54d13ade4a57fcf1
   en: See [Simulate a quantum program](../guide/simulation.md) for an example and [`run_sweep`][fatqat.simulator.Simulator.run_sweep] for accepted batch shapes.
   zh: 使用示例见[模拟量子程序](../guide/simulation.md)，接受的批次形状见 [`run_sweep`][fatqat.simulator.Simulator.run_sweep]。
-  status: machine
+  status: retired
 - id: 12128359cfce3993
   en: '`execution_config` changes one call to [`Simulator.run`][fatqat.simulator.Simulator.run]. Its string values are case-sensitive. The former name `simulation_config` is deprecated on every backend and on `Estimator`; it still works as an alias and will be removed before FATQAT 0.1.0.'
   zh: '`execution_config` 仅作用于对 [`Simulator.run`][fatqat.simulator.Simulator.run] 的一次调用。其字符串值区分大小写。旧名称 `simulation_config` 在所有后端和 `Estimator` 中均已弃用；目前仍可作为别名使用，但将在 FATQAT 0.1.0 发布前移除。'
-  status: machine
+  status: retired
 - id: a3699637677bfc48
   en: 'Besides `execution_config`, [`Simulator.run`][fatqat.simulator.Simulator.run] accepts:'
   zh: 除 `execution_config` 外，[`Simulator.run`][fatqat.simulator.Simulator.run] 还接受：
-  status: machine
+  status: retired
 - id: 9da81a6e19bfa312
   en: '[`Simulator`][fatqat.simulator.Simulator] runs a [`Program`][fatqat.Program] at the gate level. It supports qubits, qudits, and registers whose members have different dimensions. It executes the operations as written, without imposing a device topology.'
   zh: '[`Simulator`][fatqat.simulator.Simulator] 在门层级运行 [`Program`][fatqat.Program]。无论寄存器里用的是量子比特还是多能级量子系统，各成员的维度都可以不同。模拟器按程序写出的顺序执行操作，无需指定设备拓扑。'

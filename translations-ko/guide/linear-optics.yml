@@ -13,7 +13,7 @@
 - id: 8765afb750ad701e
   en: '**Photons are moved, never created.** Beam splitters and phase shifters redistribute photons among modes; the total number that entered stays the same.'
   ko: '**광자는 이동할 뿐 새로 생기지 않습니다.** 빔 스플리터와 위상 시프터는 모드 사이에 광자를 재분배하며, 입력된 총 광자 수는 유지됩니다.'
-  status: machine
+  status: retired
 - id: d66be5aca6a75876
   en: '**Photons are identical.** When two photons could have taken different paths to the same outcome, those paths interfere, and some outcomes disappear.'
   ko: '**광자는 동일 입자입니다.** 두 광자가 서로 다른 경로로 같은 결과에 도달할 수 있으면 경로 사이에 간섭이 일어나 일부 결과가 사라집니다.'
@@ -101,7 +101,7 @@
 - id: 17f3966500113b69
   en: The method needs a `BasisState` start and modes only, and it rejects noise. For qubits alongside modes, dense initial states, or noise, choose `LOSimulator("statevector")` or `LOSimulator("density_matrix")`; see [`LOSimulator`][fatqat.simulator.LOSimulator] for the full rules.
   ko: 이 방법은 `BasisState` 초기 상태와 모드만을 요구하며 잡음은 받지 않습니다. 큐비트와 모드를 함께 사용하거나, 조밀한 초기 상태나 잡음이 필요하면 `LOSimulator("statevector")` 또는 `LOSimulator("density_matrix")`를 선택하세요. 전체 규칙은 [`LOSimulator`][fatqat.simulator.LOSimulator]를 참고하세요.
-  status: machine
+  status: retired
 - id: cf676503cc0ae1a2
   en: '**A mode holds any number of photons.** Its level $n$ is a photon count, not one of two states.'
   ko: '**한 모드에는 광자가 몇 개든 들어갈 수 있습니다.** 여기서 $n$은 모드에 들어 있는 광자 수입니다.'

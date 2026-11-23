@@ -9,7 +9,7 @@
 - id: ca10ac66c1c0364f
   en: Choose probabilities or rates
   zh: 选择概率或速率
-  status: machine
+  status: retired
 - id: 2ba59b2c035c991b
   en: 'Supply exactly one of `p` and `rate`. Either accepts one real number or a nonempty iterable; FATQAT stores the values as a tuple. For a $d$-level target, pass exactly $d-1$ values:'
   zh: 在 `p` 与 `rate` 中恰好提供一个。两者均接受一个实数或一个非空可迭代对象；FATQAT 将这些值存储为元组。对于 $d$ 能级目标，需恰好传入 $d-1$ 个值：
@@ -45,7 +45,7 @@
 - id: 8ce020ab4b3d0d10
   en: Rates are finite, nonnegative, and measured in the inverse of the backend's time unit. See [Pulse emulators](backend-support.md#noise-emulator-support) for each built-in emulator's local dimension, accepted scope, and implementation-map requirements.
   zh: 速率必须有限、非负，并以后端时间单位的倒数计量。各内置仿真器的局部维度、可接受的作用范围以及实现映射要求参见[脉冲仿真器](backend-support.md#noise-emulator-support)。
-  status: machine
+  status: retired
 - id: 3e072a550276a389
   en: Converting between forms
   zh: 两种形式之间的转换
@@ -81,11 +81,11 @@
 - id: 2b3a4f0d7ec880ee
   en: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] describes conventional qubit decay from $|1\rangle$ to $|0\rangle$. Use `p` for a simulator channel or `rate` for a local Lindblad operator on a compatible emulator.'
   zh: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] 描述量子比特从 $|1\rangle$ 到 $|0\rangle$ 的常规衰减。使用 `p` 定义模拟器信道，或使用 `rate` 定义兼容仿真器上的局域 Lindblad 算符。'
-  status: machine
+  status: retired
 - id: 5aed6fc70d993432
   en: Supply exactly one scalar `p` or `rate`. A probability must lie in `[0, 1]`; a rate must be finite and nonnegative. The descriptor acts on one qubit and does not accept an iterable. Use [`TransitionRelaxation`](transition-relaxation.md) for an explicitly authored finite-dimensional jump operator.
   zh: 必须且只能提供一个标量 `p` 或 `rate`。概率必须位于 `[0, 1]`，速率必须有限且非负。该描述符作用于一个量子比特，不接受可迭代对象。若要显式指定有限维跃迁算符，请使用 [`TransitionRelaxation`](transition-relaxation.md)。
-  status: machine
+  status: retired
 - id: bb298cb61cd29aee
   en: For probability $p$, the simulator uses
   zh: 对于概率 $p$，模拟器使用
@@ -105,7 +105,7 @@
 - id: 18c5887764f37016
   en: Choose `p` or `rate` for decay on one qubit. To specify your own transitions or work with more than two levels, use [`TransitionRelaxation`](transition-relaxation.md).
   zh: 在单个量子比特上模拟衰减时，指定 `p` 或 `rate`。要自行指定跃迁，或处理两个以上的能级，请用 [`TransitionRelaxation`](transition-relaxation.md)。
-  status: machine
+  status: retired
 - id: 3466154a2a2059dc
   en: Use the inverse of the model's time unit for `rate`. The built-in [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] accepts this form as background noise.
   zh: '`rate` 的单位是模型时间单位的倒数。内置的 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 接受这种形式的背景噪声。'

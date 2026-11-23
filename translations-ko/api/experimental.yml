@@ -5,55 +5,55 @@
 - id: c7c8e3a9cc931706
   en: The APIs listed here are public, but their signatures and behavior may change between releases. Use them only when the stable backend workflow does not cover your integration.
   ko: 이 페이지의 API는 공개 API이지만 릴리스 사이에 시그니처나 동작이 바뀔 수 있습니다. 안정된 백엔드 흐름만으로 원하는 연동을 구현할 수 없을 때 사용하세요.
-  status: machine
+  status: retired
 - id: 91343bb1092934bf
   en: The [compiler](compiler.md) is under development; its interfaces and supported behavior may change. Its [LogicalProgram](logical-program.md) frontend accepts built-in device-independent operations and is required by the Python compiler entry points.
   ko: '[컴파일러](compiler.md)는 개발 중이며 인터페이스와 지원 동작이 바뀔 수 있습니다. [LogicalProgram](logical-program.md) 프런트엔드는 내장된 장치 독립적 연산을 받으며, Python 컴파일러 진입점에서는 이 형식이 필요합니다.'
-  status: machine
+  status: retired
 - id: 90bcd2b94fbdea07
   en: Direct construction
   ko: 직접 생성
-  status: machine
+  status: retired
 - id: cb5e8095e2b4cc62
   en: Backends return [`Job`][fatqat.Job] and [`Result`][fatqat.Result]; applications normally should not construct either class. When writing a backend integration, create a successful job as `Job("DONE", result=value)` or a failed job as `Job("ERROR", error=exc)`, and translate the backend's output into a `Result`. See [Job](job.md) and [Result](result.md) for the interfaces.
   ko: 백엔드는 [`Job`][fatqat.Job]과 [`Result`][fatqat.Result]를 반환하므로 일반 애플리케이션에서는 두 클래스를 직접 생성할 필요가 없습니다. 백엔드 연동을 구현할 때는 성공한 Job을 `Job("DONE", result=value)`, 실패한 Job을 `Job("ERROR", error=exc)`로 만들고 백엔드 출력을 `Result`로 변환하세요. 인터페이스는 [Job](job.md)과 [Result](result.md)를 참고하세요.
-  status: machine
+  status: retired
 - id: a672b289e30db7aa
   en: Extension points
   ko: 확장 지점
-  status: machine
+  status: retired
 - id: ce1eccee9e09a4a2
   en: 'The following extension points are also evolving:'
   ko: 다음 확장 지점도 계속 변경되고 있습니다.
-  status: machine
+  status: retired
 - id: 28fbe3b3cd28700e
   en: '[Matrix implementations](implementation.md) for custom matrices and device-specific gate rules'
   ko: 사용자 정의 행렬과 장치별 게이트 규칙을 위한 [행렬 구현](implementation.md)
-  status: machine
+  status: retired
 - id: b4075750b3d45a43
   en: '[Gate realization](pulse-control/gate-realization.md) for custom pulse definitions'
   ko: 사용자 정의 펄스를 위한 [게이트의 펄스 구현](pulse-control/gate-realization.md)
-  status: machine
+  status: retired
 - id: 0917ebcfd35f26c9
   en: Built-in pulse maps are listed under [Emulators](emulators/index.md).
   ko: 내장 펄스 맵은 [에뮬레이터](emulators/index.md)에 정리되어 있습니다.
-  status: machine
+  status: retired
 - id: 90c607d7f9637cad
   en: '[Matrix implementation maps](implementation.md) for custom matrices and device-specific gate rules'
   ko: 사용자 정의 행렬과 장치별 게이트 규칙을 위한 [행렬 구현 맵](implementation.md)
-  status: machine
+  status: retired
 - id: 8e9e7c8491393d88
   en: '[Custom gate pulses](pulse-control/gate-realization.md) for custom pulse definitions'
   ko: 사용자 정의 펄스를 위한 [사용자 정의 게이트 펄스](pulse-control/gate-realization.md)
-  status: machine
+  status: retired
 - id: 04c438669dfb24a8
   en: The public APIs on this page are still evolving. Their signatures or behavior may change between releases.
   ko: 이 페이지에 나열한 공개 API는 아직 개발 중입니다. 릴리스에 따라 호출 방식이나 동작이 달라질 수 있습니다.
-  status: machine
+  status: retired
 - id: 6e7322c5d9ab733f
   en: Use [LogicalProgram](logical-program.md) for device-independent gates written in Python. Use an OpenQASM entry point when starting from source text. The [compiler pipelines](compiler-pipelines.md) page lists the inputs for each target.
   ko: Python에서 장치 독립적인 게이트를 작성하려면 [LogicalProgram](logical-program.md)을 사용하세요. OpenQASM 소스에서 시작하는 경우 해당 컴파일 진입점을 사용합니다. 각 타깃의 입력은 [컴파일러 파이프라인](compiler-pipelines.md)을 참고하세요.
-  status: machine
+  status: retired
 - id: 8e6d8257508adc4b
   en: Custom backends
   ko: 사용자 정의 백엔드
@@ -61,7 +61,7 @@
 - id: d0b80bdd2c8f3eae
   en: If you implement a [`Backend`][fatqat.Backend], create a [`Result`][fatqat.Result] for the fields it produces and return it in a successful [`Job`][fatqat.Job]. Use `Job("DONE", result=value)` for success or `Job("ERROR", error=exc)` for a recorded failure.
   ko: '[`Backend`][fatqat.Backend]를 구현한다면 백엔드가 생성한 필드를 [`Result`][fatqat.Result]에 담아 성공한 [`Job`][fatqat.Job]으로 반환하세요. 성공에는 `Job("DONE", result=value)`를, 실패를 기록할 때는 `Job("ERROR", error=exc)`를 사용합니다.'
-  status: machine
+  status: retired
 - id: 9b14d082b53b797a
   en: These APIs are available for use while their interfaces are under development. Their signatures and behavior may change between releases.
   ko: 여기에 나오는 API는 사용할 수 있지만 인터페이스는 아직 개발 중입니다. 릴리스에 따라 시그니처와 동작이 달라질 수 있습니다.

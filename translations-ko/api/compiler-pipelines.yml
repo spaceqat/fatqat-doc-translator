@@ -17,7 +17,7 @@
 - id: 4cdf4967d39c01ab
   en: Start with a registered superconducting or neutral-atom pipeline. Call `Compiler.compile()` with the pipeline name and a `CompileContext` that supplies the target and any options. Use `emit` to stop at a particular representation.
   ko: 등록된 초전도 또는 중성 원자 파이프라인으로 시작하세요. `Compiler.compile()`에 파이프라인 이름과 대상 및 옵션을 담은 `CompileContext`를 넘깁니다. 특정 표현에서 멈추려면 `emit`을 지정하세요.
-  status: machine
+  status: retired
 - id: 04c6c53ab7eb461a
   en: Define passes and IRs
   ko: 패스와 IR 정의

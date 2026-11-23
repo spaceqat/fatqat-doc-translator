@@ -137,7 +137,7 @@
 - id: 678193628eb1bf13
   en: For asymmetric circuits, check bit order when comparing results. FatQat puts slot 0 on the left in count strings. Qiskit puts bit 0 on the right within a register. When comparing arrays or Pauli labels, use the conversions in the [Qiskit API reference](../api/interoperability/qiskit.md).
   zh: 比较结果时，先对一下位的顺序，尤其是线路本身不对称时。FatQat 的计数字符串从经典槽位 0 写起，Qiskit 则把每个寄存器的第 0 位放在右边。比较数组或 Pauli 标签时，可以用 [Qiskit API 参考](../api/interoperability/qiskit.md)中的转换方法。
-  status: machine
+  status: retired
 - id: 69f77a98367e8460
   en: The adapter accepts static circuits with bound parameters. Transpile each circuit for the backend's target, and use a FatQat `NoiseModel` for noisy runs. The [Qiskit API reference](../api/interoperability/qiskit.md) describes supported instructions, noise, run options, and result formats.
   zh: 提交前，先绑定线路参数，再用 Qiskit 针对 FatQat 后端转译。运行时要加入噪声，可以传入 FatQat 的 `NoiseModel`。支持的静态线路、噪声设置和结果格式见 [Qiskit API 参考](../api/interoperability/qiskit.md)。

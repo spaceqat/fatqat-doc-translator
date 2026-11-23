@@ -73,7 +73,7 @@
 - id: c040dfa4d513350e
   en: The changing distance is a picture of the pairing intent, not a simulated trajectory. `AtomArraySimulator` records no coordinates or movement duration; `Pair` declares that the two occupied sites may execute native `CZ`, and `Unpair` removes that eligibility.
   ko: 그림에서 거리가 바뀌는 것은 페어링 관계를 설명하기 위한 것으로 실제 이동 궤적은 아닙니다. `AtomArraySimulator`는 좌표나 이동 시간을 기록하지 않습니다. `Pair`는 원자가 있는 두 사이트에서 네이티브 `CZ`를 실행할 수 있도록 짝을 맺고, `Unpair`는 그 관계를 해제합니다.
-  status: machine
+  status: retired
 - id: ca23cfc884492a91
   en: 'Pairing is ideal unless you attach a noise assumption. For example, apply a small depolarizing channel independently to each atom whenever either movement instruction occurs:'
   ko: 잡음을 추가하지 않으면 페어링은 이상적으로 처리됩니다. 이동 중의 교란을 고려하려면 각 이동 명령이 실행될 때 두 원자에 각각 약한 탈분극 채널을 적용할 수 있습니다.

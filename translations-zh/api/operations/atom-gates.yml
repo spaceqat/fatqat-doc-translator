@@ -5,7 +5,7 @@
 - id: 56351782c3074b17
   en: '`Put` manages atom occupancy; `Pair` and `Unpair` manage connectivity. They are not unitary matrix gates. Add them with [`fatqat.Program.add`][fatqat.Program.add]. [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] is the only built-in backend that implements them. Other matrix and pulse backends raise [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError].'
   zh: '`Put` 管理原子占据；`Pair` 和 `Unpair` 管理连通性。它们不是酉矩阵门。请使用 [`fatqat.Program.add`][fatqat.Program.add] 添加它们。[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 是唯一实现这些操作的内置后端，其他矩阵和脉冲后端会引发 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]。'
-  status: machine
+  status: retired
 - id: 12510ccb29102296
   en: '**Atom-array operations**'
   zh: '**原子阵列操作**'
@@ -13,7 +13,7 @@
 - id: 97d4be8960698f97
   en: Conditions
   zh: 条件
-  status: machine
+  status: retired
 - id: 16ec8f97e2f2265f
   en: If a program contains `Put`, every declared site starts empty for every shot. Sites are populated only when `Put` runs, and a later `Put` can reload a lost atom. A [`Loss`][fatqat.noise.Loss] declaration attached to `Put` shares the operation's condition and runs after every matching `Put` operation whose condition passes, even when the site was already occupied and the `Put` itself did nothing.
   zh: 如果程序包含 `Put`，则在每个 shot 中，每个已声明的位点都从空状态开始。位点只有在 `Put` 运行时才会被填充，之后的 `Put` 可以重新装载丢失的原子。附加到 `Put` 的 [`Loss`][fatqat.noise.Loss] 声明与该操作共享条件，并在每个条件通过的匹配 `Put` 操作之后运行，即使位点已被占据、该 `Put` 本身未产生任何效果也是如此。
@@ -21,7 +21,7 @@
 - id: 40ef0cbd7b3555ae
   en: '`Pair` and `Unpair` update the connectivity used by later supported gates; they do not change the quantum state or make an unsupported gate available. In the built-in atom-array profile, [`CZ`][fatqat.operations.CZ] is native and requires a current pairing. The atom backend rejects a condition on either instruction with [`BackendValidationError`][fatqat.errors.BackendValidationError] when the program runs.'
   zh: "`Pair` 和 `Unpair` 更新供后续受支持的门使用的连通性；它们不改变量子态，也不会使不受支持的门变为可用。在内置的原子阵列配置中，[`CZ`][fatqat.operations.CZ] 是原生门，且要求当前存在配对。程序运行时，原子后端会以 [`BackendValidationError`][fatqat.errors.BackendValidationError] 拒绝这两条指令上的条件。"
-  status: machine
+  status: retired
 - id: 54df53c6613582e9
   en: '| Value | Scalar targets | Effect | Conditions | Attached noise |'
   zh: '| 值 | 标量目标 | 效果 | 条件 | 附加噪声 |'
@@ -57,15 +57,15 @@
 - id: d80ea607936e7baf
   en: Every declared site starts empty on each shot. `Put` is the only operation that loads an atom, and a later `Put` can refill a lost site. Until a site is loaded, supported gates and reset have no effect there, and measurement reports `2`. Native-gate and pairing checks still run first, so an empty site cannot conceal an unsupported gate or unpaired `CZ`.
   zh: 每个已声明的位点在每次 shot 中都从空状态开始。`Put` 是唯一装载原子的操作，之后的 `Put` 可以重新填充已丢失原子的位点。在位点被装载之前，受支持的门和复位在该位点没有效果，测量则报告 `2`。原生门检查和配对检查仍会先运行，因此空位点无法掩盖不受支持的门或未配对的 `CZ`。
-  status: machine
+  status: retired
 - id: 9fe122dc238ed5a9
   en: A [`Loss`][fatqat.noise.Loss] declaration attached to `Put` shares the operation's condition and runs after every matching `Put` whose condition passes, even if the target was already occupied and loading did nothing.
   zh: 附加到 `Put` 的 [`Loss`][fatqat.noise.Loss] 声明与该操作共享条件，并在每个条件通过的匹配 `Put` 之后运行，即使目标已被占据、装载未产生任何效果也是如此。
-  status: machine
+  status: retired
 - id: 2aaa5f6c89a958b0
   en: To load an entire named register, use `program.add(ops.Put, register.all())`; the view expands into one variadic `Put` over its members. For a program created from an integer site count, use `program.add(ops.Put, tuple(range(num_atoms)))`.
   zh: 要装载整个具名寄存器，请使用 `program.add(ops.Put, register.all())`；该视图会展开为一次作用于其所有成员的可变参数 `Put`。对于由整数位点数量创建的程序，请使用 `program.add(ops.Put, tuple(range(num_atoms)))`。
-  status: machine
+  status: retired
 - id: 330514a97889a1b8
   en: Use these operations with [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] to load atoms and change which pairs can interact. Other built-in backends do not implement them.
   zh: 在 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 中，可以用这些操作装载原子，或改变哪些原子可以成对相互作用。其他内置后端不支持这些操作。

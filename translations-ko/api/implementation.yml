@@ -1,19 +1,19 @@
 - id: 191121b5415625c5
   en: Implementation maps
   ko: 구현 맵
-  status: machine
+  status: retired
 - id: 30d3572927e4155e
   en: Use [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to add custom operations and channels to a simulator, or choose rules by physical target. Pass the map as `implementation_map=` when constructing the backend. Built-in gates and channels work without a custom map. Noise placement is still defined by `NoiseModel`; the map supplies how each matched channel acts.
   ko: '[`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]으로 시뮬레이터에 사용자 정의 연산과 채널을 추가하거나 물리적 대상별 규칙을 선택할 수 있습니다. 백엔드를 만들 때 `implementation_map=`으로 맵을 전달하세요. 내장 게이트와 채널은 사용자 정의 맵 없이도 동작합니다. 잡음의 적용 위치는 여전히 `NoiseModel`이 정하며, 맵은 일치한 채널의 작용 방식을 제공합니다.'
-  status: machine
+  status: retired
 - id: f691813784da6bbb
   en: Choose a map
   ko: 맵 선택
-  status: machine
+  status: retired
 - id: acb9ba579f4c546a
   en: '[`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] returns a fresh map containing FATQAT''s built-in matrix gates and finite channel rules. Editing it does not affect another map or a later call. Construct [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] directly when the backend should support only rules you add. A supplied map replaces both the gate and channel registrations; start with the default map to retain built-ins.'
   ko: '[`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map]은 FATQAT 내장 행렬 게이트와 유한 채널 규칙이 담긴 새 맵을 반환합니다. 이를 수정해도 다른 맵이나 이후 호출에는 영향을 주지 않습니다. 직접 추가한 규칙만 지원하는 백엔드가 필요하면 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]을 직접 생성하세요. 제공한 맵은 게이트와 채널 등록을 모두 대체하므로 내장 구현을 유지하려면 기본 맵에서 시작해야 합니다.'
-  status: machine
+  status: retired
 - id: 5913e9b7c22024d6
   en: Choose a rule
   ko: 규칙 선택
@@ -21,11 +21,11 @@
 - id: 37537a4985e85159
   en: '[`MatrixImplementationMap.add`][fatqat.implementation.MatrixImplementationMap.add] accepts an operation or channel instance or class. Matrix operations accept these rule forms:'
   ko: '[`MatrixImplementationMap.add`][fatqat.implementation.MatrixImplementationMap.add]는 연산 또는 채널의 인스턴스나 클래스를 받습니다. 행렬 연산에는 다음 형식의 규칙을 사용할 수 있습니다:'
-  status: machine
+  status: retired
 - id: 65a08b5cc89d4c87
   en: '**Matrix rule forms**'
   ko: '**행렬 규칙 형식**'
-  status: machine
+  status: retired
 - id: 50cbd645e833b814
   en: '| Form | Use it for | Value passed to `add` |'
   ko: '| 형식 | 용도 | `add`에 전달할 값 |'
@@ -45,11 +45,11 @@
 - id: 1c1741d2f28083af
   en: Channel rules are callables returning Kraus matrices; see [Custom noise implementations](noise/custom-implementations.md). For operations that update quantum and classical state together, the same map accepts `CustomOperationImplementation` objects. See [Custom operations](simulators/custom-operations.md).
   ko: 채널 규칙은 Kraus 행렬을 반환하는 호출 가능 객체입니다. [사용자 정의 잡음 구현](noise/custom-implementations.md)을 참고하세요. 양자 상태와 고전 상태를 함께 갱신하는 연산에는 같은 맵에 `CustomOperationImplementation` 객체를 등록할 수 있습니다. [사용자 정의 연산](simulators/custom-operations.md)을 참고하세요.
-  status: machine
+  status: retired
 - id: 6dc0a44677c7c095
   en: '`op` is the applied operation value, so it contains parameters such as a rotation angle. `targets` contains scalar program [`RegisterRef`][fatqat.RegisterRef] objects in operand order; a rule can inspect `target.register.dim` when its matrix depends on subsystem dimension.'
   ko: '`op`는 적용할 연산 값이므로 회전각 같은 매개변수를 담고 있습니다. `targets`에는 피연산자 순서대로 프로그램의 스칼라 [`RegisterRef`][fatqat.RegisterRef] 객체가 들어갑니다. 행렬이 부분계 차원에 따라 달라지는 규칙은 `target.register.dim`을 확인할 수 있습니다.'
-  status: machine
+  status: retired
 - id: 2950147f148b66c8
   en: Local basis order
   ko: 국소 기저 순서
@@ -89,15 +89,15 @@
 - id: 03d8783769910f22
   en: Validation timing
   ko: 검증 시점
-  status: machine
+  status: retired
 - id: eb9d12d01172db20
   en: '`add` rejects an invalid registration immediately with `TypeError` or `ValueError`. Matrix and channel rules run when a backend prepares a program. A matrix rule that raises produces [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError], an array with the wrong target shape produces [`BackendValidationError`][fatqat.errors.BackendValidationError], and a missing rule produces [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]. These errors occur before `run` returns a [`Job`][fatqat.Job].'
   ko: '`add`는 잘못된 등록을 즉시 `TypeError` 또는 `ValueError`로 거부합니다. 행렬 및 채널 규칙은 백엔드가 프로그램을 준비할 때 실행됩니다. 행렬 규칙이 예외를 발생시키면 [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError], 배열 형태가 대상과 맞지 않으면 [`BackendValidationError`][fatqat.errors.BackendValidationError], 규칙이 없으면 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]가 발생합니다. 이 오류들은 `run`이 [`Job`][fatqat.Job]을 반환하기 전에 발생합니다.'
-  status: machine
+  status: retired
 - id: 71bf90935fc231d2
   en: Reference
   ko: API 레퍼런스
-  status: machine
+  status: retired
 - id: 70db4dffbad4eba5
   en: data `fatqat.implementation.DeviceOperands`
   ko: 데이터 `fatqat.implementation.DeviceOperands`
@@ -113,11 +113,11 @@
 - id: 4eca2c94120f12aa
   en: A [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] tells a matrix simulator how to apply an operation or noise channel. Use it to register a custom rule, replace a built-in one, or give different device locations different implementations of the same operation. Pass the map as `implementation_map` when creating a simulator. A `NoiseModel` still determines when and where a channel applies.
   ko: '[`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]은 행렬 시뮬레이터가 연산이나 잡음 채널을 적용하는 방법을 정합니다. 사용자 정의 규칙을 등록하거나 내장 규칙을 교체하고, 같은 연산에도 물리 장치 위치별로 다른 구현을 지정할 수 있습니다. 시뮬레이터를 만들 때 `implementation_map`으로 맵을 전달하세요. 채널을 적용할 시점과 위치는 `NoiseModel`이 계속 정합니다.'
-  status: machine
+  status: retired
 - id: b1a65ddcabb5f2c3
   en: Start with [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map] to keep the built-in gate and channel rules, or create an empty [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to define the whole set yourself. The simulator copies the registrations when it is created. Adding or removing a rule from the original map later does not update an existing simulator.
   ko: 내장 게이트와 채널 규칙을 유지하려면 [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map]에서 시작하세요. 전체 규칙을 직접 정의하려면 빈 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]을 만드세요. 시뮬레이터는 생성할 때 등록 내용을 복사하므로 원래 맵에서 나중에 규칙을 추가하거나 삭제해도 이미 만든 시뮬레이터에는 반영되지 않습니다.
-  status: machine
+  status: retired
 - id: f40a9da80ceb688a
   en: '[`add()`][fatqat.implementation.MatrixImplementationMap.add] checks the registration when you add it. A rule that raises while the backend prepares an operation can produce [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]. A matrix with the wrong shape raises [`BackendValidationError`][fatqat.errors.BackendValidationError], and an unregistered operation raises [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError].'
   ko: '[`add()`][fatqat.implementation.MatrixImplementationMap.add]는 등록할 때 규칙을 검사합니다. 백엔드가 연산을 준비하는 동안 규칙에서 예외가 발생하면 [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]가 발생할 수 있습니다. 행렬 모양이 맞지 않으면 [`BackendValidationError`][fatqat.errors.BackendValidationError], 등록되지 않은 연산에는 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]가 발생합니다.'

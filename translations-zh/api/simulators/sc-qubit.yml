@@ -5,31 +5,31 @@
 - id: 2d46654d9ea48a4b
   en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] applies the [`Simulator`][fatqat.simulator.Simulator] execution model to a configurable synthetic superconducting coupling graph. Use it when native gates, capacity, and target connectivity matter. It does not transpile, route, schedule, or reproduce a named processor.'
   zh: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 将 [`Simulator`][fatqat.simulator.Simulator] 的执行模型应用于可配置的合成超导耦合图。需要考虑原生门、容量和目标连接关系时，可使用它。它不负责转译、路由或调度，也不复现某一具体处理器。'
-  status: machine
+  status: retired
 - id: 1d2b7426295b06e8
   en: '| Default device | `num_qubits=16`; a 4×4 reference coupling graph |'
   zh: '| 默认设备 | `num_qubits=16`；4×4 参考耦合图 |'
-  status: machine
+  status: retired
 - id: be34587a33508a5a
   en: '| Connected native gate | [`fatqat.operations.CZ`][fatqat.operations.CZ] on the supplied couplings |'
   zh: '| 需要连接的原生门 | 所提供耦合边上的 [`fatqat.operations.CZ`][fatqat.operations.CZ] |'
-  status: machine
+  status: retired
 - id: ef6c921560d1380d
   en: Both operand orders of every coupling are legal, so `CZ` is accepted on device labels `(0, 1)` and `(1, 0)`, but not `(0, 5)` in the default data. The grid is only the default test topology; callers may provide any valid undirected coupling graph.
   zh: 每条耦合边的两种操作数顺序都合法，因此默认数据接受设备标签 `(0, 1)` 和 `(1, 0)` 上的 `CZ`，但不接受 `(0, 5)`。网格仅为默认测试拓扑；调用者可以提供任意有效的无向耦合图。
-  status: machine
+  status: retired
 - id: 009ea4c87b39ba3e
   en: With the automatic layout, a program maps all quantum registers to device labels `0, 1, ...` in declaration order. A [`GridRegister`][fatqat.GridRegister] is flattened in the same order as any other register; frontend geometry does not define hardware placement. An explicit, complete [`ResourceLayout`][fatqat.ResourceLayout] can place program references differently. Capacity and the qubit-only restriction still apply.
   zh: 使用自动布局时，程序按声明顺序将所有量子寄存器映射到设备标签 `0, 1, ...`。[`GridRegister`][fatqat.GridRegister] 与其他寄存器按相同顺序展平；前端几何不定义硬件放置。显式且完整的 [`ResourceLayout`][fatqat.ResourceLayout] 可以为程序引用指定不同的放置。容量限制和仅支持量子比特的限制仍然适用。
-  status: machine
+  status: retired
 - id: 5a39de36834bda45
   en: 'The backend executes only programs already written in its native gate set. For example, [`fatqat.operations.CX`][fatqat.operations.CX] is rejected even on neighbouring qubits. Inspect [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map] instead of hard-coding these rules:'
   zh: 后端只执行已经用其原生门集编写的程序。例如，即使在相邻量子比特上，也不接受 [`fatqat.operations.CX`][fatqat.operations.CX]。请检查 [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map]，而不是将这些规则硬编码：
-  status: machine
+  status: retired
 - id: ec27ee0287f983d3
   en: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], and [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] follow the general Simulator API and are included below for a complete class reference.'
   zh: '[`Simulator.method`][fatqat.simulator.Simulator.method]、[`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map]、[`Simulator.run`][fatqat.simulator.Simulator.run]、[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] 和 [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] 遵循通用 Simulator API，下方一并列出，以提供完整的类参考。'
-  status: machine
+  status: retired
 - id: 1c306dc2e5588b2a
   en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] runs gate-level programs on a configurable superconducting qubit layout. Use it to check whether a program fits the available qubit sites, uses native gates, and applies `CZ` only between connected sites.'
   zh: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 在可配置的超导比特布局上运行门级程序。它可以检查程序是否有足够的位置可用、是否使用原生门，以及 `CZ` 是否都作用在相连的位置上。'
@@ -37,7 +37,7 @@
 - id: 972be5733617b195
   en: The layout determines where a program's qubits can interact. The default device has 16 sites on a 4×4 nearest-neighbor grid. You can supply another undirected coupling graph through `num_qubits` and `couplings`.
   zh: 布局决定了程序中的量子比特能在哪些位置相互作用。默认有 16 个位置，按 4×4 网格排列，相邻位置之间有连接。也可以通过 `num_qubits` 和 `couplings` 指定其他无向耦合图。
-  status: machine
+  status: retired
 - id: 9fcafb476098f381
   en: The simulator accepts `X`, `SX`, and `RZ` at every site. A `CZ` accepts either order of a connected pair, such as `(0, 1)` or `(1, 0)` on the default grid. Measurement and reset follow the [rules for the chosen simulation method](../simulator.md#methods).
   zh: 各个位置都支持 `X`、`SX` 和 `RZ`。对一对相连的位置，`CZ` 的两个目标可以按任一顺序传入，例如默认网格中的 `(0, 1)` 和 `(1, 0)`。测量和重置遵循[所选模拟方法的规则](../simulator.md#methods)。
@@ -49,11 +49,11 @@
 - id: aad9874a78a6d968
   en: Use [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map] to check a gate family or a specific device pair before running the program.
   zh: 运行程序前，可以用 [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map] 查看模拟器是否支持某种门，或某对设备位置是否支持该操作。
-  status: machine
+  status: retired
 - id: 9ed05194329b7e5d
   en: Use the built-in model to compare ideal and noisy results on the same program. The simulator runs ideally by default. To include gate damping and readout errors, pass a fresh model from [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] through `noise`.
   zh: 可以用内置噪声模型比较同一程序在理想条件和含噪条件下的结果。模拟器默认按理想条件运行。要加入门操作中的阻尼和读出误差，可通过 `noise` 传入 [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] 返回的模型。
-  status: machine
+  status: retired
 - id: 0107b3564749502e
   en: <a id="fatqat.simulator.SCQubitSimulator.method"></a>
   zh: <a id="fatqat.simulator.SCQubitSimulator.method"></a>
@@ -73,7 +73,7 @@
 - id: 08d9aa6d60d43373
   en: For execution and results, see [`Simulator.run()`][fatqat.simulator.Simulator.run] and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]. The entries below cover the device layout, native operations, and reference noise model.
   zh: 程序运行和结果读取见 [`Simulator.run()`][fatqat.simulator.Simulator.run] 和 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]。下面的条目介绍设备布局、原生操作和内置参考噪声模型。
-  status: machine
+  status: retired
 - id: 82bd0285247375ad
   en: Configure layout and noise
   zh: 设置布局与噪声

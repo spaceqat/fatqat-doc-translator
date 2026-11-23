@@ -13,7 +13,7 @@
 - id: 23a697e79ef36e87
   en: Native FATQAT backends and [`Estimator`][fatqat.Estimator] return a completed [`Job`][fatqat.Job]. Call [`result`][fatqat.Job.result] to obtain the result; it does not wait.
   ko: FATQAT 기본 백엔드와 [`Estimator`][fatqat.Estimator]는 실행이 완료된 [`Job`][fatqat.Job]을 반환합니다. 결과를 얻으려면 [`result`][fatqat.Job.result]를 호출하세요. 이 호출은 실행을 기다리지 않습니다.
-  status: machine
+  status: retired
 - id: 10a587f024f6f6fe
   en: A [`Job`][fatqat.Job] holds the outcome of a submission. Jobs returned by built-in backends and [`Estimator`][fatqat.Estimator] are already complete. Call [`result()`][fatqat.Job.result] to read the value or raise the execution error stored in the job.
   ko: '[`Job`][fatqat.Job]은 한 번 제출한 작업의 결과를 담습니다. 내장 백엔드와 [`Estimator`][fatqat.Estimator]가 반환하는 작업은 이미 실행이 끝난 상태입니다. [`result()`][fatqat.Job.result]를 호출하면 결과를 읽을 수 있고, 작업에 실행 오류가 저장되어 있으면 그 오류를 일으킵니다.'

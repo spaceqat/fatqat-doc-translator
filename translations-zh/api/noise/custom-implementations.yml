@@ -5,7 +5,7 @@
 - id: a203ab4324b74c2c
   en: This page is for simulator extension authors. Most applications need only FATQAT's built-in noise types. Use this API to define a new [`Channel`][fatqat.noise.Channel] or change how a matrix simulator applies an existing type. Pulse-emulator continuous-noise realizations are family-owned and are not a public extension surface.
   zh: 本页面面向模拟器扩展作者。大多数应用只需 FATQAT 的内置噪声类型。使用此 API 可定义新的 [`Channel`][fatqat.noise.Channel]，或更改矩阵模拟器应用现有类型的方式。脉冲仿真器的连续噪声实现由各后端类型自行管理，不属于公开的扩展接口。
-  status: machine
+  status: retired
 - id: eba3bd7e42ac6531
   en: Simulator implementation map
   zh: Simulator 实现映射
@@ -49,7 +49,7 @@
 - id: f7ff3c774f44593c
   en: If the ordered targets have dimensions `d_0, d_1, ...`, their combined dimension is `D = d_0 * d_1 * ...`. The result must be nonempty, and every element must be a NumPy array with shape `(D, D)`. FATQAT checks only those structural requirements. It does not verify complete positivity, trace preservation, Hermiticity preservation, or any parameter convention for a custom rule.
   zh: 若有序目标的维度为 `d_0, d_1, ...`，其合并维度为 `D = d_0 * d_1 * ...`。结果必须非空，且每个元素都必须是形状为 `(D, D)` 的 NumPy 数组。FATQAT 只检查这些结构性要求，不会验证自定义规则的完全正性、保迹性、保厄米性或任何参数约定。
-  status: machine
+  status: retired
 - id: 90da596f7851b717
   en: Start with [`default_channel_implementation_map`][fatqat.noise.default_channel_implementation_map] when you want to keep FATQAT's built-in simulator rules. See [Simulators](backend-support.md#noise-simulator-support) for backend limits.
   zh: 若要保留 FATQAT 的内置模拟器规则，请从 [`default_channel_implementation_map`][fatqat.noise.default_channel_implementation_map] 开始。后端限制参见[模拟器](backend-support.md#noise-simulator-support)。

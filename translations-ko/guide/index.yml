@@ -5,7 +5,7 @@
 - id: 692fb192bcb3b4d0
   en: Choose the level of detail that answers your question. Direct simulation and physics workflows start from the same backend-independent [`Program`][fatqat.Program]. When mapping and routing are part of the question, author a [`LogicalProgram`][fatqat.LogicalProgram] for the [compiler](compiler.md).
   ko: 먼저 무엇을 알아보려는지 정하고 필요한 모델을 선택하세요. 직접 시뮬레이션과 물리 에뮬레이션은 백엔드에 독립적인 [`Program`][fatqat.Program]으로 시작합니다. 장치에 맞춘 매핑과 라우팅이 필요하면 [`LogicalProgram`][fatqat.LogicalProgram]을 작성해 [컴파일러](compiler.md)에 전달하세요.
-  status: machine
+  status: retired
 - id: 87bd519875584b72
   en: New to FatQat?
   ko: FatQat을 처음 사용하나요?
@@ -25,15 +25,15 @@
 - id: 29a7e89d01af2bc6
   en: ':material-chart-bell-curve-cumulative: **Explore the algorithm**'
   ko: ':material-chart-bell-curve-cumulative: **알고리즘 살펴보기**'
-  status: machine
+  status: retired
 - id: 77ca0539d56d4aa7
   en: Simulate states, measurements, observables, and parameter sweeps, then compare ideal and noisy results or tune performance.
   ko: 양자 상태, 측정 결과와 관측량을 확인하고 매개변수를 바꿔 가며 실행해 보세요. 이상적 결과와 잡음이 있는 결과를 비교하거나 실행 성능을 조정할 수도 있습니다.
-  status: machine
+  status: retired
 - id: a55f972269404651
   en: '[Start with simulation :material-arrow-right:](simulation.md)'
   ko: '[시뮬레이션부터 시작하기 :material-arrow-right:](simulation.md)'
-  status: machine
+  status: retired
 - id: cd492ef391c8cf3d
   en: '![Hardware topology with supported and unsupported couplings](../assets/generated/guide/guide-path-hardware.png){ loading=lazy width="490" height="400" }'
   ko: '![지원되는 결합과 지원되지 않는 결합을 표시한 하드웨어 토폴로지](../assets/generated/guide/guide-path-hardware.png){ loading=lazy width="490" height="400" }'
@@ -45,7 +45,7 @@
 - id: 643afd5e2f430d6d
   en: Check native operations, placement, connectivity, capacity, atom occupancy, pairing, and reference noise.
   ko: 네이티브 연산, 배치, 연결성, 용량, 원자 점유 상태, 페어링, 기준 잡음을 확인합니다.
-  status: machine
+  status: retired
 - id: d24245b1fe2c7c94
   en: '[Open hardware-profile simulation :material-arrow-right:](hardware-profile-simulation.md)'
   ko: '[하드웨어 프로파일 시뮬레이션 보기 :material-arrow-right:](hardware-profile-simulation.md)'
@@ -57,11 +57,11 @@
 - id: da25ed4fe7d38c9c
   en: ':material-atom: **Follow the physics**'
   ko: ':material-atom: **물리적 동작 살펴보기**'
-  status: machine
+  status: retired
 - id: aeff105564baafc7
   en: Follow calibrated transmon gates and direct pulse controls as continuous dynamics, with built-in models for transmons and neutral atoms.
   ko: 내장 transmon·중성 원자 모델로 보정된 게이트와 직접 펄스 제어를 실행하며 물리 상태가 시간에 따라 어떻게 변하는지 살펴봅니다.
-  status: machine
+  status: retired
 - id: 197f1a458192becc
   en: '[Open Hamiltonian emulation :material-arrow-right:](hamiltonian-emulation.md)'
   ko: '[해밀토니안 에뮬레이션 보기 :material-arrow-right:](hamiltonian-emulation.md)'
@@ -105,11 +105,11 @@
 - id: 199aa25730d144d7
   en: '!!! tip'
   ko: '!!! tip'
-  status: machine
+  status: retired
 - id: b178c070c1fed1bf
   en: The guide teaches complete workflows and the reasoning behind them. Follow a link to the [API reference](../api/index.md) when you need a precise signature or contract. The [tutorials](../tutorials/index.md) are longer case studies built on the same features.
   ko: 이 가이드는 작업의 전체 과정과 각 단계의 이유를 설명합니다. 정확한 시그니처나 동작 규약이 필요하면 [API 참조](../api/index.md) 링크를 따라가세요. [튜토리얼](../tutorials/index.md)은 같은 기능을 활용한 더 긴 사례 연구입니다.
-  status: machine
+  status: retired
 - id: 55caeadf0d91b75f
   en: '[Simulation](simulation.md) · [Linear optics](linear-optics.md) · [Observables](interpret-results.md) · [Ideal and noisy runs](ideal-and-noisy.md) · [Visualization](visualization.md) · [Performance](performance.md)'
   ko: '[양자 프로그램 시뮬레이션](simulation.md) · [선형 광학](linear-optics.md) · [관측량](interpret-results.md) · [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md) · [시각화](visualization.md) · [성능 최적화](performance.md)'
@@ -117,7 +117,7 @@
 - id: 3ace145f2523f878
   en: :material-memory:{ .lg .middle } **Hardware constraints**
   ko: :material-memory:{ .lg .middle } **하드웨어 제약 시뮬레이션**
-  status: machine
+  status: retired
 - id: cb5cf5dbd4815688
   en: '[Hardware-profile simulation](hardware-profile-simulation.md) · [Compile and run a logical circuit](compiler.md)'
   ko: '[하드웨어 프로파일 시뮬레이션](hardware-profile-simulation.md) · [논리 회로 컴파일과 실행](compiler.md)'
@@ -125,7 +125,7 @@
 - id: 144bcada83b288c4
   en: :material-atom:{ .lg .middle } **Hamiltonian emulation**
   ko: :material-atom:{ .lg .middle } **해밀토니안 에뮬레이션**
-  status: machine
+  status: retired
 - id: 31d4823f2bbd1646
   en: '[Pulse workflow](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
   ko: '[펄스 작성과 실행](hamiltonian-emulation.md) · [Transmon](transmon-emulation.md) · [중성 원자](neutral-atom-emulation.md)'
@@ -145,23 +145,23 @@
 - id: c1d0ebccf65829c6
   en: '[Build, draw, and run a Bell program](quickstart.md), then learn how to [write Programs and registers](program.md). When you are ready to compare backends, [choose a simulation or emulation approach](execution-models.md).'
   ko: 먼저 [Bell 프로그램을 작성하고 그린 뒤 실행해 보세요](quickstart.md). 이어서 [Program과 레지스터 작성하기](program.md)를 살펴볼 수 있습니다. 백엔드를 비교하려면 [시뮬레이션과 에뮬레이션 방식 선택하기](execution-models.md)를 참고하세요.
-  status: machine
+  status: retired
 - id: cbfe454a5b0b4bca
   en: Choose an approach
   ko: 실행 경로 선택하기
-  status: machine
+  status: retired
 - id: ded2b420d3b9c644
   en: '[Explore hardware constraints :material-arrow-right:](hardware-constraints.md)'
   ko: '[하드웨어 제약 시뮬레이션 살펴보기 :material-arrow-right:](hardware-constraints.md)'
-  status: machine
+  status: retired
 - id: 052c9f56ac0ab7bb
   en: '[Explore physical dynamics :material-arrow-right:](hamiltonian-emulation.md)'
   ko: '[해밀토니안 에뮬레이션 보기 :material-arrow-right:](hamiltonian-emulation.md)'
-  status: machine
+  status: retired
 - id: f0105a82ccf172b8
   en: '[Compare approaches](execution-models.md) if you are unsure which path contains the detail your study needs.'
   ko: 어떤 경로가 연구에 필요한 내용을 다루는지 확실하지 않다면 [실행 수준 비교](execution-models.md)를 읽어 보세요.
-  status: machine
+  status: retired
 - id: e1aed4a008fad278
   en: Browse by task
   ko: 작업별로 찾아보기
@@ -169,15 +169,15 @@
 - id: b18d2cad72a0742c
   en: :material-chart-box-outline:{ .lg .middle } **Run & analyze**
   ko: :material-chart-box-outline:{ .lg .middle } **시뮬레이션과 분석**
-  status: machine
+  status: retired
 - id: 553499018434a22c
   en: '[Simulate programs](simulation.md) · [Observables](interpret-results.md) · [Ideal and noisy runs](ideal-and-noisy.md) · [Visualize results](visualization.md) · [Improve performance](performance.md)'
   ko: '[시뮬레이션](simulation.md) · [관측량](interpret-results.md) · [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md) · [시각화](visualization.md) · [성능 최적화](performance.md)'
-  status: machine
+  status: retired
 - id: f879acfabb147e1c
   en: '[Superconducting qubits](superconducting-simulation.md) · [Neutral-atom arrays](atom-array-simulation.md) · [Linear optics](linear-optics.md) · [Compile circuits](compiler.md)'
   ko: '[초전도 시뮬레이션](superconducting-simulation.md) · [중성 원자 시뮬레이션](atom-array-simulation.md) · [선형 광학](linear-optics.md) · [논리 회로 컴파일과 실행](compiler.md)'
-  status: machine
+  status: retired
 - id: a787041f7fb55a66
   en: '[Write & run pulses](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
   ko: '[펄스 작성과 실행](hamiltonian-emulation.md) · [Transmon](transmon-emulation.md) · [중성 원자](neutral-atom-emulation.md)'
@@ -185,15 +185,15 @@
 - id: 6e0d31638a8f39c4
   en: :material-transit-connection-variant:{ .lg .middle } **Connect & debug**
   ko: :material-transit-connection-variant:{ .lg .middle } **도구 연동과 문제 해결**
-  status: machine
+  status: retired
 - id: d517cf97b66e01ea
   en: '[OpenQASM & Qiskit](interoperability.md) · [Troubleshooting](troubleshooting.md)'
   ko: '[OpenQASM과 Qiskit](interoperability.md) · [문제 해결](troubleshooting.md)'
-  status: machine
+  status: retired
 - id: dcf33c47f716ac6c
   en: '[Pulse programs](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
   ko: '[펄스 프로그램 작성과 실행](hamiltonian-emulation.md) · [Transmon](transmon-emulation.md) · [중성 원자](neutral-atom-emulation.md)'
-  status: machine
+  status: retired
 - id: 2d5c199ea29af3bf
   en: In FatQat, you can change the conditions of a run while keeping the calculation you wrote. To see how noise affects measurement outcomes, run the same [`Program`][fatqat.Program] with and without a noise model. In a pulse experiment, you can keep the laser drive fixed, change the distance between two atoms, and see how likely both atoms are to be excited.
   ko: FatQat에서는 작성한 계산을 그대로 두고 실행 조건을 바꿀 수 있습니다. 잡음이 측정 결과에 미치는 영향을 보려면 같은 [`Program`][fatqat.Program]을 잡음 모델을 켠 경우와 끈 경우에 각각 실행해 보세요. 펄스 실험에서는 레이저 구동을 그대로 두고 두 원자 사이의 거리만 바꿔 두 원자가 동시에 들뜰 확률이 어떻게 달라지는지 살펴볼 수 있습니다.

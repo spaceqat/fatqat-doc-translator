@@ -1,7 +1,7 @@
 - id: f8f7f7bbb7a32f64
   en: Choose the page by the question it should answer. The **User Guide** explains how to use FatQat and why a workflow is useful. **API reference** helps readers choose an interface and look up its exact behavior. **Case Studies** start from a concrete problem and show how to model it, run an example, and interpret the result.
   zh: 先想清楚这一页要回答什么，再决定把它写在哪里。**用户指南**讲怎样使用 FatQat，以及为什么采用某种做法。**API 参考**帮读者选对接口，并查到它的确切行为。**应用案例**从一个具体问题出发，展示如何建模、运行示例和解读结果。
-  status: machine
+  status: retired
 - id: bf63a8ca6b03a2fe
   en: Write a User Guide page
   zh: 编写用户指南
@@ -9,15 +9,15 @@
 - id: 2b5f4905c1f063b8
   en: Start with the reader's goal and give enough context to make the first example meaningful. In the [compiler guide](../guide/compiler.md), for instance, a three-site chain shows which pairs can run a gate directly and why routing matters before readers see the simulator call.
   zh: 只需交代读懂第一个示例所需的背景。例如，[编译器指南](../guide/compiler.md)先用一条由三个位置连成的链，说明双比特门能在哪些位置之间直接执行、什么时候需要路由，再展示如何调用模拟器。
-  status: machine
+  status: retired
 - id: e6449de0c19f2a6b
   en: Introduce a concept before relying on it. Use a small example to connect the concept to the next step. Put supporting details where readers first need them, and link to the API for exact signatures, defaults, and errors.
   zh: 首次用到新概念时先解释，再用一个小例子衔接下一步。调用签名、默认值和异常等细节，可以链接到对应的 API 参考。
-  status: machine
+  status: retired
 - id: bdd1dd7285d2c69b
   en: Explain what the example produced and why it matters. Show the output when it is part of the lesson, such as the counts from two runs. If exact output is shown for a stochastic example, seed it and verify the result. Present the result directly unless the page includes a deliberate exercise.
   zh: 说清示例得到了什么结果，以及这个结果说明了什么。如果输出本身有助于理解，例如要比较两次运行的测量计数，就把它显示出来。随机示例若展示具体数值，应固定随机种子并验证输出。除非是明确安排的练习，否则直接告诉读者结果。
-  status: machine
+  status: retired
 - id: 187138d3527a5259
   en: Use a diagram when it makes a layout, relationship, or sequence easier to understand. Prefer SVG for line drawings and TeX for equations. Keep figure generation code out of the reading flow unless writing the plot is part of the lesson.
   zh: 布局、关系或操作顺序用图更容易讲清楚时，就加一张图。线条示意图优先用 SVG，公式用 TeX 排版。当绘图本身是示例的教学内容时，再展示生成图的代码。
@@ -25,7 +25,7 @@
 - id: 3b70c8e3d7175170
   en: Write in a direct, approachable voice. Keep constraints that affect the example. Cut generic introductions, repeated setup, defensive caveats that do not affect the task, and sentences that only preview the next section. Use short headings that tell readers what they will learn or do.
   zh: 语气直接、自然。保留会影响示例的限制，删掉泛泛的开场、重复的设置步骤、与当前任务无关的提醒和只预告下一节的句子。标题尽量短，让读者一眼看出这一节会讲什么或要做什么。
-  status: machine
+  status: retired
 - id: 209258c99e69a00c
   en: Write an API reference page
   zh: 编写 API 参考
@@ -33,7 +33,7 @@
 - id: b0b3536cb223349a
   en: Use the page overview to explain what an object is and help readers choose among related interfaces. A table is worthwhile when it answers a question that spans several APIs. The [Program](../api/program.md) target table, for example, shows which methods accept integers, references, or groups of targets. If a paragraph only repeats what one method does, keep it in that method's docstring.
   zh: 总览先说明对象是什么，再帮读者在几个相关接口中做选择。如果需要横向比较多个接口，用表格会更清楚。例如，[Program](../api/program.md) 的目标速查表说明哪些方法接受整数、引用或成组指定的目标。只涉及某个方法的细节，放在该方法的 docstring 里。
-  status: machine
+  status: retired
 - id: 054a8fe56d7554f2
   en: Group interfaces by what readers want to do. Use a **Reference** heading when it separates an overview from generated entries. If task headings already organize the entries clearly, as on the [Compiler](../api/compiler.md) page, another heading adds little. On a subclass page, show what the subclass defines or changes and link to useful inherited interfaces. Keep extension hooks available where people need them; hide private fields and implementation classes from ordinary API listings. Preserve existing URLs and anchors when moving content.
   zh: 按读者要做的事组织接口条目。页面有总览、下面接自动生成的条目时，可以用 **API 参考** 作分隔。如果页面已经像 [Compiler](../api/compiler.md) 那样按任务分节，就可以直接展开接口。子类页面重点介绍自己新增或改变的行为，常用的继承接口链接到父类。需要给扩展作者使用的接口应有对应文档，普通 API 列表隐藏私有字段和内部实现类。调整页面结构时保留已有链接和锚点。
@@ -65,7 +65,7 @@
 - id: e66b0f315a917a40
   en: Use exact API names and plain language. Most reference entries should make sense on their own. Link to another reference when it owns shared rules; link to the User Guide when a full workflow helps.
   zh: 保留准确的 API 名称，文字用平实的表达。大多数条目应该能独立读懂。共同规则已有专门的参考条目时，直接链接过去；确实需要完整流程时，再链接用户指南。
-  status: machine
+  status: retired
 - id: b5ac0d998e94477b
   en: Keep translations and previews in sync
   zh: 同步翻译并检查预览
@@ -73,19 +73,19 @@
 - id: f49bba570a8d6174
   en: Make changes to the canonical English page and update the Chinese and Korean versions through the translation repository. Keep identifiers, code, equations, and link targets intact. Use the translators' glossaries for shared terminology and write natural prose in each language. Generated API docstrings stay in English across editions.
   zh: 先改英文原稿，再通过翻译仓库更新中韩文。保留标识符、代码、公式和链接目标。共用术语参考各语言的术语表，正文按各自的语言习惯来写。三版中自动生成的 API docstring 都保留英文。
-  status: machine
+  status: retired
 - id: 8204312b634b0e54
   en: Follow the [documentation validation instructions](https://github.com/spaceqat/fatqat/blob/main/docs/mkdocs/README.md#validate-before-submission). Check the examples and their outputs, compare the rendered page with `help()` where docstrings changed, and preview navigation, links, signatures, formulas, and tables in the affected editions.
   zh: 按[文档验证说明](https://github.com/spaceqat/fatqat/blob/main/docs/mkdocs/README.md#validate-before-submission)检查改动。运行示例并核对输出；改了 docstring，就对照网页和 `help()`。最后在受影响的版本里检查侧栏、链接、签名、公式和表格。
-  status: machine
+  status: retired
 - id: 96fb2d504bd21018
   en: This page explains how to write FatQat's User Guide, API reference, and Case Studies. It covers what belongs in each section, how to document public interfaces and examples, and how to review translations and previews.
   zh: 本页介绍如何编写 FatQat 的用户指南、API 参考和应用案例，包括每类页面该写什么、如何说明接口和示例，以及怎样检查翻译和预览。
-  status: machine
+  status: retired
 - id: ab0b630c07eab4df
   en: The User Guide helps readers learn a FatQat workflow they can use in their own work. Explain what they can do, when it is useful, and how to get and check a result. A guide to noisy simulation can show how to run the same circuit with and without noise and explain why the measurement counts differ.
   zh: 用户指南帮读者学会用 FatQat 完成一项任务，并把这个做法用到自己的工作里。先讲这个做法什么时候有用，再带读者跑通示例、读懂结果。比如，介绍含噪模拟时，可以把同一条线路分别在理想条件和有噪声的条件下运行，再解释两次测量计数为什么不同。
-  status: machine
+  status: retired
 - id: 30f575c16d809dfb
   en: Explain what the example produced and why it matters. Print and show the results the reader needs to compare, such as the counts from two runs. Use the existing example tests to check published results where possible and set a seed if you show exact counts from a stochastic run. Present the result directly unless the page includes a deliberate exercise.
   zh: 把示例中需要比较的结果打印出来，并在正文里展示和解释，比如两次运行各自得到的测量计数。尽量用现有的示例测试核对文档给出的结果。示例涉及随机过程且给出具体计数时，要固定随机种子。练习以外的示例应直接给出结果。
@@ -97,11 +97,11 @@
 - id: 9dac474b9f5b935a
   en: The API reference helps readers choose an interface and confirm how it behaves. A reader looking up `ReadoutConfusion`, for example, needs to know how to pass a probability matrix and what its rows and columns mean. Document the accepted inputs, defaults, return values, and restrictions that affect callers.
   zh: API 参考帮读者选对接口，也能在调用前查清它的行为。比如，查 `ReadoutConfusion` 时，读者需要知道怎么传入概率矩阵，矩阵的行和列分别代表什么。说明接口接受哪些输入，有哪些默认值，会返回什么，以及哪些限制会影响调用。
-  status: machine
+  status: retired
 - id: 7a89672d44356c66
   en: Use the page overview to explain what an object is and help readers choose among related interfaces. A table is worthwhile when it answers a question that spans several APIs. The [Program](../api/program.md) target table, for example, shows which methods accept integers, references, or groups of targets. If a paragraph only repeats what one method does, keep it in that method's docstring. An overview can restate a rule that helps readers choose an interface, with a link to the full explanation.
   zh: 页面开头简要介绍这个对象，说明它有什么用。涉及多个接口、需要并排比较时，可以用表格。例如，[Program](../api/program.md) 的操作目标表集中列出不同方法接受哪些目标写法，包括整数索引、成员引用和成组的目标。方法的具体行为写在该方法的 docstring 中。影响接口选择的关键信息可以在总览里简短提一次，并链接到详细说明。
-  status: machine
+  status: retired
 - id: 3f3cbf3296efc447
   en: For a family of operations, put a comparison table before the API entries if it helps readers choose a gate. Put longer matrix definitions and derivations after the entries. Keep units, target order, and conventions that affect a call close to the interface that uses them.
   zh: 同一类操作如果需要对照选择，可以先放一张对照表，再列出接口。较长的矩阵定义和推导可以放在接口条目之后。在相应接口处说明会影响调用的单位、操作目标顺序和其他约定。
@@ -117,7 +117,7 @@
 - id: 1293fbcf8e5ec9bf
   en: A case study uses FatQat to investigate a concrete scientific or engineering question. For example, a case study might ask how readout errors affect a quantum error correction experiment. Introduce the question, explain why the model fits it, and take the reader through a runnable experiment. Show the results and explain what they tell us about the original question.
   zh: 应用案例从一个具体的科研或工程问题出发，用 FatQat 做一次完整的实验。比如，读出错误会怎样影响量子纠错实验？先明确要研究的问题，以及选用该模型的理由。再说明如何运行实验，展示结果，并结合最初的问题解读结果。
-  status: machine
+  status: retired
 - id: 274aaf7352d1a6c6
   en: Group cases by topic. Use titles that tell readers what each case investigates. Link to the User Guide when readers need background on a workflow used in the case.
   zh: 案例按主题归类，标题直接点明各案例研究的问题。案例中用到的操作流程如果需要补充背景，可以链接到用户指南。
@@ -125,7 +125,7 @@
 - id: 1809bdb622d579ed
   en: Make changes to the canonical English page and update the Chinese and Korean versions through the translation repository. Keep identifiers, code, equations, and link targets intact. Use the translators' glossaries for shared terms and record agreed changes there. Choose wording that fits the context in each language. Use the edition's language for headings and navigation, and keep API names and standard abbreviations as written. Generated API docstrings stay in English across editions.
   zh: 先修改英文原文，再到翻译仓库同步中韩文。保留标识符、代码、公式和链接目标。统一用语时参考术语表，新确定的译法也记到表里。具体句子按各语言的习惯来写。标题和导航用当前版本的语言，API 名称和通用缩写保留原样。各语言版本生成的 API docstring 都沿用英文。
-  status: machine
+  status: retired
 - id: 241d275f719da5b4
   en: Follow the [documentation validation instructions](https://github.com/spaceqat/fatqat/blob/main/docs/mkdocs/README.md#validate-before-submission). Check the examples and their outputs. Where docstrings or API listings changed, compare the rendered page with `help()` and the public signatures. Check the navigation, links, formulas, and tables in the affected editions.
   zh: 按[文档检查说明](https://github.com/spaceqat/fatqat/blob/main/docs/mkdocs/README.md#validate-before-submission)核对示例及输出。改过 docstring 或 API 列表时，把页面渲染结果和 `help()`、公开签名对照一下。检查所有受影响语言版本的导航、链接、公式和表格。
@@ -133,11 +133,11 @@
 - id: 72bb3f17841b8e71
   en: A User Guide page usually focuses on one FatQat capability, such as noisy simulation, circuit compilation, or visualization. Explain what it helps readers do and when they would use it, then walk through an example and make sense of its results. A guide to noisy simulation can run the same circuit with and without noise and explain why the measurement counts differ.
   zh: 一篇用户指南通常围绕 FatQat 的一类功能展开，比如含噪模拟、线路编译或结果可视化。先说明这类功能能解决什么问题、适用于哪些情形，再用一个简短示例说明操作步骤和结果的含义。例如，介绍含噪模拟时，可以用同一条线路对比理想运行和含噪运行，解释两次测量计数的差异。
-  status: machine
+  status: retired
 - id: c38e508bd3d14227
   en: The API reference systematically documents FatQat's public interfaces. Explain what each group of interfaces offers, then give each entry its signature, accepted inputs and defaults, return values, and any constraints or errors that affect callers. For example, the `ReadoutConfusion` entry should explain how to pass a probability matrix and what its rows and columns mean.
   zh: API 参考汇集了 FatQat 的公开接口，并详细说明各接口的用法。先交代这一组接口可以做什么，再在各条目中写清调用签名、可接受的输入及默认值、返回值，以及会影响调用的限制和异常。比如，`ReadoutConfusion` 的条目应该说明如何传入概率矩阵，以及矩阵的行和列分别代表什么。
-  status: machine
+  status: retired
 - id: f5a1cd7afabad499
   en: The English source is sufficient for a documentation pull request. The translation pipeline generates the Chinese and Korean versions by default. If you have a translation or a revision to an existing translation, open a separate pull request in the [translation repository](https://github.com/BoxiLi/fatqat-doc-translator).
   zh: 文档 PR 提交英文原文即可。中文版和韩文版默认由翻译流程自动生成。如果你已有译文，或想修改现有译文，请到[翻译仓库](https://github.com/BoxiLi/fatqat-doc-translator)单独提交 PR。
@@ -153,7 +153,7 @@
 - id: 32ee96f31df548bb
   en: Describe behavior in short, precise sentences. State the conditions that govern the behavior, what the interface does under those conditions, and what it returns. Use terminology consistently throughout the page.
   zh: 用简洁、准确的陈述句说明接口行为。写清哪些条件会影响调用、在这些条件下接口会做什么，以及会返回什么。同一页中的术语要保持一致。
-  status: machine
+  status: retired
 - id: 59e0f4563f77b983
   en: A case study uses FatQat to investigate a concrete scientific or engineering question. For example, a case study might ask how readout errors affect a quantum error correction experiment. Introduce the question, explain why the model fits it, and take the reader through a runnable experiment. Write as you would describe a computational experiment. Show what you observed, using figures, tables, or numerical results where they help. Then return to the original question and explain what conclusions those observations support.
   zh: 应用案例从一个具体的科研或工程问题出发，用 FatQat 做一次完整的实验。比如，读出错误会怎样影响量子纠错实验？先明确要研究的问题，以及选用该模型的理由，再说明如何运行实验。像介绍一次计算实验那样，用图、表或数值展示观察到的结果。最后回到最初的问题，解释这些结果支持什么结论。
@@ -165,7 +165,7 @@
 - id: a88e83f273f3853d
   en: The API reference systematically documents FatQat's public interfaces. Explain what each group of interfaces offers, then give each entry its signature, accepted inputs and defaults, return values, and any constraints or errors that affect callers. Use short, precise sentences and consistent terms to show how the inputs and conditions determine what the interface does and returns. For example, the `ReadoutConfusion` entry should explain how to pass a probability matrix and what its rows and columns mean.
   zh: API 参考汇集了 FatQat 的公开接口，并详细说明各接口的用法。先交代这一组接口可以做什么，再在各条目中写清调用签名、可接受的输入及默认值、返回值，以及会影响调用的限制和异常。用简洁、准确的陈述句说明输入和调用条件怎样影响接口行为和返回值，并在同一页保持术语一致。例如，`ReadoutConfusion` 的条目应该说明如何传入概率矩阵，以及矩阵的行和列分别代表什么。
-  status: machine
+  status: retired
 - id: 3a5da8b1d385b114
   en: These guidelines cover user-facing documentation, including public API docstrings. Include internal implementation details only when they help users call an interface correctly, understand a constraint, or interpret a result.
   zh: 这些要求适用于面向用户的文档，包括公开 API 的 docstring。只有在有助于说明接口的用法、使用限制或结果含义时，才介绍相关的内部实现细节。
@@ -173,11 +173,11 @@
 - id: 7fde757ad2711657
   en: Use the User Guide to teach readers how to use a FatQat feature and understand its results. Use the API reference to help them choose a public interface and look up its exact behavior. Use a case study to show how FatQat answers a specific scientific or engineering question.
   zh: 用户指南围绕 FatQat 的一项功能，讲怎么用、什么时候用，以及怎样读懂结果。API 参考帮助读者选对公开接口，查清调用方式和具体行为。应用案例从一个科研或工程问题出发，展示怎样用 FatQat 做计算实验并解释结果。
-  status: machine
+  status: retired
 - id: 9ca5b6350ef0c596
   en: Open an API page by explaining what its interfaces let readers do. For example, the simulator overview can name the systems and kinds of programs the available simulators handle. In each interface entry, document the signature, accepted inputs and defaults, return values, and conditions or errors that affect a call. For `ReadoutConfusion`, explain how to pass the probability matrix and what its rows and columns mean.
   zh: API 页面开头先说明这组接口能做什么。例如，模拟器总览可以先介绍各模拟器适合哪些物理系统、能运行什么程序。具体到每个接口，写清签名、接受的输入、默认值、返回值，以及会影响调用的限制和异常。介绍 `ReadoutConfusion` 时，就要说明怎样传入概率矩阵，以及矩阵的行和列分别表示什么。
-  status: machine
+  status: retired
 - id: 841ad8e44a1f4b14
   en: Use a table when readers need to compare several interfaces. The [Program](../api/program.md) target table, for example, shows which methods accept integers, references, or groups of targets. Keep method-specific behavior in that method's docstring. The overview can summarize a rule that affects the choice of interface and link to the details.
   zh: 需要横向比较多个接口时，可以用表格。例如，[Program](../api/program.md) 的目标对照表列出了哪些方法接受整数索引、成员引用或一组目标。具体方法的行为写在它自己的 docstring 里。影响接口选择的规则可以在总览里简要说明，再链接到细节。

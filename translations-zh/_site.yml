@@ -61,27 +61,27 @@
 - id: fa67b73f924173f5
   en: Atom gates
   zh: 原子门
-  status: machine
+  status: retired
 - id: 5ccfda1d2e6f7edc
   en: Structural operations
   zh: 结构操作
-  status: machine
+  status: retired
 - id: f2b98fa03b5e7013
   en: Pulse operation
   zh: PulseOperation
-  status: machine
+  status: retired
 - id: aba195e5a25033a0
   en: Sampled waveform
   zh: 采样波形
-  status: machine
+  status: retired
 - id: 311d61958b798ee2
   en: Superconducting profile
   zh: 超导设备模型
-  status: machine
+  status: retired
 - id: be224f1a4e829978
   en: Atom-array profile
   zh: 原子阵列设备模型
-  status: machine
+  status: retired
 - id: 00a5ef93df74d61e
   en: Transmon emulator
   zh: Transmon 仿真器
@@ -125,7 +125,7 @@
 - id: 191121b5415625c5
   en: Implementation maps
   zh: 实现映射
-  status: machine
+  status: retired
 - id: 41086d79c9f4b58a
   en: Runtime result
   zh: 运行结果
@@ -277,7 +277,7 @@
 - id: 90d9132f374d3bac
   en: SC target
   zh: SC 编译目标
-  status: machine
+  status: retired
 - id: c49e59c70de41581
   en: Study repetition-code and surface-code memories, parity checks, and decoding with syndrome histories or information about atom loss.
   zh: 研究重复码与表面码存储实验、奇偶校验，以及利用综合征历史或原子丢失信息进行译码。

@@ -13,7 +13,7 @@
 - id: 8765afb750ad701e
   en: '**Photons are moved, never created.** Beam splitters and phase shifters redistribute photons among modes; the total number that entered stays the same.'
   zh: '**光子只会转移，不会凭空产生。** 分束器和移相器将光子重新分配到各个模式，输入的总光子数保持不变。'
-  status: machine
+  status: retired
 - id: d66be5aca6a75876
   en: '**Photons are identical.** When two photons could have taken different paths to the same outcome, those paths interfere, and some outcomes disappear.'
   zh: '**光子是全同粒子。** 当两个光子可以沿不同路径得到相同结果时，这些路径之间会发生干涉，使某些结果完全消失。'
@@ -101,7 +101,7 @@
 - id: 17f3966500113b69
   en: The method needs a `BasisState` start and modes only, and it rejects noise. For qubits alongside modes, dense initial states, or noise, choose `LOSimulator("statevector")` or `LOSimulator("density_matrix")`; see [`LOSimulator`][fatqat.simulator.LOSimulator] for the full rules.
   zh: 该方法要求使用 `BasisState` 初态，程序只能包含模式，且不接受噪声。若要混合量子比特和模式、使用稠密初态或加入噪声，请选择 `LOSimulator("statevector")` 或 `LOSimulator("density_matrix")`；完整规则见 [`LOSimulator`][fatqat.simulator.LOSimulator]。
-  status: machine
+  status: retired
 - id: cf676503cc0ae1a2
   en: '**A mode holds any number of photons.** Its level $n$ is a photon count, not one of two states.'
   zh: '**一个模式可以容纳任意数量的光子。** 这里的 $n$ 表示模式中的光子数。'

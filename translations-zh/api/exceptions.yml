@@ -5,31 +5,31 @@
 - id: d604ab54b9d78414
   en: Catch [`FatqatError`][fatqat.errors.FatqatError] when one handler can recover from any FATQAT error, or catch a subclass when recovery depends on the failure. Invalid argument types and values may instead raise Python's `TypeError` or `ValueError`.
   zh: 若所有 FATQAT 错误都采用相同的恢复方式，可以统一捕获 [`FatqatError`][fatqat.errors.FatqatError]；需要按错误类型分别处理时，则捕获对应子类。参数类型或取值不合法时，也可能抛出 Python 的 `TypeError` 或 `ValueError`。
-  status: machine
+  status: retired
 - id: 43955a547653b894
   en: '[`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] is a subtype of [`BackendValidationError`][fatqat.errors.BackendValidationError]. A backend normally raises validation errors before `run` returns a job. A later execution failure may be stored on the returned [`Job`][fatqat.Job] and raised by [`result`][fatqat.Job.result].'
   zh: '[`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] 是 [`BackendValidationError`][fatqat.errors.BackendValidationError] 的子类型。后端通常会在 `run` 返回作业之前抛出校验错误。之后发生的执行失败可能会被存储在返回的 [`Job`][fatqat.Job] 上，并由 [`result`][fatqat.Job.result] 抛出。'
-  status: machine
+  status: retired
 - id: c98b8e5a1ab5f6a5
   en: The execution and conversion exceptions covered here inherit from [`FatqatError`][fatqat.errors.FatqatError]. Catch that base class to handle them together, or catch a more specific exception when your response depends on the failure. Invalid Python argument types or values can raise `TypeError` or `ValueError`.
   zh: 这里介绍的执行与转换异常都继承自 [`FatqatError`][fatqat.errors.FatqatError]。需要统一处理时，可以捕获这个基类。需要根据原因分别处理时，捕获相应的子类。参数类型或取值不合法时，也可能抛出 `TypeError` 或 `ValueError`。
-  status: machine
+  status: retired
 - id: 1014089f2104912e
   en: Errors when running a program
   zh: 运行程序时的异常
-  status: machine
+  status: retired
 - id: 1a7f64d3eb16ae47
   en: '[`BackendValidationError`][fatqat.errors.BackendValidationError] means the backend rejects the request before it runs. Its subclass [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] identifies an operation or feature the backend does not support.'
   zh: '[`BackendValidationError`][fatqat.errors.BackendValidationError] 表示后端在执行前拒绝了请求。它的子类 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] 表示后端不支持某个操作或功能。'
-  status: machine
+  status: retired
 - id: 04706116a760934f
   en: An execution error can be raised by the run call or stored in a [`Job`][fatqat.Job] and raised by [`result()`][fatqat.Job.result]. The backend's error policy determines which behavior you get.
   zh: 执行错误可能由运行调用直接抛出，也可能保存在 [`Job`][fatqat.Job] 中，等调用 [`result()`][fatqat.Job.result] 时再抛出。具体取决于后端的错误处理设置。
-  status: machine
+  status: retired
 - id: b9d1507e5967ce0c
   en: '[`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError] means the run produced a result without the requested field. Check `available_data` to see what the result contains.'
   zh: '[`ResultFieldUnavailableError`][fatqat.errors.ResultFieldUnavailableError] 表示运行产生了结果，但你要读取的字段不在其中。用 `available_data` 查看本次返回了哪些字段。'
-  status: machine
+  status: retired
 - id: 7f96f550d7d72d23
   en: For conversion errors, see [OpenQASM](interoperability/openqasm.md#errors) and [Qiskit](interoperability/qiskit.md#backend-execution). The [compiler](compiler.md) has a separate exception hierarchy.
   zh: 转换过程中可能出现的异常分别见 [OpenQASM](interoperability/openqasm.md#errors) 和 [Qiskit](interoperability/qiskit.md#backend-execution)。 [编译器](compiler.md)有独立的异常类型。

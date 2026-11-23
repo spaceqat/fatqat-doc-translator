@@ -5,15 +5,15 @@
 - id: dd12920a0bc8b9ef
   en: FatQat keeps noise separate from [`Program`][fatqat.Program]. Add the noise sources you need to a [`NoiseModel`][fatqat.NoiseModel], then pass that model to a compatible simulator or emulator with `noise=...`. You can reuse the same program for ideal and noisy runs.
   ko: FatQat은 잡음을 [`Program`][fatqat.Program]과 분리해 관리합니다. 필요한 잡음원을 [`NoiseModel`][fatqat.NoiseModel]에 추가한 뒤, 호환되는 시뮬레이터나 에뮬레이터에 `noise=...`로 전달하세요. 같은 프로그램을 이상적 실행과 잡음이 있는 실행에 재사용할 수 있습니다.
-  status: machine
+  status: retired
 - id: cfe326ef2151e877
   en: See [Compare the same Program ideally and noisily](../guide/ideal-and-noisy.md) for a controlled ideal-versus-noisy comparison. This section is the reference for selectors, support, units, and validation.
   ko: 조건을 통제한 비교 예제는 [같은 Program의 이상적 실행과 잡음 실행 비교](../guide/ideal-and-noisy.md)를 참고하세요. 이 절은 선택자, 지원 범위, 단위, 검증을 다루는 레퍼런스입니다.
-  status: machine
+  status: retired
 - id: 7dea6b16fbac7b54
   en: Noise types live in `fatqat.noise`. `NoiseModel` is also available as `fatqat.NoiseModel`.
   ko: 잡음 타입은 `fatqat.noise`에 있습니다. `NoiseModel`은 `fatqat.NoiseModel`로도 사용할 수 있습니다.
-  status: machine
+  status: retired
 - id: 0a4958e8792e912a
   en: Choose a noise type
   ko: 잡음 타입 선택
@@ -21,7 +21,7 @@
 - id: 5002d68269ebe1c9
   en: Probabilities describe one simulator channel application after a matched operation. Rates and relaxation times describe local Lindblad operators that act over emulator time. Backends do not convert between these forms.
   ko: 확률은 일치하는 연산 뒤에 시뮬레이터 채널을 한 번 적용할 때의 값입니다. 잡음률과 이완 시간은 에뮬레이터의 시간에 걸쳐 작용하는 국소 Lindblad 연산자를 나타냅니다. 백엔드는 두 형식을 서로 변환하지 않습니다.
-  status: machine
+  status: retired
 - id: 3e8eac22ec87e872
   en: '**Built-in noise types**'
   ko: '**내장 잡음 타입**'
@@ -69,7 +69,7 @@
 - id: c9366d3f412ef90e
   en: Support depends on the noise form, where it applies, and the backend. The [Backend support](noise/backend-support.md#noise-backend-support) tables show the built-in behavior and unsupported forms for each backend family. Pulse-emulator continuous-noise realizations are family-owned rather than user-replaceable.
   ko: 지원 여부는 잡음 형식, 적용 위치, 백엔드에 따라 달라집니다. [백엔드 지원](noise/backend-support.md#noise-backend-support) 표에서 백엔드 계열별 기본 동작과 지원하지 않는 형식을 확인할 수 있습니다. 펄스 에뮬레이터의 연속 잡음 구현은 백엔드 계열이 제공하며 사용자가 교체할 수 없습니다.
-  status: machine
+  status: retired
 - id: 0eb95fb6244c03f1
   en: Quick start
   ko: 빠른 시작
@@ -77,15 +77,15 @@
 - id: afcfc0f67d465620
   en: 'This model adds a joint channel after every `CX` and then applies binary readout confusion to every measurement:'
   ko: 다음 모델은 모든 `CX` 뒤에 결합 채널을 적용하고, 모든 측정에 이진 판독 혼동을 적용합니다.
-  status: machine
+  status: retired
 - id: 99c2299a697ccf62
   en: 'For a pulse backend, express rates and relaxation times in the model''s time unit. For example, the reference transmon model uses device labels such as `"q0"`. This relaxation noise stays active there throughout elapsed pulse time:'
   ko: 펄스 백엔드에서는 모델의 시간 단위에 맞춰 잡음률과 이완 시간을 지정하세요. 예를 들어 기준 transmon 모델은 `"q0"` 같은 장치 라벨을 사용합니다. 다음 이완 잡음은 펄스 시간이 흐르는 동안 해당 위치에서 계속 작용합니다.
-  status: machine
+  status: retired
 - id: 025749b05b549cc6
   en: 'The reference transmon model uses nanoseconds, while the neutral-atom model uses microseconds. Check the chosen model''s `time_unit` instead of inferring a unit from the size of a value: see [`time_unit`][fatqat.emulator.TransmonModel.time_unit] and [`time_unit`][fatqat.emulator.Atom2LevelModel.time_unit].'
   ko: 기준 transmon 모델은 나노초를, 중성 원자 모델은 마이크로초를 사용합니다. 값의 크기로 단위를 추측하지 말고 선택한 모델의 `time_unit`을 확인하세요. [`time_unit`][fatqat.emulator.TransmonModel.time_unit]과 [`time_unit`][fatqat.emulator.Atom2LevelModel.time_unit]을 참고하세요.
-  status: machine
+  status: retired
 - id: aa0fda68c27da5fc
   en: API pages
   ko: API 레퍼런스 페이지

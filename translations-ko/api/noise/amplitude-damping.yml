@@ -5,15 +5,15 @@
 - id: 2b3a4f0d7ec880ee
   en: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping] describes conventional qubit decay from $|1\rangle$ to $|0\rangle$. Use `p` for a simulator channel or `rate` for a local Lindblad operator on a compatible emulator.'
   ko: '[`AmplitudeDamping`][fatqat.noise.AmplitudeDamping]은 큐비트가 $|1\rangle$에서 $|0\rangle$로 감쇠하는 일반적인 과정을 나타냅니다. 시뮬레이터 채널에는 `p`를, 호환되는 에뮬레이터의 국소 Lindblad 연산자에는 `rate`를 사용하세요.'
-  status: machine
+  status: retired
 - id: ca10ac66c1c0364f
   en: Choose probabilities or rates
   ko: 확률 또는 비율 선택하기
-  status: machine
+  status: retired
 - id: 5aed6fc70d993432
   en: Supply exactly one scalar `p` or `rate`. A probability must lie in `[0, 1]`; a rate must be finite and nonnegative. The descriptor acts on one qubit and does not accept an iterable. Use [`TransitionRelaxation`](transition-relaxation.md) for an explicitly authored finite-dimensional jump operator.
   ko: 스칼라 `p` 또는 `rate` 중 정확히 하나를 지정하세요. 확률은 `[0, 1]`에 있어야 하며 비율은 유한한 비음수여야 합니다. 이 선언은 큐비트 하나에 작용하며 반복 가능한 값은 받지 않습니다. 유한 차원 점프 연산자를 명시적으로 작성하려면 [`TransitionRelaxation`](transition-relaxation.md)을 사용하세요.
-  status: machine
+  status: retired
 - id: 1a3000eff538f415
   en: Simulators
   ko: 시뮬레이터
@@ -37,7 +37,7 @@
 - id: 8ce020ab4b3d0d10
   en: Rates are finite, nonnegative, and measured in the inverse of the backend's time unit. See [Pulse emulators](backend-support.md#noise-emulator-support) for each built-in emulator's local dimension, accepted scope, and implementation-map requirements.
   ko: 비율은 유한한 비음수 값이며 백엔드 시간 단위의 역수로 표현합니다. 내장 에뮬레이터별 국소 차원, 허용 범위, 구현 맵 요구 사항은 [펄스 에뮬레이터](backend-support.md#noise-emulator-support)를 참고하세요.
-  status: machine
+  status: retired
 - id: 3e072a550276a389
   en: Converting between forms
   ko: 형식 간 변환
@@ -57,7 +57,7 @@
 - id: 18c5887764f37016
   en: Choose `p` or `rate` for decay on one qubit. To specify your own transitions or work with more than two levels, use [`TransitionRelaxation`](transition-relaxation.md).
   ko: 큐비트 하나의 감쇠에는 `p` 또는 `rate`를 지정합니다. 전이를 직접 지정하거나 준위가 셋 이상이면 [`TransitionRelaxation`](transition-relaxation.md)을 사용하세요.
-  status: machine
+  status: retired
 - id: 3466154a2a2059dc
   en: Use the inverse of the model's time unit for `rate`. The built-in [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] accepts this form as background noise.
   ko: '`rate`는 모델 시간 단위의 역수로 지정합니다. 내장 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]는 이 형태를 배경 잡음으로 받습니다.'

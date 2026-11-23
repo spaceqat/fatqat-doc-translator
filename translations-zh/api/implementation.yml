@@ -9,7 +9,7 @@
 - id: f691813784da6bbb
   en: Choose a map
   zh: 选择映射
-  status: machine
+  status: retired
 - id: 774eee43524ba029
   en: '[`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] returns a fresh map containing FATQAT''s built-in matrix gates. Editing it does not affect another map or a later call. Construct [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] directly when the backend should support only rules you add.'
   zh: '[`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] 返回一个包含 FATQAT 内置矩阵门的全新映射。编辑它不会影响其他映射或后续调用。当后端只应支持你自行添加的规则时，直接构造 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]。'
@@ -25,11 +25,11 @@
 - id: 65a08b5cc89d4c87
   en: '**Matrix rule forms**'
   zh: '**矩阵规则形式**'
-  status: machine
+  status: retired
 - id: 6dc0a44677c7c095
   en: '`op` is the applied operation value, so it contains parameters such as a rotation angle. `targets` contains scalar program [`RegisterRef`][fatqat.RegisterRef] objects in operand order; a rule can inspect `target.register.dim` when its matrix depends on subsystem dimension.'
   zh: '`op` 是当前要执行的 Operation 对象，其中包含旋转角等参数。`targets` 按操作数顺序给出程序中的标量 [`RegisterRef`][fatqat.RegisterRef]。若矩阵形式取决于子系统维数，可以读取 `target.register.dim`。'
-  status: machine
+  status: retired
 - id: 2950147f148b66c8
   en: Local basis order
   zh: 局部基顺序
@@ -65,7 +65,7 @@
 - id: 03d8783769910f22
   en: Validation timing
   zh: 校验时机
-  status: machine
+  status: retired
 - id: ec87edc281c40f21
   en: '`add` rejects an invalid registration immediately with `TypeError` or `ValueError`. Callables run when a backend prepares a program. A rule that raises produces [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError], an array with the wrong target shape produces [`BackendValidationError`][fatqat.errors.BackendValidationError], and a missing rule produces [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]. These errors occur before `run` returns a [`Job`][fatqat.Job].'
   zh: '`add` 会立即以 `TypeError` 或 `ValueError` 拒绝无效的注册。可调用对象在后端准备程序时运行。抛出异常的规则产生 [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]，目标形状错误的数组产生 [`BackendValidationError`][fatqat.errors.BackendValidationError]，缺失的规则产生 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]。这些错误都发生在 `run` 返回 [`Job`][fatqat.Job] 之前。'
@@ -73,7 +73,7 @@
 - id: 71bf90935fc231d2
   en: Reference
   zh: API 参考
-  status: machine
+  status: retired
 - id: 70db4dffbad4eba5
   en: data `fatqat.implementation.DeviceOperands`
   zh: data `fatqat.implementation.DeviceOperands`
@@ -105,19 +105,19 @@
 - id: 30d3572927e4155e
   en: Use [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to add custom operations and channels to a simulator, or choose rules by physical target. Pass the map as `implementation_map=` when constructing the backend. Built-in gates and channels work without a custom map. Noise placement is still defined by `NoiseModel`; the map supplies how each matched channel acts.
   zh: 使用 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] 为模拟器添加自定义 Operation 和量子信道，或按物理目标选择实现规则。构造后端时，通过 `implementation_map=` 传入这份映射即可。内置量子门和信道无需自定义映射就能使用。噪声施加在何处仍由 `NoiseModel` 决定；映射负责定义匹配到的信道如何作用于量子态。
-  status: machine
+  status: retired
 - id: acb9ba579f4c546a
   en: '[`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] returns a fresh map containing FATQAT''s built-in matrix gates and finite channel rules. Editing it does not affect another map or a later call. Construct [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] directly when the backend should support only rules you add. A supplied map replaces both the gate and channel registrations; start with the default map to retain built-ins.'
   zh: '[`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] 每次都会返回一份新映射，包含 FATQAT 内置的矩阵门和有限量子信道规则。修改它不会影响其他映射或后续调用。若希望后端只支持自己添加的规则，可直接构造 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]。传入映射会同时替换默认的门和信道注册，因此需要保留内置实现时，应从默认映射开始扩展。'
-  status: machine
+  status: retired
 - id: 37537a4985e85159
   en: '[`MatrixImplementationMap.add`][fatqat.implementation.MatrixImplementationMap.add] accepts an operation or channel instance or class. Matrix operations accept these rule forms:'
   zh: '[`MatrixImplementationMap.add`][fatqat.implementation.MatrixImplementationMap.add] 接受 Operation 或信道的实例，也接受它们的类。矩阵 Operation 支持以下几种规则形式：'
-  status: machine
+  status: retired
 - id: 1c1741d2f28083af
   en: Channel rules are callables returning Kraus matrices; see [Custom noise implementations](noise/custom-implementations.md). For operations that update quantum and classical state together, the same map accepts `CustomOperationImplementation` objects. See [Custom operations](simulators/custom-operations.md).
   zh: 信道规则是返回 Kraus 矩阵的可调用对象，详见[自定义噪声实现](noise/custom-implementations.md)。需要同时更新量子态和经典状态时，也可以向同一份映射注册 `CustomOperationImplementation` 对象，详见[自定义 Operation](simulators/custom-operations.md)。
-  status: machine
+  status: retired
 - id: 7f1d40e4fd319694
   en: Both modes accept `num_subsystems=None` and instance-dependent channel widths. Their device-specific tuples may have different lengths. A fixed integer `num_subsystems` requires that many labels.
   zh: 两种模式都接受 `num_subsystems=None`，也支持由具体信道实例决定目标数量。此时，按设备指定的目标元组可以有不同的长度。若 `num_subsystems` 是固定整数，元组中的标签数量就必须与之相等。
@@ -125,7 +125,7 @@
 - id: eb9d12d01172db20
   en: '`add` rejects an invalid registration immediately with `TypeError` or `ValueError`. Matrix and channel rules run when a backend prepares a program. A matrix rule that raises produces [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError], an array with the wrong target shape produces [`BackendValidationError`][fatqat.errors.BackendValidationError], and a missing rule produces [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]. These errors occur before `run` returns a [`Job`][fatqat.Job].'
   zh: 注册不合法时，`add` 会立即抛出 `TypeError` 或 `ValueError`。矩阵规则和信道规则在后端准备程序时执行。矩阵规则自身抛出异常时，会报 [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]；返回数组的形状与目标不匹配时，会报 [`BackendValidationError`][fatqat.errors.BackendValidationError]；找不到规则时，会报 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]。这些错误都会在 `run` 返回 [`Job`][fatqat.Job] 之前发生。
-  status: machine
+  status: retired
 - id: 5c4c675315c95649
   en: Matrix implementation maps
   zh: 矩阵实现映射
@@ -133,11 +133,11 @@
 - id: 4eca2c94120f12aa
   en: A [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] tells a matrix simulator how to apply an operation or noise channel. Use it to register a custom rule, replace a built-in one, or give different device locations different implementations of the same operation. Pass the map as `implementation_map` when creating a simulator. A `NoiseModel` still determines when and where a channel applies.
   zh: '[`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] 告诉矩阵模拟器怎样执行操作或施加量子信道。你可以添加自己的规则、替换内置规则，也可以为同一操作在不同设备位置指定不同实现。创建模拟器时，用 `implementation_map` 传入映射。信道何时作用、作用于哪些目标，仍由 `NoiseModel` 决定。'
-  status: machine
+  status: retired
 - id: b1a65ddcabb5f2c3
   en: Start with [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map] to keep the built-in gate and channel rules, or create an empty [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to define the whole set yourself. The simulator copies the registrations when it is created. Adding or removing a rule from the original map later does not update an existing simulator.
   zh: 想保留内置的门和信道规则，可以从 [`default_matrix_implementation_map()`][fatqat.implementation.default_matrix_implementation_map] 开始。如果想自行提供全部规则，就创建空的 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]。模拟器在创建时复制注册表，之后在原映射上添加或删除规则，不会更新已创建的模拟器。
-  status: machine
+  status: retired
 - id: f40a9da80ceb688a
   en: '[`add()`][fatqat.implementation.MatrixImplementationMap.add] checks the registration when you add it. A rule that raises while the backend prepares an operation can produce [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]. A matrix with the wrong shape raises [`BackendValidationError`][fatqat.errors.BackendValidationError], and an unregistered operation raises [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError].'
   zh: '[`add()`][fatqat.implementation.MatrixImplementationMap.add] 会在注册时检查规则。后端准备操作时，如果规则抛出异常，可能收到 [`MatrixImplementationError`][fatqat.errors.MatrixImplementationError]。矩阵形状不符会抛出 [`BackendValidationError`][fatqat.errors.BackendValidationError]，操作没有匹配的规则则会抛出 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]。'

@@ -65,7 +65,7 @@
 - id: 25045ed989ce293b
   en: '`number_to_keep` retains the most frequent outcomes and combines the remainder into an `other` bar. See [Result](../api/result.md#draw-counts) for the complete option reference.'
   zh: '`number_to_keep` 保留出现最频繁的结果，并把其余结果合并为一个 `other` 柱条。完整的选项参考请参见 [Result](../api/result.md#draw-counts)。'
-  status: machine
+  status: retired
 - id: f77c41b4e8b91770
   en: '![Bell-state measurement frequencies with bars for the zero-zero and one-one outcomes.](../assets/generated/guide/visualization-counts.png)'
   zh: '![贝尔态的测量频率，两个柱分别对应 00 与 11。](../assets/generated/guide/visualization-counts.png)'

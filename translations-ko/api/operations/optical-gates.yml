@@ -5,23 +5,23 @@
 - id: 58361384ac5f822e
   en: These gates act on optical modes, where level `n` is the photon number. They run on [`ModeRegister`][fatqat.ModeRegister] slots under [`LOSimulator`](../simulators/linear-optics.md), and on fixed-dimension [`QuantumRegister`][fatqat.QuantumRegister] slots, where level `d - 1` is the largest photon number. Both gates keep the total photon number.
   ko: 이 게이트들은 준위 `n`이 광자 수를 뜻하는 광학 모드에 작용합니다. [`LOSimulator`](../simulators/linear-optics.md)의 [`ModeRegister`][fatqat.ModeRegister] 슬롯과 고정 차원의 [`QuantumRegister`][fatqat.QuantumRegister] 슬롯에서 실행할 수 있습니다. 고정 차원에서는 준위 `d - 1`이 최대 광자 수입니다. 두 게이트 모두 총 광자 수를 보존합니다.
-  status: machine
+  status: retired
 - id: 1c86f71a32dac445
   en: '| Constructor | Targets | Action |'
   ko: '| 생성자 | 대상 | 작용 |'
-  status: machine
+  status: retired
 - id: fb419dc4d9db3c92
   en: '| [`PhaseShifter`][fatqat.operations.PhaseShifter] `(phi)` | One mode or view | `\|n> -> exp(i*n*phi)\|n>`. On a dimension-2 target it is `Phase(phi)`. |'
   ko: '| [`PhaseShifter`][fatqat.operations.PhaseShifter] `(phi)` | 모드 또는 뷰 하나 | `\|n> -> exp(i*n*phi)\|n>`. 차원이 2인 대상에서는 `Phase(phi)`와 같습니다. |'
-  status: machine
+  status: retired
 - id: 42555206fb424666
   en: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | Two modes `(mode_0, mode_1)`, or two views | Mixes the modes with reflectivity `sin(theta)**2`; `theta=pi/4` is a 50:50 splitter. |'
   ko: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | 두 모드 `(mode_0, mode_1)` 또는 두 뷰 | 반사율 `sin(theta)**2`로 모드를 혼합합니다. `theta=pi/4`는 50:50 빔 스플리터입니다. |'
-  status: machine
+  status: retired
 - id: aec12b984fa4ba45
   en: Angles are numbers in radians or [`Parameter`][fatqat.Parameter] values to bind before execution.
   ko: 각도는 라디안 단위의 수치 또는 실행 전에 바인딩할 [`Parameter`][fatqat.Parameter] 값입니다.
-  status: machine
+  status: retired
 - id: 6825bd331ce46a6c
   en: Beam splitter definition
   ko: 빔 스플리터 정의
@@ -37,15 +37,15 @@
 - id: 6104f6bc2e28d3e3
   en: For a dual-rail qubit with $\lvert 0\rangle = \lvert 1, 0\rangle$ and $\lvert 1\rangle = \lvert 0, 1\rangle$, `BeamSplitter(a / 2, -pi / 2)` acts as `RX(a)` and `BeamSplitter(a / 2)` acts as `RY(a)`.
   ko: $\lvert 0\rangle = \lvert 1, 0\rangle$, $\lvert 1\rangle = \lvert 0, 1\rangle$인 이중 레일 큐비트에서 `BeamSplitter(a / 2, -pi / 2)`는 `RX(a)`로, `BeamSplitter(a / 2)`는 `RY(a)`로 작용합니다.
-  status: machine
+  status: retired
 - id: 89645198ddad3fa6
   en: Truncation
   ko: 절단
-  status: machine
+  status: retired
 - id: 95679ad4e81b0b75
   en: A finite cutoff keeps both gates unitary. `PhaseShifter` is always exact. `BeamSplitter` is exact while its two modes hold at most `cutoff` photons in total (`d - 1` on dimension-`d` targets); beyond that, its result is an approximation.
   ko: 유한한 절단값을 사용해도 두 게이트는 유니터리를 유지합니다. `PhaseShifter`는 항상 정확합니다. `BeamSplitter`는 두 모드의 총 광자 수가 `cutoff` 이하일 때(차원이 `d`인 대상에서는 `d - 1` 이하) 정확하며, 이를 넘으면 근삿값을 반환합니다.
-  status: machine
+  status: retired
 - id: c21f98d20b20afb6
   en: These gates conserve total photon number. Use them on [`ModeRegister`][fatqat.ModeRegister] with [`LOSimulator`](../simulators/linear-optics.md), or on fixed-dimension [`QuantumRegister`][fatqat.QuantumRegister], where level `n` represents `n` photons.
   ko: 이 게이트들은 전체 광자 수를 보존합니다. [`ModeRegister`][fatqat.ModeRegister]의 모드에 적용해 [`LOSimulator`](../simulators/linear-optics.md)로 실행하거나, 차원이 고정된 [`QuantumRegister`][fatqat.QuantumRegister]의 원소에 적용할 수 있습니다. 준위 `n`은 광자 `n`개를 나타냅니다.
@@ -61,7 +61,7 @@
 - id: 0963c0e0ef6763f9
   en: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | Mix two modes with reflectivity `sin(theta)**2`. Use `theta=pi/4` for a balanced splitter. |'
   ko: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | 반사율 `sin(theta)**2`로 두 모드를 혼합합니다. 반사율과 투과율을 같게 하려면 `theta=pi/4`로 설정하세요. |'
-  status: machine
+  status: retired
 - id: 38c564374732cbd9
   en: <a id="api"></a>
   ko: <a id="api"></a>

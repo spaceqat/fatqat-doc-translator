@@ -5,103 +5,103 @@
 - id: 26630112df5240a9
   en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] layers neutral-atom occupancy, loss, and dynamic pairing onto the [`Simulator`][fatqat.simulator.Simulator] execution model. It is useful for checking whether a gate-level program respects those constraints. For pulse timing, transport, or physical interactions, use the [neutral-atom emulator](../atom-emulators.md) instead.'
   ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]는 [`Simulator`][fatqat.simulator.Simulator] 실행 모델에 중성 원자의 점유, 손실, 동적 페어링을 추가합니다. 게이트 수준 프로그램이 이러한 제약을 지키는지 확인할 때 유용합니다. 펄스 시간, 운반, 물리적 상호작용을 다루려면 [중성 원자 에뮬레이터](../atom-emulators.md)를 사용하세요.'
-  status: machine
+  status: retired
 - id: f4ada25b182909a0
   en: '**Hardware profile**'
   ko: '**하드웨어 프로필**'
-  status: machine
+  status: retired
 - id: fd351b84573a78a5
   en: '| Property | Value |'
   ko: '| 속성 | 값 |'
-  status: machine
+  status: retired
 - id: e31905868adcee45
   en: '| Site count | Taken from the quantum resources declared by the `Program` |'
   ko: '| 사이트 수 | `Program`에서 선언한 양자 자원 수로 결정 |'
-  status: machine
+  status: retired
 - id: 9068235bed981f27
   en: '| Native gates | [`fatqat.operations.RX`][fatqat.operations.RX], [`fatqat.operations.RY`][fatqat.operations.RY], [`fatqat.operations.RZ`][fatqat.operations.RZ], and [`fatqat.operations.CZ`][fatqat.operations.CZ] |'
   ko: '| 네이티브 게이트 | [`fatqat.operations.RX`][fatqat.operations.RX], [`fatqat.operations.RY`][fatqat.operations.RY], [`fatqat.operations.RZ`][fatqat.operations.RZ], [`fatqat.operations.CZ`][fatqat.operations.CZ] |'
-  status: machine
+  status: retired
 - id: 1a356989b4a50c63
   en: '| Connectivity | No fixed topology; `CZ` is legal only while its two atoms are paired |'
   ko: '| 연결 관계 | 고정 토폴로지 없음. 두 원자가 페어링된 동안에만 `CZ` 허용 |'
-  status: machine
+  status: retired
 - id: a772d26f357906fc
   en: '| Dimensions | Qubits only |'
   ko: '| 차원 | 큐비트만 허용 |'
-  status: machine
+  status: retired
 - id: 5d885bde1b3206ee
   en: '| Methods | `statevector` and `density_matrix` |'
   ko: '| 방법 | `statevector`와 `density_matrix` |'
-  status: machine
+  status: retired
 - id: a91dda99b3da420e
   en: '| Runtime | Global default (`numba` unless configured); explicit `numpy` or `numba` overrides it |'
   ko: '| 런타임 | 전역 기본값(설정하지 않으면 `numba`); `numpy`나 `numba`를 명시하면 우선 적용 |'
-  status: machine
+  status: retired
 - id: 2628b170b68468d3
   en: '| Noise | Ideal by default; no built-in reference model |'
   ko: '| 잡음 | 기본적으로 이상적이며 내장 참조 모델 없음 |'
-  status: machine
+  status: retired
 - id: f58814884b104747
   en: Program size, mapping, and native operations
   ko: 프로그램 크기, 매핑, 네이티브 연산
-  status: machine
+  status: retired
 - id: 1d9e37fc50bf9906
   en: The quantum resources in each program define the array size, so the backend needs no separate site-count or capacity setting. Registers map to integer device labels in declaration order. A [`GridRegister`][fatqat.GridRegister] is flattened because its coordinates have no physical meaning on this backend.
   ko: 각 프로그램의 양자 자원이 배열 크기를 정하므로 별도의 사이트 수나 용량 설정이 필요 없습니다. 레지스터는 선언 순서대로 정수 장치 라벨에 매핑됩니다. 이 백엔드에서 [`GridRegister`][fatqat.GridRegister]의 좌표는 물리적 의미가 없으므로 평탄화됩니다.
-  status: machine
+  status: retired
 - id: c3df3543b143f41d
   en: The default gate set contains `RX`, `RY`, `RZ`, and `CZ`. The simulator does not decompose other gates, so it rejects `CX` unless an implementation is supplied. [`AtomArraySimulator.implementation_map`][fatqat.simulator.AtomArraySimulator.implementation_map] exposes this gate set, while the current `Pair` graph determines where `CZ` is legal. Add rules to this independent map and pass it as `implementation_map=` to extend the default, including [custom operations](custom-operations.md).
   ko: 기본 게이트 집합은 `RX`, `RY`, `RZ`, `CZ`입니다. 다른 게이트를 분해하지 않으므로 구현을 제공하지 않으면 `CX`를 거부합니다. [`AtomArraySimulator.implementation_map`][fatqat.simulator.AtomArraySimulator.implementation_map]은 이 게이트 집합을 제공하고, 현재 `Pair` 그래프가 `CZ`를 적용할 위치를 정합니다. 기본 기능을 확장하려면 독립적인 이 맵에 규칙을 추가해 `implementation_map=`으로 전달하세요. [사용자 정의 연산](custom-operations.md)도 추가할 수 있습니다.
-  status: machine
+  status: retired
 - id: 6ccef22709adbb01
   en: Native-gate support and `CZ` pairing are checked before occupancy is considered. An unsupported gate or unpaired `CZ` is therefore rejected even when one of its sites is empty; only a supported, correctly-paired gate can become an empty-site no-op.
   ko: 점유 상태보다 먼저 네이티브 게이트 지원 여부와 `CZ` 페어링을 확인합니다. 따라서 사이트가 비어 있어도 지원하지 않는 게이트나 페어링되지 않은 `CZ`는 거부됩니다. 지원되고 올바르게 페어링된 게이트만 빈 사이트에서 아무 효과 없이 넘어갈 수 있습니다.
-  status: machine
+  status: retired
 - id: fb487adac6ee1747
   en: Connectivity evolves as the program runs. An unconditional [`fatqat.operations.Pair`][fatqat.operations.Pair] connects two sites and [`fatqat.operations.Unpair`][fatqat.operations.Unpair] disconnects them. Neither operation changes the quantum state, although attached noise still applies. Both must be unconditional.
   ko: 연결 관계는 실행 중에 바뀝니다. 무조건부 [`fatqat.operations.Pair`][fatqat.operations.Pair]는 두 사이트를 연결하고 [`fatqat.operations.Unpair`][fatqat.operations.Unpair]는 연결을 끊습니다. 부착 잡음은 적용되지만 두 연산 자체는 양자 상태를 바꾸지 않습니다. 두 연산 모두 조건 없이 사용해야 합니다.
-  status: machine
+  status: retired
 - id: eb4ff8c75cb7ea4a
   en: Occupancy and loss
   ko: 원자 점유 상태와 손실
-  status: machine
+  status: retired
 - id: b388a06a14288961
   en: Occupancy is tracked independently for each shot. Sites start empty unless `initial_state` supplies an explicit `ClassicalState.occupied` set through an [`EvolutionState`][fatqat.simulator.EvolutionState]. `occupied=None` keeps the empty default. Initial occupancy does not change the supplied quantum state. [`fatqat.operations.Put`][fatqat.operations.Put] loads a fresh `\|0>` atom into an empty target and leaves an occupied target unchanged. Until a site is loaded—or after it is lost—supported gates and reset have no effect there, while measurement reports erasure digit `2`. A later `Put` can refill the site, and pairing instructions continue to update connectivity throughout.
   ko: 점유는 샷마다 독립적으로 추적합니다. `initial_state`가 [`EvolutionState`][fatqat.simulator.EvolutionState]의 명시적인 `ClassicalState.occupied` 집합을 제공하지 않으면 사이트는 비어 있는 상태로 시작합니다. `occupied=None`도 이 기본값을 유지합니다. 초기 점유 설정은 제공한 양자 상태를 바꾸지 않습니다. [`fatqat.operations.Put`][fatqat.operations.Put]은 빈 대상에 새 `\|0>` 원자를 로딩하고 이미 점유된 대상은 그대로 둡니다. 로딩 전이나 손실 후에는 지원되는 게이트와 리셋이 효과를 내지 않고 측정은 소실 숫자 `2`를 보고합니다. 나중에 `Put`으로 다시 채울 수 있으며, 그동안에도 페어링 명령은 연결 관계를 계속 갱신합니다.
-  status: machine
+  status: retired
 - id: 5c7e58f8261efe83
   en: Occupancy is tracked outside the quantum-state representation. Final statevectors and density matrices still include one qubit subsystem per declared site, whether or not an atom is present. With the default initial state, a never-loaded site is represented by `|0>`, but measuring it returns `2`. These quantum-state exports cannot reveal whether a site is occupied; use measurements and counts, or request `final_classical_state`, for that distinction.
   ko: 점유는 양자 상태 표현과 별도로 추적합니다. 원자가 있든 없든 최종 상태 벡터와 밀도 행렬에는 선언된 사이트마다 큐비트 부분계 하나가 포함됩니다. 기본 초기 상태에서는 한 번도 로딩되지 않은 사이트를 `|0>`으로 표현하지만 측정하면 `2`를 반환합니다. 따라서 양자 상태 출력만으로 점유 여부를 알 수 없습니다. 이를 구분하려면 측정과 카운트를 사용하거나 `final_classical_state`를 요청하세요.
-  status: machine
+  status: retired
 - id: ddcedf9103f9c8b4
   en: '[`Estimator`][fatqat.Estimator] supports loss-free programs only. It preserves both quantum state and occupancy when reusing a base execution. An observable targeting an unloaded site raises [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError] before execution.'
   ko: '[`Estimator`][fatqat.Estimator]는 손실 없는 프로그램만 지원합니다. 기본 실행을 재사용할 때 양자 상태와 점유를 모두 보존합니다. 로딩되지 않은 사이트에 작용하는 관측량은 실행 전에 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]를 발생시킵니다.'
-  status: machine
+  status: retired
 - id: 5bc9c4f859f7633c
   en: '[`fatqat.noise.Loss`][fatqat.noise.Loss] can eject gate targets, make `Put` fail, or model loss during `Pair` and `Unpair`. Its selector runs only after a matching operation; `p=0` removes nothing and leaves the loading rule unchanged. No other gate-level simulator accepts `Loss`. If an otherwise-valid paired `CZ` finds a missing atom, the entangling gate is skipped; an unpaired `CZ` still fails before execution.'
   ko: '[`fatqat.noise.Loss`][fatqat.noise.Loss]는 게이트 대상의 원자를 제거하거나 `Put`을 실패시키고, `Pair`와 `Unpair` 중 손실도 모델링할 수 있습니다. 선택자는 일치하는 연산 뒤에만 실행됩니다. `p=0`이면 아무것도 제거하지 않으며 로딩 규칙도 바꾸지 않습니다. 다른 게이트 수준 시뮬레이터는 `Loss`를 받지 않습니다. 올바르게 페어링된 `CZ`에서 원자가 빠져 있으면 얽힘 게이트를 건너뛰지만, 페어링되지 않은 `CZ`는 여전히 실행 전에 실패합니다.'
-  status: machine
+  status: retired
 - id: f4402208f155c77f
   en: Noise channels can act on only one qubit. For a two-qubit operation, add noise for each qubit separately, using `target_positions` to select it. If one atom is missing, the gate is skipped, but noise still applies to the remaining atom. `Loss` can act on multiple atoms.
   ko: 잡음 채널은 큐비트 하나에만 작용할 수 있습니다. 2큐비트 연산에는 `target_positions`로 각 큐비트를 선택해 잡음을 따로 추가하세요. 원자 하나가 없으면 게이트는 건너뛰지만 남아 있는 원자에는 잡음이 적용됩니다. `Loss`는 여러 원자에 작용할 수 있습니다.
-  status: machine
+  status: retired
 - id: 58f00dfe93ad8d60
   en: Because an empty site produces no physical readout digit, its erasure value `2` bypasses readout-confusion noise. Atom loss also makes the final state stochastic, so `final_state=True` requires `shots == 1`. A measured lossy run returns counts by default rather than one arbitrary trajectory's final state.
   ko: 빈 사이트에는 물리적으로 읽을 숫자가 없으므로 소실 값 `2`에는 판독 혼동 잡음을 적용하지 않습니다. 원자 손실은 최종 상태도 확률적으로 만들기 때문에 `final_state=True`에는 `shots == 1`이 필요합니다. 측정이 있는 손실 실행은 임의 궤적 하나의 최종 상태 대신 기본적으로 카운트를 반환합니다.
-  status: machine
+  status: retired
 - id: d029f87e3d80f8fd
   en: Example
   ko: 예제
-  status: machine
+  status: retired
 - id: a56b273102780095
   en: Because occupancy sits outside the quantum matrix, `unitary` and `superop` cannot represent this lifecycle. `AtomArraySimulator` accepts only `statevector` and `density_matrix`, rejecting either operator method when the backend is constructed—even for a program with no `Put` or loss.
   ko: 점유 정보는 양자 행렬 바깥에 있으므로 `unitary`와 `superop`은 이 수명 주기를 표현할 수 없습니다. `AtomArraySimulator`는 `statevector`와 `density_matrix`만 받으며, `Put`이나 손실이 없는 프로그램이라도 백엔드 생성 시 두 연산자 방법을 거부합니다.
-  status: machine
+  status: retired
 - id: caf1ec495f39bbff
   en: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`AtomArraySimulator.implementation_map`][fatqat.simulator.AtomArraySimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], and [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] follow the general Simulator API and are included below for a complete class reference.'
   ko: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`AtomArraySimulator.implementation_map`][fatqat.simulator.AtomArraySimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model]은 일반 Simulator API를 따릅니다. 전체 클래스 참조를 위해 아래에도 포함했습니다.'
-  status: machine
+  status: retired
 - id: 06c3203f4c571e5d
   en: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] models neutral-atom arrays at the gate level. Use it when a program''s behavior depends on where atoms have been loaded, which pairs can interact, or whether an atom is lost during a shot.'
   ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]는 중성 원자 배열을 게이트 수준에서 시뮬레이션합니다. 어느 사이트에 원자가 로딩됐는지, 어느 쌍이 상호작용하는지, 샷 도중 원자가 손실되는지가 결과에 영향을 줄 때 사용합니다.'
@@ -109,7 +109,7 @@
 - id: 1d788f888667656e
   en: Sites and native gates
   ko: 배열 사이트와 네이티브 게이트
-  status: machine
+  status: retired
 - id: 4adbd367de87e2cf
   en: The program declares the number of sites. Quantum registers must contain qubits, and a [`GridRegister`][fatqat.GridRegister] maps to consecutive integer labels, just like other registers. Use `statevector` or `density_matrix` to evolve the state.
   ko: 프로그램에 선언된 큐비트 수가 배열의 사이트 수를 정합니다. 양자 레지스터에는 큐비트를 사용합니다. [`GridRegister`][fatqat.GridRegister]도 다른 레지스터와 마찬가지로 연속된 정수 번호에 매핑됩니다. 상태 진화에는 `statevector` 또는 `density_matrix`를 사용합니다.
@@ -125,7 +125,7 @@
 - id: c1223d08b81254fe
   en: Track atoms and loss
   ko: 원자 로딩과 손실
-  status: machine
+  status: retired
 - id: 496cc0474e7af92d
   en: Each shot starts with empty sites. Use [`Put`][fatqat.operations.Put] to load an atom in the ground state or pass an [`EvolutionState`][fatqat.simulator.EvolutionState] with `classical.occupied` set to the initially occupied sites. `Put` leaves an occupied site unchanged.
   ko: 각 샷은 기본적으로 빈 배열에서 시작합니다. [`Put`][fatqat.operations.Put]으로 바닥 상태의 원자를 로딩하거나, [`EvolutionState`][fatqat.simulator.EvolutionState]의 `classical.occupied`로 처음부터 원자가 있는 사이트를 지정합니다. 이미 원자가 있는 사이트에 `Put`을 적용해도 그 상태는 그대로입니다.
@@ -133,15 +133,15 @@
 - id: 0baa8e505652f998
   en: A valid gate or reset leaves the state unchanged if a required site is empty. The simulator still checks gate support and pairing. Measurement on an empty site reports `2`, an erasure digit that bypasses readout noise. To read which sites remain occupied, request `final_classical_state` and call [`Result.get_classical_state()`][fatqat.Result.get_classical_state].
   ko: 필요한 사이트가 비어 있으면 실행 가능한 게이트나 리셋도 양자 상태를 바꾸지 않습니다. 시뮬레이터는 게이트 지원 여부와 페어링을 계속 검사합니다. 빈 사이트를 측정하면 판독 잡음이 적용되지 않는 소거 값 `2`가 나옵니다. 실행이 끝난 뒤 원자가 있는 사이트를 확인하려면 `final_classical_state`를 요청하고 [`Result.get_classical_state()`][fatqat.Result.get_classical_state]를 호출합니다.
-  status: machine
+  status: retired
 - id: c53f74f3323f47fc
   en: Attach [`Loss`][fatqat.noise.Loss] to an operation to model an atom leaving the array or failing to load. It samples loss separately for each selected atom. For other noise channels on multi-qubit operations, use `target_positions` to select one qubit per channel. A channel can still act on a present atom when another target is absent.
   ko: 연산에 [`Loss`][fatqat.noise.Loss]를 붙이면 원자가 배열을 벗어나거나 로딩에 실패하는 상황을 모델링할 수 있습니다. 선택된 원자마다 손실을 따로 샘플링합니다. 여러 큐비트에 작용하는 연산에 그 밖의 잡음 채널을 적용할 때는 `target_positions`로 채널당 큐비트 하나를 지정합니다. 다른 대상 사이트가 비어 있어도 원자가 있는 사이트에는 채널이 적용될 수 있습니다.
-  status: machine
+  status: retired
 - id: bf33f48d4689b394
   en: Loss makes the final state stochastic. To read it, request `final_state=True` with `shots=1`. For an expectation value with [`Estimator`][fatqat.Estimator], use a loss-free program and target a loaded site.
   ko: 원자 손실이 있으면 최종 상태는 샷마다 달라질 수 있습니다. 샷 하나의 최종 상태를 읽으려면 `shots=1`에서 `final_state=True`를 요청합니다. [`Estimator`][fatqat.Estimator]로 기댓값을 계산할 때는 손실이 없는 프로그램을 실행하고 원자가 로딩된 사이트를 대상으로 지정합니다.
-  status: machine
+  status: retired
 - id: 86ae5abb115f1562
   en: Read an empty-site measurement
   ko: 빈 사이트의 측정 결과 읽기
@@ -149,7 +149,7 @@
 - id: bc8e12e8d7f0ce11
   en: This program loads site 0 and pairs it with site 1. The pair allows `CZ`, and the empty second site is reported as `2` in every shot.
   ko: 이 프로그램은 사이트 0에 원자를 로딩하고 사이트 1과 페어링합니다. 이 쌍에서 `CZ`를 사용할 수 있으며, 비어 있는 두 번째 사이트에서는 모든 샷에서 `2`가 나옵니다.
-  status: machine
+  status: retired
 - id: eead170bd9700068
   en: <a id="fatqat.simulator.AtomArraySimulator.method"></a>
   ko: <a id="fatqat.simulator.AtomArraySimulator.method"></a>
@@ -169,7 +169,7 @@
 - id: cc60dc5c52048a63
   en: This class defines the array rules and native operation map. For the shared execution and result options, see [`Simulator.run()`][fatqat.simulator.Simulator.run] and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep].
   ko: 이 클래스는 배열의 규칙과 네이티브 연산 맵을 정의합니다. 공통 실행 및 결과 옵션은 [`Simulator.run()`][fatqat.simulator.Simulator.run]과 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]을 참조하세요.
-  status: machine
+  status: retired
 - id: c7ae198ce6dd198b
   en: Configure the array
   ko: 원자 배열 설정
