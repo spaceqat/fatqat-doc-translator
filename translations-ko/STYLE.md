@@ -40,3 +40,10 @@ word order. Preserve exact API names and use consistent conceptual terminology.
 When content or structure needs to change, update the English source first and
 synchronize both locales through extraction. Do not hide removed prose in HTML
 comments or let the localized guides drift apart.
+
+## API reference headings
+
+For API sections that list symbols, translate `Reference`, `Detailed reference`,
+and `API` as “API 레퍼런스”, matching the API index. For headings that
+list other API pages, use “API 레퍼런스 페이지”. This rule does not apply
+to citations or programming references such as `RegisterRef`.

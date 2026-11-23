@@ -7,6 +7,7 @@ nav_page_labels:
   guide/interoperability.md: OpenQASM 与 Qiskit
   guide/troubleshooting.md: 常见问题排查
   guide/linear-optics.md: 线性光学模拟
+  api/noise/readout-confusion.md: 读出误差
 extra_css:
   - assets/stylesheets/translation.css
 theme:

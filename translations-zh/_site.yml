@@ -92,7 +92,7 @@
   status: machine
 - id: 0400649647234c8f
   en: Pauli channel
-  zh: Pauli 信道
+  zh: Pauli 噪声
   status: machine
 - id: efdc19ad0456f1a5
   en: Amplitude damping
@@ -360,7 +360,7 @@
   status: retired
 - id: 068e662d04aee2be
   en: Connect & debug
-  zh: "工具对接与排查"
+  zh: 工具对接与排查
   status: machine
 - id: 6b1df2ba950cf6e7
   en: Case studies
@@ -468,5 +468,29 @@
   status: machine
 - id: 60d3440ebfab046a
   en: Pulse programs
-  zh: "编写和运行脉冲程序"
+  zh: 编写和运行脉冲程序
+  status: machine
+- id: 85926088110d93a2
+  en: Measure, reset & barrier
+  zh: 测量、重置与屏障
+  status: machine
+- id: 8bc2234815dbbd89
+  en: Contributing and development
+  zh: 贡献与开发
+  status: machine
+- id: b361713af8473025
+  en: Developer guide
+  zh: 开发者指南
+  status: machine
+- id: 7722b0524d00cb26
+  en: Writing documentation
+  zh: 编写文档
+  status: machine
+- id: c98b0cb96537ff2a
+  en: SC qubits
+  zh: 超导比特
+  status: machine
+- id: a6aa5ae2c96592fe
+  en: Atom arrays
+  zh: 中性原子阵列
   status: machine

@@ -37,6 +37,15 @@ check` enforces the structural ones; reviewers enforce the rest.
    to this API. Generic quantum/classical registers may remain 量子/经典寄存器;
    explain their role as grouped program resources when first introduced.
    Do not change unrelated words such as 操作数, 操作系统, or 注册.
+   For terms with several meanings, use the `contextual_terms` section of
+   `glossary.yml`. In particular, use the concrete term for a register member
+   when its type is clear, and describe what a `RegisterView` selects.
+   For quantum-state population, avoid 布居. Describe the probability of
+   occupying the relevant level or state, using the glossary's population
+   entries to distinguish occupation from transfer.
+   Reuse established navigation labels when English wording changes without
+   changing the topic. In headings for case studies, name the physical
+   behavior being studied when that is clearer than a literal translation.
 5. **Punctuation.** Chinese prose uses full-width punctuation（，。：；？！）；
    half-width stays inside code spans, paths, and numbers. No space between
    CJK text and full-width punctuation; keep a normal half-width space
@@ -79,3 +88,10 @@ Avoid “构建” in Chinese prose. Choose a concrete verb for the action: 编�
 Program or circuit, 创建 an object, 生成 a schedule or matrix, 建立 a model,
 实现 a gate, and 制备 a quantum state. For documentation output, use 生成文档
 or 更新预览. Keep code identifiers such as build_template() unchanged.
+
+## API reference headings
+
+For API sections that list symbols, translate `Reference`, `Detailed reference`,
+and `API` as “API 参考”, matching the API index. For headings that
+list other API pages, use “API 参考页”. This rule does not apply
+to citations or programming references such as `RegisterRef`.

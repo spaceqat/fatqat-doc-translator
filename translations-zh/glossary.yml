@@ -18,6 +18,7 @@ terms:
   QAOA: QAOA
   VQE: VQE
   Pauli: Pauli
+  Pauli channel: Pauli 噪声
   Kraus: Kraus
   Lindblad: Lindblad
   qubit: 量子比特
@@ -42,6 +43,7 @@ terms:
   thermal relaxation: 热弛豫
   readout: 读出
   coherence: 相干
+  level population: 能级占据概率
   leakage: 泄漏
   pulse: 脉冲
   waveform: 波形
@@ -62,6 +64,10 @@ terms:
 # Context-sensitive terms are reviewed in prose, not by the substring checker.
 # Add the English term at first mention when needed to distinguish the meaning.
 contextual_terms:
+  population:
+    level_occupation: 量子态在某个能级上的 population 用「占据概率」，也可写成「测得该能级的概率」。不用「布居」。
+    state_occupation: 指明具体状态时，直接写「处于该态的概率」，例如「处于里德堡态的概率」。
+    state_transfer: population transfer 描述演化过程时用「态转移」或说明占据概率怎样变化。明确给出初态并讨论转移结果时，可写「从初态转移到目标态的概率」。
   register:
     api_object: Register（按名称和索引组织的程序资源）
     general_concept: 量子寄存器或经典寄存器
@@ -73,3 +79,22 @@ contextual_terms:
     quantum_noise: 量子信道（quantum channel），后文可简称信道
     classical_readout: 经典信道（classical channel），后文可简称信道
     pulse_control: 控制通道（control channel），后文可简称通道
+  slot:
+    register_member: 泛指寄存器中的一个元素时，用「寄存器成员」或「成员」，不用「槽位」。
+    qubit_or_bit: 明确是二能级量子系统或二值经典数据时，分别用「量子比特」或「经典比特」。
+    device_site: 硬件上的 site 或 placement 用「设备上的位置」或「物理位置」，与逻辑寄存器成员区分。
+  view:
+    register_selection: 保留 RegisterView 类型名。正文说明它表示「从一个寄存器中选出的一组成员」，不用「视图」。
+    grid_selection: 按动作说「选中一行／一列／一块」或「选取一组目标」，不用「行视图」。
+    heading: 同时介绍 RegisterRef 和 RegisterView 时，可用「单个成员与成组选择」。
+  documentation_labels:
+    case_studies: 应用案例
+    connect_and_debug: 工具对接与排查
+    simulation_choices: 选择模拟与仿真方式
+    superconducting_qubits: 超导比特模拟
+    neutral_atom_arrays: 中性原子阵列模拟
+    linear_optics: 线性光学模拟
+    transmon_emulation: 超导 Transmon 仿真
+  case_study_titles:
+    pxp_state_revivals: PXP 链何时接近初态
+    rydberg_spin_correlations: 里德堡链中的反铁磁关联
