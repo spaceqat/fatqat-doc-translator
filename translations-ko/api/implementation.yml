@@ -32,11 +32,11 @@
   status: machine
 - id: 6b0bbf8976a50788
   en: '| Two-dimensional NumPy array | One constant matrix | The array; FATQAT copies it, so later changes do not affect the rule |'
-  ko: '| 2차원 NumPy 배열 | 상수 행렬 하나 | 배열 자체를 전달합니다. FATQAT이 복사하므로 이후 원본 배열을 변경해도 규칙에는 영향을 주지 않습니다. |'
+  ko: '| 2차원 NumPy 배열 | 상수 행렬 하나 | 배열 자체를 전달합니다. FatQat이 복사하므로 이후 원본 배열을 변경해도 규칙에는 영향을 주지 않습니다. |'
   status: machine
 - id: 526e30d236208856
   en: '| Callable | A matrix that depends on operation parameters or target dimensions | `rule(op)` by default. If the callable accepts a `targets=` keyword or `**kwargs`, FATQAT calls `rule(op, targets=targets)`. |'
-  ko: '| 호출 가능 객체 | 연산 매개변수나 대상 차원에 따라 달라지는 행렬 | 기본 호출은 `rule(op)`입니다. 객체가 `targets=` 키워드 또는 `**kwargs`를 받으면 FATQAT은 `rule(op, targets=targets)`로 호출합니다. |'
+  ko: '| 호출 가능 객체 | 연산 매개변수나 대상 차원에 따라 달라지는 행렬 | 기본 호출은 `rule(op)`입니다. 객체가 `targets=` 키워드 또는 `**kwargs`를 받으면 FatQat은 `rule(op, targets=targets)`로 호출합니다. |'
   status: machine
 - id: bb5c96eef7125ee7
   en: '| [`MatrixImplementation`][fatqat.implementation.MatrixImplementation] | A configured or stateful rule object | Override `__call__(op, *, targets)`. |'

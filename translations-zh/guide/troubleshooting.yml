@@ -272,7 +272,7 @@
   status: machine
 - id: 3a2e7208d93b0d5f
   en: Read a FatQat count string from classical slot 0 on the left. Tuple keys follow the same order and are easier to read when slots have different dimensions. When any classical dimension is at least 10, the strings separate entries with commas.
-  zh: 读 FatQat 的计数字符串时，从左边的经典槽位 0 开始。元组键的顺序相同，各槽位维度不同时尤其好读。只要有一个槽位的维度达到 10，字符串里就会用逗号分隔各槽位的值。
+  zh: 读 FatQat 的计数字符串时，最左边对应经典寄存器成员 0。元组键的顺序相同，各成员维度不同时更易读。只要有一个经典成员的维度达到 10，字符串就会用逗号分隔各成员的值。
   status: machine
 - id: 0170cdd770f3b0fe
   en: Make a small example that reproduces the problem

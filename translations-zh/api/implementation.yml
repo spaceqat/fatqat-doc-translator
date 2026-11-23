@@ -88,11 +88,11 @@
   status: machine
 - id: 6b0bbf8976a50788
   en: '| Two-dimensional NumPy array | One constant matrix | The array; FATQAT copies it, so later changes do not affect the rule |'
-  zh: '| 二维 NumPy 数组 | 单个常量矩阵 | 该数组；FATQAT 会复制它，因此之后的修改不会影响该规则 |'
+  zh: '| 二维 NumPy 数组 | 单个常量矩阵 | 该数组；FatQat 会复制它，因此之后的修改不会影响该规则 |'
   status: machine
 - id: 526e30d236208856
   en: '| Callable | A matrix that depends on operation parameters or target dimensions | `rule(op)` by default. If the callable accepts a `targets=` keyword or `**kwargs`, FATQAT calls `rule(op, targets=targets)`. |'
-  zh: '| 可调用对象 | 依赖操作参数或目标维度的矩阵 | 默认调用 `rule(op)`。如果该可调用对象接受 `targets=` 关键字或 `**kwargs`，FATQAT 会调用 `rule(op, targets=targets)`。 |'
+  zh: '| 可调用对象 | 依赖操作参数或目标维度的矩阵 | 默认调用 `rule(op)`。如果该可调用对象接受 `targets=` 关键字或 `**kwargs`，FatQat 会调用 `rule(op, targets=targets)`。 |'
   status: machine
 - id: bb5c96eef7125ee7
   en: '| [`MatrixImplementation`][fatqat.implementation.MatrixImplementation] | A configured or stateful rule object | Override `__call__(op, *, targets)`. |'

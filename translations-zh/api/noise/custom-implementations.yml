@@ -104,7 +104,7 @@
   status: machine
 - id: b0426ebe47776df8
   en: Start with [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] when you want to keep FATQAT's built-in simulator rules. See [Simulators](backend-support.md#noise-simulator-support) for backend limits.
-  zh: 若要保留 FATQAT 内置的模拟器规则，请从 [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] 开始扩展。各后端的限制见[模拟器](backend-support.md#noise-simulator-support)。
+  zh: 若要保留 FatQat 内置的模拟器规则，请从 [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] 开始扩展。各后端的限制见[模拟器](backend-support.md#noise-simulator-support)。
   status: machine
 - id: e432d162ee5b8226
   en: 'This custom qubit channel and rule add bit-flip noise while retaining all built-in gate and channel implementations:'

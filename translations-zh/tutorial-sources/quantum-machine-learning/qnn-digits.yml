@@ -5,7 +5,7 @@
 - id: f9afa8402798aeb5
   en: Train a data-reuploading circuit to distinguish handwritten 3s and 6s while evaluating a whole parameter batch with one sweep.
   zh: 训练一个数据重上传线路来区分手写数字 3 和 6，并用一次扫描评估整批参数。
-  status: machine
+  status: retired
 - id: dc23d7d1d2c68a7b
   en: Average-pooled handwritten digit inputs
   zh: 平均池化后的手写数字输入
@@ -13,7 +13,7 @@
 - id: 7399ba3aba833503
   en: Four-qubit data-reuploading QNN template
   zh: 四量子比特数据重上传 QNN 模板
-  status: machine
+  status: retired
 - id: eac3eefc8b361a80
   en: COBYLA training-loss trace
   zh: COBYLA 训练损失曲线
@@ -37,7 +37,7 @@
 - id: eaf0fccde7501325
   en: 'This tutorial trains such a classifier to tell the handwritten digits 3 and 6 apart, and it showcases the piece fatqat contributes beyond a plain "build one circuit per sample" workflow: **the circuit is built once as a parameterized template, and a whole batch of inputs is evaluated with a single** `run_sweep` **call**.'
   zh: 本教程训练一个分类器来区分手写数字 3 和 6，并展示 fatqat 如何省去逐样本创建线路的重复工作：**只创建一次参数化线路模板，再通过一次** `run_sweep` **调用评估整批输入**。
-  status: machine
+  status: retired
 - id: 1ba70b3e6cfc2bb1
   en: The model
   zh: 模型
@@ -45,11 +45,11 @@
 - id: 3b50b023f8232acc
   en: Each qubit alternates an *encoding* gate $R_Y(x)$ with a *trainable* gate $R_Z(\theta)$ over several rounds, entangled by a CX ring — the *data re-uploading* pattern of Pérez-Salinas et al. ([arXiv:1907.02085](https://arxiv.org/abs/1907.02085)). With four qubits and four rounds,
   zh: 每个量子比特在若干轮中交替应用一个*编码*门 $R_Y(x)$ 与一个*可训练*门 $R_Z(\theta)$，并通过 CX 环实现纠缠——这就是 Pérez-Salinas 等人的*数据重上传*模式（[arXiv:1907.02085](https://arxiv.org/abs/1907.02085)）。在四个量子比特、四轮的设置下，
-  status: machine
+  status: retired
 - id: 02227a745fdc83b8
   en: so the 16 features and 16 weights are consumed one per qubit per round. Re-uploading the same features in every round lets a small circuit fit a nonlinear decision boundary.
   zh: 这样，16 个特征和 16 个权重就分配到了各轮的量子比特上，每轮每个量子比特各用一个。在各轮中重复编码相同特征，小线路也能拟合非线性决策边界。
-  status: machine
+  status: retired
 - id: 07facfe486b5561d
   en: 'The readout follows Farhi & Neven ([arXiv:1802.06002](https://arxiv.org/abs/1802.06002)): measure the four single-qubit expectations $\langle Z_q\rangle$ and fold them into two class logits,'
   zh: 读出采用 Farhi 与 Neven 的方法（[arXiv:1802.06002](https://arxiv.org/abs/1802.06002)）：测量四个单量子比特期望值 $\langle Z_q\rangle$，再将它们组合为两个类别的 logits，
@@ -68,7 +68,7 @@
   status: machine
 - id: 8e0a781d13808d8a
   en: The 3-vs-6 subset is shuffled with a seeded generator and each 8x8 image is average-pooled to 4x4 — one feature per qubit per round. Pixel values (0–16) are scaled to angles in $[0, \pi]$, so a blank pixel encodes as the identity rotation $R_Y(0) = I$ and brightness order survives the $\cos$ in $\langle Z\rangle = \cos x$ of a lone $R_Y(x)$.
-  zh: 3 与 6 的子集用设定种子的生成器打乱，每张 8x8 图像被平均池化为 4x4——每轮每个量子比特一个特征。像素值（0–16）被缩放为 $[0, \pi]$ 范围内的角度，因此空白像素编码为恒等旋转 $R_Y(0) = I$，而亮度顺序在单个 $R_Y(x)$ 的 $\langle Z\rangle = \cos x$ 中经过 $\cos$ 后仍得以保留。
+  zh: 数字 3 和 6 组成的子集用带种子的随机数生成器打乱，每张 8x8 图像被平均池化为 4x4——每轮每个量子比特一个特征。像素值（0–16）被缩放到 $[0, \pi]$ 内的角度，因此空白像素编码为恒等旋转 $R_Y(0) = I$；单个 $R_Y(x)$ 给出 $\langle Z\rangle = \cos x$，亮度顺序经过其中的 $\cos$ 后仍然保留。
   status: machine
 - id: caa982bc367bdc6b
   en: This 4x4 pooling — not the original 8x8 scan — is what the circuit sees.
@@ -80,12 +80,12 @@
   status: machine
 - id: 9bb95be967de903f
   en: 'A [`ParameterVector`][fatqat.ParameterVector] is a group of named placeholders. Gates added with placeholders instead of numbers produce a *template*: a program whose structure is fixed but whose angles are bound later. Binding always returns a new program and never mutates the template, so one template serves every sample and every optimizer step.'
-  zh: '[`ParameterVector`][fatqat.ParameterVector] 是一组具名占位符。用占位符而非数值添加的门会产生一个*模板*：其结构固定、角度稍后再绑定的程序。绑定总是返回一个新程序，绝不修改模板本身，因此一个模板即可服务每个样本和每个优化器步骤。'
+  zh: '[`ParameterVector`][fatqat.ParameterVector] 是一组具名占位符。用占位符而非数值添加的门会产生一个*模板*：结构固定、角度稍后再绑定的程序。绑定总是返回一个新程序，绝不修改模板本身，因此同一个模板可用于每个样本和每一步优化。'
   status: machine
 - id: 27c8a8efa25472e1
   en: 'The template draws like any other program: each round applies `RY(x)` then `RZ(θ)` on every wire and closes with the CX ring, repeated four times.'
   zh: 该模板的绘制方式与其他程序无异：每一轮在每条线路上先应用 `RY(x)` 再应用 `RZ(θ)`，并以 CX 环收尾，如此重复四轮。
-  status: machine
+  status: retired
 - id: 73479e1a1924690f
   en: Evaluate a whole batch with one `run_sweep`
   zh: 用一次 `run_sweep` 评估整批数据
@@ -97,11 +97,11 @@
 - id: adb221d68af7fcd3
   en: (In this fatqat version `run_sweep` still lowers and executes row by row; the win today is the single-template workflow and one-call batch interface, which is also where fused batched execution will land. The estimator handles final-state evolution and observable contraction; see [interpreting results](../guide/interpret-results.md).)
   zh: （在这个 fatqat 版本中，`run_sweep` 仍逐行转换程序并执行。目前主要方便之处是只需维护一个模板，并通过一次调用提交整批参数；未来融合后的批量执行也会使用这个接口。估计器负责演化最终态，并与可观测量进行张量收缩，详见[解读结果](../guide/interpret-results.md)。）
-  status: machine
+  status: retired
 - id: 3ad062f431e84703
   en: 'A small check with random initial weights: the logits start near zero, as expected for an untrained circuit.'
   zh: 用随机初始权重做一个小检查：logits 起始接近零，这正是未训练线路的预期表现。
-  status: machine
+  status: retired
 - id: 36a798e3f39239cc
   en: Training
   zh: 训练
@@ -146,3 +146,39 @@
   en: (In this fatqat version `run_sweep` still lowers and executes row by row; the win today is the single-template workflow and one-call batch interface, which is also where fused batched execution will land. For observable-centric workflows, [`fatqat.Estimator`][fatqat.Estimator] offers the same batching as `Estimator.run_sweep`; see [the simulation guide](../guide/simulation.md).)
   zh: （在当前 fatqat 版本中，`run_sweep` 仍然逐行降低并执行；目前的收益在于单模板工作流和一次调用的批处理接口，而这也是将来融合批量执行落地的地方。对于以可观测量为中心的工作流，[`fatqat.Estimator`][fatqat.Estimator] 以 `Estimator.run_sweep` 提供相同的批处理能力；参见[模拟指南](../guide/simulation.md)。）
   status: retired
+- id: 6c5ba0ee55a898f8
+  en: Train a four-qubit circuit that encodes pooled pixels round by round to distinguish handwritten 3s and 6s while evaluating a whole parameter batch with one sweep.
+  zh: 训练一个四量子比特线路，逐轮编码池化后的像素，以区分手写数字 3 和 6；整批参数只需一次扫描即可完成评估。
+  status: machine
+- id: f63fb0bfeab2aad6
+  en: Four-qubit QNN template with four rounds of pixel encoding and trainable rotations
+  zh: 包含四轮像素编码和可训练旋转的四量子比特 QNN 模板
+  status: machine
+- id: 0ca3b43aaec69167
+  en: 'This tutorial trains such a classifier to tell the handwritten digits 3 and 6 apart, and it showcases the piece FatQat contributes beyond a plain "build one circuit per sample" workflow: **the circuit is built once as a parameterized template, and a whole batch of inputs is evaluated with a single** `run_sweep` **call**.'
+  zh: 本教程训练这样一个分类器来区分手写数字 3 和 6，并展示 FatQat 在“为每个样本编写一个线路”的普通流程之外提供的能力：**线路只需作为参数化模板编写一次，整批输入只需一次** `run_sweep` **调用即可完成评估**。
+  status: machine
+- id: 3176cb3d515e0a67
+  en: The 16 input features are encoded in four rounds of four. In each round, every qubit applies an *encoding* gate $R_Y(x)$ followed by a *trainable* gate $R_X(\theta)$, and a CX ring entangles the qubits. With four qubits and four rounds,
+  zh: 16 个输入特征分四轮编码，每轮四个。在每一轮中，每个量子比特先施加*编码*门 $R_Y(x)$，再施加*可训练*门 $R_X(\theta)$，然后由 CX 环使各量子比特相互纠缠。对于四个量子比特和四轮，
+  status: machine
+- id: 81580ee558722087
+  en: 'so round 1 acts first, and each feature and each weight is used once: round $r$ encodes row $r$ of the pooled image, one pixel per qubit. Later pixels are encoded after earlier ones have been rotated and entangled, so the class scores are nonlinear functions of the pixels. The trainable gate uses a different axis from the encoding gate, so it does not merely shift the encoded angle, and the last round''s weights still change the $Z$ expectations measured at the end. A related design, the data re-uploading classifier of Pérez-Salinas et al. ([arXiv:1907.02085](https://arxiv.org/abs/1907.02085)), instead encodes the same input in every round.'
+  zh: 因此第 1 轮最先作用，每个特征和每个权重都只使用一次：第 $r$ 轮编码池化图像的第 $r$ 行，每个量子比特一个像素。后面的像素在前面的像素经过旋转和纠缠之后才被编码，因此类别得分是像素的非线性函数。可训练门与编码门的旋转轴不同，因此它不只是平移编码角度，最后一轮的权重仍会改变末尾测得的 $Z$ 期望值。Pérez-Salinas 等人提出的数据重上传分类器（[arXiv:1907.02085](https://arxiv.org/abs/1907.02085)）是一种相关设计，它在每一轮都编码同一个输入。
+  status: machine
+- id: 4dc72e6310a19e02
+  en: 'The template draws like any other program: each round applies `RY(x)` then `RX(θ)` on every wire and closes with the CX ring, repeated four times.'
+  zh: 模板可以像其他程序一样绘制：每一轮在每个量子比特上先施加 `RY(x)`、再施加 `RX(θ)`，最后接上 CX 环，共重复四轮。
+  status: machine
+- id: ef843864e1308f7d
+  en: The estimator handles final-state evolution and observable contraction; see [interpreting results](../guide/interpret-results.md).
+  zh: 估计器负责计算末态并与可观测量缩并；参见[结果解读](../guide/interpret-results.md)。
+  status: machine
+- id: 530508ea6614779f
+  en: The next cell evaluates the circuit with small random initial weights. The circuit is then close to the bare pixel encoding, so the logits already differ from image to image, but nothing has yet trained them to separate the two classes.
+  zh: 下一个代码单元用较小的随机初始权重评估线路。此时线路接近纯粹的像素编码，因此不同图像的 logits 已经各不相同，但还没有经过训练来区分两类数字。
+  status: machine
+- id: a8072723244e987e
+  en: The model classifies 98.4% of the 244 held-out images correctly, four errors in total. The training loss was still falling when COBYLA stopped after 200 evaluations, and the 4x4 pooling and 16 weights limit how much of each digit's shape the model can use.
+  zh: 模型对 244 张留出图像的分类正确率为 98.4%，共错 4 张。COBYLA 在 200 次求值后停止时，训练损失仍在下降；此外，4x4 池化和 16 个权重也限制了模型能利用多少数字形状信息。
+  status: machine

@@ -12,7 +12,7 @@
   status: machine
 - id: cafd71f5be3baac5
   en: FATQAT validates nonnegative level indices at construction and checks them against the physical target dimension during backend preparation. Numerical index order does not by itself determine energy order; the caller identifies the physically relaxing source and destination states.
-  zh: FATQAT 在构造时验证能级索引非负，并在后端准备阶段检查索引是否位于物理目标的维数范围内。数值索引顺序本身不决定能量顺序；调用者需要指定物理弛豫的源态和目标态。
+  zh: FatQat 在构造时验证能级索引非负，并在后端准备阶段检查索引是否位于物理目标的维数范围内。数值索引顺序本身不决定能量顺序；调用者需要指定物理弛豫的源态和目标态。
   status: machine
 - id: d8cfd0647f813492
   en: Shared and separate jumps

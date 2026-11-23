@@ -216,7 +216,7 @@
   status: retired
 - id: cf68802d85069dac
   en: A [`Program`][fatqat.Program] describes a quantum computation. Its registers identify the quantum and classical slots it uses, and its instructions record which operations and measurements to perform and in what order. A backend executes the instructions and checks whether it supports them.
-  zh: 量子计算的指令写在 [`Program`][fatqat.Program] 里。寄存器标明程序用到哪些量子和经典槽位，指令则说明要按什么顺序执行哪些操作和测量。运行时，后端会检查是否支持这些指令，再执行程序。
+  zh: 量子计算的指令写在 [`Program`][fatqat.Program] 里。寄存器列出程序用到的量子和经典寄存器成员，指令则说明要按什么顺序执行哪些操作和测量。运行时，后端会检查是否支持这些指令，再执行程序。
   status: machine
 - id: 20530d86d89284f9
   en: <a id="registers"></a>
@@ -224,11 +224,11 @@
   status: machine
 - id: a4e73a27ee2f908c
   en: Quantum registers identify the slots that operations act on. Classical registers hold measurement results and values that conditions can read. See [Registers](registers.md) for register types and how to select their slots.
-  zh: 量子寄存器标明操作作用在哪些槽位上。经典寄存器存放测量结果，也可以存放供条件判断读取的值。寄存器有哪些类型、怎样选择槽位，见 [Registers](registers.md)。
+  zh: 量子寄存器的成员是操作的作用对象。经典寄存器存放测量结果，也可以存放供条件判断读取的值。寄存器有哪些类型、怎样选择其中的成员，见 [Registers](registers.md)。
   status: machine
 - id: 88bb88d48b4197c5
   en: Targets tell an operation which slots to act on. For example, in `program.add(ops.CX, (0, 1))`, the two indices select the control and target from the program's only quantum register. The same addressing rules apply when selecting measurement outputs or the classical slots a condition reads.
-  zh: 目标用来指定操作作用在哪些槽位上。例如，`program.add(ops.CX, (0, 1))` 中的两个索引从程序唯一的量子寄存器中选出控制位和目标位。指定测量结果写入的位置，或选择条件要读取的经典槽位时，也遵循同样的寻址规则。
+  zh: 目标用来指定操作作用在哪些成员上。例如，`program.add(ops.CX, (0, 1))` 中的两个索引从程序唯一的量子寄存器中选出控制位和目标位。指定测量结果写入的位置，或选择条件要读取的经典寄存器成员时，也遵循同样的寻址规则。
   status: machine
 - id: 73b9a8710da15622
   en: '| Form | Accepted by | When to use it |'
@@ -240,11 +240,11 @@
   status: machine
 - id: dbc8f92022d42296
   en: '| [`RegisterRef`][fatqat.RegisterRef] | `add()`, `measure()`, `measure_all(outputs=...)`, conditions | Use `q[0]` or `c[0]` to select a slot from a specific register. Required when there is more than one register of that kind. |'
-  zh: '| [`RegisterRef`][fatqat.RegisterRef] | `add()`、`measure()`、`measure_all(outputs=...)` 和条件 | 用 `q[0]` 或 `c[0]` 指定某个寄存器中的槽位。同类寄存器有多个时，必须用这种写法。 |'
+  zh: '| [`RegisterRef`][fatqat.RegisterRef] | `add()`、`measure()`、`measure_all(outputs=...)` 和条件 | 用 `q[0]` 或 `c[0]` 指定某个寄存器中的成员。同类寄存器有多个时，必须用这种写法。 |'
   status: machine
 - id: 5201fcc61089c8bf
   en: '| [`RegisterView`](registers.md#fatqat.RegisterView) | `add()` with gates that support views, or `Put` | A single-target gate acts on each selected slot. A multi-target gate uses one slot from each view at each position. `Put` takes one view as its complete target collection. |'
-  zh: '| [`RegisterView`](registers.md#fatqat.RegisterView) | `add()` 中支持视图的门，以及 `Put` | 单目标门逐个作用于选中的槽位；多目标门从各个视图中取出位置相同的槽位，组成一组目标。`Put` 用一个视图指定全部目标。 |'
+  zh: '| [`RegisterView`](registers.md#fatqat.RegisterView) | `add()` 中支持视图的门，以及 `Put` | 单目标门逐个作用于选中的成员；多目标门从各个视图中取出位置相同的成员，组成一组目标。`Put` 用一个视图指定全部目标。 |'
   status: machine
 - id: a83fb3b74c63712f
   en: 'For a controlled gate, list controls before targets. For a [`PulseOperation`][fatqat.operations.PulseOperation], omit `targets`: the pulse channels specify the physical resources directly.'

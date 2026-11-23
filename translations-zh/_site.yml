@@ -96,7 +96,7 @@
   status: machine
 - id: 518841fbae1e7853
   en: Qutrit-assisted Toffoli
-  zh: 借用第三能级实现 Toffoli 门
+  zh: qutrit 辅助的 Toffoli 门
   status: machine
 - id: c7bdad567af23bae
   en: Error correction
@@ -120,11 +120,11 @@
   status: machine
 - id: b25fd3cfb1e2f248
   en: PXP state revivals
-  zh: PXP 链何时接近初态
+  zh: PXP 链中的量子态复苏
   status: machine
 - id: 070e77afb295eef4
   en: H₂ ground-state energy
-  zh: 用 VQE 求氢分子基态能量
+  zh: H₂ 基态能量
   status: machine
 - id: d4e81b343e3c9857
   en: Combinatorial optimization
@@ -132,11 +132,11 @@
   status: machine
 - id: a98c019277d9e19a
   en: QUBO with QAOA
-  zh: QAOA 求解 QUBO
+  zh: 用 QAOA 求解 QUBO
   status: machine
 - id: 59dd1487d43be792
   en: Grid islanding model
-  zh: 电网分区模型
+  zh: 电网受控解列模型
   status: machine
 - id: 1e02e3a060792752
   en: Grid splitting with QAOA
@@ -269,7 +269,7 @@
 - id: d37597d4221ee046
   en: Executable FatQat case studies in circuits, control, error correction, simulation, optimization, and machine learning.
   zh: 可执行的 FatQat 案例，涵盖线路、控制、纠错、模拟、优化和机器学习。
-  status: machine
+  status: retired
 - id: 93fa26b1cb571427
   en: How does atom loss affect error correction? How does a control pulse change a quantum gate's behavior? And how can a power-grid partition be expressed as an optimization problem? These case studies turn questions like these into models you can run and explore with FatQat. Follow each problem from its background and assumptions through runnable code to plots and an explanation of the results. Choose a topic that interests you, run the example, and change its parameters to investigate further. For the basic use of individual features, see the [user guide](../guide/index.md).
   zh: 原子丢失会怎样影响量子纠错？控制脉冲会怎样改变量子门的行为？电网分区又怎样写成一个优化问题？这里的案例从这些具体问题出发，用 FatQat 把它们变成可以运行和探索的模型。你可以跟着案例了解问题背景与模型假设，运行代码，再结合图表理解计算结果。选一个感兴趣的主题，试着运行示例、调整参数，看看会有什么变化。需要了解某项功能的基本用法时，可以查阅[用户指南](../guide/index.md)。
@@ -284,7 +284,7 @@
   status: machine
 - id: 96fd73eba3eeaa5f
   en: Construct and verify quantum gates and entangled states using mixed qubit-qutrit registers and reconfigurable atom-array connectivity.
-  zh: 使用混合量子比特与 qutrit 的 Register，以及可重构的原子阵列连接关系，实现量子门、制备纠缠态，并验证结果。
+  zh: 利用量子比特-qutrit 混合寄存器和可重构的原子阵列连接，实现量子门、制备纠缠态并加以验证。
   status: machine
 - id: c49e59c70de41581
   en: Study repetition-code and surface-code memories, parity checks, and decoding with syndrome histories or information about atom loss.
@@ -296,7 +296,7 @@
   status: machine
 - id: a651e2aaed99e35c
   en: Encode constraints as QUBOs, solve them with QAOA, and apply the workflow to controlled power-grid islanding.
-  zh: 将约束编码为 QUBO，用 QAOA 求解，并将这一流程用于电网受控孤岛划分。
+  zh: 将约束编码为 QUBO，用 QAOA 求解，并把这一流程应用于电网受控解列。
   status: machine
 - id: 44ca0662598d620e
   en: Train parameterized circuits and search circuit structures for classification and regression with batched parameter sweeps.
@@ -506,3 +506,11 @@
   en: Writing documentation
   zh: 编写文档
   status: machine
+- id: 3f76f2401411712b
+  en: Executable FatQat case studies in circuits, error correction, simulation, optimization, machine learning, and pulse control.
+  zh: 可运行的 FatQat 应用案例，涵盖线路、量子纠错、量子模拟、组合优化、量子机器学习和脉冲控制。
+  status: machine
+- id: dc5688d4638317dc
+  en: Construct and verify quantum gates and entangled states using mixed qubit–qutrit registers and reconfigurable atom-array connectivity.
+  zh: 利用量子比特–qutrit 混合寄存器和可重构的原子阵列连接，实现量子门、制备纠缠态并加以验证。
+  status: retired

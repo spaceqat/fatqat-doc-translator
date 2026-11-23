@@ -29,7 +29,7 @@
 - id: 1ab440021bc584c7
   en: 1. Load the physical model
   zh: 1. 加载物理模型
-  status: machine
+  status: retired
 - id: 309ae74481ba6f64
   en: Model selection is explicit. The document tells us which atomic states and units its interaction coefficient describes; `from_document` validates it before the emulator sees it.
   zh: 先明确选择所用模型。模型文档记录原子态、相互作用系数及单位；`from_document` 会先验证这些数据，再交给仿真器。
@@ -37,7 +37,7 @@
 - id: 9b06b7660ad2401b
   en: 2. Choose the distance from the desired ZZ strength
   zh: 2. 由所需的 ZZ 强度确定原子间距
-  status: machine
+  status: retired
 - id: 65ff8755a91ed9a7
   en: In angular-frequency units, the native Rydberg Hamiltonian is
   zh: 在角频率单位下，原生的里德堡哈密顿量为
@@ -56,12 +56,12 @@
   status: machine
 - id: 5ba35375996662b5
   en: 'Why ten sites? It is already a 1024-dimensional many-body state, but it remains quick enough for a local tutorial run. An even chain also keeps us honest: its open boundaries admit several low-energy patterns, and global controls do not have to select one perfect alternating bit string. We will therefore measure both site populations and a squared order parameter that recognizes staggered correlations without assuming a unique final pattern.'
-  zh: 选择十个格点，是因为它已经能表示一个 1024 维的多体态，同时仍适合在本地快速运行教程。偶数长度的开放链允许多种低能构型，全局控制未必能选出唯一、完美交替的比特串。因此，我们同时测量格点布居和序参量的平方：后者可以反映交错关联，无需假设最终只有一种构型。
+  zh: 为什么用 10 个格点？它已经对应一个 1024 维的多体态，同时又足够小，可以在本地快速跑完教程。偶数长度的链也让我们保持诚实：它的开放边界允许多种低能构型，全局控制未必要选出某一个完美交替的比特串。因此，我们同时测量各格点的占据概率和一个序参量的平方，后者能识别出交错关联，而不必假定最终只有一种构型。
   status: machine
 - id: 20a585f0d1e7b45c
   en: 3. Account for the induced longitudinal field
   zh: 3. 考虑诱导的纵向场
-  status: machine
+  status: retired
 - id: 3e6ff7e4206cbc76
   en: Collecting all Pauli-Z terms gives
   zh: 收集所有 Pauli-Z 项得到
@@ -76,12 +76,12 @@
   status: machine
 - id: c84d2e0b11cf968c
   en: 'More importantly, bulk cancellation is not the best final point for this preparation. At zero drive, adding one excitation while creating one adjacent pair changes the energy by $-\Delta+U$; it costs nothing at $\Delta=U$. We instead finish at $\Delta=U/3$: positive detuning rewards Rydberg occupation, while one nearest-neighbour pair still costs more than the extra excitation gains. This suppresses adjacent excitations, but it does not leave only the two perfect Néel strings: a finite open chain also admits maximum-occupation patterns containing a domain wall. Nearest-pair interactions leave those patterns degenerate, while the full $1/R^6$ tails weakly split them. The goal is therefore short-range antiferromagnetic correlation, not perfect Néel-state preparation. The cancellation formula remains useful for interpreting the Hamiltonian even though we do not end at its bulk value.'
-  zh: 更重要的是，体区抵消并不是这次制备的最佳终点。在零驱动下，增加一个激发并同时形成一个相邻激发对，能量变化为 $-\Delta+U$；在 $\Delta=U$ 时这没有任何代价。我们改为终止于 $\Delta=U/3$：正失谐奖励里德堡占据，而一个最近邻激发对的代价仍高于额外激发带来的收益。这抑制了相邻激发，但并不会只留下两个完美的 Néel 串：有限开放链还允许包含畴壁的最大占据构型。最近邻相互作用使这些构型保持简并，而完整的 $1/R^6$ 尾部会将它们微弱地劈裂。因此目标是短程反铁磁关联，而非完美的 Néel 态制备。尽管我们没有终止在其体区取值，这个抵消公式对理解哈密顿量仍然有用。
+  zh: 更重要的是，体区抵消并不是这次制备的最佳终点。在零驱动下，增加一个激发同时形成一个相邻激发对，能量变化为 $-\Delta+U$；当 $\Delta=U$ 时，这一变化不需要任何能量代价。因此我们改为在 $\Delta=U/3$ 处结束：正失谐有利于里德堡占据，而一个最近邻激发对的代价仍高于额外激发带来的能量收益。这抑制了相邻激发，但并不会只留下两个理想的 Néel 比特串：有限开链还允许包含畴壁的最大占据构型。只考虑最近邻相互作用时，这些构型是简并的；完整的 $1/R^6$ 长程尾部会使它们发生微弱劈裂。因此，我们的目标是短程反铁磁关联，而不是完美制备 Néel 态。尽管最终并不停在体区抵消对应的取值，这个抵消公式对理解哈密顿量仍然有用。
   status: machine
 - id: 532473ed383cea9c
   en: 4. Build the three-stage pulse
   zh: 4. 准备三阶段脉冲
-  status: machine
+  status: retired
 - id: b66ec61d7aa30e7b
   en: 'At the start, $\Omega=0$ and the negative detuning makes $|gg\ldots g\rangle$ the ground state. We then:'
   zh: 起始时 $\Omega=0$，负失谐使 $|gg\ldots g\rangle$ 成为基态。随后我们：
@@ -109,10 +109,10 @@
 - id: 08a10b2d3d504ef0
   en: 5. Ask for observables, not measurement shots
   zh: 5. 请求可观测量，而非测量采样
-  status: machine
+  status: retired
 - id: 83a4bb123b7e9225
   en: '`ONE` is the projector $|r\rangle\langle r|$, so its expectation is the Rydberg population of one site. We request all site populations plus the pair populations. From them we obtain the mean probability that an adjacent pair is simultaneously excited,'
-  zh: '`ONE` 是投影算符 $|r\rangle\langle r|$，因此它的期望值就是单个格点的里德堡布居。我们请求所有格点布居以及成对布居。由此可以得到相邻一对格点被同时激发的平均概率，'
+  zh: '`ONE` 是投影算符 $|r\rangle\langle r|$，因此它的期望值就是单个格点的里德堡态占据概率。我们请求所有格点的占据概率，以及成对的占据概率。由此可以得到相邻一对格点同时被激发的平均概率，'
   status: machine
 - id: eca6cadf4e6dc8f2
   en: and the connected correlation
@@ -133,10 +133,10 @@
 - id: 56f88dae96e759a6
   en: 6. Keep all interactions, then test the nearest-pair approximation
   zh: 6. 保留全部相互作用，再检验最近邻近似
-  status: machine
+  status: retired
 - id: 513df175ff6eeefb
   en: The first run uses the default `interaction_cutoff=None` and retains every unordered pair. The second run on the same emulator deletes terms beyond one lattice spacing. That cutoff is a numerical Hamiltonian truncation, not a blockade radius.
-  zh: 第一次运行使用默认的 `interaction_cutoff=None`，保留每一个无序对。第二次在同一仿真器上的运行删除超出一个晶格间距的项。该截断是数值上的哈密顿量截断，而不是阻塞半径。
+  zh: 第一次运行使用默认的 `interaction_cutoff=None`，保留所有格点对（不分先后）。第二次在同一个仿真器上运行，删去超过一个晶格间距的项。该截断是对哈密顿量的数值截断，而不是阻塞半径。
   status: machine
 - id: 77f96283941ce429
   en: In a uniform chain, the next-nearest interaction is only $U/(2^6)=U/64$. This suggests that nearest-pair physics should be a good explanation, but the comparison below checks the evolved state rather than assuming that a small Hamiltonian term is always irrelevant.
@@ -149,10 +149,10 @@
 - id: ee422ba60954ccc3
   en: 7. Read the many-body result
   zh: 7. 解读多体结果
-  status: machine
+  status: retired
 - id: 201231e5d3f5c3ee
   en: 'The one-site profile is reflection symmetric and visibly influenced by the open edges; it does not pretend that the finite chain selected one perfect bit string. The connected-correlation matrix carries the clearer many-body signature: its signs alternate with separation, while neighbouring double excitations are strongly suppressed. Retaining all $C_6/R^6$ pairs and keeping only nearest pairs lead to the same qualitative state; their small quantitative difference comes from the long-range tails and the associated site-dependent Z shifts. The all-pair result is the physical default. The truncated result is useful because it exposes the familiar nearest-neighbour Ising interpretation.'
-  zh: 单格点分布具有反射对称性，也明显受到开放边界影响，不能据此认为有限链选出了某个完美的交替比特串。连通关联矩阵更清楚地显示了多体特征：关联的符号随间距交替，相邻双激发则受到强烈抑制。保留全部 $C_6/R^6$ 相互作用与只保留最近邻相互作用时，所得量子态在定性上相同；微小的定量差异来自长程尾部及其引起的、随格点变化的 Z 偏移。默认应保留全部相互作用，截断结果则有助于用熟悉的最近邻 Ising 模型理解系统。
+  zh: 单格点占据概率的分布具有反射对称性，也明显受到开放边界的影响；它并不假装有限链选出了某一个完美的比特串。多体特征在连通关联矩阵里体现得更清楚：关联的符号随间距交替，相邻的双激发则被强烈抑制。保留全部 $C_6/R^6$ 相互作用与只保留最近邻相互作用，给出的态在定性上相同；二者细微的定量差别来自长程尾部以及随之而来的、随格点变化的 Z 偏移。保留全部相互作用是物理上的默认选择，截断的结果则有用在它让人看清熟悉的最近邻 Ising 图像。
   status: machine
 - id: 6e8450763098cfe8
   en: Build antiferromagnetic correlations in a Rydberg chain
@@ -162,3 +162,51 @@
   en: The first emulator uses the default `interaction_cutoff=None` and retains every unordered pair. The second deletes terms beyond one lattice spacing. That cutoff is a numerical Hamiltonian truncation, not a blockade radius.
   zh: 第一个仿真器使用默认的 `interaction_cutoff=None`，保留每一个无序对。第二个删除超出一个晶格间距的项。该截断是数值上的哈密顿量截断，而不是阻塞半径。
   status: retired
+- id: ea8c986885c63fe6
+  en: Drive antiferromagnetic correlations in a Rydberg chain
+  zh: 里德堡链中的反铁磁关联
+  status: retired
+- id: 08fbaab1de07d2f2
+  en: Load the physical model
+  zh: 加载物理模型
+  status: machine
+- id: 47e5f516ee5f8f4d
+  en: Choose the distance from the desired ZZ strength
+  zh: 由想要的 ZZ 强度确定原子间距
+  status: machine
+- id: c660f754e27a8a09
+  en: Account for the induced longitudinal field
+  zh: 计入诱导出的纵向场
+  status: machine
+- id: cd5e4930d1fda677
+  en: More importantly, bulk cancellation is not the best final point for this preparation. At zero drive, adding one excitation while creating one adjacent pair changes the energy by $-\Delta+U$; it costs nothing at $\Delta=U$.
+  zh: 更重要的是，体区抵消并不是这一制备过程最合适的终点。在零驱动下，增加一个激发并同时形成一对相邻激发，会使能量改变 $-\Delta+U$；在 $\Delta=U$ 处这不需要付出任何代价。
+  status: retired
+- id: be4fcb874c9143d4
+  en: 'We instead finish at $\Delta=U/3$: positive detuning rewards Rydberg occupation, while one nearest-neighbour pair still costs more than the extra excitation gains. This suppresses adjacent excitations.'
+  zh: 我们改为结束在 $\Delta=U/3$：正失谐使里德堡态占据更有利，而形成一对最近邻激发付出的代价仍高于多一个激发带来的收益。这样就抑制了相邻激发。
+  status: retired
+- id: 70ac6dbe6e5ad12e
+  en: 'It does not, however, leave only the two perfect Néel strings: a finite open chain also admits maximum-occupation patterns containing a domain wall. Nearest-pair interactions leave those patterns degenerate, while the full $1/R^6$ tails weakly split them.'
+  zh: 不过，这样并不会只剩下两个完美的 Néel 串：有限的开放链还允许包含一个畴壁的最大占据构型。只保留最近邻相互作用时这些构型是简并的，完整的 $1/R^6$ 尾部则会把它们微弱地劈裂开。
+  status: retired
+- id: ff40835d2147af72
+  en: The goal is therefore short-range antiferromagnetic correlation, not perfect Néel-state preparation. The cancellation formula remains useful for interpreting the Hamiltonian even though we do not end at its bulk value.
+  zh: 因此，我们的目标是短程反铁磁关联，而不是完美制备 Néel 态。尽管最终并不停在体区抵消对应的取值，这个抵消公式对理解哈密顿量仍然有用。
+  status: retired
+- id: 33fc291debe2d80a
+  en: Build the three-stage pulse
+  zh: 构造三阶段脉冲
+  status: machine
+- id: 0ae59d3bee109131
+  en: Ask for observables, not measurement shots
+  zh: 请求可观测量，而不是测量采样
+  status: machine
+- id: 0271dc1cc542e2b1
+  en: Keep all interactions, then test the nearest-pair approximation
+  zh: 先保留全部相互作用，再检验最近邻近似
+  status: machine
+- id: 76cd7a44bcba4cf0
+  en: Read the many-body result
+  zh: 解读多体结果
+  status: machine

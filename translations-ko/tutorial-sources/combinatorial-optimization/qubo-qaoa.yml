@@ -61,7 +61,7 @@
 - id: 51cb881bfdcd17bc
   en: Everything is seeded, exact where it can be, and runs in a few seconds on a laptop CPU.
   ko: 모든 난수에 시드를 지정하고 가능한 계산은 정확하게 수행합니다. 노트북 CPU에서도 몇 초 안에 실행됩니다.
-  status: machine
+  status: retired
 - id: d14703d1c84265e4
   en: The problem, as a QUBO
   ko: 문제를 QUBO로 표현하기
@@ -72,12 +72,12 @@
   status: machine
 - id: 0f62a0d28fb22fe0
   en: 'One binary variable per node is enough, because with two sides the variable''s value *is* the side. That is worth noticing early: an encoding that cannot represent an invalid assignment needs no penalty to forbid one.'
-  ko: 두 부분만 있으므로 변수값 자체가 소속 부분이며 노드당 이진 변수 하나면 충분합니다. 처음부터 중요한 선택입니다. 잘못된 배정을 표현할 수 없는 인코딩이라면 이를 금지할 벌점도 필요 없습니다.
+  ko: 두 부분만 있으므로 변수값 자체가 소속 부분이며, 노드당 이진 변수 하나면 충분합니다. 이 점은 일찍 눈여겨볼 만합니다. 잘못된 배정을 아예 표현할 수 없는 인코딩이라면 이를 금지할 벌점도 필요 없습니다.
   status: machine
 - id: a4cf555959e44e6a
   en: Nine nodes do not divide evenly into two halves, so the balance target is 4.5 and the penalty cannot reach zero. It contributes a constant floor of $2 \times 0.25$ to every energy, and still prefers a 4/5 split over any other.
   ko: 아홉 노드를 정확히 반으로 나눌 수 없으므로 균형 목표는 4.5이며 벌점은 0이 될 수 없습니다. 모든 에너지에 $2 \times 0.25$의 최소 상수 비용이 더해지지만, 여전히 다른 분할보다 4/5 분할을 선호합니다.
-  status: machine
+  status: retired
 - id: 9370ea11f5b3875c
   en: 'A QUBO is just three containers: a constant, a vector of linear coefficients, and a dictionary of pair coefficients. Building it by hand keeps the algebra visible, and every term below is one line of the model.'
   ko: QUBO는 상수, 선형 계수 벡터, 쌍 계수 사전이라는 세 자료구조로 표현할 수 있습니다. 직접 구성하면 대수가 드러나며, 아래 각 항은 모델의 한 줄에 해당합니다.
@@ -92,7 +92,7 @@
   status: machine
 - id: 1fd8819fdbce8397
   en: 'The enumeration also fixes a convention that matters everywhere else: **row $k$ is the binary expansion of $k$ with variable 0 in the most significant position**. That is exactly how FatQat orders a counts string and a statevector index, so the same array serves as the cost of each measurement outcome without any reindexing.'
-  ko: 전수 조사에서 사용할 순서도 정합니다. **행 $k$는 변수 0을 최상위 자리에 놓은 $k$의 이진 표현입니다.** FatQat의 측정 횟수 문자열과 상태 벡터 인덱스도 같은 순서이므로, 인덱스를 다시 정렬하지 않고 이 배열을 각 측정 결과의 비용으로 사용할 수 있습니다.
+  ko: 전수 조사는 이후 모든 곳에서 쓰이는 순서 규약도 정해 줍니다. **행 $k$는 변수 0을 최상위 자리에 놓은 $k$의 이진 표현입니다.** FatQat의 카운트 문자열과 상태 벡터 인덱스도 같은 순서이므로, 인덱스를 다시 정렬하지 않고 이 배열을 각 측정 결과의 비용으로 사용할 수 있습니다.
   status: machine
 - id: b8dfbc8bc7bf8b34
   en: 'Two optimal assignments, not one: relabeling the two sides gives back the same partition. That symmetry stays with us — it will show up again as an exactly zero magnetic field in the Ising model, and as two equally tall bars in the final histogram.'
@@ -132,11 +132,11 @@
   status: machine
 - id: 2e08ba49437a0646
   en: Program qubit $i$ is variable $i$, and FatQat keeps qubit 0 leftmost in a counts string and most significant in a statevector index — the same order the enumeration above already uses.
-  ko: 프로그램의 큐비트 $i$는 변수 $i$입니다. FatQat은 측정 횟수 문자열에서 큐비트 0을 맨 왼쪽에, 상태 벡터 인덱스에서는 최상위 자리에 둡니다. 앞의 전수 조사와 같은 순서입니다.
+  ko: 프로그램의 큐비트 $i$는 변수 $i$입니다. FatQat은 카운트 문자열에서 큐비트 0을 맨 왼쪽에, 상태 벡터 인덱스에서는 최상위 자리에 둡니다. 앞의 전수 조사와 같은 순서입니다.
   status: machine
 - id: 0fce656469c0cefe
   en: A parameter cannot be scaled inside a gate argument — FatQat gate angles take a number or a bare `fatqat.Parameter`, not an expression — and every phase rotation here needs $\gamma$ multiplied by its own coupling. The program is therefore rebuilt for each set of angles, which costs about a millisecond and disappears next to the simulation.
-  ko: 게이트 인수 안에서 매개변수에 배율을 곱할 수는 없습니다. FatQat의 게이트 각도는 수치나 단독 `fatqat.Parameter`를 받으며 표현식은 받지 않습니다. 여기서는 각 위상 회전마다 $\gamma$에 해당 커플링 값을 곱해야 하므로 각도 집합이 바뀔 때마다 프로그램을 다시 만듭니다. 약 1밀리초의 비용으로 시뮬레이션 시간에 비하면 작습니다.
+  ko: 게이트 인수 안에서 매개변수에 배율을 곱할 수는 없습니다. FatQat의 게이트 각도는 수치나 단독 `fatqat.Parameter`를 받으며 표현식은 받지 않습니다. 여기서는 각 위상 회전마다 $\gamma$에 해당 커플링 값을 곱해야 하므로 각도 집합이 바뀔 때마다 프로그램을 다시 만듭니다. 비용은 1밀리초 정도여서 시뮬레이션 시간에 비하면 무시할 만합니다.
   status: machine
 - id: 6a488f9a52e374bb
   en: Two ways to get the energy
@@ -152,7 +152,7 @@
   status: machine
 - id: d6e6e6f73de24c37
   en: 'The second route exploits a property specific to QUBO: $H$ is diagonal, so its expectation is just the cost of each outcome averaged over the output distribution. One statevector, one dot product against the spectrum computed earlier — and it is exact, cheaper, and gives the whole distribution rather than only its mean.'
-  ko: 두 번째 방법은 QUBO의 특성을 이용합니다. $H$가 대각 행렬이므로 기댓값은 출력 분포로 각 결과의 비용을 평균한 값입니다. 상태 벡터 하나와 앞서 계산한 스펙트럼의 내적이면 됩니다. 정확하고 더 저렴하며 평균뿐 아니라 전체 분포도 얻습니다.
+  ko: 두 번째 방법은 QUBO의 특성을 이용합니다. $H$가 대각 행렬이므로 기댓값은 각 결과의 비용을 출력 분포로 평균한 값입니다. 상태 벡터 하나와 앞서 계산한 스펙트럼의 내적이면 되며, 정확하고 더 저렴한 데다 평균뿐 아니라 전체 분포까지 얻습니다.
   status: machine
 - id: df72a652a18c71c4
   en: The two agree to machine precision, which confirms the observable, the gate construction, and the bit ordering all at once. From here on the distribution route is used, because it also reports how much probability sits on the optimum — the number that actually decides whether a run succeeded.
@@ -208,7 +208,7 @@
   status: machine
 - id: e5adff9d8fa863df
   en: 'Nothing above was specific to graph partitioning. The QUBO containers, the substitution to spins, the phase-separator and mixer construction, the two ways of getting an energy, the depth-growing optimizer, and the sample-and-decode readout are the same for any QUBO. Applying them to a new problem means writing one function: the one that turns the application''s objective and constraints into `constant`, `linear`, and `quadratic`.'
-  ko: 앞의 절차는 그래프 분할에만 한정되지 않습니다. QUBO 자료구조, 스핀 치환, 위상 분리기와 혼합기 구성, 두 가지 에너지 평가, 깊이를 늘리는 최적화, 샘플링과 디코딩은 모든 QUBO에 동일합니다. 새 문제에 적용할 때는 응용의 목적과 제약을 `constant`, `linear`, `quadratic`으로 바꾸는 함수 하나를 작성하면 됩니다.
+  ko: 앞의 절차는 그래프 분할에만 한정되지 않습니다. QUBO 자료구조, 스핀 치환, 위상 분리기와 혼합기 구성, 두 가지 에너지 평가, 깊이를 늘리는 최적화, 샘플링과 디코딩으로 답을 판독하는 과정은 모든 QUBO에 동일합니다. 새 문제에 적용할 때는 응용의 목적과 제약을 `constant`, `linear`, `quadratic`으로 바꾸는 함수 하나를 작성하면 됩니다.
   status: machine
 - id: 1a6535745dc77e82
   en: 'Three lessons generalize with them:'
@@ -228,5 +228,21 @@
   status: machine
 - id: 2c3f526f2e98c43a
   en: '[Model controlled islanding as a QUBO](islanding-model.md) puts all three to work on a real application, where the choice of encoding decides whether the problem fits on the hardware at all, and [Split a power grid into islands with QAOA](islanding-qaoa.md) runs it.'
-  ko: '[제어된 계통 분리를 QUBO로 모델링하기](islanding-model.md)는 이 세 원칙을 실제 응용에 적용합니다. 인코딩 선택이 문제를 하드웨어에 올릴 수 있는지까지 결정합니다. [QAOA로 전력망을 독립 계통으로 나누기](islanding-qaoa.md)에서는 이를 실행합니다.'
+  ko: '[제어된 계통 분리를 QUBO로 모델링하기](islanding-model.md)는 이 세 원칙을 실제 응용에 적용합니다. 인코딩 선택이 문제를 하드웨어에 올릴 수 있는지까지 결정합니다. [QAOA로 전력망을 섬 계통으로 나누기](islanding-qaoa.md)에서는 이를 실행합니다.'
+  status: machine
+- id: 0fc300c2de3f60ac
+  en: Everything is seeded, exact where it can be, and runs in about two minutes on a laptop CPU.
+  ko: 모든 난수에 시드를 지정하고 가능한 곳은 정확히 계산하며, 노트북 CPU에서 약 2분 안에 실행됩니다.
+  status: retired
+- id: 980e91d570fc0aa9
+  en: Nine nodes do not divide evenly into two halves, so the balance target is 4.5 and the penalty cannot reach zero. With `BALANCE_WEIGHT = 1.0` it adds at least $(4 - 4.5)^2 = 0.25$ to every energy, and still prefers a 4/5 split over any other.
+  ko: 아홉 노드는 두 부분으로 똑같이 나뉘지 않으므로 균형 목표는 4.5이고 벌점은 0이 될 수 없습니다. `BALANCE_WEIGHT = 1.0`에서는 모든 에너지에 최소 $(4 - 4.5)^2 = 0.25$를 더하며, 그래도 4/5 분할을 다른 어떤 분할보다 선호합니다.
+  status: retired
+- id: 0c0cf29422fcebf8
+  en: Everything is seeded, exact where it can be, and runs in a minute or two on a laptop CPU.
+  ko: 모든 난수에 시드를 지정하고 가능한 곳은 정확히 계산하며, 노트북 CPU에서 1~2분 안에 실행됩니다.
+  status: machine
+- id: 25abf0c52e6bd762
+  en: Nine nodes do not divide evenly into two halves, so the balance target is 4.5 and the penalty cannot reach zero. It contributes a constant floor of $0.25$ to every energy, and still prefers a 4/5 split over any other.
+  ko: 아홉 노드는 두 부분으로 똑같이 나뉘지 않으므로 균형 목표는 4.5이고 벌점은 0이 될 수 없습니다. 벌점은 모든 에너지에 일정한 하한 $0.25$를 더하며, 그래도 4/5 분할을 다른 어떤 분할보다 선호합니다.
   status: machine

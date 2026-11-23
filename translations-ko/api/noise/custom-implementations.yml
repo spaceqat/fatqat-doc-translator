@@ -44,7 +44,7 @@
   status: retired
 - id: b0426ebe47776df8
   en: Start with [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map] when you want to keep FATQAT's built-in simulator rules. See [Simulators](backend-support.md#noise-simulator-support) for backend limits.
-  ko: FATQAT의 내장 시뮬레이터 규칙을 유지하려면 [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map]에서 시작하세요. 백엔드 제약은 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.
+  ko: FatQat의 내장 시뮬레이터 규칙을 유지하려면 [`default_matrix_implementation_map`][fatqat.implementation.default_matrix_implementation_map]에서 시작하세요. 백엔드 제약은 [시뮬레이터](backend-support.md#noise-simulator-support)를 참고하세요.
   status: machine
 - id: 68e86d76920db277
   en: Minimal example

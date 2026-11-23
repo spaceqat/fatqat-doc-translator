@@ -169,7 +169,7 @@
 - id: d37597d4221ee046
   en: Executable FatQat case studies in circuits, control, error correction, simulation, optimization, and machine learning.
   ko: 회로, 제어, 오류 정정, 시뮬레이션, 최적화, 머신러닝을 다루는 실행 가능한 FatQat 사례 연구입니다.
-  status: machine
+  status: retired
 - id: c2a1b013a196080f
   en: Explore complete, executable case studies grouped by topic. If you are new to FatQat, start with the [quickstart](../guide/quickstart.md) to learn how to build, run, and inspect a program.
   ko: 주제별로 정리한 완전한 사례 연구를 직접 실행해 보세요. FatQat을 처음 사용한다면 [빠른 시작](../guide/quickstart.md)에서 프로그램을 작성하고 실행하며 결과를 살펴보는 방법부터 익히세요.
@@ -192,7 +192,7 @@
   status: machine
 - id: 96fd73eba3eeaa5f
   en: Construct and verify quantum gates and entangled states using mixed qubit-qutrit registers and reconfigurable atom-array connectivity.
-  ko: 큐비트와 큐트릿가 섞인 레지스터 및 재구성 가능한 원자 배열 연결을 이용해 양자 게이트와 얽힌 상태를 만들고 검증합니다.
+  ko: 큐비트–큐트릿 혼합 레지스터와 재구성 가능한 원자 배열 연결을 이용해 양자 게이트와 얽힘 상태를 구성하고 검증합니다.
   status: machine
 - id: c7bdad567af23bae
   en: Error correction
@@ -200,7 +200,7 @@
   status: machine
 - id: c49e59c70de41581
   en: Study repetition-code and surface-code memories, parity checks, and decoding with syndrome histories or information about atom loss.
-  ko: 신드롬 이력이나 원자 손실 정보를 이용해 반복 부호 및 표면 부호 메모리, 패리티 검사, 디코딩을 살펴봅니다.
+  ko: 신드롬 이력이나 원자 손실 정보를 이용해 반복 부호와 표면 부호 메모리, 패리티 검사, 디코딩을 살펴봅니다.
   status: machine
 - id: 424ea86c0b42650e
   en: Quantum simulation
@@ -340,7 +340,7 @@
   status: retired
 - id: a613999da7fdb5fb
   en: Surface-code memory
-  ko: 표면 코드 메모리
+  ko: 표면 부호 메모리
   status: machine
 - id: 3066af9d04c3cc2c
   en: Rydberg correlations
@@ -356,11 +356,11 @@
   status: retired
 - id: a98c019277d9e19a
   en: QUBO with QAOA
-  ko: QAOA로 QUBO 풀기
+  ko: QAOA를 이용한 QUBO 풀이
   status: machine
 - id: 59dd1487d43be792
   en: Grid islanding model
-  ko: 전력망 분리 모델
+  ko: 계통 분리 모델
   status: machine
 - id: 31176b90915dd3ea
   en: Islanding with QAOA
@@ -376,7 +376,7 @@
   status: machine
 - id: dac1da44f97836fc
   en: Gate calibration
-  ko: 양자 게이트 보정
+  ko: 게이트 보정
   status: machine
 - id: bcdd2da3016da4e4
   en: Rydberg CZ control
@@ -388,27 +388,27 @@
   status: machine
 - id: c3dc9d1832a5e485
   en: Atom loss in repetition codes
-  ko: 반복 코드의 원자 손실
+  ko: 반복 부호의 원자 손실
   status: machine
 - id: 873bcaa8d67e29eb
   en: Rydberg spin correlations
-  ko: 리드베르크 사슬의 스핀 상관관계
+  ko: Rydberg 스핀 상관
   status: machine
 - id: b25fd3cfb1e2f248
   en: PXP state revivals
-  ko: PXP 사슬의 초기 상태 재현
+  ko: PXP 상태 재현
   status: machine
 - id: 070e77afb295eef4
   en: H₂ ground-state energy
-  ko: VQE로 구하는 H₂ 바닥상태 에너지
+  ko: H₂ 바닥 상태 에너지
   status: machine
 - id: 1e02e3a060792752
   en: Grid splitting with QAOA
-  ko: QAOA로 전력망 분리
+  ko: QAOA를 이용한 섬 계통 분할
   status: machine
 - id: 7c72718e2952e307
   en: Rydberg CZ pulses
-  ko: 리드베르크 CZ 펄스
+  ko: Rydberg CZ 펄스
   status: machine
 - id: 60d3440ebfab046a
   en: Pulse programs
@@ -442,3 +442,11 @@
   en: Developer guide
   ko: 개발자 가이드
   status: machine
+- id: 3f76f2401411712b
+  en: Executable FatQat case studies in circuits, error correction, simulation, optimization, machine learning, and pulse control.
+  ko: 회로, 오류 정정, 시뮬레이션, 최적화, 머신러닝, 펄스 제어 분야에서 바로 실행해 볼 수 있는 FatQat 응용 사례입니다.
+  status: machine
+- id: dc5688d4638317dc
+  en: Construct and verify quantum gates and entangled states using mixed qubit–qutrit registers and reconfigurable atom-array connectivity.
+  ko: 큐비트–큐트릿 혼합 레지스터와 재구성 가능한 원자 배열 연결을 이용해 양자 게이트와 얽힘 상태를 구성하고 검증합니다.
+  status: retired

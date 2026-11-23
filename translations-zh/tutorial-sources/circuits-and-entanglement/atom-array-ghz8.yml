@@ -4,28 +4,28 @@
   status: machine
 - id: d9b3fc77fc4a2779
   en: Use dynamic Pair and Unpair operations to build an eight-atom GHZ state, then test both its correlations and coherent phase.
-  zh: 使用动态的 Pair 与 Unpair 操作制备八原子 GHZ 态，然后同时检验它的关联与相干相位。
+  zh: 利用在线路中途动态执行的 Pair 和 Unpair 操作制备八原子 GHZ 态，再分别检验它的关联和相干相位。
   status: machine
 - id: 39c2bd539a54affe
   en: Eight-atom GHZ measurement frequencies
-  zh: 八原子 GHZ 测量频率
+  zh: 八原子 GHZ 态的测量频率
   status: machine
 - id: b77cc4d7d4a86b9e
   en: 'This tutorial builds an eight-atom Greenberger-Horne-Zeilinger (GHZ) state on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator], fatqat''s neutral-atom execution target. It builds on the [quickstart](../guide/quickstart.md) in two ways: the state spans eight atoms instead of two, and the circuit runs on a backend whose two-qubit-gate connectivity is *reconfigured mid-circuit* rather than fixed.'
   zh: 本教程在 fatqat 的中性原子执行目标 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上制备八原子 Greenberger-Horne-Zeilinger（GHZ）态。在[快速入门](../guide/quickstart.md)的基础上，它在两方面更进一步：量子态跨越八个原子而非两个，并且线路运行在一个双量子比特门连通性*在线路中途重新配置*而非固定不变的后端上。
-  status: machine
+  status: retired
 - id: 77d0ab522b46a87b
   en: The GHZ state generalises the Bell state to $n$ qubits,
   zh: GHZ 态把 Bell 态推广到 $n$ 个量子比特，
-  status: machine
+  status: retired
 - id: de4d7d92069e01ea
   en: Like the Bell state it cannot be factored into independent single-atom states. Measuring all eight atoms yields *only* `00000000` or `11111111`, each with probability one half, so every atom's outcome is perfectly correlated with every other. That correlation alone, however, is also produced by a classical coin flip that sets all eight bits together; what makes the GHZ state quantum is that the two branches are held in *coherent superposition*, with a definite relative phase. We will confirm the correlations with sampled counts and then confirm the coherence with exact expectation values.
-  zh: 与 Bell 态一样，它无法分解为相互独立的单原子态。测量全部八个原子*只会*得到 `00000000` 或 `11111111`，各以二分之一的概率出现，因此每个原子的结果都与其他所有原子完全相关。然而，仅凭这种关联，一次同时设定全部八个比特的经典抛硬币也能产生；GHZ 态之所以是量子的，在于两个分支处于具有确定相对相位的*相干叠加*之中。我们将先用采样计数确认关联，再用精确期望值确认相干性。
+  zh: 与 Bell 态一样，它不能分解为各原子相互独立的单原子态。测量全部八个原子，结果*只*可能是 `00000000` 或 `11111111`，各以 1/2 的概率出现，因此每个原子的结果都与其余原子完全相关。然而，这种关联本身也可以由经典过程产生：抛一次硬币，同时设定全部八个比特。GHZ 态的量子性在于两个分支处于*相干叠加*，并具有确定的相对相位。下面先用采样计数确认关联，再用精确期望值确认相干性。
   status: machine
 - id: 01a623fbeec22d0c
   en: The neutral-atom twist is connectivity. On this backend a `CZ` acts only on a pair of atoms that is currently *paired*. The [`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] operations update that pairing state as the circuit runs. Physically, `Pair` stands for "move these two atoms into a shared entangling zone" and `Unpair` for "move them apart again" -- the atom transport that gives a reconfigurable neutral-atom processor its programmable connectivity. We exploit exactly this to entangle atoms that no fixed one-dimensional layout would place next to each other.
   zh: 中性原子的特别之处在于连通性。在这个后端上，`CZ` 只能作用于当前处于*配对*状态的一对原子。[`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] 操作会在线路运行过程中更新这一配对状态。物理上，`Pair` 表示“把这两个原子移入共享的纠缠区”，`Unpair` 表示“再把它们分开”——正是这种原子输运赋予可重构中性原子处理器可编程的连通性。我们恰恰利用这一点来纠缠那些任何固定一维布局都不会放在相邻位置的原子。
-  status: machine
+  status: retired
 - id: 765805113af4d820
   en: Imports and display settings
   zh: 导入与显示设置
@@ -36,15 +36,15 @@
   status: machine
 - id: beb520b9b0176ac8
   en: The native gate set
-  zh: 原生门集合
+  zh: 原生门集
   status: machine
 - id: 6855f73611c2f0dd
   en: 'The atom-array backend accepts only its native gates: [`RX`][fatqat.operations.RX], [`RY`][fatqat.operations.RY], [`RZ`][fatqat.operations.RZ], and [`CZ`][fatqat.operations.CZ]. Convenience gates such as `H` and `CX` are not native here, so we compile them by hand -- exactly what a hardware-aware transpiler would do. A Hadamard equals $R_Z(\pi)$ followed by $R_Y(\pi/2)$ up to an irrelevant global phase, and a controlled-X is a Hadamard-conjugated `CZ`:'
-  zh: 原子阵列后端只接受它的原生门：[`RX`][fatqat.operations.RX]、[`RY`][fatqat.operations.RY]、[`RZ`][fatqat.operations.RZ] 和 [`CZ`][fatqat.operations.CZ]。诸如 `H` 和 `CX` 之类的便捷门在这里不是原生的，因此我们手工编译它们——这正是感知硬件的转译器所做的事情。在忽略无关紧要的全局相位后，一个 Hadamard 等于 $R_Z(\pi)$ 后接 $R_Y(\pi/2)$，而受控 X 是被 Hadamard 共轭的 `CZ`：
+  zh: 原子阵列后端只接受原生门：[`RX`][fatqat.operations.RX]、[`RY`][fatqat.operations.RY]、[`RZ`][fatqat.operations.RZ] 和 [`CZ`][fatqat.operations.CZ]。`H`、`CX` 等便捷门在这里不是原生门，因此需要手动编译——考虑硬件约束的转译器做的正是这件事。忽略无关的全局相位，Hadamard 门等于先作用 $R_Z(\pi)$、再作用 $R_Y(\pi/2)$；受控 X 门则是用 Hadamard 门共轭的 `CZ`：
   status: machine
 - id: c0b3b0e4427d8dc4
   en: Writing these as small helpers keeps the circuit-building code below readable.
-  zh: 把它们写成小的辅助函数，能让下面的编写线路的代码保持易读。
+  zh: 把它们写成小型辅助函数，下面编写线路的代码会更易读。
   status: machine
 - id: 201659d345e0999f
   en: A log-depth entangling tree
@@ -53,34 +53,34 @@
 - id: f73480384b24871e
   en: 'We could grow the GHZ state with a chain of seven controlled-X gates, atom `0` reaching each neighbour in turn. Instead we use a *binary tree*, which reaches all eight atoms in only three layers and lets the gates within each layer run in parallel on independent atom pairs:'
   zh: 一种做法是串联七个受控 X 门，让原子 `0` 依次与各个邻居建立纠缠。这里采用*二叉树*结构，只需三层即可覆盖全部八个原子；同一层的门作用于互不重叠的原子对，可以并行执行：
-  status: machine
+  status: retired
 - id: 805a0d8122634fbe
   en: Every pair inside a layer is disjoint, so those controlled-X gates act on separate atoms and could be executed simultaneously by the hardware.
-  zh: 每一层内部的原子对互不相交，因此这些受控 X 门作用于不同的原子，硬件可以同时执行它们。
+  zh: 每一层内的原子对互不重叠，因此这些受控 X 门作用于不同的原子，硬件可以同时执行它们。
   status: machine
 - id: 27b6141739b5de96
   en: Why the pairs must move between layers
-  zh: 为什么原子对必须在层与层之间移动
+  zh: 为什么层与层之间要移动原子
   status: machine
 - id: 649730ce33d9358e
   en: The tree deliberately couples atoms that are far apart. Layer 1 entangles atoms `0` and `4`; layer 2 needs `0` with `2` and `4` with `6`. No fixed nearest-neighbour layout can offer all of those adjacencies at once.
   zh: 这棵树有意让相距很远的原子耦合。第 1 层纠缠原子 `0` 和 `4`；第 2 层需要 `0` 配 `2`、`4` 配 `6`。没有任何固定的最近邻布局能同时提供所有这些相邻关系。
-  status: machine
+  status: retired
 - id: 5f900010505249db
   en: This is where the reconfigurable connectivity earns its place. Just before a layer's gates we [`Pair`][fatqat.operations.Pair] its atoms -- transporting each pair into a shared entangling zone -- and just after we [`Unpair`][fatqat.operations.Unpair] them, freeing the atoms for the next layer's regrouping. If we skipped this rearrangement, the layer-2 and layer-3 `CZ` gates would target atoms that are not paired and the backend would reject the program with [`BackendValidationError`][fatqat.errors.BackendValidationError]. The transport is not incidental to the algorithm; it *is* the algorithm's wiring.
   zh: 这正是可重构连通性大显身手的地方。在某一层的门执行之前，我们用 [`Pair`][fatqat.operations.Pair] 配对该层的原子——把每对原子输运到共享的纠缠区——并在执行之后用 [`Unpair`][fatqat.operations.Unpair] 解除配对，释放原子以供下一层重新分组。如果跳过这一重排，第 2 层和第 3 层的 `CZ` 门将作用于未配对的原子，后端会以 [`BackendValidationError`][fatqat.errors.BackendValidationError] 拒绝该程序。输运不是算法的附带品；它*就是*算法的布线。
-  status: machine
+  status: retired
 - id: 1912a43ea0dc06f3
   en: Sample the eight-atom experiment
-  zh: 采样八原子实验
+  zh: 对八原子实验采样
   status: machine
 - id: 480ed78355df5857
   en: We run the measured program on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]; its eight quantum resources also determine the array size. A fixed seed keeps the numbers stable across tutorial runs, while omitting it produces independent samples. Because the circuit is noiseless, all 2000 shots land on one of the two GHZ branches and no other bitstring appears.
-  zh: 我们在 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上运行带测量的程序；它的八个量子资源也决定了阵列规模。固定的种子使数字在多次教程运行之间保持稳定，而省略它则会产生相互独立的样本。由于线路无噪声，全部 2000 次测量都落在两个 GHZ 分支之一上，不会出现其他比特串。
+  zh: 我们在 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上运行带测量的程序，程序的八个量子资源同时决定了阵列规模。固定种子使教程每次运行得到的数字保持不变；省略种子则得到相互独立的样本。由于线路没有噪声，全部 2000 次采样都落在两个 GHZ 分支之一，不会出现其他比特串。
   status: machine
 - id: 404426e0944e91ee
   en: Only `00000000` and `11111111` occur, each in roughly half the shots. The bars below show the observed frequencies against the ideal $1/2$; finite-shot sampling nudges each bar slightly off that line, while every intermediate bitstring stays empty.
-  zh: 只出现 `00000000` 和 `11111111`，各约占一半的测量次数。下方柱状图把观测频率与理想的 $1/2$ 对比；有限次采样使每个柱条略微偏离该线，而所有中间比特串都保持为空。
+  zh: 只出现 `00000000` 和 `11111111`，各约占一半采样。下方柱状图将观测频率与理想值 $1/2$ 对比：由于采样次数有限，每根柱子都略微偏离该值，而其余比特串的计数始终为零。
   status: machine
 - id: b86760df704fd29f
   en: Correlated is not the same as coherent
@@ -88,15 +88,15 @@
   status: machine
 - id: 2f01290f46aa8415
   en: The counts prove the eight atoms are perfectly *correlated*, but a classical mixture -- an even coin flip between "all zero" and "all one" -- would give the identical histogram. To see the quantum coherence we measure observables the mixture and the superposition disagree on, using the exact [`Estimator`][fatqat.Estimator] on the unmeasured state.
-  zh: 计数证明八个原子完全*相关*，但一个经典混合态——在“全零”与“全一”之间等概率抛硬币——会给出完全相同的直方图。要看到量子相干性，我们改测混合态与叠加态给出不同结果的可观测量，方法是在未测量的态上使用精确的 [`Estimator`][fatqat.Estimator]。
+  zh: 计数证明八个原子完全*相关*，但经典混合态——相当于公平地抛硬币决定“全零”还是“全一”——也会给出完全相同的直方图。要看到量子相干性，需要测量混合态与叠加态给出不同结果的可观测量；为此，对未测量的态使用精确的 [`Estimator`][fatqat.Estimator]。
   status: machine
 - id: cc8db912b38fba3a
   en: 'Two families pin down $|\mathrm{GHZ}_8\rangle$. Each neighbour parity $\langle Z_i Z_{i+1}\rangle = 1$ says adjacent atoms always agree -- something the classical mixture also satisfies. The global $X$-parity $\langle X_0 X_1 \cdots X_7\rangle = 1$ is the discriminator: it equals $+1$ only for the coherent superposition and averages to $0$ for the mixture. Observing both confirms a true GHZ state.'
   zh: 两族可观测量共同锁定 $|\mathrm{GHZ}_8\rangle$。每个近邻宇称 $\langle Z_i Z_{i+1}\rangle = 1$ 表明相邻原子总是一致——经典混合态同样满足这一点。全局 $X$ 宇称 $\langle X_0 X_1 \cdots X_7\rangle = 1$ 才是判别量：它只对相干叠加等于 $+1$，而对混合态平均为 $0$。两者同时观测到，才能确认这是真正的 GHZ 态。
-  status: machine
+  status: retired
 - id: 65c5c2e0e2e3cd81
   en: Every witness returns $+1$, including the global $X$-parity, so the state is the coherent GHZ superposition rather than a classical mixture that would merely reproduce its counts.
-  zh: 每个见证量都返回 $+1$，包括全局 $X$ 宇称，因此该态是相干的 GHZ 叠加态，而不是仅能复现其计数的经典混合态。
+  zh: 每个见证量都返回 $+1$，包括全局 $X$ 奇偶性，因此该态是相干的 GHZ 叠加态，而不是仅能复现相同计数的经典混合态。
   status: machine
 - id: ff5c8f1a1c5f3ce2
   en: A cost of moving atoms around
@@ -104,11 +104,11 @@
   status: machine
 - id: 647d8b9ec9fd13f5
   en: 'Reconfigurable connectivity is not free: each transport step risks losing an atom from its trap. We model that by attaching [`Loss`][fatqat.noise.Loss] to the `Pair` and `Unpair` operations, which ejects an atom with some probability whenever it is moved. Only this neutral-atom backend models atom loss; a generic simulator rejects the same noise model.'
-  zh: 可重构连通性并非没有代价：每一步输运都有把原子从阱中丢失的风险。我们通过给 `Pair` 和 `Unpair` 操作附加 [`Loss`][fatqat.noise.Loss] 来建模这一点，它使原子在每次被移动时以一定概率被弹出。只有这个中性原子后端会对原子丢失建模；通用模拟器会拒绝同样的噪声模型。
+  zh: 可重构连通性并非没有代价：每一步输运都可能使原子从阱中丢失。我们给 `Pair` 和 `Unpair` 操作附加 [`Loss`][fatqat.noise.Loss] 来建模这一点：每次移动原子时，它都以一定概率被弹出阱外。只有这个中性原子后端会模拟原子丢失；通用模拟器会拒绝同一个噪声模型。
   status: machine
 - id: d81ba845d3a73382
   en: 'A lost atom is not a `|0>` and not a `|1>`: it is *gone*, and reads out as the erasure digit `2`, distinct from either computational outcome. Any shot whose bitstring contains a `2` therefore had at least one atom fall out during transport.'
-  zh: 丢失的原子既不是 `|0>` 也不是 `|1>`：它*不见了*，读出时显示为擦除数字 `2`，与两种计算结果都不同。因此，任何比特串中含有 `2` 的测量都意味着至少有一个原子在输运过程中掉了出去。
+  zh: 丢失的原子既不是 `|0>`，也不是 `|1>`：它已经*不在阱中*，读出时显示为擦除数字 `2`，与两种计算基结果都不同。因此，只要某次采样的比特串中含有 `2`，就说明至少有一个原子在输运过程中丢失。
   status: machine
 - id: 7a75bef3d4ffa30a
   en: Takeaways and next steps
@@ -116,11 +116,11 @@
   status: machine
 - id: 9ab3c992258dc0ad
   en: This tutorial assembled a genuine eight-atom GHZ state, verified its correlations from sampled counts and its coherence from exact expectation values, and saw how moving atoms to reconfigure connectivity both enables the log-depth entangling tree and introduces a realistic loss channel.
-  zh: 本教程组装了一个真正的八原子 GHZ 态，用采样计数验证了它的关联，用精确期望值验证了它的相干性，并看到了通过移动原子来重构连通性既支撑起对数深度的纠缠树，也引入了一个真实的丢失信道。
+  zh: 本教程制备了真正的八原子 GHZ 态，用采样计数验证了它的关联，用精确期望值验证了它的相干性。我们还看到，通过移动原子来重构连通性，一方面使对数深度的纠缠树成为可能，另一方面也引入了符合实际的原子丢失信道。
   status: machine
 - id: 417daac31f855361
   en: 'From here, try widening the tree to sixteen atoms by adding a fourth layer, raising the loss probability to watch erasures grow, or intentionally dropping the `Pair` / `Unpair` calls from one layer to see [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] reject the first unpaired `CZ` with [`BackendValidationError`][fatqat.errors.BackendValidationError]. Restore the pairing before exploring physical loss: an unpaired gate is a program error, while a gate skipped after atom loss is a per-shot physical effect. The downloadable Python is generated from these Markdown cells, so the variations can be made directly in runnable code.'
-  zh: 接下来，可以尝试增加第四层把树扩展到十六个原子、提高丢失概率来观察擦除结果的增多，或者有意去掉某一层的 `Pair` / `Unpair` 调用，看看 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 如何以 [`BackendValidationError`][fatqat.errors.BackendValidationError] 拒绝第一个未配对的 `CZ`。在探究物理丢失之前请先恢复配对：未配对的门是程序错误，而原子丢失后被跳过的门是逐次测量的物理效应。可下载的 Python 代码由这些 Markdown 单元生成，因此这些变体都可以直接在可运行的代码中实现。
+  zh: 接下来可以尝试：增加第四层，把树扩展到 16 个原子；提高丢失概率，观察擦除增多；或者有意去掉某一层的 `Pair` / `Unpair` 调用，看看 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 如何以 [`BackendValidationError`][fatqat.errors.BackendValidationError] 拒绝第一个未配对的 `CZ`。探究物理丢失之前，请先恢复配对：未配对的门属于程序错误，而原子丢失后被跳过的门是每次采样中各自发生的物理效应。可下载的 Python 代码由这些 Markdown 单元生成，因此可以直接在可运行的代码中尝试这些改动。
   status: machine
 - id: 0eb30251770f4475
   en: 'This tutorial builds an eight-atom Greenberger-Horne-Zeilinger (GHZ) state on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator], fatqat''s neutral-atom execution target. It is a step up from the two-qubit Bell tutorial in two ways: the state spans eight atoms instead of two, and the circuit runs on a backend whose two-qubit-gate connectivity is *reconfigured mid-circuit* rather than fixed.'
@@ -130,3 +130,51 @@
   en: We run the measured program on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator], sized to eight trap sites. A fixed seed keeps this page's numbers stable across repeated tutorial runs; drop it for independent experimental samples. Because the circuit is noiseless, every one of the 2000 shots lands on one of the two GHZ branches -- no other bitstring appears.
   zh: 我们在配置为八个阱位的 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上运行带测量的程序。固定的种子使本页面的数字在多次教程运行之间保持稳定；如需独立的实验样本可以去掉它。由于线路无噪声，2000 次测量中的每一次都落在两个 GHZ 分支之一上——不会出现其他比特串。
   status: retired
+- id: fa5448bcaaef60d3
+  en: 'This tutorial builds an eight-atom Greenberger-Horne-Zeilinger (GHZ) state on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator], FatQat''s neutral-atom execution target. It builds on the [quickstart](../guide/quickstart.md) in two ways: the state spans eight atoms instead of two, and the circuit runs on a backend whose two-qubit-gate connectivity is *reconfigured mid-circuit* rather than fixed.'
+  zh: 本教程在 FatQat 的中性原子执行目标 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上制备八原子 Greenberger-Horne-Zeilinger（GHZ）态。与[快速入门](../guide/quickstart.md)相比，本教程有两点推进：量子态涉及八个原子而不是两个；运行线路的后端，其双量子比特门连通性不是固定的，而是*在线路运行中途重新配置*。
+  status: machine
+- id: 1e08f527cfb0d7d6
+  en: The GHZ state generalizes the Bell state to $n$ qubits,
+  zh: GHZ 态把 Bell 态推广到 $n$ 个量子比特，
+  status: machine
+- id: 1a514236c5c46854
+  en: On this backend a `CZ` acts only on a pair of atoms that is currently *paired*. The [`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] operations update that pairing state as the circuit runs. Physically, `Pair` stands for "move these two atoms into a shared entangling zone" and `Unpair` for "move them apart again" -- the atom transport that gives a reconfigurable neutral-atom processor its programmable connectivity. We exploit exactly this to entangle atoms that no fixed one-dimensional layout would place next to each other.
+  zh: 在这个后端上，`CZ` 只能作用于当前处于*配对*状态的两个原子。[`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] 操作在线路运行过程中更新配对状态。从物理上看，`Pair` 表示“把这两个原子移入共享的纠缠区”，`Unpair` 表示“再把它们分开”。正是这种原子输运使可重构中性原子处理器具有可编程的连通性。我们正是利用这一点，来纠缠那些在任何固定一维布局中都不会相邻的原子。
+  status: machine
+- id: 780117b2321a8deb
+  en: 'We could grow the GHZ state with a chain of seven controlled-X gates, atom `0` reaching each neighbor in turn. Instead we use a *binary tree*, which reaches all eight atoms in only three layers and lets the gates within each layer run in parallel on independent atom pairs:'
+  zh: GHZ 态可以用一串七个受控 X 门逐步扩展，由原子 `0` 依次与每个邻居作用。这里改用*二叉树*：只需三层就能覆盖全部八个原子，而且同一层的门作用于互不重叠的原子对，可以并行执行：
+  status: machine
+- id: 99d60985f9bb1f3d
+  en: The tree deliberately couples atoms that are far apart. Layer 1 entangles atoms `0` and `4`; layer 2 needs `0` with `2` and `4` with `6`; layer 3 needs `0` with `1`. Atom `0` therefore needs three partners, which no fixed one-dimensional layout can provide, because each site in a line has at most two neighbors.
+  zh: 这棵树有意耦合相距较远的原子。第 1 层纠缠原子 `0` 和 `4`；第 2 层需要 `0` 与 `2`、`4` 与 `6` 相互作用；第 3 层需要 `0` 与 `1` 相互作用。因此原子 `0` 需要三个伙伴，而任何固定的一维布局都无法满足，因为直线上的每个位置最多只有两个邻居。
+  status: machine
+- id: 623938f83bc5d95d
+  en: Reconfigurable connectivity solves this. Just before a layer's gates we [`Pair`][fatqat.operations.Pair] its atoms -- transporting each pair into a shared entangling zone -- and just after we [`Unpair`][fatqat.operations.Unpair] them, freeing the atoms for the next layer's regrouping. If we skipped this rearrangement, the layer-2 and layer-3 `CZ` gates would target atoms that are not paired and the backend would reject the program with [`BackendValidationError`][fatqat.errors.BackendValidationError].
+  zh: 可重构连通性解决了这个问题。在某一层的门执行之前，我们用 [`Pair`][fatqat.operations.Pair] 将该层的原子配对，把每一对原子输运到共享的纠缠区；执行之后，再用 [`Unpair`][fatqat.operations.Unpair] 解除配对，让原子可以在下一层重新分组。如果省略这一步重排，第 2 层和第 3 层的 `CZ` 门就会作用于未配对的原子，后端会以 [`BackendValidationError`][fatqat.errors.BackendValidationError] 拒绝该程序。
+  status: machine
+- id: 442b2b49e0f342c0
+  en: We run the measured program on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]; the program's eight qubits set the array size. A fixed seed keeps the numbers stable across tutorial runs, while omitting it produces independent samples. Because the circuit is noiseless, all 2000 shots land on one of the two GHZ branches and no other bitstring appears.
+  zh: 我们在 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上运行带测量的程序，阵列规模由程序的八个量子比特决定。固定种子使教程每次运行得到的数字保持不变；省略种子则得到相互独立的样本。由于线路没有噪声，全部 2000 次采样都落在两个 GHZ 分支之一，不会出现其他比特串。
+  status: retired
+- id: 54027e6812e01b5a
+  en: 'Two families pin down $|\mathrm{GHZ}_8\rangle$. Each neighbor parity $\langle Z_i Z_{i+1}\rangle = 1$ says adjacent atoms always agree -- something the classical mixture also satisfies. The global $X$-parity $\langle X_0 X_1 \cdots X_7\rangle = 1$ is the discriminator: it equals $+1$ only for the coherent superposition and averages to $0$ for the mixture. Observing both confirms a true GHZ state.'
+  zh: 两类可观测量可以确定 $|\mathrm{GHZ}_8\rangle$。每个近邻奇偶性 $\langle Z_i Z_{i+1}\rangle = 1$ 表示相邻原子的结果总是一致——经典混合态同样满足这一点。全局 $X$ 奇偶性 $\langle X_0 X_1 \cdots X_7\rangle = 1$ 才是区分二者的判据：只有相干叠加态使它等于 $+1$，而它在混合态上的平均值为 $0$。两者都观测到，才能确认这是真正的 GHZ 态。
+  status: machine
+- id: 38ce5b51e9de9c9d
+  en: Every observable returns $+1$, including the global $X$-parity, so the state is the coherent GHZ superposition rather than a classical mixture that would merely reproduce its counts.
+  zh: 所有可观测量都返回 $+1$，包括全局 $X$ 奇偶性，因此该态是相干的 GHZ 叠加态，而不是仅能复现相同计数的经典混合态。
+  status: retired
+- id: 898a53cc5fc106ed
+  en: 'A lost atom is neither in $|0\rangle$ nor in $|1\rangle$: it is *gone*, and reads out as the erasure digit `2`, distinct from either computational outcome. Any shot whose bitstring contains a `2` therefore had at least one atom fall out during transport.'
+  zh: 丢失的原子既不处于 $|0\rangle$，也不处于 $|1\rangle$：它已经*不在阱中*，读出时显示为擦除数字 `2`，与两种计算基结果都不同。因此，只要某次采样的比特串中含有 `2`，就说明至少有一个原子在输运过程中丢失。
+  status: retired
+- id: ad715a1db01c70cf
+  en: In this run 469 of the 2000 shots, 23.5%, contain a `2`. Counting each atom in each `Pair` and `Unpair`, the program makes 28 atom moves, so with a 1% loss per move about $1 - 0.99^{28} \approx 25\%$ of shots should lose at least one atom. The most frequent loss outcomes have a single `2` at atom `0` or `4`, which move six times each, followed by atoms `2` and `6`, which move four times.
+  zh: 在本次运行中，2000 次采样里有 469 次（23.5%）含有 `2`。把每次 `Pair` 和 `Unpair` 中的每个原子都计为一次移动，程序共移动原子 28 次；若每次移动的丢失概率为 1%，预计约有 $1 - 0.99^{28} \approx 25\%$ 的采样至少丢失一个原子。最常见的丢失结果是在原子 `0` 或 `4` 处出现单个 `2`，这两个原子各移动 6 次；其次是原子 `2` 和 `6`，各移动 4 次。
+  status: retired
+- id: c5f8a87f8813f68d
+  en: In this run 469 of the 2000 shots, 23.5%, contain a `2`. Counting each atom in each `Pair` and `Unpair`, the program makes 28 atom moves, so with a 1% loss per move about $1 - 0.99^{28} \approx 25\%$ of shots should lose at least one atom.
+  zh: 在本次运行中，2000 次采样里有 469 次（23.5%）含有 `2`。把每次 `Pair` 和 `Unpair` 中的每个原子都计为一次移动，程序共移动原子 28 次；若每次移动的丢失概率为 1%，预计约有 $1 - 0.99^{28} \approx 25\%$ 的采样至少丢失一个原子。
+  status: machine

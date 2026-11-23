@@ -5,27 +5,27 @@
 - id: 70c934b81e8e5d92
   en: Trotterize the constrained PXP Hamiltonian and compare many-body revivals and half-chain entropy with an independent exact solve.
   ko: 제약이 있는 PXP 해밀토니안을 Trotter 분해하고, 다체 재현 현상과 반사슬 엔트로피를 독립적인 정확한 해와 비교합니다.
-  status: machine
+  status: retired
 - id: 8f1d2f5cada46915
   en: PXP revival fidelities, entanglement entropy, and site occupations
-  ko: PXP 재현 충실도, 얽힘 엔트로피, 위치별 점유율
+  ko: PXP 재현 충실도, 얽힘 엔트로피, 사이트별 점유 확률
   status: machine
 - id: 748713a02a43f493
   en: Push the Rydberg blockade to its strong-coupling extreme and you are left with the PXP model, and quenching it from the Neel state produces one of the strangest sights in many-body physics.
   ko: Rydberg 봉쇄의 강한 커플링 극한에서 PXP 모델을 얻습니다. 이 모델을 Neel 상태에서 퀀치하면 다체 물리의 독특한 현상이 나타납니다.
-  status: machine
+  status: retired
 - id: af849073a702e725
   en: 'You would expect a ten-site chain to scramble and forget where it started. The PXP chain, for the most part, does exactly that -- except when it starts from $|Z_2\rangle = |r\,g\,r\,g\,\ldots\rangle$. That state keeps snapping back to itself at regular intervals, a phenomenon tied to quantum many-body scars (see [Turner et al., Nature Physics 14, 745 (2018)](https://doi.org/10.1038/s41567-018-0137-5)). Entanglement grows during the quench, but it is not a one-way street either: every revival comes with a visible dip in the half-chain entropy.'
-  ko: 보통 열 위치의 사슬은 시간이 지나며 초기 상태의 정보를 잃을 것으로 예상합니다. PXP 사슬도 대체로 그렇지만, $|Z_2\rangle = |r\,g\,r\,g\,\ldots\rangle$에서 시작하면 다릅니다. 이 상태는 일정한 간격으로 초기 상태에 가까이 돌아옵니다. 이는 양자 다체 흉터와 관련된 현상입니다([Turner et al., Nature Physics 14, 745 (2018)](https://doi.org/10.1038/s41567-018-0137-5) 참고). 퀀치 동안 얽힘은 자라지만 계속 증가하기만 하지는 않습니다. 재현이 일어날 때마다 반사슬 엔트로피가 눈에 띄게 낮아집니다.
+  ko: 사이트 열 개로 이루어진 사슬은 시간이 지나면 뒤섞여 처음 상태를 잊을 것이라고 예상하기 쉽습니다. PXP 사슬도 대체로 그렇지만, $|Z_2\rangle = |r\,g\,r\,g\,\ldots\rangle$에서 시작하면 다릅니다. 이 상태는 일정한 간격으로 자기 자신에 가까운 상태로 되돌아오며, 이 재현(revival) 현상은 양자 다체 스카(quantum many-body scar)와 관련이 있습니다([Turner et al., Nature Physics 14, 745 (2018)](https://doi.org/10.1038/s41567-018-0137-5) 참고). 퀜치 동안 얽힘은 커지지만 한 방향으로만 늘지는 않습니다. 재현이 일어날 때마다 절반 사슬 엔트로피가 눈에 띄게 줄어듭니다.
   status: machine
 - id: 6c41b9609953591e
   en: 'One practical wrinkle: fatqat''s pulse emulators always start from the all-ground state and only offer global controls, so they cannot host a quench from $|Z_2\rangle$. The workaround below is to Trotterize the PXP Hamiltonian into small custom gates and run them on the gate-level simulator, which does accept an arbitrary `initial_state`. An independent QuTiP solve of the exact PXP model checks every curve along the way.'
   ko: 실제로 구현할 때 한 가지 제약이 있습니다. fatqat의 펄스 에뮬레이터는 모든 원자가 바닥 상태인 상태에서 시작하고 전역 제어만 제공하므로 $|Z_2\rangle$에서 시작하는 퀀치를 직접 실행할 수 없습니다. 아래에서는 PXP 해밀토니안을 작은 사용자 정의 게이트로 Trotter 분해한 뒤, 임의의 `initial_state`를 받는 게이트 수준 시뮬레이터에서 실행합니다. 정확한 PXP 모델을 QuTiP로 독립적으로 풀어 모든 곡선을 검증합니다.
-  status: machine
+  status: retired
 - id: c31a31c48dd970bf
   en: '1. Where PXP comes from: the blockade limit of the Rydberg Hamiltonian'
   ko: '1. PXP의 유래: Rydberg 해밀토니안의 봉쇄 극한'
-  status: machine
+  status: retired
 - id: 62411e95ed4ced8a
   en: Start from the Rydberg Hamiltonian,
   ko: Rydberg 해밀토니안에서 시작합니다.
@@ -33,108 +33,360 @@
 - id: 4cd93d1dba5c950e
   en: Now crank $U$ up and set $\Delta=0$. Once two neighbouring excitations cost more energy than anything else in the problem, "no two neighbours both in $|r\rangle$" stops being a preference and becomes a hard rule. Inside that constrained subspace, first-order perturbation theory leaves
   ko: 이제 $U$를 크게 하고 $\Delta=0$으로 둡니다. 이웃한 두 원자의 동시 여기 비용이 다른 모든 에너지 척도보다 커지면, 두 이웃이 동시에 $|r\rangle$에 있지 않아야 한다는 조건은 선호가 아니라 엄격한 규칙이 됩니다. 이 제약 부분공간 안에서 1차 섭동 이론은 다음을 줍니다.
-  status: machine
+  status: retired
 - id: f1ac339b77561635
   en: 'with open boundaries, meaning $P_{-1}=P_L=1$. Read each term out loud: site $i$ may flip, but only while both of its neighbours sit in $|g\rangle$. The bulk terms involve three sites; the two boundary terms, $X_0 P_1$ and $P_{L-2}X_{L-1}$, only two.'
   ko: 열린 경계이므로 $P_{-1}=P_L=1$입니다. 각 항은 두 이웃이 모두 $|g\rangle$에 있을 때만 위치 $i$가 뒤집힐 수 있다는 뜻입니다. 내부 항은 세 위치에 작용하지만, 경계의 $X_0 P_1$과 $P_{L-2}X_{L-1}$은 두 위치에만 작용합니다.
-  status: machine
+  status: retired
 - id: 9e082ebf36b0ef42
   en: 'A word on scope: this is an ideal model study. The constraint is imposed exactly (not approximated by a big-but-finite $U$), and there is no decoherence and no atom loss.'
-  ko: 이 튜토리얼은 이상적인 모델을 다룹니다. 큰 유한 $U$로 근사하지 않고 제약을 정확히 적용하며, 결맞음 상실이나 원자 손실은 포함하지 않습니다.
+  ko: 범위를 짚어 두면, 이 튜토리얼은 이상적인 모델 연구입니다. 제약을 크지만 유한한 $U$로 근사하지 않고 정확히 부과하며, 결어긋남이나 원자 손실도 없습니다.
   status: machine
 - id: e352925c0a507d77
   en: 2. The Z2 state and why it revives
   ko: 2. Z2 상태가 다시 나타나는 이유
-  status: machine
+  status: retired
 - id: b2684425cab669ef
   en: Two Neel configurations live inside the constrained subspace,
   ko: 제약 부분공간에는 두 Neel 배치가 있습니다.
-  status: machine
+  status: retired
 - id: 5ef459440c9ded7a
   en: We prepare $|Z_2\rangle$, let it go, and watch the return probability $F(t)=|\langle Z_2|\psi(t)\rangle|^2$. A handful of special scarred eigenstates dominate this quench, so $F(t)$ oscillates with a period near $T\approx 4.7/g$, where $g=\Omega/2$ is the PXP coefficient. For the drive used below that means $T\approx 1.5$ us -- but rather than trusting the estimate, we will simply measure where the peaks actually land.
   ko: $|Z_2\rangle$를 준비한 뒤 시간 진화를 시작하고 복귀 확률 $F(t)=|\langle Z_2|\psi(t)\rangle|^2$를 관찰합니다. 소수의 특수한 흉터 고유상태가 이 퀀치를 지배하므로 $F(t)$는 대략 $T\approx 4.7/g$ 주기로 진동합니다. 여기서 $g=\Omega/2$는 PXP 계수입니다. 아래 구동에서는 $T\approx 1.5$ us에 해당하지만, 이 추정에만 의존하지 않고 실제 봉우리 위치를 측정하겠습니다.
-  status: machine
+  status: retired
 - id: a00b1f6295c53c7f
   en: Imports, constants, and the Z2 vector
-  ko: 모듈, 상수, Z2 벡터
+  ko: 모듈 가져오기, 상수, Z2 벡터
   status: machine
 - id: 735ebb315bf89414
   en: 'Ten sites, working in rad/us and us units, and the familiar drive scale $\Omega=2\pi$ rad/us, so the PXP coefficient is $g=\pi$ rad/us. One convention to keep straight: FATQAT stores the amplitude of $|b_0\ldots b_9\rangle$ at index $\sum_i b_i 2^{N-1-i}$ (site 0 is the most significant bit), so each Neel state is a single basis vector -- just two index numbers to remember.'
   ko: 열 위치를 사용하며 단위는 rad/us와 us입니다. 익숙한 구동 척도 $\Omega=2\pi$ rad/us를 쓰므로 PXP 계수는 $g=\pi$ rad/us입니다. 기저 순서에 유의하세요. FATQAT은 $|b_0\ldots b_9\rangle$의 진폭을 인덱스 $\sum_i b_i 2^{N-1-i}$에 저장합니다. 위치 0이 최상위 비트이므로 각 Neel 상태는 기저 벡터 하나이며, 해당하는 두 인덱스만 정하면 됩니다.
-  status: machine
+  status: retired
 - id: 358c7c83cbe273ed
   en: 3. Trotterizing PXP into a fatqat program
   ko: 3. PXP를 fatqat 프로그램으로 Trotter 분해하기
-  status: machine
+  status: retired
 - id: f8c161b6503ae29e
   en: Two constraints decided the approach. First, the pulse emulators always start from $|g\ldots g\rangle$ and only offer global controls, so a quench from $|Z_2\rangle$ is simply not expressible there; the gate-level [`Simulator`][fatqat.simulator.Simulator], on the other hand, happily accepts an `initial_state`. Second, no native gate set contains a PXP term, so we use [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to supply a local matrix for each PXP operation.
   ko: 두 제약 때문에 이 접근을 선택했습니다. 첫째, 펄스 에뮬레이터는 항상 $|g\ldots g\rangle$에서 시작하고 전역 제어만 제공하므로 $|Z_2\rangle$에서 시작하는 퀀치를 표현할 수 없습니다. 반면 게이트 수준 [`Simulator`][fatqat.simulator.Simulator]는 `initial_state`를 받습니다. 둘째, 네이티브 게이트 집합에는 PXP 항이 없으므로 [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]으로 각 PXP 연산의 국소 행렬을 제공합니다.
-  status: machine
+  status: retired
 - id: 3844729635724a7b
   en: The exponentials we need are easy to write down. With $M=PXP$ and $M^2=P\otimes I\otimes P$,
-  ko: 필요한 지수 연산자는 간단히 쓸 수 있습니다. $M=PXP$이고 $M^2=P\otimes I\otimes P$이면
+  ko: 필요한 지수 함수는 쉽게 쓸 수 있습니다. $M=PXP$이고 $M^2=P\otimes I\otimes P$이므로 다음을 얻습니다.
   status: machine
 - id: c5d1095ee4717ed0
   en: Concretely, that is a $2\times 2$ rotation between $|ggg\rangle$ and $|grg\rangle$ for a bulk term, and between $|gg\rangle$ and $|rg\rangle$ (left edge) or $|gg\rangle$ and $|gr\rangle$ (right edge) for the boundary terms. Each matrix is built once, checked to be unitary, and registered under its operation class.
-  ko: 구체적으로 내부 항은 $|ggg\rangle$와 $|grg\rangle$ 사이의 $2\times 2$ 회전입니다. 경계 항은 왼쪽에서 $|gg\rangle$와 $|rg\rangle$, 오른쪽에서 $|gg\rangle$와 $|gr\rangle$ 사이의 회전입니다. 각 행렬은 한 번 만들고 유니터리인지 검사한 뒤 해당 연산 클래스에 등록합니다.
+  ko: 구체적으로 이는 벌크 항에서는 $|ggg\rangle$와 $|grg\rangle$ 사이의 $2\times 2$ 회전이고, 경계 항에서는 $|gg\rangle$와 $|rg\rangle$(왼쪽 끝) 또는 $|gg\rangle$와 $|gr\rangle$(오른쪽 끝) 사이의 회전입니다. 각 행렬은 한 번만 만들어 유니터리인지 확인한 뒤 해당 연산 클래스에 등록합니다.
   status: machine
 - id: 38cb3c48923c07f4
   en: Now for the actual time evolution. We want $e^{-iH_{\mathrm{PXP}}dt}$, where $H_{\mathrm{PXP}}=\sum_j h_j$ with $h_j=(\Omega/2)M_j$. The $h_j$'s do not commute, so the exponential does not factor into a product of the individual $e^{-ih_j dt}$'s -- it has to be approximated. The first-order Trotter formula just sweeps the terms once,
-  ko: 이제 실제 시간 진화를 구성합니다. 목표는 $e^{-iH_{\mathrm{PXP}}dt}$이며 $H_{\mathrm{PXP}}=\sum_j h_j$, $h_j=(\Omega/2)M_j$입니다. $h_j$들은 서로 교환하지 않으므로 전체 지수를 개별 $e^{-ih_j dt}$의 곱으로 정확히 분해할 수 없고 근사가 필요합니다. 1차 Trotter 공식은 각 항을 한 번씩 적용합니다.
+  ko: 이제 실제 시간 진화를 구성합니다. 필요한 것은 $e^{-iH_{\mathrm{PXP}}dt}$이며, $H_{\mathrm{PXP}}=\sum_j h_j$이고 $h_j=(\Omega/2)M_j$입니다. $h_j$들은 서로 교환하지 않으므로 이 지수 함수는 개별 $e^{-ih_j dt}$의 곱으로 분해되지 않아 근사해야 합니다. 1차 Trotter 공식은 각 항을 한 번씩 차례로 적용합니다.
   status: machine
 - id: 8bb547b29d7342b9
   en: 'and its leading error is a commutator of the $h_j$''s. A symmetric (Strang) step removes that leading error: split every term into two half angles, sweep forward, then sweep the same half angles backward,'
-  ko: 이때 주된 오차는 $h_j$들의 교환자에서 생깁니다. 대칭적인 Strang 단계는 이 주된 오차를 제거합니다. 모든 항의 각도를 절반으로 나누어 정방향으로 적용한 뒤, 같은 반각을 역순으로 적용합니다.
+  ko: 이때 선도 오차는 $h_j$들의 교환자입니다. 대칭(Strang) 단계는 이 선도 오차를 없앱니다. 모든 항을 절반 각도 두 개로 나누어 정방향으로 적용한 뒤, 같은 절반 각도를 역순으로 적용합니다.
   status: machine
 - id: 403d59f01d13d8cf
   en: In code, the forward pass is `for site in range(NUM_SITES)` -- left edge, then the bulk terms, then the right edge -- and the backward pass is the same loop in reverse. Each half-step exponent is $h_j\,dt/2$, and $h_j$ already carries $\Omega/2$, so every registered matrix uses the one angle $\theta=\Omega\,dt/4$. Repeating this symmetric step `round(duration / dt)` times walks the quench out to durations that are integer multiples of `dt`.
-  ko: 코드의 정방향 적용은 `for site in range(NUM_SITES)`이며 왼쪽 경계, 내부 항, 오른쪽 경계 순서입니다. 역방향은 같은 반복을 거꾸로 수행합니다. 각 반단계의 지수는 $h_j\,dt/2$이고 $h_j$에 이미 $\Omega/2$가 포함되므로, 등록하는 모든 행렬에 각도 $\theta=\Omega\,dt/4$ 하나를 사용합니다. 이 대칭 단계를 `round(duration / dt)`번 반복하면 `dt`의 정수배인 지속 시간까지 퀀치를 진행할 수 있습니다.
+  ko: 코드에서 정방향 진행은 `for site in range(NUM_SITES)`(왼쪽 끝, 벌크 항, 오른쪽 끝)이고, 역방향 진행은 같은 반복문을 거꾸로 도는 것입니다. 반 단계의 지수는 $h_j\,dt/2$이고 $h_j$에 이미 $\Omega/2$가 들어 있으므로, 등록하는 모든 행렬은 각도 하나 $\theta=\Omega\,dt/4$를 사용합니다. 이 대칭 단계를 `round(duration / dt)`번 반복하면 `dt`의 정수배인 시간까지 퀜치를 진행할 수 있습니다.
   status: machine
 - id: 9d1f96b180a23ce4
   en: 'A small warning from experience: when fatqat flattens a local matrix, the FIRST target is the most significant bit -- index $b_{t_0}\cdot 2^{k-1} + \cdots + b_{t_{k-1}}$. It is easy to get this backwards (we did), and the result is silently wrong dynamics rather than an error message.'
   ko: 직접 겪은 실수를 하나 짚고 넘어가겠습니다. fatqat이 국소 행렬을 평탄화할 때 **첫 번째** 타깃이 최상위 비트입니다. 즉 인덱스는 $b_{t_0}\cdot 2^{k-1} + \cdots + b_{t_{k-1}}$입니다. 이 순서를 반대로 넣기 쉽고, 실제로 저자도 그랬습니다. 이 경우 오류 메시지 없이 잘못된 동역학이 나옵니다.
-  status: machine
+  status: retired
 - id: 0a86841c1163bb47
   en: 4. The exact oracle
   ko: 4. 정확한 기준 해
-  status: machine
+  status: retired
 - id: b57c7ec9be57aa34
   en: 'Never trust a hand-built Trotter circuit without a second opinion. fatqat''s own physics tests check numerics against an independent oracle, so we do the same here: assemble the exact PXP Hamiltonian directly with QuTiP and solve it once over the whole time grid, starting from the same $|Z_2\rangle$ vector.'
   ko: 직접 만든 Trotter 회로는 독립적인 계산과 비교해야 합니다. fatqat 자체의 물리 테스트도 독립적인 기준 해로 수치를 검증하므로 여기서도 같은 방법을 씁니다. QuTiP로 정확한 PXP 해밀토니안을 직접 구성하고, 같은 $|Z_2\rangle$ 벡터에서 시작해 전체 시간 격자를 한 번에 풉니다.
-  status: machine
+  status: retired
 - id: 7cc4caa86a408c3e
   en: '5. What to measure: fidelity and half-chain entropy'
   ko: '5. 측정할 양: 충실도와 반사슬 엔트로피'
-  status: machine
+  status: retired
 - id: 233adac0fddee8d5
   en: Two numbers tell the whole story. The fidelity $F(t)=|\langle Z_2|\psi(t)\rangle|^2$ says how much of the state comes back, and the fidelity to the twin branch tells us whether a revival lands on the *same* Neel orientation or the mirrored one. The half-chain von Neumann entropy
   ko: 두 가지 수치가 동역학을 보여 줍니다. 충실도 $F(t)=|\langle Z_2|\psi(t)\rangle|^2$는 상태가 얼마나 돌아왔는지 나타냅니다. 반대 분기에 대한 충실도는 재현된 상태가 *같은* Neel 방향인지 반대 방향인지 구별합니다. 반사슬 von Neumann 엔트로피는 다음과 같습니다.
-  status: machine
+  status: retired
 - id: ece6693024fffa8c
   en: with $A$ the first five sites, tracks how entangled the two halves get. Both curves come from the same small helpers, so the fatqat and oracle numbers are directly comparable.
   ko: 여기서 $A$는 첫 다섯 위치이며, 이 엔트로피는 사슬의 양쪽 절반이 얼마나 얽혔는지 추적합니다. 두 계산 모두 같은 작은 헬퍼를 사용하므로 fatqat과 기준 해의 수치를 직접 비교할 수 있습니다.
-  status: machine
+  status: retired
 - id: efff7dd531d18964
   en: 6. Run the quench and collect the time series
   ko: 6. 퀀치 실행과 시계열 수집
-  status: machine
+  status: retired
 - id: 54738af626f46c87
   en: Build one Trotter program for the interval between samples. Starting from $|Z_2\rangle$, pass each final state into the next run through `initial_state`. For this noiseless, time-independent quench, a uniform, Trotter-aligned grid gives the same ordered evolution at each sample as restarting from the initial state.
-  ko: 표본 사이 구간에 대한 Trotter 프로그램 하나를 만듭니다. $|Z_2\rangle$에서 시작해 각 최종 상태를 `initial_state`로 다음 실행에 넘깁니다. 노이즈가 없고 시간에 무관한 이 퀀치에서는 Trotter 단계에 맞춘 균일 격자를 사용하면 매번 초기 상태에서 다시 시작했을 때와 같은 순서의 시간 진화를 각 표본에서 얻습니다.
+  ko: 표본 사이의 구간에 대해 Trotter 프로그램을 하나 만듭니다. $|Z_2\rangle$에서 시작해 각 실행의 최종 상태를 다음 실행의 `initial_state`로 넘깁니다. 노이즈가 없고 시간에 무관한 이 퀜치에서는 Trotter 단계에 맞춘 균일한 격자를 쓰면, 매 표본에서 초기 상태부터 다시 실행한 것과 같은 순서의 진화를 얻습니다.
   status: machine
 - id: a105df806941eff7
   en: Revival peaks are just local maxima of the fidelity after the initial decay. Notice that each peak lands on the *same* Neel branch -- the twin-branch fidelity stays negligible there, so the state really does come back to where it started.
   ko: 재현 봉우리는 초기 감소 이후 나타나는 충실도의 국소 최댓값입니다. 각 봉우리가 *같은* Neel 분기에 해당한다는 점을 확인하세요. 그때 반대 분기의 충실도는 여전히 무시할 만큼 작으므로 상태가 실제로 출발점에 돌아온 것입니다.
-  status: machine
+  status: retired
 - id: 276c31b8dc599493
   en: 7. Read the revival and the entropy growth
   ko: 7. 재현 현상과 엔트로피 성장 해석하기
-  status: machine
+  status: retired
 - id: 47bf563363e4b866
   en: 'The left panel is the money plot: three revivals around $t\approx 1.5, 3.0, 4.5$ us, each a little weaker than the last -- the fingerprint of PXP scars. The middle panel shows why these dynamics are not thermal: the half-chain entropy grows, but it *dips* at every revival, as if the state briefly remembered how to be a product state again. The right panel tells the same story in real space, with the Neel stripes melting during the quench and partially reassembling each time the fidelity peaks.'
   ko: 왼쪽 패널의 핵심은 $t\approx 1.5, 3.0, 4.5$ us 부근의 세 번의 재현입니다. 봉우리가 조금씩 낮아지는 모습은 PXP 흉터의 특징입니다. 가운데 패널은 이 동역학이 열적이지 않은 이유를 보여 줍니다. 반사슬 엔트로피는 증가하다가 재현될 때마다 *낮아져*, 잠시 곱 상태에 가까워집니다. 오른쪽 패널은 같은 현상을 실공간에서 보여 줍니다. 퀀치 동안 Neel 줄무늬가 흐려지고, 충실도가 최대가 될 때마다 부분적으로 다시 나타납니다.
-  status: machine
+  status: retired
 - id: 73eb3fe22a9813a2
   en: Initial-state revivals and entanglement growth in an open PXP chain
   ko: 열린 경계 PXP 사슬의 초기 상태 재현과 얽힘 증가
+  status: retired
+- id: 7d5fb68bab2fd30e
+  en: Observe Z₂ revivals and entanglement in a PXP chain
+  ko: PXP 사슬에서 Z₂ 재현과 얽힘 관찰하기
+  status: machine
+- id: 79abe33e357c3199
+  en: Trotterize the constrained PXP Hamiltonian, quench a ten-site chain from the Z₂ Néel state, and compare its revivals and half-chain entropy with an exact QuTiP solution.
+  ko: 제약이 있는 PXP 해밀토니안을 Trotter 분해하고, 사이트 열 개의 사슬을 Z₂ Néel 상태에서 퀜치한 뒤, 재현과 절반 사슬 엔트로피를 QuTiP의 정확한 해와 비교합니다.
+  status: machine
+- id: e2e7b2a598ed5b20
+  en: In the limit of strong Rydberg blockade, a driven chain of atoms is described by the PXP model. In this tutorial, we quench a ten-site open PXP chain from the Néel state $|Z_2\rangle = |r\,g\,r\,g\,\ldots\rangle$ and follow how much of the initial state returns and how entangled the two halves of the chain become.
+  ko: Rydberg 봉쇄가 강한 극한에서 구동되는 원자 사슬은 PXP 모델로 기술됩니다. 이 튜토리얼에서는 사이트 열 개로 이루어진 열린 PXP 사슬을 Néel 상태 $|Z_2\rangle = |r\,g\,r\,g\,\ldots\rangle$에서 퀜치하고, 초기 상태가 얼마나 되돌아오는지와 사슬의 두 절반이 얼마나 얽히는지를 따라갑니다.
+  status: retired
+- id: 21c2aa1cec553660
+  en: An interacting chain of this size would generally thermalize and lose the memory of its initial product state. Most initial states of the PXP chain behave this way, but $|Z_2\rangle$ returns close to itself at regular intervals. These revivals are associated with quantum many-body scars (see [Turner et al., Nature Physics 14, 745 (2018)](https://doi.org/10.1038/s41567-018-0137-5)). The half-chain entanglement entropy grows during the quench and decreases near each revival.
+  ko: 이 정도 크기의 상호작용하는 사슬은 보통 열평형에 이르러 초기 곱 상태의 기억을 잃습니다. PXP 사슬의 초기 상태도 대부분 그렇지만, $|Z_2\rangle$는 일정한 간격으로 자기 자신에 가까운 상태로 되돌아옵니다. 이런 재현(revival)은 양자 다체 스카(quantum many-body scar)와 관련이 있습니다([Turner et al., Nature Physics 14, 745 (2018)](https://doi.org/10.1038/s41567-018-0137-5) 참고). 절반 사슬 얽힘 엔트로피는 퀜치 동안 커지고 재현 근처에서 줄어듭니다.
+  status: retired
+- id: c79c0de4f555b618
+  en: We Trotterize the PXP Hamiltonian into small custom gates and run them on FatQat's gate-level simulator, starting from $|Z_2\rangle$. An independent QuTiP solution of the exact PXP model provides a reference for every curve.
+  ko: PXP 해밀토니안을 Trotter 분해해 작은 사용자 정의 게이트로 만들고, $|Z_2\rangle$에서 출발해 FatQat의 게이트 수준 시뮬레이터에서 실행합니다. 정확한 PXP 모델을 QuTiP으로 따로 푼 해가 모든 곡선의 기준이 됩니다.
+  status: retired
+- id: cf4100603636c869
+  en: Derive PXP from the Rydberg Hamiltonian
+  ko: Rydberg 해밀토니안에서 PXP 유도하기
+  status: retired
+- id: ae931639ab72b6a4
+  en: The Rydberg Hamiltonian of a chain of atoms is
+  ko: 원자 사슬의 Rydberg 해밀토니안은 다음과 같습니다.
+  status: retired
+- id: cf31f7da2fcd0afd
+  en: We set $\Delta=0$ and let the nearest-neighbour interaction $U$ become much larger than the drive. Two neighbouring excitations then cost more energy than any other process, so the dynamics stays in the subspace in which no two neighbours are both in $|r\rangle$. First-order perturbation theory within that subspace gives
+  ko: $\Delta=0$으로 두고 최근접 이웃 상호작용 $U$를 구동보다 훨씬 크게 만듭니다. 그러면 이웃한 두 여기가 다른 어떤 과정보다 큰 에너지를 요구하므로, 동역학은 이웃한 두 원자가 동시에 $|r\rangle$에 있지 않은 부분공간에 머무릅니다. 이 부분공간에서 1차 섭동 이론을 적용하면 다음을 얻습니다.
+  status: retired
+- id: 59c779d1668270f1
+  en: with open boundaries, meaning $P_{-1}=P_L=1$. Each term flips site $i$ only when both of its neighbours are in $|g\rangle$. The bulk terms act on three sites; the two boundary terms, $X_0 P_1$ and $P_{L-2}X_{L-1}$, act on two.
+  ko: 여기서 경계는 열려 있으며, 이는 $P_{-1}=P_L=1$을 뜻합니다. 각 항은 양쪽 이웃이 모두 $|g\rangle$일 때만 사이트 $i$를 뒤집습니다. 벌크 항은 사이트 세 개에 작용하고, 두 경계 항 $X_0 P_1$과 $P_{L-2}X_{L-1}$은 두 개에 작용합니다.
+  status: retired
+- id: 49187c62ef455e2e
+  en: 'This is an ideal model: the constraint is imposed exactly rather than through a large but finite $U$, and there is no decoherence or atom loss.'
+  ko: 이는 이상적인 모델입니다. 제약을 크지만 유한한 $U$로 구현하지 않고 정확히 부과하며, 결어긋남이나 원자 손실도 없습니다.
+  status: retired
+- id: 5df1299fb1781e26
+  en: The Z₂ state and its revivals
+  ko: Z₂ 상태와 재현
+  status: retired
+- id: b84b897da8475952
+  en: Two Néel configurations lie inside the constrained subspace,
+  ko: 제약된 부분공간 안에는 Néel 배열이 두 개 있습니다.
+  status: retired
+- id: bc70ac1035891004
+  en: We prepare $|Z_2\rangle$, evolve it under $H_{\mathrm{PXP}}$, and track the return probability $F(t)=|\langle Z_2|\psi(t)\rangle|^2$. A small number of scarred eigenstates dominate this quench, so $F(t)$ oscillates with a period near $T\approx 4.7/g$, where $g=\Omega/2$ is the PXP coefficient. For the drive used below, this estimate gives $T\approx 1.5$ µs; we locate the revival peaks directly from the simulated data.
+  ko: $|Z_2\rangle$를 준비해 $H_{\mathrm{PXP}}$로 시간 진화시키면서 되돌아올 확률 $F(t)=|\langle Z_2|\psi(t)\rangle|^2$를 추적합니다. 이 퀜치는 소수의 스카 고유 상태가 지배하므로 $F(t)$는 $T\approx 4.7/g$에 가까운 주기로 진동합니다. 여기서 $g=\Omega/2$는 PXP 계수입니다. 아래에서 사용하는 구동에서는 이 추정값이 $T\approx 1.5$ µs이며, 재현 봉우리는 시뮬레이션 데이터에서 직접 찾습니다.
+  status: retired
+- id: d64c917fec26a25b
+  en: Set up the chain and the Néel states
+  ko: 사슬과 Néel 상태 준비하기
+  status: retired
+- id: 0a8814a8a476211f
+  en: We use ten sites, times in µs, and rates in rad/µs. The drive $\Omega=2\pi$ rad/µs gives the PXP coefficient $g=\pi$ rad/µs. FatQat stores the amplitude of $|b_0\ldots b_9\rangle$ at index $\sum_i b_i 2^{N-1-i}$, so site 0 is the most significant bit and each Néel state is a single basis vector.
+  ko: 사이트 열 개를 사용하고 시간은 µs, 변화율은 rad/µs 단위로 씁니다. 구동 $\Omega=2\pi$ rad/µs에서 PXP 계수는 $g=\pi$ rad/µs입니다. FatQat은 $|b_0\ldots b_9\rangle$의 진폭을 인덱스 $\sum_i b_i 2^{N-1-i}$에 저장하므로 사이트 0이 최상위 비트이고, 각 Néel 상태는 기저 벡터 하나에 해당합니다.
+  status: retired
+- id: 9916e89355d38d46
+  en: Trotterize the PXP Hamiltonian
+  ko: PXP 해밀토니안 Trotter 분해하기
+  status: retired
+- id: 56eec14fd9735561
+  en: FatQat's pulse emulators do not accept an `initial_state`; every run starts with all sites in the ground state. The two-level Rydberg emulator also provides only global drive and detuning controls, so it cannot prepare $|Z_2\rangle$ by addressing alternate sites. The gate-level [`Simulator`][fatqat.simulator.Simulator], in contrast, accepts an `initial_state`. No native gate set contains a PXP term, so we use [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to supply a local matrix for each PXP operation.
+  ko: FatQat의 펄스 에뮬레이터는 `initial_state`를 받지 않으며, 모든 실행이 전체 사이트가 바닥 상태인 데서 시작합니다. 2준위 Rydberg 에뮬레이터는 전역 구동과 디튜닝 제어만 제공하므로 사이트를 하나씩 지정해 $|Z_2\rangle$를 준비할 수도 없습니다. 반면 게이트 수준 [`Simulator`][fatqat.simulator.Simulator]는 `initial_state`를 받습니다. PXP 항을 담은 네이티브 게이트 집합은 없으므로, [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]으로 각 PXP 연산에 국소 행렬을 지정합니다.
+  status: retired
+- id: 286db8313e06e6da
+  en: With $M=PXP$ and $M^2=P\otimes I\otimes P$, the exponential of one term is
+  ko: $M=PXP$이고 $M^2=P\otimes I\otimes P$이므로, 항 하나의 지수 함수는 다음과 같습니다.
+  status: retired
+- id: 336cb8cd2d2749cd
+  en: This is a $2\times 2$ rotation between $|ggg\rangle$ and $|grg\rangle$ for a bulk term, and between $|gg\rangle$ and $|rg\rangle$ (left edge) or $|gg\rangle$ and $|gr\rangle$ (right edge) for the boundary terms. We build each matrix once and register it under its operation class.
+  ko: 이는 벌크 항에서는 $|ggg\rangle$와 $|grg\rangle$ 사이의 회전이고, 경계 항에서는 $|gg\rangle$와 $|rg\rangle$(왼쪽 끝) 또는 $|gg\rangle$와 $|gr\rangle$(오른쪽 끝) 사이의 $2\times 2$ 회전입니다. 각 행렬은 한 번만 만들어 해당 연산 클래스에 등록합니다.
+  status: retired
+- id: 43345ec6a8db29ab
+  en: The time evolution we need is $e^{-iH_{\mathrm{PXP}}dt}$, where $H_{\mathrm{PXP}}=\sum_j h_j$ with $h_j=(\Omega/2)M_j$. The $h_j$ do not commute, so the exponential does not factor into a product of the individual $e^{-ih_j dt}$ and must be approximated. The first-order Trotter formula applies each term once,
+  ko: 필요한 시간 진화는 $e^{-iH_{\mathrm{PXP}}dt}$이며, $H_{\mathrm{PXP}}=\sum_j h_j$이고 $h_j=(\Omega/2)M_j$입니다. $h_j$들은 서로 교환하지 않으므로 이 지수 함수는 개별 $e^{-ih_j dt}$의 곱으로 분해되지 않아 근사해야 합니다. 1차 Trotter 공식은 각 항을 한 번씩 적용합니다.
+  status: retired
+- id: d79fd422fc4e3698
+  en: 'and its leading error is a commutator of the $h_j$. A symmetric (Strang) step removes that leading error: it splits every term into two half angles, applies them in forward order, and then applies the same half angles in reverse order,'
+  ko: 이때 선도 오차는 $h_j$들의 교환자입니다. 대칭(Strang) 단계는 이 선도 오차를 없앱니다. 모든 항을 절반 각도 두 개로 나누어 정방향으로 적용한 뒤, 같은 절반 각도를 역순으로 적용합니다.
+  status: retired
+- id: 15ad972da6cad45e
+  en: In the code, the forward pass is `for site in range(NUM_SITES)` (left edge, bulk terms, right edge), and the backward pass is the same loop in reverse. Each half-step exponent is $h_j\,dt/2$, and $h_j$ already contains $\Omega/2$, so every registered matrix uses the angle $\theta=\Omega\,dt/4$. Repeating the symmetric step `round(duration / dt)` times evolves the state for durations that are integer multiples of `dt`.
+  ko: 코드에서 정방향 진행은 `for site in range(NUM_SITES)`(왼쪽 끝, 벌크 항, 오른쪽 끝)이고, 역방향 진행은 같은 반복문을 거꾸로 도는 것입니다. 반 단계의 지수는 $h_j\,dt/2$이고 $h_j$에 이미 $\Omega/2$가 들어 있으므로, 등록하는 모든 행렬은 각도 $\theta=\Omega\,dt/4$를 사용합니다. 대칭 단계를 `round(duration / dt)`번 반복하면 `dt`의 정수배에 해당하는 시간만큼 상태가 진화합니다.
+  status: retired
+- id: e907e20350c090df
+  en: 'When FatQat flattens a local matrix, the first target is the most significant bit: the index is $b_{t_0}\cdot 2^{k-1} + \cdots + b_{t_{k-1}}$. Reversing this order would make the edge terms act on the wrong site. The result would be incorrect dynamics, not an error message.'
+  ko: FatQat이 국소 행렬을 평탄화할 때는 첫 번째 타깃이 최상위 비트이며, 인덱스는 $b_{t_0}\cdot 2^{k-1} + \cdots + b_{t_{k-1}}$입니다. 이 순서를 뒤집으면 경계 항이 엉뚱한 사이트에 작용합니다. 그래도 오류 메시지는 나오지 않고 동역학만 틀리게 됩니다.
+  status: retired
+- id: ddf818f7ecb96863
+  en: Build an exact reference solution
+  ko: 정확한 기준 해 만들기
+  status: retired
+- id: 8fcb20f0fe8be1f0
+  en: The Trotter circuit is assembled by hand, so we check it against an independent calculation. We build the exact PXP Hamiltonian directly with QuTiP and solve the Schrödinger equation once over the whole time grid, starting from the same $|Z_2\rangle$ vector.
+  ko: Trotter 회로를 직접 조립했으므로 독립적인 계산과 비교해 확인합니다. 정확한 PXP 해밀토니안을 QuTiP으로 바로 만들고, 같은 $|Z_2\rangle$ 벡터에서 출발해 전체 시간 격자에 대해 Schrödinger 방정식을 한 번에 풉니다.
+  status: retired
+- id: 8056e9f27a0041de
+  en: Define fidelity and half-chain entropy
+  ko: 충실도와 절반 사슬 엔트로피 정의하기
+  status: retired
+- id: 87e8eae3957ee1f3
+  en: The fidelity $F(t)=|\langle Z_2|\psi(t)\rangle|^2$ measures how much of the initial state returns. The fidelity to $|\bar Z_2\rangle$ shows whether a revival returns to the same Néel configuration or to the other one. The half-chain von Neumann entropy
+  ko: 충실도 $F(t)=|\langle Z_2|\psi(t)\rangle|^2$는 초기 상태가 얼마나 되돌아오는지를 나타냅니다. $|\bar Z_2\rangle$에 대한 충실도를 보면 재현이 처음과 같은 Néel 배열로 돌아오는지 다른 배열로 돌아오는지 알 수 있습니다. 절반 사슬의 von Neumann 엔트로피는 다음과 같습니다.
+  status: retired
+- id: eb8990fa1d5a384d
+  en: with $A$ the first five sites, measures the entanglement between the two halves of the chain. The same helpers evaluate the Trotter and reference states, so the two sets of numbers are directly comparable.
+  ko: 여기서 $A$는 앞쪽 다섯 사이트이며, 이 엔트로피는 사슬 두 절반 사이의 얽힘을 측정합니다. Trotter 상태와 기준 상태를 같은 헬퍼로 계산하므로 두 결과를 바로 비교할 수 있습니다.
+  status: retired
+- id: df6dc6e3479605ff
+  en: Run the quench
+  ko: 퀜치 실행하기
+  status: retired
+- id: fd925d3f9126530a
+  en: We build one Trotter program for the interval between samples. Starting from $|Z_2\rangle$, each final state becomes the `initial_state` of the next run. For this noiseless, time-independent quench, a uniform grid aligned with the Trotter steps gives the same evolution at each sample as restarting from the initial state.
+  ko: 표본 사이의 구간에 대해 Trotter 프로그램을 하나 만듭니다. $|Z_2\rangle$에서 시작해 각 실행의 최종 상태를 다음 실행의 `initial_state`로 넘깁니다. 노이즈가 없고 시간에 무관한 이 퀜치에서는 Trotter 단계에 맞춘 균일한 격자를 쓰면, 매 표본에서 초기 상태부터 다시 실행한 것과 같은 진화를 얻습니다.
+  status: retired
+- id: 658509836408b52e
+  en: We identify revival peaks as local maxima of the fidelity after the initial decay. At each peak, the fidelity to $|\bar Z_2\rangle$ is small, so the state returns to the same Néel configuration it started from.
+  ko: 재현 봉우리는 처음 감소가 끝난 뒤 나타나는 충실도의 국소 최댓값으로 찾습니다. 각 봉우리에서 $|\bar Z_2\rangle$에 대한 충실도는 작으므로, 상태는 출발했던 Néel 배열로 되돌아옵니다.
+  status: retired
+- id: 209afeea22016b3f
+  en: Plot the revivals and entanglement
+  ko: 재현과 얽힘 그리기
+  status: retired
+- id: 110ad76d643493d1
+  en: The left panel shows the return probability. The middle panel shows the half-chain entropy, with dotted lines at the revival peaks. The right panel shows the Rydberg population of each site over time.
+  ko: 왼쪽 패널은 되돌아올 확률을 보여 줍니다. 가운데 패널은 절반 사슬 엔트로피이며, 점선은 재현 봉우리의 위치입니다. 오른쪽 패널은 시간에 따른 각 사이트의 Rydberg 점유 확률입니다.
+  status: retired
+- id: 5e8d36c73323de1c
+  en: The Trotter and exact fidelity curves differ by at most 0.00059, so the second-order Trotter step with $dt=0.01$ µs reproduces the exact PXP dynamics on this time scale. The return probability falls to zero within about 0.3 µs and then recovers in sharp peaks at 1.50, 2.95, 4.45, and 5.90 µs, with fidelities 0.768, 0.618, 0.482, and 0.359. The peaks are spaced by about 1.5 µs, consistent with the estimate $T\approx 4.7/g$. Their fidelity to $|\bar Z_2\rangle$ is at most 0.007, so the state returns to its own Néel configuration.
+  ko: Trotter 충실도 곡선과 정확한 충실도 곡선의 차이는 최대 0.00059이므로, $dt=0.01$ µs의 2차 Trotter 단계는 이 시간 규모에서 정확한 PXP 동역학을 재현합니다. 되돌아올 확률은 약 0.3 µs 안에 0으로 떨어졌다가 1.50, 2.95, 4.45, 5.90 µs에서 뾰족한 봉우리로 회복되며, 그때의 충실도는 각각 0.768, 0.618, 0.482, 0.359입니다. 봉우리 간격은 약 1.5 µs로 추정값 $T\approx 4.7/g$와 들어맞습니다. $|\bar Z_2\rangle$에 대한 충실도는 최대 0.007이므로 상태는 자신의 Néel 배열로 되돌아옵니다.
+  status: retired
+- id: f369236a4e497819
+  en: The half-chain entropy grows over the quench, from 0.278 at the first revival to 0.918 at the fourth, and reaches 0.938 within the 6 µs window. The growth slows or briefly reverses near each revival instead of increasing steadily. In the occupation panel, the alternating pattern of the Néel state fades during each period and partly reappears at each revival, with lower contrast each time.
+  ko: 절반 사슬 엔트로피는 퀜치가 진행되면서 커져 첫 재현에서 0.278, 네 번째 재현에서 0.918이고, 6 µs 구간 안에서 0.938에 이릅니다. 다만 꾸준히 증가하지는 않고 재현 근처마다 증가가 느려지거나 잠시 감소합니다. 점유 확률 패널에서는 Néel 상태의 교대 무늬가 주기마다 흐려졌다가 재현 때 부분적으로 다시 나타나며, 그 대비는 갈수록 약해집니다.
+  status: retired
+- id: 0c47095fd6a38e57
+  en: Summary and next steps
+  ko: 정리와 다음 단계
+  status: machine
+- id: e7c414bdcd1265ae
+  en: 'A Trotterized PXP chain on FatQat''s gate-level simulator reproduces the exact quench dynamics from $|Z_2\rangle$: periodic, slowly decaying returns to the initial state, and entanglement that grows more slowly near each return. Custom operations with a `MatrixImplementationMap` and a chosen `initial_state` make it possible to study a constrained model that the pulse emulators cannot start from.'
+  ko: FatQat의 게이트 수준 시뮬레이터에서 Trotter 분해한 PXP 사슬은 $|Z_2\rangle$에서 시작하는 정확한 퀜치 동역학을 재현합니다. 초기 상태로 주기적으로 되돌아오면서 그 크기가 천천히 줄고, 되돌아올 때마다 얽힘의 증가가 느려집니다. `MatrixImplementationMap`으로 정의한 사용자 정의 연산과 직접 지정한 `initial_state` 덕분에, 펄스 에뮬레이터로는 시작 상태를 만들 수 없는 제약된 모델도 다룰 수 있습니다.
+  status: retired
+- id: 408858461c1b6e72
+  en: 'Two extensions use the same code:'
+  ko: 같은 코드로 두 가지를 더 시험해 볼 수 있습니다.
+  status: machine
+- id: 687dcbb1de62ee84
+  en: Increase `DT_TROTTER` to `0.05` µs, one Trotter step per sampling interval, and compare the printed fidelity gap with the run above to see how the Trotter error grows with the step size.
+  ko: '`DT_TROTTER`를 `0.05` µs로 늘려 표본 구간마다 Trotter 단계를 한 번만 적용하고, 출력되는 충실도 차이를 위 실행과 비교해 단계 크기에 따라 Trotter 오차가 어떻게 커지는지 확인해 보세요.'
+  status: machine
+- id: 69c9bc3ee43183f6
+  en: Set `NUM_SITES` to 12 and compare the revival fidelities and entropy with the ten-site results to see how the decay of the revivals depends on the chain length.
+  ko: '`NUM_SITES`를 12로 바꾸고 재현 충실도와 엔트로피를 사이트 열 개 결과와 비교해, 재현이 감쇠하는 정도가 사슬 길이에 어떻게 의존하는지 살펴보세요.'
+  status: machine
+- id: 743b37f3cf964d30
+  en: In the strong-coupling limit of the Rydberg blockade, the Rydberg Hamiltonian reduces to the PXP model, and quenching it from the Néel state produces persistent many-body revivals.
+  ko: Rydberg 봉쇄의 강한 커플링 극한에서 Rydberg 해밀토니안은 PXP 모델로 줄어들며, 이 모델을 Néel 상태에서 퀜치하면 오래 지속되는 다체 재현이 나타납니다.
+  status: machine
+- id: 1effcdc262d4fe66
+  en: 'One practical wrinkle: FatQat''s pulse emulators reject `initial_state`, so every run starts from the ground state, and the two-level Rydberg emulator offers only global drive and detuning controls, so a quench from $|Z_2\rangle$ cannot be expressed there. The workaround below is to Trotterize the PXP Hamiltonian into small custom gates and run them on the gate-level simulator, which does accept an arbitrary `initial_state`. An independent QuTiP solve of the exact PXP model checks every curve along the way.'
+  ko: 실제로는 한 가지 걸림돌이 있습니다. FatQat의 펄스 에뮬레이터는 `initial_state`를 받지 않으므로 모든 실행이 바닥 상태에서 시작하고, 2준위 Rydberg 에뮬레이터는 전역 구동과 디튜닝 제어만 제공하므로 $|Z_2\rangle$에서 시작하는 퀜치를 표현할 수 없습니다. 아래에서는 PXP 해밀토니안을 Trotter 분해해 작은 사용자 정의 게이트로 만들고, 임의의 `initial_state`를 받는 게이트 수준 시뮬레이터에서 실행해 이 문제를 우회합니다. 정확한 PXP 모델을 QuTiP으로 따로 푼 해로 모든 곡선을 검증합니다.
+  status: machine
+- id: c59da2253d0ce897
+  en: 'Where PXP comes from: the blockade limit of the Rydberg Hamiltonian'
+  ko: 'PXP의 유래: Rydberg 해밀토니안의 봉쇄 극한'
+  status: machine
+- id: b003d2910a1f4ec9
+  en: Now make $U$ large and set $\Delta=0$. Once two neighbouring excitations cost more energy than anything else in the problem, "no two neighbours both in $|r\rangle$" stops being a preference and becomes a hard rule. Inside that constrained subspace, first-order perturbation theory leaves
+  ko: 이제 $U$를 크게 하고 $\Delta=0$으로 둡니다. 이웃한 두 여기의 에너지 비용이 문제의 다른 어떤 에너지보다 커지면, "이웃한 두 원자가 동시에 $|r\rangle$에 있을 수 없다"는 조건은 선호가 아니라 엄격한 규칙이 됩니다. 이 제약 부분공간 안에서 1차 섭동 이론을 적용하면 다음이 남습니다.
+  status: machine
+- id: 8c5110c7a806d495
+  en: with open boundaries, meaning $P_{-1}=P_L=1$. In each term, site $i$ may flip, but only while both of its neighbours sit in $|g\rangle$. The bulk terms involve three sites; the two boundary terms, $X_0 P_1$ and $P_{L-2}X_{L-1}$, only two.
+  ko: 여기서 경계는 열려 있으며, 이는 $P_{-1}=P_L=1$을 뜻합니다. 각 항에서 사이트 $i$는 뒤집힐 수 있지만, 양쪽 이웃이 모두 $|g\rangle$에 있을 때만 그렇습니다. 벌크 항은 사이트 세 개에 관여하고, 두 경계 항 $X_0 P_1$과 $P_{L-2}X_{L-1}$은 두 개에만 관여합니다.
+  status: machine
+- id: 76795568130a65fa
+  en: The Z2 state and why it revives
+  ko: Z2 상태가 재현되는 이유
+  status: machine
+- id: d415654ee697dbe0
+  en: Two Néel configurations live inside the constrained subspace,
+  ko: 제약된 부분공간 안에는 Néel 배열이 두 개 있습니다.
+  status: machine
+- id: f776b45517b352b9
+  en: We prepare $|Z_2\rangle$, let it go, and watch the return probability $F(t)=|\langle Z_2|\psi(t)\rangle|^2$. A handful of special scarred eigenstates dominate this quench, so $F(t)$ oscillates with a period near $T\approx 4.7/g$, where $g=\Omega/2$ is the PXP coefficient. For the drive used below that means $T\approx 1.5$ µs -- but rather than trusting the estimate, we will simply measure where the peaks actually land.
+  ko: $|Z_2\rangle$를 준비해 그대로 진화시키면서 되돌아올 확률 $F(t)=|\langle Z_2|\psi(t)\rangle|^2$를 관찰합니다. 이 퀜치는 소수의 특별한 스카 고유 상태가 지배하므로 $F(t)$는 $T\approx 4.7/g$에 가까운 주기로 진동합니다. 여기서 $g=\Omega/2$는 PXP 계수입니다. 아래에서 사용하는 구동에서는 $T\approx 1.5$ µs에 해당하지만, 이 추정값에 의존하지 않고 봉우리가 실제로 나타나는 위치를 직접 측정합니다.
+  status: machine
+- id: e7e53de75a66f1ad
+  en: 'Ten sites, working in rad/µs and µs units, and the familiar drive scale $\Omega=2\pi$ rad/µs, so the PXP coefficient is $g=\pi$ rad/µs. One convention to keep straight: FatQat stores the amplitude of $|b_0\ldots b_9\rangle$ at index $\sum_i b_i 2^{N-1-i}$ (site 0 is the most significant bit), so each Néel state is a single basis vector -- just two index numbers to remember.'
+  ko: 사이트 열 개를 사용하고 단위는 rad/µs와 µs이며, 익숙한 구동 척도 $\Omega=2\pi$ rad/µs를 쓰므로 PXP 계수는 $g=\pi$ rad/µs입니다. 한 가지 규약에 유의하세요. FatQat은 $|b_0\ldots b_9\rangle$의 진폭을 인덱스 $\sum_i b_i 2^{N-1-i}$에 저장합니다(사이트 0이 최상위 비트). 따라서 각 Néel 상태는 기저 벡터 하나이며, 기억할 인덱스는 두 개뿐입니다.
+  status: machine
+- id: 34b0a0781304f01c
+  en: Trotterizing PXP into a FatQat program
+  ko: PXP를 FatQat 프로그램으로 Trotter 분해하기
+  status: machine
+- id: 7e8a771e969e0599
+  en: Two constraints decided the approach. First, as noted above, the pulse emulators cannot start from $|Z_2\rangle$; the gate-level [`Simulator`][fatqat.simulator.Simulator], on the other hand, accepts an `initial_state`. Second, no native gate set contains a PXP term, so we use [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap] to supply a local matrix for each PXP operation.
+  ko: 두 가지 제약 때문에 이 접근을 택했습니다. 첫째, 앞에서 말했듯이 펄스 에뮬레이터는 $|Z_2\rangle$에서 시작할 수 없습니다. 반면 게이트 수준 [`Simulator`][fatqat.simulator.Simulator]는 `initial_state`를 받습니다. 둘째, PXP 항을 담은 네이티브 게이트 집합은 없으므로, [`MatrixImplementationMap`][fatqat.implementation.MatrixImplementationMap]으로 각 PXP 연산에 국소 행렬을 지정합니다.
+  status: machine
+- id: 0aafb0ac266fdeb7
+  en: Note that when FatQat flattens a local matrix, the FIRST target is the most significant bit -- index $b_{t_0}\cdot 2^{k-1} + \cdots + b_{t_{k-1}}$. It is easy to get this backwards, and the result is silently wrong dynamics rather than an error message.
+  ko: FatQat이 국소 행렬을 평탄화할 때는 첫 번째 타깃이 최상위 비트라는 점에 유의하세요. 인덱스는 $b_{t_0}\cdot 2^{k-1} + \cdots + b_{t_{k-1}}$입니다. 이 순서를 거꾸로 넣기 쉬운데, 그러면 오류 메시지 없이 동역학만 조용히 틀리게 됩니다.
+  status: machine
+- id: 9e40865072487336
+  en: The exact oracle
+  ko: 정확한 기준 해
+  status: machine
+- id: 7571221e4e174bcf
+  en: 'FatQat''s own physics tests check numerics against an independent oracle, so we do the same here: assemble the exact PXP Hamiltonian directly with QuTiP and solve it once over the whole time grid, starting from the same $|Z_2\rangle$ vector.'
+  ko: FatQat 자체의 물리 테스트도 독립적인 기준 해로 수치를 검증하므로 여기서도 같은 방법을 씁니다. 정확한 PXP 해밀토니안을 QuTiP으로 바로 만들고, 같은 $|Z_2\rangle$ 벡터에서 출발해 전체 시간 격자에 대해 한 번에 풉니다.
+  status: machine
+- id: c7679e357a4a83cb
+  en: 'What to measure: fidelity and half-chain entropy'
+  ko: '측정할 양: 충실도와 절반 사슬 엔트로피'
+  status: machine
+- id: 8e2a7ee713717b49
+  en: The fidelity $F(t)=|\langle Z_2|\psi(t)\rangle|^2$ says how much of the state comes back, and the fidelity to the twin branch tells us whether a revival lands on the *same* Néel orientation or the mirrored one. The half-chain von Neumann entropy
+  ko: 충실도 $F(t)=|\langle Z_2|\psi(t)\rangle|^2$는 상태가 얼마나 되돌아오는지를 나타내고, 쌍둥이 분기에 대한 충실도를 보면 재현이 *같은* Néel 방향으로 돌아오는지 거울상 방향으로 돌아오는지 알 수 있습니다. 절반 사슬의 von Neumann 엔트로피는 다음과 같습니다.
+  status: machine
+- id: 3ba301ad4d1569f1
+  en: with $A$ the first five sites, tracks how entangled the two halves get. Both curves come from the same small helpers, so the FatQat and oracle numbers are directly comparable.
+  ko: 여기서 $A$는 앞쪽 다섯 사이트이며, 이 엔트로피는 사슬의 두 절반이 얼마나 얽히는지를 추적합니다. 두 곡선 모두 같은 작은 헬퍼로 계산하므로 FatQat과 기준 해의 수치를 바로 비교할 수 있습니다.
+  status: machine
+- id: 3c8f985fb9fe8d1d
+  en: Run the quench and collect the time series
+  ko: 퀜치 실행과 시계열 수집
+  status: machine
+- id: 598e41995b39d4c7
+  en: Revival peaks are just local maxima of the fidelity after the initial decay. Notice that each peak lands on the *same* Néel branch -- the twin-branch fidelity stays negligible there, so the state really does come back to where it started.
+  ko: 재현 봉우리는 처음 감소가 끝난 뒤 나타나는 충실도의 국소 최댓값일 뿐입니다. 각 봉우리가 *같은* Néel 분기에 놓인다는 점에 주목하세요. 그때 쌍둥이 분기의 충실도는 무시할 만큼 작으므로, 상태는 실제로 출발한 곳으로 되돌아옵니다.
+  status: machine
+- id: b4a30ca8ffdb26e8
+  en: Read the revival and the entropy growth
+  ko: 재현과 엔트로피 성장 읽기
+  status: machine
+- id: c371a23deacee0dc
+  en: 'The left panel shows the revivals around $t\approx 1.5, 3.0, 4.5, 5.9$ µs, each a little weaker than the last -- the fingerprint of PXP scars. The middle panel shows why these dynamics are not thermal: the half-chain entropy grows, but it *dips* at every revival, as if the state briefly remembered how to be a product state again. The right panel tells the same story in real space, with the Néel stripes melting during the quench and partially reassembling each time the fidelity peaks.'
+  ko: 왼쪽 패널은 $t\approx 1.5, 3.0, 4.5, 5.9$ µs 부근의 재현을 보여 주며, 봉우리는 갈수록 조금씩 약해집니다. 이것이 PXP 스카의 특징입니다. 가운데 패널은 이 동역학이 열적이지 않은 이유를 보여 줍니다. 절반 사슬 엔트로피는 증가하지만 재현될 때마다 *낮아져*, 마치 상태가 잠시 곱 상태로 돌아가는 법을 기억해 낸 것처럼 보입니다. 오른쪽 패널은 같은 현상을 실공간에서 보여 줍니다. 퀜치 동안 Néel 줄무늬가 흐려졌다가 충실도가 최대가 될 때마다 부분적으로 다시 나타납니다.
+  status: machine
+- id: 32ded8937adb0820
+  en: The Trotter and exact curves differ by less than $10^{-3}$, so the second-order Trotter step with $dt=0.01$ µs reproduces the exact PXP dynamics. The peaks are spaced by about 1.5 µs, consistent with $T\approx 4.7/g$, and at each peak the state returns to its own Néel configuration rather than to $|\bar Z_2\rangle$.
+  ko: Trotter 곡선과 정확한 곡선의 차이는 $10^{-3}$보다 작으므로, $dt=0.01$ µs의 2차 Trotter 단계는 정확한 PXP 동역학을 재현합니다. 봉우리 간격은 약 1.5 µs로 $T\approx 4.7/g$와 들어맞으며, 각 봉우리에서 상태는 $|\bar Z_2\rangle$가 아니라 자신의 Néel 배열로 되돌아옵니다.
+  status: machine
+- id: a558db3e392ae1be
+  en: Custom operations with a `MatrixImplementationMap` and a chosen `initial_state` let FatQat's gate-level simulator study a constrained model that the pulse emulators cannot start from.
+  ko: '`MatrixImplementationMap`으로 정의한 사용자 정의 연산과 직접 지정한 `initial_state`를 사용하면, 펄스 에뮬레이터로는 시작할 수 없는 제약된 모델을 FatQat의 게이트 수준 시뮬레이터로 연구할 수 있습니다.'
   status: machine

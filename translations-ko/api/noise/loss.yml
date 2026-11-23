@@ -12,7 +12,7 @@
   status: machine
 - id: d5bc735ad4b7a07a
   en: '`p` is the loss probability for each selected carrier that is currently present. FATQAT samples each carrier independently after a matched operation. An operation-wide registration uses the same probability for every operand; use `target_positions` to limit loss to particular operands.'
-  ko: '`p`는 선택된 운반체 중 현재 존재하는 각각의 손실 확률입니다. FATQAT은 매칭되는 연산 뒤에 각 운반체를 독립적으로 샘플링합니다. 연산 전체에 등록하면 모든 피연산자에 같은 확률을 사용합니다. 특정 피연산자에만 손실을 적용하려면 `target_positions`를 사용하세요.'
+  ko: '`p`는 선택된 운반체 중 현재 존재하는 각각의 손실 확률입니다. FatQat은 매칭되는 연산 뒤에 각 운반체를 독립적으로 샘플링합니다. 연산 전체에 등록하면 모든 피연산자에 같은 확률을 사용합니다. 특정 피연산자에만 손실을 적용하려면 `target_positions`를 사용하세요.'
   status: machine
 - id: f7500f6c9589f841
   en: '[`Loss`][fatqat.noise.Loss] can be attached only to matching operations; it cannot be registered as background noise. A condition on the matching operation also controls its loss: a false condition skips the attached loss.'

@@ -8,11 +8,11 @@
   status: machine
 - id: 098905eee48c3592
   en: One QAOA layer drawn as a circuit on nine qubits
-  zh: 九个量子比特上的一层 QAOA 线路图
+  zh: 一层 QAOA 在 9 个量子比特上的线路图
   status: machine
 - id: ac4a29094ab0a6fe
   en: Energy landscape of a depth-one QAOA over its two angles
-  zh: 深度为一的 QAOA 随两个角度变化的能量景观
+  zh: 深度为 1 的 QAOA 随两个角度变化的能量景观
   status: machine
 - id: 10d40df4b16d4846
   en: Mean energy and optimal-solution probability against QAOA depth
@@ -24,7 +24,7 @@
   status: machine
 - id: 30a4e133c372f300
   en: 'Most discrete optimization problems that matter in practice — scheduling, routing, partitioning, portfolio selection — can be written as a *quadratic unconstrained binary optimization* problem:'
-  zh: 大多数实际重要的离散优化问题——调度、路由、划分、投资组合选择——都可以写成*二次无约束二进制优化*问题：
+  zh: 大多数实际重要的离散优化问题——调度、路由、划分、投资组合选择——都可以写成*二次无约束二元优化*问题：
   status: machine
 - id: 36b3837ffbc576ab
   en: 'QUBO is the lingua franca of quantum optimization because the map from $f$ to a quantum circuit is mechanical, and because the "unconstrained" part is a modeling convention rather than a limitation: a constraint becomes a penalty term that costs energy exactly when it is violated.'
@@ -32,7 +32,7 @@
   status: machine
 - id: 145a5502a50967ff
   en: 'This tutorial walks the whole path on a problem small enough to check by hand: splitting a nine-node weighted graph into two balanced halves while keeping two specific nodes apart. The graph is the WSCC 9-bus power network, with edge weights equal to the power flowing on each line, but nothing below uses that reading — it is simply a weighted graph with a partitioning problem on it. [Model controlled islanding as a QUBO](islanding-model.md) takes the same network and asks the full engineering question.'
-  zh: 本教程用一个小到可以手算核验的问题走完全部流程：将九节点加权图分成大小尽量均衡的两部分，同时让两个指定节点分居两侧。该图来自 WSCC 9 母线电网，边权等于各线路的功率流，但下文不使用这一物理解释，只将其视为一个待划分的加权图。[将受控孤岛划分建模为 QUBO](islanding-model.md)将基于同一网络讨论完整的工程问题。
+  zh: 本教程用一个小到可以手算核验的问题走完全部流程：把一个 9 节点加权图分成尽量均衡的两部分，同时让两个指定节点分居两侧。该图来自 WSCC 9 节点电网，边权等于各条输电线路上的潮流，但下文不使用这一物理解释，只把它当作一个待划分的加权图。[将受控解列问题建模为 QUBO](islanding-model.md)将基于同一网络讨论完整的工程问题。
   status: machine
 - id: 869e1f1dc83e37c6
   en: 'Along the way this tutorial establishes the pieces every QUBO application reuses:'
@@ -40,7 +40,7 @@
   status: machine
 - id: 80e5d442e56715f2
   en: '**Model.** Write the objective and every constraint as one quadratic function of binary variables.'
-  zh: '**建模。**将目标和每项约束写成关于二进制变量的一个二次函数。'
+  zh: '**建模。**把目标和每项约束写成关于二元变量的一个二次函数。'
   status: machine
 - id: 9a468021750a2ef5
   en: '**Map.** Substitute $x_i = (1 - z_i)/2$ to get an Ising Hamiltonian whose ground state is the answer.'
@@ -61,26 +61,26 @@
 - id: 51cb881bfdcd17bc
   en: Everything is seeded, exact where it can be, and runs in a few seconds on a laptop CPU.
   zh: 所有随机过程均设置种子，可精确计算的部分均采用精确计算，在笔记本 CPU 上数秒即可运行。
-  status: machine
+  status: retired
 - id: d14703d1c84265e4
   en: The problem, as a QUBO
   zh: 将问题写成 QUBO
   status: machine
 - id: c7b55042de7dddf1
   en: 'The graph has nine nodes and nine weighted edges. A partition assigns each node to side 0 or side 1, and its cost is the total weight of the edges it cuts. Two requirements come along with it: the two halves must be as equal as nine nodes allow, and nodes 1 and 7 must end up on opposite sides.'
-  zh: 图包含九个节点和九条加权边。划分将每个节点分到 0 侧或 1 侧，代价是被切断边的权重总和。同时有两个要求：两部分的大小应尽可能均衡，节点 1 和 7 必须位于不同侧。
+  zh: 图有 9 个节点和 9 条加权边。一种划分把每个节点分到 0 侧或 1 侧，其代价是被切断的边的权重之和。随之而来的还有两项要求：两部分的大小要在 9 个节点允许的范围内尽量均衡，节点 1 和节点 7 必须分处两侧。
   status: machine
 - id: 0f62a0d28fb22fe0
   en: 'One binary variable per node is enough, because with two sides the variable''s value *is* the side. That is worth noticing early: an encoding that cannot represent an invalid assignment needs no penalty to forbid one.'
-  zh: 每个节点一个二进制变量就足够了，因为只有两侧，变量的值*就是*所属侧。值得一开始就注意：如果编码无法表示某种无效分配，就无需添加惩罚来禁止它。
+  zh: 每个节点一个二元变量就够了，因为只有两侧，变量的取值*就是*它所属的一侧。这一点值得一开始就留意：如果编码根本无法表示无效的分配，就不需要用惩罚去禁止它。
   status: machine
 - id: a4cf555959e44e6a
   en: Nine nodes do not divide evenly into two halves, so the balance target is 4.5 and the penalty cannot reach zero. It contributes a constant floor of $2 \times 0.25$ to every energy, and still prefers a 4/5 split over any other.
   zh: 九个节点无法均分成两半，因此平衡目标为 4.5，惩罚无法降到零。它对每个能量贡献一个 $2 \times 0.25$ 的常数下限，同时仍使 4/5 划分优于其他划分。
-  status: machine
+  status: retired
 - id: 9370ea11f5b3875c
   en: 'A QUBO is just three containers: a constant, a vector of linear coefficients, and a dictionary of pair coefficients. Building it by hand keeps the algebra visible, and every term below is one line of the model.'
-  zh: QUBO 只需三个容器：一个常数、一个线性系数向量和一个成对系数字典。手动创建能清楚展示代数关系，下方每一项都对应模型的一行。
+  zh: QUBO 只有三个容器：一个常数、一个线性系数向量和一个成对系数字典。手写这三部分能让代数式一目了然，下面每一项都对应模型中的一行。
   status: machine
 - id: 6bed240a6f5c8828
   en: The cut term uses the identity $x_i + x_j - 2 x_i x_j$, which is 1 when the two endpoints disagree and 0 when they agree. The balance term squares $\sum_i x_i - N/2$. The separation term is $1 - (x_i + x_j - 2 x_i x_j)$, which charges the penalty exactly when the two nodes agree.
@@ -88,7 +88,7 @@
   status: machine
 - id: 206303448c670604
   en: With nine variables there are only 512 assignments, so the exact answer is one enumeration away. Every later result is measured against it.
-  zh: 九个变量只有 512 种赋值，因此一次枚举即可得到精确答案。后续所有结果都将以它为基准。
+  zh: 9 个变量只有 512 种赋值，因此枚举一遍就能得到精确答案。后续所有结果都以它为基准。
   status: machine
 - id: 1fd8819fdbce8397
   en: 'The enumeration also fixes a convention that matters everywhere else: **row $k$ is the binary expansion of $k$ with variable 0 in the most significant position**. That is exactly how FatQat orders a counts string and a statevector index, so the same array serves as the cost of each measurement outcome without any reindexing.'
@@ -100,11 +100,11 @@
   status: machine
 - id: 70a16e09b859bb95
   en: From binary variables to a Hamiltonian
-  zh: 从二进制变量到哈密顿量
+  zh: 从二元变量到哈密顿量
   status: machine
 - id: de76cab3fe0a3e5a
   en: QAOA works with spins, not bits. Substituting $x_i = (1 - z_i)/2$ with $z_i = \pm 1$ turns the QUBO into
-  zh: QAOA 使用自旋而非二进制位。代入 $x_i = (1 - z_i)/2$，其中 $z_i = \pm 1$，可将 QUBO 转换为
+  zh: QAOA 处理的是自旋，不是比特。代入 $x_i = (1 - z_i)/2$，其中 $z_i = \pm 1$，QUBO 就变成
   status: machine
 - id: b53e4fd65e6c363c
   en: 'and the value of $H$ on a spin string equals the value of $f$ on the corresponding bit string. The convention $z = +1$ for $x = 0$ means the spin string reads directly off a measurement: qubit measured 0 is spin $+1$.'
@@ -128,7 +128,7 @@
   status: machine
 - id: 763583154f288566
   en: Both pieces are elementary gates. FatQat's `RZ(theta)` is $\mathrm{diag}(e^{-i\theta/2}, e^{+i\theta/2})$, so a field term needs `RZ(2*gamma*h)`. A coupling term is the same rotation conjugated by a `CX` pair, which writes the parity of the two qubits onto the target before rotating it. The mixer is `RX(2*beta)` on every qubit.
-  zh: 两部分都由基本门组成。FatQat 的 `RZ(theta)` 为 $\mathrm{diag}(e^{-i\theta/2}, e^{+i\theta/2})$，因此场项需要 `RZ(2*gamma*h)`。耦合项是由一对 `CX` 共轭的同一旋转，在旋转前将两个量子比特的奇偶性写入目标。混合器则是在每个量子比特上施加 `RX(2*beta)`。
+  zh: 两部分都由基本门组成。FatQat 的 `RZ(theta)` 为 $\mathrm{diag}(e^{-i\theta/2}, e^{+i\theta/2})$，因此一个场项需要 `RZ(2*gamma*h)`。耦合项用的是同一个旋转，只是前后各夹一个 `CX`：它在旋转前把两个量子比特的奇偶性写到目标比特上。混合器则是在每个量子比特上施加 `RX(2*beta)`。
   status: machine
 - id: 2e08ba49437a0646
   en: Program qubit $i$ is variable $i$, and FatQat keeps qubit 0 leftmost in a counts string and most significant in a statevector index — the same order the enumeration above already uses.
@@ -136,7 +136,7 @@
   status: machine
 - id: 0fce656469c0cefe
   en: A parameter cannot be scaled inside a gate argument — FatQat gate angles take a number or a bare `fatqat.Parameter`, not an expression — and every phase rotation here needs $\gamma$ multiplied by its own coupling. The program is therefore rebuilt for each set of angles, which costs about a millisecond and disappears next to the simulation.
-  zh: 不能在门参数内部对参数做缩放——FatQat 门角度接受数值或单独的 `fatqat.Parameter`，不接受表达式——而这里每个相位旋转都需要将 $\gamma$ 乘以各自的耦合。因此，每组角度都会重新创建程序，耗时约一毫秒，相比模拟开销可以忽略。
+  zh: 参数不能在门的参数位置上被缩放——FatQat 的门角度只接受数值或单独的 `fatqat.Parameter`，不接受表达式——而这里每个相位旋转都要把 $\gamma$ 乘上各自的耦合。因此每组角度都会重新编写一次程序，耗时约 1 毫秒，相比模拟开销可以忽略。
   status: machine
 - id: 6a488f9a52e374bb
   en: Two ways to get the energy
@@ -160,11 +160,11 @@
   status: machine
 - id: fd8ced18236c71d3
   en: The depth-one landscape
-  zh: 深度为一的能量景观
+  zh: 深度为 1 时的能量景观
   status: machine
 - id: 03451b75f080b63a
   en: 'At $p = 1$ there are only two angles, so the entire landscape can be drawn. This is the cheapest way to learn the scale a problem wants: $\gamma$ enters the circuit multiplied by a coupling, so a Hamiltonian with large couplings has its structure squeezed into small $\gamma$, and an optimizer started on the wrong scale will wander over featureless terrain.'
-  zh: 当 $p = 1$ 时只有两个角度，可以绘出整个景观。这是了解问题所需尺度的低成本方式：$\gamma$ 进入线路时会乘以耦合，因此较大耦合的哈密顿量会将结构压缩到较小的 $\gamma$ 区间，若优化器从错误尺度开始，就可能在缺少明显结构的区域游走。
+  zh: $p = 1$ 时只有两个角度，可以把整个景观画出来。这是了解一个问题所需尺度的最省事的办法：$\gamma$ 进入线路时要乘上耦合，因此耦合较大的哈密顿量会把结构压缩到很小的 $\gamma$ 范围内，而从错误尺度出发的优化器只会在一片没有起伏的地形上游走。
   status: machine
 - id: a191f3c66af164f9
   en: The landscape is smooth and periodic in $\beta$ with period $\pi$, and its structure in $\gamma$ repeats on the scale set by the couplings. The minimum is a broad basin, which is why a gradient-free optimizer started anywhere sensible finds it.
@@ -196,7 +196,7 @@
   status: machine
 - id: 32e7c8be68d6be81
   en: 'A QAOA circuit is a sampler, not an oracle: it returns a distribution in which good assignments are over-represented. The practical procedure is to measure a few thousand shots, evaluate the true objective on each distinct outcome, and keep the best. Evaluating the objective is classical and cheap, so a run succeeds as soon as *one* shot lands on a good assignment — a far weaker requirement than the mean energy reaching the minimum.'
-  zh: QAOA 线路是采样器，不是直接给出答案的预言机：它返回一个偏重优良赋值的分布。实际步骤是测量几千次，计算每种不同结果的真实目标值，再保留最佳结果。目标值可用经典方法低成本计算，因此只要*一次*采样落到优良赋值上，运行就成功了；这一要求远弱于平均能量达到最小值。
+  zh: QAOA 线路是一个采样器，而不是直接给出答案的预言机：它返回的分布里好的赋值出现得更频繁。实际做法是采样几千次，对每种不同结果计算真实的目标值，保留其中最好的。目标值用经典方法算，开销很小，因此只要*有一次*采样落在好的赋值上，这次运行就成功了——这比要求平均能量达到最小值弱得多。
   status: machine
 - id: c7c21a98e8771a64
   en: The two optimal assignments are among the most frequent outcomes, and they are each other's bitwise complement — the side-relabeling symmetry, surviving all the way from the Hamiltonian's zero field to the measured histogram.
@@ -228,5 +228,21 @@
   status: machine
 - id: 2c3f526f2e98c43a
   en: '[Model controlled islanding as a QUBO](islanding-model.md) puts all three to work on a real application, where the choice of encoding decides whether the problem fits on the hardware at all, and [Split a power grid into islands with QAOA](islanding-qaoa.md) runs it.'
-  zh: '[将受控孤岛划分建模为 QUBO](islanding-model.md)将这三点应用于实际问题，其中编码选择决定问题能否放入硬件；[用 QAOA 将电网划分为孤岛](islanding-qaoa.md)则运行该模型。'
+  zh: '[将受控解列问题建模为 QUBO](islanding-model.md)把这三点用到了一个真实应用上，那里编码的选择直接决定问题能否装进硬件；[用 QAOA 将电网划分为孤岛](islanding-qaoa.md)则把它跑起来。'
+  status: machine
+- id: 0fc300c2de3f60ac
+  en: Everything is seeded, exact where it can be, and runs in about two minutes on a laptop CPU.
+  zh: 所有随机过程均设置种子，可精确计算的部分一律精确计算，在笔记本 CPU 上约两分钟即可跑完。
+  status: retired
+- id: 980e91d570fc0aa9
+  en: Nine nodes do not divide evenly into two halves, so the balance target is 4.5 and the penalty cannot reach zero. With `BALANCE_WEIGHT = 1.0` it adds at least $(4 - 4.5)^2 = 0.25$ to every energy, and still prefers a 4/5 split over any other.
+  zh: 9 个节点无法均分成两半，因此平衡目标是 4.5，惩罚项不可能降到零。在 `BALANCE_WEIGHT = 1.0` 下，它给每个能量至少加上 $(4 - 4.5)^2 = 0.25$，但仍然使 4/5 划分优于其他任何划分。
+  status: retired
+- id: 0c0cf29422fcebf8
+  en: Everything is seeded, exact where it can be, and runs in a minute or two on a laptop CPU.
+  zh: 所有随机过程均设置种子，可精确计算的部分一律精确计算，在笔记本 CPU 上一两分钟即可跑完。
+  status: machine
+- id: 25abf0c52e6bd762
+  en: Nine nodes do not divide evenly into two halves, so the balance target is 4.5 and the penalty cannot reach zero. It contributes a constant floor of $0.25$ to every energy, and still prefers a 4/5 split over any other.
+  zh: 9 个节点无法均分成两半，因此平衡目标是 4.5，惩罚项不可能降到零。它给每个能量都加上一个恒定的下限 $0.25$，但仍然使 4/5 划分优于其他任何划分。
   status: machine

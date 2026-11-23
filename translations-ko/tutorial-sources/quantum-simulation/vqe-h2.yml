@@ -24,7 +24,7 @@
   status: machine
 - id: 6cffdd317d1dc07e
   en: 'The variational quantum eigensolver (VQE) estimates the ground-state energy of a Hamiltonian $H$ by making the variational principle $E(\theta) \geq E_0$ do the work: a parameterized circuit prepares $|\psi(\theta)\rangle$, the energy'
-  ko: 변분 양자 고유값 풀이법(VQE)은 변분 원리 $E(\theta) \geq E_0$를 이용해 해밀토니안 $H$의 바닥 상태 에너지를 추정합니다. 매개변수화된 회로로 $|\psi(\theta)\rangle$를 준비하고, 다음 에너지를
+  ko: 변분 양자 고윳값 풀이법(VQE)은 변분 원리 $E(\theta) \geq E_0$를 이용해 해밀토니안 $H$의 바닥 상태 에너지를 추정합니다. 매개변수화된 회로로 $|\psi(\theta)\rangle$를 준비하고, 다음 에너지를
   status: machine
 - id: 6521b6b039748329
   en: is evaluated on the quantum processor, and a classical optimizer walks $\theta$ downhill. The lowest energy found is an upper bound on the true ground-state energy $E_0$.
@@ -32,7 +32,7 @@
   status: machine
 - id: 8803437142be4dba
   en: 'This tutorial runs the full loop on the smallest interesting chemistry example: molecular hydrogen in the STO-3G basis, reduced to two qubits by qubit tapering (the form used in O''Malley et al., [arXiv:1512.06860](https://arxiv.org/abs/1512.06860)). The Hamiltonian is a sum of five Pauli terms,'
-  ko: 이 튜토리얼에서는 간단하면서도 의미 있는 화학 예제로 전체 과정을 실행합니다. STO-3G 기저의 수소 분자를 큐비트 축약(tapering)으로 2큐비트에 표현합니다(O'Malley 등의 [arXiv:1512.06860](https://arxiv.org/abs/1512.06860)에서 사용한 형태). 해밀토니안은 다섯 Pauli 항의 합입니다.
+  ko: 이 튜토리얼에서는 간단하면서도 의미 있는 화학 예제로 전체 과정을 실행합니다. STO-3G 기저의 수소 분자를 큐비트 축약(qubit tapering)으로 2큐비트에 표현합니다(O'Malley 등의 [arXiv:1512.06860](https://arxiv.org/abs/1512.06860)에서 사용한 형태). 해밀토니안은 다섯 Pauli 항의 합입니다.
   status: machine
 - id: 16dec6792c30bda5
   en: so the energy is a weighted sum of expectation values — exactly what an Estimator computes against one circuit evaluation.
@@ -69,7 +69,7 @@
 - id: 4f8ae938f2309896
   en: 'The exact ground energy is obtained by dense diagonalization of the 4x4 matrix. It serves two purposes: the reference line on the convergence plots, and a reminder that the variational principle bounds the *lowest* eigenvalue — the other three are printed for context.'
   ko: 4x4 조밀 행렬을 대각화하여 정확한 바닥 상태 에너지를 구합니다. 이 값은 수렴 그래프의 기준선으로 사용하며, 변분 원리가 *가장 낮은* 고유값의 상한을 준다는 점도 확인할 수 있습니다. 비교를 위해 나머지 세 고유값도 출력합니다.
-  status: machine
+  status: retired
 - id: 23f2c885410e9028
   en: 'The identity term has expectation 1 in every state, so it folds into a constant offset. The optimizer only ever sees the four non-identity expectations:'
   ko: 항등 항의 기댓값은 모든 상태에서 1이므로 상수 오프셋으로 처리합니다. 최적화기에는 항등 항을 제외한 네 기댓값만 전달합니다.
@@ -133,10 +133,10 @@
 - id: 56cd44d7fea98e8f
   en: 'Noise is declared independently of the program: a `fq.NoiseModel` holds physical declarations — here `fq.noise.Depolarizing` after every `RY` ($p = 0.01$) and, more strongly, after every `CX` ($p = 0.05$) — and the same template runs on a density-matrix simulator constructed with that model. A density-matrix Estimator in `shots=0` mode returns the noise-averaged expectation exactly: no sampling is needed to *see* the noise. See [ideal and noisy execution](../guide/ideal-and-noisy.md) for the full workflow.'
   ko: 노이즈는 프로그램과 별도로 선언합니다. `fq.NoiseModel`에 물리적 노이즈 규칙을 담는데, 여기서는 모든 `RY` 뒤에 `fq.noise.Depolarizing`을 $p = 0.01$로, 모든 `CX` 뒤에는 더 강한 $p = 0.05$로 적용합니다. 같은 템플릿을 이 모델로 구성한 밀도 행렬 시뮬레이터에서 실행합니다. 밀도 행렬 Estimator의 `shots=0` 모드는 노이즈에 대해 평균한 기댓값을 정확히 반환하므로, 노이즈의 영향을 *확인*하는 데 표본 추출이 필요하지 않습니다. 전체 과정은 [이상적인 실행과 노이즈가 있는 실행](../guide/ideal-and-noisy.md)을 참고하세요.
-  status: machine
+  status: retired
 - id: 02f9374ac261d1d1
   en: 'First, the degradation: the exact-VQE minimum is re-evaluated under noise. Then COBYLA re-optimizes under noise — and recovers essentially nothing: a variational ansatz cannot rotate unital noise away, so the lifted floor is there to stay (it can only be mitigated classically, not optimized away).'
-  ko: 먼저 정확한 VQE로 찾은 최솟값 지점을 노이즈가 있는 조건에서 다시 평가해 성능 저하를 확인합니다. 이어서 노이즈가 있는 조건에서 COBYLA로 다시 최적화해도 개선은 거의 없습니다. 변분 변분 회로의 회전으로는 항등 보존(unital) 노이즈를 제거할 수 없어 높아진 최저 에너지가 그대로 남습니다. 고전적 오차 완화는 가능하지만 최적화만으로 없앨 수는 없습니다.
+  ko: 먼저 정확한 VQE로 찾은 최솟값 지점을 노이즈가 있는 조건에서 다시 평가해 성능 저하를 확인합니다. 이어서 노이즈가 있는 조건에서 COBYLA로 다시 최적화해도 개선은 거의 없습니다. 변분 회로의 회전으로는 항등 보존(unital) 노이즈를 제거할 수 없어 높아진 최저 에너지가 그대로 남습니다. 고전적 오차 완화는 가능하지만 최적화만으로 없앨 수는 없습니다.
   status: machine
 - id: 175956a7ad13988f
   en: Bigger molecules need a chemistry package to produce the Pauli sum and a physically motivated ansatz (e.g. UCCSD) instead of the hardware-efficient one used here.
@@ -149,4 +149,16 @@
 - id: 4185706d3abc4f67
   en: 'The same energy, estimated the way hardware would deliver it: every expectation comes from 1024 measurement shots. `shots` is a per-run option, not an estimator property, so the same estimator serves exact and sampled evaluations. An explicit `execution_config={"seed": ...}` reuses the same randomness at every evaluation, keeping the optimizer''s landscape deterministic. `sampled_std` propagates the per-observable standard errors (`get_standard_error()`) through the weights in quadrature — $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$ — the scale of the error bar on the noisy objective.'
   ko: '같은 에너지를 실제 하드웨어처럼 추정합니다. 각 기댓값은 1024회의 측정 샷에서 얻습니다. `shots`는 추정기 자체의 속성이 아니라 실행별 옵션이므로, 같은 추정기로 정확한 평가와 표본 기반 평가를 모두 수행할 수 있습니다. `execution_config={"seed": ...}`를 명시하면 평가마다 같은 난수를 사용하여 최적화기가 보는 목적 함수가 결정적으로 유지됩니다. `sampled_std`는 관측량별 표준 오차(`get_standard_error()`)를 가중치와 함께 제곱합으로 전파합니다. 즉 $\sigma_E = \sqrt{\sum_i c_i^2 \sigma_i^2}$이며, 노이즈가 있는 목적 함수의 오차 막대 크기에 해당합니다.'
+  status: machine
+- id: b5ef1686f090539f
+  en: 'The exact ground energy is obtained by dense diagonalization of the 4x4 matrix. It serves two purposes: the reference line on the convergence plots, and a reminder that the variational principle bounds the *lowest* eigenvalue. The cell prints the full spectrum for context.'
+  ko: 정확한 바닥 상태 에너지는 4x4 행렬을 조밀 대각화해 구합니다. 두 가지 쓰임이 있습니다. 수렴 그래프의 기준선이 되고, 변분 원리가 한계를 정해 주는 대상이 *가장 낮은* 고윳값임을 다시 확인해 줍니다. 셀은 맥락을 위해 전체 스펙트럼을 출력합니다.
+  status: retired
+- id: 2ba747a4d79cceff
+  en: 'Noise is declared independently of the program: a `fq.NoiseModel` holds physical declarations — here `fq.noise.Depolarizing` after every `RY` ($p = 0.01$) and, more strongly, after every `CX` ($p = 0.05$) — and the same template runs on a density-matrix simulator constructed with that model. A density-matrix Estimator in `shots=0` mode returns the noise-averaged expectation exactly: no sampling is needed to *see* the noise. See [Compare the same Program ideally and noisily](../guide/ideal-and-noisy.md) for the full workflow.'
+  ko: 노이즈는 프로그램과 독립적으로 선언합니다. `fq.NoiseModel`에 물리적 선언을 담는데, 여기서는 모든 `RY` 뒤에 `fq.noise.Depolarizing`($p = 0.01$)을, 모든 `CX` 뒤에는 더 강하게($p = 0.05$) 적용합니다. 같은 템플릿을 이 모델로 만든 밀도 행렬 시뮬레이터에서 실행합니다. `shots=0` 모드의 밀도 행렬 Estimator는 노이즈로 평균한 기댓값을 정확히 반환하므로 노이즈를 *확인하는* 데 샘플링이 필요하지 않습니다. 전체 과정은 [같은 Program의 이상적 실행과 노이즈가 있는 실행 비교하기](../guide/ideal-and-noisy.md)를 참고하세요.
+  status: machine
+- id: 57cc48835527b447
+  en: 'The exact ground energy is obtained by dense diagonalization of the 4x4 matrix. It serves two purposes: the reference line on the convergence plots, and a reminder that the variational principle bounds the *lowest* eigenvalue — the full spectrum is printed for context.'
+  ko: 정확한 바닥 상태 에너지는 4x4 행렬을 조밀 대각화해 구합니다. 두 가지 쓰임이 있습니다. 수렴 그래프의 기준선이 되고, 변분 원리가 한계를 정해 주는 대상이 *가장 낮은* 고윳값임을 다시 확인해 줍니다. 맥락을 위해 전체 스펙트럼도 출력합니다.
   status: machine

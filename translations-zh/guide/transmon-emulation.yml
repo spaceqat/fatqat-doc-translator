@@ -209,7 +209,7 @@
 - id: 0806d9b02284b8fc
   en: For a complete amplitude scan, parameter selection, and checks on other input states, follow [Calibrating a quantum gate](../tutorials/pulse-calibration.md).
   zh: 完整的振幅扫描、参数选择以及其他输入态的检查见[校准量子门](../tutorials/pulse-calibration.md)。
-  status: machine
+  status: retired
 - id: 1bc09d2a36d1e372
   en: Use the calibrated path to study the supplied gate recipe. Use direct controls when the waveform itself is the experiment; the two forms can also coexist in one Program. The [transmon emulator API](../api/pulse-emulator.md) lists the supported units, gates, noise forms, and simulation methods.
   zh: 要研究已有的门脉冲方案，可以使用校准门；要研究波形本身，则使用直接控制。两种方式也可以在同一个 Program 中使用。支持的单位、门、噪声形式和模拟方法见 [transmon 仿真器 API](../api/pulse-emulator.md)。
@@ -329,4 +329,8 @@
 - id: 3679a064dba06eb4
   en: The reference calibration uses analytic recipes to keep pulse generation simple. The grid generator uses the same pulse shapes and chooses a CZ branch for each pair of connected transmons. Further pulse optimization can improve gate fidelity, for example by reducing the small residual controlled phase in the reference iSWAP.
   zh: 参考校准采用解析脉冲方案，便于生成。生成阵列时沿用相同的脉冲形状，并为每一对相连的 Transmon 选定 CZ 分支。进一步优化脉冲还有望提高门保真度，例如减小参考 iSWAP 附带的小角度受控相位。
+  status: machine
+- id: 0f12a2ff7439cf79
+  en: For a complete amplitude scan, parameter selection, and checks on other input states, follow [Calibrate an X gate on a transmon](../tutorials/pulse-calibration.md).
+  zh: 如需完整的振幅扫描、参数选择以及在其他输入态上的检查，请参阅[在 transmon 上校准 X 门](../tutorials/pulse-calibration.md)。
   status: machine

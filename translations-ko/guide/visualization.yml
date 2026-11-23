@@ -32,7 +32,7 @@
   status: machine
 - id: 214c482f6b8fdaad
   en: The same composition pattern works for the FATQAT-owned Matplotlib visualizations below.
-  ko: 아래의 FATQAT 자체 Matplotlib 시각화도 같은 방식으로 함께 배치할 수 있습니다.
+  ko: 아래의 FatQat 자체 Matplotlib 시각화도 같은 방식으로 함께 배치할 수 있습니다.
   status: machine
 - id: b41a7567e8b288a6
   en: Draw logical interaction frequency
@@ -96,7 +96,7 @@
   status: machine
 - id: aa06008ce5448be8
   en: 'FATQAT applies a consistent categorical palette when Matplotlib''s default color cycle is active. An explicitly configured color cycle and other `rcParams` remain in effect, so plots still compose with an application''s own theme. A returned figure can be saved with ordinary Matplotlib APIs:'
-  ko: Matplotlib의 기본 색상 순환을 사용할 때 FATQAT은 일관된 범주형 팔레트를 적용합니다. 명시적으로 설정한 색상 순환과 다른 `rcParams`는 그대로 유지되므로 애플리케이션의 테마와도 함께 사용할 수 있습니다. 반환된 그림은 일반 Matplotlib API로 저장할 수 있습니다.
+  ko: Matplotlib의 기본 색상 순환을 사용할 때 FatQat은 일관된 범주형 팔레트를 적용합니다. 명시적으로 설정한 색상 순환과 다른 `rcParams`는 그대로 유지되므로 애플리케이션의 테마와도 함께 사용할 수 있습니다. 반환된 그림은 일반 Matplotlib API로 저장할 수 있습니다.
   status: machine
 - id: b63f379d75a1e532
   en: Visualization helps you check a program and understand its results. A circuit diagram makes the gate order, measurement positions, and classical conditions easier to follow. Plotting measurement outcomes shows which results are more common and how their frequencies differ. For longer programs, an interaction graph also helps you see which logical qubits often take part in operations together.

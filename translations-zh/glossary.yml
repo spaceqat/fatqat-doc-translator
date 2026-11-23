@@ -60,6 +60,28 @@ terms:
   parameter: 参数
   sweep: 扫描
   fusion: 融合
+  decoder: 译码器
+  logical error: 逻辑错误
+  stabilizer: 稳定子
+  erasure: 擦除
+  ansatz: 拟设
+  unital: 保幺
+  power flow: 潮流
+  QUBO: QUBO
+  cascading failure: 连锁故障
+  one-hot: 独热
+  warm start: 热启动
+  NP-hard: NP 难
+  hook error: 钩子错误
+  erasure flag: 擦除标记
+  native gate set: 原生门集
+  balanced accuracy: 平衡准确率
+  mean absolute error: 平均绝对误差
+  domain wall: 畴壁
+  staggered magnetization: 交错磁化强度
+  half-chain entropy: 半链熵
+  anharmonicity: 非谐性
+  uncomputation: 反计算
 
 # Context-sensitive terms are reviewed in prose, not by the substring checker.
 # Add the English term at first mention when needed to distinguish the meaning.
@@ -95,6 +117,34 @@ contextual_terms:
     neutral_atom_arrays: 中性原子阵列模拟
     linear_optics: 线性光学模拟
     transmon_emulation: 超导 Transmon 仿真
+  circuit_and_wire:
+    quantum_circuit: circuit 用「线路」；在同时出现输电线路的页面（如电网解列案例）中写「量子线路」，避免与输电线路混淆。
+    wire: 线路图中的 wire 指某个量子比特，写「量子比特」或「该量子比特上」，不写「每条线路上」。
+  shot:
+    repetition: shot 指一次重复运行并测量，用「采样」（例如「每次采样」「1000 次采样」）；不用「测量」指代 shot。
+  parity:
+    bitstring_or_operator: 比特串或算符的 parity 用「奇偶性」，even/odd parity 写「奇偶性为偶／为奇」；parity check 用「奇偶校验」。不用「宇称」或「奇偶值」。
+  lattice_site:
+    chain_or_array: 自旋链、原子链或晶格模型中的 site 用「格点」，与「设备上的位置」区分。
+  surface_code_patch:
+    patch: 表面码的 patch 用「码块」。
+  revival:
+    quantum_revival: 量子态回到初态附近的 revival 用「复苏」，不用「回归」。
+  power_systems:
+    controlled_islanding: controlled islanding 用「受控解列」，首次出现时括注 controlled islanding；island 用「孤岛」。
+    bus: bus 用「节点」，例如「9 节点系统」；不用「母线」。
+    cut_lines: cut 用「切断线路」，cut weight 用「割权重」，split 用「划分」。
+    obdd: OBDD 用「有序二叉决策图（OBDD）」。
+    coherency: coherency 用「同调性」，coherent generator group 用「同调机群」。
+    graph_node: 电网页面中，bus 已占用「节点」，图论意义的 node 写「顶点」。
+  qubo:
+    full_name: QUBO 全称写「二次无约束二元优化」，binary variable 写「二元变量」，binary vector/matrix 写「二元向量／矩阵」，不用「二进制」。只有讲整数的二进制表示时才用「二进制」。
+  worker:
+    thread: 并行执行中的 worker 是线程时写「工作线程」，不写「工作进程」。
+  bulk_term:
+    chain_bulk: 链或晶格内部（非边界）的项写「体项」，相应区域写「体区」。
+  pair:
+    unordered_pair: unordered pair 写「不分先后的格点对」或「所有配对」，不写「无序对」。
   case_study_titles:
-    pxp_state_revivals: PXP 链何时接近初态
+    pxp_state_revivals: 观察 PXP 链中 Z₂ 态的复苏与纠缠
     rydberg_spin_correlations: 里德堡链中的反铁磁关联

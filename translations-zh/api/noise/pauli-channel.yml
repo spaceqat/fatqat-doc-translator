@@ -68,5 +68,5 @@
   status: retired
 - id: d563afb7a62d0928
   en: FATQAT checks the target count and qubit dimensions when the program runs.
-  zh: 程序运行时，FATQAT 会检查目标数量和量子比特维度。
+  zh: 程序运行时，FatQat 会检查目标数量和量子比特维度。
   status: machine

@@ -132,7 +132,7 @@
   status: machine
 - id: 61525e7e5dd36beb
   en: A FatQat emulator takes a [`Program`][fatqat.Program] and follows the state while the controls are applied. You can use it to see how pulse duration and coupling affect the result, or how much population leaks into higher levels. It can also include noise that acts continuously during the evolution.
-  zh: FatQat 仿真器接收一个 [`Program`][fatqat.Program]，跟踪施加控制信号时量子态的变化。你可以用它观察脉冲时长和耦合如何影响结果，或有多少布居泄漏到了更高的能级。仿真也可以包含演化期间持续作用的噪声。
+  zh: FatQat 仿真器接收一个 [`Program`][fatqat.Program]，跟踪施加控制信号时量子态的变化。你可以用它观察脉冲时长和耦合如何影响结果，或有多大概率泄漏到更高的能级。仿真也可以包含演化期间持续作用的噪声。
   status: machine
 - id: a862bd73c328c473
   en: In digital quantum computation, you describe the computation with gates. At the pulse level, a gate calibration tells the emulator which control signals realize each gate. In analog quantum computation, you work with the system's evolution directly and can specify control pulses to shape its Hamiltonian over time.
@@ -148,7 +148,7 @@
   status: machine
 - id: 7025ef57907ef691
   en: When the emulator runs `RX`, its gate implementation map supplies a calibrated pulse on the drive channel for the addressed transmon. The returned state is a QuTiP ket `Qobj` with $3^2$ amplitudes because it describes both three-level transmons in the model. Including the third level lets you see population leak out of the qubit states `|0>` and `|1>`.
-  zh: 执行 `RX` 时，仿真器通过门实现映射，找到要施加到目标 Transmon 驱动通道上的校准脉冲。返回的量子态是 QuTiP 的 `Qobj`，包含 $3^2$ 个振幅，因为它描述的是模型里两个三能级 Transmon 的联合状态。有了第三能级，你就能看出有多少布居从量子比特态 `|0>` 和 `|1>` 泄漏出去。
+  zh: 执行 `RX` 时，仿真器通过门实现映射，找到要施加到目标 Transmon 驱动通道上的校准脉冲。返回的量子态是 QuTiP 的 `Qobj`，包含 $3^2$ 个振幅，因为它描述的是模型里两个三能级 Transmon 的联合状态。有了第三能级，你就能看出有多大概率从量子比特态 `|0>` 和 `|1>` 泄漏出去。
   status: machine
 - id: 9563dc68fe860d38
   en: To model a different system or use a different calibration, supply its model document and gate implementation map.

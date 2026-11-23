@@ -77,7 +77,7 @@
 - id: 0806d9b02284b8fc
   en: For a complete amplitude scan, parameter selection, and checks on other input states, follow [Calibrating a quantum gate](../tutorials/pulse-calibration.md).
   ko: 전체 진폭 스캔, 매개변수 선택, 다른 입력 상태의 검증은 [양자 게이트 보정하기](../tutorials/pulse-calibration.md)를 따라가 보세요.
-  status: machine
+  status: retired
 - id: e32457ed9b5fa407
   en: '`SampledWaveform` uses the endpoint values you provide. It does not taper a waveform or require it to start and finish at zero; this example does both explicitly through the envelope.'
   ko: '`SampledWaveform`은 지정한 끝점 값을 그대로 사용합니다. 파형의 끝을 자동으로 부드럽게 줄이지 않으며, 시작과 끝이 0일 필요도 없습니다. 이 예제의 포락선은 두 조건을 직접 만족하도록 정했습니다.'
@@ -301,4 +301,8 @@
 - id: 3679a064dba06eb4
   en: The reference calibration uses analytic recipes to keep pulse generation simple. The grid generator uses the same pulse shapes and chooses a CZ branch for each pair of connected transmons. Further pulse optimization can improve gate fidelity, for example by reducing the small residual controlled phase in the reference iSWAP.
   ko: 기준 보정은 펄스를 쉽게 생성할 수 있도록 해석적 펄스 구성을 사용합니다. 배열을 생성할 때 같은 펄스 모양을 사용하며, 연결된 트랜스몬 쌍마다 CZ 분기를 선택합니다. 펄스를 더 최적화하면 기준 iSWAP에 남는 작은 제어 위상을 줄이는 등 게이트 충실도를 높일 수 있습니다.
+  status: machine
+- id: 0f12a2ff7439cf79
+  en: For a complete amplitude scan, parameter selection, and checks on other input states, follow [Calibrate an X gate on a transmon](../tutorials/pulse-calibration.md).
+  ko: 진폭 스캔, 매개변수 선택, 다른 입력 상태 검사를 포함한 전체 과정은 [트랜스몬에서 X 게이트 보정하기](../tutorials/pulse-calibration.md)를 참고하세요.
   status: machine

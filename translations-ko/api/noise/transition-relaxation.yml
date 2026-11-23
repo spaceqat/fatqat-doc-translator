@@ -12,7 +12,7 @@
   status: machine
 - id: cafd71f5be3baac5
   en: FATQAT validates nonnegative level indices at construction and checks them against the physical target dimension during backend preparation. Numerical index order does not by itself determine energy order; the caller identifies the physically relaxing source and destination states.
-  ko: FATQAT은 생성 시 준위 인덱스가 비음수인지 확인하고, 백엔드 준비 중 물리 대상 차원과 비교해 검사합니다. 숫자 인덱스의 순서 자체가 에너지 순서를 뜻하지는 않습니다. 물리적으로 이완하는 출발 상태와 도착 상태는 호출자가 지정해야 합니다.
+  ko: FatQat은 생성 시 준위 인덱스가 비음수인지 확인하고, 백엔드 준비 중 물리 대상 차원과 비교해 검사합니다. 숫자 인덱스의 순서 자체가 에너지 순서를 뜻하지는 않습니다. 물리적으로 이완하는 출발 상태와 도착 상태는 호출자가 지정해야 합니다.
   status: machine
 - id: d8cfd0647f813492
   en: Shared and separate jumps

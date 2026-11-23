@@ -168,7 +168,7 @@
   status: machine
 - id: 428cf66d8aa00e14
   en: The compiler currently handles static circuits with numeric parameters. Both targets support I, H, X, Y, Z, S, Sdg, T, Tdg, RX, RY, RZ, Phase, U, U1, U2, U3, CX, CZ, and Swap. The SC route also supports SX and Reset. Measurements belong at the end of the circuit, and each classical slot can receive one measurement result.
-  zh: 编译器目前处理参数为数值的静态线路。两种目标都支持 I、H、X、Y、Z、S、Sdg、T、Tdg、RX、RY、RZ、Phase、U、U1、U2、U3、CX、CZ 和 Swap。SC 路径还支持 SX 和 Reset。测量应位于线路末尾，每个经典槽位可以接收一个测量结果。
+  zh: 编译器目前处理参数为数值的静态线路。两种目标都支持 I、H、X、Y、Z、S、Sdg、T、Tdg、RX、RY、RZ、Phase、U、U1、U2、U3、CX、CZ 和 Swap。SC 路径还支持 SX 和 Reset。测量应位于线路末尾，每个经典寄存器成员可以接收一个测量结果。
   status: machine
 - id: c17c784235da0b92
   en: Other operations available to `LogicalProgram`, including classical conditions, feed-forward, mid-circuit measurement, multi-controlled gates, and qudit gates, can still be used in direct simulation but are not compiled yet. If a circuit uses an operation unavailable on its chosen target, compilation raises a [`PassError`][fatqat.compiler.PassError] that identifies the compiler stage and operation.

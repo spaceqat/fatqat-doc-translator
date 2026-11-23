@@ -28,11 +28,11 @@
   status: machine
 - id: 15a9df1e2d069e66
   en: Each probability is an `int` or `float` other than `bool` and must be finite and in `[0, 1]`. Duplicate strings are an error. Nonidentity probabilities may sum to less than 1; FATQAT assigns the remaining weight to the all-identity string. An explicitly supplied identity term must agree with that implied value. Small floating-point round-off is tolerated.
-  ko: 각 확률은 `bool`을 제외한 `int` 또는 `float`이며, 유한하고 `[0, 1]` 범위에 있어야 합니다. 중복 문자열은 오류입니다. 비항등 확률의 합은 1보다 작아도 됩니다. FATQAT은 남은 가중치를 전체 항등 문자열에 할당합니다. 항등 항을 명시적으로 제공하면 이 계산값과 일치해야 합니다. 작은 부동소수점 반올림 오차는 허용합니다.
+  ko: 각 확률은 `bool`을 제외한 `int` 또는 `float`이며, 유한하고 `[0, 1]` 범위에 있어야 합니다. 중복 문자열은 오류입니다. 비항등 확률의 합은 1보다 작아도 됩니다. FatQat은 남은 가중치를 전체 항등 문자열에 할당합니다. 항등 항을 명시적으로 제공하면 이 계산값과 일치해야 합니다. 작은 부동소수점 반올림 오차는 허용합니다.
   status: machine
 - id: 2a962cd046b64376
   en: 'FATQAT consumes the input and stores `PauliChannel.terms` as an immutable tuple. The identity term comes first; the other terms keep their input order:'
-  ko: FATQAT은 입력을 읽어 `PauliChannel.terms`에 불변 튜플로 저장합니다. 항등 항이 먼저 오고, 나머지 항은 입력 순서를 유지합니다.
+  ko: FatQat은 입력을 읽어 `PauliChannel.terms`에 불변 튜플로 저장합니다. 항등 항이 먼저 오고, 나머지 항은 입력 순서를 유지합니다.
   status: machine
 - id: 4b568d7c224c31e2
   en: After the identity weight has been filled in, the channel is
@@ -60,5 +60,5 @@
   status: machine
 - id: d563afb7a62d0928
   en: FATQAT checks the target count and qubit dimensions when the program runs.
-  ko: FATQAT은 프로그램 실행 시 대상 수와 큐비트 차원을 검사합니다.
+  ko: FatQat은 프로그램 실행 시 대상 수와 큐비트 차원을 검사합니다.
   status: machine

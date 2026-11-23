@@ -8,11 +8,11 @@
   status: machine
 - id: efab3866fc676b1c
   en: One simulated input follows 110, 120, 121, and 111 at the input, controlled level exchange, target flip, and restoration checkpoints; the middle system's level-2 population is zero, one, one, and zero.
-  ko: 한 입력의 시뮬레이션 상태는 입력, 제어 준위 교환, 타깃 반전, 복원 시점에서 각각 110, 120, 121, 111입니다. 가운데 계의 준위 2 점유율은 차례로 0, 1, 1, 0입니다.
+  ko: 한 입력의 시뮬레이션 상태는 입력, 제어 준위 교환, 타깃 반전, 복원 시점에서 각각 110, 120, 121, 111입니다. 가운데 계의 준위 2 점유 확률은 차례로 0, 1, 1, 0입니다.
   status: machine
 - id: 15712a5bf3546440
   en: 'Transition probabilities from eight logical inputs to all twelve output states: only 110 and 111 exchange places, and the four orange-outlined output rows with middle level 2 have zero population.'
-  ko: 여덟 논리 입력에서 열두 출력 상태로 가는 전이 확률입니다. 110과 111만 서로 바뀌며, 가운데 준위가 2인 주황색 테두리의 네 출력 행은 점유율이 0입니다.
+  ko: 여덟 논리 입력에서 열두 출력 상태로 가는 전이 확률입니다. 110과 111만 서로 바뀌며, 가운데 준위가 2인 주황색 테두리의 네 출력 행은 점유 확률이 0입니다.
   status: machine
 - id: c950dc7048298eec
   en: 'In this tutorial, we build a Toffoli gate with three qubit–qutrit interactions and verify its action on quantum states. The middle system is a qutrit: it has levels $|0\rangle$, $|1\rangle$, and $|2\rangle$. We use its first two levels as a logical qubit and borrow the third during the gate. The final checks will show that we recover the required logical output, including its relative phases, and empty the borrowed level.'
@@ -48,7 +48,7 @@
   status: machine
 - id: 46fb07457a3ea633
   en: Each step uses a short sequence of gates, which we call a block. At the end of the first block, occupation of level 2 records that both input controls were $1$. We can then condition the target flip on this one level and undo the temporary encoding, using the same three subsystems throughout.
-  ko: 각 단계는 짧은 게이트 순서로 이루어지며 이를 블록이라고 부릅니다. 첫 블록이 끝났을 때 준위 2의 점유 여부는 두 입력 제어가 모두 $1$이었는지를 기록합니다. 따라서 이 준위 하나를 조건으로 타깃을 뒤집고 임시 인코딩을 되돌릴 수 있습니다. 전체 과정에서 같은 세 부분계을 사용합니다.
+  ko: 각 단계는 짧은 게이트 순서로 이루어지며 이를 블록이라고 부릅니다. 첫 블록이 끝났을 때 준위 2의 점유 여부는 두 입력 제어가 모두 $1$이었는지를 기록합니다. 따라서 이 준위 하나를 조건으로 타깃을 뒤집고 임시 인코딩을 되돌릴 수 있습니다. 전체 과정에서 같은 세 부분계를 사용합니다.
   status: machine
 - id: da31938065f988ef
   en: Set up the mixed register
@@ -56,7 +56,7 @@
   status: machine
 - id: 919032b7187d9048
   en: We give each control and the target a named one-slot register. The registers `a` and `t` use the default qubit dimension, while `dim=3` makes `b` a qutrit. We address their slots as `a[0]`, `b[0]`, and `t[0]`, following the [mixed-register guide](../guide/program.md#mix-qubits-and-qutrits).
-  ko: 각 제어와 타깃에 이름이 있는 단일 슬롯 레지스터를 배정합니다. `a`와 `t`는 기본 큐비트 차원을 사용하고, `b`는 `dim=3`으로 큐트릿로 만듭니다. [혼합 레지스터 안내](../guide/program.md#mix-qubits-and-qutrits)에 따라 슬롯을 `a[0]`, `b[0]`, `t[0]`으로 지정합니다.
+  ko: 각 제어와 타깃에 이름이 있는 단일 슬롯 레지스터를 배정합니다. `a`와 `t`는 기본 큐비트 차원을 사용하고, `b`는 `dim=3`으로 큐트릿이 됩니다. [혼합 레지스터 안내](../guide/program.md#mix-qubits-and-qutrits)에 따라 슬롯을 `a[0]`, `b[0]`, `t[0]`으로 지정합니다.
   status: machine
 - id: 08710becb74001e0
   en: The joint state has $2\times3\times2=12$ amplitudes. Eight basis states have `b=0` or `b=1`; these form the logical subspace on which we want Toffoli to act. The remaining four have `b=2` and are available during the gate.
@@ -84,11 +84,11 @@
   status: machine
 - id: ca8c278f17e42153
   en: 'Between the rotations, we use `CClock(1)` to change a sign when `a=1`. Its second operand''s dimension sets the phase''s root of unity. We put the qutrit first and the qubit second, `(b[0], a[0])`, to obtain the binary phases $\pm1$:'
-  ko: 두 회전 사이에 `CClock(1)`을 넣어 `a=1`일 때 부호를 바꿉니다. 두 번째 피연산자의 차원이 위상에 사용할 단위근을 결정합니다. 이진 위상 $\pm1$을 얻기 위해 큐트릿를 먼저, 큐비트를 나중에 놓아 `(b[0], a[0])`로 지정합니다.
+  ko: 두 회전 사이에 `CClock(1)`을 넣어 `a=1`일 때 부호를 바꿉니다. 두 번째 피연산자의 차원이 위상에 사용할 단위근을 결정합니다. 이진 위상 $\pm1$을 얻기 위해 큐트릿을 먼저, 큐비트를 나중에 놓아 `(b[0], a[0])`로 지정합니다.
   status: machine
 - id: dd7e39e0b73cf445
   en: This formula uses the pair's operand order, $(b,a)$; the full register remains in $(a,b,t)$ order. Putting the qutrit second would introduce third roots of unity and change the gate.
-  ko: 이 공식은 쌍의 피연산자 순서 $(b,a)$를 사용합니다. 전체 레지스터 순서는 여전히 $(a,b,t)$입니다. 큐트릿를 두 번째에 놓으면 3차 단위근이 도입되어 다른 게이트가 됩니다.
+  ko: 이 식은 쌍의 피연산자 순서 $(b,a)$를 사용합니다. 전체 레지스터 순서는 여전히 $(a,b,t)$입니다. 큐트릿을 두 번째에 놓으면 3차 단위근이 도입되어 다른 게이트가 됩니다.
   status: machine
 - id: 2b97e260a58254eb
   en: When `a=0`, the phase is always $+1$ and the two opposite rotations cancel. When `a=1`, level `b=1` gains a minus sign, while levels 0 and 2 keep their phase. In the selected pair, placing this sign change between the rotations gives
@@ -152,7 +152,7 @@
   status: machine
 - id: 3532e7e4d75a37b9
   en: This reversal of the temporary encoding is called uncomputation. We undo the encoding with coherent gates, preserving the relative amplitudes of input branches. After tracing one basis input, we will check that restoration also works for a superposition.
-  ko: 이처럼 임시 인코딩을 되돌리는 과정을 언컴퓨테이션이라고 합니다. 결맞은 게이트로 인코딩을 되돌리므로 입력 분기 사이의 상대 진폭이 보존됩니다. 기저 입력 하나를 추적한 다음 중첩에서도 복원이 되는지 확인하겠습니다.
+  ko: 이처럼 임시 인코딩을 되돌리는 과정을 언컴퓨테이션(uncomputation)이라고 합니다. 결맞은 게이트로 인코딩을 되돌리므로 입력 분기 사이의 상대 진폭이 보존됩니다. 기저 입력 하나를 추적한 다음 중첩에서도 복원이 되는지 확인하겠습니다.
   status: machine
 - id: 43dd88a6c9eeb614
   en: Assemble and run the program
@@ -164,7 +164,7 @@
   status: machine
 - id: d93241cd22bebe9f
   en: To follow the borrowed level, we need the complex state after each block. The `statevector` method returns this vector. In `evolve`, `initial_state` chooses the input, and `result_config` requests the final state and disables counts. These ideal runs contain no measurements or noise, so they have no sampling uncertainty and need no random seed. We can use the same helper for the full gate or a prefix of its instructions.
-  ko: 빌린 준위를 추적하려면 각 블록 뒤의 복소 상태가 필요합니다. `statevector` 방법이 이 벡터를 반환합니다. `evolve`에서 `initial_state`로 입력을 고르고, `result_config`로 최종 상태를 요청하며 측정 횟수 출력을 끕니다. 측정과 노이즈가 없는 이상적 실행이므로 샘플링 불확실성이 없고 난수 시드도 필요하지 않습니다. 같은 헬퍼로 전체 게이트나 앞부분의 명령만 실행할 수 있습니다.
+  ko: 빌린 준위를 따라가려면 블록마다 그 직후의 복소 상태가 필요합니다. `statevector` 방법이 이 벡터를 반환합니다. `evolve`에서는 `initial_state`로 입력을 고르고, `result_config`로 최종 상태를 요청하면서 카운트 집계를 끕니다. 이 이상적인 실행에는 측정도 노이즈도 없으므로 샘플링 불확실성이 없고 난수 시드도 필요하지 않습니다. 같은 헬퍼로 전체 게이트도, 명령의 앞부분만도 실행할 수 있습니다.
   status: machine
 - id: 74fa2e592a4a866b
   en: Follow one input through the borrowed level
@@ -180,15 +180,15 @@
   status: machine
 - id: e6a7d2361f1e17bf
   en: We also compute the probability of finding `b` in level 2. Reshaping a state to `(2, 3, 2)` gives one axis per subsystem. The slice `[:, 2, :]` selects every amplitude with `b=2`, regardless of `a` or `t`, and summing their squared magnitudes gives the borrowed-level population.
-  ko: '`b`가 준위 2에 있을 확률도 계산합니다. 상태를 `(2, 3, 2)`로 재구성하면 부분계마다 축 하나를 얻습니다. 슬라이스 `[:, 2, :]`는 `a`나 `t`와 무관하게 `b=2`인 모든 진폭을 선택합니다. 그 절댓값의 제곱을 합하면 빌린 준위의 점유율입니다.'
+  ko: '`b`가 준위 2에 있을 확률도 계산합니다. 상태를 `(2, 3, 2)`로 재구성하면 부분계마다 축 하나를 얻습니다. 슬라이스 `[:, 2, :]`는 `a`나 `t`와 무관하게 `b=2`인 모든 진폭을 선택합니다. 그 절댓값의 제곱을 합하면 빌린 준위의 점유 확률입니다.'
   status: machine
 - id: 31d16d717676c3aa
   en: The printed populations follow $0,1,1,0$ to numerical precision. For this input, the middle control occupies level 2 after the exchange and target flip, then returns to level 1. The figure pairs each population with its state label so we can inspect both the control's return and the target's flip.
-  ko: 출력된 점유율은 수치 정밀도 내에서 $0,1,1,0$을 따릅니다. 이 입력에서 가운데 제어는 교환과 타깃 반전 뒤에 준위 2를 차지하다가 준위 1로 돌아옵니다. 그림은 각 점유율과 상태 라벨을 함께 표시해 제어의 복귀와 타깃 반전을 모두 확인하게 합니다.
+  ko: 출력된 점유 확률은 수치 정밀도 내에서 $0,1,1,0$을 따릅니다. 이 입력에서 가운데 제어는 교환과 타깃 반전 뒤에 준위 2를 차지하다가 준위 1로 돌아옵니다. 그림은 각 점유 확률과 상태 라벨을 함께 표시하므로 제어의 복귀와 타깃 반전을 모두 확인할 수 있습니다.
   status: machine
 - id: 0df1ce0014ebad3c
   en: The horizontal axis marks block boundaries, not elapsed time. Rotations and swaps can also populate level 2 within a block; each bar describes the state at its checkpoint. The tiny final residual is consistent with floating-point arithmetic.
-  ko: 가로축은 경과 시간이 아니라 블록 경계를 나타냅니다. 블록 내부의 회전이나 교환 중에도 준위 2에 점유가 생길 수 있으며, 각 막대는 해당 확인 시점의 상태만 나타냅니다. 마지막의 아주 작은 잔여값은 부동소수점 연산 오차 범위입니다.
+  ko: 가로축은 경과 시간이 아니라 블록 경계를 나타냅니다. 블록 내부의 회전이나 교환 중에도 준위 2에 점유 확률이 생길 수 있으며, 각 막대는 해당 확인 시점의 상태만 나타냅니다. 마지막의 아주 작은 잔여값은 부동소수점 연산 오차 범위입니다.
   status: machine
 - id: ac514ce606d60230
   en: Check a superposition
@@ -224,7 +224,7 @@
   status: machine
 - id: 617fc341c1be4810
   en: Each column is the output state for one basis input. Entry $(i,j)$ is the amplitude for output state $i$ when the input is state $j$. Both axes use the [result conventions](../api/result.md#ordering-and-mutable-values) introduced above. For example, the column for $|110\rangle$ should have unit amplitude in the row for $|111\rangle$.
-  ko: 각 열은 하나의 기저 입력에 대한 출력 상태입니다. 원소 $(i,j)$는 상태 $j$를 입력했을 때 출력 상태 $i$의 진폭입니다. 두 축은 앞서 설명한 [결과 규약](../api/result.md#ordering-and-mutable-values)을 따릅니다. 예를 들어 $|110\rangle$의 열은 $|111\rangle$ 행에서 진폭 1을 가져야 합니다.
+  ko: 각 열은 기저 입력 하나에 대한 출력 상태입니다. 성분 $(i,j)$는 입력이 상태 $j$일 때 출력 상태 $i$의 진폭입니다. 두 축 모두 앞에서 소개한 [결과 규약](../api/result.md#ordering-and-mutable-values)을 따릅니다. 예를 들어 $|110\rangle$ 열은 $|111\rangle$ 행에서 진폭이 1이어야 합니다.
   status: machine
 - id: e80bdc742e78a5f7
   en: 'The logical states are interleaved with the borrowed-level states in this ordering. We select the eight logical rows and columns to obtain the gate''s logical matrix. We also select the four borrowed-level output rows to check for leakage: amplitude left outside the logical subspace at the end of the gate.'
@@ -244,11 +244,11 @@
   status: machine
 - id: 2e0696e5071558b5
   en: With the complex matrix checked, we can visualize the truth table by plotting the squared magnitudes of the eight logical input columns. We keep all twelve output rows so that any final borrowed-level population would also appear.
-  ko: 복소 행렬을 검증했으므로 여덟 논리 입력 열의 진폭 절댓값을 제곱해 진리표를 시각화할 수 있습니다. 열두 출력 행을 모두 남겨 마지막에 빌린 준위에 점유율이 있으면 보이도록 합니다.
+  ko: 복소 행렬을 검증했으므로 여덟 논리 입력 열의 진폭 절댓값을 제곱해 진리표를 시각화할 수 있습니다. 열두 출력 행을 모두 남겨 마지막에 빌린 준위에 점유 확률이 있으면 보이도록 합니다.
   status: machine
 - id: ac9821ae7908f969
   en: Read the heatmap one column at a time. Inputs `110` and `111` exchange places, while the other six logical inputs return to themselves. The four orange-outlined rows correspond to `b=2` and have zero population to numerical precision for all eight inputs. The figure shows the correct truth table and return to the logical subspace; the complex comparisons above supply the phase-sensitive verification.
-  ko: 열 지도를 한 열씩 읽어 보세요. `110`과 `111`은 서로 바뀌고 나머지 여섯 논리 입력은 원래 상태로 돌아옵니다. 주황색 테두리의 네 행은 `b=2`에 해당하며, 여덟 입력 모두에서 수치 정밀도 내 점유율이 0입니다. 그림은 올바른 진리표와 논리 부분공간으로의 복귀를 보여 주고, 앞선 복소수 비교는 위상까지 검증합니다.
+  ko: 열 지도를 한 열씩 읽어 보세요. `110`과 `111`은 서로 바뀌고 나머지 여섯 논리 입력은 원래 상태로 돌아옵니다. 주황색 테두리의 네 행은 `b=2`에 해당하며, 여덟 입력 모두에서 수치 정밀도 내 점유 확률이 0입니다. 그림은 올바른 진리표와 논리 부분공간으로의 복귀를 보여 주고, 앞선 복소수 비교는 위상까지 검증합니다.
   status: machine
 - id: 4cd2541f277b8271
   en: Count the interactions
@@ -272,9 +272,17 @@
   status: machine
 - id: 792bc414fae7e026
   en: Run the following code after the tutorial cells to omit the restoration block. It applies the first two blocks to $|110\rangle$ and prints the output amplitudes and borrowed-level population. Predict the output state before running it, then compare it with the required $|111\rangle$.
-  ko: 튜토리얼 셀 다음에 아래 코드를 실행하면 복원 블록을 생략할 수 있습니다. $|110\rangle$에 첫 두 블록만 적용하고 출력 진폭과 빌린 준위의 점유율을 표시합니다. 실행 전에 출력 상태를 예상한 뒤 필요한 $|111\rangle$과 비교하세요.
+  ko: 튜토리얼 셀 다음에 아래 코드를 실행하면 복원 블록을 생략할 수 있습니다. $|110\rangle$에 첫 두 블록만 적용하고 출력 진폭과 빌린 준위의 점유 확률을 표시합니다. 실행 전에 출력 상태를 예상한 뒤 필요한 $|111\rangle$과 비교하세요.
   status: machine
 - id: 607972d33a48f509
   en: Next, replace `basis_state(1, 1, 0)` in the exercise with `coherent_input`. Predict which branch will remain in level 2 and its contribution to `P(b=2)`, then compare the returned amplitudes with `expected_output`. Explain why getting the target bit right on each branch is insufficient to recover the intended quantum state. Finally, use the full `sequence` and check that the middle control returns to the logical subspace.
   ko: 다음으로 연습의 `basis_state(1, 1, 0)`을 `coherent_input`으로 바꾸세요. 어떤 분기가 준위 2에 남고 `P(b=2)`에 얼마나 기여할지 예상한 뒤, 반환 진폭을 `expected_output`과 비교하세요. 각 분기에서 타깃 비트만 맞는 것으로는 의도한 양자 상태를 복원할 수 없는 이유를 설명해 보세요. 마지막으로 전체 `sequence`를 사용해 가운데 제어가 논리 부분공간으로 돌아오는지 확인하세요.
   status: machine
+- id: a08346d550cfec3c
+  en: To follow the borrowed level, we need the complex state after each block. The `statevector` simulation method returns this vector. In `evolve`, `initial_state` chooses the input, and `result_config` requests the final state and disables counts. These ideal runs contain no measurements or noise, so they have no sampling uncertainty and need no random seed. We can use the same helper for the full gate or a prefix of its instructions.
+  ko: 빌린 준위를 따라가려면 블록마다 그 직후의 복소 상태가 필요합니다. `statevector` 시뮬레이션 방법이 이 벡터를 반환합니다. `evolve`에서는 `initial_state`로 입력을 고르고, `result_config`로 최종 상태를 요청하면서 카운트 집계를 끕니다. 이 이상적인 실행에는 측정도 노이즈도 없으므로 샘플링 불확실성이 없고 난수 시드도 필요하지 않습니다. 같은 헬퍼로 전체 게이트도, 명령의 앞부분만도 실행할 수 있습니다.
+  status: retired
+- id: 7c95138165d61c4a
+  en: Each column is the output state for one basis input. Entry $(i,j)$ is the amplitude for output state $i$ when the input is state $j$. Both axes use the flat index $6a+2b+t$ described in [Set up the mixed register](#set-up-the-mixed-register); the [result conventions](../api/result.md#ordering-and-mutable-values) give the general ordering rule. For example, the column for $|110\rangle$ should have unit amplitude in the row for $|111\rangle$.
+  ko: 각 열은 기저 입력 하나에 대한 출력 상태입니다. 성분 $(i,j)$는 입력이 상태 $j$일 때 출력 상태 $i$의 진폭입니다. 두 축 모두 [혼합 레지스터 준비하기](#set-up-the-mixed-register)에서 설명한 평탄화 인덱스 $6a+2b+t$를 사용하며, 일반적인 순서 규칙은 [결과 규약](../api/result.md#ordering-and-mutable-values)에 있습니다. 예를 들어 $|110\rangle$ 열은 $|111\rangle$ 행에서 진폭이 1이어야 합니다.
+  status: retired

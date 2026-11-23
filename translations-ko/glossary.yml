@@ -35,3 +35,36 @@ terms:
   qudit: 큐디트
   readout: 판독
   feedforward: 피드포워드
+  decoherence: 결어긋남
+  shot: 샷
+  fidelity: 충실도
+  detuning: 디튜닝
+  anharmonicity: 비조화도
+  Rydberg: Rydberg
+  decoder: 디코더
+  stabilizer: 안정자
+  syndrome: 신드롬
+  logical error rate: 논리 오류율
+  surface code: 표면 부호
+  repetition code: 반복 부호
+  erasure: 소거
+  dephasing: 탈위상
+  ground state: 바닥 상태
+  penalty: 벌점
+  power flow: 전력 흐름
+  island: 섬
+  blockade: 봉쇄
+
+# Context-sensitive terms are reviewed in prose, not by the substring checker.
+contextual_terms:
+  population: 양자 상태의 population은 「점유 확률」로 씁니다. 「점유율」은 쓰지 않습니다.
+  site: 원자 배열, 장치, 스핀 사슬의 site는 모두 「사이트」로 씁니다.
+  feature: 기계 학습의 feature는 「특성」으로 씁니다. 같은 페이지에서 「특성」이 예측 대상 속성을 뜻하면 feature는 「특징」으로 씁니다.
+  revival: 초기 상태로 되돌아오는 revival은 「재현」으로 쓰고, 페이지에서 처음 나올 때 「재현(revival)」으로 표기합니다.
+  code: 오류 정정 부호는 「부호」(표면 부호, 반복 부호)로 쓰고 「코드」로 쓰지 않습니다.
+  ansatz: 변분 회로의 ansatz는 「변분 회로」, 펄스의 ansatz는 「펄스 형태」로 씁니다.
+  islanding: islanding은 「계통 분리」, controlled islanding은 「제어된 계통 분리」로 씁니다. bus는 「모선」, line은 「선로」입니다.
+  repair: 후처리의 repair는 「수정」으로 씁니다. 「보정」은 calibration에만 씁니다.
+  uncomputation: 「언컴퓨테이션(uncomputation)」으로 씁니다.
+  order_parameter: order parameter는 「질서 매개변수」로 씁니다.
+  proper_names: Rydberg, Néel, Pauli, Ising, Trotter, Clifford, Bloch 같은 고유명은 라틴 문자로 둡니다.

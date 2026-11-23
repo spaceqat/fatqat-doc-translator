@@ -112,7 +112,7 @@
   status: retired
 - id: efa905c053cdb71f
   en: '| [`PhaseDamping`][fatqat.noise.PhaseDamping] | Exactly one of `p`, `rate`, or `t_phi` | One subsystem | Coherence decay without population transfer |'
-  zh: '| [`PhaseDamping`][fatqat.noise.PhaseDamping] | `p`、`rate` 与 `t_phi` 中恰好其一 | 单个子系统 | 无布居转移的相干衰减 |'
+  zh: '| [`PhaseDamping`][fatqat.noise.PhaseDamping] | `p`、`rate` 与 `t_phi` 中恰好其一 | 单个子系统 | 相干衰减，不发生态转移 |'
   status: machine
 - id: 2d73e3d318c879fe
   en: '| [`ThermalRelaxation`][fatqat.noise.ThermalRelaxation] | `t1` and `t2` | One subsystem | Combined energy relaxation and residual pure dephasing |'

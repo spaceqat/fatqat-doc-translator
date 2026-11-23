@@ -1,30 +1,30 @@
 - id: 512d71a9d53c2893
   en: Calibrating a quantum gate
   zh: 校准量子门
-  status: machine
+  status: retired
 - id: d79c6a0705d8bec6
   en: Build a control pulse, collect amplitude-calibration data, and verify an X rotation on several input states.
   zh: 准备控制脉冲，采集振幅校准数据，并在多个输入态上验证 X 旋转。
   status: machine
 - id: 7f0ba206b7a49ec4
   en: Desired-level population and leakage versus amplitude scale, marking the initial pulse at 0.8 and the best tested state-transfer amplitude near one.
-  zh: 目标能级布居和泄漏随振幅缩放的变化，标出了振幅为 0.8 的初始脉冲，以及测试中接近一的最佳态转移振幅。
+  zh: 目标能级占据概率和泄漏随振幅缩放系数的变化。图中标出了缩放系数为 0.8 的初始脉冲，以及测试中态转移效果最佳、接近 1 的振幅。
   status: machine
 - id: 80d1c749457c3520
   en: 'Input-state overlaps and leakage for initial, selected, and phase-rotated pulses: the phase-rotated pulse transfers basis states but fails the superposition checks.'
   zh: 初始、选定和相位旋转脉冲的输入态重叠与泄漏：相位旋转脉冲能转移基态，但无法通过叠加态检查。
-  status: machine
+  status: retired
 - id: db8e724ef9a14228
   en: Coherent X error and mean input leakage versus derivative-correction coefficient at fixed amplitude; their minima occur at different coefficients.
   zh: 固定振幅下，相干 X 误差和平均输入泄漏随导数校正系数的变化；二者在不同系数处达到最小值。
   status: machine
 - id: 21554a44f9a1030d
   en: In this tutorial, we calibrate a control pulse to approximate an X gate. Starting with an imperfect amplitude, we run a series of trial pulses and select the one that best transfers population from \(|0\rangle\) to \(|1\rangle\). We then check its action on superpositions to see how well it implements the desired operation.
-  zh: 本教程校准一个控制脉冲，使其近似实现 X 门。从不理想的振幅出发，运行一系列试验脉冲，选择最能将布居从 \(|0\rangle\) 转移到 \(|1\rangle\) 的脉冲。随后检查它对叠加态的作用，判断其实现目标操作的程度。
+  zh: 本教程校准一个控制脉冲，使其近似实现 X 门。从不理想的振幅出发，运行一系列试验脉冲，选出从 \(|0\rangle\) 转移到 \(|1\rangle\) 的概率最高的脉冲。随后检查它对叠加态的作用，看它在多大程度上实现了目标操作。
   status: machine
 - id: 6729271bb3084c4a
   en: You need basic Python, qubit states, and X rotations. The [quickstart](../guide/quickstart.md) introduces the program and result workflow. We use FatQat's supplied single-transmon model, which includes an extra energy level \(|2\rangle\) beyond the two qubit states. Population can enter this level during a pulse; we call it **leakage**. All calibration results here refer to this simulation model.
-  zh: 你需要了解基本 Python、量子比特态和 X 旋转。[快速入门](../guide/quickstart.md)介绍了程序与结果的使用流程。这里使用 FatQat 提供的单 transmon 模型，它在两个量子比特态之外还包含一个额外能级 \(|2\rangle\)。脉冲期间，布居可能进入该能级，称为**泄漏**。这里所有校准结果均针对这个模拟模型。
+  zh: 你需要了解基本的 Python、量子比特态和 X 旋转。[快速入门](../guide/quickstart.md)介绍了程序与结果的使用流程。这里使用 FatQat 提供的单 transmon 模型，它在两个量子比特态之外还包含一个额外能级 \(|2\rangle\)。脉冲期间，系统可能以一定概率进入该能级，这称为**泄漏**。这里所有校准结果均针对这个模拟模型。
   status: machine
 - id: 2f275d3f5c7d4921
   en: Define the target
@@ -32,7 +32,7 @@
   status: machine
 - id: 98395c00ef9dc17e
   en: Our target is \(R_X(\pi)\), an X gate up to a global phase. Besides exchanging the basis states, it preserves \(|+\rangle=(|0\rangle+|1\rangle)/\sqrt{2}\) up to a global phase. A common phase on all amplitudes has no observable effect, so our comparisons will ignore it.
-  zh: 目标是 \(R_X(\pi)\)，它与 X 门仅相差全局相位。除了交换基态，它还保持 \(|+\rangle=(|0\rangle+|1\rangle)/\sqrt{2}\) 不变，允许相差全局相位。所有振幅共同的相位不会产生可观测影响，因此比较时将其忽略。
+  zh: 目标是 \(R_X(\pi)\)，它与 X 门仅相差一个全局相位。除了交换两个基态，它还使 \(|+\rangle=(|0\rangle+|1\rangle)/\sqrt{2}\) 在相差全局相位的意义下保持不变。所有振幅共有的相位没有可观测效应，因此比较时将其忽略。
   status: machine
 - id: 0a725e67e9d254e9
   en: We first build the ideal rotation as a `Program` and run it with the general `Simulator`. In unitary mode, the result is the \(2\times2\) matrix that we will use as our reference.
@@ -44,7 +44,7 @@
   status: machine
 - id: 8d2bd3978e308737
   en: Next, load the transmon model and create a statevector emulator. Each run starts in physical \(|0\rangle\). We leave noise and measurement out of these runs so that we can inspect the pulse's final amplitudes. See the [transmon guide](../guide/transmon-emulation.md) for more on the model setup.
-  zh: 接下来加载 transmon 模型，创建态矢量仿真器。每次运行从物理态 \(|0\rangle\) 开始。为检查脉冲最终振幅，这些运行不包含噪声和测量。模型设置的更多说明见 [transmon 指南](../guide/transmon-emulation.md)。
+  zh: 接下来，加载 transmon 模型并创建态矢量仿真器。每次运行都从物理态 \(|0\rangle\) 开始。这些运行不加入噪声和测量，以便直接查看脉冲结束时的振幅。模型设置的更多说明见 [transmon 指南](../guide/transmon-emulation.md)。
   status: machine
 - id: 7e3faeb954204653
   en: 'We use a smooth envelope that starts and ends at zero. The duration \(T\) stays fixed at 12 nanoseconds (ns); the dimensionless scale \(a\) controls the amplitude:'
@@ -56,7 +56,7 @@
   status: machine
 - id: 07739155afb9a2f0
   en: The waveform gives the full Rabi rate in radians per nanosecond (rad/ns). FatQat includes the factor of one half when applying the drive Hamiltonian. At \(a=1\), the envelope has area \(\pi\), which would give the desired rotation for an ideal resonantly driven two-level system. Coupling to the third level makes this a starting estimate for the transmon pulse.
-  zh: 波形给出完整 Rabi 速率，单位为弧度每纳秒（rad/ns）。FatQat 在施加驱动哈密顿量时包含二分之一因子。当 \(a=1\) 时，包络面积为 \(\pi\)，对于理想共振驱动的二能级系统，这会给出目标旋转。第三能级的耦合使其仅能作为 transmon 脉冲的初始估计。
+  zh: 波形给出完整的 Rabi 速率，单位为弧度每纳秒（rad/ns）。FatQat 在施加驱动哈密顿量时会计入 1/2 因子。当 \(a=1\) 时，包络面积为 \(\pi\)，对理想的共振驱动二能级系统而言，这恰好给出目标旋转。由于存在与第三能级的耦合，这只能作为 transmon 脉冲的初始估计。
   status: machine
 - id: 9b53d2f34c5d5b88
   en: We sample the envelope at 81 times and connect it to the drive on `q0` through `PulseControl`. `SampledWaveform` interpolates between the samples. The helpers below put the pulse in a `Program` with `PulseOperation` and return its final statevector. We start at an amplitude scale of 0.8.
@@ -64,7 +64,7 @@
   status: machine
 - id: d23de4d73bd41c60
   en: The statevector contains three amplitudes, one for each physical level. Their squared magnitudes give `P0`, `P1`, and `P2`. Most of the population reaches \(|1\rangle\), but some remains in \(|0\rangle\) and a small amount leaks into \(|2\rangle\). We will use `P1` to choose the amplitude and track `P2` alongside it.
-  zh: 态矢量包含三个振幅，分别对应三个物理能级。振幅模的平方给出 `P0`、`P1` 和 `P2`。大部分布居到达 \(|1\rangle\)，但仍有部分留在 \(|0\rangle\)，少量泄漏到 \(|2\rangle\)。将用 `P1` 选择振幅，并同时跟踪 `P2`。
+  zh: 态矢量包含三个振幅，分别对应三个物理能级。振幅模的平方给出 `P0`、`P1` 和 `P2`。系统大部分概率转移到了 \(|1\rangle\)，但仍有一部分留在 \(|0\rangle\)，还有少量泄漏到 \(|2\rangle\)。我们用 `P1` 选择振幅，同时跟踪 `P2`。
   status: machine
 - id: 4b58eafedf0a4e95
   en: Collect data and select an amplitude
@@ -76,11 +76,11 @@
   status: machine
 - id: 977b91555f87001c
   en: For each amplitude, the loop builds a pulse program and collects its populations through `run().result()`. After finding the maximum, we rerun that pulse and record its parameters in a dictionary.
-  zh: 对于每个振幅，循环创建一个脉冲程序，通过 `run().result()` 收集布居。找到最大值后，再运行一次该脉冲，并将其参数记录在字典中。
+  zh: 对每个振幅，循环创建一个脉冲程序，并通过 `run().result()` 收集各能级的占据概率。找到最大值后，再运行一次该脉冲，并将其参数记录在字典中。
   status: machine
 - id: aed530ccbac9cbd5
   en: The selected pulse transfers more population to \(|1\rangle\), with more leakage than the initial pulse. It is the best tested amplitude for our state-transfer objective, with some population still outside the desired level.
-  zh: 选定脉冲将更多布居转移到 \(|1\rangle\)，但泄漏也比初始脉冲更多。它是针对态转移目标测试到的最佳振幅，仍有部分布居位于目标能级之外。
+  zh: 选定脉冲把更多概率转移到 \(|1\rangle\)，但泄漏也比初始脉冲多。就态转移这一目标而言，它是测试过的最佳振幅，但仍有一部分概率位于目标能级之外。
   status: machine
 - id: b9eda2618b1d3e1e
   en: The scan uses probabilities calculated from the statevector, so it has no shot noise. Numerical integration error remains. Our selection applies to this model, pulse duration, and grid; a finer grid could refine the amplitude.
@@ -92,19 +92,19 @@
   status: machine
 - id: e9fc347302327411
   en: The amplitude scan used only \(|0\rangle\). A gate must also act correctly on other inputs. We run the initial and selected pulses with a second emulator in unitary mode. The returned \(3\times3\) operator describes the full physical evolution; multiplying it by an input state gives the corresponding output.
-  zh: 振幅扫描只使用了 \(|0\rangle\)，但量子门还必须正确处理其他输入。用第二个处于酉算符模式的仿真器运行初始和选定脉冲。返回的 \(3\times3\) 算符描述完整物理演化；将其乘以输入态，即得到对应输出。
+  zh: 振幅扫描只使用了 \(|0\rangle\)，但量子门还必须正确作用于其他输入。我们再创建一个酉算符模式的仿真器，运行初始脉冲和选定脉冲。返回的 \(3\times3\) 算符描述完整的物理演化；将它乘以输入态，即得到对应的输出。
   status: machine
 - id: 2a7beb4dd795d57a
   en: We test \(|0\rangle\), \(|1\rangle\), \(|+\rangle\), and \(|+i\rangle=(|0\rangle+i|1\rangle)/\sqrt{2}\). For each input, we compare the pulse output with the ideal output using their **input-state overlap**, the squared magnitude of their inner product. An overlap of one means the states agree up to a global phase.
   zh: 测试输入为 \(|0\rangle\)、\(|1\rangle\)、\(|+\rangle\) 和 \(|+i\rangle=(|0\rangle+i|1\rangle)/\sqrt{2}\)。对于每个输入，以脉冲输出与理想输出的**输入态重叠**进行比较，即二者内积的模平方。重叠为一表示两态一致，允许相差全局相位。
-  status: machine
+  status: retired
 - id: b97a04f22ec7553f
   en: The helper appends a zero amplitude for \(|2\rangle\) to each logical input and target state. It keeps the full pulse output without renormalizing, so leakage reduces the overlap.
   zh: 辅助函数为每个逻辑输入和目标态追加一个对应 \(|2\rangle\) 的零振幅。它保留完整脉冲输出，不重新归一化，因此泄漏会降低重叠。
   status: machine
 - id: a51d27e612f2d654
   en: Alongside the individual states, we compare the whole logical operation using `coherent_x_overlap_and_leakage`. Its first result, **coherent X overlap**, equals one for the target operation up to a global phase and decreases with coherent error or leakage. This quantity differs from average gate fidelity. The second result is the mean leakage over the two logical basis inputs.
-  zh: 除了逐个输入态比较，还用 `coherent_x_overlap_and_leakage` 比较整个逻辑操作。其第一个结果为**相干 X 重叠**：实现目标操作且仅相差全局相位时等于一，出现相干误差或泄漏时减小。该量不同于平均门保真度。第二个结果是两个逻辑基输入上的平均泄漏。
+  zh: 除了逐个比较输入态，还用 `coherent_x_overlap_and_leakage` 比较整个逻辑操作。它的第一个结果是**相干 X 重叠**：与目标操作仅相差全局相位时等于 1，出现相干误差或泄漏时减小。该量不同于平均门保真度。第二个结果是两个逻辑基态输入的平均泄漏。
   status: machine
 - id: 04dd63338f48e269
   en: The operator comparison
@@ -112,7 +112,7 @@
   status: machine
 - id: 6c32559072d5dab6
   en: 'Let \(A=U[:2,:2]\) be the logical block of the physical operator and \(V\) the ideal rotation. The matrix inner product is \(\mathrm{Tr}(V^\dagger A)\). Dividing its squared magnitude by \(2^2\) gives \[ C_X=\frac{|\mathrm{Tr}(V^\dagger A)|^2}{4}. \] A global phase multiplies the trace by a number of magnitude one, so it leaves \(C_X\) unchanged. We keep \(A\) unnormalized: any leakage reduces its norm. The average survival probability of the two logical basis inputs is \(\mathrm{Tr}(A^\dagger A)/2\), giving mean leakage \(L=1-\mathrm{Tr}(A^\dagger A)/2\).'
-  zh: 设 \(A=U[:2,:2]\) 为物理算符的逻辑块，\(V\) 为理想旋转。矩阵内积为 \(\mathrm{Tr}(V^\dagger A)\)，将其模平方除以 \(2^2\) 得到 \[ C_X=\frac{|\mathrm{Tr}(V^\dagger A)|^2}{4}. \] 全局相位使迹乘以一个模为一的数，因此不改变 \(C_X\)。保持 \(A\) 未归一化，使任何泄漏都会降低其范数。两个逻辑基输入的平均存活概率为 \(\mathrm{Tr}(A^\dagger A)/2\)，因此平均泄漏为 \(L=1-\mathrm{Tr}(A^\dagger A)/2\)。
+  zh: 设 \(A=U[:2,:2]\) 为物理算符的逻辑块，\(V\) 为理想旋转。矩阵内积为 \(\mathrm{Tr}(V^\dagger A)\)，将其模平方除以 \(2^2\) 得到 \[ C_X=\frac{|\mathrm{Tr}(V^\dagger A)|^2}{4}. \] 全局相位只会让迹乘上一个模为 1 的数，因此不改变 \(C_X\)。这里不对 \(A\) 归一化，因此任何泄漏都会降低它的范数。两个逻辑基态输入的平均存活概率为 \(\mathrm{Tr}(A^\dagger A)/2\)，因此平均泄漏为 \(L=1-\mathrm{Tr}(A^\dagger A)/2\)。
   status: machine
 - id: 8724b597120f0ff6
   en: Check sensitivity to the drive phase
@@ -120,27 +120,27 @@
   status: machine
 - id: 45caf63051252b6a
   en: Before comparing the results, we add a pulse with a deliberate phase error. Multiplying the selected waveform by `1j` shifts its drive phase by a quarter turn, from the X to the Y quadrature, while keeping its amplitude unchanged. This gives us a way to test whether the population check can distinguish rotations about different axes.
-  zh: 比较结果前，加入一个故意带有相位误差的脉冲。将选定波形乘以 `1j`，驱动相位旋转四分之一圈，从 X 正交分量转到 Y 正交分量，振幅保持不变。这可以检验布居检查是否能够区分绕不同轴的旋转。
+  zh: 比较结果之前，先加入一个故意带有相位误差的脉冲。将选定波形乘以 `1j`，会使驱动相位旋转四分之一圈，从 X 正交分量转到 Y 正交分量，而振幅保持不变。借此可以检验：只看占据概率的检查能否区分绕不同轴的旋转。
   status: machine
 - id: 8651ed75b527ac78
   en: The selected pulse improves both population transfer and coherent X overlap. For the initial and selected pulses, these two values agree to numerical precision, a property of this symmetric pulse family.
-  zh: 选定脉冲同时改善了布居转移和相干 X 重叠。对于初始及选定脉冲，这两个值在数值精度内一致，这是该对称脉冲族的性质。
+  zh: 选定脉冲同时改善了态转移和相干 X 重叠。对初始脉冲和选定脉冲，这两个值在数值精度内一致，这是该对称脉冲族的性质。
   status: machine
 - id: c89a06912df0f9a8
   en: The phase-rotated pulse gives the same basis-state transfer, but its action on \(|+\rangle\) is close to orthogonal to the target output. Its coherent X overlap is also near zero. The superposition checks distinguish the two drive axes even though the population calibration cannot.
-  zh: 相位旋转脉冲给出相同的基态转移，但它作用于 \(|+\rangle\) 后的结果与目标输出近乎正交，相干 X 重叠也接近零。虽然布居校准无法区分两个驱动轴，叠加态检查却可以。
+  zh: 相位旋转脉冲给出相同的基态转移，但它作用于 \(|+\rangle\) 后的结果与目标输出近乎正交，相干 X 重叠也接近零。基于占据概率的校准无法区分这两个驱动轴，叠加态检查却可以。
   status: machine
 - id: 403fa11adb274a23
   en: Compare with a measured bit
-  zh: 与测量位比较
+  zh: 与测得的比特比较
   status: machine
 - id: 7a991f12f60b6f73
   en: We can also sample the selected pulse's measurement outcomes. For this, we build a separate program with a classical bit and terminal measurement and return to the statevector backend; unitary execution requires an unmeasured program.
-  zh: 也可以采样选定脉冲的测量结果。为此，创建一个带经典位和末端测量的独立程序，并切回态矢量后端；酉算符执行要求程序不含测量。
+  zh: 也可以对选定脉冲的测量结果进行采样。为此，另外创建一个带一个经典比特和末端测量的程序，并切回态矢量后端；酉算符模式要求程序不含测量。
   status: machine
 - id: 18506d426b92e9c6
   en: This backend reports physical level `0` as bit `0`, and both levels `1` and `2` as bit `1`. We therefore expect the frequency of `1` to approach `P1 + P2` as we increase the number of shots. This binary readout groups successful transfer and leakage into the same outcome.
-  zh: 该后端将物理能级 `0` 报告为位 `0`，将能级 `1` 和 `2` 都报告为位 `1`。因此，随着采样次数增加，`1` 的频率应趋近 `P1 + P2`。这种二元读出将成功转移和泄漏归入同一结果。
+  zh: 该后端将物理能级 `0` 报告为比特 `0`，将能级 `1` 和 `2` 都报告为比特 `1`。因此，随着采样次数增加，`1` 的频率应趋近 `P1 + P2`。这种二值读出把成功的转移和泄漏归入同一个结果。
   status: machine
 - id: 1ff8dd44510e7a8d
   en: The measured frequency agrees with `P1 + P2` within shot noise. For this pulse and shot count, the sampling uncertainty exceeds the leakage contribution, so the counts cannot resolve the difference between `P1` and `P1 + P2`.
@@ -164,7 +164,7 @@
   status: machine
 - id: 473b0e2db477886d
   en: Here \(\alpha\) is the signed difference between adjacent transition frequencies. The model document stores it in gigahertz (GHz, or cycles/ns); we multiply by \(2\pi\) to obtain an angular rate in rad/ns. The derivative term divided by \(\alpha\) then has the same rad/ns units as the original drive.
-  zh: 这里 \(\alpha\) 是相邻跃迁频率之差，保留符号。模型文档以吉赫兹（GHz，即 cycles/ns）存储它；乘以 \(2\pi\) 后得到 rad/ns 为单位的角速率。这样，导数项除以 \(\alpha\) 后，与原始驱动具有相同的 rad/ns 单位。
+  zh: 这里 \(\alpha\) 是相邻两个跃迁频率之差（带符号）。模型文档以吉赫兹（GHz，即周期/ns）存储该值；乘以 \(2\pi\) 后得到以 rad/ns 为单位的角速率。这样，导数项除以 \(\alpha\) 后与原驱动具有相同的单位 rad/ns。
   status: machine
 - id: 13ab16946ed219bf
   en: Why a derivative quadrature?
@@ -176,17 +176,49 @@
   status: machine
 - id: 24c8a9b61e74b339
   en: For this scan, our objective is the coherent X overlap. We choose the tested coefficient with the largest overlap, then rerun the pulse and check the same four input states. Holding amplitude fixed makes this a one-parameter shape calibration.
-  zh: 此次扫描的目标是相干 X 重叠。选择测试中重叠最大的系数，再运行该脉冲，检查相同的四个输入态。固定振幅使这成为单参数形状校准。
+  zh: 这次扫描的目标是相干 X 重叠。选出测试中重叠最大的系数，再运行该脉冲，检查同样的四个输入态。由于振幅保持固定，这是一次单参数的形状校准。
   status: machine
 - id: 67ce4f90492ea63b
   en: 'The selected correction improves coherent X overlap and reduces mean leakage. The two curves reach their minima at different coefficients: the pulse with the least leakage has a larger X error. Our choice follows the operation we want to implement, and the input-state checks confirm the improvement.'
-  zh: 选定校正提高了相干 X 重叠，并降低平均泄漏。两条曲线在不同系数处达到最小值：泄漏最小的脉冲具有更大的 X 误差。我们的选择依据要实现的操作，输入态检查确认了改进。
+  zh: 选定的校正提高了相干 X 重叠，也降低了平均泄漏。两条曲线在不同系数处达到最小值：泄漏最小的脉冲 X 误差更大。我们根据想要实现的操作做出选择，输入态上的检查也证实了这一改进。
   status: machine
 - id: e13ac6ee57795d2a
   en: To explore the effect of grid resolution, try shifting the original amplitude grid by half a step. Keep the duration and selection rule fixed, then compare the selected amplitude and coherent X overlap with this run.
   zh: 若要探索网格分辨率的影响，可将原始振幅网格平移半个步长。保持时长和选择规则不变，比较所选振幅和相干 X 重叠与此次运行的差异。
-  status: machine
+  status: retired
 - id: ad5a170e7b2135db
   en: You need basic Python, qubit states, and X rotations. The [Bell-state tutorial](bell-state.md) introduces the program and result workflow. We use FatQat's supplied single-transmon model, which includes an extra energy level \(|2\rangle\) beyond the two qubit states. Population can enter this level during a pulse; we call it **leakage**. All calibration results here refer to this simulation model.
   zh: 你需要了解基本 Python、量子比特态和 X 旋转。[Bell 态教程](bell-state.md)介绍了程序与结果的使用流程。这里使用 FatQat 提供的单 transmon 模型，它在两个量子比特态之外还包含一个额外能级 \(|2\rangle\)。脉冲期间，布居可能进入该能级，称为**泄漏**。这里所有校准结果均针对这个模拟模型。
   status: retired
+- id: 1c649bb3c6cdfb35
+  en: Calibrate an X gate on a transmon
+  zh: 在 transmon 上校准 X 门
+  status: machine
+- id: 1c5f115d2b58873d
+  en: 'Output-state overlaps and leakage for initial, selected, and phase-rotated pulses: the phase-rotated pulse transfers basis states but fails the superposition checks.'
+  zh: 初始脉冲、选定脉冲和相位旋转脉冲的输出态重叠与泄漏：相位旋转脉冲能完成基态转移，但未通过叠加态检查。
+  status: machine
+- id: 3f5baa6ee671fb9b
+  en: Next, we load the transmon model and create a statevector emulator. Each run starts in physical \(|0\rangle\). We leave noise and measurement out of these runs so that we can inspect the pulse's final amplitudes. See the [transmon guide](../guide/transmon-emulation.md) for more on the model setup.
+  zh: 接下来，加载 transmon 模型并创建态矢量仿真器。每次运行都从物理态 \(|0\rangle\) 开始。这些运行不加入噪声和测量，以便直接查看脉冲结束时的振幅。模型设置的更多说明见 [transmon 指南](../guide/transmon-emulation.md)。
+  status: retired
+- id: 1052ba566f7251a3
+  en: We test \(|0\rangle\), \(|1\rangle\), \(|+\rangle\), and \(|+i\rangle=(|0\rangle+i|1\rangle)/\sqrt{2}\). For each input, we compare the pulse output with the ideal output using their **output-state overlap**, the squared magnitude of their inner product. An overlap of one means the states agree up to a global phase.
+  zh: 我们测试 \(|0\rangle\)、\(|1\rangle\)、\(|+\rangle\) 和 \(|+i\rangle=(|0\rangle+i|1\rangle)/\sqrt{2}\) 四个输入。对每个输入，用**输出态重叠**（即二者内积的模平方）比较脉冲输出与理想输出。重叠为 1 表示两个态仅相差一个全局相位。
+  status: machine
+- id: ea946c23e836410e
+  en: 'Here \(\alpha\) is the anharmonicity: the signed difference between adjacent transition frequencies. The model document stores it in gigahertz (GHz, or cycles/ns); we multiply by \(2\pi\) to obtain an angular rate in rad/ns. The derivative term divided by \(\alpha\) then has the same rad/ns units as the original drive.'
+  zh: 这里 \(\alpha\) 是非谐性，即相邻两个跃迁频率之差（带符号）。模型文档以吉赫兹（GHz，即周期/ns）存储该值；乘以 \(2\pi\) 后得到以 rad/ns 为单位的角速率。这样，导数项除以 \(\alpha\) 后与原驱动具有相同的单位 rad/ns。
+  status: retired
+- id: 5dc564b4991f8020
+  en: 'The selected correction improves coherent X overlap and reduces mean leakage. The two curves reach their minima at different coefficients: the pulse with the least leakage has a larger X error. Our choice follows the operation we want to implement, and the checks on the four input states confirm the improvement.'
+  zh: 选定的校正提高了相干 X 重叠，也降低了平均泄漏。两条曲线在不同系数处达到最小值：泄漏最小的脉冲 X 误差更大。我们根据想要实现的操作做出选择，四个输入态上的检查也证实了这一改进。
+  status: retired
+- id: d950898fb51d168f
+  en: To study the effect of grid resolution, we can repeat the amplitude scan with more points over the same range, for example 49 instead of 25, and compare the selected amplitude and coherent X overlap with this run. Shifting the original grid by half a step instead tests the effect of grid placement at the same resolution. In both cases, we keep the duration and selection rule fixed.
+  zh: 若要研究网格分辨率的影响，可以在相同范围内用更多点重复振幅扫描，例如用 49 个点代替 25 个点，再将选定振幅和相干 X 重叠与本次运行比较。若改为将原网格平移半个步长，则可在分辨率不变的情况下检验网格位置的影响。两种情况下都保持脉冲时长和选择规则不变。
+  status: retired
+- id: f5f5fcf22aada8c9
+  en: To explore the effect of grid placement, try shifting the original amplitude grid by half a step. Keep the duration and selection rule fixed, then compare the selected amplitude and coherent X overlap with this run.
+  zh: 要考察网格位置的影响，可以把原始振幅网格平移半个步长。保持时长和选择规则不变，再把选出的振幅和相干 X 重叠与本次运行比较。
+  status: machine
