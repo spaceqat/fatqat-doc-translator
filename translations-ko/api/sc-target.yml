@@ -106,3 +106,27 @@
   en: 'The same target works with a directly constructed compiler:'
   ko: '직접 구성한 컴파일러에서도 같은 대상을 사용할 수 있습니다:'
   status: machine
+- id: d626fde46e8699b9
+  en: <a id="why-compile-against-a-target"></a> <a id="compiled-output"></a> <a id="when-errors-are-raised"></a>
+  ko: <a id="why-compile-against-a-target"></a> <a id="compiled-output"></a> <a id="when-errors-are-raised"></a>
+  status: machine
+- id: ae75a9a996ed2b0d
+  en: Target and simulator compatibility
+  ko: 컴파일 대상과 시뮬레이터의 호환성
+  status: machine
+- id: d7244e7e117268ae
+  en: An `SCTarget` specifies the topology. The compiler uses the superconducting native gates `X`, `SX`, `RZ`, and `CZ`, with `CZ` limited to the target's couplings. The result can run on any compatible simulator that provides the sites and couplings it uses and supports the program with the selected simulation method.
+  ko: "`SCTarget`은 장치의 연결 구조를 지정합니다. 컴파일러는 초전도 장치의 네이티브 게이트인 `X`, `SX`, `RZ`, `CZ`를 사용하며, `CZ`는 컴파일 대상에서 연결된 사이트 쌍에만 적용합니다. 컴파일 결과가 사용하는 사이트와 연결을 갖추고 선택한 시뮬레이션 방법으로 프로그램을 처리할 수 있다면, 그 시뮬레이터에서 결과를 실행할 수 있습니다."
+  status: machine
+- id: 7d3494aedd7d44bf
+  en: Pass an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] directly when its implementation map should also constrain routing and emitted gates. To reuse just its topology, call [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target].
+  ko: 시뮬레이터의 구현 맵으로 라우팅과 생성할 게이트까지 제한하려면 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]를 직접 넘기세요. 연결 구조만 재사용하려면 [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target]을 호출하세요.
+  status: machine
+- id: a5a24fe54c4a0e10
+  en: <a id="construct-a-target"></a> <a id="compile-and-run"></a>
+  ko: <a id="construct-a-target"></a> <a id="compile-and-run"></a>
+  status: machine
+- id: 0e811144a4e1b64f
+  en: Use [`SCTarget`][fatqat.compiler.SCTarget] to tell the compiler how many sites the superconducting device has and which pairs can run `CZ` directly. Pass it to [`compile_to_sc()`][fatqat.compiler.compile_to_sc] or [`compile_qasm_to_sc()`][fatqat.compiler.compile_qasm_to_sc] in place of a simulator.
+  ko: '[`SCTarget`][fatqat.compiler.SCTarget]으로 초전도 장치의 사이트 수와 `CZ`를 직접 실행할 수 있는 사이트 쌍을 지정합니다. [`compile_to_sc()`][fatqat.compiler.compile_to_sc] 또는 [`compile_qasm_to_sc()`][fatqat.compiler.compile_qasm_to_sc]를 호출할 때 시뮬레이터 대신 이 객체를 넘기면 됩니다.'
+  status: machine

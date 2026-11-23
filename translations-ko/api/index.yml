@@ -92,5 +92,49 @@
   status: machine
 - id: b99fbe2efc494048
   en: '[OpenQASM & Qiskit](interoperability/index.md)'
-  ko: "[상호 운용](interoperability/index.md)"
+  ko: '[상호 운용](interoperability/index.md)'
+  status: machine
+- id: e99ed4fbdaeab650
+  en: '[SCTarget](sc-target.md)'
+  ko: '[SCTarget](sc-target.md)'
+  status: machine
+- id: b1bb3ea7bf974a81
+  en: '[Compiler pipelines & IR](compiler-pipelines.md)'
+  ko: '[컴파일 파이프라인과 IR](compiler-pipelines.md)'
+  status: machine
+- id: da7d82ec21d34caf
+  en: Use this reference to look up FatQat's public classes, functions, and exceptions. For a complete example, see the [Quickstart](../guide/quickstart.md).
+  ko: 이 레퍼런스에서 FatQat의 공개 클래스, 함수, 예외를 찾아볼 수 있습니다. 전체 실행 예제는 [빠른 시작](../guide/quickstart.md)을 참고하세요.
+  status: machine
+- id: 6a9dac4ff97a2d4e
+  en: '[Compiler](compiler.md) – Compile logical circuits or OpenQASM for a device model.'
+  ko: '[Compiler](compiler.md) – 논리 회로나 OpenQASM을 지정한 장치 모델에 맞게 컴파일합니다.'
+  status: machine
+- id: 8ce1acd9e8e60dd4
+  en: '[Pulse control](pulse-control/index.md) – Specify waveforms and map gates to pulse definitions.'
+  ko: '[펄스 제어](pulse-control/index.md) – 파형을 지정하고 게이트를 펄스 정의에 매핑합니다.'
+  status: machine
+- id: a4b426f707c8551e
+  en: '[Simulators](simulators/index.md) – Run gate-level and linear-optical programs.'
+  ko: '[시뮬레이터](simulators/index.md) – 게이트 수준 프로그램과 선형 광학 프로그램을 실행합니다.'
+  status: machine
+- id: 181649661194544e
+  en: '[Emulators](emulators/index.md) – Follow Hamiltonian evolution under physical controls.'
+  ko: '[에뮬레이터](emulators/index.md) – 물리 제어에 따른 해밀토니안 시간 진화를 계산합니다.'
+  status: machine
+- id: 162ab2d9db917f29
+  en: '[Noise](noise.md) – Choose a noise model and check backend support.'
+  ko: '[잡음](noise.md) – 잡음 모델을 선택하고 백엔드별 지원 범위를 확인합니다.'
+  status: machine
+- id: 750cd04bdefccb93
+  en: '[Estimator](estimator.md) – Compute expectation values of observables.'
+  ko: '[Estimator](estimator.md) – 관측량의 기댓값을 계산합니다.'
+  status: machine
+- id: 9c75106ee54002bc
+  en: '[OpenQASM & Qiskit](interoperability/index.md) – Exchange circuits or run FatQat through Qiskit''s backend interface.'
+  ko: '[OpenQASM·Qiskit](interoperability/index.md) – 회로를 교환하거나 Qiskit 백엔드 인터페이스로 FatQat을 실행합니다.'
+  status: machine
+- id: beeb3cf92a21494b
+  en: '[Matrix implementation maps](implementation.md) – Supply custom matrices and channel rules.'
+  ko: '[행렬 구현 맵](implementation.md) – 사용자 정의 행렬과 채널 규칙을 지정합니다.'
   status: machine

@@ -1,0 +1,44 @@
+- id: c2724422a53d09e2
+  en: Compiler pipelines & IR
+  ko: 컴파일 파이프라인과 IR
+  status: machine
+- id: f685200663e15eb9
+  en: Use the pipeline API to run a custom sequence of compiler passes or inspect its intermediate representations. To compile a circuit for a supported device, use the entry points on the [Compiler](compiler.md) page.
+  ko: 파이프라인 API로 원하는 순서대로 컴파일 패스를 실행하거나 중간 표현을 살펴볼 수 있습니다. 지원되는 장치용으로 회로를 컴파일할 때는 [Compiler](compiler.md) 페이지의 함수를 사용하세요.
+  status: machine
+- id: 1d520cb403d2ad55
+  en: <a id="pipelines-and-irs"></a>
+  ko: <a id="pipelines-and-irs"></a>
+  status: machine
+- id: c0f68a486589dec9
+  en: Run a pipeline
+  ko: 파이프라인 실행
+  status: machine
+- id: 4cdf4967d39c01ab
+  en: Start with a registered superconducting or neutral-atom pipeline. Call `Compiler.compile()` with the pipeline name and a `CompileContext` that supplies the target and any options. Use `emit` to stop at a particular representation.
+  ko: 등록된 초전도 또는 중성 원자 파이프라인으로 시작하세요. `Compiler.compile()`에 파이프라인 이름과 대상 및 옵션을 담은 `CompileContext`를 넘깁니다. 특정 표현에서 멈추려면 `emit`을 지정하세요.
+  status: machine
+- id: 04c6c53ab7eb461a
+  en: Define passes and IRs
+  ko: 패스와 IR 정의
+  status: machine
+- id: b534219a9454bfe9
+  en: 'Each pass converts one registered representation into another. A pipeline lists those passes in order: each pass must accept the representation produced by the previous one.'
+  ko: 각 패스는 등록된 표현을 다른 등록된 표현으로 변환합니다. 파이프라인은 패스의 실행 순서를 정합니다. 각 패스는 바로 앞 패스의 출력을 입력으로 받을 수 있어야 합니다.
+  status: machine
+- id: 0abae37224eab276
+  en: Use these functions when you have a final target representation, for example the `output` from calling `Compiler.compile()` on a custom pipeline. The conversion returns a simulator program and its resource layout. The four compile functions already do this conversion for their default results.
+  ko: 사용자 정의 파이프라인에서 `Compiler.compile()`을 호출해 얻은 `output`처럼 최종 대상 표현이 있다면 아래 함수로 변환할 수 있습니다. 변환 결과는 시뮬레이터 프로그램과 자원 배치 매핑입니다. 네 컴파일 함수는 기본 결과를 반환할 때 이미 이 변환을 수행합니다.
+  status: machine
+- id: f68f13cdddb5b70a
+  en: Start with a registered superconducting or neutral-atom pipeline. Call [`Compiler.compile()`][fatqat.compiler.Compiler.compile] with the pipeline name and a [`CompileContext`][fatqat.compiler.CompileContext] for the target and any options. Use `emit` to stop at a particular representation.
+  ko: 먼저 등록된 초전도 또는 중성 원자 파이프라인을 고르세요. [`Compiler.compile()`][fatqat.compiler.Compiler.compile]에 파이프라인 이름과 대상 및 옵션을 담은 [`CompileContext`][fatqat.compiler.CompileContext]를 넘깁니다. 특정 표현에서 멈추려면 `emit`을 지정하세요.
+  status: machine
+- id: fb60f5fcabb09389
+  en: <a id="simulator-translation"></a>
+  ko: <a id="simulator-translation"></a>
+  status: machine
+- id: 6aeaea12b3e997db
+  en: Convert to a simulator program
+  ko: 시뮬레이터용 프로그램으로 변환
+  status: machine

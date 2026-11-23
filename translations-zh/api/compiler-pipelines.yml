@@ -1,0 +1,44 @@
+- id: c2724422a53d09e2
+  en: Compiler pipelines & IR
+  zh: 编译管线与 IR
+  status: machine
+- id: f685200663e15eb9
+  en: Use the pipeline API to run a custom sequence of compiler passes or inspect its intermediate representations. To compile a circuit for a supported device, use the entry points on the [Compiler](compiler.md) page.
+  zh: 用管线 API 可以自定义编译步骤，也可以查看各阶段的中间表示。如果只是要把线路编译到已支持的设备，使用 [Compiler](compiler.md) 页面列出的入口即可。
+  status: machine
+- id: 1d520cb403d2ad55
+  en: <a id="pipelines-and-irs"></a>
+  zh: <a id="pipelines-and-irs"></a>
+  status: machine
+- id: c0f68a486589dec9
+  en: Run a pipeline
+  zh: 运行编译管线
+  status: machine
+- id: 4cdf4967d39c01ab
+  en: Start with a registered superconducting or neutral-atom pipeline. Call `Compiler.compile()` with the pipeline name and a `CompileContext` that supplies the target and any options. Use `emit` to stop at a particular representation.
+  zh: 可以从已注册的超导或中性原子管线开始。调用 `Compiler.compile()` 时，传入管线名称，再用 `CompileContext` 指定目标和所需选项。用 `emit` 指定编译在哪个表示阶段停止。
+  status: machine
+- id: 04c6c53ab7eb461a
+  en: Define passes and IRs
+  zh: 定义编译步骤和 IR
+  status: machine
+- id: b534219a9454bfe9
+  en: 'Each pass converts one registered representation into another. A pipeline lists those passes in order: each pass must accept the representation produced by the previous one.'
+  zh: 每个编译步骤都把一种已注册的表示转换成另一种。管线按顺序执行这些步骤，后一步的输入类型必须和前一步的输出类型一致。
+  status: machine
+- id: 0abae37224eab276
+  en: Use these functions when you have a final target representation, for example the `output` from calling `Compiler.compile()` on a custom pipeline. The conversion returns a simulator program and its resource layout. The four compile functions already do this conversion for their default results.
+  zh: 如果手头已经有最终的目标表示，例如对自定义管线调用 `Compiler.compile()` 后得到的 `output`，可以用下列函数把它转换成模拟器程序和对应的资源布局。四个常用编译函数的默认结果已经包含这一步的转换。
+  status: machine
+- id: f68f13cdddb5b70a
+  en: Start with a registered superconducting or neutral-atom pipeline. Call [`Compiler.compile()`][fatqat.compiler.Compiler.compile] with the pipeline name and a [`CompileContext`][fatqat.compiler.CompileContext] for the target and any options. Use `emit` to stop at a particular representation.
+  zh: 可以从已注册的超导或中性原子管线入手。调用 [`Compiler.compile()`][fatqat.compiler.Compiler.compile] 时，传入管线名称，再用 [`CompileContext`][fatqat.compiler.CompileContext] 指定编译目标和选项。用 `emit` 指定要在哪种表示上停止。
+  status: machine
+- id: fb60f5fcabb09389
+  en: <a id="simulator-translation"></a>
+  zh: <a id="simulator-translation"></a>
+  status: machine
+- id: 6aeaea12b3e997db
+  en: Convert to a simulator program
+  zh: 转换为模拟器程序
+  status: machine

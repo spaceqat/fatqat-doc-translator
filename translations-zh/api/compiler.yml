@@ -56,7 +56,7 @@
   status: machine
 - id: a4e1d65eac765b43
   en: 'Build a circuit with `LogicalProgram`, then provide either an SC backend or a neutral-atom architecture:'
-  zh: "使用 `LogicalProgram` 创建线路，然后提供 SC 后端或中性原子架构："
+  zh: 使用 `LogicalProgram` 创建线路，然后提供 SC 后端或中性原子架构：
   status: retired
 - id: aa30c7b43b56c804
   en: Pass OpenQASM source text directly to the target compiler. The returned result uses the same execution interface as a compiled `LogicalProgram`.
@@ -80,7 +80,7 @@
   status: machine
 - id: b28df277f721dc39
   en: '`load_architecture()` returns a fresh copy of a bundled neutral-atom profile. Use the same architecture for compilation and schedule visualization.'
-  zh: "`load_architecture()` 返回内置中性原子设备模型的一份新副本。编译和调度可视化应使用同一架构。"
+  zh: '`load_architecture()` 返回内置中性原子设备模型的一份新副本。编译和调度可视化应使用同一架构。'
   status: machine
 - id: bc64685c4318cf4b
   en: Advanced compiler APIs
@@ -88,15 +88,15 @@
   status: machine
 - id: 0e6cd38cf49be2d9
   en: Most applications only need the four compile functions above. The following APIs expose intermediate translation and pipeline construction for compiler extensions and IR inspection.
-  zh: "大多数应用只需使用上面的四个编译函数。以下 API 提供中间表示转换与流水线创建能力，供编译器扩展及 IR 检查使用。"
+  zh: 大多数应用只需使用上面的四个编译函数。以下 API 提供中间表示转换与流水线创建能力，供编译器扩展及 IR 检查使用。
   status: machine
 - id: 22d9daa28a5e204c
   en: Simulator translation
-  zh: "转换为 Simulator 输入"
+  zh: 转换为 Simulator 输入
   status: machine
 - id: 5d564287e3eafeea
   en: Use these functions when working with a final compiler IR that was constructed or modified directly. Results returned by the normal compile functions are already ready for simulation.
-  zh: "如果直接创建或修改了最终编译器 IR，可使用这些函数。普通编译函数返回的结果已经可以直接用于模拟。"
+  zh: 如果直接创建或修改了最终编译器 IR，可使用这些函数。普通编译函数返回的结果已经可以直接用于模拟。
   status: machine
 - id: 195718c934de872b
   en: SC native programs can declare `classical_registers` as a keyword-only tuple of the original register objects in output order. The bridge retains all slots, including unwritten slots and entirely unused registers. Distinct registers may share a name; declaring the same object twice is invalid. Measurement outputs must belong to declared registers. The bridge and native verifier raise `ValidationError` for invalid explicit declarations.
@@ -116,13 +116,65 @@
   status: machine
 - id: 775c8b2bafa8fa6b
   en: 'Build a circuit with `LogicalProgram`, then provide either an [SC target](sc-target.md) or a neutral-atom architecture. Run an SC result on a simulator that provides the sites and couplings it uses:'
-  zh: "使用 `LogicalProgram` 编写线路，再提供 [SC 编译目标](sc-target.md)或中性原子架构。在具备编译结果所用位点与耦合的模拟器上运行 SC 编译结果："
+  zh: 使用 `LogicalProgram` 编写线路，再提供 [SC 编译目标](sc-target.md)或中性原子架构。在具备编译结果所用位点与耦合的模拟器上运行 SC 编译结果：
   status: machine
 - id: 7165119da4d40aef
   en: You can also pass an `SCQubitSimulator` in place of the target. The compiler then uses its sites and couplings and checks the emitted gates against its implementation map.
-  zh: '也可以传入 `SCQubitSimulator` 来代替编译目标。此时，编译器使用模拟器的位点与耦合，并根据其实现映射检查生成的量子门。'
+  zh: 也可以传入 `SCQubitSimulator` 来代替编译目标。此时，编译器使用模拟器的位点与耦合，并根据其实现映射检查生成的量子门。
   status: machine
 - id: e120b05f9137892b
   en: A compiler created with `create_sc_pipeline()` or `create_na_pipeline()` returns a `CompilationResult` at every boundary, including the final one. Convert a final-boundary `output` with the [simulator translation](#simulator-translation) functions before running it.
-  zh: '通过 `create_sc_pipeline()` 或 `create_na_pipeline()` 创建的编译器在每个阶段边界（包括最终边界）都返回 `CompilationResult`。运行前，先用[模拟器转换](#simulator-translation)函数转换最终边界的 `output`。'
+  zh: 通过 `create_sc_pipeline()` 或 `create_na_pipeline()` 创建的编译器在每个阶段边界（包括最终边界）都返回 `CompilationResult`。运行前，先用[模拟器转换](#simulator-translation)函数转换最终边界的 `output`。
+  status: machine
+- id: 1b2e0db5d9659e95
+  en: 'Choose a function based on your input and target:'
+  zh: 根据输入和编译目标选择函数：
+  status: machine
+- id: 3083e5a62d12d20d
+  en: '| [`LogicalProgram`](logical-program.md) | [`compile_to_sc()`][fatqat.compiler.compile_to_sc] | [`compile_to_na()`][fatqat.compiler.compile_to_na] |'
+  zh: '| [`LogicalProgram`](logical-program.md) | [`compile_to_sc()`][fatqat.compiler.compile_to_sc] | [`compile_to_na()`][fatqat.compiler.compile_to_na] |'
+  status: machine
+- id: c1038843366658a8
+  en: '| OpenQASM 2 or 3 | [`compile_qasm_to_sc()`][fatqat.compiler.compile_qasm_to_sc] | [`compile_qasm_to_na()`][fatqat.compiler.compile_qasm_to_na] |'
+  zh: '| OpenQASM 2 或 3 | [`compile_qasm_to_sc()`][fatqat.compiler.compile_qasm_to_sc] | [`compile_qasm_to_na()`][fatqat.compiler.compile_qasm_to_na] |'
+  status: machine
+- id: d42cf30f6406bf32
+  en: For superconducting compilation, pass an [`SCTarget`](sc-target.md) or an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]. For neutral-atom compilation, pass an architecture such as one returned by [`load_architecture()`][fatqat.compiler.algorithms.load_architecture].
+  zh: 编译到超导设备时，可传入 [`SCTarget`](sc-target.md) 或 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]。编译到中性原子设备时，需要提供设备架构，例如用 [`load_architecture()`][fatqat.compiler.algorithms.load_architecture] 加载的架构。
+  status: machine
+- id: 71ee326e356f8cbb
+  en: With the default `emit`, the four compile functions return an [`ExecutableCompilationResult`][fatqat.compiler.ExecutableCompilationResult]. Pass it directly to a compatible simulator. To inspect an intermediate representation, set `emit` to the boundary you want and read `output` from the returned [`CompilationResult`][fatqat.compiler.CompilationResult].
+  zh: 使用默认的 `emit` 时，这四个编译函数都会返回 [`ExecutableCompilationResult`][fatqat.compiler.ExecutableCompilationResult]，可以直接交给兼容的模拟器运行。想查看编译到某一步的中间表示，可以通过 `emit` 指定停在哪一步，再读取 [`CompilationResult`][fatqat.compiler.CompilationResult] 的 `output`。
+  status: machine
+- id: 9c2bbcce5304f7d4
+  en: Compiler errors share the `CompilerError` base class. When a compiler pass fails, check `PassError.pass_name` to find the failing stage and `__cause__` for the underlying error.
+  zh: 编译器异常都继承自 `CompilerError`。如果某个编译步骤失败，可用 `PassError.pass_name` 找到失败的步骤，再通过 `__cause__` 查看原始异常。
+  status: machine
+- id: 6caf027b36db049f
+  en: <a id="pipelines-and-irs"></a> <a id="simulator-translation"></a> <a id="fatqat.compiler.dialects.SCNativeProgram"></a> <a id="fatqat.compiler.to_sc_simulator_program"></a> <a id="fatqat.compiler.to_na_simulator_program"></a> <a id="fatqat.compiler.Compiler"></a> <a id="fatqat.compiler.CompileContext"></a> <a id="fatqat.compiler.Pipeline"></a> <a id="fatqat.compiler.TranslationPass"></a> <a id="fatqat.compiler.create_sc_pipeline"></a> <a id="fatqat.compiler.create_na_pipeline"></a> <a id="fatqat.compiler.IRRegistry"></a> <a id="fatqat.compiler.IRDefinition"></a> <a id="fatqat.compiler.IRProgram"></a>
+  zh: <a id="pipelines-and-irs"></a> <a id="simulator-translation"></a> <a id="fatqat.compiler.dialects.SCNativeProgram"></a> <a id="fatqat.compiler.to_sc_simulator_program"></a> <a id="fatqat.compiler.to_na_simulator_program"></a> <a id="fatqat.compiler.Compiler"></a> <a id="fatqat.compiler.CompileContext"></a> <a id="fatqat.compiler.Pipeline"></a> <a id="fatqat.compiler.TranslationPass"></a> <a id="fatqat.compiler.create_sc_pipeline"></a> <a id="fatqat.compiler.create_na_pipeline"></a> <a id="fatqat.compiler.IRRegistry"></a> <a id="fatqat.compiler.IRDefinition"></a> <a id="fatqat.compiler.IRProgram"></a>
+  status: machine
+- id: a4b757b87cb4bfc2
+  en: See [Compiler pipelines & IR](compiler-pipelines.md) to configure compiler passes, inspect intermediate representations, or [convert a final representation for simulation](compiler-pipelines.md#simulator-translation).
+  zh: 要配置编译步骤、查看中间表示，或转换最终结果，请参阅[编译管线与 IR](compiler-pipelines.md)。其中的[模拟器转换](compiler-pipelines.md#simulator-translation)一节介绍如何把最终表示转换为模拟器程序。
+  status: machine
+- id: db3fe97ca2b4c183
+  en: <a id="fatqat.ExecutableProgram"></a> <a id="fatqat.ExecutableProgram.program"></a> <a id="fatqat.ExecutableProgram.resource_layout"></a>
+  zh: <a id="fatqat.ExecutableProgram"></a> <a id="fatqat.ExecutableProgram.program"></a> <a id="fatqat.ExecutableProgram.resource_layout"></a>
+  status: machine
+- id: d0d92bc0dfc9a340
+  en: For the protocol used by simulators, see [`ExecutableProgram`][fatqat.ExecutableProgram] in the simulator reference.
+  zh: 模拟器所用的接口约定见模拟器参考页中的 [`ExecutableProgram`][fatqat.ExecutableProgram]。
+  status: machine
+- id: ba3821951fff2175
+  en: Compiler errors share the `CompilerError` base class. Check `PassError.pass_name` to find the failing stage. If `__cause__` is set, it contains the original exception.
+  zh: 编译器异常都继承自 `CompilerError`。通过 `PassError.pass_name` 可以定位失败的编译步骤。如果有 `__cause__`，可用它查看原始异常。
+  status: machine
+- id: fc6349ae0911f97e
+  en: Compiler under development
+  zh: 编译器仍在开发中
+  status: machine
+- id: df487eb7bb1081c5
+  en: The compiler module is under active development. Its interfaces and supported behavior may change between releases. Pin an exact FatQat version when reproducibility matters.
+  zh: 编译器仍在开发中，其接口和支持的行为可能随版本变化。需要复现结果时，请固定 FatQat 的具体版本。
   status: machine

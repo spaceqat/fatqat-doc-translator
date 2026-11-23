@@ -114,3 +114,51 @@
   en: '`CClock(power=p)` takes operands as `(control, target)`. If their dimensions are $d_c$ and $d_t$, the control is the local most-significant factor, $\omega_t=\exp(2\pi i/d_t)$, and'
   ko: '`CClock(power=p)`는 `(control, target)` 순서로 피연산자를 받습니다. 차원이 각각 $d_c$, $d_t$이면 제어가 국소 최상위 인자이며 $\omega_t=\exp(2\pi i/d_t)$일 때'
   status: machine
+- id: 2b8b6cd965a01487
+  en: These gates act on systems of dimension `d >= 2`. The table lists each gate's target count and any additional dimension or level requirements. For scalar and grouped targets, see [`Program.add()`][fatqat.Program.add]. Integer `power` values wrap modulo the relevant dimension, including negative values.
+  ko: 이 게이트들은 차원이 `d >= 2`인 계에 적용합니다. 표에는 게이트마다 필요한 대상 수와 추가 차원·준위 조건을 정리했습니다. 대상을 개별적으로 또는 묶어서 지정하는 방법은 [`Program.add()`][fatqat.Program.add]를 참고하세요. 정수 `power`는 해당 차원에 대한 나머지로 처리하므로 음수도 쓸 수 있습니다.
+  status: machine
+- id: 1600e278c1c9479b
+  en: '| [`Shift`][fatqat.operations.Shift] `(power)` | One target | `\|k> -> \|(k + power) mod d>`. `Shift(1)` is X for `d=2`. |'
+  ko: '| [`Shift`][fatqat.operations.Shift] `(power)` | 대상 하나 | `\|k> -> \|(k + power) mod d>`. `d=2`에서 `Shift(1)`은 X입니다. |'
+  status: machine
+- id: 6cab24a3d843e938
+  en: '| [`Clock`][fatqat.operations.Clock] `(power)` | One target | `\|k> -> omega**(k*power)\|k>`, `omega=exp(2*pi*i/d)`. `Clock(1)` is Z for `d=2`. |'
+  ko: '| [`Clock`][fatqat.operations.Clock] `(power)` | 대상 하나 | `\|k> -> omega**(k*power)\|k>`, `omega=exp(2*pi*i/d)`. `d=2`에서 `Clock(1)`은 Z입니다. |'
+  status: machine
+- id: 452cd49f7bfc7324
+  en: '| [`Sum`][fatqat.operations.Sum] | Two targets `(control, target)` with equal dimensions | `\|i,j> -> \|i,(i+j) mod d>`. It is CX for `d=2`. |'
+  ko: '| [`Sum`][fatqat.operations.Sum] | 대상 두 개 `(control, target)`. 차원이 같아야 함 | `\|i,j> -> \|i,(i+j) mod d>`. `d=2`에서 CX입니다. |'
+  status: machine
+- id: 802c45f4c7bdb1d0
+  en: '| [`SwapLevels`][fatqat.operations.SwapLevels] `(j, k)` | One target; `0 <= j,k < d` and `j != k` | Exchanges `\|j>` and `\|k>` and fixes every other level. |'
+  ko: '| [`SwapLevels`][fatqat.operations.SwapLevels] `(j, k)` | 대상 하나. `0 <= j,k < d`이고 `j != k` | `\|j>`와 `\|k>`를 교환하고 다른 준위는 그대로 둡니다. |'
+  status: machine
+- id: 38c402877bce3f9a
+  en: '| [`Fourier`][fatqat.operations.Fourier] | One target | `\|j> -> sum(exp(2*pi*i*j*k/d)\|k>) / sqrt(d)`. It is H for `d=2`. |'
+  ko: '| [`Fourier`][fatqat.operations.Fourier] | 대상 하나 | `\|j> -> sum(exp(2*pi*i*j*k/d)\|k>) / sqrt(d)`. `d=2`에서 H입니다. |'
+  status: machine
+- id: be3ce2bca93d6849
+  en: '| [`InverseFourier`][fatqat.operations.InverseFourier] | One target | Conjugate transpose of `Fourier`; uses the negative exponent. |'
+  ko: '| [`InverseFourier`][fatqat.operations.InverseFourier] | 대상 하나 | `Fourier`의 켤레전치이며 음의 지수를 사용합니다. |'
+  status: machine
+- id: a62c9e1593d13ced
+  en: '| [`SubspaceRX`][fatqat.operations.SubspaceRX] `(theta, (j, k))` | One target; two distinct, in-range levels | With `c=cos(theta/2)`, `s=sin(theta/2)`: `\|j> -> c\|j>-i*s\|k>` and `\|k> -> -i*s\|j>+c\|k>`. |'
+  ko: '| [`SubspaceRX`][fatqat.operations.SubspaceRX] `(theta, (j, k))` | 대상 하나. 범위 안의 서로 다른 두 준위 | `c=cos(theta/2)`, `s=sin(theta/2)`일 때 `\|j> -> c\|j>-i*s\|k>`, `\|k> -> -i*s\|j>+c\|k>`. |'
+  status: machine
+- id: d9b74ee6418514f4
+  en: '| [`SubspaceRY`][fatqat.operations.SubspaceRY] `(theta, (j, k))` | One target; two distinct, in-range levels | `\|j> -> c\|j>+s\|k>` and `\|k> -> -s\|j>+c\|k>`. Reversing `(j, k)` reverses the rotation. |'
+  ko: '| [`SubspaceRY`][fatqat.operations.SubspaceRY] `(theta, (j, k))` | 대상 하나. 범위 안의 서로 다른 두 준위 | `\|j> -> c\|j>+s\|k>`, `\|k> -> -s\|j>+c\|k>`. `(j, k)`의 순서를 뒤집으면 회전도 반대가 됩니다. |'
+  status: machine
+- id: f96a8f407961bc41
+  en: '| [`SubspaceRZ`][fatqat.operations.SubspaceRZ] `(theta, (j, k))` | One target; two distinct, in-range levels | `\|j>` gains `exp(-i*theta/2)` and `\|k>` gains `exp(i*theta/2)`. Reversing the pair reverses the rotation. |'
+  ko: '| [`SubspaceRZ`][fatqat.operations.SubspaceRZ] `(theta, (j, k))` | 대상 하나. 범위 안의 서로 다른 두 준위 | `\|j>`에는 `exp(-i*theta/2)`, `\|k>`에는 `exp(i*theta/2)`가 곱해집니다. 쌍의 순서를 뒤집으면 회전도 반대가 됩니다. |'
+  status: machine
+- id: 1a235e12f2557385
+  en: '| [`CClock`][fatqat.operations.CClock] `(power)` | Two targets `(control, target)`; dimensions may differ | `\|i,j>` gains `omega**(i*j*power)` using the target''s `omega=exp(2*pi*i/d_target)`. It is CZ for two qubits and power 1. |'
+  ko: '| [`CClock`][fatqat.operations.CClock] `(power)` | 대상 두 개 `(control, target)`. 차원이 달라도 됨 | 대상의 `omega=exp(2*pi*i/d_target)`를 사용해 `\|i,j>`에 `omega**(i*j*power)`를 곱합니다. 두 큐비트에서 power가 1이면 CZ입니다. |'
+  status: machine
+- id: c7bdd8d4ec357c6e
+  en: These gates act on qudits, systems of dimension `d >= 2`. The table lists each gate's target count and any additional dimension or level requirements. For scalar and grouped targets, see [`Program.add()`][fatqat.Program.add]. Integer `power` values wrap modulo the relevant dimension, including negative values.
+  ko: 이 게이트는 차원이 `d >= 2`인 큐디트에 작용합니다. 다음 표에는 각 게이트의 대상 수와 추가 차원 또는 준위 조건을 정리했습니다. 대상을 하나씩 또는 묶음으로 지정하는 방법은 [`Program.add()`][fatqat.Program.add]를 참고하세요. 정수 `power`는 해당 차원을 법으로 하는 나머지로 처리하며, 음수도 사용할 수 있습니다.
+  status: machine

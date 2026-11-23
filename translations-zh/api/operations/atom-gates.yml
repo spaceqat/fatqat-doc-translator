@@ -44,15 +44,15 @@
   status: machine
 - id: e7b64cec8c35e739
   en: '| [`Put`][fatqat.operations.Put] | One or more scalars, or one [`RegisterView`](../registers.md#fatqat.RegisterView) | Loads `\|0>` into each empty site; leaves occupied sites unchanged. | Allowed. | [`Loss`][fatqat.noise.Loss] only, after each enabled `Put` operation. |'
-  zh: "| [`Put`][fatqat.operations.Put] | 一个或多个标量，或一个 [`RegisterView`](../registers.md#fatqat.RegisterView) | 将 `\\|0>` 装载到每个空位点；已占据的位点保持不变 | 允许 | 仅限 [`Loss`][fatqat.noise.Loss]，在每次生效的 `Put` 操作之后运行 |"
+  zh: "| [`Put`][fatqat.operations.Put] | 一个或多个单独指定的目标，或一个 [`RegisterView`](../registers.md#fatqat.RegisterView) | 在每个空位置装载一个处于 `\\|0>` 的原子；已装载的位置保持不变。 | 可用条件 | 仅支持 [`Loss`][fatqat.noise.Loss]，在每次生效的 `Put` 之后应用。 |"
   status: machine
 - id: 885cbfdeb0c6ed58
   en: '| [`Pair`][fatqat.operations.Pair] | Exactly two scalars | Adds their undirected connectivity edge; repeated pairing is a no-op. | Rejected. | [`Loss`][fatqat.noise.Loss] or a supported finite channel. |'
-  zh: '| [`Pair`][fatqat.operations.Pair] | 恰好两个标量 | 添加二者之间的无向连通边；重复配对为空操作 | 拒绝 | [`Loss`][fatqat.noise.Loss] 或受支持的有限信道 |'
+  zh: "| [`Pair`][fatqat.operations.Pair] | 两个单独指定的目标 | 让两个位置配对。已有配对时保持不变。 | 不支持条件 | [`Loss`][fatqat.noise.Loss] 或受支持的单次噪声信道。 |"
   status: machine
 - id: a74e9835c25bffd8
   en: '| [`Unpair`][fatqat.operations.Unpair] | Exactly two scalars | Removes their edge; removing an absent edge is a no-op. | Rejected. | [`Loss`][fatqat.noise.Loss] or a supported finite channel. |'
-  zh: '| [`Unpair`][fatqat.operations.Unpair] | 恰好两个标量 | 移除二者之间的边；移除不存在的边为空操作 | 拒绝 | [`Loss`][fatqat.noise.Loss] 或受支持的有限信道 |'
+  zh: "| [`Unpair`][fatqat.operations.Unpair] | 两个单独指定的目标 | 解除两个位置之间的配对。原来没有配对时保持不变。 | 不支持条件 | [`Loss`][fatqat.noise.Loss] 或受支持的单次噪声信道。 |"
   status: machine
 - id: d80ea607936e7baf
   en: Every declared site starts empty on each shot. `Put` is the only operation that loads an atom, and a later `Put` can refill a lost site. Until a site is loaded, supported gates and reset have no effect there, and measurement reports `2`. Native-gate and pairing checks still run first, so an empty site cannot conceal an unsupported gate or unpaired `CZ`.
@@ -65,4 +65,12 @@
 - id: 2aaa5f6c89a958b0
   en: To load an entire named register, use `program.add(ops.Put, register.all())`; the view expands into one variadic `Put` over its members. For a program created from an integer site count, use `program.add(ops.Put, tuple(range(num_atoms)))`.
   zh: 要装载整个具名寄存器，请使用 `program.add(ops.Put, register.all())`；该视图会展开为一次作用于其所有成员的可变参数 `Put`。对于由整数位点数量创建的程序，请使用 `program.add(ops.Put, tuple(range(num_atoms)))`。
+  status: machine
+- id: 330514a97889a1b8
+  en: Use these operations with [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] to load atoms and change which pairs can interact. Other built-in backends do not implement them.
+  zh: 在 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 中，可以用这些操作装载原子，或改变哪些原子可以成对相互作用。其他内置后端不支持这些操作。
+  status: machine
+- id: 44fa4a6ad3f2fdc2
+  en: 'Sites start empty by default. An empty site does not bypass gate or pairing checks: an unsupported gate or unpaired `CZ` still fails validation. See [AtomArraySimulator](../simulators/atom-array.md) for occupancy, measurement and noise behavior across a run.'
+  zh: 默认情况下，各位置都还没有装载原子。位置未装载也要检查门和配对：不支持的门或施加在未配对原子上的 `CZ` 仍会报错。模拟过程中原子的占用状态、测量和噪声行为见 [AtomArraySimulator](../simulators/atom-array.md)。
   status: machine

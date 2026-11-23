@@ -34,3 +34,31 @@
   en: 'Built-in simulators ignore barriers, including any condition recorded by [`add`][fatqat.Program.add], so barriers do not change states or counts. A barrier cannot be bound to noise: using it as the `operation=` selector in [`fatqat.NoiseModel.add`][fatqat.NoiseModel.add] raises [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError).'
   zh: 内置模拟器会忽略屏障，包括 [`add`][fatqat.Program.add] 记录的任何条件，因此屏障不会改变状态或计数。屏障不能绑定噪声：将其用作 [`fatqat.NoiseModel.add`][fatqat.NoiseModel.add] 的 `operation=` 选择器会引发 [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)。
   status: machine
+- id: 8eeaffd1dcab4a14
+  en: Measurement, reset, and barriers
+  zh: 测量、重置与屏障
+  status: machine
+- id: 0bfeb5caa689ade7
+  en: <a id="measurement-and-structural-operations"></a> <a id="measurement-and-reset"></a>
+  zh: <a id="measurement-and-structural-operations"></a> <a id="measurement-and-reset"></a>
+  status: machine
+- id: 385165e2ff598045
+  en: Measurement
+  zh: 测量
+  status: machine
+- id: e19ff8b845685679
+  en: Use [`measure()`][fatqat.Program.measure] or [`measure_all()`][fatqat.Program.measure_all] to read computational-basis outcomes into classical registers. A grouped measurement pairs targets and outputs in the order supplied. If several results go to the same classical destination, the last write wins.
+  zh: 用 [`measure()`][fatqat.Program.measure] 或 [`measure_all()`][fatqat.Program.measure_all] 在计算基下测量，并把结果写入经典寄存器。成组测量会按传入顺序将目标和输出逐一配对。多次写入同一个位置时，以最后一次写入的结果为准。
+  status: machine
+- id: daee7606b339f3c3
+  en: Reset
+  zh: 重置
+  status: machine
+- id: ee87dbceab0bce29
+  en: Add [`Reset`][fatqat.operations.Reset] with [`Program.add()`][fatqat.Program.add] to return targets to `|0>` without recording a measurement.
+  zh: 将 [`Reset`][fatqat.operations.Reset] 传给 [`Program.add()`][fatqat.Program.add]，可以让目标回到 `|0>`。重置不会记录测量结果。
+  status: machine
+- id: c7a3ea38e303e172
+  en: Use [`Barrier`][fatqat.operations.Barrier] to mark a compiler boundary without changing the simulated state.
+  zh: 用 [`Barrier`][fatqat.operations.Barrier] 标记编译边界。它不会改变模拟中的量子态。
+  status: machine

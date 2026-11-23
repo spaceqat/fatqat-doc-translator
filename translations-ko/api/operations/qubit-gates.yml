@@ -210,3 +210,91 @@
   en: Parameterized classes
   ko: 매개변수화된 클래스
   status: machine
+- id: 6c9d67b99109aa1e
+  en: These gates act on qubits (dimension 2). Choose the gate and operand order from the tables below. For grouped targets, see [`Program.add()`][fatqat.Program.add]. The backend checks dimensions and device support when the program runs.
+  ko: 이 게이트들은 차원이 2인 큐비트에 적용합니다. 아래 표에서 게이트와 대상 순서를 확인하세요. 대상을 묶어서 지정하려면 [`Program.add()`][fatqat.Program.add]를 참고하세요. 실행할 때 백엔드가 차원과 장치의 지원 여부를 확인합니다.
+  status: machine
+- id: d9278f8b9867174c
+  en: Pass fixed gates such as `ops.H` directly to `add()`.
+  ko: '`ops.H` 같은 고정 게이트는 `add()`에 바로 넘깁니다.'
+  status: machine
+- id: add3d44eb3bac80e
+  en: Fixed gate matrices
+  ko: 고정 게이트의 행렬
+  status: machine
+- id: aaf93744162f2279
+  en: <a id="matrix-definitions_1"></a>
+  ko: <a id="matrix-definitions_1"></a>
+  status: machine
+- id: abee835fb30f4995
+  en: Parameterized gate matrices
+  ko: 매개변수 게이트의 행렬
+  status: machine
+- id: 23ef80988ebcce70
+  en: '| [`I`][fatqat.operations.I] | Leaves $\lvert 0\rangle$ and $\lvert 1\rangle$ unchanged. |'
+  ko: '| [`I`][fatqat.operations.I] | $\lvert 0\rangle$과 $\lvert 1\rangle$을 그대로 둡니다. |'
+  status: machine
+- id: 0cdb42c364700fa5
+  en: '| [`H`][fatqat.operations.H] | Maps $\lvert 0\rangle$ to $(\lvert 0\rangle+\lvert 1\rangle)/\sqrt{2}$ and $\lvert 1\rangle$ to $(\lvert 0\rangle-\lvert 1\rangle)/\sqrt{2}$. |'
+  ko: '| [`H`][fatqat.operations.H] | $\lvert 0\rangle$을 $(\lvert 0\rangle+\lvert 1\rangle)/\sqrt{2}$로, $\lvert 1\rangle$을 $(\lvert 0\rangle-\lvert 1\rangle)/\sqrt{2}$로 보냅니다. |'
+  status: machine
+- id: d655fde3dad5d438
+  en: '| [`X`][fatqat.operations.X] | Exchanges $\lvert 0\rangle$ and $\lvert 1\rangle$. |'
+  ko: '| [`X`][fatqat.operations.X] | $\lvert 0\rangle$과 $\lvert 1\rangle$을 교환합니다. |'
+  status: machine
+- id: 7d2d91731ee62d7f
+  en: '| [`Y`][fatqat.operations.Y] | Maps $\lvert 0\rangle$ to $i\lvert 1\rangle$ and $\lvert 1\rangle$ to $-i\lvert 0\rangle$. |'
+  ko: '| [`Y`][fatqat.operations.Y] | $\lvert 0\rangle$을 $i\lvert 1\rangle$로, $\lvert 1\rangle$을 $-i\lvert 0\rangle$로 보냅니다. |'
+  status: machine
+- id: cfb974257470853f
+  en: '| [`Z`][fatqat.operations.Z] | Maps $\lvert 1\rangle$ to $-\lvert 1\rangle$. |'
+  ko: '| [`Z`][fatqat.operations.Z] | $\lvert 1\rangle$을 $-\lvert 1\rangle$로 보냅니다. |'
+  status: machine
+- id: d0214be4fa2e011b
+  en: '| [`S`][fatqat.operations.S] | Maps $\lvert 1\rangle$ to $i\lvert 1\rangle$. |'
+  ko: '| [`S`][fatqat.operations.S] | $\lvert 1\rangle$을 $i\lvert 1\rangle$로 보냅니다. |'
+  status: machine
+- id: c064ebc79702f82e
+  en: '| [`Sdg`][fatqat.operations.Sdg] | Maps $\lvert 1\rangle$ to $-i\lvert 1\rangle$. |'
+  ko: '| [`Sdg`][fatqat.operations.Sdg] | $\lvert 1\rangle$을 $-i\lvert 1\rangle$로 보냅니다. |'
+  status: machine
+- id: 3755b8fdba8a4838
+  en: '| [`T`][fatqat.operations.T] | Maps $\lvert 1\rangle$ to $e^{i\pi/4}\lvert 1\rangle$. |'
+  ko: '| [`T`][fatqat.operations.T] | $\lvert 1\rangle$을 $e^{i\pi/4}\lvert 1\rangle$로 보냅니다. |'
+  status: machine
+- id: aaec6cdeecd0af8f
+  en: '| [`Tdg`][fatqat.operations.Tdg] | Maps $\lvert 1\rangle$ to $e^{-i\pi/4}\lvert 1\rangle$. |'
+  ko: '| [`Tdg`][fatqat.operations.Tdg] | $\lvert 1\rangle$을 $e^{-i\pi/4}\lvert 1\rangle$로 보냅니다. |'
+  status: machine
+- id: 8bb744cc5982b79e
+  en: '| [`CX`][fatqat.operations.CX] | `(control, target)` | Applies X to the target when the control is $\lvert 1\rangle$. |'
+  ko: '| [`CX`][fatqat.operations.CX] | `(control, target)` | 제어가 $\lvert 1\rangle$이면 대상에 X를 적용합니다. |'
+  status: machine
+- id: f747799c62dd61c5
+  en: '| [`CY`][fatqat.operations.CY] | `(control, target)` | Applies Y to the target when the control is $\lvert 1\rangle$. |'
+  ko: '| [`CY`][fatqat.operations.CY] | `(control, target)` | 제어가 $\lvert 1\rangle$이면 대상에 Y를 적용합니다. |'
+  status: machine
+- id: 0fafb93b5902cd6f
+  en: '| [`CZ`][fatqat.operations.CZ] | `(control, target)` | Negates $\lvert 11\rangle$. |'
+  ko: '| [`CZ`][fatqat.operations.CZ] | `(control, target)` | $\lvert 11\rangle$의 부호를 바꿉니다. |'
+  status: machine
+- id: bdcf621e6ae9d814
+  en: '| [`CS`][fatqat.operations.CS] | `(control, target)` | Applies S to the target when the control is $\lvert 1\rangle$. |'
+  ko: '| [`CS`][fatqat.operations.CS] | `(control, target)` | 제어가 $\lvert 1\rangle$이면 대상에 S를 적용합니다. |'
+  status: machine
+- id: c1142d4fb494067b
+  en: '| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | Maps $\lvert 01\rangle$ to $i\lvert 10\rangle$ and $\lvert 10\rangle$ to $i\lvert 01\rangle$. |'
+  ko: '| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | $\lvert 01\rangle$을 $i\lvert 10\rangle$으로, $\lvert 10\rangle$을 $i\lvert 01\rangle$로 보냅니다. |'
+  status: machine
+- id: e9822e99186b3237
+  en: '| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli: applies X when both controls are $\lvert 1\rangle$. |'
+  ko: '| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli: 두 제어가 모두 $\lvert 1\rangle$이면 X를 적용합니다. |'
+  status: machine
+- id: 6170ebcb81a03cba
+  en: '| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin: exchanges the two targets when the control is $\lvert 1\rangle$. |'
+  ko: '| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin: 제어가 $\lvert 1\rangle$이면 두 대상을 교환합니다. |'
+  status: machine
+- id: 9ec1fdaef668d292
+  en: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` scalars or compatible views | Multiplies $\lvert 11\rangle$ by $e^{i\theta}$. |'
+  ko: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` 스칼라 또는 호환되는 뷰 | $\lvert 11\rangle$에 $e^{i\theta}$를 곱합니다. |'
+  status: machine

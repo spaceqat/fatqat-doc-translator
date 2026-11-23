@@ -12,7 +12,7 @@
   status: machine
 - id: 129153d2965ba22b
   en: Reference pages
-  ko: 레퍼런스 페이지
+  ko: API 레퍼런스 페이지
   status: machine
 - id: 9f95e58876b4417e
   en: '**Operation families**'
@@ -88,5 +88,57 @@
   status: machine
 - id: 83a7dfd2e4379f90
   en: Subclassing [`Operation`][fatqat.operations.Operation] defines a new program-level value; it does not register a matrix or pulse realization. See [Matrix implementations](implementation.md) for the custom matrix contract and [Gate realization](pulse-control/gate-realization.md) for pulse realizations.
-  ko: '[`Operation`][fatqat.operations.Operation]을 상속하면 새로운 프로그램 수준 값을 정의할 수 있지만, 행렬이나 펄스 구현이 등록되지는 않습니다. 사용자 정의 행렬 계약은 [행렬 구현](implementation.md), 펄스 구현은 [게이트 구현](pulse-control/gate-realization.md)을 참고하세요.'
+  ko: '[`Operation`][fatqat.operations.Operation]을 상속하면 새로운 프로그램 수준 값을 정의할 수 있지만, 행렬이나 펄스 구현이 등록되지는 않습니다. 사용자 정의 행렬 계약은 [행렬 구현](implementation.md), 펄스 구현은 [게이트의 펄스 구현](pulse-control/gate-realization.md)을 참고하세요.'
+  status: machine
+- id: 512a30b73eaed878
+  en: An operation describes what to apply to a program's targets. Pass parameter-free operations such as `ops.H` directly to [`Program.add()`][fatqat.Program.add]. Call a parameterized constructor such as `ops.RX(0.2)` first.
+  ko: 연산은 프로그램의 대상에 무엇을 적용할지 나타냅니다. `ops.H`처럼 매개변수가 없는 연산은 [`Program.add()`][fatqat.Program.add]에 바로 넘기세요. 매개변수가 있는 연산은 `ops.RX(0.2)`처럼 생성자를 호출한 뒤 넘깁니다.
+  status: machine
+- id: 2d57ffadd76b16aa
+  en: Create measurements with [`measure()`][fatqat.Program.measure] or [`measure_all()`][fatqat.Program.measure_all]. For target forms and conditions, see [`Program.add()`][fatqat.Program.add]. The backend checks whether it can run the requested operations.
+  ko: 측정을 추가하려면 [`measure()`][fatqat.Program.measure] 또는 [`measure_all()`][fatqat.Program.measure_all]을 사용하세요. 대상과 조건을 지정하는 방법은 [`Program.add()`][fatqat.Program.add]에서 확인할 수 있습니다. 백엔드가 요청한 연산을 실행할 수 있는지 확인합니다.
+  status: machine
+- id: f6d8ac303afedb8a
+  en: <a id="construction"></a>
+  ko: <a id="construction"></a>
+  status: machine
+- id: 09b8299d016efc3e
+  en: '| Page | Use it to look up |'
+  ko: '| 페이지 | 찾아볼 내용 |'
+  status: machine
+- id: ea99b349fc7dc757
+  en: '| [Qubit gates](operations/qubit-gates.md) | Fixed gates and rotations on qubits. |'
+  ko: '| [큐비트 게이트](operations/qubit-gates.md) | 큐비트에 적용하는 고정 게이트와 회전 게이트. |'
+  status: machine
+- id: 3ee772b537d969ee
+  en: '| [Qudit gates](operations/qudit-gates.md) | Gates on multilevel systems, including level and dimension requirements. |'
+  ko: '| [큐디트 게이트](operations/qudit-gates.md) | 여러 준위를 가진 계의 게이트와 차원·준위 조건. |'
+  status: machine
+- id: 62584427908dd670
+  en: '| [Optical gates](operations/optical-gates.md) | Phase shifts and beam splitters on optical modes. |'
+  ko: '| [광학 게이트](operations/optical-gates.md) | 광학 모드의 위상 변화와 빔 스플리터. |'
+  status: machine
+- id: 09b7c84851999b9e
+  en: '| [Atom-array operations](operations/atom-gates.md) | Loading atoms and changing their pairings. |'
+  ko: '| [원자 배열 연산](operations/atom-gates.md) | 원자를 장전하고 원자 사이의 짝을 지정하는 연산. |'
+  status: machine
+- id: 1aa7303e66381fff
+  en: '| [Measurement, reset, and barriers](operations/structural.md) | Readout, reset to the ground state, and compiler barriers. |'
+  ko: '| [측정, 리셋, 배리어](operations/structural.md) | 판독, 바닥 상태로의 리셋, 컴파일 배리어. |'
+  status: machine
+- id: 3e794f3ceb6e3922
+  en: '| [PulseOperation](pulse-control/pulse-operation.md) | Direct pulse controls, addressed by channel rather than by register target. |'
+  ko: '| [PulseOperation](pulse-control/pulse-operation.md) | 레지스터 대상 대신 채널을 지정하는 직접 펄스 제어. |'
+  status: machine
+- id: c9229afb14318ef0
+  en: When defining a custom [`Operation`][fatqat.operations.Operation], use `accepts_views` to opt into grouped targets and `validate_targets()` to check parameters against the target registers. To make the operation runnable, see [Matrix implementations](implementation.md) or [Gate realization](pulse-control/gate-realization.md).
+  ko: 사용자 정의 [`Operation`][fatqat.operations.Operation]에서 대상을 묶어서 받을 수 있게 하려면 `accepts_views`를 사용하고, 매개변수가 대상 레지스터에 맞는지 검사하려면 `validate_targets()`를 사용하세요. 연산을 실행할 수 있게 하려면 [행렬 구현](implementation.md) 또는 [게이트의 펄스 구현](pulse-control/gate-realization.md)을 참고하세요.
+  status: machine
+- id: 458e7dc368d61e08
+  en: When defining a custom [`Operation`][fatqat.operations.Operation], use `accepts_views` to opt into grouped targets and `validate_targets()` to check parameters against the target registers. To make the operation runnable, see [Matrix implementation maps](implementation.md) or [Gate realization](pulse-control/gate-realization.md).
+  ko: 사용자 정의 [`Operation`][fatqat.operations.Operation]에서 대상을 묶어서 받을 수 있게 하려면 `accepts_views`를 사용하고, 매개변수가 대상 레지스터에 맞는지 검사하려면 `validate_targets()`를 사용하세요. 연산을 실행할 수 있게 하려면 [행렬 구현 맵](implementation.md) 또는 [게이트의 펄스 구현](pulse-control/gate-realization.md)을 참고하세요.
+  status: machine
+- id: 2d66d79799d65ae2
+  en: When defining a custom [`Operation`][fatqat.operations.Operation], use `accepts_views` to opt into grouped targets and `validate_targets()` to check parameters against the target registers. To make the operation runnable, see [Matrix implementation maps](implementation.md) or [Custom gate pulses](pulse-control/gate-realization.md).
+  ko: 사용자 정의 [`Operation`][fatqat.operations.Operation]에서 대상을 묶어서 받을 수 있게 하려면 `accepts_views`를 사용하고, 매개변수가 대상 레지스터에 맞는지 검사하려면 `validate_targets()`를 사용하세요. 연산을 실행할 수 있게 하려면 [행렬 구현 맵](implementation.md) 또는 [사용자 정의 게이트 펄스](pulse-control/gate-realization.md)을 참고하세요.
   status: machine

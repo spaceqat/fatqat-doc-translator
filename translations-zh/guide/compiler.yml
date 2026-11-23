@@ -202,3 +202,19 @@
   en: You can simulate a logical circuit directly to check your algorithm. Compile it when you want to see how it runs under the constraints of a particular device, or to compare the same circuit on different devices.
   zh: "想先验证算法，可以直接模拟逻辑线路。想了解线路在某种设备的约束下如何运行，或者比较同一个线路在不同设备上的表现，就可以分别为相应的设备编译。"
   status: machine
+- id: 85bfd3f3041818ea
+  en: 'This target describes three sites in a chain: `0–1–2`. A `CZ` can run directly between sites `0` and `1` or between `1` and `2`. There is no direct connection between `0` and `2`, so the compiler must use the available connections when it maps and routes the circuit.'
+  zh: 这个目标描述的是一条由三个位置组成的链：`0–1–2`。`CZ` 可以直接在位置 `0` 和 `1` 之间执行，也可以在 `1` 和 `2` 之间执行。位置 `0` 和 `2` 没有直连，编译器在分配量子比特的位置和安排路由时，需要利用已有的连线。
+  status: machine
+- id: a5e94adfcf8d9e58
+  en: You can choose how to simulate the circuit after compiling it. Create an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] with the sites and connections the compiled circuit uses, then choose its runtime, method, and noise settings for the run.
+  zh: 线路编译好后，再决定怎么模拟。创建一个 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]，让它具备编译后线路用到的位置和连线，然后按这次运行的需要选择运行引擎、模拟方法和噪声设置。
+  status: machine
+- id: 4933ba83e76143c8
+  en: 'If you already have a simulator, call [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target] to reuse its sites and connections. Pass the simulator itself when you want its implementation map to constrain routing and the emitted gates:'
+  zh: 如果已经有模拟器，可以调用 [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target]，复用它的位置和连线。若想让模拟器的实现映射也约束路由和编译后使用的门，就直接把模拟器传给编译函数：
+  status: machine
+- id: 72a8c1fc86caa044
+  en: A simulator with more qubits or additional connections can run the same result. If compilation succeeds but the simulator rejects the result, first check that it provides the sites and connections used by the compiled circuit.
+  zh: 量子比特更多或连线更多的模拟器也能运行同一份编译结果。如果编译成功，却无法在模拟器上运行，先确认模拟器具备编译后线路用到的位置和连线。
+  status: machine

@@ -46,3 +46,35 @@
   en: A finite cutoff keeps both gates unitary. `PhaseShifter` is always exact. `BeamSplitter` is exact while its two modes hold at most `cutoff` photons in total (`d - 1` on dimension-`d` targets); beyond that, its result is an approximation.
   zh: 采用有限截断后，两种门仍保持酉性。`PhaseShifter` 始终精确；只要两个模式的总光子数不超过 `cutoff`（对于维度为 `d` 的目标，即 `d - 1`），`BeamSplitter` 也是精确的，超过后则为近似结果。
   status: machine
+- id: c21f98d20b20afb6
+  en: These gates conserve total photon number. Use them on [`ModeRegister`][fatqat.ModeRegister] with [`LOSimulator`](../simulators/linear-optics.md), or on fixed-dimension [`QuantumRegister`][fatqat.QuantumRegister], where level `n` represents `n` photons.
+  zh: 这些门保持总光子数不变。目标可以是 [`ModeRegister`][fatqat.ModeRegister] 中的模式，由 [`LOSimulator`](../simulators/linear-optics.md) 模拟；也可以是固定维数的 [`QuantumRegister`][fatqat.QuantumRegister] 的成员。能级 `n` 表示有 `n` 个光子。
+  status: machine
+- id: 30badf27da491f51
+  en: '| Constructor | Use it to |'
+  zh: '| 构造函数 | 用途 |'
+  status: machine
+- id: e63c3d2d1d24f10b
+  en: '| [`PhaseShifter`][fatqat.operations.PhaseShifter] `(phi)` | Apply a photon-number-dependent phase to one mode. |'
+  zh: '| [`PhaseShifter`][fatqat.operations.PhaseShifter] `(phi)` | 对单个模式施加随光子数变化的相位。 |'
+  status: machine
+- id: 0963c0e0ef6763f9
+  en: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | Mix two modes with reflectivity `sin(theta)**2`. Use `theta=pi/4` for a balanced splitter. |'
+  zh: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | 以反射率 `sin(theta)**2` 混合两个模式。取 `theta=pi/4` 可得到平衡分束器。 |'
+  status: machine
+- id: 38c564374732cbd9
+  en: <a id="api"></a>
+  zh: <a id="api"></a>
+  status: machine
+- id: b47a43dd58250e2d
+  en: <a id="truncation"></a>
+  zh: <a id="truncation"></a>
+  status: machine
+- id: 5ba61ab067a244a2
+  en: <a id="fatqat.operations.BeamSplitter.validate_targets"></a>
+  zh: <a id="fatqat.operations.BeamSplitter.validate_targets"></a>
+  status: machine
+- id: 2fec571e0060b2c0
+  en: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | Mix two modes with reflectivity `sin(theta)**2`. Use `theta=pi/4` for a balanced splitter. See [basis order and phase convention](#beam-splitter-definition). |'
+  zh: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | 以反射率 `sin(theta)**2` 混合两个模式。取 `theta=pi/4` 可得到平衡分束器。 见[基底顺序与相位约定](#beam-splitter-definition)。 |'
+  status: machine

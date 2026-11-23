@@ -4,7 +4,7 @@
   status: machine
 - id: 8cb2803a775360b2
   en: Register types
-  zh: Register 类型
+  zh: "寄存器类型"
   status: machine
 - id: 9e3a659c7e2767c4
   en: '**Register choices**'
@@ -116,7 +116,7 @@
   status: machine
 - id: c44a7a9a6fff9cd2
   en: Register selections
-  zh: 选择 Register 中的成员
+  zh: "选择寄存器成员"
   status: machine
 - id: bb73b2c0933df865
   en: Every [`QuantumRegister`][fatqat.QuantumRegister] provides `all()`. A [`GridRegister`][fatqat.GridRegister] additionally arranges logical targets in row-major order and provides `row()`, `column()`, and `block()` selections. It does not assign physical coordinates. The flat index of `(row, col)` is `row * cols + col`, and all selection helpers return [`RegisterView`](#fatqat.RegisterView) objects rather than tuples of refs.
@@ -128,7 +128,7 @@
   status: retired
 - id: 59e5c30d3b63d81c
   en: Immutable, hashable target returned by quantum-register selection helpers. Its [`register`](#fatqat.RegisterView.register) attribute identifies the selected quantum register. Obtain views from register helpers; direct construction is unsupported.
-  zh: 由 QuantumRegister 的选择辅助方法返回的不可变、可哈希的目标。其 [`register`](#fatqat.RegisterView.register) 属性标识所选的 QuantumRegister。请通过 Register 的辅助方法获取视图；不支持直接构造。
+  zh: "表示从一个量子寄存器中选出的一组成员。这个对象不可变，可以用作字典键；其 [`register`](#fatqat.RegisterView.register) 属性指向原寄存器。请使用寄存器的选择方法来取得这个对象。它不支持直接构造。"
   status: machine
 - id: 39c0d0a7c2fb5584
   en: '**Type:** `fatqat.QuantumRegister`'
@@ -149,4 +149,56 @@
 - id: ab07c63ff68e5c54
   en: Pass views to [`add`][fatqat.Program.add]. Every built-in unitary gate accepts them. Unary gates act independently on each selected member; multi-target gates zip corresponding members from one view per operand. All views must use the same selector kind and cardinality, and selections on the same register cannot overlap. [`Put`][fatqat.operations.Put] accepts one view as its complete target collection and records one variadic operation. Measurements and QASM export require scalar targets. The backend validates physical placement and connectivity. See [Write quantum computations with Program](../guide/program.md) for the ordinary Program workflow and [Test a Program against a hardware profile](../guide/superconducting-simulation.md) for physical placement.
   zh: "将视图传给 [`add`][fatqat.Program.add]。每个内置的酉门都接受它们。一元门在每个选中成员上独立作用；多目标门为每个操作数取一个视图，并将其中对应的成员按序配对。所有视图必须使用相同种类和相同基数的选择器，并且同一 Register 上的选择不能重叠。[`Put`][fatqat.operations.Put] 接受一个视图作为其完整目标集合，并记录为一次可变参数操作。测量和 QASM 导出要求标量目标。物理放置和连通性由后端验证。有关常规 Program 工作流，参见[使用 Program 编写量子计算](../guide/program.md)；有关物理放置，参见[用硬件约束模拟检验 Program](../guide/superconducting-simulation.md)。"
+  status: machine
+- id: 7397d0dbcf0b82ae
+  en: 'A register groups the slots a [`Program`][fatqat.Program] can address. Quantum slots are where operations act. Classical slots store measurement results and values that conditions can read. Use the same register object you passed to the program when selecting a slot: names are labels, and two registers with the same name are still distinct.'
+  zh: "寄存器把 [`Program`][fatqat.Program] 用到的量子系统或经典数据按索引组织起来。量子操作作用于量子寄存器的成员，经典寄存器的成员则保存测量结果和条件判断所用的值。通过索引选取成员时，要使用传给程序的原寄存器对象。同名的寄存器仍是不同的对象。"
+  status: machine
+- id: 91e9b34ca21cd426
+  en: '| Type | When to use it |'
+  zh: '| 类型 | 何时使用 |'
+  status: machine
+- id: cc2d78c11d2e0c9f
+  en: '| [`QuantumRegister`][fatqat.QuantumRegister] | Use a fixed number of qubits, or specify a larger `dim` for qudits. |'
+  zh: '| [`QuantumRegister`][fatqat.QuantumRegister] | 使用固定数量的量子比特。若需要多能级量子系统，可指定更大的 `dim`。 |'
+  status: machine
+- id: aa808b505a0520a3
+  en: '| [`ClassicalRegister`][fatqat.ClassicalRegister] | Store measurement results in bits or in digits with a larger `dim`. |'
+  zh: "| [`ClassicalRegister`][fatqat.ClassicalRegister] | 把测量结果存入经典比特。增大 `dim` 后，每个成员可以存储两种以上的值。 |"
+  status: machine
+- id: 90c445bb2206eded
+  en: '| [`GridRegister`][fatqat.GridRegister] | Organize quantum slots in rows and columns so you can select parts of a grid. |'
+  zh: "| [`GridRegister`][fatqat.GridRegister] | 把量子寄存器的成员按行列排列，方便选取网格的一部分。 |"
+  status: machine
+- id: 962a3743f08846ff
+  en: '| [`ModeRegister`][fatqat.ModeRegister] | Represent optical modes in an [`LOSimulator`](simulators/linear-optics.md) program. |'
+  zh: '| [`ModeRegister`][fatqat.ModeRegister] | 在 [`LOSimulator`](simulators/linear-optics.md) 上运行程序时，用它表示光学模式。 |'
+  status: machine
+- id: 2bac9e5d0feae319
+  en: '| [`CountRegister`][fatqat.CountRegister] | Store photon counts measured from a `ModeRegister`. |'
+  zh: '| [`CountRegister`][fatqat.CountRegister] | 存放从 `ModeRegister` 测得的光子数。 |'
+  status: machine
+- id: 284858659bffee5e
+  en: '[`Register`][fatqat.Register] is the shared base class. Pass a concrete quantum or classical register to `Program`.'
+  zh: '[`Register`][fatqat.Register] 是共用的基类。传给 `Program` 的应是具体的量子或经典寄存器。'
+  status: machine
+- id: 5dfd4cb4f14b5a43
+  en: Index a register, for example `q[0]`, to get a [`RegisterRef`][fatqat.RegisterRef] for one slot. Use [`all()`][fatqat.QuantumRegister.all] or a grid selection helper to get a [`RegisterView`](#fatqat.RegisterView) for a group of quantum slots. See [`Program.add()`][fatqat.Program.add] for which operations accept views.
+  zh: "用 `q[0]` 这样的索引可以得到一个 [`RegisterRef`][fatqat.RegisterRef]，指向寄存器的单个成员。调用 [`all()`][fatqat.QuantumRegister.all] 或用网格的选择方法，可以选出一组成员，得到一个 [`RegisterView`](#fatqat.RegisterView)。哪些操作可以一次接收一组成员，见 [`Program.add()`][fatqat.Program.add]。"
+  status: machine
+- id: b741653981f698a5
+  en: 'A grid organizes logical slots. It does not place qubits on a device. Flat indices run across each row, then continue on the next. For a `GridRegister(2, 3)`, the helpers select these slots:'
+  zh: "网格按行列组织寄存器成员，并不决定量子比特在设备上的位置。索引从第一行开始逐行编号。以 `GridRegister(2, 3)` 为例，下表列出各方法选中的成员索引："
+  status: machine
+- id: be5e03fcdd7b84df
+  en: Register classes
+  zh: 寄存器类
+  status: machine
+- id: 9b4d86653728730d
+  en: References and views
+  zh: "单个成员与成组选择"
+  status: machine
+- id: fe1a49632b7b90e8
+  en: Use [`ResourceLayout`][fatqat.ResourceLayout] to map individual quantum slots to device labels when the backend's default placement is not suitable.
+  zh: "需要指定设备上的放置方式时，可以用 [`ResourceLayout`][fatqat.ResourceLayout] 把量子寄存器的成员逐个对应到设备资源。"
   status: machine

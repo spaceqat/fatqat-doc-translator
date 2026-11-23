@@ -180,37 +180,125 @@
   status: machine
 - id: 54303deff4296d6b
   en: '| [`RX`][fatqat.operations.RX] `(theta)` | One scalar or one view | Rotation about the X axis by `theta`. |'
-  zh: '| [`RX`][fatqat.operations.RX] `(theta)` | 一个标量或一个视图 | 绕 X 轴旋转 `theta`。 |'
+  zh: "| [`RX`][fatqat.operations.RX] `(theta)` | 一个目标或一组选中的成员 | 绕 X 轴旋转 `theta`。 |"
   status: machine
 - id: 4ac47dee4dff23f4
   en: '| [`RY`][fatqat.operations.RY] `(theta)` | One scalar or one view | Rotation about the Y axis by `theta`. |'
-  zh: '| [`RY`][fatqat.operations.RY] `(theta)` | 一个标量或一个视图 | 绕 Y 轴旋转 `theta`。 |'
+  zh: "| [`RY`][fatqat.operations.RY] `(theta)` | 一个目标或一组选中的成员 | 绕 Y 轴旋转 `theta`。 |"
   status: machine
 - id: 5d7d3269b29c90a6
   en: '| [`RZ`][fatqat.operations.RZ] `(theta)` | One scalar or one view | Rotation about the Z axis by `theta`. |'
-  zh: '| [`RZ`][fatqat.operations.RZ] `(theta)` | 一个标量或一个视图 | 绕 Z 轴旋转 `theta`。 |'
+  zh: "| [`RZ`][fatqat.operations.RZ] `(theta)` | 一个目标或一组选中的成员 | 绕 Z 轴旋转 `theta`。 |"
   status: machine
 - id: f5b96991bd7572f0
   en: '| [`Phase`][fatqat.operations.Phase] `(theta)` | One scalar or one view | Differs from RZ only by global phase. |'
-  zh: '| [`Phase`][fatqat.operations.Phase] `(theta)` | 一个标量或一个视图 | 与 RZ 仅相差一个全局相位。 |'
+  zh: "| [`Phase`][fatqat.operations.Phase] `(theta)` | 一个目标或一组选中的成员 | 与 RZ 仅相差一个全局相位。 |"
   status: machine
 - id: 6178d02da842e84d
   en: '| [`U`][fatqat.operations.U] `(theta, phi, lam)` | One scalar or one view | General single-qubit gate using Qiskit''s parameter convention. |'
-  zh: '| [`U`][fatqat.operations.U] `(theta, phi, lam)` | 一个标量或一个视图 | 采用 Qiskit 参数约定的通用单量子比特门。 |'
+  zh: "| [`U`][fatqat.operations.U] `(theta, phi, lam)` | 一个目标或一组选中的成员 | 采用 Qiskit 参数约定的通用单量子比特门。 |"
   status: machine
 - id: 86c388132ffcc76e
   en: '| [`U1`][fatqat.operations.U1] `(lam)` | One scalar or one view | Equivalent to `Phase(lam)`. |'
-  zh: '| [`U1`][fatqat.operations.U1] `(lam)` | 一个标量或一个视图 | 等价于 `Phase(lam)`。 |'
+  zh: "| [`U1`][fatqat.operations.U1] `(lam)` | 一个目标或一组选中的成员 | 等价于 `Phase(lam)`。 |"
   status: machine
 - id: 42c09435788ef977
   en: '| [`U2`][fatqat.operations.U2] `(phi, lam)` | One scalar or one view | Equivalent to `U(pi/2, phi, lam)`. |'
-  zh: '| [`U2`][fatqat.operations.U2] `(phi, lam)` | 一个标量或一个视图 | 等价于 `U(pi/2, phi, lam)`。 |'
+  zh: "| [`U2`][fatqat.operations.U2] `(phi, lam)` | 一个目标或一组选中的成员 | 等价于 `U(pi/2, phi, lam)`。 |"
   status: machine
 - id: 59c137d7129c559d
   en: '| [`U3`][fatqat.operations.U3] `(theta, phi, lam)` | One scalar or one view | Same matrix as `U(theta, phi, lam)`; retained for Qiskit compatibility. |'
-  zh: '| [`U3`][fatqat.operations.U3] `(theta, phi, lam)` | 一个标量或一个视图 | 矩阵与 `U(theta, phi, lam)` 相同；为兼容 Qiskit 而保留。 |'
+  zh: "| [`U3`][fatqat.operations.U3] `(theta, phi, lam)` | 一个目标或一组选中的成员 | 矩阵与 `U(theta, phi, lam)` 相同；为兼容 Qiskit 而保留。 |"
   status: machine
 - id: fff46ca18fb46b1c
   en: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` scalars or compatible views | Multiplies $\|11\rangle$ by $e^{i\theta}$. |'
-  zh: "| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` 标量或兼容视图 | 将 $\\|11\\rangle$ 乘以 $e^{i\\theta}$。 |"
+  zh: "| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)`：两个单独的目标，或两组可按位置配对的成员 | 将 $\\|11\\rangle$ 乘以 $e^{i\\theta}$。 |"
+  status: machine
+- id: 6c9d67b99109aa1e
+  en: These gates act on qubits (dimension 2). Choose the gate and operand order from the tables below. For grouped targets, see [`Program.add()`][fatqat.Program.add]. The backend checks dimensions and device support when the program runs.
+  zh: 这些门作用于维数为 2 的量子比特。下表可查各门的用途和目标顺序。如何成组选取目标，见 [`Program.add()`][fatqat.Program.add]。运行时，后端会检查目标维数和设备是否支持这些门。
+  status: machine
+- id: d9278f8b9867174c
+  en: Pass fixed gates such as `ops.H` directly to `add()`.
+  zh: 像 `ops.H` 这样的固定门可以直接传给 `add()`。
+  status: machine
+- id: add3d44eb3bac80e
+  en: Fixed gate matrices
+  zh: 固定门的矩阵
+  status: machine
+- id: aaf93744162f2279
+  en: <a id="matrix-definitions_1"></a>
+  zh: <a id="matrix-definitions_1"></a>
+  status: machine
+- id: abee835fb30f4995
+  en: Parameterized gate matrices
+  zh: 参数门的矩阵
+  status: machine
+- id: 23ef80988ebcce70
+  en: '| [`I`][fatqat.operations.I] | Leaves $\lvert 0\rangle$ and $\lvert 1\rangle$ unchanged. |'
+  zh: '| [`I`][fatqat.operations.I] | 保持 $\lvert 0\rangle$ 和 $\lvert 1\rangle$ 不变。 |'
+  status: machine
+- id: 0cdb42c364700fa5
+  en: '| [`H`][fatqat.operations.H] | Maps $\lvert 0\rangle$ to $(\lvert 0\rangle+\lvert 1\rangle)/\sqrt{2}$ and $\lvert 1\rangle$ to $(\lvert 0\rangle-\lvert 1\rangle)/\sqrt{2}$. |'
+  zh: '| [`H`][fatqat.operations.H] | 将 $\lvert 0\rangle$ 映射为 $(\lvert 0\rangle+\lvert 1\rangle)/\sqrt{2}$，并将 $\lvert 1\rangle$ 映射为 $(\lvert 0\rangle-\lvert 1\rangle)/\sqrt{2}$。 |'
+  status: machine
+- id: d655fde3dad5d438
+  en: '| [`X`][fatqat.operations.X] | Exchanges $\lvert 0\rangle$ and $\lvert 1\rangle$. |'
+  zh: '| [`X`][fatqat.operations.X] | 交换 $\lvert 0\rangle$ 和 $\lvert 1\rangle$。 |'
+  status: machine
+- id: 7d2d91731ee62d7f
+  en: '| [`Y`][fatqat.operations.Y] | Maps $\lvert 0\rangle$ to $i\lvert 1\rangle$ and $\lvert 1\rangle$ to $-i\lvert 0\rangle$. |'
+  zh: '| [`Y`][fatqat.operations.Y] | 将 $\lvert 0\rangle$ 映射为 $i\lvert 1\rangle$，并将 $\lvert 1\rangle$ 映射为 $-i\lvert 0\rangle$。 |'
+  status: machine
+- id: cfb974257470853f
+  en: '| [`Z`][fatqat.operations.Z] | Maps $\lvert 1\rangle$ to $-\lvert 1\rangle$. |'
+  zh: '| [`Z`][fatqat.operations.Z] | 将 $\lvert 1\rangle$ 映射为 $-\lvert 1\rangle$。 |'
+  status: machine
+- id: d0214be4fa2e011b
+  en: '| [`S`][fatqat.operations.S] | Maps $\lvert 1\rangle$ to $i\lvert 1\rangle$. |'
+  zh: '| [`S`][fatqat.operations.S] | 将 $\lvert 1\rangle$ 映射为 $i\lvert 1\rangle$。 |'
+  status: machine
+- id: c064ebc79702f82e
+  en: '| [`Sdg`][fatqat.operations.Sdg] | Maps $\lvert 1\rangle$ to $-i\lvert 1\rangle$. |'
+  zh: '| [`Sdg`][fatqat.operations.Sdg] | 将 $\lvert 1\rangle$ 映射为 $-i\lvert 1\rangle$。 |'
+  status: machine
+- id: 3755b8fdba8a4838
+  en: '| [`T`][fatqat.operations.T] | Maps $\lvert 1\rangle$ to $e^{i\pi/4}\lvert 1\rangle$. |'
+  zh: '| [`T`][fatqat.operations.T] | 将 $\lvert 1\rangle$ 映射为 $e^{i\pi/4}\lvert 1\rangle$。 |'
+  status: machine
+- id: aaec6cdeecd0af8f
+  en: '| [`Tdg`][fatqat.operations.Tdg] | Maps $\lvert 1\rangle$ to $e^{-i\pi/4}\lvert 1\rangle$. |'
+  zh: '| [`Tdg`][fatqat.operations.Tdg] | 将 $\lvert 1\rangle$ 映射为 $e^{-i\pi/4}\lvert 1\rangle$。 |'
+  status: machine
+- id: 8bb744cc5982b79e
+  en: '| [`CX`][fatqat.operations.CX] | `(control, target)` | Applies X to the target when the control is $\lvert 1\rangle$. |'
+  zh: '| [`CX`][fatqat.operations.CX] | `(control, target)` | 控制位为 $\lvert 1\rangle$ 时，对目标施加 X。 |'
+  status: machine
+- id: f747799c62dd61c5
+  en: '| [`CY`][fatqat.operations.CY] | `(control, target)` | Applies Y to the target when the control is $\lvert 1\rangle$. |'
+  zh: '| [`CY`][fatqat.operations.CY] | `(control, target)` | 控制位为 $\lvert 1\rangle$ 时，对目标施加 Y。 |'
+  status: machine
+- id: 0fafb93b5902cd6f
+  en: '| [`CZ`][fatqat.operations.CZ] | `(control, target)` | Negates $\lvert 11\rangle$. |'
+  zh: '| [`CZ`][fatqat.operations.CZ] | `(control, target)` | 将 $\lvert 11\rangle$ 的振幅乘以负一。 |'
+  status: machine
+- id: bdcf621e6ae9d814
+  en: '| [`CS`][fatqat.operations.CS] | `(control, target)` | Applies S to the target when the control is $\lvert 1\rangle$. |'
+  zh: '| [`CS`][fatqat.operations.CS] | `(control, target)` | 控制位为 $\lvert 1\rangle$ 时，对目标施加 S。 |'
+  status: machine
+- id: c1142d4fb494067b
+  en: '| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | Maps $\lvert 01\rangle$ to $i\lvert 10\rangle$ and $\lvert 10\rangle$ to $i\lvert 01\rangle$. |'
+  zh: '| [`iSwap`][fatqat.operations.iSwap] | `(target0, target1)` | 将 $\lvert 01\rangle$ 映射为 $i\lvert 10\rangle$，将 $\lvert 10\rangle$ 映射为 $i\lvert 01\rangle$。 |'
+  status: machine
+- id: e9822e99186b3237
+  en: '| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli: applies X when both controls are $\lvert 1\rangle$. |'
+  zh: '| [`CCX`][fatqat.operations.CCX] | `(control0, control1, target)` | Toffoli 门：两个控制位均为 $\lvert 1\rangle$ 时，对目标施加 X。 |'
+  status: machine
+- id: 6170ebcb81a03cba
+  en: '| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin: exchanges the two targets when the control is $\lvert 1\rangle$. |'
+  zh: '| [`CSwap`][fatqat.operations.CSwap] | `(control, target0, target1)` | Fredkin 门：控制位为 $\lvert 1\rangle$ 时，交换两个目标。 |'
+  status: machine
+- id: 9ec1fdaef668d292
+  en: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)` scalars or compatible views | Multiplies $\lvert 11\rangle$ by $e^{i\theta}$. |'
+  zh: '| [`CPhase`][fatqat.operations.CPhase] `(theta)` | `(control, target)`：两个单独的目标，或两组可按位置配对的成员 | 将 $\lvert 11\rangle$ 乘以 $e^{i\theta}$。 |'
   status: machine

@@ -34,3 +34,31 @@
   en: 'Built-in simulators ignore barriers, including any condition recorded by [`add`][fatqat.Program.add], so barriers do not change states or counts. A barrier cannot be bound to noise: using it as the `operation=` selector in [`fatqat.NoiseModel.add`][fatqat.NoiseModel.add] raises [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError).'
   ko: 내장 시뮬레이터는 [`add`][fatqat.Program.add]로 기록한 조건까지 포함해 배리어를 무시하므로 상태나 카운트가 바뀌지 않습니다. 배리어에는 잡음을 연결할 수 없습니다. [`fatqat.NoiseModel.add`][fatqat.NoiseModel.add]의 `operation=` 선택자로 쓰면 [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError)가 발생합니다.
   status: machine
+- id: 8eeaffd1dcab4a14
+  en: Measurement, reset, and barriers
+  ko: 측정, 리셋, 배리어
+  status: machine
+- id: 0bfeb5caa689ade7
+  en: <a id="measurement-and-structural-operations"></a> <a id="measurement-and-reset"></a>
+  ko: <a id="measurement-and-structural-operations"></a> <a id="measurement-and-reset"></a>
+  status: machine
+- id: 385165e2ff598045
+  en: Measurement
+  ko: 측정
+  status: machine
+- id: e19ff8b845685679
+  en: Use [`measure()`][fatqat.Program.measure] or [`measure_all()`][fatqat.Program.measure_all] to read computational-basis outcomes into classical registers. A grouped measurement pairs targets and outputs in the order supplied. If several results go to the same classical destination, the last write wins.
+  ko: '[`measure()`][fatqat.Program.measure] 또는 [`measure_all()`][fatqat.Program.measure_all]으로 계산 기저에서 측정한 결과를 고전 레지스터에 기록합니다. 여러 대상을 한 번에 측정하면 전달한 순서대로 대상과 출력 위치를 짝짓습니다. 같은 위치에 여러 번 기록하면 마지막 값이 남습니다.'
+  status: machine
+- id: daee7606b339f3c3
+  en: Reset
+  ko: 리셋
+  status: machine
+- id: ee87dbceab0bce29
+  en: Add [`Reset`][fatqat.operations.Reset] with [`Program.add()`][fatqat.Program.add] to return targets to `|0>` without recording a measurement.
+  ko: '[`Reset`][fatqat.operations.Reset]을 [`Program.add()`][fatqat.Program.add]에 넘기면 대상이 `|0>` 상태로 돌아갑니다. 측정 결과는 기록하지 않습니다.'
+  status: machine
+- id: c7a3ea38e303e172
+  en: Use [`Barrier`][fatqat.operations.Barrier] to mark a compiler boundary without changing the simulated state.
+  ko: '[`Barrier`][fatqat.operations.Barrier]로 컴파일 경계를 표시할 수 있습니다. 시뮬레이션 중 양자 상태는 바뀌지 않습니다.'
+  status: machine

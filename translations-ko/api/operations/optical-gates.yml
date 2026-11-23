@@ -46,3 +46,35 @@
   en: A finite cutoff keeps both gates unitary. `PhaseShifter` is always exact. `BeamSplitter` is exact while its two modes hold at most `cutoff` photons in total (`d - 1` on dimension-`d` targets); beyond that, its result is an approximation.
   ko: 유한한 절단값을 사용해도 두 게이트는 유니터리를 유지합니다. `PhaseShifter`는 항상 정확합니다. `BeamSplitter`는 두 모드의 총 광자 수가 `cutoff` 이하일 때(차원이 `d`인 대상에서는 `d - 1` 이하) 정확하며, 이를 넘으면 근삿값을 반환합니다.
   status: machine
+- id: c21f98d20b20afb6
+  en: These gates conserve total photon number. Use them on [`ModeRegister`][fatqat.ModeRegister] with [`LOSimulator`](../simulators/linear-optics.md), or on fixed-dimension [`QuantumRegister`][fatqat.QuantumRegister], where level `n` represents `n` photons.
+  ko: 이 게이트들은 전체 광자 수를 보존합니다. [`ModeRegister`][fatqat.ModeRegister]의 모드에 적용해 [`LOSimulator`](../simulators/linear-optics.md)로 실행하거나, 차원이 고정된 [`QuantumRegister`][fatqat.QuantumRegister]의 원소에 적용할 수 있습니다. 준위 `n`은 광자 `n`개를 나타냅니다.
+  status: machine
+- id: 30badf27da491f51
+  en: '| Constructor | Use it to |'
+  ko: '| 생성자 | 용도 |'
+  status: machine
+- id: e63c3d2d1d24f10b
+  en: '| [`PhaseShifter`][fatqat.operations.PhaseShifter] `(phi)` | Apply a photon-number-dependent phase to one mode. |'
+  ko: '| [`PhaseShifter`][fatqat.operations.PhaseShifter] `(phi)` | 광자 수에 따라 한 모드의 위상을 바꿉니다. |'
+  status: machine
+- id: 0963c0e0ef6763f9
+  en: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | Mix two modes with reflectivity `sin(theta)**2`. Use `theta=pi/4` for a balanced splitter. |'
+  ko: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | 반사율 `sin(theta)**2`로 두 모드를 혼합합니다. 반사율과 투과율을 같게 하려면 `theta=pi/4`로 설정하세요. |'
+  status: machine
+- id: 38c564374732cbd9
+  en: <a id="api"></a>
+  ko: <a id="api"></a>
+  status: machine
+- id: b47a43dd58250e2d
+  en: <a id="truncation"></a>
+  ko: <a id="truncation"></a>
+  status: machine
+- id: 5ba61ab067a244a2
+  en: <a id="fatqat.operations.BeamSplitter.validate_targets"></a>
+  ko: <a id="fatqat.operations.BeamSplitter.validate_targets"></a>
+  status: machine
+- id: 2fec571e0060b2c0
+  en: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | Mix two modes with reflectivity `sin(theta)**2`. Use `theta=pi/4` for a balanced splitter. See [basis order and phase convention](#beam-splitter-definition). |'
+  ko: '| [`BeamSplitter`][fatqat.operations.BeamSplitter] `(theta, phi=0.0)` | 반사율 `sin(theta)**2`로 두 모드를 혼합합니다. 반사율과 투과율을 같게 하려면 `theta=pi/4`로 설정하세요. [기저 순서와 위상 표기 규약](#beam-splitter-definition)을 참고하세요. |'
+  status: machine

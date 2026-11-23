@@ -28,7 +28,7 @@
   status: machine
 - id: c464edd7f559fd16
   en: Run and inspect
-  zh: 运行与检查
+  zh: 运行与分析
   status: machine
 - id: ace0363d8aa1505f
   en: '[Simulators](simulators/index.md)'
@@ -56,7 +56,7 @@
   status: machine
 - id: 0ff359fbd68eb0e5
   en: Integrate and extend
-  zh: 集成与扩展
+  zh: 对接与扩展
   status: machine
 - id: 04846f2e25dba217
   en: '[Interoperability](interoperability/index.md)'
@@ -92,5 +92,49 @@
   status: machine
 - id: b99fbe2efc494048
   en: '[OpenQASM & Qiskit](interoperability/index.md)'
-  zh: "[互操作性](interoperability/index.md)"
+  zh: '[互操作性](interoperability/index.md)'
+  status: machine
+- id: e99ed4fbdaeab650
+  en: '[SCTarget](sc-target.md)'
+  zh: '[SCTarget](sc-target.md)'
+  status: machine
+- id: b1bb3ea7bf974a81
+  en: '[Compiler pipelines & IR](compiler-pipelines.md)'
+  zh: '[编译管线与 IR](compiler-pipelines.md)'
+  status: machine
+- id: da7d82ec21d34caf
+  en: Use this reference to look up FatQat's public classes, functions, and exceptions. For a complete example, see the [Quickstart](../guide/quickstart.md).
+  zh: 这里可以查阅 FatQat 的公开类、函数和异常。想先跑通一个完整示例，可以从[快速入门](../guide/quickstart.md)开始。
+  status: machine
+- id: 6a9dac4ff97a2d4e
+  en: '[Compiler](compiler.md) – Compile logical circuits or OpenQASM for a device model.'
+  zh: '[编译器](compiler.md) – 为指定设备模型编译逻辑线路或 OpenQASM。'
+  status: machine
+- id: 8ce1acd9e8e60dd4
+  en: '[Pulse control](pulse-control/index.md) – Specify waveforms and map gates to pulse definitions.'
+  zh: '[脉冲控制](pulse-control/index.md) – 指定波形，将量子门映射成脉冲定义。'
+  status: machine
+- id: a4b426f707c8551e
+  en: '[Simulators](simulators/index.md) – Run gate-level and linear-optical programs.'
+  zh: '[模拟器](simulators/index.md) – 运行门级程序和线性光学程序。'
+  status: machine
+- id: 181649661194544e
+  en: '[Emulators](emulators/index.md) – Follow Hamiltonian evolution under physical controls.'
+  zh: '[仿真器](emulators/index.md) – 计算物理控制下的哈密顿量演化。'
+  status: machine
+- id: 162ab2d9db917f29
+  en: '[Noise](noise.md) – Choose a noise model and check backend support.'
+  zh: '[噪声](noise.md) – 选择噪声模型，查看各后端支持的噪声类型。'
+  status: machine
+- id: 750cd04bdefccb93
+  en: '[Estimator](estimator.md) – Compute expectation values of observables.'
+  zh: '[Estimator](estimator.md) – 计算可观测量的期望值。'
+  status: machine
+- id: 9c75106ee54002bc
+  en: '[OpenQASM & Qiskit](interoperability/index.md) – Exchange circuits or run FatQat through Qiskit''s backend interface.'
+  zh: '[OpenQASM 与 Qiskit](interoperability/index.md) – 交换线路，或通过 Qiskit 的后端接口运行 FatQat。'
+  status: machine
+- id: beeb3cf92a21494b
+  en: '[Matrix implementation maps](implementation.md) – Supply custom matrices and channel rules.'
+  zh: '[矩阵实现映射](implementation.md) – 为模拟器提供自定义矩阵和信道规则。'
   status: machine

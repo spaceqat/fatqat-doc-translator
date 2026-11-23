@@ -138,3 +138,19 @@
   en: You can simulate a logical circuit directly to check your algorithm. Compile it when you want to see how it runs under the constraints of a particular device, or to compare the same circuit on different devices.
   ko: "알고리즘을 확인하려면 논리 회로를 바로 시뮬레이션할 수 있습니다. 특정 장치의 제약 아래에서 회로가 어떻게 실행되는지 살펴보거나 같은 회로를 여러 장치에서 비교하려면 각 장치를 대상으로 컴파일합니다."
   status: machine
+- id: 85bfd3f3041818ea
+  en: 'This target describes three sites in a chain: `0–1–2`. A `CZ` can run directly between sites `0` and `1` or between `1` and `2`. There is no direct connection between `0` and `2`, so the compiler must use the available connections when it maps and routes the circuit.'
+  ko: 이 타깃은 세 사이트가 `0–1–2` 순서로 연결된 장치를 나타냅니다. `CZ`는 사이트 `0`과 `1` 사이 또는 `1`과 `2` 사이에서 바로 실행할 수 있습니다. `0`과 `2`는 직접 연결되어 있지 않으므로, 컴파일러는 기존 연결에 맞춰 큐비트를 배치하고 경로를 정합니다.
+  status: machine
+- id: a5e94adfcf8d9e58
+  en: You can choose how to simulate the circuit after compiling it. Create an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] with the sites and connections the compiled circuit uses, then choose its runtime, method, and noise settings for the run.
+  ko: 회로를 컴파일한 다음에 시뮬레이션 방식을 정해도 됩니다. 컴파일된 회로가 사용하는 사이트와 연결을 갖춘 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]를 만든 뒤, 실행에 사용할 런타임, 시뮬레이션 방법, 잡음 설정을 고르세요.
+  status: machine
+- id: 4933ba83e76143c8
+  en: 'If you already have a simulator, call [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target] to reuse its sites and connections. Pass the simulator itself when you want its implementation map to constrain routing and the emitted gates:'
+  ko: 이미 시뮬레이터가 있다면 [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target]을 호출해 사이트와 연결을 그대로 쓸 수 있습니다. 시뮬레이터의 구현 맵으로 라우팅과 컴파일 후 사용할 게이트까지 제한하려면 시뮬레이터 자체를 넘기세요.
+  status: machine
+- id: 72a8c1fc86caa044
+  en: A simulator with more qubits or additional connections can run the same result. If compilation succeeds but the simulator rejects the result, first check that it provides the sites and connections used by the compiled circuit.
+  ko: 큐비트나 연결이 더 많은 시뮬레이터에서도 같은 결과를 실행할 수 있습니다. 컴파일에는 성공했지만 시뮬레이터에서 실행할 수 없다면, 컴파일된 회로가 사용하는 사이트와 연결이 모두 있는지 먼저 확인하세요.
+  status: machine

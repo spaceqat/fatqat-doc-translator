@@ -50,3 +50,19 @@
   en: Classical conditions are available when simulating a `LogicalProgram` directly. The current compiler handles static circuits with terminal measurements; the [compiler guide](../guide/compiler.md#current-compiler-support) summarizes the supported inputs.
   ko: '`LogicalProgram`을 직접 시뮬레이션할 때는 고전 조건을 사용할 수 있습니다. 현재 컴파일러는 마지막에 측정하는 정적 회로를 처리합니다. 지원 입력은 [컴파일러 가이드](../guide/compiler.md#current-compiler-support)에 정리되어 있습니다.'
   status: machine
+- id: 2b0179bc604805b8
+  en: A [`LogicalProgram`][fatqat.LogicalProgram] describes a device-independent circuit. Run it directly with the [general simulator](simulator.md), or pass it to the [compiler](compiler.md#compile-a-logicalprogram) for a superconducting or neutral-atom target. Use [`Program`](program.md) for operations that address hardware directly, such as atom placement, pairing, or pulse controls, and for custom operations.
+  ko: '[`LogicalProgram`][fatqat.LogicalProgram]으로 특정 장치에 얽매이지 않는 회로를 작성할 수 있습니다. [범용 시뮬레이터](simulator.md)에서 바로 실행하거나 [컴파일러](compiler.md#compile-a-logicalprogram)로 초전도 또는 중성 원자 장치에 맞게 변환할 수 있습니다. 원자 장전, 쌍 지정, 펄스처럼 하드웨어에 직접 적용하는 연산이나 사용자 정의 연산에는 [`Program`](program.md)을 사용하세요.'
+  status: machine
+- id: d992409e9128bfad
+  en: A circuit can be valid for simulation without being valid for compilation. For example, the general simulator can run a circuit with classical conditions. The current compiler requires a static circuit with measurements at the end and no classical conditions. Bind any symbolic parameters before compiling. The supported gates also depend on the target.
+  ko: 시뮬레이션할 수 있는 회로가 모두 컴파일되는 것은 아닙니다. 예를 들어 범용 시뮬레이터에서는 고전 조건을 포함한 회로를 실행할 수 있습니다. 현재 컴파일러는 고전 조건이 없고 모든 측정이 끝에 있는 정적 회로만 처리합니다. 컴파일 전에 모든 기호 매개변수에 수치를 지정하세요. 지원하는 게이트는 대상 장치에 따라 달라집니다.
+  status: machine
+- id: d0e4e05abd57436c
+  en: <a id="compile-or-simulate-the-circuit"></a> <a id="choose-between-logicalprogram-and-program"></a> <a id="reuse-parameterized-circuits"></a>
+  ko: <a id="compile-or-simulate-the-circuit"></a> <a id="choose-between-logicalprogram-and-program"></a> <a id="reuse-parameterized-circuits"></a>
+  status: machine
+- id: 4164dbbd5025a3d7
+  en: '`LogicalProgram` inherits its [constructor][fatqat.Program], [`measure()`][fatqat.Program.measure], [`measure_all()`][fatqat.Program.measure_all], and [`draw()`][fatqat.Program.draw] from [`Program`][fatqat.Program].'
+  ko: '`LogicalProgram`은 [생성자][fatqat.Program]와 [`measure()`][fatqat.Program.measure], [`measure_all()`][fatqat.Program.measure_all], [`draw()`][fatqat.Program.draw]를 [`Program`][fatqat.Program]에서 상속합니다.'
+  status: machine

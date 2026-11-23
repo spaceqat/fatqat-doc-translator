@@ -50,3 +50,19 @@
   en: Classical conditions are available when simulating a `LogicalProgram` directly. The current compiler handles static circuits with terminal measurements; the [compiler guide](../guide/compiler.md#current-compiler-support) summarizes the supported inputs.
   zh: 直接模拟 `LogicalProgram` 时可以使用经典条件。当前编译器处理带末端测量的静态线路；支持的输入见[编译器指南](../guide/compiler.md#current-compiler-support)。
   status: machine
+- id: 2b0179bc604805b8
+  en: A [`LogicalProgram`][fatqat.LogicalProgram] describes a device-independent circuit. Run it directly with the [general simulator](simulator.md), or pass it to the [compiler](compiler.md#compile-a-logicalprogram) for a superconducting or neutral-atom target. Use [`Program`](program.md) for operations that address hardware directly, such as atom placement, pairing, or pulse controls, and for custom operations.
+  zh: '[`LogicalProgram`][fatqat.LogicalProgram] 用来编写与设备无关的线路。你可以用[通用模拟器](simulator.md)直接运行，也可以交给[编译器](compiler.md#compile-a-logicalprogram)，为超导或中性原子设备生成指令。要直接指定原子装载、配对或脉冲等硬件操作，或使用自定义操作，请用 [`Program`](program.md)。'
+  status: machine
+- id: d992409e9128bfad
+  en: A circuit can be valid for simulation without being valid for compilation. For example, the general simulator can run a circuit with classical conditions. The current compiler requires a static circuit with measurements at the end and no classical conditions. Bind any symbolic parameters before compiling. The supported gates also depend on the target.
+  zh: 能直接模拟的线路不一定能编译。例如，通用模拟器可以运行带经典条件的线路，而目前的编译器只接受无经典条件、测量集中在线路末尾的静态线路。编译前，请为所有符号参数赋予数值。支持的门也取决于目标设备。
+  status: machine
+- id: d0e4e05abd57436c
+  en: <a id="compile-or-simulate-the-circuit"></a> <a id="choose-between-logicalprogram-and-program"></a> <a id="reuse-parameterized-circuits"></a>
+  zh: <a id="compile-or-simulate-the-circuit"></a> <a id="choose-between-logicalprogram-and-program"></a> <a id="reuse-parameterized-circuits"></a>
+  status: machine
+- id: 4164dbbd5025a3d7
+  en: '`LogicalProgram` inherits its [constructor][fatqat.Program], [`measure()`][fatqat.Program.measure], [`measure_all()`][fatqat.Program.measure_all], and [`draw()`][fatqat.Program.draw] from [`Program`][fatqat.Program].'
+  zh: '`LogicalProgram` 的[构造函数][fatqat.Program]、[`measure()`][fatqat.Program.measure]、[`measure_all()`][fatqat.Program.measure_all] 和 [`draw()`][fatqat.Program.draw] 均继承自 [`Program`][fatqat.Program]。'
+  status: machine

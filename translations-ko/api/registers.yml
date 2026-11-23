@@ -126,3 +126,55 @@
   en: Pass views to [`add`][fatqat.Program.add]. Every built-in unitary gate accepts them. Unary gates act independently on each selected member; multi-target gates zip corresponding members from one view per operand. All views must use the same selector kind and cardinality, and selections on the same register cannot overlap. [`Put`][fatqat.operations.Put] accepts one view as its complete target collection and records one variadic operation. Measurements and QASM export require scalar targets. The backend validates physical placement and connectivity. See [Write quantum computations with Program](../guide/program.md) for the ordinary Program workflow and [Test a Program against a hardware profile](../guide/superconducting-simulation.md) for physical placement.
   ko: "뷰는 [`add`][fatqat.Program.add]에 전달하세요. 모든 내장 유니터리 게이트가 뷰를 받습니다. 단항 게이트는 선택한 각 원소에 독립적으로 작용합니다. 여러 대상의 게이트는 피연산자별 뷰 하나씩을 받아 대응하는 원소를 짝짓습니다. 모든 뷰는 선택자 종류와 원소 수가 같아야 하고, 같은 레지스터의 선택 영역은 겹칠 수 없습니다. [`Put`][fatqat.operations.Put]은 뷰 하나를 전체 대상 모음으로 받아 가변 인자 연산 하나를 기록합니다. 측정과 QASM 내보내기에는 스칼라 대상이 필요합니다. 물리적 배치와 연결성은 백엔드가 검증합니다. 일반적인 Program 흐름은 [Program으로 양자 계산 작성](../guide/program.md), 물리적 배치는 [하드웨어 프로필로 Program 검증](../guide/superconducting-simulation.md)을 참고하세요."
   status: machine
+- id: 7397d0dbcf0b82ae
+  en: 'A register groups the slots a [`Program`][fatqat.Program] can address. Quantum slots are where operations act. Classical slots store measurement results and values that conditions can read. Use the same register object you passed to the program when selecting a slot: names are labels, and two registers with the same name are still distinct.'
+  ko: 레지스터는 [`Program`][fatqat.Program]이 사용하는 양자 자원이나 고전 데이터를 인덱스로 묶습니다. 양자 레지스터의 원소에는 연산을 적용하고, 고전 레지스터의 원소에는 측정 결과나 조건에서 참조할 값을 저장합니다. 원소를 고를 때는 프로그램에 넘긴 레지스터 객체를 그대로 사용하세요. 이름이 같아도 서로 다른 객체는 별개의 레지스터입니다.
+  status: machine
+- id: 91e9b34ca21cd426
+  en: '| Type | When to use it |'
+  ko: '| 유형 | 용도 |'
+  status: machine
+- id: cc2d78c11d2e0c9f
+  en: '| [`QuantumRegister`][fatqat.QuantumRegister] | Use a fixed number of qubits, or specify a larger `dim` for qudits. |'
+  ko: '| [`QuantumRegister`][fatqat.QuantumRegister] | 정해진 수의 큐비트를 사용합니다. 큐디트가 필요하면 더 큰 `dim`을 지정하세요. |'
+  status: machine
+- id: aa808b505a0520a3
+  en: '| [`ClassicalRegister`][fatqat.ClassicalRegister] | Store measurement results in bits or in digits with a larger `dim`. |'
+  ko: '| [`ClassicalRegister`][fatqat.ClassicalRegister] | 측정 결과를 비트로 저장합니다. 더 큰 `dim`을 지정하면 두 가지보다 많은 값을 저장할 수 있습니다. |'
+  status: machine
+- id: 90c445bb2206eded
+  en: '| [`GridRegister`][fatqat.GridRegister] | Organize quantum slots in rows and columns so you can select parts of a grid. |'
+  ko: '| [`GridRegister`][fatqat.GridRegister] | 양자 레지스터의 원소를 행과 열로 배열해 격자의 일부를 선택합니다. |'
+  status: machine
+- id: 962a3743f08846ff
+  en: '| [`ModeRegister`][fatqat.ModeRegister] | Represent optical modes in an [`LOSimulator`](simulators/linear-optics.md) program. |'
+  ko: '| [`ModeRegister`][fatqat.ModeRegister] | [`LOSimulator`](simulators/linear-optics.md)에서 실행할 프로그램의 광학 모드를 나타냅니다. |'
+  status: machine
+- id: 2bac9e5d0feae319
+  en: '| [`CountRegister`][fatqat.CountRegister] | Store photon counts measured from a `ModeRegister`. |'
+  ko: '| [`CountRegister`][fatqat.CountRegister] | `ModeRegister`에서 측정한 광자 수를 저장합니다. |'
+  status: machine
+- id: 284858659bffee5e
+  en: '[`Register`][fatqat.Register] is the shared base class. Pass a concrete quantum or classical register to `Program`.'
+  ko: '[`Register`][fatqat.Register]는 공통 기반 클래스입니다. `Program`에는 구체적인 양자 또는 고전 레지스터를 넘기세요.'
+  status: machine
+- id: 5dfd4cb4f14b5a43
+  en: Index a register, for example `q[0]`, to get a [`RegisterRef`][fatqat.RegisterRef] for one slot. Use [`all()`][fatqat.QuantumRegister.all] or a grid selection helper to get a [`RegisterView`](#fatqat.RegisterView) for a group of quantum slots. See [`Program.add()`][fatqat.Program.add] for which operations accept views.
+  ko: '`q[0]`처럼 인덱스로 접근하면 원소 하나를 가리키는 [`RegisterRef`][fatqat.RegisterRef]를 얻습니다. 양자 레지스터에서 원소를 여럿 고르려면 [`all()`][fatqat.QuantumRegister.all] 또는 격자 선택 메서드를 사용해 [`RegisterView`](#fatqat.RegisterView)를 얻으세요. 여러 원소를 한 번에 받을 수 있는 연산은 [`Program.add()`][fatqat.Program.add]에서 확인할 수 있습니다.'
+  status: machine
+- id: b741653981f698a5
+  en: 'A grid organizes logical slots. It does not place qubits on a device. Flat indices run across each row, then continue on the next. For a `GridRegister(2, 3)`, the helpers select these slots:'
+  ko: 격자는 레지스터 원소를 논리적으로 배열할 뿐 장치에서 큐비트가 놓일 위치를 정하지는 않습니다. 인덱스는 각 행의 왼쪽부터 매긴 뒤 다음 행으로 이어집니다. 다음 표는 `GridRegister(2, 3)`에서 각 메서드가 선택하는 인덱스를 보여 줍니다.
+  status: machine
+- id: be5e03fcdd7b84df
+  en: Register classes
+  ko: 레지스터 클래스
+  status: machine
+- id: 9b4d86653728730d
+  en: References and views
+  ko: 개별 원소와 묶음 선택
+  status: machine
+- id: fe1a49632b7b90e8
+  en: Use [`ResourceLayout`][fatqat.ResourceLayout] to map individual quantum slots to device labels when the backend's default placement is not suitable.
+  ko: 백엔드의 기본 배치가 맞지 않을 때는 [`ResourceLayout`][fatqat.ResourceLayout]으로 양자 레지스터의 개별 원소를 장치 자원 레이블에 연결하세요.
+  status: machine

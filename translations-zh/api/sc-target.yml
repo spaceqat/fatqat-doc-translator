@@ -106,3 +106,27 @@
   en: 'The same target works with a directly constructed compiler:'
   zh: '同一个编译目标也适用于直接构造的编译器：'
   status: machine
+- id: d626fde46e8699b9
+  en: <a id="why-compile-against-a-target"></a> <a id="compiled-output"></a> <a id="when-errors-are-raised"></a>
+  zh: <a id="why-compile-against-a-target"></a> <a id="compiled-output"></a> <a id="when-errors-are-raised"></a>
+  status: machine
+- id: ae75a9a996ed2b0d
+  en: Target and simulator compatibility
+  zh: 编译目标与模拟器的兼容性
+  status: machine
+- id: d7244e7e117268ae
+  en: An `SCTarget` specifies the topology. The compiler uses the superconducting native gates `X`, `SX`, `RZ`, and `CZ`, with `CZ` limited to the target's couplings. The result can run on any compatible simulator that provides the sites and couplings it uses and supports the program with the selected simulation method.
+  zh: '`SCTarget` 描述设备的连线拓扑。编译器使用超导原生门 `X`、`SX`、`RZ` 和 `CZ`，其中 `CZ` 只能作用于目标中有连线的两个位置。只要模拟器具备编译结果用到的位置和连线，且选用的模拟方法支持该程序，就能运行这份结果。'
+  status: machine
+- id: 7d3494aedd7d44bf
+  en: Pass an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] directly when its implementation map should also constrain routing and emitted gates. To reuse just its topology, call [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target].
+  zh: 如果需要用模拟器的实现映射来限制路由和编译后可用的门，可以直接传入 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]。如果只想复用它的拓扑，调用 [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target] 即可。
+  status: machine
+- id: a5a24fe54c4a0e10
+  en: <a id="construct-a-target"></a> <a id="compile-and-run"></a>
+  zh: <a id="construct-a-target"></a> <a id="compile-and-run"></a>
+  status: machine
+- id: 0e811144a4e1b64f
+  en: Use [`SCTarget`][fatqat.compiler.SCTarget] to tell the compiler how many sites the superconducting device has and which pairs can run `CZ` directly. Pass it to [`compile_to_sc()`][fatqat.compiler.compile_to_sc] or [`compile_qasm_to_sc()`][fatqat.compiler.compile_qasm_to_sc] in place of a simulator.
+  zh: 用 [`SCTarget`][fatqat.compiler.SCTarget] 告诉编译器：超导设备有多少个可用位置，哪些位置之间能直接执行 `CZ`。调用 [`compile_to_sc()`][fatqat.compiler.compile_to_sc] 或 [`compile_qasm_to_sc()`][fatqat.compiler.compile_qasm_to_sc] 时，可以传它代替模拟器。
+  status: machine
