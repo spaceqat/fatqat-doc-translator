@@ -196,11 +196,11 @@
   status: retired
 - id: f844f08569c20960
   en: A logical circuit describes which gates to apply to which qubits. To run it on a device model, the gates also need to fit the device's instruction set and layout. A superconducting device may use `CZ` as its native two-qubit gate, for example, and allow it only between directly connected qubits. The compiler translates the gates, assigns logical qubits to physical positions, and adds routing operations when needed.
-  zh: "逻辑线路描述要对哪些量子比特施加哪些门。要把线路放到设备模型上运行，还得考虑设备支持哪些门，以及量子比特之间如何连接。比如，超导设备可能把 `CZ` 用作原生双量子比特门，而且只允许在直接相连的位置上执行。编译器会把线路中的门转换为设备支持的操作，把逻辑量子比特分配到物理位置，并在需要时加入路由操作。"
+  zh: 逻辑线路描述要对哪些量子比特施加哪些门。要把线路放到设备模型上运行，还得考虑设备支持哪些门，以及量子比特之间如何连接。比如，超导设备可能把 `CZ` 用作原生双量子比特门，而且只允许在直接相连的位置上执行。编译器会把线路中的门转换为设备支持的操作，把逻辑量子比特分配到物理位置，并在需要时加入路由操作。
   status: machine
 - id: 4dc706fc25d36c3e
   en: You can simulate a logical circuit directly to check your algorithm. Compile it when you want to see how it runs under the constraints of a particular device, or to compare the same circuit on different devices.
-  zh: "想先验证算法，可以直接模拟逻辑线路。想了解线路在某种设备的约束下如何运行，或者比较同一个线路在不同设备上的表现，就可以分别为相应的设备编译。"
+  zh: 想先验证算法，可以直接模拟逻辑线路。想了解线路在某种设备的约束下如何运行，或者比较同一个线路在不同设备上的表现，就可以分别为相应的设备编译。
   status: machine
 - id: 85bfd3f3041818ea
   en: 'This target describes three sites in a chain: `0–1–2`. A `CZ` can run directly between sites `0` and `1` or between `1` and `2`. There is no direct connection between `0` and `2`, so the compiler must use the available connections when it maps and routes the circuit.'

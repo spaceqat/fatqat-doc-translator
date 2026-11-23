@@ -104,65 +104,65 @@
   status: retired
 - id: eeed1e9ebcd6d95b
   en: Emulate neutral atoms with laser pulses
-  zh: "用激光脉冲仿真中性原子"
+  zh: 用激光脉冲仿真中性原子
   status: machine
 - id: b49fc9e9d7f25e19
   en: Optical tweezers hold individual neutral atoms at chosen positions. A laser can drive an atom from its ground state $\lvert g\rangle$ to an excited Rydberg state $\lvert r\rangle$. When two nearby atoms are both in $\lvert r\rangle$, their interaction shifts the energy of the pair. A pulse tuned to excite one atom then has a much harder time exciting both. This suppression is called Rydberg blockade.
-  zh: "在中性原子实验中，研究者用光镊把原子排在选定的位置，再用激光驱动它们在基态 $\\lvert g\\rangle$ 和里德堡态 $\\lvert r\\rangle$ 之间跃迁。两个原子如果靠得很近，同时进入 $\\lvert r\\rangle$ 时的相互作用会改变双激发态的能量。这样，对准单原子跃迁的激光就很难把两个原子都激发起来。这种效应叫作里德堡阻塞。"
+  zh: 在中性原子实验中，研究者用光镊把原子排在选定的位置，再用激光驱动它们在基态 $\lvert g\rangle$ 和里德堡态 $\lvert r\rangle$ 之间跃迁。两个原子如果靠得很近，同时进入 $\lvert r\rangle$ 时的相互作用会改变双激发态的能量。这样，对准单原子跃迁的激光就很难把两个原子都激发起来。这种效应叫作里德堡阻塞。
   status: machine
 - id: 1bb9daf422d5a7d9
   en: With [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator], you can study that effect using the [pulse workflow](hamiltonian-emulation.md). The example below changes only the distance between two atoms and checks how often both are excited at the end of the same pulse. For loading, moving, or pairing atoms in a gate-level Program, see [Neutral-atom array simulation](atom-array-simulation.md).
-  zh: "下面用 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 看看拉开原子间距会怎样改变激发结果。我们沿用[编写和运行脉冲程序](hamiltonian-emulation.md)中的流程，用同一个脉冲做两次仿真，只改变两个原子之间的距离。门级 Program 中的原子装载、搬运和配对见[中性原子阵列模拟](atom-array-simulation.md)。"
+  zh: 下面用 [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator] 看看拉开原子间距会怎样改变激发结果。我们沿用[编写和运行脉冲程序](hamiltonian-emulation.md)中的流程，用同一个脉冲做两次仿真，只改变两个原子之间的距离。门级 Program 中的原子装载、搬运和配对见[中性原子阵列模拟](atom-array-simulation.md)。
   status: machine
 - id: 215ade2b3a48a3a7
   en: Drive two atoms with the same pulse
-  zh: "用同一个脉冲驱动两个原子"
+  zh: 用同一个脉冲驱动两个原子
   status: machine
 - id: 877d8243f9603bc7
   en: The example starts with both atoms in $\lvert g\rangle$. Write one resonant drive pulse that acts on both atoms for 1 µs, with a peak Rabi rate of 3 rad/µs. The two-qubit Program provides one two-level resource per atom. The emulator gets the positions separately from an [`AtomArrangement`][fatqat.emulator.AtomArrangement].
-  zh: "两个原子起初都处在基态 $\\lvert g\\rangle$，随后一起接受一段 1 µs 的共振脉冲，峰值 Rabi 速率为 3 rad/µs。Program 中的两个量子比特各对应一个二能级原子。创建仿真器时，再用 [`AtomArrangement`][fatqat.emulator.AtomArrangement] 指定原子位置。"
+  zh: 两个原子起初都处在基态 $\lvert g\rangle$，随后一起接受一段 1 µs 的共振脉冲，峰值 Rabi 速率为 3 rad/µs。Program 中的两个量子比特各对应一个二能级原子。创建仿真器时，再用 [`AtomArrangement`][fatqat.emulator.AtomArrangement] 指定原子位置。
   status: machine
 - id: b95562490d39b3ad
   en: Run that Program at 4 µm and 12 µm. The statevector lists amplitudes in the order $\lvert gg\rangle$, $\lvert gr\rangle$, $\lvert rg\rangle$, and $\lvert rr\rangle$. Square their magnitudes to get the probabilities, and add the middle two to find the probability of exactly one excitation.
-  zh: "写好脉冲后，把原子分别放在相距 4 µm 和 12 µm 的位置，用同一个 Program 跑两次。每次返回的态矢量按 $\\lvert gg\\rangle$、$\\lvert gr\\rangle$、$\\lvert rg\\rangle$ 和 $\\lvert rr\\rangle$ 的顺序给出四个振幅。把振幅取模平方，就能得到各状态的概率。其中第二和第三项都对应只激发一个原子，把它们的概率相加即可。"
+  zh: 写好脉冲后，把原子分别放在相距 4 µm 和 12 µm 的位置，用同一个 Program 跑两次。每次返回的态矢量按 $\lvert gg\rangle$、$\lvert gr\rangle$、$\lvert rg\rangle$ 和 $\lvert rr\rangle$ 的顺序给出四个振幅。把振幅取模平方，就能得到各状态的概率。其中第二和第三项都对应只激发一个原子，把它们的概率相加即可。
   status: machine
 - id: d5143e0096bff247
   en: At 4 µm, the pulse almost always excites exactly one atom, and the chance of exciting both is about 0.002%. At 12 µm, the chance of exciting both rises to about 50%. In this model, the interaction between two Rydberg excitations scales as $C_6/R^6$, where $R$ is their separation. The larger separation weakens the interaction, so the same pulse can excite both atoms much more readily.
-  zh: "相距 4 µm 时，最常见的结果是恰好激发一个原子，两个都被激发的概率只有约 0.002%。把间距拉到 12 µm 后，双激发的概率升到约 50%。这个模型用 $C_6/R^6$ 描述相互作用，其中 $R$ 是原子间距。距离增大后，相互作用迅速减弱，原本受抑制的双激发就更容易发生。"
+  zh: 相距 4 µm 时，最常见的结果是恰好激发一个原子，两个都被激发的概率只有约 0.002%。把间距拉到 12 µm 后，双激发的概率升到约 50%。这个模型用 $C_6/R^6$ 描述相互作用，其中 $R$ 是原子间距。距离增大后，相互作用迅速减弱，原本受抑制的双激发就更容易发生。
   status: machine
 - id: b4a075d7e3d0013a
   en: Describe other arrangements
-  zh: "换一种原子排布"
+  zh: 换一种原子排布
   status: machine
 - id: ac9b2a30516d67c6
   en: Each arrangement fixes the positions used by the emulator. By default, it maps Program resources to those positions in declaration order. Use a [`ResourceLayout`][fatqat.ResourceLayout] to supply a different mapping.
-  zh: "前面的例子只需要两个原子排成一条直线。如果想换一种几何形状，可以直接指定各原子的位置。仿真器默认按声明顺序把 Program 中的资源对应到这些位置。要改变对应关系，可以用 [`ResourceLayout`][fatqat.ResourceLayout]。"
+  zh: 前面的例子只需要两个原子排成一条直线。如果想换一种几何形状，可以直接指定各原子的位置。仿真器默认按声明顺序把 Program 中的资源对应到这些位置。要改变对应关系，可以用 [`ResourceLayout`][fatqat.ResourceLayout]。
   status: machine
 - id: cb9b36efa876a644
   en: To specify positions yourself, pass $(x, y)$ coordinates for two dimensions or $(x, y, z)$ coordinates for three. Use the same number of components for every site. Distances are in micrometres.
-  zh: "平面上的位置用 $(x, y)$ 表示，需要区分高度时再加上第三个坐标，写成 $(x, y, z)$。同一个排布里的位置要统一写成二维或三维，距离单位都是微米。"
+  zh: 平面上的位置用 $(x, y)$ 表示，需要区分高度时再加上第三个坐标，写成 $(x, y, z)$。同一个排布里的位置要统一写成二维或三维，距离单位都是微米。
   status: machine
 - id: 1d9a95a1098bc7ed
   en: For a rectangular array, you can set separate spacings along $x$ and $y$. To describe several regions in one arrangement, combine them in the desired site order and use labels to look up their indices.
-  zh: "如果原子排成矩形阵列，可以分别设置 $x$ 和 $y$ 方向的间距。也可以先定义几个区域，再按所需的位置顺序把它们组合起来。这样就能用区域标签找回相应的原子位置索引。"
+  zh: 如果原子排成矩形阵列，可以分别设置 $x$ 和 $y$ 方向的间距。也可以先定义几个区域，再按所需的位置顺序把它们组合起来。这样就能用区域标签找回相应的原子位置索引。
   status: machine
 - id: b2423181023d48c3
   en: See the [arrangement API](../api/atom-emulators.md#arrangements-and-program-resources) for coordinate and group rules.
-  zh: "坐标和分组的具体写法见[原子排布 API](../api/atom-emulators.md#arrangements-and-program-resources)。"
+  zh: 坐标和分组的具体写法见[原子排布 API](../api/atom-emulators.md#arrangements-and-program-resources)。
   status: machine
 - id: c8704e3385c3255f
   en: Add detuning to the drive
-  zh: "调整驱动的失谐"
+  zh: 调整驱动的失谐
   status: machine
 - id: 1720c7d646c15032
   en: Detuning sets how far the drive frequency is from the atomic transition. Use a second control alongside the drive to vary it during the pulse. Both channels act on every atom and use rad/µs.
-  zh: "前面的脉冲对准了单原子的跃迁频率。如果想让驱动频率在脉冲过程中偏离这个频率，就在驱动之外再加一路控制，指定失谐随时间怎么变。驱动和失谐都作用于阵列中的所有原子，单位都是 rad/µs。"
+  zh: 前面的脉冲对准了单原子的跃迁频率。如果想让驱动频率在脉冲过程中偏离这个频率，就在驱动之外再加一路控制，指定失谐随时间怎么变。驱动和失谐都作用于阵列中的所有原子，单位都是 rad/µs。
   status: machine
 - id: 54f4f942fe381071
   en: 'The emulator includes interactions between every pair of atoms by default. Use `execution_config={"interaction_cutoff": distance}` on a run to truncate the Hamiltonian by dropping pairs farther apart than that distance.'
-  zh: "默认情况下，仿真器会把每一对原子之间的相互作用都算进去。如果只想保留一定距离内的相互作用，可以在运行时设置 `execution_config={\"interaction_cutoff\": distance}`。仿真器会从哈密顿量里省去距离超过这个值的原子对所对应的项。"
+  zh: '默认情况下，仿真器会把每一对原子之间的相互作用都算进去。如果只想保留一定距离内的相互作用，可以在运行时设置 `execution_config={"interaction_cutoff": distance}`。仿真器会从哈密顿量里省去距离超过这个值的原子对所对应的项。'
   status: machine
 - id: dae0075b5254578e
   en: For units, channel limits, noise, and measurement support, see the [neutral-atom emulator API](../api/atom-emulators.md).
-  zh: "单位、通道限制，以及如何加入噪声和测量，都可以在[中性原子仿真器 API](../api/atom-emulators.md)中查到。"
+  zh: 单位、通道限制，以及如何加入噪声和测量，都可以在[中性原子仿真器 API](../api/atom-emulators.md)中查到。
   status: machine

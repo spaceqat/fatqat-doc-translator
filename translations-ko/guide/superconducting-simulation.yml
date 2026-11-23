@@ -104,5 +104,5 @@
   status: machine
 - id: f7d4f5b45921a09d
   en: Copy `native` and add measurements to the copy. Each qubit starts in zero, so flipping both qubits gives the ideal measurement outcome `11`. Run the same measured Program at sites 0 and 1, with 100 shots each under ideal conditions and with the built-in noise model.
-  ko: "`native`를 복사하고 복사본에 측정을 추가합니다. 두 큐비트 모두 0에서 시작하므로 각각 한 번씩 뒤집으면 이상적인 측정 결과는 `11`입니다. 위치 0과 1에 같은 Program을 배치하고, 이상적인 조건과 내장 노이즈 모델을 켠 조건에서 각각 100번 측정합니다."
+  ko: '`native`를 복사하고 복사본에 측정을 추가합니다. 두 큐비트 모두 0에서 시작하므로 각각 한 번씩 뒤집으면 이상적인 측정 결과는 `11`입니다. 위치 0과 1에 같은 Program을 배치하고, 이상적인 조건과 내장 노이즈 모델을 켠 조건에서 각각 100번 측정합니다.'
   status: machine

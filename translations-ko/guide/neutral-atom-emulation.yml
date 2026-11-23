@@ -100,65 +100,65 @@
   status: retired
 - id: eeed1e9ebcd6d95b
   en: Emulate neutral atoms with laser pulses
-  ko: "레이저 펄스로 중성 원자 에뮬레이션하기"
+  ko: 레이저 펄스로 중성 원자 에뮬레이션하기
   status: machine
 - id: b49fc9e9d7f25e19
   en: Optical tweezers hold individual neutral atoms at chosen positions. A laser can drive an atom from its ground state $\lvert g\rangle$ to an excited Rydberg state $\lvert r\rangle$. When two nearby atoms are both in $\lvert r\rangle$, their interaction shifts the energy of the pair. A pulse tuned to excite one atom then has a much harder time exciting both. This suppression is called Rydberg blockade.
-  ko: "광학 집게는 개별 중성 원자를 원하는 위치에 가둡니다. 레이저로 원자를 바닥 상태 $\\lvert g\\rangle$에서 리드버그 상태 $\\lvert r\\rangle$로 여기할 수 있습니다. 가까운 두 원자가 모두 $\\lvert r\\rangle$에 있으면 상호작용으로 두 원자가 함께 여기된 상태의 에너지가 달라집니다. 그래서 원자 하나를 여기하도록 맞춘 펄스로 두 원자를 함께 여기하기는 어려워집니다. 이를 리드버그 봉쇄라고 합니다."
+  ko: 광학 집게는 개별 중성 원자를 원하는 위치에 가둡니다. 레이저로 원자를 바닥 상태 $\lvert g\rangle$에서 리드버그 상태 $\lvert r\rangle$로 여기할 수 있습니다. 가까운 두 원자가 모두 $\lvert r\rangle$에 있으면 상호작용으로 두 원자가 함께 여기된 상태의 에너지가 달라집니다. 그래서 원자 하나를 여기하도록 맞춘 펄스로 두 원자를 함께 여기하기는 어려워집니다. 이를 리드버그 봉쇄라고 합니다.
   status: machine
 - id: 1bb9daf422d5a7d9
   en: With [`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator], you can study that effect using the [pulse workflow](hamiltonian-emulation.md). The example below changes only the distance between two atoms and checks how often both are excited at the end of the same pulse. For loading, moving, or pairing atoms in a gate-level Program, see [Neutral-atom array simulation](atom-array-simulation.md).
-  ko: "[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]와 [펄스 에뮬레이션 절차](hamiltonian-emulation.md)로 이 효과를 살펴볼 수 있습니다. 아래에서는 같은 펄스를 두 원자에 적용하고 거리를 바꾸어, 펄스가 끝났을 때 두 원자가 모두 여기될 확률을 비교합니다. 게이트 수준 Program에서 원자를 적재하거나 옮기고 짝짓는 방법은 [중성 원자 배열 시뮬레이션](atom-array-simulation.md)을 참고하세요."
+  ko: '[`Atom2LevelEmulator`][fatqat.emulator.Atom2LevelEmulator]와 [펄스 에뮬레이션 절차](hamiltonian-emulation.md)로 이 효과를 살펴볼 수 있습니다. 아래에서는 같은 펄스를 두 원자에 적용하고 거리를 바꾸어, 펄스가 끝났을 때 두 원자가 모두 여기될 확률을 비교합니다. 게이트 수준 Program에서 원자를 적재하거나 옮기고 짝짓는 방법은 [중성 원자 배열 시뮬레이션](atom-array-simulation.md)을 참고하세요.'
   status: machine
 - id: 215ade2b3a48a3a7
   en: Drive two atoms with the same pulse
-  ko: "같은 펄스로 원자 두 개 구동하기"
+  ko: 같은 펄스로 원자 두 개 구동하기
   status: machine
 - id: 877d8243f9603bc7
   en: The example starts with both atoms in $\lvert g\rangle$. Write one resonant drive pulse that acts on both atoms for 1 µs, with a peak Rabi rate of 3 rad/µs. The two-qubit Program provides one two-level resource per atom. The emulator gets the positions separately from an [`AtomArrangement`][fatqat.emulator.AtomArrangement].
-  ko: "두 원자 모두 $\\lvert g\\rangle$에서 시작합니다. 길이가 1 µs이고 최대 Rabi 주파수가 3 rad/µs인 공명 펄스로 두 원자를 함께 구동합니다. Program은 2준위 원자마다 큐비트를 하나씩 선언합니다. 원자의 위치는 [`AtomArrangement`][fatqat.emulator.AtomArrangement]로 별도로 지정합니다."
+  ko: 두 원자 모두 $\lvert g\rangle$에서 시작합니다. 길이가 1 µs이고 최대 Rabi 주파수가 3 rad/µs인 공명 펄스로 두 원자를 함께 구동합니다. Program은 2준위 원자마다 큐비트를 하나씩 선언합니다. 원자의 위치는 [`AtomArrangement`][fatqat.emulator.AtomArrangement]로 별도로 지정합니다.
   status: machine
 - id: b95562490d39b3ad
   en: Run that Program at 4 µm and 12 µm. The statevector lists amplitudes in the order $\lvert gg\rangle$, $\lvert gr\rangle$, $\lvert rg\rangle$, and $\lvert rr\rangle$. Square their magnitudes to get the probabilities, and add the middle two to find the probability of exactly one excitation.
-  ko: "원자 사이의 거리를 4 µm와 12 µm로 두고 같은 Program을 실행합니다. 상태 벡터의 진폭은 순서대로 $\\lvert gg\\rangle$, $\\lvert gr\\rangle$, $\\lvert rg\\rangle$, $\\lvert rr\\rangle$에 해당합니다. 각 진폭의 절댓값을 제곱하면 확률을 얻습니다. 가운데 두 확률을 더하면 원자가 정확히 하나만 여기될 확률이 됩니다."
+  ko: 원자 사이의 거리를 4 µm와 12 µm로 두고 같은 Program을 실행합니다. 상태 벡터의 진폭은 순서대로 $\lvert gg\rangle$, $\lvert gr\rangle$, $\lvert rg\rangle$, $\lvert rr\rangle$에 해당합니다. 각 진폭의 절댓값을 제곱하면 확률을 얻습니다. 가운데 두 확률을 더하면 원자가 정확히 하나만 여기될 확률이 됩니다.
   status: machine
 - id: d5143e0096bff247
   en: At 4 µm, the pulse almost always excites exactly one atom, and the chance of exciting both is about 0.002%. At 12 µm, the chance of exciting both rises to about 50%. In this model, the interaction between two Rydberg excitations scales as $C_6/R^6$, where $R$ is their separation. The larger separation weakens the interaction, so the same pulse can excite both atoms much more readily.
-  ko: "거리가 4 µm이면 펄스가 거의 항상 원자를 하나만 여기하며, 둘 다 여기될 확률은 약 0.002%입니다. 거리가 12 µm이면 그 확률이 약 50%로 올라갑니다. 이 모델에서 두 리드버그 여기 사이의 상호작용은 $C_6/R^6$을 따르며 $R$은 원자 사이의 거리입니다. 거리가 커지면 상호작용이 약해지므로 같은 펄스로 두 원자를 함께 여기하기가 쉬워집니다."
+  ko: 거리가 4 µm이면 펄스가 거의 항상 원자를 하나만 여기하며, 둘 다 여기될 확률은 약 0.002%입니다. 거리가 12 µm이면 그 확률이 약 50%로 올라갑니다. 이 모델에서 두 리드버그 여기 사이의 상호작용은 $C_6/R^6$을 따르며 $R$은 원자 사이의 거리입니다. 거리가 커지면 상호작용이 약해지므로 같은 펄스로 두 원자를 함께 여기하기가 쉬워집니다.
   status: machine
 - id: b4a075d7e3d0013a
   en: Describe other arrangements
-  ko: "다른 원자 배치 지정하기"
+  ko: 다른 원자 배치 지정하기
   status: machine
 - id: ac9b2a30516d67c6
   en: Each arrangement fixes the positions used by the emulator. By default, it maps Program resources to those positions in declaration order. Use a [`ResourceLayout`][fatqat.ResourceLayout] to supply a different mapping.
-  ko: "원자 배치는 에뮬레이션에서 각 원자의 고정된 위치를 정합니다. 기본적으로 Program의 자원은 선언 순서대로 해당 위치에 매핑됩니다. 다른 매핑을 지정하려면 [`ResourceLayout`][fatqat.ResourceLayout]을 사용합니다."
+  ko: 원자 배치는 에뮬레이션에서 각 원자의 고정된 위치를 정합니다. 기본적으로 Program의 자원은 선언 순서대로 해당 위치에 매핑됩니다. 다른 매핑을 지정하려면 [`ResourceLayout`][fatqat.ResourceLayout]을 사용합니다.
   status: machine
 - id: cb9b36efa876a644
   en: To specify positions yourself, pass $(x, y)$ coordinates for two dimensions or $(x, y, z)$ coordinates for three. Use the same number of components for every site. Distances are in micrometres.
-  ko: "위치를 직접 지정하려면 2차원에서는 $(x, y)$ 좌표를, 3차원에서는 $(x, y, z)$ 좌표를 입력합니다. 모든 위치의 좌표 차원은 같아야 하며, 거리 단위는 마이크로미터입니다."
+  ko: 위치를 직접 지정하려면 2차원에서는 $(x, y)$ 좌표를, 3차원에서는 $(x, y, z)$ 좌표를 입력합니다. 모든 위치의 좌표 차원은 같아야 하며, 거리 단위는 마이크로미터입니다.
   status: machine
 - id: 1d9a95a1098bc7ed
   en: For a rectangular array, you can set separate spacings along $x$ and $y$. To describe several regions in one arrangement, combine them in the desired site order and use labels to look up their indices.
-  ko: "직사각형 배열에서는 $x$와 $y$ 방향의 간격을 따로 지정할 수 있습니다. 하나의 배치에 여러 영역을 넣으려면 원하는 위치 순서대로 합친 뒤, 영역의 이름으로 각 위치의 인덱스를 조회합니다."
+  ko: 직사각형 배열에서는 $x$와 $y$ 방향의 간격을 따로 지정할 수 있습니다. 하나의 배치에 여러 영역을 넣으려면 원하는 위치 순서대로 합친 뒤, 영역의 이름으로 각 위치의 인덱스를 조회합니다.
   status: machine
 - id: b2423181023d48c3
   en: See the [arrangement API](../api/atom-emulators.md#arrangements-and-program-resources) for coordinate and group rules.
-  ko: "좌표와 그룹 규칙은 [원자 배치 API](../api/atom-emulators.md#arrangements-and-program-resources)를 참고하세요."
+  ko: 좌표와 그룹 규칙은 [원자 배치 API](../api/atom-emulators.md#arrangements-and-program-resources)를 참고하세요.
   status: machine
 - id: c8704e3385c3255f
   en: Add detuning to the drive
-  ko: "구동에 디튜닝 추가하기"
+  ko: 구동에 디튜닝 추가하기
   status: machine
 - id: 1720c7d646c15032
   en: Detuning sets how far the drive frequency is from the atomic transition. Use a second control alongside the drive to vary it during the pulse. Both channels act on every atom and use rad/µs.
-  ko: "디튜닝은 구동 주파수가 원자의 전이 주파수에서 얼마나 벗어나는지를 나타냅니다. 구동 신호에 제어 신호를 하나 더 추가하면 펄스가 적용되는 동안 디튜닝을 바꿀 수 있습니다. 두 채널은 모든 원자에 작용하며 단위는 rad/µs입니다."
+  ko: 디튜닝은 구동 주파수가 원자의 전이 주파수에서 얼마나 벗어나는지를 나타냅니다. 구동 신호에 제어 신호를 하나 더 추가하면 펄스가 적용되는 동안 디튜닝을 바꿀 수 있습니다. 두 채널은 모든 원자에 작용하며 단위는 rad/µs입니다.
   status: machine
 - id: 54f4f942fe381071
   en: 'The emulator includes interactions between every pair of atoms by default. Use `execution_config={"interaction_cutoff": distance}` on a run to truncate the Hamiltonian by dropping pairs farther apart than that distance.'
-  ko: "에뮬레이터는 기본적으로 모든 원자 쌍의 상호작용을 포함합니다. 해밀토니안을 절단하려면 실행할 때 `execution_config={\"interaction_cutoff\": distance}`를 설정해 그 거리보다 멀리 떨어진 쌍의 상호작용 항을 제외합니다."
+  ko: '에뮬레이터는 기본적으로 모든 원자 쌍의 상호작용을 포함합니다. 해밀토니안을 절단하려면 실행할 때 `execution_config={"interaction_cutoff": distance}`를 설정해 그 거리보다 멀리 떨어진 쌍의 상호작용 항을 제외합니다.'
   status: machine
 - id: dae0075b5254578e
   en: For units, channel limits, noise, and measurement support, see the [neutral-atom emulator API](../api/atom-emulators.md).
-  ko: "단위, 채널 제한, 노이즈 및 측정에 관한 내용은 [중성 원자 에뮬레이터 API](../api/atom-emulators.md)를 참고하세요."
+  ko: 단위, 채널 제한, 노이즈 및 측정에 관한 내용은 [중성 원자 에뮬레이터 API](../api/atom-emulators.md)를 참고하세요.
   status: machine

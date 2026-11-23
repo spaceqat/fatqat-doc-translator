@@ -9,7 +9,7 @@
 - id: edac07faab9cf3aa
   en: One Program. Three levels of physical detail.
   ko: 하나의 Program, 세 가지 물리적 세부 수준
-  status: machine
+  status: retired
 - id: 0102e01eadefc189
   en: Write a quantum program once. Use the same Program to explore algorithm behavior, test device constraints, or follow time-dependent physical dynamics.
   ko: 양자 프로그램을 한 번 작성하고, 같은 Program으로 알고리즘 동작을 살펴보고 장치 제약을 검증하며 시간에 따른 물리적 동역학을 분석하세요.
@@ -325,11 +325,11 @@
 - id: 879de63c2440cbd1
   en: Explore quantum algorithms, hardware constraints, and physical dynamics with FatQat, a Python package for quantum simulation and emulation.
   ko: FatQat은 양자 알고리즘, 하드웨어 제약, 물리적 동역학을 연구하는 Python 양자 시뮬레이션·에뮬레이션 패키지입니다.
-  status: machine
+  status: retired
 - id: 365d68e6c8e2313f
   en: A Python toolkit for quantum simulation and emulation
   ko: 양자 시뮬레이션과 에뮬레이션을 위한 Python 도구
-  status: machine
+  status: retired
 - id: b6d487cb4588df65
   en: From quantum circuits to hardware dynamics.
   ko: 양자 회로에서 하드웨어 동역학까지
@@ -337,7 +337,7 @@
 - id: c9d3a1e7f5c90891
   en: Explore algorithms, check hardware constraints, and study pulse-driven dynamics. FatQat brings these tasks together with a shared Program representation and consistent interfaces for running computations and reading results.
   ko: 알고리즘을 연구하고, 하드웨어 제약을 확인하고, 펄스에 따른 양자 상태의 변화를 살펴보세요. FatQat은 공통 Program 표현과 일관된 실행·결과 조회 인터페이스로 이 작업들을 연결합니다.
-  status: machine
+  status: retired
 - id: 7eebfed060755bfd
   en: Choose a simulation approach
   ko: 시뮬레이션·에뮬레이션 방식 선택하기
@@ -404,9 +404,25 @@
   status: machine
 - id: 1897b97a7587a94c
   en: :material-flask-outline:{ .lg .middle } **Case studies**
-  ko: ":material-flask-outline:{ .lg .middle } **응용 사례**"
+  ko: :material-flask-outline:{ .lg .middle } **응용 사례**
   status: machine
 - id: 8b21541c9d720011
   en: '[:octicons-arrow-right-24: Explore case studies](tutorials/index.md)'
-  ko: "[:octicons-arrow-right-24: 응용 사례 살펴보기](tutorials/index.md)"
+  ko: '[:octicons-arrow-right-24: 응용 사례 살펴보기](tutorials/index.md)'
+  status: machine
+- id: 78174d60ba0c06b8
+  en: Build, compile, and run quantum programs with FatQat, from ideal simulation to physical models of quantum devices.
+  ko: FatQat으로 이상적인 시뮬레이션부터 양자 장치의 물리 모델까지, 양자 프로그램을 작성하고 컴파일하고 실행하세요.
+  status: machine
+- id: 910a05f498883e69
+  en: A Python toolkit for building, compiling, and running quantum programs
+  ko: 양자 프로그램을 작성하고, 컴파일하고, 실행하기 위한 Python 툴킷
+  status: machine
+- id: 3d78ecce289040c1
+  en: One Program, from algorithm to hardware.
+  ko: 하나의 Program, 알고리즘에서 하드웨어까지.
+  status: machine
+- id: 31aec51ad271652b
+  en: Test algorithms under realistic device conditions, study how a device responds to controls and noise, or learn quantum computing from first circuits to device physics. FatQat runs one Program through the same interface on every backend.
+  ko: 실제 장치에 가까운 조건에서 알고리즘을 검증하고, 제어 신호와 노이즈에 대한 장치의 응답을 살펴보거나, 첫 번째 회로부터 장치의 물리까지 양자 컴퓨팅을 직접 배워 보세요. FatQat은 하나의 Program을 모든 백엔드에서 동일한 인터페이스로 실행합니다.
   status: machine

@@ -204,73 +204,73 @@
   status: retired
 - id: 11ab1117f1337a1e
   en: Use one [`Program`][fatqat.Program] to prepare a Bell pair, draw its circuit, and run 1,000 shots to see why the measurement results are only `00` and `11`.
-  ko: "하나의 [`Program`][fatqat.Program]으로 벨 상태를 준비하고 회로를 그린 뒤, 1,000회 실행하여 측정 결과가 `00`과 `11`만 나오는 이유를 살펴봅니다."
+  ko: 하나의 [`Program`][fatqat.Program]으로 벨 상태를 준비하고 회로를 그린 뒤, 1,000회 실행하여 측정 결과가 `00`과 `11`만 나오는 이유를 살펴봅니다.
   status: machine
 - id: 07729cd619c60cd1
   en: After activation, `python` uses this virtual environment. When you open a new terminal, return to this folder and activate the environment again; you do not need to reinstall FatQat.
-  ko: "활성화하면 `python`이 이 가상 환경을 사용합니다. 새 터미널을 열 때는 해당 폴더로 돌아와 환경을 다시 활성화하세요. FatQat을 다시 설치할 필요는 없습니다."
+  ko: 활성화하면 `python`이 이 가상 환경을 사용합니다. 새 터미널을 열 때는 해당 폴더로 돌아와 환경을 다시 활성화하세요. FatQat을 다시 설치할 필요는 없습니다.
   status: machine
 - id: ac542fd45fd1fe0d
   en: 'Install FatQat in the activated environment:'
-  ko: "활성화한 가상 환경에 FatQat을 설치하세요."
+  ko: 활성화한 가상 환경에 FatQat을 설치하세요.
   status: machine
 - id: a59150f051af24e5
   en: <a id="install-the-development-version-from-source"></a>
-  ko: "<a id=\"install-the-development-version-from-source\"></a>"
+  ko: <a id="install-the-development-version-from-source"></a>
   status: machine
 - id: e553df5772e5d1c2
   en: 'Use this option only if you need the latest development version. Otherwise, skip this section. Clone the repository and enter its source folder:'
-  ko: "최신 개발 버전이 필요할 때만 이 방법을 사용하세요. 일반적인 사용이라면 건너뛰어도 됩니다. 저장소를 복제하고 소스 폴더로 이동하세요."
+  ko: 최신 개발 버전이 필요할 때만 이 방법을 사용하세요. 일반적인 사용이라면 건너뛰어도 됩니다. 저장소를 복제하고 소스 폴더로 이동하세요.
   status: machine
 - id: 4942e55ea38817b0
   en: 'Use [uv](https://docs.astral.sh/uv/) to create a virtual environment and install the source. FatQat supports Python 3.12 or later:'
-  ko: "[uv](https://docs.astral.sh/uv/)로 가상 환경을 만들고 소스를 설치하세요. FatQat은 Python 3.12 이상을 지원합니다."
+  ko: '[uv](https://docs.astral.sh/uv/)로 가상 환경을 만들고 소스를 설치하세요. FatQat은 Python 3.12 이상을 지원합니다.'
   status: machine
 - id: 9f624896ca5dc6fd
   en: 'Alternatively, use `pip` from the virtual environment activated earlier, while still in the source folder:'
-  ko: "앞에서 활성화한 가상 환경을 사용한다면 소스 폴더에서 `pip`로 설치할 수도 있습니다."
+  ko: 앞에서 활성화한 가상 환경을 사용한다면 소스 폴더에서 `pip`로 설치할 수도 있습니다.
   status: machine
 - id: 110f65e683b398b5
   en: Using a text editor, create `first_program.py` in your `fatqat-learning` folder. Copy the complete example below into the file and save it. Python code goes in this file; terminal commands go in the terminal.
-  ko: "텍스트 편집기로 `fatqat-learning` 폴더에 `first_program.py`를 만들고 아래 예제 전체를 복사하여 저장하세요. Python 코드는 파일에 작성하고 터미널 명령은 터미널에서 실행하세요."
+  ko: 텍스트 편집기로 `fatqat-learning` 폴더에 `first_program.py`를 만들고 아래 예제 전체를 복사하여 저장하세요. Python 코드는 파일에 작성하고 터미널 명령은 터미널에서 실행하세요.
   status: machine
 - id: 2d247fc287a87063
   en: 'The output is `{''1'': 100}`, meaning all 100 measurements returned 1.'
-  ko: "출력은 `{'1': 100}`이며, 100번의 측정에서 모두 1이 나왔다는 뜻입니다."
+  ko: '출력은 `{''1'': 100}`이며, 100번의 측정에서 모두 1이 나왔다는 뜻입니다.'
   status: machine
 - id: 8772b8eb8625112c
   en: Run with VS Code
-  ko: "VS Code로 실행하기"
+  ko: VS Code로 실행하기
   status: machine
 - id: 72734a3e1fe67af0
   en: 'Open the Command Palette with `Ctrl+Shift+P` on Windows/Linux or `Cmd+Shift+P` on macOS. Choose **Python: Select Interpreter** and select the interpreter in this folder''s `.venv`. If it is not listed, enter its path inside your learning folder: `.venv\Scripts\python.exe` on Windows or `.venv/bin/python` on macOS/Linux.'
-  ko: "Windows/Linux에서는 `Ctrl+Shift+P`, macOS에서는 `Cmd+Shift+P`로 명령 팔레트를 여세요. **Python: Select Interpreter**에서 현재 폴더의 `.venv`에 있는 인터프리터를 선택하세요. 목록에 없으면 학습 폴더 안의 경로를 직접 입력하세요. Windows에서는 `.venv\\Scripts\\python.exe`, macOS/Linux에서는 `.venv/bin/python`을 사용합니다."
+  ko: 'Windows/Linux에서는 `Ctrl+Shift+P`, macOS에서는 `Cmd+Shift+P`로 명령 팔레트를 여세요. **Python: Select Interpreter**에서 현재 폴더의 `.venv`에 있는 인터프리터를 선택하세요. 목록에 없으면 학습 폴더 안의 경로를 직접 입력하세요. Windows에서는 `.venv\Scripts\python.exe`, macOS/Linux에서는 `.venv/bin/python`을 사용합니다.'
   status: machine
 - id: 12ae6849fe2ab4da
   en: The output appears in the VS Code terminal panel.
-  ko: "출력은 VS Code의 터미널 패널에 표시됩니다."
+  ko: 출력은 VS Code의 터미널 패널에 표시됩니다.
   status: machine
 - id: e4c8811016349e91
   en: <a id="if-the-example-does-not-run"></a>
-  ko: "<a id=\"if-the-example-does-not-run\"></a>"
+  ko: <a id="if-the-example-does-not-run"></a>
   status: machine
 - id: aa1a41bfef436bfe
   en: The `>>>` examples below show an interactive Python session. To copy them into a `.py` file, remove the `>>>` and `...` prompts and keep only the code, not the displayed output.
-  ko: "아래의 `>>>` 예제는 대화형 Python 세션입니다. `.py` 파일에 복사할 때는 `>>>`와 `...` 프롬프트를 제거하고 코드만 남기세요. 표시된 출력 결과는 복사하지 마세요."
+  ko: 아래의 `>>>` 예제는 대화형 Python 세션입니다. `.py` 파일에 복사할 때는 `>>>`와 `...` 프롬프트를 제거하고 코드만 남기세요. 표시된 출력 결과는 복사하지 마세요.
   status: machine
 - id: 8e4a41cb00b3ef65
   en: The Program describes *what* to execute. No simulator has been selected, and no state evolution has taken place yet.
-  ko: "Program은 *어떤 연산을 실행할지* 정의합니다. 아직 시뮬레이터를 선택하거나 양자 상태를 변화시키지는 않았습니다."
+  ko: Program은 *어떤 연산을 실행할지* 정의합니다. 아직 시뮬레이터를 선택하거나 양자 상태를 변화시키지는 않았습니다.
   status: machine
 - id: 9ba8da39fabe01b8
   en: 'Program uses QuTiP-QIP to draw circuits. By default, it returns a Matplotlib figure that you can display or save:'
-  ko: "Program은 QuTiP-QIP로 회로를 그립니다. 기본적으로 화면에 표시하거나 파일로 저장할 수 있는 Matplotlib 그림을 반환합니다."
+  ko: Program은 QuTiP-QIP로 회로를 그립니다. 기본적으로 화면에 표시하거나 파일로 저장할 수 있는 Matplotlib 그림을 반환합니다.
   status: machine
 - id: fb98a7a4d7dbb5cf
   en: '`program.draw("text")` returns a text representation of the circuit; it does not print it to the terminal.'
-  ko: "`program.draw(\"text\")`는 회로를 나타내는 문자열을 반환하며, 터미널에 직접 출력하지는 않습니다."
+  ko: '`program.draw("text")`는 회로를 나타내는 문자열을 반환하며, 터미널에 직접 출력하지는 않습니다.'
   status: machine
 - id: d80bcfb861ed4414
   en: For this Bell state, each shot returns either `00` or `11`, with equal probability. Finite sampling introduces random fluctuations, so the two counts are usually close. A fixed random seed makes the results reproducible. Use `Result.draw()` to plot the counts.
-  ko: "이 벨 상태의 측정 결과는 `00` 또는 `11`이며, 각각의 확률은 절반입니다. 유한한 횟수로 샘플링하면 무작위 변동이 생기므로 두 결과의 횟수는 대체로 비슷합니다. 난수 시드를 고정하면 결과를 재현하기 쉽습니다. `Result.draw()`로 측정 횟수를 그래프로 확인할 수 있습니다."
+  ko: 이 벨 상태의 측정 결과는 `00` 또는 `11`이며, 각각의 확률은 절반입니다. 유한한 횟수로 샘플링하면 무작위 변동이 생기므로 두 결과의 횟수는 대체로 비슷합니다. 난수 시드를 고정하면 결과를 재현하기 쉽습니다. `Result.draw()`로 측정 횟수를 그래프로 확인할 수 있습니다.
   status: machine

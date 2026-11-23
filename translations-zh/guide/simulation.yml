@@ -4,7 +4,7 @@
   status: machine
 - id: 3fac0dc709646631
   en: 'Use the general-purpose [`Simulator`][fatqat.simulator.Simulator] to study logical circuit evolution without choosing a hardware profile or Hamiltonian. It applies the operations in a [`Program`][fatqat.Program] as written: it does not transpile, route, or attach device timing.'
-  zh: "使用通用的 [`Simulator`][fatqat.simulator.Simulator] 研究逻辑线路演化，而无需选择设备模型或哈密顿量。它按 [`Program`][fatqat.Program] 所写的原样应用其中的操作：不转译、不路由，也不附加设备时序。"
+  zh: 使用通用的 [`Simulator`][fatqat.simulator.Simulator] 研究逻辑线路演化，而无需选择设备模型或哈密顿量。它按 [`Program`][fatqat.Program] 所写的原样应用其中的操作：不转译、不路由，也不附加设备时序。
   status: retired
 - id: d12dafa6f9e7e0f9
   en: One reusable rotation will carry us from a state calculation to sampled measurements and a parameter sweep.
@@ -84,7 +84,7 @@
   status: retired
 - id: 87292fa005592633
   en: 'Use the general-purpose [`Simulator`][fatqat.simulator.Simulator] to study circuit behavior, with or without noise. Start here with an ideal single-qubit rotation: calculate its exact probabilities, sample measurement outcomes, then vary the rotation angle to see how the probabilities change.'
-  zh: "想研究一条线路在理想或含噪声条件下的表现，可以使用通用 [`Simulator`][fatqat.simulator.Simulator]。我们先看一个理想的单量子比特旋转：算出精确概率，再进行测量采样，最后改变旋转角度，观察结果如何变化。"
+  zh: 想研究一条线路在理想或含噪声条件下的表现，可以使用通用 [`Simulator`][fatqat.simulator.Simulator]。我们先看一个理想的单量子比特旋转：算出精确概率，再进行测量采样，最后改变旋转角度，观察结果如何变化。
   status: machine
 - id: 8ac32dd5d2b43ede
   en: 'The statevector contains an amplitude for each basis state. Its squared magnitudes give the probabilities of measuring `0` and `1`: here, one half each. No measurements were sampled to obtain these probabilities. The classical bit declared by `Program(1, 1)` will hold the measurement outcome in the next example.'
@@ -92,7 +92,7 @@
   status: machine
 - id: ede568490dc3b75f
   en: '`runtime="numpy"` avoids compilation startup for this small circuit. [Performance and scaling](performance.md) explains when to compare it with the Numba runtime.'
-  zh: "这个示例线路很小，使用 `runtime=\"numpy\"` 可以省去初次编译的等待。何时值得尝试 Numba，可以参考[性能优化](performance.md)。"
+  zh: 这个示例线路很小，使用 `runtime="numpy"` 可以省去初次编译的等待。何时值得尝试 Numba，可以参考[性能优化](performance.md)。
   status: machine
 - id: e76a237faf9235da
   en: Choose a simulation method
@@ -120,11 +120,11 @@
   status: machine
 - id: 7a0107acdd972919
   en: 'An exact probability of one half does not mean every set of measurements splits evenly. Copy the rotation Program and add a measurement into its classical bit. Each shot runs the circuit from its initial state and produces one outcome:'
-  zh: "概率各为一半，不代表每一批测量结果都会恰好对半。我们复制刚才的 Program，加上测量，把结果存入经典比特。每次采样都从初态开始运行，并得到一个测量结果："
+  zh: 概率各为一半，不代表每一批测量结果都会恰好对半。我们复制刚才的 Program，加上测量，把结果存入经典比特。每次采样都从初态开始运行，并得到一个测量结果：
   status: machine
 - id: 6fc50a3fc7697b8b
   en: The counts record how many shots produced each outcome. Divide them by the number of shots to obtain the observed frequencies. These fluctuate around the exact probabilities because measurement is sampled, even though the circuit has no noise. More shots generally reduce the sampling fluctuations; they do not change the underlying probabilities. The seed makes this example repeatable.
-  zh: "计数就是每种结果出现的次数，除以总采样次数便得到频率。即使没有噪声，测量本身的随机性也会让频率在真实概率附近波动。增加采样次数通常能减小这种波动，但不会改变真实概率。固定随机种子可以复现本例的结果。"
+  zh: 计数就是每种结果出现的次数，除以总采样次数便得到频率。即使没有噪声，测量本身的随机性也会让频率在真实概率附近波动。增加采样次数通常能减小这种波动，但不会改变真实概率。固定随机种子可以复现本例的结果。
   status: machine
 - id: fc583207e249f7ee
   en: '[`Result.draw()`][fatqat.Result.draw] can display the counts as frequencies. The dashed line below marks the exact probability for both outcomes:'
@@ -136,11 +136,11 @@
   status: machine
 - id: 8770e38a451ba2c4
   en: How does the probability of `1` change with the rotation angle? Replace the fixed angle with a [`Parameter`][fatqat.Parameter], then use [`run_sweep`][fatqat.simulator.Simulator.run_sweep] to evaluate a list of angles without rebuilding the Program for each value. This is typically faster than separate `run` calls because the simulator reuses setup work across parameter values.
-  zh: "`1` 的概率如何随旋转角度变化？将固定角度替换为 [`Parameter`][fatqat.Parameter]，再用 [`run_sweep`][fatqat.simulator.Simulator.run_sweep] 计算一组角度，无需为每个值重新创建 Program。这通常比单独调用多次 `run` 更快，因为模拟器会在不同参数值之间复用准备工作。"
+  zh: '`1` 的概率如何随旋转角度变化？将固定角度替换为 [`Parameter`][fatqat.Parameter]，再用 [`run_sweep`][fatqat.simulator.Simulator.run_sweep] 计算一组角度，无需为每个值重新创建 Program。这通常比单独调用多次 `run` 更快，因为模拟器会在不同参数值之间复用准备工作。'
   status: machine
 - id: 1b194f72e0c8092a
   en: 'The mapping `{theta: angles}` supplies a value of `theta` for each run. The results follow the same order as `angles`. This Program has no measurements; each probability comes directly from a statevector, so the curve has no shot-sampling fluctuations.'
-  zh: "`{theta: angles}` 为每次运行指定一个 `theta` 值，返回结果的顺序与 `angles` 一致。这里没有添加测量，概率直接由态矢量计算，所以曲线不会出现测量采样带来的波动。"
+  zh: '`{theta: angles}` 为每次运行指定一个 `theta` 值，返回结果的顺序与 `angles` 一致。这里没有添加测量，概率直接由态矢量计算，所以曲线不会出现测量采样带来的波动。'
   status: machine
 - id: ada480a31ad285fb
   en: 'For this rotation, \(P(1) = \sin^2(\theta / 2)\). It rises from zero to one at \(\theta = \pi\), then returns to zero at \(2\pi\). The plot uses a finer angle grid to show that dependence:'
@@ -156,5 +156,5 @@
   status: machine
 - id: 853f7e107c87ef22
   en: For more sweep options, see the [Simulator API](../api/simulator.md).
-  zh: "更多参数扫描选项见 [Simulator API](../api/simulator.md)。"
+  zh: 更多参数扫描选项见 [Simulator API](../api/simulator.md)。
   status: machine

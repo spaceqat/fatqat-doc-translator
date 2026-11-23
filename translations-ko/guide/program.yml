@@ -180,5 +180,5 @@
   status: machine
 - id: 7ac9f246d982cb62
   en: '[`Program`][fatqat.Program] is the object used to describe a quantum computation in FatQat. If you are used to a `Circuit` class, this is FatQat''s broader equivalent: it can contain circuit gates, measurements, classical conditions, symbolic parameters, qubits and qudits, and direct physical controls.'
-  ko: "[`Program`][fatqat.Program]은 FatQat에서 양자 계산을 표현하는 객체입니다. 다른 도구의 `Circuit` 클래스에 익숙하다면 비슷한 역할로 이해하면 됩니다. 다만 Program은 양자 게이트뿐 아니라 측정, 고전 조건, 기호 매개변수, 큐비트와 qudit, 직접적인 물리 제어도 표현할 수 있습니다."
+  ko: '[`Program`][fatqat.Program]은 FatQat에서 양자 계산을 표현하는 객체입니다. 다른 도구의 `Circuit` 클래스에 익숙하다면 비슷한 역할로 이해하면 됩니다. 다만 Program은 양자 게이트뿐 아니라 측정, 고전 조건, 기호 매개변수, 큐비트와 qudit, 직접적인 물리 제어도 표현할 수 있습니다.'
   status: machine

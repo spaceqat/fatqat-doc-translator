@@ -276,5 +276,5 @@
   status: machine
 - id: 72508469d889168a
   en: 'Specialized representations can save much more than runtime tuning. For linear optics, `LOSimulator` uses fixed-photon states by default: four photons in twelve modes require just 1,365 amplitudes. See [Simulate larger interferometers](linear-optics.md#simulate-larger-interferometers). For physical models, first [choose a simulation or emulation approach](execution-models.md); extra physical levels and pulse integration change the cost of the problem.'
-  ko: "문제에 맞는 전용 표현을 사용하면 런타임 조정보다 훨씬 큰 절감 효과를 얻을 수 있습니다. 선형 광학에서 `LOSimulator`는 기본적으로 고정 광자 수 상태를 사용합니다. 모드 열두 개에 광자 네 개가 있으면 진폭은 1,365개만 필요합니다. [더 큰 간섭계 시뮬레이션하기](linear-optics.md#simulate-larger-interferometers)를 참고하세요. 물리 모델을 사용할 때는 먼저 [시뮬레이션과 에뮬레이션 방식을 선택하세요](execution-models.md). 추가 물리 준위와 펄스 적분은 문제의 계산 비용을 바꿉니다."
+  ko: 문제에 맞는 전용 표현을 사용하면 런타임 조정보다 훨씬 큰 절감 효과를 얻을 수 있습니다. 선형 광학에서 `LOSimulator`는 기본적으로 고정 광자 수 상태를 사용합니다. 모드 열두 개에 광자 네 개가 있으면 진폭은 1,365개만 필요합니다. [더 큰 간섭계 시뮬레이션하기](linear-optics.md#simulate-larger-interferometers)를 참고하세요. 물리 모델을 사용할 때는 먼저 [시뮬레이션과 에뮬레이션 방식을 선택하세요](execution-models.md). 추가 물리 준위와 펄스 적분은 문제의 계산 비용을 바꿉니다.
   status: machine

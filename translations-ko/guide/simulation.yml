@@ -4,7 +4,7 @@
   status: machine
 - id: 87292fa005592633
   en: 'Use the general-purpose [`Simulator`][fatqat.simulator.Simulator] to study circuit behavior, with or without noise. Start here with an ideal single-qubit rotation: calculate its exact probabilities, sample measurement outcomes, then vary the rotation angle to see how the probabilities change.'
-  ko: "회로가 이상적인 조건이나 노이즈가 있는 조건에서 어떻게 동작하는지 알아보려면 범용 [`Simulator`][fatqat.simulator.Simulator]를 사용하세요. 먼저 단일 큐비트의 이상적인 회전으로 정확한 확률을 구하고 측정을 샘플링한 뒤, 회전 각도에 따라 결과가 어떻게 바뀌는지 살펴보겠습니다."
+  ko: 회로가 이상적인 조건이나 노이즈가 있는 조건에서 어떻게 동작하는지 알아보려면 범용 [`Simulator`][fatqat.simulator.Simulator]를 사용하세요. 먼저 단일 큐비트의 이상적인 회전으로 정확한 확률을 구하고 측정을 샘플링한 뒤, 회전 각도에 따라 결과가 어떻게 바뀌는지 살펴보겠습니다.
   status: machine
 - id: 8ac32dd5d2b43ede
   en: 'The statevector contains an amplitude for each basis state. Its squared magnitudes give the probabilities of measuring `0` and `1`: here, one half each. No measurements were sampled to obtain these probabilities. The classical bit declared by `Program(1, 1)` will hold the measurement outcome in the next example.'
@@ -12,7 +12,7 @@
   status: machine
 - id: ede568490dc3b75f
   en: '`runtime="numpy"` avoids compilation startup for this small circuit. [Performance and scaling](performance.md) explains when to compare it with the Numba runtime.'
-  ko: "이처럼 작은 회로에서는 `runtime=\"numpy\"`를 사용하면 첫 컴파일을 기다리지 않아도 됩니다. Numba를 비교해 볼 시점은 [성능 최적화](performance.md)를 참고하세요."
+  ko: 이처럼 작은 회로에서는 `runtime="numpy"`를 사용하면 첫 컴파일을 기다리지 않아도 됩니다. Numba를 비교해 볼 시점은 [성능 최적화](performance.md)를 참고하세요.
   status: machine
 - id: c45fefffd021a124
   en: To use NumPy for matrix simulation throughout a script or notebook, set the default before creating simulators. The initial default is Numba.
@@ -48,11 +48,11 @@
   status: machine
 - id: 7a0107acdd972919
   en: 'An exact probability of one half does not mean every set of measurements splits evenly. Copy the rotation Program and add a measurement into its classical bit. Each shot runs the circuit from its initial state and produces one outcome:'
-  ko: "두 결과의 확률이 각각 절반이어도 실제 측정 횟수가 항상 반반이 되지는 않습니다. 앞의 Program을 복사하고 고전 비트에 결과를 기록하는 측정을 추가해 보세요. 각 샷은 초기 상태에서 시작해 하나의 결과를 만듭니다."
+  ko: 두 결과의 확률이 각각 절반이어도 실제 측정 횟수가 항상 반반이 되지는 않습니다. 앞의 Program을 복사하고 고전 비트에 결과를 기록하는 측정을 추가해 보세요. 각 샷은 초기 상태에서 시작해 하나의 결과를 만듭니다.
   status: machine
 - id: 6fc50a3fc7697b8b
   en: The counts record how many shots produced each outcome. Divide them by the number of shots to obtain the observed frequencies. These fluctuate around the exact probabilities because measurement is sampled, even though the circuit has no noise. More shots generally reduce the sampling fluctuations; they do not change the underlying probabilities. The seed makes this example repeatable.
-  ko: "카운트는 각 결과가 나온 횟수입니다. 전체 샷 수로 나누면 관측 빈도가 됩니다. 노이즈가 없어도 측정의 무작위성 때문에 빈도는 실제 확률 주변에서 달라집니다. 샷 수를 늘리면 보통 이 변동이 줄어들지만 실제 확률은 그대로입니다. 난수 시드를 고정하면 예제의 결과를 재현할 수 있습니다."
+  ko: 카운트는 각 결과가 나온 횟수입니다. 전체 샷 수로 나누면 관측 빈도가 됩니다. 노이즈가 없어도 측정의 무작위성 때문에 빈도는 실제 확률 주변에서 달라집니다. 샷 수를 늘리면 보통 이 변동이 줄어들지만 실제 확률은 그대로입니다. 난수 시드를 고정하면 예제의 결과를 재현할 수 있습니다.
   status: machine
 - id: fc583207e249f7ee
   en: '[`Result.draw()`][fatqat.Result.draw] can display the counts as frequencies. The dashed line below marks the exact probability for both outcomes:'
@@ -72,7 +72,7 @@
   status: machine
 - id: 1b194f72e0c8092a
   en: 'The mapping `{theta: angles}` supplies a value of `theta` for each run. The results follow the same order as `angles`. This Program has no measurements; each probability comes directly from a statevector, so the curve has no shot-sampling fluctuations.'
-  ko: "`{theta: angles}`는 실행마다 사용할 `theta` 값을 지정합니다. 결과는 `angles`에 넣은 순서대로 나옵니다. 여기서는 측정 없이 상태 벡터에서 확률을 직접 계산하므로, 곡선에 측정 샘플링으로 인한 변동이 없습니다."
+  ko: '`{theta: angles}`는 실행마다 사용할 `theta` 값을 지정합니다. 결과는 `angles`에 넣은 순서대로 나옵니다. 여기서는 측정 없이 상태 벡터에서 확률을 직접 계산하므로, 곡선에 측정 샘플링으로 인한 변동이 없습니다.'
   status: machine
 - id: ada480a31ad285fb
   en: 'For this rotation, \(P(1) = \sin^2(\theta / 2)\). It rises from zero to one at \(\theta = \pi\), then returns to zero at \(2\pi\). The plot uses a finer angle grid to show that dependence:'
@@ -88,5 +88,5 @@
   status: retired
 - id: 853f7e107c87ef22
   en: For more sweep options, see the [Simulator API](../api/simulator.md).
-  ko: "매개변수 스윕의 추가 옵션은 [Simulator API](../api/simulator.md)를 참고하세요."
+  ko: 매개변수 스윕의 추가 옵션은 [Simulator API](../api/simulator.md)를 참고하세요.
   status: machine

@@ -60,17 +60,17 @@
   status: retired
 - id: 4e927684d098a7c8
   en: '[Superconducting qubits](superconducting-simulation.md)'
-  zh: "[超导比特模拟](superconducting-simulation.md)"
+  zh: '[超导比特模拟](superconducting-simulation.md)'
   status: machine
 - id: aec85dad2bc42319
   en: '[Neutral-atom arrays](atom-array-simulation.md)'
-  zh: "[中性原子阵列模拟](atom-array-simulation.md)"
+  zh: '[中性原子阵列模拟](atom-array-simulation.md)'
   status: machine
 - id: 937455c682a1f41c
   en: '[Linear optics](linear-optics.md)'
-  zh: "[线性光学模拟](linear-optics.md)"
+  zh: '[线性光学模拟](linear-optics.md)'
   status: machine
 - id: a60db591b68d1337
   en: '[Compile circuits](compiler.md)'
-  zh: "[编译与运行逻辑线路](compiler.md)"
+  zh: '[编译与运行逻辑线路](compiler.md)'
   status: machine

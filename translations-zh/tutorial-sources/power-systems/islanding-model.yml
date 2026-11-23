@@ -124,7 +124,7 @@
   status: machine
 - id: d5a9730ecc185f17
   en: 'Both encodings are built below. The rest of the requirements are the same in each: they only differ in how "bus $i$ is in island $g$" is written down.'
-  zh: "下文会设计两种编码。其余要求在二者中相同，仅“母线 $i$ 位于孤岛 $g$”的表达方式不同。"
+  zh: 下文会设计两种编码。其余要求在二者中相同，仅“母线 $i$ 位于孤岛 $g$”的表达方式不同。
   status: machine
 - id: b45edceb9af453e9
   en: What the model actually says

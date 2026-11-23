@@ -188,5 +188,5 @@
   status: machine
 - id: a086c77dad4d67c1
   en: A quantum computation can be described at different levels of physical detail. When exploring an algorithm, it may be enough to describe how gates change the quantum state. To understand how that computation would run on a device, you may also need to account for its supported operations and connections, or for the pulses that drive its physical evolution. The useful level of detail depends on what you want to learn.
-  zh: "同一个量子计算，可以从不同的物理细节层级来描述。研究算法时，了解量子门如何改变量子态可能就足够了。如果想知道这个计算在设备上会怎样运行，还可能需要考虑设备支持的操作、连接关系，或驱动物理系统演化的脉冲。选择哪一层细节，取决于你想了解什么。"
+  zh: 同一个量子计算，可以从不同的物理细节层级来描述。研究算法时，了解量子门如何改变量子态可能就足够了。如果想知道这个计算在设备上会怎样运行，还可能需要考虑设备支持的操作、连接关系，或驱动物理系统演化的脉冲。选择哪一层细节，取决于你想了解什么。
   status: machine

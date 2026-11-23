@@ -248,73 +248,73 @@
   status: retired
 - id: 11ab1117f1337a1e
   en: Use one [`Program`][fatqat.Program] to prepare a Bell pair, draw its circuit, and run 1,000 shots to see why the measurement results are only `00` and `11`.
-  zh: "我们从一个简单的例子开始：用同一个 [`Program`][fatqat.Program] 制备贝尔态，画出量子线路，再运行 1,000 次，看看为什么测量结果只有 `00` 和 `11`。"
+  zh: 我们从一个简单的例子开始：用同一个 [`Program`][fatqat.Program] 制备贝尔态，画出量子线路，再运行 1,000 次，看看为什么测量结果只有 `00` 和 `11`。
   status: machine
 - id: 07729cd619c60cd1
   en: After activation, `python` uses this virtual environment. When you open a new terminal, return to this folder and activate the environment again; you do not need to reinstall FatQat.
-  zh: "激活后，`python` 命令就会使用这个虚拟环境。以后重新打开终端时，回到这个文件夹，再激活一次环境就可以了，不需要重新安装 FatQat。"
+  zh: 激活后，`python` 命令就会使用这个虚拟环境。以后重新打开终端时，回到这个文件夹，再激活一次环境就可以了，不需要重新安装 FatQat。
   status: machine
 - id: ac542fd45fd1fe0d
   en: 'Install FatQat in the activated environment:'
-  zh: "现在可以安装 FatQat 了："
+  zh: 现在可以安装 FatQat 了：
   status: machine
 - id: a59150f051af24e5
   en: <a id="install-the-development-version-from-source"></a>
-  zh: "<a id=\"install-the-development-version-from-source\"></a>"
+  zh: <a id="install-the-development-version-from-source"></a>
   status: machine
 - id: e553df5772e5d1c2
   en: 'Use this option only if you need the latest development version. Otherwise, skip this section. Clone the repository and enter its source folder:'
-  zh: "如果你想试用最新的开发版本，可以从源码安装。否则，跳过这一节即可。先克隆仓库并进入源码目录："
+  zh: 如果你想试用最新的开发版本，可以从源码安装。否则，跳过这一节即可。先克隆仓库并进入源码目录：
   status: machine
 - id: 4942e55ea38817b0
   en: 'Use [uv](https://docs.astral.sh/uv/) to create a virtual environment and install the source. FatQat supports Python 3.12 or later:'
-  zh: "你可以用 [uv](https://docs.astral.sh/uv/) 创建虚拟环境并安装源码。Python 3.12 或更高版本都可以："
+  zh: 你可以用 [uv](https://docs.astral.sh/uv/) 创建虚拟环境并安装源码。Python 3.12 或更高版本都可以：
   status: machine
 - id: 9f624896ca5dc6fd
   en: 'Alternatively, use `pip` from the virtual environment activated earlier, while still in the source folder:'
-  zh: "如果你想继续使用前面已激活的虚拟环境，也可以在源码目录中用 `pip` 安装："
+  zh: 如果你想继续使用前面已激活的虚拟环境，也可以在源码目录中用 `pip` 安装：
   status: machine
 - id: 110f65e683b398b5
   en: Using a text editor, create `first_program.py` in your `fatqat-learning` folder. Copy the complete example below into the file and save it. Python code goes in this file; terminal commands go in the terminal.
-  zh: "在 `fatqat-learning` 文件夹中，用文本编辑器新建一个 `first_program.py` 文件。把下面的完整示例复制进去并保存。这里的 Python 代码写在文件里，后面的运行命令则在终端中输入。"
+  zh: 在 `fatqat-learning` 文件夹中，用文本编辑器新建一个 `first_program.py` 文件。把下面的完整示例复制进去并保存。这里的 Python 代码写在文件里，后面的运行命令则在终端中输入。
   status: machine
 - id: 2d247fc287a87063
   en: 'The output is `{''1'': 100}`, meaning all 100 measurements returned 1.'
-  zh: "你会看到 `{'1': 100}`，意思是 100 次测量都得到了结果 1。"
+  zh: '你会看到 `{''1'': 100}`，意思是 100 次测量都得到了结果 1。'
   status: machine
 - id: 8772b8eb8625112c
   en: Run with VS Code
-  zh: "使用 VS Code 运行"
+  zh: 使用 VS Code 运行
   status: machine
 - id: 72734a3e1fe67af0
   en: 'Open the Command Palette with `Ctrl+Shift+P` on Windows/Linux or `Cmd+Shift+P` on macOS. Choose **Python: Select Interpreter** and select the interpreter in this folder''s `.venv`. If it is not listed, enter its path inside your learning folder: `.venv\Scripts\python.exe` on Windows or `.venv/bin/python` on macOS/Linux.'
-  zh: "按 `Ctrl+Shift+P`（Windows/Linux）或 `Cmd+Shift+P`（macOS）打开命令面板，选择 **Python: Select Interpreter**，再选中当前文件夹里 `.venv` 环境的解释器。如果列表中没有它，可以手动输入路径：Windows 使用学习文件夹中的 `.venv\\Scripts\\python.exe`，macOS/Linux 使用 `.venv/bin/python`。"
+  zh: '按 `Ctrl+Shift+P`（Windows/Linux）或 `Cmd+Shift+P`（macOS）打开命令面板，选择 **Python: Select Interpreter**，再选中当前文件夹里 `.venv` 环境的解释器。如果列表中没有它，可以手动输入路径：Windows 使用学习文件夹中的 `.venv\Scripts\python.exe`，macOS/Linux 使用 `.venv/bin/python`。'
   status: machine
 - id: 12ae6849fe2ab4da
   en: The output appears in the VS Code terminal panel.
-  zh: "运行结果会出现在 VS Code 下方的终端面板中。"
+  zh: 运行结果会出现在 VS Code 下方的终端面板中。
   status: machine
 - id: e4c8811016349e91
   en: <a id="if-the-example-does-not-run"></a>
-  zh: "<a id=\"if-the-example-does-not-run\"></a>"
+  zh: <a id="if-the-example-does-not-run"></a>
   status: machine
 - id: aa1a41bfef436bfe
   en: The `>>>` examples below show an interactive Python session. To copy them into a `.py` file, remove the `>>>` and `...` prompts and keep only the code, not the displayed output.
-  zh: "下面带 `>>>` 的示例展示的是 Python 交互式会话。你也可以把代码放进 `.py` 文件运行：复制时去掉 `>>>` 和 `...` 提示符，保留代码即可，不要复制示例中的输出结果。"
+  zh: 下面带 `>>>` 的示例展示的是 Python 交互式会话。你也可以把代码放进 `.py` 文件运行：复制时去掉 `>>>` 和 `...` 提示符，保留代码即可，不要复制示例中的输出结果。
   status: machine
 - id: 8e4a41cb00b3ef65
   en: The Program describes *what* to execute. No simulator has been selected, and no state evolution has taken place yet.
-  zh: "到这里，Program 已经记录了*要执行哪些操作*，但我们还没有选择模拟器，也没有开始模拟量子态的演化。"
+  zh: 到这里，Program 已经记录了*要执行哪些操作*，但我们还没有选择模拟器，也没有开始模拟量子态的演化。
   status: machine
 - id: 9ba8da39fabe01b8
   en: 'Program uses QuTiP-QIP to draw circuits. By default, it returns a Matplotlib figure that you can display or save:'
-  zh: "我们可以先把量子线路画出来。Program 使用 QuTiP-QIP 绘图，默认返回一个 Matplotlib 图对象，你可以显示它，也可以保存为文件："
+  zh: 我们可以先把量子线路画出来。Program 使用 QuTiP-QIP 绘图，默认返回一个 Matplotlib 图对象，你可以显示它，也可以保存为文件：
   status: machine
 - id: fb98a7a4d7dbb5cf
   en: '`program.draw("text")` returns a text representation of the circuit; it does not print it to the terminal.'
-  zh: "如果想在终端中查看量子线路，可以调用 `program.draw(\"text\")`。它会返回一段表示线路的字符串，需要你自行打印。"
+  zh: 如果想在终端中查看量子线路，可以调用 `program.draw("text")`。它会返回一段表示线路的字符串，需要你自行打印。
   status: machine
 - id: d80bcfb861ed4414
   en: For this Bell state, each shot returns either `00` or `11`, with equal probability. Finite sampling introduces random fluctuations, so the two counts are usually close. A fixed random seed makes the results reproducible. Use `Result.draw()` to plot the counts.
-  zh: "你会发现，结果只有 `00` 和 `11`。对于本例的贝尔态，这两种结果的概率各为一半。由于采样有随机性，实际出现的次数通常接近，但不一定相等。固定随机种子可以让结果便于复现；调用 `Result.draw()`，就能把这些结果画成统计图。"
+  zh: 你会发现，结果只有 `00` 和 `11`。对于本例的贝尔态，这两种结果的概率各为一半。由于采样有随机性，实际出现的次数通常接近，但不一定相等。固定随机种子可以让结果便于复现；调用 `Result.draw()`，就能把这些结果画成统计图。
   status: machine

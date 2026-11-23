@@ -36,7 +36,7 @@
   status: machine
 - id: fb1f3ee5db0fa258
   en: Rebuilding the model
-  zh: "重新建立模型"
+  zh: 重新建立模型
   status: machine
 - id: c7066f997d4789d1
   en: 'This tutorial stands alone, so the model is rebuilt here in condensed form. Only the 14-bus system and the binary encoding are needed: one qubit per bus, whose value names the island directly. The derivation, the comparison against the one-hot encoding, and the exhaustive check all live in the modeling tutorial.'
@@ -44,7 +44,7 @@
   status: machine
 - id: 3fa5ee8ab76aa28c
   en: 'The gap between those two numbers is the thing to keep in view. The QUBO''s minimum is cheaper than the best feasible split, and it is cheaper precisely because it is allowed to be wrong: its islands are disconnected. An optimizer pointed at this model is being pointed slightly past the answer.'
-  zh: "这两个数的差距值得注意：QUBO 最小值比最佳可行划分的代价更低，因为模型允许孤岛不连通。直接最小化这个模型，并不能保证得到原问题的可行答案。"
+  zh: 这两个数的差距值得注意：QUBO 最小值比最佳可行划分的代价更低，因为模型允许孤岛不连通。直接最小化这个模型，并不能保证得到原问题的可行答案。
   status: machine
 - id: 7533a0f3b88bedbc
   en: Running QAOA on the 14-bus model

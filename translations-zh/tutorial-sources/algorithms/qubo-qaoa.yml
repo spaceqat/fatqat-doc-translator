@@ -48,7 +48,7 @@
   status: machine
 - id: 18be77b87f0337d7
   en: '**Build.** Turn each Ising term into gates: an `RZ` per field term, a `CX`-`RZ`-`CX` ladder per coupling, and an `RX` mixer.'
-  zh: "**创建。**将每个 Ising 项转换为量子门：每个场项对应一个 `RZ`，每个耦合对应一个 `CX`-`RZ`-`CX` 序列，再加入 `RX` 混合器。"
+  zh: '**创建。**将每个 Ising 项转换为量子门：每个场项对应一个 `RZ`，每个耦合对应一个 `CX`-`RZ`-`CX` 序列，再加入 `RX` 混合器。'
   status: machine
 - id: 42cdb00b080fe2a6
   en: '**Evaluate.** Get the energy from `fatqat.Estimator`, or read the whole outcome distribution from the simulator.'
@@ -80,7 +80,7 @@
   status: machine
 - id: 9370ea11f5b3875c
   en: 'A QUBO is just three containers: a constant, a vector of linear coefficients, and a dictionary of pair coefficients. Building it by hand keeps the algebra visible, and every term below is one line of the model.'
-  zh: "QUBO 只需三个容器：一个常数、一个线性系数向量和一个成对系数字典。手动创建能清楚展示代数关系，下方每一项都对应模型的一行。"
+  zh: QUBO 只需三个容器：一个常数、一个线性系数向量和一个成对系数字典。手动创建能清楚展示代数关系，下方每一项都对应模型的一行。
   status: machine
 - id: 6bed240a6f5c8828
   en: The cut term uses the identity $x_i + x_j - 2 x_i x_j$, which is 1 when the two endpoints disagree and 0 when they agree. The balance term squares $\sum_i x_i - N/2$. The separation term is $1 - (x_i + x_j - 2 x_i x_j)$, which charges the penalty exactly when the two nodes agree.
@@ -136,7 +136,7 @@
   status: machine
 - id: 0fce656469c0cefe
   en: A parameter cannot be scaled inside a gate argument — FatQat gate angles take a number or a bare `fatqat.Parameter`, not an expression — and every phase rotation here needs $\gamma$ multiplied by its own coupling. The program is therefore rebuilt for each set of angles, which costs about a millisecond and disappears next to the simulation.
-  zh: "不能在门参数内部对参数做缩放——FatQat 门角度接受数值或单独的 `fatqat.Parameter`，不接受表达式——而这里每个相位旋转都需要将 $\\gamma$ 乘以各自的耦合。因此，每组角度都会重新创建程序，耗时约一毫秒，相比模拟开销可以忽略。"
+  zh: 不能在门参数内部对参数做缩放——FatQat 门角度接受数值或单独的 `fatqat.Parameter`，不接受表达式——而这里每个相位旋转都需要将 $\gamma$ 乘以各自的耦合。因此，每组角度都会重新创建程序，耗时约一毫秒，相比模拟开销可以忽略。
   status: machine
 - id: 6a488f9a52e374bb
   en: Two ways to get the energy

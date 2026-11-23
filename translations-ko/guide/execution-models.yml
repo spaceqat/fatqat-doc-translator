@@ -116,5 +116,5 @@
   status: machine
 - id: a086c77dad4d67c1
   en: A quantum computation can be described at different levels of physical detail. When exploring an algorithm, it may be enough to describe how gates change the quantum state. To understand how that computation would run on a device, you may also need to account for its supported operations and connections, or for the pulses that drive its physical evolution. The useful level of detail depends on what you want to learn.
-  ko: "하나의 양자 계산도 물리적 세부 사항을 어느 수준까지 다루느냐에 따라 다르게 표현할 수 있습니다. 알고리즘을 연구할 때는 양자 게이트가 양자 상태를 어떻게 바꾸는지만 알아도 충분할 수 있습니다. 이 계산이 실제 장치에서 어떻게 실행될지 알고 싶다면 장치가 지원하는 연산과 연결 관계, 또는 물리적 시간 변화를 일으키는 펄스까지 고려해야 할 수 있습니다. 어떤 수준의 세부 사항이 필요한지는 무엇을 알아보려는지에 따라 달라집니다."
+  ko: 하나의 양자 계산도 물리적 세부 사항을 어느 수준까지 다루느냐에 따라 다르게 표현할 수 있습니다. 알고리즘을 연구할 때는 양자 게이트가 양자 상태를 어떻게 바꾸는지만 알아도 충분할 수 있습니다. 이 계산이 실제 장치에서 어떻게 실행될지 알고 싶다면 장치가 지원하는 연산과 연결 관계, 또는 물리적 시간 변화를 일으키는 펄스까지 고려해야 할 수 있습니다. 어떤 수준의 세부 사항이 필요한지는 무엇을 알아보려는지에 따라 달라집니다.
   status: machine

@@ -60,17 +60,17 @@
   status: retired
 - id: 4e927684d098a7c8
   en: '[Superconducting qubits](superconducting-simulation.md)'
-  ko: "[초전도 시뮬레이션](superconducting-simulation.md)"
+  ko: '[초전도 시뮬레이션](superconducting-simulation.md)'
   status: machine
 - id: aec85dad2bc42319
   en: '[Neutral-atom arrays](atom-array-simulation.md)'
-  ko: "[중성 원자 시뮬레이션](atom-array-simulation.md)"
+  ko: '[중성 원자 시뮬레이션](atom-array-simulation.md)'
   status: machine
 - id: 937455c682a1f41c
   en: '[Linear optics](linear-optics.md)'
-  ko: "[선형 광학 시뮬레이션](linear-optics.md)"
+  ko: '[선형 광학 시뮬레이션](linear-optics.md)'
   status: machine
 - id: a60db591b68d1337
   en: '[Compile circuits](compiler.md)'
-  ko: "[논리 회로 컴파일과 실행](compiler.md)"
+  ko: '[논리 회로 컴파일과 실행](compiler.md)'
   status: machine

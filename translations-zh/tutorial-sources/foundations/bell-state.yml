@@ -12,7 +12,7 @@
   status: retired
 - id: 956547c1ccb4be6d
   en: This tutorial builds the smallest entangled quantum system and follows it from an exact statevector to finite-shot measurement data. Along the way, it shows the distinction between a quantum state and the classical evidence collected from repeated measurements.
-  zh: "本教程创建最小的纠缠量子系统，并跟踪它从精确态矢量到有限次测量数据的全过程。在此过程中，教程展示了量子态与从重复测量中收集到的经典证据之间的区别。"
+  zh: 本教程创建最小的纠缠量子系统，并跟踪它从精确态矢量到有限次测量数据的全过程。在此过程中，教程展示了量子态与从重复测量中收集到的经典证据之间的区别。
   status: retired
 - id: 8d3c38839aff0ea7
   en: For two qubits, the Bell state used here is
@@ -36,7 +36,7 @@
   status: retired
 - id: 37b77839e1a80338
   en: Build the entangling circuit
-  zh: "创建纠缠线路"
+  zh: 创建纠缠线路
   status: retired
 - id: ecad94f81e911ca9
   en: The system begins in $|00\rangle$. Applying a Hadamard gate to qubit zero creates
@@ -100,5 +100,5 @@
   status: retired
 - id: e99de0bdf6967497
   en: A sampled program needs two classical bits. We rebuild the short program so its quantum instructions are unchanged, then measure quantum slots zero and one into classical slots zero and one. Count strings are displayed with classical slot zero on the left, so the correlated results appear as `"00"` and `"11"`.
-  zh: "采样程序需要两个经典位。我们重新创建这个短程序，保持量子指令不变，再将量子槽位零和一分别测量到经典槽位零和一。计数字符串将经典槽位零显示在最左侧，因此关联结果显示为 `\"00\"` 和 `\"11\"`。"
+  zh: 采样程序需要两个经典位。我们重新创建这个短程序，保持量子指令不变，再将量子槽位零和一分别测量到经典槽位零和一。计数字符串将经典槽位零显示在最左侧，因此关联结果显示为 `"00"` 和 `"11"`。
   status: retired

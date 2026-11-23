@@ -104,5 +104,5 @@
   status: machine
 - id: f7d4f5b45921a09d
   en: Copy `native` and add measurements to the copy. Each qubit starts in zero, so flipping both qubits gives the ideal measurement outcome `11`. Run the same measured Program at sites 0 and 1, with 100 shots each under ideal conditions and with the built-in noise model.
-  zh: "复制 `native`，在副本上加上测量。两个量子比特都从 0 开始，各翻转一次后，理想的测量结果是 `11`。沿用位置 0 和 1，在理想条件下和启用内置噪声模型时各测量 100 次。"
+  zh: 复制 `native`，在副本上加上测量。两个量子比特都从 0 开始，各翻转一次后，理想的测量结果是 `11`。沿用位置 0 和 1，在理想条件下和启用内置噪声模型时各测量 100 次。
   status: machine

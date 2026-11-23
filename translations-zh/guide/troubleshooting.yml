@@ -16,7 +16,7 @@
   status: machine
 - id: 17b6aa23c0286d8e
   en: An integer target is ambiguous
-  zh: "用整数指定目标时报错"
+  zh: 用整数指定目标时报错
   status: machine
 - id: 21e364de512be153
   en: 'Bare integers are convenient for `Program(2)`, where there is only one quantum register. Once a Program contains several registers, use the register references you created:'
@@ -28,7 +28,7 @@
   status: retired
 - id: 7f207fe33c42308b
   en: Measurement reports a dimension mismatch
-  zh: "测量时报维度不匹配"
+  zh: 测量时报维度不匹配
   status: machine
 - id: 6fcf6df6fc465d91
   en: 'A measured quantum resource and its classical destination must have the same local dimension. A qutrit needs a classical trit, not an ordinary bit:'
@@ -36,7 +36,7 @@
   status: retired
 - id: 4b3bb80dbafdf941
   en: The Program still contains an unbound parameter
-  zh: "运行提示参数还没绑定"
+  zh: 运行提示参数还没绑定
   status: machine
 - id: f10a339c4c5a3d4f
   en: 'Binding returns a new Program; it does not modify the template in place. Keep the returned value and submit that one:'
@@ -48,11 +48,11 @@
   status: machine
 - id: ecf299635b276acc
   en: Matching the execution target
-  zh: "检查设备和后端"
+  zh: 检查设备和后端
   status: machine
 - id: 13a948cdb96e44f6
   en: An operation works on Simulator but is unsupported here
-  zh: "通用 Simulator 能执行，换到设备模型后报错"
+  zh: 通用 Simulator 能执行，换到设备模型后报错
   status: machine
 - id: f9546d1afd71b66a
   en: That usually means the selected hardware profile or emulator cannot realize the instruction as written. The general simulator accepts a wider logical operation set; constrained targets intentionally do not.
@@ -88,7 +88,7 @@
   status: retired
 - id: 81ebaa3fc23e5356
   en: A direct control is rejected by an emulator
-  zh: "仿真器报错，脉冲没能运行"
+  zh: 仿真器报错，脉冲没能运行
   status: machine
 - id: c65497b61f8c09e0
   en: Each pulse channel comes from a particular physical model and identifies one of that model's resources. Build the control from the same model used by the emulator. Then check that the waveform uses the model's time and control units, that its values are allowed, and that the operation duration covers every control. [Follow a Program into physical dynamics](hamiltonian-emulation.md) builds this chain one piece at a time.
@@ -112,7 +112,7 @@
   status: retired
 - id: bc40669ff86b00da
   en: A statevector is unavailable for a noisy or dynamic run
-  zh: "加了噪声或中途测量后取不到态矢量"
+  zh: 加了噪声或中途测量后取不到态矢量
   status: machine
 - id: 3b7bb637f15070e0
   en: After measurement, reset, or trajectory noise, one statevector is only one sampled history. Request it with `shots=1` when that single history is what you want. Use density-matrix simulation for an exact mixed state.
@@ -120,7 +120,7 @@
   status: retired
 - id: 1bc9ce1555eccd79
   en: The first Numba run is unexpectedly slow
-  zh: "第一次用 Numba 运行特别慢"
+  zh: 第一次用 Numba 运行特别慢
   status: machine
 - id: 8ba9327679552d33
   en: Numba compiles kernels lazily. Warm the workload before measuring repeated runtime, or choose NumPy when predictable one-off latency matters more. The benchmark pattern is in [Performance and scaling](performance.md).
@@ -156,31 +156,31 @@
   status: retired
 - id: 2999b803a7af68ed
   en: 'If none of those matches, make a copy of the failing workflow and reduce it:'
-  zh: "如果还是找不到原因，可以复制一份出错的例子，从最小的 Program 开始一步步加回去。"
+  zh: 如果还是找不到原因，可以复制一份出错的例子，从最小的 Program 开始一步步加回去。
   status: machine
 - id: fcab0e9ab2780f25
   en: keep one register and one operation;
-  zh: "先只留一个 Register 和一个操作。"
+  zh: 先只留一个 Register 和一个操作。
   status: machine
 - id: 1b865511cf0921f1
   en: run it with the general `Simulator`;
-  zh: "用通用的 `Simulator` 跑一遍。"
+  zh: 用通用的 `Simulator` 跑一遍。
   status: machine
 - id: ef9e4a68e8f9fb7d
   en: add the requested result field;
-  zh: "请求你原本要读取的结果字段。"
+  zh: 请求你原本要读取的结果字段。
   status: machine
 - id: b5a9b2225f298a28
   en: switch to the intended profile or emulator; and
-  zh: "换成原来用的设备模型或仿真器。"
+  zh: 换成原来用的设备模型或仿真器。
   status: machine
 - id: f01c2ebce4dc4155
   en: restore operations one at a time.
-  zh: "逐条加回其余指令。"
+  zh: 逐条加回其余指令。
   status: machine
 - id: d68a13ad257b7859
   en: The step where it changes tells you which boundary to inspect. Preserve the small reproducer—it is also the most useful starting point for a bug report.
-  zh: "一旦问题重现，就重点检查刚加回的那一步。把能重现问题的最小例子保存下来，反馈问题时也能直接附上。"
+  zh: 一旦问题重现，就重点检查刚加回的那一步。把能重现问题的最小例子保存下来，反馈问题时也能直接附上。
   status: machine
 - id: 488f301da9f1d419
   en: The [Result reference](../api/result.md) lists the available fields, their accessors, and which runs produce them.
@@ -188,7 +188,7 @@
   status: machine
 - id: f4550463aa53c38e
   en: How are count strings ordered?
-  zh: "计数字符串从哪一位读起？"
+  zh: 计数字符串从哪一位读起？
   status: machine
 - id: b7919bcf68888606
   en: Displayed count strings and tuple keys both put classical slot 0 first, on the left or at tuple position 0. When local dimensions differ, tuple keys avoid string-token parsing; native strings use commas if any classical dimension is at least 10.
@@ -212,69 +212,69 @@
   status: retired
 - id: 18d1c0bc5dac4aa5
   en: Troubleshoot common problems
-  zh: "常见问题排查"
+  zh: 常见问题排查
   status: machine
 - id: 402f8509a42fc5ef
   en: Find the symptom that matches what you see. Start with the suggested check or fix, then follow the linked example if you need more context.
-  zh: "遇到报错或结果和预期不一致时，可以从下面最接近的情况查起。每一项都给出了先检查什么以及怎么处理。"
+  zh: 遇到报错或结果和预期不一致时，可以从下面最接近的情况查起。每一项都给出了先检查什么以及怎么处理。
   status: machine
 - id: f72fbcd57e557844
   en: If your Program has multiple quantum registers, specify the register as well as the index. For example, use `qubit[0]` to pick slot 0 in `qubit`.
-  zh: "一个 Program 有多个量子 Register 时，只写下标就分不清是哪一个。用 `qubit[0]` 这样的写法，就能明确指定 `qubit` 的第 0 个位置。"
+  zh: 一个 Program 有多个量子 Register 时，只写下标就分不清是哪一个。用 `qubit[0]` 这样的写法，就能明确指定 `qubit` 的第 0 个位置。
   status: machine
 - id: 1a025be243e3e1ec
   en: See [Program & Register](program.md) for more examples of register references.
-  zh: "Register 引用的更多用法见 [Program 与 Register](program.md)。"
+  zh: Register 引用的更多用法见 [Program 与 Register](program.md)。
   status: machine
 - id: b29e14e7fc8d5c6b
   en: Check that the classical destination has the same dimension as the resource you measure. For a qutrit, use a classical register with `dim=3`.
-  zh: "先检查存放测量结果的经典 Register。它的维度要和被测对象相同，比如测量三能级系统时，经典 Register 就要设成 `dim=3`。"
+  zh: 先检查存放测量结果的经典 Register。它的维度要和被测对象相同，比如测量三能级系统时，经典 Register 就要设成 `dim=3`。
   status: machine
 - id: 128e83058933b0a1
   en: Run the Program returned by `assign_parameters()`. That Program contains the bound values, and the original is available for binding another set.
-  zh: "把 `assign_parameters()` 返回的 Program 交给后端运行，参数值就绑定在这个返回值里。原来的 Program 还可以继续用来绑定别的参数值。"
+  zh: 把 `assign_parameters()` 返回的 Program 交给后端运行，参数值就绑定在这个返回值里。原来的 Program 还可以继续用来绑定别的参数值。
   status: machine
 - id: 7fba519d57068e21
   en: Check the device or emulator's supported operations first. Use the general `Simulator` to check the algorithm itself. To model the selected device, write the Program using its native operations or [compile a supported logical circuit](compiler.md) for that target.
-  zh: "先查设备模型或仿真器支持哪些操作。验证算法可以用通用 `Simulator`。如果要研究指定设备，可以用它支持的原生操作编写 Program，也可以为这个目标[编译受支持的逻辑线路](compiler.md)。"
+  zh: 先查设备模型或仿真器支持哪些操作。验证算法可以用通用 `Simulator`。如果要研究指定设备，可以用它支持的原生操作编写 Program，也可以为这个目标[编译受支持的逻辑线路](compiler.md)。
   status: machine
 - id: c7dc0b85904d0a02
   en: A two-qubit gate fails on the selected positions
-  zh: "双量子比特门在选定位置上报错"
+  zh: 双量子比特门在选定位置上报错
   status: machine
 - id: dffa7d78e88847bb
   en: Look up the two physical positions in the [`ResourceLayout`][fatqat.ResourceLayout] and check that the device connects them. Use a pair that shares a connection, as in [the superconducting device example](superconducting-simulation.md).
-  zh: "先查 [`ResourceLayout`][fatqat.ResourceLayout] 里两个量子比特对应的物理位置，确认设备上这两个位置有直接连线。需要换位置时，可以参考[超导比特模拟中的示例](superconducting-simulation.md)。"
+  zh: 先查 [`ResourceLayout`][fatqat.ResourceLayout] 里两个量子比特对应的物理位置，确认设备上这两个位置有直接连线。需要换位置时，可以参考[超导比特模拟中的示例](superconducting-simulation.md)。
   status: machine
 - id: d06d762693e206fd
   en: First check that the channel is available on the model passed to the emulator. Then check the waveform's units and allowed values, and make sure the pulse duration covers every control. See [Write and run pulse programs](hamiltonian-emulation.md) for a worked example.
-  zh: "先检查传给仿真器的模型是否提供了这个通道，再核对波形的单位和取值范围，并确认脉冲时长覆盖每路控制信号。完整例子见[编写和运行脉冲程序](hamiltonian-emulation.md)。"
+  zh: 先检查传给仿真器的模型是否提供了这个通道，再核对波形的单位和取值范围，并确认脉冲时长覆盖每路控制信号。完整例子见[编写和运行脉冲程序](hamiltonian-emulation.md)。
   status: machine
 - id: 493e3f2b7c171ec3
   en: Increase `shots` for a steadier estimate. Set a seed when you need the same sample to reproduce a result.
-  zh: "想让估计更稳定，可以增加 `shots`。需要复现某一次采样的结果时，就固定随机种子。"
+  zh: 想让估计更稳定，可以增加 `shots`。需要复现某一次采样的结果时，就固定随机种子。
   status: machine
 - id: 16ddb2d7b6ab19e7
   en: To inspect one trajectory after measurement, reset, or trajectory noise, run with `shots=1` and request the final state. Use density-matrix simulation when you need the mixed state averaged over trajectories.
-  zh: "如果想查看测量、重置或随机噪声作用后的一条演化轨迹，用 `shots=1` 运行并请求最终态。如果需要对所有轨迹取平均后的混合态，就用密度矩阵模拟。"
+  zh: 如果想查看测量、重置或随机噪声作用后的一条演化轨迹，用 `shots=1` 运行并请求最终态。如果需要对所有轨迹取平均后的混合态，就用密度矩阵模拟。
   status: machine
 - id: 6c144add8d7aa576
   en: Run the same workload once before timing it. Numba compiles kernels the first time they run. To time a one-off run, try NumPy. See [Performance and scaling](performance.md) for the benchmark setup.
-  zh: "计时前先把同一个任务跑一遍，Numba 会在首次运行时编译数值内核。如果只想测单次运行的耗时，可以试试 NumPy。计时示例见[性能优化](performance.md)。"
+  zh: 计时前先把同一个任务跑一遍，Numba 会在首次运行时编译数值内核。如果只想测单次运行的耗时，可以试试 NumPy。计时示例见[性能优化](performance.md)。
   status: machine
 - id: 95382e7e795126a7
   en: A requested field is missing from the Result
-  zh: "Result 里找不到需要的数据"
+  zh: Result 里找不到需要的数据
   status: machine
 - id: e399e3fee1d35102
   en: Inspect `result.available_data` to see which fields the run produced. If the field you need is missing, check the requested outputs and simulation method.
-  zh: "先用 `result.available_data` 看这次运行返回了哪些数据。如果所需字段没出现，再检查是否请求了这项输出，以及所选模拟方法能否生成它。"
+  zh: 先用 `result.available_data` 看这次运行返回了哪些数据。如果所需字段没出现，再检查是否请求了这项输出，以及所选模拟方法能否生成它。
   status: machine
 - id: 3a2e7208d93b0d5f
   en: Read a FatQat count string from classical slot 0 on the left. Tuple keys follow the same order and are easier to read when slots have different dimensions. When any classical dimension is at least 10, the strings separate entries with commas.
-  zh: "读 FatQat 的计数字符串时，从左边的经典槽位 0 开始。元组键的顺序相同，各槽位维度不同时尤其好读。只要有一个槽位的维度达到 10，字符串里就会用逗号分隔各槽位的值。"
+  zh: 读 FatQat 的计数字符串时，从左边的经典槽位 0 开始。元组键的顺序相同，各槽位维度不同时尤其好读。只要有一个槽位的维度达到 10，字符串里就会用逗号分隔各槽位的值。
   status: machine
 - id: 0170cdd770f3b0fe
   en: Make a small example that reproduces the problem
-  zh: "缩小示例，重现问题"
+  zh: 缩小示例，重现问题
   status: machine

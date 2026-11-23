@@ -4,7 +4,7 @@
   status: machine
 - id: d9b3fc77fc4a2779
   en: Use dynamic Pair and Unpair operations to build an eight-atom GHZ state, then test both its correlations and coherent phase.
-  zh: "使用动态的 Pair 与 Unpair 操作制备八原子 GHZ 态，然后同时检验它的关联与相干相位。"
+  zh: 使用动态的 Pair 与 Unpair 操作制备八原子 GHZ 态，然后同时检验它的关联与相干相位。
   status: machine
 - id: 39c2bd539a54affe
   en: Eight-atom GHZ measurement frequencies
@@ -12,7 +12,7 @@
   status: machine
 - id: 0eb30251770f4475
   en: 'This tutorial builds an eight-atom Greenberger-Horne-Zeilinger (GHZ) state on [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator], fatqat''s neutral-atom execution target. It is a step up from the two-qubit Bell tutorial in two ways: the state spans eight atoms instead of two, and the circuit runs on a backend whose two-qubit-gate connectivity is *reconfigured mid-circuit* rather than fixed.'
-  zh: "本教程在 fatqat 的中性原子执行目标 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上创建八原子 Greenberger-Horne-Zeilinger（GHZ）态。相比双量子比特 Bell 教程，它在两方面更进一步：量子态跨越八个原子而非两个，并且线路运行在一个双量子比特门连通性*在线路中途重新配置*而非固定不变的后端上。"
+  zh: 本教程在 fatqat 的中性原子执行目标 [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] 上创建八原子 Greenberger-Horne-Zeilinger（GHZ）态。相比双量子比特 Bell 教程，它在两方面更进一步：量子态跨越八个原子而非两个，并且线路运行在一个双量子比特门连通性*在线路中途重新配置*而非固定不变的后端上。
   status: retired
 - id: 77d0ab522b46a87b
   en: The GHZ state generalises the Bell state to $n$ qubits,
@@ -28,7 +28,7 @@
   status: machine
 - id: d75587ca82ded376
   en: A [`fatqat.Program`][fatqat.Program] is the backend-independent circuit description. Gate values live in [`fatqat.operations`](../api/operations.md). NumPy helps us tabulate expectation values, and Matplotlib supplies the captured runtime figure.
-  zh: "[`fatqat.Program`][fatqat.Program] 描述线路，不依赖具体后端。量子门对象位于 [`fatqat.operations`](../api/operations.md)。下面用 NumPy 整理期望值数据，用 Matplotlib 绘制运行结果。"
+  zh: '[`fatqat.Program`][fatqat.Program] 描述线路，不依赖具体后端。量子门对象位于 [`fatqat.operations`](../api/operations.md)。下面用 NumPy 整理期望值数据，用 Matplotlib 绘制运行结果。'
   status: machine
 - id: beb520b9b0176ac8
   en: The native gate set
@@ -40,7 +40,7 @@
   status: machine
 - id: c0b3b0e4427d8dc4
   en: Writing these as small helpers keeps the circuit-building code below readable.
-  zh: "把它们写成小的辅助函数，能让下面的编写线路的代码保持易读。"
+  zh: 把它们写成小的辅助函数，能让下面的编写线路的代码保持易读。
   status: machine
 - id: 201659d345e0999f
   en: A log-depth entangling tree
@@ -48,7 +48,7 @@
   status: machine
 - id: f73480384b24871e
   en: 'We could grow the GHZ state with a chain of seven controlled-X gates, atom `0` reaching each neighbour in turn. Instead we use a *binary tree*, which reaches all eight atoms in only three layers and lets the gates within each layer run in parallel on independent atom pairs:'
-  zh: "一种做法是串联七个受控 X 门，让原子 `0` 依次与各个邻居建立纠缠。这里采用*二叉树*结构，只需三层即可覆盖全部八个原子；同一层的门作用于互不重叠的原子对，可以并行执行："
+  zh: 一种做法是串联七个受控 X 门，让原子 `0` 依次与各个邻居建立纠缠。这里采用*二叉树*结构，只需三层即可覆盖全部八个原子；同一层的门作用于互不重叠的原子对，可以并行执行：
   status: machine
 - id: 805a0d8122634fbe
   en: Every pair inside a layer is disjoint, so those controlled-X gates act on separate atoms and could be executed simultaneously by the hardware.

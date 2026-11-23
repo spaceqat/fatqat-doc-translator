@@ -292,13 +292,13 @@
   status: retired
 - id: 6061d2d0707d916b
   en: '![Three energy levels in a cosine well. Two arrows show that the gap from level 0 to level 1 is larger than the gap from level 1 to level 2.](../assets/generated/guide/transmon-cosine-well.svg)'
-  ko: "![코사인 퍼텐셜 우물의 세 준위입니다. 두 화살표는 준위 0과 1 사이의 에너지 차이가 준위 1과 2 사이의 차이보다 크다는 것을 보여 줍니다.](../assets/generated/guide/transmon-cosine-well.svg)"
+  ko: '![코사인 퍼텐셜 우물의 세 준위입니다. 두 화살표는 준위 0과 1 사이의 에너지 차이가 준위 1과 2 사이의 차이보다 크다는 것을 보여 줍니다.](../assets/generated/guide/transmon-cosine-well.svg)'
   status: machine
 - id: e5ef4e2d81a53b6b
   en: '*In this example with $E_J/E_C=50$, the $0\to1$ transition requires more energy than the $1\to2$ transition. The difference in transition frequencies helps a pulse address the qubit transition.*'
-  ko: "*그림에서는 $E_J/E_C=50$입니다. $0\\to1$ 전이에는 $1\\to2$ 전이보다 더 많은 에너지가 필요합니다. 두 전이 주파수가 달라 펄스로 큐비트 전이를 선택적으로 구동하기가 쉬워집니다.*"
+  ko: '*그림에서는 $E_J/E_C=50$입니다. $0\to1$ 전이에는 $1\to2$ 전이보다 더 많은 에너지가 필요합니다. 두 전이 주파수가 달라 펄스로 큐비트 전이를 선택적으로 구동하기가 쉬워집니다.*'
   status: machine
 - id: 3679a064dba06eb4
   en: The reference calibration uses analytic recipes to keep pulse generation simple. The grid generator uses the same pulse shapes and chooses a CZ branch for each pair of connected transmons. Further pulse optimization can improve gate fidelity, for example by reducing the small residual controlled phase in the reference iSWAP.
-  ko: "기준 보정은 펄스를 쉽게 생성할 수 있도록 해석적 펄스 구성을 사용합니다. 배열을 생성할 때 같은 펄스 모양을 사용하며, 연결된 트랜스몬 쌍마다 CZ 분기를 선택합니다. 펄스를 더 최적화하면 기준 iSWAP에 남는 작은 제어 위상을 줄이는 등 게이트 충실도를 높일 수 있습니다."
+  ko: 기준 보정은 펄스를 쉽게 생성할 수 있도록 해석적 펄스 구성을 사용합니다. 배열을 생성할 때 같은 펄스 모양을 사용하며, 연결된 트랜스몬 쌍마다 CZ 분기를 선택합니다. 펄스를 더 최적화하면 기준 iSWAP에 남는 작은 제어 위상을 줄이는 등 게이트 충실도를 높일 수 있습니다.
   status: machine

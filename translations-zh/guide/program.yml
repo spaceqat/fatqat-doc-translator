@@ -284,5 +284,5 @@
   status: machine
 - id: 7ac9f246d982cb62
   en: '[`Program`][fatqat.Program] is the object used to describe a quantum computation in FatQat. If you are used to a `Circuit` class, this is FatQat''s broader equivalent: it can contain circuit gates, measurements, classical conditions, symbolic parameters, qubits and qudits, and direct physical controls.'
-  zh: "[`Program`][fatqat.Program] 是 FatQat 中用于描述量子计算的对象。如果你熟悉其他工具中的 `Circuit` 类，可以从这个概念来理解 Program。不过，Program 能表达的不只是量子门，还包括测量、经典条件、符号参数、量子比特和 qudit，以及直接的物理控制。"
+  zh: '[`Program`][fatqat.Program] 是 FatQat 中用于描述量子计算的对象。如果你熟悉其他工具中的 `Circuit` 类，可以从这个概念来理解 Program。不过，Program 能表达的不只是量子门，还包括测量、经典条件、符号参数、量子比特和 qudit，以及直接的物理控制。'
   status: machine

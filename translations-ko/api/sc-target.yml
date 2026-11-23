@@ -116,7 +116,7 @@
   status: machine
 - id: d7244e7e117268ae
   en: An `SCTarget` specifies the topology. The compiler uses the superconducting native gates `X`, `SX`, `RZ`, and `CZ`, with `CZ` limited to the target's couplings. The result can run on any compatible simulator that provides the sites and couplings it uses and supports the program with the selected simulation method.
-  ko: "`SCTarget`은 장치의 연결 구조를 지정합니다. 컴파일러는 초전도 장치의 네이티브 게이트인 `X`, `SX`, `RZ`, `CZ`를 사용하며, `CZ`는 컴파일 대상에서 연결된 사이트 쌍에만 적용합니다. 컴파일 결과가 사용하는 사이트와 연결을 갖추고 선택한 시뮬레이션 방법으로 프로그램을 처리할 수 있다면, 그 시뮬레이터에서 결과를 실행할 수 있습니다."
+  ko: '`SCTarget`은 장치의 연결 구조를 지정합니다. 컴파일러는 초전도 장치의 네이티브 게이트인 `X`, `SX`, `RZ`, `CZ`를 사용하며, `CZ`는 컴파일 대상에서 연결된 사이트 쌍에만 적용합니다. 컴파일 결과가 사용하는 사이트와 연결을 갖추고 선택한 시뮬레이션 방법으로 프로그램을 처리할 수 있다면, 그 시뮬레이터에서 결과를 실행할 수 있습니다.'
   status: machine
 - id: 7d3494aedd7d44bf
   en: Pass an [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] directly when its implementation map should also constrain routing and emitted gates. To reuse just its topology, call [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target].

@@ -132,11 +132,11 @@
   status: machine
 - id: f844f08569c20960
   en: A logical circuit describes which gates to apply to which qubits. To run it on a device model, the gates also need to fit the device's instruction set and layout. A superconducting device may use `CZ` as its native two-qubit gate, for example, and allow it only between directly connected qubits. The compiler translates the gates, assigns logical qubits to physical positions, and adds routing operations when needed.
-  ko: "논리 회로는 어떤 큐비트에 어떤 게이트를 적용할지 정의합니다. 장치 모델에서 회로를 실행하려면 장치가 지원하는 명령과 큐비트 배치도 고려해야 합니다. 예를 들어 초전도 장치는 `CZ`를 기본 2큐비트 게이트로 사용하면서 직접 연결된 큐비트에만 이를 허용할 수 있습니다. 컴파일러는 게이트를 장치에 맞게 변환하고, 논리 큐비트를 물리 위치에 배치한 다음 필요에 따라 라우팅 연산을 추가합니다."
+  ko: 논리 회로는 어떤 큐비트에 어떤 게이트를 적용할지 정의합니다. 장치 모델에서 회로를 실행하려면 장치가 지원하는 명령과 큐비트 배치도 고려해야 합니다. 예를 들어 초전도 장치는 `CZ`를 기본 2큐비트 게이트로 사용하면서 직접 연결된 큐비트에만 이를 허용할 수 있습니다. 컴파일러는 게이트를 장치에 맞게 변환하고, 논리 큐비트를 물리 위치에 배치한 다음 필요에 따라 라우팅 연산을 추가합니다.
   status: machine
 - id: 4dc706fc25d36c3e
   en: You can simulate a logical circuit directly to check your algorithm. Compile it when you want to see how it runs under the constraints of a particular device, or to compare the same circuit on different devices.
-  ko: "알고리즘을 확인하려면 논리 회로를 바로 시뮬레이션할 수 있습니다. 특정 장치의 제약 아래에서 회로가 어떻게 실행되는지 살펴보거나 같은 회로를 여러 장치에서 비교하려면 각 장치를 대상으로 컴파일합니다."
+  ko: 알고리즘을 확인하려면 논리 회로를 바로 시뮬레이션할 수 있습니다. 특정 장치의 제약 아래에서 회로가 어떻게 실행되는지 살펴보거나 같은 회로를 여러 장치에서 비교하려면 각 장치를 대상으로 컴파일합니다.
   status: machine
 - id: 85bfd3f3041818ea
   en: 'This target describes three sites in a chain: `0–1–2`. A `CZ` can run directly between sites `0` and `1` or between `1` and `2`. There is no direct connection between `0` and `2`, so the compiler must use the available connections when it maps and routes the circuit.'

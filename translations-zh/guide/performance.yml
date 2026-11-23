@@ -280,5 +280,5 @@
   status: machine
 - id: 72508469d889168a
   en: 'Specialized representations can save much more than runtime tuning. For linear optics, `LOSimulator` uses fixed-photon states by default: four photons in twelve modes require just 1,365 amplitudes. See [Simulate larger interferometers](linear-optics.md#simulate-larger-interferometers). For physical models, first [choose a simulation or emulation approach](execution-models.md); extra physical levels and pulse integration change the cost of the problem.'
-  zh: "专用表示方式带来的节省可能远大于运行时调优。在线性光学中，`LOSimulator` 默认使用固定光子数态：十二个模式中的四个光子只需 1,365 个振幅。参见[模拟更大的干涉仪](linear-optics.md#simulate-larger-interferometers)。对于物理模型，先[选择模拟与仿真方式](execution-models.md)；额外的物理能级和脉冲积分都会改变问题的计算开销。"
+  zh: 专用表示方式带来的节省可能远大于运行时调优。在线性光学中，`LOSimulator` 默认使用固定光子数态：十二个模式中的四个光子只需 1,365 个振幅。参见[模拟更大的干涉仪](linear-optics.md#simulate-larger-interferometers)。对于物理模型，先[选择模拟与仿真方式](execution-models.md)；额外的物理能级和脉冲积分都会改变问题的计算开销。
   status: machine

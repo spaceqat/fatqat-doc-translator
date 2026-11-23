@@ -16,7 +16,7 @@
   status: machine
 - id: 17b6aa23c0286d8e
   en: An integer target is ambiguous
-  ko: "정수로 대상을 지정할 때 오류가 남"
+  ko: 정수로 대상을 지정할 때 오류가 남
   status: machine
 - id: 21e364de512be153
   en: 'Bare integers are convenient for `Program(2)`, where there is only one quantum register. Once a Program contains several registers, use the register references you created:'
@@ -52,7 +52,7 @@
   status: machine
 - id: 13a948cdb96e44f6
   en: An operation works on Simulator but is unsupported here
-  ko: "범용 Simulator에서는 되지만 장치 모델에서는 오류가 남"
+  ko: 범용 Simulator에서는 되지만 장치 모델에서는 오류가 남
   status: machine
 - id: f9546d1afd71b66a
   en: That usually means the selected hardware profile or emulator cannot realize the instruction as written. The general simulator accepts a wider logical operation set; constrained targets intentionally do not.
@@ -112,7 +112,7 @@
   status: retired
 - id: bc40669ff86b00da
   en: A statevector is unavailable for a noisy or dynamic run
-  ko: "노이즈이나 중간 측정을 추가한 후 상태 벡터를 얻을 수 없음"
+  ko: 노이즈이나 중간 측정을 추가한 후 상태 벡터를 얻을 수 없음
   status: machine
 - id: 3b7bb637f15070e0
   en: After measurement, reset, or trajectory noise, one statevector is only one sampled history. Request it with `shots=1` when that single history is what you want. Use density-matrix simulation for an exact mixed state.
@@ -200,69 +200,69 @@
   status: retired
 - id: 18d1c0bc5dac4aa5
   en: Troubleshoot common problems
-  ko: "자주 발생하는 문제 해결하기"
+  ko: 자주 발생하는 문제 해결하기
   status: machine
 - id: 402f8509a42fc5ef
   en: Find the symptom that matches what you see. Start with the suggested check or fix, then follow the linked example if you need more context.
-  ko: "겪고 있는 증상에 해당하는 항목을 찾아 안내된 확인 방법이나 해결책부터 적용하세요. 자세한 내용은 연결된 예제를 참고하면 됩니다."
+  ko: 겪고 있는 증상에 해당하는 항목을 찾아 안내된 확인 방법이나 해결책부터 적용하세요. 자세한 내용은 연결된 예제를 참고하면 됩니다.
   status: machine
 - id: f72fbcd57e557844
   en: If your Program has multiple quantum registers, specify the register as well as the index. For example, use `qubit[0]` to pick slot 0 in `qubit`.
-  ko: "Program에 양자 레지스터가 여러 개 있으면 레지스터와 인덱스를 함께 지정하세요. 예를 들어 `qubit[0]`으로 `qubit`의 슬롯 0을 선택합니다."
+  ko: Program에 양자 레지스터가 여러 개 있으면 레지스터와 인덱스를 함께 지정하세요. 예를 들어 `qubit[0]`으로 `qubit`의 슬롯 0을 선택합니다.
   status: machine
 - id: 1a025be243e3e1ec
   en: See [Program & Register](program.md) for more examples of register references.
-  ko: "레지스터 참조를 사용하는 다른 예는 [Program과 Register](program.md)를 참고하세요."
+  ko: 레지스터 참조를 사용하는 다른 예는 [Program과 Register](program.md)를 참고하세요.
   status: machine
 - id: b29e14e7fc8d5c6b
   en: Check that the classical destination has the same dimension as the resource you measure. For a qutrit, use a classical register with `dim=3`.
-  ko: "측정 결과를 저장할 고전 레지스터의 차원이 측정 대상과 같은지 확인하세요. 큐트릿을 측정할 때는 `dim=3`인 고전 레지스터를 사용합니다."
+  ko: 측정 결과를 저장할 고전 레지스터의 차원이 측정 대상과 같은지 확인하세요. 큐트릿을 측정할 때는 `dim=3`인 고전 레지스터를 사용합니다.
   status: machine
 - id: 128e83058933b0a1
   en: Run the Program returned by `assign_parameters()`. That Program contains the bound values, and the original is available for binding another set.
-  ko: "`assign_parameters()`가 반환한 Program을 실행하세요. 바인딩된 값은 반환된 Program에 들어 있고, 원래 Program에는 다른 값을 바인딩할 수 있습니다."
+  ko: '`assign_parameters()`가 반환한 Program을 실행하세요. 바인딩된 값은 반환된 Program에 들어 있고, 원래 Program에는 다른 값을 바인딩할 수 있습니다.'
   status: machine
 - id: 7fba519d57068e21
   en: Check the device or emulator's supported operations first. Use the general `Simulator` to check the algorithm itself. To model the selected device, write the Program using its native operations or [compile a supported logical circuit](compiler.md) for that target.
-  ko: "먼저 장치나 에뮬레이터가 지원하는 연산을 확인하세요. 알고리즘을 검증할 때는 범용 `Simulator`를 사용합니다. 특정 장치를 모델링하려면 기본 연산으로 Program을 작성하거나 해당 타깃에 맞게 [지원되는 논리 회로를 컴파일](compiler.md)합니다."
+  ko: 먼저 장치나 에뮬레이터가 지원하는 연산을 확인하세요. 알고리즘을 검증할 때는 범용 `Simulator`를 사용합니다. 특정 장치를 모델링하려면 기본 연산으로 Program을 작성하거나 해당 타깃에 맞게 [지원되는 논리 회로를 컴파일](compiler.md)합니다.
   status: machine
 - id: c7dc0b85904d0a02
   en: A two-qubit gate fails on the selected positions
-  ko: "선택한 위치에서 2큐비트 게이트가 실패함"
+  ko: 선택한 위치에서 2큐비트 게이트가 실패함
   status: machine
 - id: dffa7d78e88847bb
   en: Look up the two physical positions in the [`ResourceLayout`][fatqat.ResourceLayout] and check that the device connects them. Use a pair that shares a connection, as in [the superconducting device example](superconducting-simulation.md).
-  ko: "먼저 [`ResourceLayout`][fatqat.ResourceLayout]에서 두 큐비트의 물리 위치를 찾아 장치에서 두 위치가 연결돼 있는지 확인하세요. 연결된 위치를 사용하는 방법은 [초전도 장치 예제](superconducting-simulation.md)에 있습니다."
+  ko: 먼저 [`ResourceLayout`][fatqat.ResourceLayout]에서 두 큐비트의 물리 위치를 찾아 장치에서 두 위치가 연결돼 있는지 확인하세요. 연결된 위치를 사용하는 방법은 [초전도 장치 예제](superconducting-simulation.md)에 있습니다.
   status: machine
 - id: d06d762693e206fd
   en: First check that the channel is available on the model passed to the emulator. Then check the waveform's units and allowed values, and make sure the pulse duration covers every control. See [Write and run pulse programs](hamiltonian-emulation.md) for a worked example.
-  ko: "먼저 에뮬레이터에 전달한 모델에서 해당 채널을 사용할 수 있는지 확인하세요. 그다음 파형의 단위와 허용 범위를 확인하고 펄스 길이가 모든 제어 신호를 포함하는지 살펴보세요. 전체 예제는 [펄스 프로그램 작성과 실행](hamiltonian-emulation.md)을 참고하세요."
+  ko: 먼저 에뮬레이터에 전달한 모델에서 해당 채널을 사용할 수 있는지 확인하세요. 그다음 파형의 단위와 허용 범위를 확인하고 펄스 길이가 모든 제어 신호를 포함하는지 살펴보세요. 전체 예제는 [펄스 프로그램 작성과 실행](hamiltonian-emulation.md)을 참고하세요.
   status: machine
 - id: 493e3f2b7c171ec3
   en: Increase `shots` for a steadier estimate. Set a seed when you need the same sample to reproduce a result.
-  ko: "더 안정적으로 추정하려면 `shots`를 늘립니다. 같은 표본으로 결과를 재현하려면 난수 시드를 설정하세요."
+  ko: 더 안정적으로 추정하려면 `shots`를 늘립니다. 같은 표본으로 결과를 재현하려면 난수 시드를 설정하세요.
   status: machine
 - id: 16ddb2d7b6ab19e7
   en: To inspect one trajectory after measurement, reset, or trajectory noise, run with `shots=1` and request the final state. Use density-matrix simulation when you need the mixed state averaged over trajectories.
-  ko: "측정, 리셋 또는 궤적 노이즈가 있는 실행에서 궤적 하나를 보려면 `shots=1`로 실행하고 최종 상태를 요청합니다. 궤적을 평균한 혼합 상태가 필요하면 밀도 행렬 시뮬레이션을 사용합니다."
+  ko: 측정, 리셋 또는 궤적 노이즈가 있는 실행에서 궤적 하나를 보려면 `shots=1`로 실행하고 최종 상태를 요청합니다. 궤적을 평균한 혼합 상태가 필요하면 밀도 행렬 시뮬레이션을 사용합니다.
   status: machine
 - id: 6c144add8d7aa576
   en: Run the same workload once before timing it. Numba compiles kernels the first time they run. To time a one-off run, try NumPy. See [Performance and scaling](performance.md) for the benchmark setup.
-  ko: "시간을 재기 전에 같은 작업을 한 번 실행하세요. Numba는 처음 실행할 때 수치 커널을 컴파일합니다. 한 번만 실행하는 시간을 재려면 NumPy를 사용해 보세요. 벤치마크 구성은 [성능과 확장성](performance.md)을 참고하세요."
+  ko: 시간을 재기 전에 같은 작업을 한 번 실행하세요. Numba는 처음 실행할 때 수치 커널을 컴파일합니다. 한 번만 실행하는 시간을 재려면 NumPy를 사용해 보세요. 벤치마크 구성은 [성능과 확장성](performance.md)을 참고하세요.
   status: machine
 - id: 95382e7e795126a7
   en: A requested field is missing from the Result
-  ko: "Result에 필요한 필드가 없음"
+  ko: Result에 필요한 필드가 없음
   status: machine
 - id: e399e3fee1d35102
   en: Inspect `result.available_data` to see which fields the run produced. If the field you need is missing, check the requested outputs and simulation method.
-  ko: "`result.available_data`에서 이번 실행이 반환한 필드를 확인하세요. 필요한 필드가 없다면 요청한 출력과 시뮬레이션 방식을 확인합니다."
+  ko: '`result.available_data`에서 이번 실행이 반환한 필드를 확인하세요. 필요한 필드가 없다면 요청한 출력과 시뮬레이션 방식을 확인합니다.'
   status: machine
 - id: 3a2e7208d93b0d5f
   en: Read a FatQat count string from classical slot 0 on the left. Tuple keys follow the same order and are easier to read when slots have different dimensions. When any classical dimension is at least 10, the strings separate entries with commas.
-  ko: "FatQat 횟수 문자열의 가장 왼쪽은 고전 슬롯 0에 해당합니다. 튜플 키도 같은 순서를 따르며 슬롯의 차원이 다를 때 읽기 쉽습니다. 고전 슬롯의 차원이 하나라도 10 이상이면 문자열에서 각 값을 쉼표로 구분합니다."
+  ko: FatQat 횟수 문자열의 가장 왼쪽은 고전 슬롯 0에 해당합니다. 튜플 키도 같은 순서를 따르며 슬롯의 차원이 다를 때 읽기 쉽습니다. 고전 슬롯의 차원이 하나라도 10 이상이면 문자열에서 각 값을 쉼표로 구분합니다.
   status: machine
 - id: 0170cdd770f3b0fe
   en: Make a small example that reproduces the problem
-  ko: "문제를 재현하는 작은 예제 만들기"
+  ko: 문제를 재현하는 작은 예제 만들기
   status: machine
