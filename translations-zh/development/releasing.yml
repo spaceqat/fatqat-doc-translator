@@ -1,0 +1,156 @@
+- id: a96b8ab5e6df7fd3
+  en: Making a release
+  zh: 发布指南
+  status: machine
+- id: 517c044e8d6ec4b1
+  en: Use this guide when you are preparing a FatQat release. It walks you through choosing which changes to ship, checking the package that users will install, publishing it, and getting `main` ready for further development.
+  zh: 准备发布 FatQat 时，可以按本指南选择要发布的改动，检查用户实际会安装的软件包，完成发布，并让 `main` 做好继续开发的准备。
+  status: machine
+- id: c985637655e4b634
+  en: A release has three names you will use along the way. For example, the **release branch** `v0.2.x` can carry several releases in the same series. The **Git tag** `v0.2.0` identifies the exact commit used for one of them. The **package version** `0.2.0` is what a user gives to pip. For a prerelease such as `0.2.0rc1`, the branch stays the same and the tag becomes `v0.2.0rc1`.
+  zh: 发布过程中会用到三种名称。以 `v0.2.x` 为例，一个**发布分支**可以承载同一系列的多个版本。**Git 标签** `v0.2.0` 标记其中一个版本所用的确切提交，**软件包版本号** `0.2.0` 则是用户交给 pip 的值。如果发布的是 `0.2.0rc1` 这样的预发布版本，分支仍用原来的，标签改用 `v0.2.0rc1`。
+  status: machine
+- id: 887fe405cf89ff20
+  en: You will open two pull requests. The first prepares the package on its release branch while development continues on `main`. After publication, the second brings the release notes and any release fixes back to `main`.
+  zh: 发布需要两个 PR。第一个在发布分支上准备软件包，`main` 上的开发可以继续。发布完成后，第二个 PR 将发布说明以及发布时的修复合回 `main`。
+  status: machine
+- id: ba4ab3fb9dcbbd6a
+  en: Choose what to release
+  zh: 确定发布范围
+  status: machine
+- id: fbddf0636523cf2d
+  en: Start with the intended package version. It determines which branch to use and which changes belong in the release.
+  zh: 先确定要发布的软件包版本。它决定从哪个分支开始，以及本次发布应包含哪些改动。
+  status: machine
+- id: 8e11ae2d04c6b4e4
+  en: '| What are you releasing? | Where to start |'
+  zh: '| 发布类型 | 从哪里开始 |'
+  status: machine
+- id: ac52447093600225
+  en: '| A patch such as `0.1.1` | Start from `v0.1.x` and backport the fixes intended for users of that series. |'
+  zh: '| `0.1.1` 等补丁版本 | 从 `v0.1.x` 开始，将需要提供给该系列用户的修复移植过来。 |'
+  status: machine
+- id: 6c534ab92e9eef2e
+  en: '| A new minor or major version such as `0.2.0` or `1.0.0` | Use the series branch if one already exists from a prerelease. Otherwise, create `v0.2.x` or `v1.0.x` from the commit on `main` that contains the intended changes. |'
+  zh: '| `0.2.0` 等新次版本或 `1.0.0` 等新主版本 | 如果预发布时已创建对应系列的分支，就沿用它。否则，从 `main` 上包含本次改动的提交创建 `v0.2.x` 或 `v1.0.x`。 |'
+  status: machine
+- id: 5e88888134480c20
+  en: '| An alpha, beta, or release candidate | Use the branch for the intended final release. Create it for the first prerelease if necessary, then reuse it throughout the series. |'
+  zh: '| Alpha、Beta 或候选版本 | 使用计划中正式版本对应的分支。首次预发布时如有需要就创建该分支，后续同系列版本继续使用。 |'
+  status: machine
+- id: 5d3b1208121a145e
+  en: Create any new series branch in `spaceqat/fatqat` so it can be the base of a PR. Check the repository's branch rules and the PyPI environment's allowed branches and tags for the new series. Keep earlier series branches available for maintenance.
+  zh: 在 `spaceqat/fatqat` 中创建新的系列分支，以便将其设为 PR 的目标分支。检查仓库的分支规则，以及 PyPI 发布环境是否允许该系列的分支和标签。保留较早的系列分支，供后续维护使用。
+  status: machine
+- id: 15cdc9bf343e51ad
+  en: Create your working branch from the selected release branch. During a prerelease cycle you can bring in further changes from `main` while they belong to the same series. Once development on `main` moves ahead, backport the individual fixes needed for the release.
+  zh: 从选定的发布分支创建工作分支。预发布期间，可以从 `main` 引入仍属于本系列的后续改动。等 `main` 进入下一阶段的开发后，再按需将单项修复移植到发布分支。
+  status: machine
+- id: 463f523342d69a05
+  en: Prepare the release PR
+  zh: 准备发布 PR
+  status: machine
+- id: 97367bb012e60c62
+  en: Set `__version__` in `src/fatqat/__init__.py` to the version you want users to install. Drop the development suffix and retain any prerelease identifier, for example `0.2.0rc1`.
+  zh: 将 `src/fatqat/__init__.py` 中的 `__version__` 设为希望用户安装的版本号。去掉开发版本后缀，保留预发布标识，例如 `0.2.0rc1`。
+  status: machine
+- id: ac03542b42378432
+  en: Add a dated entry to `CHANGELOG.md`. Choose the comparison point from the reader's perspective. Someone moving from one alpha or patch to the next needs the changes since the preceding tag in that series. Someone upgrading from one stable series to the next also needs the features introduced during the intervening prereleases. Compare the tagged contents when deciding whether a feature is new or an existing feature was updated. Include migration steps where an API changed, and credit external contributors alongside their changes with links to the relevant PRs.
+  zh: 在 `CHANGELOG.md` 中添加带日期的记录。根据读者的升级路径选择比较起点。从同一系列的上一个 Alpha 或补丁版本升级时，读者需要知道上一个标签之后有哪些改动。从上一稳定系列升级时，还要列出其间各预发布版本引入的功能。判断是新增功能还是改进已有功能时，以标签对应的实际内容为准。API 有变化时写明迁移步骤，并在相应改动旁注明外部贡献者，链接到相关 PR。
+  status: machine
+- id: f2d5dbab44c605fc
+  en: Open the PR against the release branch. Run the [contribution checks](https://github.com/spaceqat/fatqat/blob/main/CONTRIBUTING.md#code-changes-and-validation) and [documentation validation](https://github.com/spaceqat/fatqat/blob/main/docs/mkdocs/README.md#validate-before-submission). After review and merge, confirm tests and lint pass and note the merged commit SHA. You will use it to check the release tag.
+  zh: 以发布分支为目标创建 PR，并运行[贡献检查](https://github.com/spaceqat/fatqat/blob/main/CONTRIBUTING.md#code-changes-and-validation)和[文档检查](https://github.com/spaceqat/fatqat/blob/main/docs/mkdocs/README.md#validate-before-submission)。评审并合并后，确认测试和 lint 检查都通过，记下合并提交的 SHA，供创建发布标签时核对。
+  status: machine
+- id: fbbc3a944a551073
+  en: Try the package before publishing
+  zh: 发布前试装软件包
+  status: machine
+- id: f96dd350fede5890
+  en: The release workflow produces two files, a wheel for installation and a source archive. Build them from the merged release branch first so you can try a clean installation before publishing.
+  zh: 发布工作流会生成两个文件：用于安装的 wheel 和源码归档。先从合并后的发布分支生成这两个文件，在干净的环境中试装。
+  status: machine
+- id: 0bac0c220d1a3106
+  en: Open [Build and optionally publish to PyPI](https://github.com/spaceqat/fatqat/actions/workflows/build.yaml) in `spaceqat/fatqat`.
+  zh: 打开 `spaceqat/fatqat` 中的 [Build and optionally publish to PyPI](https://github.com/spaceqat/fatqat/actions/workflows/build.yaml) 工作流。
+  status: machine
+- id: 8358efb7b69afbe6
+  en: Choose **Run workflow**, select the release branch, and leave `confirm_ref` blank. This runs the build and Twine checks only.
+  zh: 选择 **Run workflow**，选中发布分支，将 `confirm_ref` 留空。这次运行只执行构建和 Twine 检查。
+  status: machine
+- id: 93faa045b7f394b5
+  en: When the run succeeds, download and unpack the **distributions** artifact. Check that it contains the wheel and source archive for the intended version.
+  zh: 工作流成功后，下载并解压 **distributions** 构建产物，确认其中有预期版本的 wheel 和源码归档。
+  status: machine
+- id: 9126ac8cdd8cbd37
+  en: Install the downloaded wheel in a fresh Python environment, from a directory outside the source checkout. Replace the example path below with the path to the wheel.
+  zh: 在源码检出目录以外，创建一个新的 Python 环境并安装下载的 wheel。将下面命令中的示例路径换成 wheel 的实际路径。
+  status: machine
+- id: 0c76e950c08493d4
+  en: Confirm that the printed version matches the release PR, then run a small simulation from the quickstart. This exercises the installed package and its dependencies. Resolve any problems before tagging the release.
+  zh: 确认输出的版本号与发布 PR 一致，再运行快速入门中的一个小型模拟，以检查安装的软件包及其依赖是否正常。发现问题后，先修复再打标签。
+  status: machine
+- id: 27e7da91503af700
+  en: Tag the tested commit on GitHub
+  zh: 在 GitHub 上为已验证的提交打标签
+  status: machine
+- id: d3915b41942dd2a4
+  en: Open [New release](https://github.com/spaceqat/fatqat/releases/new). Enter the tag (the package version prefixed with `v`), select the release branch as the target, and copy the changelog entry into the release notes. For an alpha, beta, or release candidate, select **Set as a pre-release**. Leave that option unchecked for a stable version.
+  zh: 打开 [New release](https://github.com/spaceqat/fatqat/releases/new)。输入标签，即在软件包版本号前加 `v`，再将发布分支选为目标，把变更日志中对应的条目复制到发布说明。Alpha、Beta 和候选版本要勾选 **Set as a pre-release**。稳定版本保持该选项未勾选。
+  status: machine
+- id: c2f30e7cf8d38b3d
+  en: Save the draft so the notes can be reviewed. A new tag entered in the draft is created when you click **Publish release**. Before publishing, check the release date and confirm the target still points to the commit you tested. If you selected an existing tag, check the commit that tag already identifies.
+  zh: 先保存草稿，便于评审发布说明。草稿中新填的标签会在点击 **Publish release** 时创建。发布前检查发布日期，并确认目标仍指向已经验证过的提交。若选择了已有标签，则检查该标签实际指向的提交。
+  status: machine
+- id: a5f160f4931fcd26
+  en: Publish the tagged version to PyPI
+  zh: 将带标签的版本发布到 PyPI
+  status: machine
+- id: 0282ae1c535949af
+  en: Run the build workflow again, this time using the published tag. The workflow rebuilds the distributions from that tag and submits them to the PyPI publishing environment for approval.
+  zh: 再次运行构建工作流，这次选择已发布的标签。工作流会从该标签重新构建发布文件，并提交到 PyPI 发布环境等待审批。
+  status: machine
+- id: 1ae81d2abd36864e
+  en: In the workflow's branch/tag selector, select the **tag**. Enter the same tag, including the initial `v`, in `confirm_ref`. For example, for `0.2.0rc1`, both fields should read `v0.2.0rc1`.
+  zh: 在工作流的分支和标签选择器中选中**标签**，并在 `confirm_ref` 中输入完整的同一标签，包括开头的 `v`。例如，发布 `0.2.0rc1` 时，两处都应是 `v0.2.0rc1`。
+  status: machine
+- id: ed020badee2389ef
+  en: Start the run. The workflow checks that the confirmation matches the selected ref and that the tag matches the version in the built package. Development versions and versions with a local suffix are rejected.
+  zh: 启动工作流。它会核对确认值是否与所选 Git 引用一致，并检查标签是否与构建所得软件包的版本号匹配。开发版本以及带本地版本后缀的版本无法通过检查。
+  status: machine
+- id: 7006e00c31fd5338
+  en: When the **publish** job requests approval, an authorized reviewer opens **Review deployments**, selects `pypi`, and clicks **Approve and deploy**. Allow for any wait timer configured on the environment.
+  zh: '**publish** 任务请求审批时，由有权限的评审者打开 **Review deployments**，选择 `pypi`，再点击 **Approve and deploy**。如果该环境配置了等待时间，需要等计时结束。'
+  status: machine
+- id: 543dd7b898a061e7
+  en: After the job succeeds, find the version in the [PyPI release history](https://pypi.org/project/fatqat/#history) and check that both files are listed. In a fresh environment, install the published version, substituting its package version for `<version>`. Repeat the version check and the small simulation you ran with the downloaded wheel.
+  zh: 任务成功后，在 [PyPI 发布历史](https://pypi.org/project/fatqat/#history) 中找到对应版本，确认两个文件均已列出。然后在新的环境中安装已发布的软件包，将命令中的 `<version>` 换成实际版本号。重复试装 wheel 时的版本检查和小型模拟。
+  status: machine
+- id: e3e5c9e82e392c3e
+  en: If the workflow fails, inspect the failed job and check which files, if any, reached PyPI before retrying.
+  zh: 如果工作流失败，先查看失败的任务，确认哪些文件已经上传到 PyPI，再重试。
+  status: machine
+- id: 56343dc9801e1acd
+  en: Bring the release back to main
+  zh: 将发布改动合回 main
+  status: machine
+- id: e8e3f1f243ea19d6
+  en: Open the second PR against `main`. Include the published notes and any fixes made only on the release branch. Preserve newer changes already on `main`. The development version should tell someone installing from `main` what release series they are testing.
+  zh: 以 `main` 为目标创建第二个 PR，纳入已发布的说明和只在发布分支上做过的修复，并保留 `main` 上较新的改动。开发版本号应让从 `main` 安装的用户看出自己正在测试哪个发布系列。
+  status: machine
+- id: d613ba9b24659e4a
+  en: If the next target is another prerelease of the same version, use its planned identifier followed by `.dev0`, for example `0.2.0rc2.dev0` after `0.2.0rc1`.
+  zh: 如果下一步是同一版本的另一个预发布版本，就在计划使用的标识后加 `.dev0`。例如，`0.2.0rc1` 之后可以使用 `0.2.0rc2.dev0`。
+  status: machine
+- id: 3890bb0da315e318
+  en: After a stable minor or major release, use the next planned development version, for example `0.3.0.dev0` if development moves to `0.3`.
+  zh: 稳定次版本或主版本发布后，使用下一次计划的开发版本号。例如，接下来开发 `0.3` 时，使用 `0.3.0.dev0`。
+  status: machine
+- id: 9ac20f3b1062dd49
+  en: After a maintenance release, keep the current development version if `main` already targets a later series.
+  zh: 维护版本发布后，如果 `main` 已转向更新的系列，则沿用现有的开发版本号。
+  status: machine
+- id: 52fc41f49829b17b
+  en: Review and merge this PR after its checks pass. The release tag stays on the commit used to build the published package.
+  zh: 检查通过后，评审并合并这个 PR。发布标签仍指向构建已发布软件包时所用的提交。
+  status: machine
