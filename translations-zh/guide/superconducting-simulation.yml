@@ -2,22 +2,6 @@
   en: Simulate a superconducting device
   zh: 超导比特模拟
   status: machine
-- id: f5082c68a2dc31e3
-  en: Use [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] to check native gates and qubit placement on a device with fixed connectivity. It simulates circuit operations, with optional noise channels.
-  zh: 使用 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]，可以检查原生门，以及固定连接关系下的量子比特位置。它模拟线路操作，也可以加入噪声信道。
-  status: retired
-- id: 79b1536f61ff6068
-  en: Compare runs with and without this model to study its effect on the output.
-  zh: 试着用前面没有加噪声的模拟器运行同一段测量程序。理想情况下，两个量子比特都应读出 1。再看含噪运行的 100 次测量，有多少次仍然得到 11？
-  status: retired
-- id: 2743f3af1c1b8842
-  en: For supported gates and simulation methods, see the [superconducting simulator API](../api/simulators/sc-qubit.md).
-  zh: 支持的门和模拟方法见[超导模拟器 API](../api/simulators/sc-qubit.md)。
-  status: retired
-- id: deb089bb3630ecc6
-  en: In a superconducting processor, qubits occupy fixed positions, and the device connections determine which pairs can interact directly. A circuit that works in an ideal simulator may therefore need different gates or a different qubit placement before it can run on the device.
-  zh: 在超导处理器中，量子比特位于固定的位置，设备的连接关系决定了哪些量子比特可以直接相互作用。因此，一个在理想模拟器中正常运行的线路，要在设备上运行，可能还需要换用设备支持的量子门，或调整量子比特的位置。
-  status: retired
 - id: 856ae325568da4bd
   en: When you prepare a Bell state on a general simulator, you can choose two qubits and apply gates to them without choosing a device. On a superconducting processor, each qubit occupies a fixed position. Does the processor support the gates in your circuit? Are the two positions connected so the qubits can interact directly?
   zh: 在通用模拟器里制备贝尔态时，你可以选两个量子比特，对它们施加量子门，不用指定设备。换到超导处理器上，每个量子比特都有固定的位置。这时要看两件事：处理器支持线路中的门吗？两个量子比特所在的位置有直接连线吗？
@@ -26,13 +10,41 @@
   en: The [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] lets you explore both questions at the gate level. First, check the gates in a Bell circuit. Then try the same native two-qubit gate at two different pairs of positions.
   zh: 用 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 可以在门级模拟中检查这两点。先看看设备支持贝尔态线路里的哪些门，再选一个设备支持的双量子比特门，换两组位置试一试。
   status: machine
-- id: bc9d46125df28cef
-  en: This device supports `CZ` on connected pairs. The diagram shows two layouts on the same six-site device. The outlined circles mark the positions assigned to the two program qubits. Can you trace a single edge between them in each layout?
-  zh: 这台设备支持在直接相连的两个位置上执行 `CZ`。下图画的是同一台设备的两种布局，带外圈的节点表示程序里的两个量子比特放在哪里。看看左右两幅图：哪一对节点之间有直接连线？
-  status: retired
+- id: f5b460a36edc17b1
+  en: Check which gates the device supports
+  zh: 检查设备支持哪些门
+  status: machine
+- id: 7d6ebca666148e5f
+  en: This Program prepares a Bell state with `H` and `CX`. On the general simulator you can run it without assigning the qubits to sites on a device.
+  zh: 这个 Program 用 `H` 和 `CX` 制备贝尔态。在通用模拟器上运行时，无需指定两个量子比特在设备上的位置。
+  status: machine
+- id: bb7fc621a68e7a9d
+  en: 'Now ask the constrained superconducting profile about the same Program. The profile can report whether it supports `H`, so you do not need to copy its gate table into application code:'
+  zh: 要在超导设备上运行这段 Program，可以先查询设备模型是否支持线路中的 `H` 门。
+  status: machine
+- id: 9e4c8419e4254a3c
+  en: Submitting `bell` would therefore raise [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]. FatQat does not silently decompose `H` or `CX` into this profile's native operations.
+  zh: 直接运行 `bell` 会报 [`UnsupportedOperationError`][fatqat.errors.UnsupportedOperationError]。这个设备模型不会自动把 `H` 或 `CX` 分解为原生门。
+  status: machine
+- id: 99e35bd7fe9ea137
+  en: Make placement explicit
+  zh: 为量子比特选择位置
+  status: machine
+- id: b806c61bf4c5d028
+  en: This device supports `CZ` on connected pairs. The diagram shows two layouts on the same six-site device. The outlined circles mark the positions assigned to the two program qubits.
+  zh: 这台设备可以在直接相连的两个位置上执行 `CZ`。下图展示了同一台六比特设备上的两种布局，带外圈的节点表示分配给两个量子比特的位置。
+  status: machine
 - id: 0d2a7a6853e6e048
   en: '![Two layouts on the same grid. Sites 0 and 4 have no direct connection. Sites 0 and 1 share an edge.](../assets/images/superconducting-placement.svg)'
   zh: '![同一网格上的两种布局。左图的位置 0 和 4 没有直接连线，右图的位置 0 和 1 直接相连。](../assets/images/superconducting-placement.svg)'
+  status: machine
+- id: 7011c7a69c8943a3
+  en: 'The next Program is native, but placing its two qubits at `0` and `4` asks for a diagonal `CZ` that the grid does not provide:'
+  zh: 下面的 Program 只用设备支持的门。如果把两个量子比特放在 `0` 和 `4`，`CZ` 就无法执行，因为这两个位置之间没有直接连线。
+  status: machine
+- id: dac690ecb9465ad3
+  en: Run the same Program again, this time assigning the second qubit to site `1`. Sites 0 and 1 share an edge, so the device can apply the gate there.
+  zh: 再运行同一个 Program，这次把第二个量子比特分配到位置 `1`。位置 0 和 1 直接相连，设备可以在这里执行这个门。
   status: machine
 - id: 0d887c3f23ab0d05
   en: With the qubits at connected sites, the device can run the gates in this Program. Keep that placement and add measurements to see how noise affects the outcome.
@@ -42,34 +54,10 @@
   en: Use the built-in noise model
   zh: 使用内置噪声模型
   status: machine
-- id: 4fba7e1d530a49ad
-  en: So far the device has applied its native gates under ideal conditions. Each qubit starts in zero, so flipping both qubits gives the measurement outcome `11`. Run the same gates with the device's built-in noise model and count how often both qubits still read one.
-  zh: 刚才的模拟中，设备在理想条件下执行原生门。两个量子比特都从 0 开始，各翻转一次，测量时就会得到 `11`。现在启用设备内置的噪声模型，再执行相同的门，数一数有多少次测量仍然得到两个 1。
-  status: retired
-- id: 5047debd2d2965f2
-  en: The first count is the number of times the ideal run returned `11` out of 100 shots. Compare it with the second count to see how often that outcome appeared with noise.
-  zh: 第一个数是理想运行的 100 次测量中得到 `11` 的次数。对照第二个数，就能看出加入噪声后，同样的结果出现了多少次。
-  status: retired
-- id: f5b460a36edc17b1
-  en: Check which gates the device supports
-  zh: 检查设备支持哪些门
+- id: f7d4f5b45921a09d
+  en: Copy `native` and add measurements to the copy. Each qubit starts in zero, so flipping both qubits gives the ideal measurement outcome `11`. Run the same measured Program at sites 0 and 1, with 100 shots each under ideal conditions and with the built-in noise model.
+  zh: 复制 `native`，在副本上加上测量。两个量子比特都从 0 开始，各翻转一次后，理想的测量结果是 `11`。沿用位置 0 和 1，在理想条件下和启用内置噪声模型时各测量 100 次。
   status: machine
-- id: 7d6ebca666148e5f
-  en: This Program prepares a Bell state with `H` and `CX`. On the general simulator you can run it without assigning the qubits to sites on a device.
-  zh: 这个 Program 用 `H` 和 `CX` 制备贝尔态。在通用模拟器上运行时，无需指定两个量子比特在设备上的位置。
-  status: machine
-- id: b806c61bf4c5d028
-  en: This device supports `CZ` on connected pairs. The diagram shows two layouts on the same six-site device. The outlined circles mark the positions assigned to the two program qubits.
-  zh: 这台设备可以在直接相连的两个位置上执行 `CZ`。下图展示了同一台六比特设备上的两种布局，带外圈的节点表示分配给两个量子比特的位置。
-  status: machine
-- id: dac690ecb9465ad3
-  en: Run the same Program again, this time assigning the second qubit to site `1`. Sites 0 and 1 share an edge, so the device can apply the gate there.
-  zh: 再运行同一个 Program，这次把第二个量子比特分配到位置 `1`。位置 0 和 1 直接相连，设备可以在这里执行这个门。
-  status: machine
-- id: 6cb09201f6c2f893
-  en: So far the device has applied its native gates under ideal conditions. Each qubit starts in zero, so flipping both qubits gives the measurement outcome `11`. The example runs the same Program 100 times on each of two simulators, one ideal and one with the built-in noise model.
-  zh: 前面的模拟都在理想条件下执行。两个量子比特的初态都是 0，各翻转一次后，测量结果就是 `11`。下面在同一布局上运行同一个 Program，先使用理想模拟器，再启用内置噪声模型，每次都测量 100 次。
-  status: retired
 - id: 8d81b71aa4a47518
   en: With the seed used here, the ideal simulator returns `11` in all 100 shots. With the built-in noise model, 92 of the 100 shots return `11`.
   zh: 使用示例中的随机种子，理想运行的 100 次测量结果都是 `11`。启用内置噪声模型后，100 次测量中有 92 次得到 `11`。
@@ -102,7 +90,35 @@
   en: Both layouts reach the same ideal state. With the built-in noise model, the extra gates lower the output-state fidelity from 99.74% to 99.39% for this input.
   zh: 理想条件下，两种布局都得到目标态。对这个输入态启用内置噪声模型后，直接执行时的输出态保真度为 99.74%，加入交换所需的门后降至 99.39%。
   status: machine
-- id: f7d4f5b45921a09d
-  en: Copy `native` and add measurements to the copy. Each qubit starts in zero, so flipping both qubits gives the ideal measurement outcome `11`. Run the same measured Program at sites 0 and 1, with 100 shots each under ideal conditions and with the built-in noise model.
-  zh: 复制 `native`，在副本上加上测量。两个量子比特都从 0 开始，各翻转一次后，理想的测量结果是 `11`。沿用位置 0 和 1，在理想条件下和启用内置噪声模型时各测量 100 次。
-  status: machine
+- id: f5082c68a2dc31e3
+  en: Use [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] to check native gates and qubit placement on a device with fixed connectivity. It simulates circuit operations, with optional noise channels.
+  zh: 使用 [`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator]，可以检查原生门，以及固定连接关系下的量子比特位置。它模拟线路操作，也可以加入噪声信道。
+  status: retired
+- id: 79b1536f61ff6068
+  en: Compare runs with and without this model to study its effect on the output.
+  zh: 试着用前面没有加噪声的模拟器运行同一段测量程序。理想情况下，两个量子比特都应读出 1。再看含噪运行的 100 次测量，有多少次仍然得到 11？
+  status: retired
+- id: 2743f3af1c1b8842
+  en: For supported gates and simulation methods, see the [superconducting simulator API](../api/simulators/sc-qubit.md).
+  zh: 支持的门和模拟方法见[超导模拟器 API](../api/simulators/sc-qubit.md)。
+  status: retired
+- id: deb089bb3630ecc6
+  en: In a superconducting processor, qubits occupy fixed positions, and the device connections determine which pairs can interact directly. A circuit that works in an ideal simulator may therefore need different gates or a different qubit placement before it can run on the device.
+  zh: 在超导处理器中，量子比特位于固定的位置，设备的连接关系决定了哪些量子比特可以直接相互作用。因此，一个在理想模拟器中正常运行的线路，要在设备上运行，可能还需要换用设备支持的量子门，或调整量子比特的位置。
+  status: retired
+- id: bc9d46125df28cef
+  en: This device supports `CZ` on connected pairs. The diagram shows two layouts on the same six-site device. The outlined circles mark the positions assigned to the two program qubits. Can you trace a single edge between them in each layout?
+  zh: 这台设备支持在直接相连的两个位置上执行 `CZ`。下图画的是同一台设备的两种布局，带外圈的节点表示程序里的两个量子比特放在哪里。看看左右两幅图：哪一对节点之间有直接连线？
+  status: retired
+- id: 4fba7e1d530a49ad
+  en: So far the device has applied its native gates under ideal conditions. Each qubit starts in zero, so flipping both qubits gives the measurement outcome `11`. Run the same gates with the device's built-in noise model and count how often both qubits still read one.
+  zh: 刚才的模拟中，设备在理想条件下执行原生门。两个量子比特都从 0 开始，各翻转一次，测量时就会得到 `11`。现在启用设备内置的噪声模型，再执行相同的门，数一数有多少次测量仍然得到两个 1。
+  status: retired
+- id: 5047debd2d2965f2
+  en: The first count is the number of times the ideal run returned `11` out of 100 shots. Compare it with the second count to see how often that outcome appeared with noise.
+  zh: 第一个数是理想运行的 100 次测量中得到 `11` 的次数。对照第二个数，就能看出加入噪声后，同样的结果出现了多少次。
+  status: retired
+- id: 6cb09201f6c2f893
+  en: So far the device has applied its native gates under ideal conditions. Each qubit starts in zero, so flipping both qubits gives the measurement outcome `11`. The example runs the same Program 100 times on each of two simulators, one ideal and one with the built-in noise model.
+  zh: 前面的模拟都在理想条件下执行。两个量子比特的初态都是 0，各翻转一次后，测量结果就是 `11`。下面在同一布局上运行同一个 Program，先使用理想模拟器，再启用内置噪声模型，每次都测量 100 次。
+  status: retired

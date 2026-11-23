@@ -2,31 +2,55 @@
   en: Simulate a neutral-atom array
   ko: 중성 원자 배열 시뮬레이션하기
   status: machine
-- id: b8a647123b0fb8f9
-  en: Use [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] to track atom loading, pairing, and loss while running circuit operations. It does not integrate a Hamiltonian or calculate physical atom trajectories.
-  ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]를 사용하면 회로 연산을 실행하면서 원자의 로딩, 페어링, 손실을 추적할 수 있습니다. 해밀토니안을 적분하거나 원자의 실제 이동 경로를 계산하지는 않습니다.'
-  status: machine
-- id: 2fff67ba7053afeb
-  en: '`AtomArraySimulator` has no packaged reference noise model; pass a [`NoiseModel`][fatqat.NoiseModel] of your own when loading, loss, or other effects belong in the experiment.'
-  ko: '`AtomArraySimulator`에는 내장 기준 잡음 모델이 없습니다. 실험에 로딩, 손실 등의 효과를 포함하려면 직접 정의한 [`NoiseModel`][fatqat.NoiseModel]을 전달하세요.'
-  status: retired
-- id: 51ec4051d54cda86
-  en: 'The atom array has no fixed geometry. Program resources define sites that begin empty. `Put` loads the atoms, while `Pair` and `Unpair` reshape the connectivity on which `CZ` is legal:'
-  ko: 원자 배열에는 고정된 기하 구조가 없습니다. Program 자원은 처음에 비어 있는 사이트를 정의합니다. `Put`으로 원자를 로딩하고, `Pair`와 `Unpair`로 `CZ`를 적용할 수 있는 연결 관계를 바꿉니다.
-  status: machine
-- id: 100e5e2c904fc849
-  en: For native gates, occupancy rules, and simulation methods, see the [atom-array simulator API](../api/simulators/atom-array.md). For pulse-driven physical dynamics, see [Neutral-atom emulation](neutral-atom-emulation.md).
-  ko: 네이티브 게이트, 점유 규칙, 시뮬레이션 방법은 [원자 배열 시뮬레이터 API](../api/simulators/atom-array.md)를 참고하세요. 펄스로 구동하는 물리 동역학은 [중성 원자 에뮬레이션](neutral-atom-emulation.md)에서 설명합니다.
-  status: machine
 - id: a63d0f8d64962ff4
   en: A neutral-atom array uses individual atoms as qubits. Alongside the quantum state, it matters whether an atom is present at each site and which atoms can interact. Loading, pairing, and losing atoms can change which operations are available as the program runs.
   ko: 중성 원자 배열은 개별 원자를 큐비트로 사용합니다. 양자 상태뿐 아니라 각 위치에 원자가 있는지, 어떤 원자들이 상호작용할 수 있는지도 중요합니다. 프로그램이 실행되는 동안 원자의 로딩, 페어링, 손실에 따라 수행할 수 있는 연산이 달라질 수 있습니다.
   status: machine
-- id: f86676a69ca8eb46
-  en: 'Omitting `Pair` before `CZ` is a program error. A missing atom is different: supported gates find nothing to act on, and measurement reports the erasure digit `2`.'
-  ko: '`CZ` 전에 `Pair`를 생략하면 프로그램 오류입니다. 원자가 없는 경우는 다릅니다. 지원되는 게이트는 작용할 대상이 없고, 측정은 소실을 나타내는 숫자 `2`를 보고합니다.'
+- id: b8a647123b0fb8f9
+  en: Use [`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator] to track atom loading, pairing, and loss while running circuit operations. It does not integrate a Hamiltonian or calculate physical atom trajectories.
+  ko: '[`AtomArraySimulator`][fatqat.simulator.AtomArraySimulator]를 사용하면 회로 연산을 실행하면서 원자의 로딩, 페어링, 손실을 추적할 수 있습니다. 해밀토니안을 적분하거나 원자의 실제 이동 경로를 계산하지는 않습니다.'
+  status: machine
+- id: c63e0e1a690961bc
+  en: Track atom occupancy and pairing
+  ko: 원자 점유 상태와 페어링 추적하기
+  status: machine
+- id: 51ec4051d54cda86
+  en: 'The atom array has no fixed geometry. Program resources define sites that begin empty. `Put` loads the atoms, while `Pair` and `Unpair` reshape the connectivity on which `CZ` is legal:'
+  ko: 원자 배열에는 고정된 기하 구조가 없습니다. Program 자원은 처음에 비어 있는 사이트를 정의합니다. `Put`으로 원자를 로딩하고, `Pair`와 `Unpair`로 `CZ`를 적용할 수 있는 연결 관계를 바꿉니다.
+  status: machine
+- id: f667081a005d4a8a
+  en: '![Two occupied atoms begin separated, move together when Pair applies with depolarizing noise, remain paired for CZ, and separate again when Unpair applies with depolarizing noise.](../assets/generated/guide/atom-pairing-lifecycle.svg)'
+  ko: '![점유된 두 원자가 떨어진 상태에서 시작해 Pair에 탈분극 노이즈가 적용될 때 가까워지고, CZ 동안 짝을 유지한 뒤 Unpair에 탈분극 노이즈가 적용될 때 다시 멀어집니다.](../assets/generated/guide/atom-pairing-lifecycle.svg)'
   status: machine
 - id: 72334d141f3f5a64
   en: In the diagram, bringing the atoms together represents creating a pair. The program below loads an atom at each site and then uses `Pair` to make `CZ` available on those sites. `Unpair` removes that connection.
   ko: 그림에서 두 원자를 가까이 가져가는 것은 페어링을 나타냅니다. 아래 프로그램은 각 사이트에 원자를 하나씩 로딩한 뒤 `Pair`를 적용해 그 쌍에서 `CZ`를 사용할 수 있게 합니다. `Unpair`는 이 연결을 해제합니다.
   status: machine
+- id: ca23cfc884492a91
+  en: 'Pairing is ideal unless you attach a noise assumption. For example, apply a small depolarizing channel independently to each atom whenever either movement instruction occurs:'
+  ko: 노이즈를 추가하지 않으면 페어링은 이상적으로 처리됩니다. 이동 중의 교란을 고려하려면 각 이동 명령이 실행될 때 두 원자에 각각 약한 탈분극 채널을 적용할 수 있습니다.
+  status: machine
+- id: f42cf48e24b225ac
+  en: This channel perturbs the quantum state during `Pair` and `Unpair`; it does not remove either atom. Use [`Loss`][fatqat.noise.Loss] instead when movement should change occupancy.
+  ko: 이 채널은 `Pair`와 `Unpair` 중 양자 상태를 교란하지만 원자를 제거하지는 않습니다. 이동으로 점유 상태가 바뀌어야 한다면 [`Loss`][fatqat.noise.Loss]를 사용하세요.
+  status: machine
+- id: 9a47173f4a88d627
+  en: '![An occupied atom undergoes a matched operation, after which Loss either leaves it present with probability one minus p or removes it with probability p; measurement of the empty site returns 2.](../assets/generated/guide/atom-loss-lifecycle.svg)'
+  ko: '![점유된 원자에 조건과 일치하는 연산을 적용한 뒤, Loss가 확률 1-p로 원자를 남겨 두거나 확률 p로 제거합니다. 빈 사이트를 측정하면 2가 반환됩니다.](../assets/generated/guide/atom-loss-lifecycle.svg)'
+  status: machine
+- id: ce3e44b2ed641cd8
+  en: 'Loss can be attached to any supported operation. Here it is sampled after `RX`, so surviving atoms return `1`, while lost atoms return `2`:'
+  ko: 손실 효과는 지원되는 모든 연산에 연결할 수 있습니다. 여기서는 `RX` 뒤에 원자의 손실 여부를 샘플링합니다. 원자가 남아 있으면 측정 결과는 `1`, 사라졌으면 `2`입니다.
+  status: machine
+- id: f86676a69ca8eb46
+  en: 'Omitting `Pair` before `CZ` is a program error. A missing atom is different: supported gates find nothing to act on, and measurement reports the erasure digit `2`.'
+  ko: '`CZ` 전에 `Pair`를 생략하면 프로그램 오류입니다. 원자가 없는 경우는 다릅니다. 지원되는 게이트는 작용할 대상이 없고, 측정은 소실을 나타내는 숫자 `2`를 보고합니다.'
+  status: machine
+- id: 100e5e2c904fc849
+  en: For native gates, occupancy rules, and simulation methods, see the [atom-array simulator API](../api/simulators/atom-array.md). For pulse-driven physical dynamics, see [Neutral-atom emulation](neutral-atom-emulation.md).
+  ko: 네이티브 게이트, 점유 규칙, 시뮬레이션 방법은 [원자 배열 시뮬레이터 API](../api/simulators/atom-array.md)를 참고하세요. 펄스로 구동하는 물리 동역학은 [중성 원자 에뮬레이션](neutral-atom-emulation.md)에서 설명합니다.
+  status: machine
+- id: 2fff67ba7053afeb
+  en: '`AtomArraySimulator` has no packaged reference noise model; pass a [`NoiseModel`][fatqat.NoiseModel] of your own when loading, loss, or other effects belong in the experiment.'
+  ko: '`AtomArraySimulator`에는 내장 기준 잡음 모델이 없습니다. 실험에 로딩, 손실 등의 효과를 포함하려면 직접 정의한 [`NoiseModel`][fatqat.NoiseModel]을 전달하세요.'
+  status: retired

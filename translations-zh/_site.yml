@@ -2,42 +2,70 @@
   en: Home
   zh: 主页
   status: machine
-- id: e4095b778786868d
-  en: Start with one program
+- id: 61e8d44ad423a4a0
+  en: Get started
   zh: 创建与运行一个 Program
-  status: retired
+  status: machine
 - id: d3b2aefa7524f88c
   en: Quickstart
   zh: 快速入门
   status: machine
-- id: d71f409e900eb6ed
-  en: Programs and registers
+- id: 666074c740953ec6
+  en: Program & Register
   zh: Program 与 Register
-  status: retired
-- id: 435e7cb6fa6d898c
-  en: Execution models
-  zh: 执行模型
-  status: retired
-- id: bcab022f89313896
-  en: Run and analyze programs
-  zh: 运行与分析程序
-  status: retired
-- id: 45314e97b0c26a86
-  en: Simulation
+  status: machine
+- id: e6a87f53aa65439a
+  en: Simulation choices
+  zh: 选择模拟与仿真方式
+  status: machine
+- id: e295a051a0d7533f
+  en: Run & analyze
+  zh: 模拟与分析
+  status: machine
+- id: 32d4bb512cbfd7bd
+  en: Simulate programs
   zh: 模拟量子程序
-  status: retired
+  status: machine
 - id: 0b450ba46b4d6b79
   en: Ideal and noisy runs
   zh: 理想运行与含噪运行
   status: machine
-- id: 442aded87a55aa8c
-  en: Performance
+- id: 63c68fbe02915f82
+  en: Visualize results
+  zh: 可视化
+  status: machine
+- id: 3b28312d970dd922
+  en: Improve performance
   zh: 性能优化
-  status: retired
-- id: 9a9cc4a72ef682dd
-  en: Model hardware and physics
-  zh: 硬件与物理建模
-  status: retired
+  status: machine
+- id: f2dfd75fe1c9e0c0
+  en: Hardware constraints
+  zh: 硬件约束模拟
+  status: machine
+- id: 3a9997a686ffdad3
+  en: Hardware overview
+  zh: 模拟时考虑硬件约束
+  status: machine
+- id: b8037f7b8b804cf3
+  en: Superconducting qubits
+  zh: 超导比特模拟
+  status: machine
+- id: cac53650c5062c99
+  en: Neutral-atom arrays
+  zh: 中性原子阵列模拟
+  status: machine
+- id: 291e656731600b18
+  en: Linear optics
+  zh: 线性光学
+  status: machine
+- id: fde5fc03c4a41468
+  en: Compile circuits
+  zh: 编译并运行逻辑线路
+  status: machine
+- id: 60d3440ebfab046a
+  en: Pulse programs
+  zh: 编写和运行脉冲程序
+  status: machine
 - id: 348c1c6d71f05569
   en: Transmon emulation
   zh: 超导 Transmon 仿真
@@ -46,42 +74,110 @@
   en: Neutral-atom emulation
   zh: 中性原子仿真
   status: machine
-- id: e6665fc1d2b887bc
-  en: Connect and diagnose
-  zh: 互操作与问题诊断
-  status: retired
+- id: 068e662d04aee2be
+  en: Connect & debug
+  zh: 工具对接与排查
+  status: machine
 - id: c3af076f92c5ed8d
   en: Troubleshooting
   zh: 故障排查
   status: machine
-- id: 8d9f66992dd4373c
-  en: Tutorials
-  zh: 教程
-  status: retired
-- id: fa67b73f924173f5
-  en: Atom gates
-  zh: 原子门
-  status: retired
-- id: 5ccfda1d2e6f7edc
-  en: Structural operations
-  zh: 结构操作
-  status: retired
-- id: f2b98fa03b5e7013
-  en: Pulse operation
-  zh: PulseOperation
-  status: retired
-- id: aba195e5a25033a0
-  en: Sampled waveform
-  zh: 采样波形
-  status: retired
-- id: 311d61958b798ee2
-  en: Superconducting profile
-  zh: 超导设备模型
-  status: retired
-- id: be224f1a4e829978
-  en: Atom-array profile
-  zh: 原子阵列设备模型
-  status: retired
+- id: 6b1df2ba950cf6e7
+  en: Case studies
+  zh: 应用案例
+  status: machine
+- id: dd6caa21b5b249b2
+  en: Circuits and entanglement
+  zh: 线路与纠缠
+  status: machine
+- id: b3517fc7c089212f
+  en: Eight-atom GHZ
+  zh: 八原子 GHZ 态
+  status: machine
+- id: 518841fbae1e7853
+  en: Qutrit-assisted Toffoli
+  zh: 借用第三能级实现 Toffoli 门
+  status: machine
+- id: c7bdad567af23bae
+  en: Error correction
+  zh: 量子纠错
+  status: machine
+- id: c3dc9d1832a5e485
+  en: Atom loss in repetition codes
+  zh: 重复码中的原子丢失
+  status: machine
+- id: a613999da7fdb5fb
+  en: Surface-code memory
+  zh: 表面码存储
+  status: machine
+- id: 424ea86c0b42650e
+  en: Quantum simulation
+  zh: 量子模拟
+  status: machine
+- id: 873bcaa8d67e29eb
+  en: Rydberg spin correlations
+  zh: 里德堡链中的反铁磁关联
+  status: machine
+- id: b25fd3cfb1e2f248
+  en: PXP state revivals
+  zh: PXP 链何时接近初态
+  status: machine
+- id: 070e77afb295eef4
+  en: H₂ ground-state energy
+  zh: 用 VQE 求氢分子基态能量
+  status: machine
+- id: d4e81b343e3c9857
+  en: Combinatorial optimization
+  zh: 组合优化
+  status: machine
+- id: a98c019277d9e19a
+  en: QUBO with QAOA
+  zh: QAOA 求解 QUBO
+  status: machine
+- id: 59dd1487d43be792
+  en: Grid islanding model
+  zh: 电网分区模型
+  status: machine
+- id: 1e02e3a060792752
+  en: Grid splitting with QAOA
+  zh: 用 QAOA 划分电网
+  status: machine
+- id: 49e2662f86fd17cb
+  en: Quantum machine learning
+  zh: 量子机器学习
+  status: machine
+- id: b75fe9afbc138389
+  en: QNN digit recognition
+  zh: QNN 数字识别
+  status: machine
+- id: e2d8ae48dd5a6558
+  en: ADMET circuit search
+  zh: ADMET 线路搜索
+  status: machine
+- id: 152549dfacbdcd6b
+  en: Pulse control and calibration
+  zh: 脉冲控制与校准
+  status: machine
+- id: dac1da44f97836fc
+  en: Gate calibration
+  zh: 量子门校准
+  status: machine
+- id: 7c72718e2952e307
+  en: Rydberg CZ pulses
+  zh: 里德堡 CZ 门的脉冲设计
+  status: machine
+- id: 85926088110d93a2
+  en: Measure, reset & barrier
+  zh: 测量、重置与屏障
+  status: machine
+- id: c98b0cb96537ff2a
+  en: SC qubits
+  zh: 超导比特
+  status: machine
+- id: a6aa5ae2c96592fe
+  en: Atom arrays
+  zh: 中性原子阵列
+  status: machine
 - id: 00a5ef93df74d61e
   en: Transmon emulator
   zh: Transmon 仿真器
@@ -122,10 +218,26 @@
   en: Estimator
   zh: Estimator
   status: machine
-- id: 191121b5415625c5
-  en: Implementation maps
-  zh: 实现映射
-  status: retired
+- id: 8bc2234815dbbd89
+  en: Contributing and development
+  zh: 贡献与开发
+  status: machine
+- id: 8bc2234815dbbd89
+  en: Contributing and development
+  zh: 贡献与开发
+  status: machine
+- id: 3b4cdc3dac476229
+  en: How to contribute
+  zh: 参与贡献
+  status: machine
+- id: b361713af8473025
+  en: Developer guide
+  zh: 开发者指南
+  status: machine
+- id: b361713af8473025
+  en: Developer guide
+  zh: 开发者指南
+  status: machine
 - id: 41086d79c9f4b58a
   en: Runtime result
   zh: 运行结果
@@ -150,6 +262,114 @@
   en: Jupyter notebook
   zh: Jupyter notebook
   status: machine
+- id: 459389c61e3f5709
+  en: Case studies in {title}.
+  zh: '{title}领域的应用案例。'
+  status: machine
+- id: d37597d4221ee046
+  en: Executable FatQat case studies in circuits, control, error correction, simulation, optimization, and machine learning.
+  zh: 可执行的 FatQat 案例，涵盖线路、控制、纠错、模拟、优化和机器学习。
+  status: machine
+- id: 93fa26b1cb571427
+  en: How does atom loss affect error correction? How does a control pulse change a quantum gate's behavior? And how can a power-grid partition be expressed as an optimization problem? These case studies turn questions like these into models you can run and explore with FatQat. Follow each problem from its background and assumptions through runnable code to plots and an explanation of the results. Choose a topic that interests you, run the example, and change its parameters to investigate further. For the basic use of individual features, see the [user guide](../guide/index.md).
+  zh: 原子丢失会怎样影响量子纠错？控制脉冲会怎样改变量子门的行为？电网分区又怎样写成一个优化问题？这里的案例从这些具体问题出发，用 FatQat 把它们变成可以运行和探索的模型。你可以跟着案例了解问题背景与模型假设，运行代码，再结合图表理解计算结果。选一个感兴趣的主题，试着运行示例、调整参数，看看会有什么变化。需要了解某项功能的基本用法时，可以查阅[用户指南](../guide/index.md)。
+  status: machine
+- id: e72ab72c263c97d2
+  en: Browse by topic
+  zh: 按主题浏览
+  status: machine
+- id: 7c71c5222f97135f
+  en: Explore case study
+  zh: 查看案例
+  status: machine
+- id: 96fd73eba3eeaa5f
+  en: Construct and verify quantum gates and entangled states using mixed qubit-qutrit registers and reconfigurable atom-array connectivity.
+  zh: 使用混合量子比特与 qutrit 的 Register，以及可重构的原子阵列连接关系，实现量子门、制备纠缠态，并验证结果。
+  status: machine
+- id: c49e59c70de41581
+  en: Study repetition-code and surface-code memories, parity checks, and decoding with syndrome histories or information about atom loss.
+  zh: 研究重复码与表面码存储实验、奇偶校验，以及利用综合征历史或原子丢失信息进行译码。
+  status: machine
+- id: dfaf297980a192b7
+  en: Estimate molecular ground-state energies and explore correlations, revivals, and entanglement in interacting quantum systems.
+  zh: 估计分子基态能量，探索相互作用量子系统中的关联、复苏和纠缠。
+  status: machine
+- id: a651e2aaed99e35c
+  en: Encode constraints as QUBOs, solve them with QAOA, and apply the workflow to controlled power-grid islanding.
+  zh: 将约束编码为 QUBO，用 QAOA 求解，并将这一流程用于电网受控孤岛划分。
+  status: machine
+- id: 44ca0662598d620e
+  en: Train parameterized circuits and search circuit structures for classification and regression with batched parameter sweeps.
+  zh: 借助批量参数扫描训练参数化线路，搜索适合分类和回归的线路结构。
+  status: machine
+- id: a1a6016e838e11b5
+  en: Design and calibrate control pulses, then check their action on quantum states in transmon and Rydberg models.
+  zh: 设计并校准控制脉冲，然后在 transmon 和里德堡模型中检查它们对量子态的作用。
+  status: machine
+- id: e4095b778786868d
+  en: Start with one program
+  zh: 创建与运行一个 Program
+  status: retired
+- id: d71f409e900eb6ed
+  en: Programs and registers
+  zh: Program 与 Register
+  status: retired
+- id: 435e7cb6fa6d898c
+  en: Execution models
+  zh: 执行模型
+  status: retired
+- id: bcab022f89313896
+  en: Run and analyze programs
+  zh: 运行与分析程序
+  status: retired
+- id: 45314e97b0c26a86
+  en: Simulation
+  zh: 模拟量子程序
+  status: retired
+- id: 442aded87a55aa8c
+  en: Performance
+  zh: 性能优化
+  status: retired
+- id: 9a9cc4a72ef682dd
+  en: Model hardware and physics
+  zh: 硬件与物理建模
+  status: retired
+- id: e6665fc1d2b887bc
+  en: Connect and diagnose
+  zh: 互操作与问题诊断
+  status: retired
+- id: 8d9f66992dd4373c
+  en: Tutorials
+  zh: 教程
+  status: retired
+- id: fa67b73f924173f5
+  en: Atom gates
+  zh: 原子门
+  status: retired
+- id: 5ccfda1d2e6f7edc
+  en: Structural operations
+  zh: 结构操作
+  status: retired
+- id: f2b98fa03b5e7013
+  en: Pulse operation
+  zh: PulseOperation
+  status: retired
+- id: aba195e5a25033a0
+  en: Sampled waveform
+  zh: 采样波形
+  status: retired
+- id: 311d61958b798ee2
+  en: Superconducting profile
+  zh: 超导设备模型
+  status: retired
+- id: be224f1a4e829978
+  en: Atom-array profile
+  zh: 原子阵列设备模型
+  status: retired
+- id: 191121b5415625c5
+  en: Implementation maps
+  zh: 实现映射
+  status: retired
 - id: defc57312aca47bf
   en: Tutorials collected from the {title} source folder.
   zh: 来自 {title} 源文件目录的教程。
@@ -214,10 +434,6 @@
   en: Learn to build, run, and interpret compact quantum experiments, from circuits and measurement to control pulses.
   zh: 学习创建、运行和解读小型量子实验，内容从线路与测量延伸到控制脉冲。
   status: retired
-- id: d37597d4221ee046
-  en: Executable FatQat case studies in circuits, control, error correction, simulation, optimization, and machine learning.
-  zh: 可执行的 FatQat 案例，涵盖线路、控制、纠错、模拟、优化和机器学习。
-  status: machine
 - id: c2a1b013a196080f
   en: Explore complete, executable case studies grouped by topic. If you are new to FatQat, start with the [quickstart](../guide/quickstart.md) to learn how to build, run, and inspect a program.
   zh: 按主题浏览完整、可执行的案例。如果刚开始使用 FatQat，请先阅读[快速入门](../guide/quickstart.md)，学习编写、运行程序并查看结果。
@@ -226,78 +442,22 @@
   en: Follow [eight-atom GHZ preparation](atom-array-ghz8.md) with [atom-loss error correction](atom-loss-erasure.md), or move from [gate calibration](pulse-calibration.md) to [Rydberg CZ pulse design](optimal-cz-control.md). For optimization, work through [QUBO and QAOA](qubo-qaoa.md), [the islanding model](islanding-model.md), and [islanding with QAOA](islanding-qaoa.md).
   zh: 阅读[八原子 GHZ 态制备](atom-array-ghz8.md)后，可继续学习[原子丢失纠错](atom-loss-erasure.md)；也可以从[量子门校准](pulse-calibration.md)进入[里德堡 CZ 脉冲设计](optimal-cz-control.md)。对于优化问题，可以依次学习 [QUBO 与 QAOA](qubo-qaoa.md)、[孤岛划分模型](islanding-model.md)和[用 QAOA 划分孤岛](islanding-qaoa.md)。
   status: retired
-- id: dd6caa21b5b249b2
-  en: Circuits and entanglement
-  zh: 线路与纠缠
-  status: machine
-- id: 96fd73eba3eeaa5f
-  en: Construct and verify quantum gates and entangled states using mixed qubit-qutrit registers and reconfigurable atom-array connectivity.
-  zh: 使用混合量子比特与 qutrit 的 Register，以及可重构的原子阵列连接关系，实现量子门、制备纠缠态，并验证结果。
-  status: machine
-- id: c7bdad567af23bae
-  en: Error correction
-  zh: 量子纠错
-  status: machine
 - id: d057e3b372ddf753
   en: Study repetition-code memories, parity checks, and decoding with information about atom loss.
   zh: 研究重复码存储、奇偶校验，以及如何利用原子丢失信息进行解码。
   status: retired
-- id: 424ea86c0b42650e
-  en: Quantum simulation
-  zh: 量子模拟
-  status: machine
-- id: dfaf297980a192b7
-  en: Estimate molecular ground-state energies and explore correlations, revivals, and entanglement in interacting quantum systems.
-  zh: 估计分子基态能量，探索相互作用量子系统中的关联、复苏和纠缠。
-  status: machine
-- id: d4e81b343e3c9857
-  en: Combinatorial optimization
-  zh: 组合优化
-  status: machine
-- id: a651e2aaed99e35c
-  en: Encode constraints as QUBOs, solve them with QAOA, and apply the workflow to controlled power-grid islanding.
-  zh: 将约束编码为 QUBO，用 QAOA 求解，并将这一流程用于电网受控孤岛划分。
-  status: machine
-- id: 49e2662f86fd17cb
-  en: Quantum machine learning
-  zh: 量子机器学习
-  status: machine
-- id: 44ca0662598d620e
-  en: Train parameterized circuits and search circuit structures for classification and regression with batched parameter sweeps.
-  zh: 借助批量参数扫描训练参数化线路，搜索适合分类和回归的线路结构。
-  status: machine
-- id: 152549dfacbdcd6b
-  en: Pulse control and calibration
-  zh: 脉冲控制与校准
-  status: machine
-- id: a1a6016e838e11b5
-  en: Design and calibrate control pulses, then check their action on quantum states in transmon and Rydberg models.
-  zh: 设计并校准控制脉冲，然后在 transmon 和里德堡模型中检查它们对量子态的作用。
-  status: machine
 - id: 90d9132f374d3bac
   en: SC target
   zh: SC 编译目标
   status: retired
-- id: c49e59c70de41581
-  en: Study repetition-code and surface-code memories, parity checks, and decoding with syndrome histories or information about atom loss.
-  zh: 研究重复码与表面码存储实验、奇偶校验，以及利用综合征历史或原子丢失信息进行译码。
-  status: machine
 - id: 20fe5776b5d3cf0f
   en: Linear optics simulation
   zh: 线性光学模拟
   status: retired
-- id: 291e656731600b18
-  en: Linear optics
-  zh: 线性光学
-  status: machine
 - id: b04e22341893dba7
   en: Simulate and analyze
   zh: 模拟与分析
   status: retired
-- id: f2dfd75fe1c9e0c0
-  en: Hardware constraints
-  zh: 硬件约束模拟
-  status: machine
 - id: ed1bd40816708938
   en: Pulse workflow
   zh: 编写与运行脉冲
@@ -310,94 +470,18 @@
   en: Neutral-atom simulation
   zh: 中性原子阵列模拟
   status: retired
-- id: 61e8d44ad423a4a0
-  en: Get started
-  zh: 创建与运行一个 Program
-  status: machine
-- id: 666074c740953ec6
-  en: Program & Register
-  zh: Program 与 Register
-  status: machine
-- id: e6a87f53aa65439a
-  en: Simulation choices
-  zh: 选择模拟与仿真方式
-  status: machine
-- id: e295a051a0d7533f
-  en: Run & analyze
-  zh: 模拟与分析
-  status: machine
-- id: 32d4bb512cbfd7bd
-  en: Simulate programs
-  zh: 模拟量子程序
-  status: machine
-- id: 63c68fbe02915f82
-  en: Visualize results
-  zh: 可视化
-  status: machine
-- id: 3b28312d970dd922
-  en: Improve performance
-  zh: 性能优化
-  status: machine
-- id: 3a9997a686ffdad3
-  en: Hardware overview
-  zh: 模拟时考虑硬件约束
-  status: machine
-- id: b8037f7b8b804cf3
-  en: Superconducting qubits
-  zh: 超导比特模拟
-  status: machine
-- id: cac53650c5062c99
-  en: Neutral-atom arrays
-  zh: 中性原子阵列模拟
-  status: machine
-- id: fde5fc03c4a41468
-  en: Compile circuits
-  zh: 编译并运行逻辑线路
-  status: machine
 - id: 88c9dd022e95f64a
   en: Write & run pulses
   zh: 编写与运行脉冲
   status: retired
-- id: 068e662d04aee2be
-  en: Connect & debug
-  zh: 工具对接与排查
-  status: machine
-- id: 6b1df2ba950cf6e7
-  en: Case studies
-  zh: 应用案例
-  status: machine
-- id: 459389c61e3f5709
-  en: Case studies in {title}.
-  zh: '{title}领域的应用案例。'
-  status: machine
 - id: ebcc39f9cdaf7b63
   en: Start with a concrete question and use FatQat to model it, run a calculation, and interpret the results. These case studies combine runnable code with explanations of the assumptions and the physics or application behind each problem. For the basic use of individual features, see the [user guide](../guide/index.md).
   zh: 从一个具体问题出发，用 FatQat 建立模型、运行计算并分析结果。这里的案例提供可运行的代码，并解释模型假设，以及问题背后的物理原理或应用背景。需要了解某项功能的基本用法时，可以查阅[用户指南](../guide/index.md)。
   status: retired
-- id: e72ab72c263c97d2
-  en: Browse by topic
-  zh: 按主题浏览
-  status: machine
-- id: 7c71c5222f97135f
-  en: Explore case study
-  zh: 查看案例
-  status: machine
-- id: b3517fc7c089212f
-  en: Eight-atom GHZ
-  zh: 八原子 GHZ 态
-  status: machine
-- id: 518841fbae1e7853
-  en: Qutrit-assisted Toffoli
-  zh: 借用第三能级实现 Toffoli 门
-  status: machine
 - id: 42d50f8ad99d0207
   en: Atom-loss correction
   zh: 重复码中的原子丢失
   status: retired
-- id: a613999da7fdb5fb
-  en: Surface-code memory
-  zh: 表面码存储
-  status: machine
 - id: 3066af9d04c3cc2c
   en: Rydberg correlations
   zh: 里德堡链中的反铁磁关联
@@ -410,95 +494,15 @@
   en: H2 with VQE
   zh: 用 VQE 求氢分子基态能量
   status: retired
-- id: a98c019277d9e19a
-  en: QUBO with QAOA
-  zh: QAOA 求解 QUBO
-  status: machine
-- id: 59dd1487d43be792
-  en: Grid islanding model
-  zh: 电网分区模型
-  status: machine
 - id: 31176b90915dd3ea
   en: Islanding with QAOA
   zh: 用 QAOA 划分电网
   status: retired
-- id: b75fe9afbc138389
-  en: QNN digit recognition
-  zh: QNN 数字识别
-  status: machine
-- id: e2d8ae48dd5a6558
-  en: ADMET circuit search
-  zh: ADMET 线路搜索
-  status: machine
-- id: dac1da44f97836fc
-  en: Gate calibration
-  zh: 量子门校准
-  status: machine
 - id: bcdd2da3016da4e4
   en: Rydberg CZ control
   zh: 里德堡 CZ 门的脉冲设计
   status: retired
-- id: 93fa26b1cb571427
-  en: How does atom loss affect error correction? How does a control pulse change a quantum gate's behavior? And how can a power-grid partition be expressed as an optimization problem? These case studies turn questions like these into models you can run and explore with FatQat. Follow each problem from its background and assumptions through runnable code to plots and an explanation of the results. Choose a topic that interests you, run the example, and change its parameters to investigate further. For the basic use of individual features, see the [user guide](../guide/index.md).
-  zh: 原子丢失会怎样影响量子纠错？控制脉冲会怎样改变量子门的行为？电网分区又怎样写成一个优化问题？这里的案例从这些具体问题出发，用 FatQat 把它们变成可以运行和探索的模型。你可以跟着案例了解问题背景与模型假设，运行代码，再结合图表理解计算结果。选一个感兴趣的主题，试着运行示例、调整参数，看看会有什么变化。需要了解某项功能的基本用法时，可以查阅[用户指南](../guide/index.md)。
-  status: machine
-- id: c3dc9d1832a5e485
-  en: Atom loss in repetition codes
-  zh: 重复码中的原子丢失
-  status: machine
-- id: 873bcaa8d67e29eb
-  en: Rydberg spin correlations
-  zh: 里德堡链中的反铁磁关联
-  status: machine
-- id: b25fd3cfb1e2f248
-  en: PXP state revivals
-  zh: PXP 链何时接近初态
-  status: machine
-- id: 070e77afb295eef4
-  en: H₂ ground-state energy
-  zh: 用 VQE 求氢分子基态能量
-  status: machine
-- id: 1e02e3a060792752
-  en: Grid splitting with QAOA
-  zh: 用 QAOA 划分电网
-  status: machine
-- id: 7c72718e2952e307
-  en: Rydberg CZ pulses
-  zh: 里德堡 CZ 门的脉冲设计
-  status: machine
-- id: 60d3440ebfab046a
-  en: Pulse programs
-  zh: 编写和运行脉冲程序
-  status: machine
-- id: 85926088110d93a2
-  en: Measure, reset & barrier
-  zh: 测量、重置与屏障
-  status: machine
-- id: 8bc2234815dbbd89
-  en: Contributing and development
-  zh: 贡献与开发
-  status: machine
-- id: b361713af8473025
-  en: Developer guide
-  zh: 开发者指南
-  status: machine
 - id: 7722b0524d00cb26
   en: Writing documentation
   zh: 编写文档
-  status: machine
-- id: c98b0cb96537ff2a
-  en: SC qubits
-  zh: 超导比特
-  status: machine
-- id: a6aa5ae2c96592fe
-  en: Atom arrays
-  zh: 中性原子阵列
-  status: machine
-- id: 8bc2234815dbbd89
-  en: Contributing and development
-  zh: 贡献与开发
-  status: machine
-- id: b361713af8473025
-  en: Developer guide
-  zh: 开发者指南
   status: machine

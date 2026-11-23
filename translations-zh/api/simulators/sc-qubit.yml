@@ -2,6 +2,58 @@
   en: SCQubitSimulator
   zh: SCQubitSimulator
   status: machine
+- id: 1c306dc2e5588b2a
+  en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] runs gate-level programs on a configurable superconducting qubit layout. Use it to check whether a program fits the available qubit sites, uses native gates, and applies `CZ` only between connected sites.'
+  zh: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 在可配置的超导比特布局上运行门级程序。它可以检查程序是否有足够的位置可用、是否使用原生门，以及 `CZ` 是否都作用在相连的位置上。'
+  status: machine
+- id: 82bd0285247375ad
+  en: Configure layout and noise
+  zh: 设置布局与噪声
+  status: machine
+- id: 91956d0136ea8720
+  en: Choose the number of qubit sites and which pairs can interact. The default is a 4×4 nearest-neighbor grid, with sites numbered from 0 to 15 in row order. To use another graph, set `num_qubits` and `couplings`.
+  zh: 先确定设备有多少个量子比特位置，以及哪些位置可以相互作用。默认使用 4×4 网格，相邻位置相连，编号按行从 0 排到 15。要使用其他连接关系，可设置 `num_qubits` 和 `couplings`。
+  status: machine
+- id: 42dc035315e7f533
+  en: By default, qubits map to consecutive device labels in register declaration order, including the members of a [`GridRegister`][fatqat.GridRegister]. Pass a complete [`ResourceLayout`][fatqat.ResourceLayout] to place those qubits at other sites. To compile a logical circuit for the same layout, pass the target returned by [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target] to the compiler.
+  zh: 默认按寄存器的声明顺序给量子比特分配连续的设备编号，[`GridRegister`][fatqat.GridRegister] 的成员也按这个规则排列。要把量子比特放到其他位置，可以传入完整的 [`ResourceLayout`][fatqat.ResourceLayout]。如果要按同一布局编译逻辑线路，可把 [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target] 返回的目标交给编译器。
+  status: machine
+- id: 51c8d2a23cdcfa44
+  en: Built-in noise
+  zh: 内置噪声
+  status: machine
+- id: b5226fbc5c438379
+  en: To include gate damping and readout errors, pass the model returned by [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] as `noise`. Its API entry lists the gate and readout parameters.
+  zh: 要加入门操作中的阻尼和读出误差，可把 [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] 返回的模型传给 `noise`。该接口条目列出了门噪声和读出误差的参数。
+  status: machine
+- id: ac65d65e975cc563
+  en: Check native gates
+  zh: 检查原生门
+  status: machine
+- id: 9fcafb476098f381
+  en: The simulator accepts `X`, `SX`, and `RZ` at every site. A `CZ` accepts either order of a connected pair, such as `(0, 1)` or `(1, 0)` on the default grid. Measurement and reset follow the [rules for the chosen simulation method](../simulator.md#methods).
+  zh: 各个位置都支持 `X`、`SX` 和 `RZ`。对一对相连的位置，`CZ` 的两个目标可以按任一顺序传入，例如默认网格中的 `(0, 1)` 和 `(1, 0)`。测量和重置遵循[所选模拟方法的规则](../simulator.md#methods)。
+  status: machine
+- id: 6bb36596509fbdff
+  en: To check a pair before running a program, query [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map]. On the default grid, sites 0 and 5 are diagonal neighbors, so this pair cannot run `CZ`.
+  zh: 运行程序前，可以通过 [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map] 查询某对位置是否支持一个门。默认网格中的位置 0 和 5 在对角线上，这一对位置不能执行 `CZ`。
+  status: machine
+- id: 0107b3564749502e
+  en: <a id="fatqat.simulator.SCQubitSimulator.method"></a>
+  zh: <a id="fatqat.simulator.SCQubitSimulator.method"></a>
+  status: machine
+- id: 466f0cda52ea3e97
+  en: <a id="fatqat.simulator.SCQubitSimulator.run"></a>
+  zh: <a id="fatqat.simulator.SCQubitSimulator.run"></a>
+  status: machine
+- id: 371997c8c7dbe753
+  en: <a id="fatqat.simulator.SCQubitSimulator.run_sweep"></a>
+  zh: <a id="fatqat.simulator.SCQubitSimulator.run_sweep"></a>
+  status: machine
+- id: 505f7e3cc0584695
+  en: <a id="fatqat.simulator.SCQubitSimulator.validate_noise_model"></a>
+  zh: <a id="fatqat.simulator.SCQubitSimulator.validate_noise_model"></a>
+  status: machine
 - id: 2d46654d9ea48a4b
   en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] applies the [`Simulator`][fatqat.simulator.Simulator] execution model to a configurable synthetic superconducting coupling graph. Use it when native gates, capacity, and target connectivity matter. It does not transpile, route, schedule, or reproduce a named processor.'
   zh: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 将 [`Simulator`][fatqat.simulator.Simulator] 的执行模型应用于可配置的合成超导耦合图。需要考虑原生门、容量和目标连接关系时，可使用它。它不负责转译、路由或调度，也不复现某一具体处理器。'
@@ -30,22 +82,10 @@
   en: '[`Simulator.method`][fatqat.simulator.Simulator.method], [`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map], [`Simulator.run`][fatqat.simulator.Simulator.run], [`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep], and [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] follow the general Simulator API and are included below for a complete class reference.'
   zh: '[`Simulator.method`][fatqat.simulator.Simulator.method]、[`SCQubitSimulator.implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map]、[`Simulator.run`][fatqat.simulator.Simulator.run]、[`Simulator.run_sweep`][fatqat.simulator.Simulator.run_sweep] 和 [`Simulator.validate_noise_model`][fatqat.simulator.Simulator.validate_noise_model] 遵循通用 Simulator API，下方一并列出，以提供完整的类参考。'
   status: retired
-- id: 1c306dc2e5588b2a
-  en: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] runs gate-level programs on a configurable superconducting qubit layout. Use it to check whether a program fits the available qubit sites, uses native gates, and applies `CZ` only between connected sites.'
-  zh: '[`SCQubitSimulator`][fatqat.simulator.SCQubitSimulator] 在可配置的超导比特布局上运行门级程序。它可以检查程序是否有足够的位置可用、是否使用原生门，以及 `CZ` 是否都作用在相连的位置上。'
-  status: machine
 - id: 972be5733617b195
   en: The layout determines where a program's qubits can interact. The default device has 16 sites on a 4×4 nearest-neighbor grid. You can supply another undirected coupling graph through `num_qubits` and `couplings`.
   zh: 布局决定了程序中的量子比特能在哪些位置相互作用。默认有 16 个位置，按 4×4 网格排列，相邻位置之间有连接。也可以通过 `num_qubits` 和 `couplings` 指定其他无向耦合图。
   status: retired
-- id: 9fcafb476098f381
-  en: The simulator accepts `X`, `SX`, and `RZ` at every site. A `CZ` accepts either order of a connected pair, such as `(0, 1)` or `(1, 0)` on the default grid. Measurement and reset follow the [rules for the chosen simulation method](../simulator.md#methods).
-  zh: 各个位置都支持 `X`、`SX` 和 `RZ`。对一对相连的位置，`CZ` 的两个目标可以按任一顺序传入，例如默认网格中的 `(0, 1)` 和 `(1, 0)`。测量和重置遵循[所选模拟方法的规则](../simulator.md#methods)。
-  status: machine
-- id: 42dc035315e7f533
-  en: By default, qubits map to consecutive device labels in register declaration order, including the members of a [`GridRegister`][fatqat.GridRegister]. Pass a complete [`ResourceLayout`][fatqat.ResourceLayout] to place those qubits at other sites. To compile a logical circuit for the same layout, pass the target returned by [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target] to the compiler.
-  zh: 默认按寄存器的声明顺序给量子比特分配连续的设备编号，[`GridRegister`][fatqat.GridRegister] 的成员也按这个规则排列。要把量子比特放到其他位置，可以传入完整的 [`ResourceLayout`][fatqat.ResourceLayout]。如果要按同一布局编译逻辑线路，可把 [`get_compiler_target()`][fatqat.simulator.SCQubitSimulator.get_compiler_target] 返回的目标交给编译器。
-  status: machine
 - id: aad9874a78a6d968
   en: Use [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map] to check a gate family or a specific device pair before running the program.
   zh: 运行程序前，可以用 [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map] 查看模拟器是否支持某种门，或某对设备位置是否支持该操作。
@@ -54,46 +94,10 @@
   en: Use the built-in model to compare ideal and noisy results on the same program. The simulator runs ideally by default. To include gate damping and readout errors, pass a fresh model from [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] through `noise`.
   zh: 可以用内置噪声模型比较同一程序在理想条件和含噪条件下的结果。模拟器默认按理想条件运行。要加入门操作中的阻尼和读出误差，可通过 `noise` 传入 [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] 返回的模型。
   status: retired
-- id: 0107b3564749502e
-  en: <a id="fatqat.simulator.SCQubitSimulator.method"></a>
-  zh: <a id="fatqat.simulator.SCQubitSimulator.method"></a>
-  status: machine
-- id: 466f0cda52ea3e97
-  en: <a id="fatqat.simulator.SCQubitSimulator.run"></a>
-  zh: <a id="fatqat.simulator.SCQubitSimulator.run"></a>
-  status: machine
-- id: 371997c8c7dbe753
-  en: <a id="fatqat.simulator.SCQubitSimulator.run_sweep"></a>
-  zh: <a id="fatqat.simulator.SCQubitSimulator.run_sweep"></a>
-  status: machine
-- id: 505f7e3cc0584695
-  en: <a id="fatqat.simulator.SCQubitSimulator.validate_noise_model"></a>
-  zh: <a id="fatqat.simulator.SCQubitSimulator.validate_noise_model"></a>
-  status: machine
 - id: 08d9aa6d60d43373
   en: For execution and results, see [`Simulator.run()`][fatqat.simulator.Simulator.run] and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]. The entries below cover the device layout, native operations, and reference noise model.
   zh: 程序运行和结果读取见 [`Simulator.run()`][fatqat.simulator.Simulator.run] 和 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]。下面的条目介绍设备布局、原生操作和内置参考噪声模型。
   status: retired
-- id: 82bd0285247375ad
-  en: Configure layout and noise
-  zh: 设置布局与噪声
-  status: machine
-- id: 91956d0136ea8720
-  en: Choose the number of qubit sites and which pairs can interact. The default is a 4×4 nearest-neighbor grid, with sites numbered from 0 to 15 in row order. To use another graph, set `num_qubits` and `couplings`.
-  zh: 先确定设备有多少个量子比特位置，以及哪些位置可以相互作用。默认使用 4×4 网格，相邻位置相连，编号按行从 0 排到 15。要使用其他连接关系，可设置 `num_qubits` 和 `couplings`。
-  status: machine
-- id: b5226fbc5c438379
-  en: To include gate damping and readout errors, pass the model returned by [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] as `noise`. Its API entry lists the gate and readout parameters.
-  zh: 要加入门操作中的阻尼和读出误差，可把 [`default_noise_model()`][fatqat.simulator.SCQubitSimulator.default_noise_model] 返回的模型传给 `noise`。该接口条目列出了门噪声和读出误差的参数。
-  status: machine
-- id: ac65d65e975cc563
-  en: Check native gates
-  zh: 检查原生门
-  status: machine
-- id: 6bb36596509fbdff
-  en: To check a pair before running a program, query [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map]. On the default grid, sites 0 and 5 are diagonal neighbors, so this pair cannot run `CZ`.
-  zh: 运行程序前，可以通过 [`implementation_map`][fatqat.simulator.SCQubitSimulator.implementation_map] 查询某对位置是否支持一个门。默认网格中的位置 0 和 5 在对角线上，这一对位置不能执行 `CZ`。
-  status: machine
 - id: 4a6714c498cfe66f
   en: Use [`Simulator.run()`][fatqat.simulator.Simulator.run] for a single program and [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep] for a parameter sweep. The entries below cover the simulator-specific interfaces.
   zh: 运行单个程序用 [`Simulator.run()`][fatqat.simulator.Simulator.run]，扫描多组参数用 [`Simulator.run_sweep()`][fatqat.simulator.Simulator.run_sweep]。下方列出这个模拟器自己的接口。
