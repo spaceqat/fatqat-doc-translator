@@ -240,13 +240,77 @@
   status: retired
 - id: 6e0d31638a8f39c4
   en: :material-transit-connection-variant:{ .lg .middle } **Connect & debug**
-  zh: ":material-transit-connection-variant:{ .lg .middle } **工具对接与排查**"
+  zh: :material-transit-connection-variant:{ .lg .middle } **工具对接与排查**
   status: machine
 - id: d517cf97b66e01ea
   en: '[OpenQASM & Qiskit](interoperability.md) · [Troubleshooting](troubleshooting.md)'
-  zh: "[OpenQASM 与 Qiskit](interoperability.md) · [常见问题排查](troubleshooting.md)"
+  zh: '[OpenQASM 与 Qiskit](interoperability.md) · [常见问题排查](troubleshooting.md)'
   status: machine
 - id: dcf33c47f716ac6c
   en: '[Pulse programs](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
-  zh: "[编写和运行脉冲程序](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)"
+  zh: '[编写和运行脉冲程序](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子](neutral-atom-emulation.md)'
+  status: machine
+- id: 2d5c199ea29af3bf
+  en: In FatQat, you can change the conditions of a run while keeping the calculation you wrote. To see how noise affects measurement outcomes, run the same [`Program`][fatqat.Program] with and without a noise model. In a pulse experiment, you can keep the laser drive fixed, change the distance between two atoms, and see how likely both atoms are to be excited.
+  zh: 用 FatQat 做模拟时，可以保留写好的程序，只改变这次运行的条件。想看噪声会怎样影响测量结果，可以用同一个 [`Program`][fatqat.Program] 分别做理想运行和含噪运行。做脉冲实验时，也可以保持激光脉冲不变，只调整两个原子的间距，看看两个原子同时被激发的概率怎样变化。
+  status: machine
+- id: c3b62edf1be27f3a
+  en: The question also determines which result to read. Measurement counts show how often each outcome appears. An expectation value can reveal differences that counts in one basis miss. When the control pulse itself matters, you can compare the final states for different pulse shapes or durations.
+  zh: 要看哪种结果，取决于你想了解什么。测量计数告诉你每种结果出现了多少次。即使两个态在同一个测量基底下给出相同的分布，可观测量的期望值仍可能把它们区分开。如果关心控制脉冲本身，可以对比不同波形或时长得到的最终量子态。
+  status: machine
+- id: ddaae48bacc0be6e
+  en: Start by [writing, drawing, and running a Bell program](quickstart.md). Learn how to organize the program's resources in [Program and registers](program.md).
+  zh: 先[编写、绘制并运行一个贝尔态程序](quickstart.md)。想了解程序里的量子和经典资源怎样组织，可以接着看 [Program 与 Register](program.md)。
+  status: machine
+- id: 847a928a1c2a7b5b
+  en: <a id="choose-an-approach"></a>
+  zh: <a id="choose-an-approach"></a>
+  status: machine
+- id: c74221c96bc4066d
+  en: ':material-chart-bell-curve-cumulative: **Run and analyze**'
+  zh: ':material-chart-bell-curve-cumulative: **模拟与分析**'
+  status: machine
+- id: 45c6ac42f9766c84
+  en: Sweep a parameter to see how the result changes, or compare an estimate from measurements with an exact expectation value.
+  zh: 扫描一组参数，观察结果怎样变化。也可以比较从测量结果估计的值和精确计算得到的期望值。
+  status: machine
+- id: d1960dd047c976fd
+  en: '[Simulate programs](simulation.md) · [Estimate observables](interpret-results.md) · [Compare ideal and noisy runs](ideal-and-noisy.md) · [Visualize results](visualization.md) · [Improve performance](performance.md)'
+  zh: '[模拟量子程序](simulation.md) · [估计可观测量](interpret-results.md) · [理想运行与含噪运行](ideal-and-noisy.md) · [可视化](visualization.md) · [性能优化](performance.md)'
+  status: machine
+- id: 65fe9498495d7a47
+  en: Check which gates a device supports and where they can run. Use a [`LogicalProgram`][fatqat.LogicalProgram] if you want the compiler to adapt a logical circuit to the device.
+  zh: 先检查设备支持哪些门、门能在哪些位置执行。需要让编译器把逻辑线路适配到设备时，可以从 [`LogicalProgram`][fatqat.LogicalProgram] 开始。
+  status: machine
+- id: dfc04705cf31b4f4
+  en: '[Hardware constraints](hardware-constraints.md) · [Superconducting qubits](superconducting-simulation.md) · [Neutral-atom arrays](atom-array-simulation.md) · [Linear optics](linear-optics.md) · [Compile circuits](compiler.md)'
+  zh: '[硬件约束模拟](hardware-constraints.md) · [超导比特模拟](superconducting-simulation.md) · [中性原子阵列模拟](atom-array-simulation.md) · [线性光学模拟](linear-optics.md) · [编译与运行逻辑线路](compiler.md)'
+  status: machine
+- id: 689f3ba9ad8aa819
+  en: ':material-atom: **Study pulse dynamics**'
+  zh: ':material-atom: **研究脉冲动力学**'
+  status: machine
+- id: 793cfd850a7c9686
+  en: Compare the reference pulse for a gate with a pulse you specify. Use the final state to see, for example, how much probability ends up in a higher transmon level.
+  zh: 对比门的参考脉冲和自己指定的脉冲，看看它们得到的最终量子态有什么差别。比如，可以从结果中读出 Transmon 处于更高能级的概率。
+  status: machine
+- id: 7b872fa4eac89db1
+  en: '[Write and run pulse programs](hamiltonian-emulation.md) · [Transmon emulation](transmon-emulation.md) · [Neutral-atom emulation](neutral-atom-emulation.md)'
+  zh: '[编写和运行脉冲程序](hamiltonian-emulation.md) · [超导 Transmon 仿真](transmon-emulation.md) · [中性原子仿真](neutral-atom-emulation.md)'
+  status: machine
+- id: fe81c7f8388763ca
+  en: '[Compare simulation and emulation approaches](execution-models.md) to see what each model includes.'
+  zh: 想知道不同模型各自考虑了哪些因素，可以[对比模拟与仿真方式](execution-models.md)。
+  status: machine
+- id: dfac5dc67ff3d9af
+  en: Connect and troubleshoot
+  zh: 工具对接与排查
+  status: machine
+- id: a77d715c46e7fa0b
+  en: '[Work with OpenQASM and Qiskit](interoperability.md) · [Troubleshoot common problems](troubleshooting.md)'
+  zh: '[OpenQASM 与 Qiskit](interoperability.md) · [常见问题排查](troubleshooting.md)'
+  status: machine
+- id: f8ecec5e6e79a855
+  en: For exact interface details, see the [API reference](../api/index.md). For complete computational experiments, see the [case studies](../tutorials/index.md).
+  zh: 要查询具体的接口用法，可以看 [API 参考](../api/index.md)。想看完整的计算实验，可以看[应用案例](../tutorials/index.md)。
   status: machine

@@ -184,13 +184,77 @@
   status: retired
 - id: 6e0d31638a8f39c4
   en: :material-transit-connection-variant:{ .lg .middle } **Connect & debug**
-  ko: ":material-transit-connection-variant:{ .lg .middle } **도구 연동과 문제 해결**"
+  ko: :material-transit-connection-variant:{ .lg .middle } **도구 연동과 문제 해결**
   status: machine
 - id: d517cf97b66e01ea
   en: '[OpenQASM & Qiskit](interoperability.md) · [Troubleshooting](troubleshooting.md)'
-  ko: "[OpenQASM과 Qiskit](interoperability.md) · [문제 해결](troubleshooting.md)"
+  ko: '[OpenQASM과 Qiskit](interoperability.md) · [문제 해결](troubleshooting.md)'
   status: machine
 - id: dcf33c47f716ac6c
   en: '[Pulse programs](hamiltonian-emulation.md) · [Transmons](transmon-emulation.md) · [Neutral atoms](neutral-atom-emulation.md)'
-  ko: "[펄스 프로그램 작성과 실행](hamiltonian-emulation.md) · [Transmon](transmon-emulation.md) · [중성 원자](neutral-atom-emulation.md)"
+  ko: '[펄스 프로그램 작성과 실행](hamiltonian-emulation.md) · [Transmon](transmon-emulation.md) · [중성 원자](neutral-atom-emulation.md)'
+  status: machine
+- id: 2d5c199ea29af3bf
+  en: In FatQat, you can change the conditions of a run while keeping the calculation you wrote. To see how noise affects measurement outcomes, run the same [`Program`][fatqat.Program] with and without a noise model. In a pulse experiment, you can keep the laser drive fixed, change the distance between two atoms, and see how likely both atoms are to be excited.
+  ko: FatQat에서는 작성한 계산을 그대로 두고 실행 조건을 바꿀 수 있습니다. 잡음이 측정 결과에 미치는 영향을 보려면 같은 [`Program`][fatqat.Program]을 잡음 모델을 켠 경우와 끈 경우에 각각 실행해 보세요. 펄스 실험에서는 레이저 구동을 그대로 두고 두 원자 사이의 거리만 바꿔 두 원자가 동시에 들뜰 확률이 어떻게 달라지는지 살펴볼 수 있습니다.
+  status: machine
+- id: c3b62edf1be27f3a
+  en: The question also determines which result to read. Measurement counts show how often each outcome appears. An expectation value can reveal differences that counts in one basis miss. When the control pulse itself matters, you can compare the final states for different pulse shapes or durations.
+  ko: 알아보려는 내용에 따라 읽을 결과도 달라집니다. 측정 횟수는 각 결과가 얼마나 자주 나왔는지 보여 줍니다. 한 측정 기저에서 분포가 같은 두 상태도 관측량의 기댓값으로 구분할 수 있습니다. 제어 펄스 자체가 중요하다면 파형이나 길이를 바꿔 얻은 최종 상태를 비교해 보세요.
+  status: machine
+- id: ddaae48bacc0be6e
+  en: Start by [writing, drawing, and running a Bell program](quickstart.md). Learn how to organize the program's resources in [Program and registers](program.md).
+  ko: 먼저 [Bell 프로그램을 작성하고 그린 뒤 실행해 보세요](quickstart.md). 프로그램의 양자 자원과 고전 자원을 어떻게 정리하는지는 [Program과 레지스터](program.md)에서 설명합니다.
+  status: machine
+- id: 847a928a1c2a7b5b
+  en: <a id="choose-an-approach"></a>
+  ko: <a id="choose-an-approach"></a>
+  status: machine
+- id: c74221c96bc4066d
+  en: ':material-chart-bell-curve-cumulative: **Run and analyze**'
+  ko: ':material-chart-bell-curve-cumulative: **시뮬레이션과 분석**'
+  status: machine
+- id: 45c6ac42f9766c84
+  en: Sweep a parameter to see how the result changes, or compare an estimate from measurements with an exact expectation value.
+  ko: 매개변수를 바꿔 가며 결과가 어떻게 달라지는지 살펴보거나 측정으로 추정한 값과 직접 계산한 기댓값을 비교해 보세요.
+  status: machine
+- id: d1960dd047c976fd
+  en: '[Simulate programs](simulation.md) · [Estimate observables](interpret-results.md) · [Compare ideal and noisy runs](ideal-and-noisy.md) · [Visualize results](visualization.md) · [Improve performance](performance.md)'
+  ko: '[양자 프로그램 시뮬레이션](simulation.md) · [관측량 추정](interpret-results.md) · [이상적 실행과 잡음이 있는 실행](ideal-and-noisy.md) · [시각화](visualization.md) · [성능 최적화](performance.md)'
+  status: machine
+- id: 65fe9498495d7a47
+  en: Check which gates a device supports and where they can run. Use a [`LogicalProgram`][fatqat.LogicalProgram] if you want the compiler to adapt a logical circuit to the device.
+  ko: 장치가 어떤 게이트를 지원하고 어느 위치에서 실행할 수 있는지 확인하세요. 논리 회로를 장치에 맞게 컴파일하려면 [`LogicalProgram`][fatqat.LogicalProgram]에서 시작하세요.
+  status: machine
+- id: dfc04705cf31b4f4
+  en: '[Hardware constraints](hardware-constraints.md) · [Superconducting qubits](superconducting-simulation.md) · [Neutral-atom arrays](atom-array-simulation.md) · [Linear optics](linear-optics.md) · [Compile circuits](compiler.md)'
+  ko: '[하드웨어 제약](hardware-constraints.md) · [초전도 큐비트](superconducting-simulation.md) · [중성 원자 배열](atom-array-simulation.md) · [선형 광학](linear-optics.md) · [논리 회로 컴파일과 실행](compiler.md)'
+  status: machine
+- id: 689f3ba9ad8aa819
+  en: ':material-atom: **Study pulse dynamics**'
+  ko: ':material-atom: **펄스 동역학 살펴보기**'
+  status: machine
+- id: 793cfd850a7c9686
+  en: Compare the reference pulse for a gate with a pulse you specify. Use the final state to see, for example, how much probability ends up in a higher transmon level.
+  ko: 게이트의 기준 펄스와 직접 지정한 펄스가 만드는 최종 상태를 비교해 보세요. 예를 들어 트랜스몬이 더 높은 준위에 있을 확률을 결과에서 읽을 수 있습니다.
+  status: machine
+- id: 7b872fa4eac89db1
+  en: '[Write and run pulse programs](hamiltonian-emulation.md) · [Transmon emulation](transmon-emulation.md) · [Neutral-atom emulation](neutral-atom-emulation.md)'
+  ko: '[펄스 프로그램 작성과 실행](hamiltonian-emulation.md) · [트랜스몬 에뮬레이션](transmon-emulation.md) · [중성 원자 에뮬레이션](neutral-atom-emulation.md)'
+  status: machine
+- id: fe81c7f8388763ca
+  en: '[Compare simulation and emulation approaches](execution-models.md) to see what each model includes.'
+  ko: '[시뮬레이션과 에뮬레이션 방식 비교](execution-models.md)에서 각 모델이 어떤 요소를 고려하는지 확인하세요.'
+  status: machine
+- id: dfac5dc67ff3d9af
+  en: Connect and troubleshoot
+  ko: 도구 연동과 문제 해결
+  status: machine
+- id: a77d715c46e7fa0b
+  en: '[Work with OpenQASM and Qiskit](interoperability.md) · [Troubleshoot common problems](troubleshooting.md)'
+  ko: '[OpenQASM과 Qiskit](interoperability.md) · [문제 해결](troubleshooting.md)'
+  status: machine
+- id: f8ecec5e6e79a855
+  en: For exact interface details, see the [API reference](../api/index.md). For complete computational experiments, see the [case studies](../tutorials/index.md).
+  ko: 자세한 인터페이스 사용법은 [API 레퍼런스](../api/index.md)를, 완결된 계산 실험은 [사례 연구](../tutorials/index.md)를 참고하세요.
   status: machine
