@@ -28,12 +28,12 @@
   status: machine
 - id: 77fafda5d35c1c04
   en: 'The distance-$d$ repetition code stores one bit in $d$ data atoms, $|0_L\rangle = |0\cdots0\rangle$ and $|1_L\rangle = |1\cdots1\rangle$. Between neighbouring data atoms sits an ancilla that measures the parity $Z_j Z_{j+1}$: prepared in $|+\rangle$, it picks up a phase from a `CZ` with each neighbour, and a final Hadamard turns that phase into a bit. A round of these measurements is a *syndrome*. For an intact code it reports even parity everywhere.'
-  ko: 거리 $d$인 반복 부호는 하나의 비트를 $d$개 데이터 원자에 $|0_L\rangle = |0\cdots0\rangle$, $|1_L\rangle = |1\cdots1\rangle$로 저장합니다. 이웃 데이터 원자 사이에는 패리티 $Z_j Z_{j+1}$을 측정할 보조 원자를 둡니다. 보조 원자를 $|+\rangle$로 준비하면 각 이웃과의 `CZ`에서 위상을 얻고, 마지막 Hadamard가 이를 비트로 바꿉니다. 한 라운드의 측정 결과가 *신드롬*입니다. 손상되지 않은 부호는 모든 위치에서 짝수 패리티를 보고합니다.
-  status: retired
+  ko: 거리 $d$ 반복 부호는 데이터 원자 $d$개에 비트 하나를 $|0_L\rangle = |0\cdots0\rangle$, $|1_L\rangle = |1\cdots1\rangle$로 저장합니다. 이웃한 데이터 원자 사이에는 패리티 $Z_j Z_{j+1}$을 측정하는 보조 원자가 있습니다. 보조 원자는 $|+\rangle$로 준비되어 각 이웃과의 `CZ`에서 위상을 얻고, 마지막 Hadamard가 이 위상을 비트로 바꿉니다. 이런 측정 한 라운드의 결과가 *신드롬*입니다. 손상되지 않은 부호에서는 신드롬이 모든 곳에서 짝수 패리티를 보고합니다.
+  status: machine
 - id: 972208f117b4941c
   en: The atom array accepts only `RX`, `RY`, `RZ`, and `CZ`, and a `CZ` needs its two atoms to be paired first, as in the [eight-atom GHZ tutorial](atom-array-ghz8.md). Each round pairs every ancilla with its left data atom, applies the `CZ` gates, and then does the same with the right neighbours. The pairs within a layer are disjoint, so the gates of a layer can run in parallel.
-  ko: 원자 배열은 `RX`, `RY`, `RZ`, `CZ`만 받으며, [8원자 GHZ 튜토리얼](atom-array-ghz8.md)처럼 `CZ` 전에 두 원자를 쌍으로 연결해야 합니다. 각 라운드에서 보조 원자를 왼쪽 데이터 원자와 연결해 `CZ`를 적용하고, 오른쪽 이웃에도 같은 과정을 반복합니다. 한 층의 쌍들은 겹치지 않으므로 그 층의 게이트를 병렬로 실행할 수 있습니다.
-  status: retired
+  ko: 원자 배열은 `RX`, `RY`, `RZ`, `CZ`만 받으며, [8원자 GHZ 튜토리얼](atom-array-ghz8.md)에서처럼 `CZ`를 적용하려면 먼저 두 원자를 페어링해야 합니다. 각 라운드에서는 모든 보조 원자를 왼쪽 데이터 원자와 페어링해 `CZ` 게이트를 적용한 뒤, 오른쪽 이웃과도 같은 과정을 반복합니다. 한 층 안의 쌍들은 서로 겹치지 않으므로 그 층의 게이트를 병렬로 실행할 수 있습니다.
+  status: machine
 - id: 3901100e31e3ffb7
   en: Every site starts empty. [`Put`][fatqat.operations.Put] loads the data atoms once and the ancillas at the start of every round. Because `Put` leaves an occupied site unchanged, it only refills an ancilla lost in an earlier round. Each round writes its syndrome to its own classical register, and the data atoms are read out at the end.
   ko: 모든 사이트는 처음에 비어 있습니다. [`Put`][fatqat.operations.Put]은 데이터 원자를 처음에 한 번 적재하고, 보조 원자는 매 라운드 시작마다 적재합니다. `Put`은 이미 원자가 있는 사이트를 바꾸지 않으므로 이전 라운드에서 잃은 보조 원자만 다시 채웁니다. 각 라운드는 자기 고전 레지스터에 신드롬을 기록하고, 데이터 원자는 마지막에 판독합니다.
@@ -60,8 +60,8 @@
   status: machine
 - id: 2f80da5b9da8c16e
   en: 'A `CZ` with an empty trap applies no phase, exactly as an atom in $|0\rangle$ would. A check next to a lost data atom therefore measures its surviving neighbour alone: instead of $Z_j Z_{j+1}$ it measures a single $Z$. The next cell selects shots in which exactly one data atom and no ancilla was lost, and counts how often the last syndrome round shows an odd parity.'
-  ko: 빈 트랩과의 `CZ`는 위상을 적용하지 않습니다. 원자가 $|0\rangle$에 있을 때와 같습니다. 따라서 손실된 데이터 원자 옆의 검사는 살아남은 이웃 하나만 측정합니다. $Z_j Z_{j+1}$ 대신 단일 $Z$를 측정하는 것입니다. 다음 셀에서는 데이터 원자 하나만 잃고 보조 원자는 모두 남은 샷을 골라 마지막 신드롬 라운드의 홀수 패리티 빈도를 셉니다.
-  status: retired
+  ko: 빈 트랩과의 `CZ`는 $|0\rangle$ 상태의 원자와 마찬가지로 위상을 주지 않습니다. 따라서 잃은 데이터 원자 옆의 검사는 남아 있는 이웃 원자만 측정합니다. 즉 $Z_j Z_{j+1}$ 대신 단일 $Z$를 측정합니다. 다음 셀은 데이터 원자를 정확히 하나 잃고 보조 원자는 잃지 않은 샷을 골라, 마지막 신드롬 라운드가 홀수 패리티를 보이는 빈도를 셉니다.
+  status: machine
 - id: f67bfff477d5cf89
   en: 'For $|0_L\rangle$ the checks never fire, because the lost atom looks like the $|0\rangle$ atoms around it. For $|1_L\rangle$ they fire in most shots; in the rest the atom was lost after its last `CZ`, too late for any check to notice. A lost atom is therefore not a Pauli error: what the checks show depends on the state the atom held.'
   ko: $|0_L\rangle$에서는 잃은 원자가 주변의 $|0\rangle$ 원자와 똑같이 보이므로 검사가 전혀 반응하지 않습니다. $|1_L\rangle$에서는 대부분의 샷에서 검사가 반응합니다. 나머지 샷은 원자가 마지막 `CZ` 뒤에 손실되어 어떤 검사도 알아챌 수 없었던 경우입니다. 따라서 원자 손실은 Pauli 오류가 아닙니다. 검사에 무엇이 나타나는지는 원자가 지니고 있던 상태에 따라 달라집니다.
@@ -145,15 +145,15 @@
 - id: f4b115119213aeab
   en: 'The distance-$d$ repetition code stores one bit in $d$ data atoms, $|0_L\rangle = |0\cdots0\rangle$ and $|1_L\rangle = |1\cdots1\rangle$. Between neighboring data atoms sits an ancilla that measures the parity $Z_j Z_{j+1}$: prepared in $|+\rangle$, it picks up a phase from a `CZ` with each neighbor, and a final Hadamard turns that phase into a bit. A round of these measurements is a *syndrome*. For an intact code it reports even parity everywhere.'
   ko: 거리 $d$ 반복 부호는 데이터 원자 $d$개에 비트 하나를 $|0_L\rangle = |0\cdots0\rangle$, $|1_L\rangle = |1\cdots1\rangle$로 저장합니다. 이웃한 데이터 원자 사이에는 패리티 $Z_j Z_{j+1}$을 측정하는 보조 원자가 있습니다. 보조 원자는 $|+\rangle$로 준비되어 각 이웃과의 `CZ`에서 위상을 얻고, 마지막 Hadamard가 이 위상을 비트로 바꿉니다. 이런 측정 한 라운드의 결과가 *신드롬*입니다. 손상되지 않은 부호에서는 신드롬이 모든 곳에서 짝수 패리티를 보고합니다.
-  status: machine
+  status: retired
 - id: beb42b6eca19bf5c
   en: The atom array accepts only `RX`, `RY`, `RZ`, and `CZ`, and a `CZ` needs its two atoms to be paired first, as in the [eight-atom GHZ tutorial](atom-array-ghz8.md). Each round pairs every ancilla with its left data atom, applies the `CZ` gates, and then does the same with the right neighbors. The pairs within a layer are disjoint, so the gates of a layer can run in parallel.
   ko: 원자 배열은 `RX`, `RY`, `RZ`, `CZ`만 받으며, [8원자 GHZ 튜토리얼](atom-array-ghz8.md)에서처럼 `CZ`를 적용하려면 먼저 두 원자를 페어링해야 합니다. 각 라운드에서는 모든 보조 원자를 왼쪽 데이터 원자와 페어링해 `CZ` 게이트를 적용한 뒤, 오른쪽 이웃과도 같은 과정을 반복합니다. 한 층 안의 쌍들은 서로 겹치지 않으므로 그 층의 게이트를 병렬로 실행할 수 있습니다.
-  status: machine
+  status: retired
 - id: a6300ac5bda30005
   en: 'A `CZ` with an empty trap applies no phase, exactly as an atom in $|0\rangle$ would. A check next to a lost data atom therefore measures its surviving neighbor alone: instead of $Z_j Z_{j+1}$ it measures a single $Z$. The next cell selects shots in which exactly one data atom and no ancilla was lost, and counts how often the last syndrome round shows an odd parity.'
   ko: 빈 트랩과의 `CZ`는 $|0\rangle$ 상태의 원자와 마찬가지로 위상을 주지 않습니다. 따라서 잃은 데이터 원자 옆의 검사는 남아 있는 이웃 원자만 측정합니다. 즉 $Z_j Z_{j+1}$ 대신 단일 $Z$를 측정합니다. 다음 셀은 데이터 원자를 정확히 하나 잃고 보조 원자는 잃지 않은 샷을 골라, 마지막 신드롬 라운드가 홀수 패리티를 보이는 빈도를 셉니다.
-  status: machine
+  status: retired
 - id: 88032cf71dbf6fca
   en: 'This tutorial uses the simplest decoder for a repetition code: a majority vote over the final data readout. For the repetition code this is the minimum-weight correction of the syndrome computed from the final readout. It ignores the syndrome history, so it is not the best possible decoder, even without loss. What it offers here is a controlled comparison. We run the same vote in two versions that differ only in whether they use the erasure flag:'
   ko: 이 튜토리얼은 반복 부호에서 가장 단순한 디코더인 최종 데이터 판독에 대한 다수결을 사용합니다. 반복 부호에서는 이것이 최종 판독으로 계산한 신드롬의 최소 가중치 정정과 같습니다. 신드롬 이력을 무시하므로 손실이 없더라도 최선의 디코더는 아닙니다. 여기서 이 디코더를 쓰는 이유는 통제된 비교를 할 수 있기 때문입니다. 같은 다수결을 두 방식으로 실행하며, 두 방식은 소거 표시를 사용하는지만 다릅니다.

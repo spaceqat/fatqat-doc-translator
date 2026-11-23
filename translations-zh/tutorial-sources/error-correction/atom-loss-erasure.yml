@@ -28,12 +28,12 @@
   status: machine
 - id: 77fafda5d35c1c04
   en: 'The distance-$d$ repetition code stores one bit in $d$ data atoms, $|0_L\rangle = |0\cdots0\rangle$ and $|1_L\rangle = |1\cdots1\rangle$. Between neighbouring data atoms sits an ancilla that measures the parity $Z_j Z_{j+1}$: prepared in $|+\rangle$, it picks up a phase from a `CZ` with each neighbour, and a final Hadamard turns that phase into a bit. A round of these measurements is a *syndrome*. For an intact code it reports even parity everywhere.'
-  zh: 码距为 $d$ 的重复码用 $d$ 个数据原子存储一个比特，$|0_L\rangle = |0\cdots0\rangle$，$|1_L\rangle = |1\cdots1\rangle$。每对相邻数据原子之间有一个辅助原子，用来测量奇偶性 $Z_j Z_{j+1}$：先将其制备为 $|+\rangle$，再分别与两个邻居施加 `CZ` 以积累相位，最后用 Hadamard 门将该相位转换为一个比特。一轮这样的测量构成一个*综合征（syndrome）*。对于没有错误的码，所有校验都报告偶校验。
-  status: retired
+  zh: 码距为 $d$ 的重复码用 $d$ 个数据原子存储一个比特：$|0_L\rangle = |0\cdots0\rangle$，$|1_L\rangle = |1\cdots1\rangle$。每两个相邻数据原子之间有一个辅助原子，用于测量奇偶性 $Z_j Z_{j+1}$：辅助原子制备在 $|+\rangle$，与两侧邻居各做一次 `CZ` 后获得相位，最后由 Hadamard 门把这个相位转换为比特。一轮这样的测量结果称为*综合征*。对于完好的编码，各处的奇偶性均为偶。
+  status: machine
 - id: 972208f117b4941c
   en: The atom array accepts only `RX`, `RY`, `RZ`, and `CZ`, and a `CZ` needs its two atoms to be paired first, as in the [eight-atom GHZ tutorial](atom-array-ghz8.md). Each round pairs every ancilla with its left data atom, applies the `CZ` gates, and then does the same with the right neighbours. The pairs within a layer are disjoint, so the gates of a layer can run in parallel.
-  zh: 原子阵列只接受 `RX`、`RY`、`RZ` 和 `CZ`，而且施加 `CZ` 前必须先将两个原子配对，见[八原子 GHZ 教程](atom-array-ghz8.md)。每轮先将各辅助原子与其左侧数据原子配对并施加 `CZ` 门，再对右侧邻居重复这一过程。同一层中的原子对互不重叠，因此该层的门可以并行执行。
-  status: retired
+  zh: 原子阵列只接受 `RX`、`RY`、`RZ` 和 `CZ`，并且与[八原子 GHZ 教程](atom-array-ghz8.md)一样，`CZ` 要求两个原子先配对。每一轮先将每个辅助原子与其左侧数据原子配对并施加 `CZ` 门，再对右侧邻居重复同样的操作。同一层内的原子对互不重叠，因此同一层的门可以并行执行。
+  status: machine
 - id: 3901100e31e3ffb7
   en: Every site starts empty. [`Put`][fatqat.operations.Put] loads the data atoms once and the ancillas at the start of every round. Because `Put` leaves an occupied site unchanged, it only refills an ancilla lost in an earlier round. Each round writes its syndrome to its own classical register, and the data atoms are read out at the end.
   zh: 所有位置初始均为空。[`Put`][fatqat.operations.Put] 在开始时加载一次数据原子，并在每轮开始时加载辅助原子。由于 `Put` 不改变已占据的位置，它只会补充之前轮次中丢失的辅助原子。每轮将综合征写入独立的经典寄存器，最后读出数据原子。
@@ -60,8 +60,8 @@
   status: machine
 - id: 2f80da5b9da8c16e
   en: 'A `CZ` with an empty trap applies no phase, exactly as an atom in $|0\rangle$ would. A check next to a lost data atom therefore measures its surviving neighbour alone: instead of $Z_j Z_{j+1}$ it measures a single $Z$. The next cell selects shots in which exactly one data atom and no ancilla was lost, and counts how often the last syndrome round shows an odd parity.'
-  zh: 与空阱施加 `CZ` 不会引入相位，这与原子处于 $|0\rangle$ 时完全相同。因此，丢失数据原子旁边的校验只测量另一个仍存在的邻居：测量从 $Z_j Z_{j+1}$ 变为单个 $Z$。下一个代码单元筛选恰好丢失一个数据原子且未丢失辅助原子的采样，并统计最后一轮综合征出现奇校验的频率。
-  status: retired
+  zh: 与空阱作用的 `CZ` 不施加相位，效果与处于 $|0\rangle$ 的原子完全相同。因此，紧邻丢失数据原子的校验只测量仍然存在的那个邻居：它测得的不是 $Z_j Z_{j+1}$，而是单个 $Z$。下一个代码单元选出恰好丢失一个数据原子、且没有丢失辅助原子的采样，并统计最后一轮综合征的奇偶性为奇的频率。
+  status: machine
 - id: f67bfff477d5cf89
   en: 'For $|0_L\rangle$ the checks never fire, because the lost atom looks like the $|0\rangle$ atoms around it. For $|1_L\rangle$ they fire in most shots; in the rest the atom was lost after its last `CZ`, too late for any check to notice. A lost atom is therefore not a Pauli error: what the checks show depends on the state the atom held.'
   zh: 对于 $|0_L\rangle$，校验始终不触发，因为丢失原子的效果与周围处于 $|0\rangle$ 的原子相同。对于 $|1_L\rangle$，大多数采样都会触发校验；其余采样中，原子在最后一次 `CZ` 之后才丢失，已来不及被校验发现。因此，原子丢失并不是 Pauli 错误：校验结果取决于该原子原先存储的态。
@@ -145,15 +145,15 @@
 - id: f4b115119213aeab
   en: 'The distance-$d$ repetition code stores one bit in $d$ data atoms, $|0_L\rangle = |0\cdots0\rangle$ and $|1_L\rangle = |1\cdots1\rangle$. Between neighboring data atoms sits an ancilla that measures the parity $Z_j Z_{j+1}$: prepared in $|+\rangle$, it picks up a phase from a `CZ` with each neighbor, and a final Hadamard turns that phase into a bit. A round of these measurements is a *syndrome*. For an intact code it reports even parity everywhere.'
   zh: 码距为 $d$ 的重复码用 $d$ 个数据原子存储一个比特：$|0_L\rangle = |0\cdots0\rangle$，$|1_L\rangle = |1\cdots1\rangle$。每两个相邻数据原子之间有一个辅助原子，用于测量奇偶性 $Z_j Z_{j+1}$：辅助原子制备在 $|+\rangle$，与两侧邻居各做一次 `CZ` 后获得相位，最后由 Hadamard 门把这个相位转换为比特。一轮这样的测量结果称为*综合征*。对于完好的编码，各处的奇偶性均为偶。
-  status: machine
+  status: retired
 - id: beb42b6eca19bf5c
   en: The atom array accepts only `RX`, `RY`, `RZ`, and `CZ`, and a `CZ` needs its two atoms to be paired first, as in the [eight-atom GHZ tutorial](atom-array-ghz8.md). Each round pairs every ancilla with its left data atom, applies the `CZ` gates, and then does the same with the right neighbors. The pairs within a layer are disjoint, so the gates of a layer can run in parallel.
   zh: 原子阵列只接受 `RX`、`RY`、`RZ` 和 `CZ`，并且与[八原子 GHZ 教程](atom-array-ghz8.md)一样，`CZ` 要求两个原子先配对。每一轮先将每个辅助原子与其左侧数据原子配对并施加 `CZ` 门，再对右侧邻居重复同样的操作。同一层内的原子对互不重叠，因此同一层的门可以并行执行。
-  status: machine
+  status: retired
 - id: a6300ac5bda30005
   en: 'A `CZ` with an empty trap applies no phase, exactly as an atom in $|0\rangle$ would. A check next to a lost data atom therefore measures its surviving neighbor alone: instead of $Z_j Z_{j+1}$ it measures a single $Z$. The next cell selects shots in which exactly one data atom and no ancilla was lost, and counts how often the last syndrome round shows an odd parity.'
   zh: 与空阱作用的 `CZ` 不施加相位，效果与处于 $|0\rangle$ 的原子完全相同。因此，紧邻丢失数据原子的校验只测量仍然存在的那个邻居：它测得的不是 $Z_j Z_{j+1}$，而是单个 $Z$。下一个代码单元选出恰好丢失一个数据原子、且没有丢失辅助原子的采样，并统计最后一轮综合征的奇偶性为奇的频率。
-  status: machine
+  status: retired
 - id: 88032cf71dbf6fca
   en: 'This tutorial uses the simplest decoder for a repetition code: a majority vote over the final data readout. For the repetition code this is the minimum-weight correction of the syndrome computed from the final readout. It ignores the syndrome history, so it is not the best possible decoder, even without loss. What it offers here is a controlled comparison. We run the same vote in two versions that differ only in whether they use the erasure flag:'
   zh: 本教程使用重复码最简单的译码器：对最终数据读出做多数投票。对重复码而言，这相当于根据最终读出计算综合征，再做最小权重修正。它忽略了综合征历史，因此即使没有丢失，它也不是最优译码器。它在这里的作用是提供受控比较：同一个投票有两个版本，二者只在是否使用擦除标记上不同：

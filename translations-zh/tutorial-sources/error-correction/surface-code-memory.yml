@@ -36,8 +36,8 @@
   status: retired
 - id: 39a87391405846da
   en: Data qubits 0 through 8 form a row-major $3\times3$ square. Each ancilla qubit measures the product of X or Z on its neighbouring data qubits. $H_X$ and $H_Z$ record those stabilizers as binary matrices and the commutation relation requires $H_X H_Z^T=0\pmod2$. The chosen logical operators are $Z_L=Z_0Z_3Z_6$ and $X_L=X_0X_1X_2$.
-  zh: 数据量子比特 0 到 8 按行优先顺序组成一个 $3\times3$ 正方形。每个辅助量子比特测量相邻数据量子比特上的 X 或 Z 算符乘积。$H_X$ 和 $H_Z$ 以二进制矩阵记录这些稳定子，对易关系要求 $H_X H_Z^T=0\pmod2$。选取的逻辑算符为 $Z_L=Z_0Z_3Z_6$ 和 $X_L=X_0X_1X_2$。
-  status: retired
+  zh: 数据量子比特 0 到 8 按行优先顺序排成 $3\times3$ 方阵。每个辅助量子比特测量其相邻数据量子比特上 X 或 Z 的乘积。$H_X$ 和 $H_Z$ 以二元矩阵记录这些稳定子，对易关系要求 $H_X H_Z^T=0\pmod2$。所选的逻辑算符为 $Z_L=Z_0Z_3Z_6$ 和 $X_L=X_0X_1X_2$。
+  status: machine
 - id: 4f70050f8a4088ce
   en: '`POSITIONS` assigns dimensionless coordinates to this code diagram. These coordinates are used to draw the patch and generate the four ordered CNOT layers in `cx_layers()` below.'
   zh: '`POSITIONS` 为纠错码示意图指定无量纲坐标。这些坐标用于绘制码块，并在下面的 `cx_layers()` 中生成四层有序的 CNOT 门。'
@@ -84,8 +84,8 @@
   status: machine
 - id: 161ea463465951c7
   en: The CNOT gates are scheduled in four layers. Each Z-check ancilla interacts with its neighbouring data qubits in the order northwest, northeast, southwest, southeast. Each X-check ancilla uses the order northwest, southwest, northeast, southeast. These directions refer to the positions of data qubits relative to the ancilla in the patch diagram. Missing neighbours at the boundaries are skipped. Each layer contains six CNOT gates acting on disjoint qubit pairs. The ordering controls how ancilla faults propagate into correlated data errors. Any alternative schedule should be checked for correct stabilizer extraction and hook-error propagation. See [Tomita and Svore](https://arxiv.org/abs/1404.3747).
-  zh: CNOT 门分为四层。每个 Z 校验辅助量子比特按西北、东北、西南、东南的顺序与相邻数据量子比特相互作用；每个 X 校验辅助量子比特则按西北、西南、东北、东南的顺序。这些方向表示码块图中数据量子比特相对于辅助量子比特的位置。边界处缺失的邻居会被跳过。每层包含六个作用于互不重叠量子比特对的 CNOT 门。该顺序决定辅助量子比特故障如何传播为相关的数据错误。采用其他时序时，应检查稳定子提取是否正确，以及钩状错误的传播情况。参见 [Tomita 和 Svore](https://arxiv.org/abs/1404.3747)。
-  status: retired
+  zh: CNOT 门分四层调度。每个 Z 校验辅助量子比特按西北、东北、西南、东南的顺序与相邻数据量子比特作用；每个 X 校验辅助量子比特的顺序为西北、西南、东北、东南。这些方位指码块示意图中数据量子比特相对于辅助量子比特的位置。边界上缺少的邻居直接跳过。每层包含六个 CNOT 门，分别作用于互不重叠的量子比特对。这一顺序决定辅助量子比特上的故障如何传播为相关的数据错误。若采用其他调度，应检查稳定子提取是否正确，以及钩子错误（hook error）如何传播。参见 [Tomita 与 Svore](https://arxiv.org/abs/1404.3747)。
+  status: machine
 - id: 66cf48e006d868ec
   en: Each QEC cycle measures all eight ancillas in parallel over a 600 ns window, then resets them to $|0\rangle$. The last cycle includes the same measurement window and reset before the final Z-basis data readout.
   zh: 每个 QEC 周期在 600 ns 窗口内并行测量全部八个辅助量子比特，随后将它们重置为 $|0\rangle$。最后一个周期在最终 Z 基数据读出之前，也包含相同的测量窗口与重置过程。
@@ -128,8 +128,8 @@
   status: machine
 - id: 65bd0374e363ee6a
   en: The decoder selects a minimum-weight error history consistent with the observed detection events. Each elementary error has weight $w=\log[(1-p)/p]$. We set `data_error=readout_error=0.01`, so both error types have equal weight and the decoder favours histories with fewer faults.
-  zh: 译码器选择与观测到的检测事件一致、且权重最小的错误历史。每个基本错误的权重为 $w=\log[(1-p)/p]$。这里设置 `data_error=readout_error=0.01`，因此两类错误的权重相同，译码器倾向于选择故障更少的历史。
-  status: retired
+  zh: 译码器选择与观测到的检测事件一致的最小权重错误历史。每个基本错误的权重为 $w=\log[(1-p)/p]$。我们设置 `data_error=readout_error=0.01`，因此两类错误的权重相等，译码器倾向于选择故障更少的历史。
+  status: machine
 - id: c08141e14adc8512
   en: Let $x_t$ describe the data X errors in interval $t$, and let $e_{t-1}$ and $e_t$ describe readout errors in the adjacent ancilla measurements. These are binary vectors with nine and four components, respectively. The true Z-syndrome change is $H_Zx_t$. The observed change $d_t$ also contains the readout errors from both measurements, giving the constraint
   zh: 令 $x_t$ 表示区间 $t$ 内的数据 X 错误，$e_{t-1}$ 和 $e_t$ 表示相邻辅助量子比特测量中的读出错误。它们分别是九维和四维二元向量。真实的 Z 综合征变化为 $H_Zx_t$。观测到的变化 $d_t$ 还包含两次测量的读出错误，因此满足约束
@@ -237,7 +237,7 @@
 - id: 87b19e1fd2db3100
   en: Data qubits 0 through 8 form a row-major $3\times3$ square. Each ancilla qubit measures the product of X or Z on its neighboring data qubits. $H_X$ and $H_Z$ record those stabilizers as binary matrices and the commutation relation requires $H_X H_Z^T=0\pmod2$. The chosen logical operators are $Z_L=Z_0Z_3Z_6$ and $X_L=X_0X_1X_2$.
   zh: 数据量子比特 0 到 8 按行优先顺序排成 $3\times3$ 方阵。每个辅助量子比特测量其相邻数据量子比特上 X 或 Z 的乘积。$H_X$ 和 $H_Z$ 以二元矩阵记录这些稳定子，对易关系要求 $H_X H_Z^T=0\pmod2$。所选的逻辑算符为 $Z_L=Z_0Z_3Z_6$ 和 $X_L=X_0X_1X_2$。
-  status: machine
+  status: retired
 - id: fd98d5f0153c7a27
   en: Build the backend and noise model
   zh: 创建后端并建立噪声模型
@@ -253,7 +253,7 @@
 - id: 314c39d256a24f2d
   en: The CNOT gates are scheduled in four layers. Each Z-check ancilla interacts with its neighboring data qubits in the order northwest, northeast, southwest, southeast. Each X-check ancilla uses the order northwest, southwest, northeast, southeast. These directions refer to the positions of data qubits relative to the ancilla in the patch diagram. Missing neighbors at the boundaries are skipped. Each layer contains six CNOT gates acting on disjoint qubit pairs. The ordering controls how ancilla faults propagate into correlated data errors. Any alternative schedule should be checked for correct stabilizer extraction and hook-error propagation. See [Tomita and Svore](https://arxiv.org/abs/1404.3747).
   zh: CNOT 门分四层调度。每个 Z 校验辅助量子比特按西北、东北、西南、东南的顺序与相邻数据量子比特作用；每个 X 校验辅助量子比特的顺序为西北、西南、东北、东南。这些方位指码块示意图中数据量子比特相对于辅助量子比特的位置。边界上缺少的邻居直接跳过。每层包含六个 CNOT 门，分别作用于互不重叠的量子比特对。这一顺序决定辅助量子比特上的故障如何传播为相关的数据错误。若采用其他调度，应检查稳定子提取是否正确，以及钩子错误（hook error）如何传播。参见 [Tomita 与 Svore](https://arxiv.org/abs/1404.3747)。
-  status: machine
+  status: retired
 - id: c91e080c3ff2b92e
   en: Compute detection events
   zh: 计算检测事件
@@ -269,7 +269,7 @@
 - id: 604f723b2029a306
   en: The decoder selects a minimum-weight error history consistent with the observed detection events. Each elementary error has weight $w=\log[(1-p)/p]$. We set `data_error=readout_error=0.01`, so both error types have equal weight and the decoder favors histories with fewer faults.
   zh: 译码器选择与观测到的检测事件一致的最小权重错误历史。每个基本错误的权重为 $w=\log[(1-p)/p]$。我们设置 `data_error=readout_error=0.01`，因此两类错误的权重相等，译码器倾向于选择故障更少的历史。
-  status: machine
+  status: retired
 - id: e6048f75a266f7b5
   en: Measure logical error after decoding
   zh: 测量译码后的逻辑错误

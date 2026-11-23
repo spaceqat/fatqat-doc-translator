@@ -36,8 +36,8 @@
   status: retired
 - id: 39a87391405846da
   en: Data qubits 0 through 8 form a row-major $3\times3$ square. Each ancilla qubit measures the product of X or Z on its neighbouring data qubits. $H_X$ and $H_Z$ record those stabilizers as binary matrices and the commutation relation requires $H_X H_Z^T=0\pmod2$. The chosen logical operators are $Z_L=Z_0Z_3Z_6$ and $X_L=X_0X_1X_2$.
-  ko: 데이터 큐비트 0~8은 행 우선 순서의 $3\times3$ 정사각형을 이룹니다. 각 보조 큐비트는 이웃 데이터 큐비트들의 X 또는 Z 곱을 측정합니다. $H_X$와 $H_Z$는 안정자를 이진 행렬로 기록하며, 교환 관계는 $H_X H_Z^T=0\pmod2$를 요구합니다. 논리 연산자는 $Z_L=Z_0Z_3Z_6$, $X_L=X_0X_1X_2$로 선택합니다.
-  status: retired
+  ko: 데이터 큐비트 0부터 8까지는 행 우선 순서로 $3\times3$ 정사각형을 이룹니다. 각 보조 큐비트는 이웃한 데이터 큐비트에 작용하는 X 또는 Z의 곱을 측정합니다. $H_X$와 $H_Z$는 이 안정자들을 이진 행렬로 나타내며, 교환 관계에 따라 $H_X H_Z^T=0\pmod2$가 성립해야 합니다. 논리 연산자로는 $Z_L=Z_0Z_3Z_6$와 $X_L=X_0X_1X_2$를 선택합니다.
+  status: machine
 - id: 4f70050f8a4088ce
   en: '`POSITIONS` assigns dimensionless coordinates to this code diagram. These coordinates are used to draw the patch and generate the four ordered CNOT layers in `cx_layers()` below.'
   ko: '`POSITIONS`는 이 부호 도식의 무차원 좌표를 지정합니다. 이 좌표로 패치를 그리고, 아래 `cx_layers()`에서 순서가 정해진 CNOT 층 네 개를 생성합니다.'
@@ -84,8 +84,8 @@
   status: machine
 - id: 161ea463465951c7
   en: The CNOT gates are scheduled in four layers. Each Z-check ancilla interacts with its neighbouring data qubits in the order northwest, northeast, southwest, southeast. Each X-check ancilla uses the order northwest, southwest, northeast, southeast. These directions refer to the positions of data qubits relative to the ancilla in the patch diagram. Missing neighbours at the boundaries are skipped. Each layer contains six CNOT gates acting on disjoint qubit pairs. The ordering controls how ancilla faults propagate into correlated data errors. Any alternative schedule should be checked for correct stabilizer extraction and hook-error propagation. See [Tomita and Svore](https://arxiv.org/abs/1404.3747).
-  ko: CNOT은 네 층으로 배치합니다. Z 검사 보조 큐비트는 북서, 북동, 남서, 남동 순서로 이웃 데이터와 상호작용합니다. X 검사는 북서, 남서, 북동, 남동 순서입니다. 방향은 패치 도식에서 보조 큐비트 기준 데이터 위치를 뜻하며 경계에 없는 이웃은 건너뜁니다. 각 층은 겹치지 않는 쌍에 작용하는 CNOT 여섯 개를 포함합니다. 이 순서는 보조 큐비트 오류가 상관된 데이터 오류로 퍼지는 방식을 정합니다. 다른 스케줄을 쓰려면 안정자 추출과 훅 오류 전파가 올바른지 검증해야 합니다. [Tomita와 Svore](https://arxiv.org/abs/1404.3747)를 참고하세요.
-  status: retired
+  ko: CNOT 게이트는 네 층으로 나누어 배치합니다. 각 Z 검사 보조 큐비트는 북서, 북동, 남서, 남동 순서로 이웃 데이터 큐비트와 상호작용합니다. 각 X 검사 보조 큐비트는 북서, 남서, 북동, 남동 순서를 사용합니다. 이 방향은 패치 도식에서 보조 큐비트를 기준으로 한 데이터 큐비트의 위치를 가리킵니다. 경계에서 빠진 이웃은 건너뜁니다. 각 층에는 서로 겹치지 않는 큐비트 쌍에 작용하는 CNOT 게이트 6개가 있습니다. 이 순서에 따라 보조 큐비트의 결함이 상관된 데이터 오류로 퍼지는 방식이 정해집니다. 다른 스케줄을 쓰려면 안정자가 올바르게 추출되는지와 훅 오류가 어떻게 전파되는지 확인해야 합니다. [Tomita와 Svore](https://arxiv.org/abs/1404.3747)의 논문을 참고하세요.
+  status: machine
 - id: 66cf48e006d868ec
   en: Each QEC cycle measures all eight ancillas in parallel over a 600 ns window, then resets them to $|0\rangle$. The last cycle includes the same measurement window and reset before the final Z-basis data readout.
   ko: 각 QEC 주기는 600 ns 구간 동안 보조 큐비트 8개를 병렬로 측정한 뒤 $|0\rangle$로 리셋합니다. 마지막 주기에도 같은 측정 구간과 리셋이 있고, 그다음 데이터 큐비트를 Z 기저로 최종 판독합니다.
@@ -128,8 +128,8 @@
   status: machine
 - id: 65bd0374e363ee6a
   en: The decoder selects a minimum-weight error history consistent with the observed detection events. Each elementary error has weight $w=\log[(1-p)/p]$. We set `data_error=readout_error=0.01`, so both error types have equal weight and the decoder favours histories with fewer faults.
-  ko: 디코더는 관측된 검출 사건과 일치하는 최소 가중치 오류 이력을 고릅니다. 각 기본 오류의 가중치는 $w=\log[(1-p)/p]$입니다. `data_error=readout_error=0.01`로 두므로 두 오류 유형의 가중치가 같으며 오류 수가 적은 이력을 선호합니다.
-  status: retired
+  ko: 디코더는 관측된 검출 사건과 양립하는 오류 이력 중 가중치가 최소인 것을 선택합니다. 각 기본 오류의 가중치는 $w=\log[(1-p)/p]$입니다. `data_error=readout_error=0.01`로 두었으므로 두 오류 유형의 가중치가 같고, 디코더는 결함 수가 적은 이력을 선호합니다.
+  status: machine
 - id: c08141e14adc8512
   en: Let $x_t$ describe the data X errors in interval $t$, and let $e_{t-1}$ and $e_t$ describe readout errors in the adjacent ancilla measurements. These are binary vectors with nine and four components, respectively. The true Z-syndrome change is $H_Zx_t$. The observed change $d_t$ also contains the readout errors from both measurements, giving the constraint
   ko: 구간 $t$의 데이터 X 오류를 $x_t$, 인접한 두 보조 큐비트 측정의 판독 오류를 $e_{t-1}$, $e_t$로 둡니다. 각각 성분이 9개, 4개인 이진 벡터입니다. 실제 Z 신드롬 변화는 $H_Zx_t$입니다. 관측된 변화 $d_t$에는 두 측정의 판독 오류도 들어 있으므로 다음 제약이 성립합니다.
@@ -237,7 +237,7 @@
 - id: 87b19e1fd2db3100
   en: Data qubits 0 through 8 form a row-major $3\times3$ square. Each ancilla qubit measures the product of X or Z on its neighboring data qubits. $H_X$ and $H_Z$ record those stabilizers as binary matrices and the commutation relation requires $H_X H_Z^T=0\pmod2$. The chosen logical operators are $Z_L=Z_0Z_3Z_6$ and $X_L=X_0X_1X_2$.
   ko: 데이터 큐비트 0부터 8까지는 행 우선 순서로 $3\times3$ 정사각형을 이룹니다. 각 보조 큐비트는 이웃한 데이터 큐비트에 작용하는 X 또는 Z의 곱을 측정합니다. $H_X$와 $H_Z$는 이 안정자들을 이진 행렬로 나타내며, 교환 관계에 따라 $H_X H_Z^T=0\pmod2$가 성립해야 합니다. 논리 연산자로는 $Z_L=Z_0Z_3Z_6$와 $X_L=X_0X_1X_2$를 선택합니다.
-  status: machine
+  status: retired
 - id: fd98d5f0153c7a27
   en: Build the backend and noise model
   ko: 백엔드와 노이즈 모델 구성하기
@@ -253,7 +253,7 @@
 - id: 314c39d256a24f2d
   en: The CNOT gates are scheduled in four layers. Each Z-check ancilla interacts with its neighboring data qubits in the order northwest, northeast, southwest, southeast. Each X-check ancilla uses the order northwest, southwest, northeast, southeast. These directions refer to the positions of data qubits relative to the ancilla in the patch diagram. Missing neighbors at the boundaries are skipped. Each layer contains six CNOT gates acting on disjoint qubit pairs. The ordering controls how ancilla faults propagate into correlated data errors. Any alternative schedule should be checked for correct stabilizer extraction and hook-error propagation. See [Tomita and Svore](https://arxiv.org/abs/1404.3747).
   ko: CNOT 게이트는 네 층으로 나누어 배치합니다. 각 Z 검사 보조 큐비트는 북서, 북동, 남서, 남동 순서로 이웃 데이터 큐비트와 상호작용합니다. 각 X 검사 보조 큐비트는 북서, 남서, 북동, 남동 순서를 사용합니다. 이 방향은 패치 도식에서 보조 큐비트를 기준으로 한 데이터 큐비트의 위치를 가리킵니다. 경계에서 빠진 이웃은 건너뜁니다. 각 층에는 서로 겹치지 않는 큐비트 쌍에 작용하는 CNOT 게이트 6개가 있습니다. 이 순서에 따라 보조 큐비트의 결함이 상관된 데이터 오류로 퍼지는 방식이 정해집니다. 다른 스케줄을 쓰려면 안정자가 올바르게 추출되는지와 훅 오류가 어떻게 전파되는지 확인해야 합니다. [Tomita와 Svore](https://arxiv.org/abs/1404.3747)의 논문을 참고하세요.
-  status: machine
+  status: retired
 - id: c91e080c3ff2b92e
   en: Compute detection events
   ko: 검출 사건 계산하기
@@ -269,7 +269,7 @@
 - id: 604f723b2029a306
   en: The decoder selects a minimum-weight error history consistent with the observed detection events. Each elementary error has weight $w=\log[(1-p)/p]$. We set `data_error=readout_error=0.01`, so both error types have equal weight and the decoder favors histories with fewer faults.
   ko: 디코더는 관측된 검출 사건과 양립하는 오류 이력 중 가중치가 최소인 것을 선택합니다. 각 기본 오류의 가중치는 $w=\log[(1-p)/p]$입니다. `data_error=readout_error=0.01`로 두었으므로 두 오류 유형의 가중치가 같고, 디코더는 결함 수가 적은 이력을 선호합니다.
-  status: machine
+  status: retired
 - id: e6048f75a266f7b5
   en: Measure logical error after decoding
   ko: 디코딩 후 논리 오류 측정하기

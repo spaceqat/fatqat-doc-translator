@@ -17,7 +17,7 @@
 - id: 77d0ab522b46a87b
   en: The GHZ state generalises the Bell state to $n$ qubits,
   zh: GHZ 态把 Bell 态推广到 $n$ 个量子比特，
-  status: retired
+  status: machine
 - id: de4d7d92069e01ea
   en: Like the Bell state it cannot be factored into independent single-atom states. Measuring all eight atoms yields *only* `00000000` or `11111111`, each with probability one half, so every atom's outcome is perfectly correlated with every other. That correlation alone, however, is also produced by a classical coin flip that sets all eight bits together; what makes the GHZ state quantum is that the two branches are held in *coherent superposition*, with a definite relative phase. We will confirm the correlations with sampled counts and then confirm the coherence with exact expectation values.
   zh: 与 Bell 态一样，它不能分解为各原子相互独立的单原子态。测量全部八个原子，结果*只*可能是 `00000000` 或 `11111111`，各以 1/2 的概率出现，因此每个原子的结果都与其余原子完全相关。然而，这种关联本身也可以由经典过程产生：抛一次硬币，同时设定全部八个比特。GHZ 态的量子性在于两个分支处于*相干叠加*，并具有确定的相对相位。下面先用采样计数确认关联，再用精确期望值确认相干性。
@@ -52,8 +52,8 @@
   status: machine
 - id: f73480384b24871e
   en: 'We could grow the GHZ state with a chain of seven controlled-X gates, atom `0` reaching each neighbour in turn. Instead we use a *binary tree*, which reaches all eight atoms in only three layers and lets the gates within each layer run in parallel on independent atom pairs:'
-  zh: 一种做法是串联七个受控 X 门，让原子 `0` 依次与各个邻居建立纠缠。这里采用*二叉树*结构，只需三层即可覆盖全部八个原子；同一层的门作用于互不重叠的原子对，可以并行执行：
-  status: retired
+  zh: GHZ 态可以用一串七个受控 X 门逐步扩展，由原子 `0` 依次与每个邻居作用。这里改用*二叉树*：只需三层就能覆盖全部八个原子，而且同一层的门作用于互不重叠的原子对，可以并行执行：
+  status: machine
 - id: 805a0d8122634fbe
   en: Every pair inside a layer is disjoint, so those controlled-X gates act on separate atoms and could be executed simultaneously by the hardware.
   zh: 每一层内的原子对互不重叠，因此这些受控 X 门作用于不同的原子，硬件可以同时执行它们。
@@ -92,8 +92,8 @@
   status: machine
 - id: cc8db912b38fba3a
   en: 'Two families pin down $|\mathrm{GHZ}_8\rangle$. Each neighbour parity $\langle Z_i Z_{i+1}\rangle = 1$ says adjacent atoms always agree -- something the classical mixture also satisfies. The global $X$-parity $\langle X_0 X_1 \cdots X_7\rangle = 1$ is the discriminator: it equals $+1$ only for the coherent superposition and averages to $0$ for the mixture. Observing both confirms a true GHZ state.'
-  zh: 两族可观测量共同锁定 $|\mathrm{GHZ}_8\rangle$。每个近邻宇称 $\langle Z_i Z_{i+1}\rangle = 1$ 表明相邻原子总是一致——经典混合态同样满足这一点。全局 $X$ 宇称 $\langle X_0 X_1 \cdots X_7\rangle = 1$ 才是判别量：它只对相干叠加等于 $+1$，而对混合态平均为 $0$。两者同时观测到，才能确认这是真正的 GHZ 态。
-  status: retired
+  zh: 两类可观测量可以确定 $|\mathrm{GHZ}_8\rangle$。每个近邻奇偶性 $\langle Z_i Z_{i+1}\rangle = 1$ 表示相邻原子的结果总是一致——经典混合态同样满足这一点。全局 $X$ 奇偶性 $\langle X_0 X_1 \cdots X_7\rangle = 1$ 才是区分二者的判据：只有相干叠加态使它等于 $+1$，而它在混合态上的平均值为 $0$。两者都观测到，才能确认这是真正的 GHZ 态。
+  status: machine
 - id: 65c5c2e0e2e3cd81
   en: Every witness returns $+1$, including the global $X$-parity, so the state is the coherent GHZ superposition rather than a classical mixture that would merely reproduce its counts.
   zh: 每个见证量都返回 $+1$，包括全局 $X$ 奇偶性，因此该态是相干的 GHZ 叠加态，而不是仅能复现相同计数的经典混合态。
@@ -137,7 +137,7 @@
 - id: 1e08f527cfb0d7d6
   en: The GHZ state generalizes the Bell state to $n$ qubits,
   zh: GHZ 态把 Bell 态推广到 $n$ 个量子比特，
-  status: machine
+  status: retired
 - id: 1a514236c5c46854
   en: On this backend a `CZ` acts only on a pair of atoms that is currently *paired*. The [`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] operations update that pairing state as the circuit runs. Physically, `Pair` stands for "move these two atoms into a shared entangling zone" and `Unpair` for "move them apart again" -- the atom transport that gives a reconfigurable neutral-atom processor its programmable connectivity. We exploit exactly this to entangle atoms that no fixed one-dimensional layout would place next to each other.
   zh: 在这个后端上，`CZ` 只能作用于当前处于*配对*状态的两个原子。[`Pair`][fatqat.operations.Pair] / [`Unpair`][fatqat.operations.Unpair] 操作在线路运行过程中更新配对状态。从物理上看，`Pair` 表示“把这两个原子移入共享的纠缠区”，`Unpair` 表示“再把它们分开”。正是这种原子输运使可重构中性原子处理器具有可编程的连通性。我们正是利用这一点，来纠缠那些在任何固定一维布局中都不会相邻的原子。
@@ -145,11 +145,11 @@
 - id: 780117b2321a8deb
   en: 'We could grow the GHZ state with a chain of seven controlled-X gates, atom `0` reaching each neighbor in turn. Instead we use a *binary tree*, which reaches all eight atoms in only three layers and lets the gates within each layer run in parallel on independent atom pairs:'
   zh: GHZ 态可以用一串七个受控 X 门逐步扩展，由原子 `0` 依次与每个邻居作用。这里改用*二叉树*：只需三层就能覆盖全部八个原子，而且同一层的门作用于互不重叠的原子对，可以并行执行：
-  status: machine
+  status: retired
 - id: 99d60985f9bb1f3d
   en: The tree deliberately couples atoms that are far apart. Layer 1 entangles atoms `0` and `4`; layer 2 needs `0` with `2` and `4` with `6`; layer 3 needs `0` with `1`. Atom `0` therefore needs three partners, which no fixed one-dimensional layout can provide, because each site in a line has at most two neighbors.
   zh: 这棵树有意耦合相距较远的原子。第 1 层纠缠原子 `0` 和 `4`；第 2 层需要 `0` 与 `2`、`4` 与 `6` 相互作用；第 3 层需要 `0` 与 `1` 相互作用。因此原子 `0` 需要三个伙伴，而任何固定的一维布局都无法满足，因为直线上的每个位置最多只有两个邻居。
-  status: machine
+  status: retired
 - id: 623938f83bc5d95d
   en: Reconfigurable connectivity solves this. Just before a layer's gates we [`Pair`][fatqat.operations.Pair] its atoms -- transporting each pair into a shared entangling zone -- and just after we [`Unpair`][fatqat.operations.Unpair] them, freeing the atoms for the next layer's regrouping. If we skipped this rearrangement, the layer-2 and layer-3 `CZ` gates would target atoms that are not paired and the backend would reject the program with [`BackendValidationError`][fatqat.errors.BackendValidationError].
   zh: 可重构连通性解决了这个问题。在某一层的门执行之前，我们用 [`Pair`][fatqat.operations.Pair] 将该层的原子配对，把每一对原子输运到共享的纠缠区；执行之后，再用 [`Unpair`][fatqat.operations.Unpair] 解除配对，让原子可以在下一层重新分组。如果省略这一步重排，第 2 层和第 3 层的 `CZ` 门就会作用于未配对的原子，后端会以 [`BackendValidationError`][fatqat.errors.BackendValidationError] 拒绝该程序。
@@ -161,7 +161,7 @@
 - id: 54027e6812e01b5a
   en: 'Two families pin down $|\mathrm{GHZ}_8\rangle$. Each neighbor parity $\langle Z_i Z_{i+1}\rangle = 1$ says adjacent atoms always agree -- something the classical mixture also satisfies. The global $X$-parity $\langle X_0 X_1 \cdots X_7\rangle = 1$ is the discriminator: it equals $+1$ only for the coherent superposition and averages to $0$ for the mixture. Observing both confirms a true GHZ state.'
   zh: 两类可观测量可以确定 $|\mathrm{GHZ}_8\rangle$。每个近邻奇偶性 $\langle Z_i Z_{i+1}\rangle = 1$ 表示相邻原子的结果总是一致——经典混合态同样满足这一点。全局 $X$ 奇偶性 $\langle X_0 X_1 \cdots X_7\rangle = 1$ 才是区分二者的判据：只有相干叠加态使它等于 $+1$，而它在混合态上的平均值为 $0$。两者都观测到，才能确认这是真正的 GHZ 态。
-  status: machine
+  status: retired
 - id: 38ce5b51e9de9c9d
   en: Every observable returns $+1$, including the global $X$-parity, so the state is the coherent GHZ superposition rather than a classical mixture that would merely reproduce its counts.
   zh: 所有可观测量都返回 $+1$，包括全局 $X$ 奇偶性，因此该态是相干的 GHZ 叠加态，而不是仅能复现相同计数的经典混合态。
@@ -177,4 +177,8 @@
 - id: c5f8a87f8813f68d
   en: In this run 469 of the 2000 shots, 23.5%, contain a `2`. Counting each atom in each `Pair` and `Unpair`, the program makes 28 atom moves, so with a 1% loss per move about $1 - 0.99^{28} \approx 25\%$ of shots should lose at least one atom.
   zh: 在本次运行中，2000 次采样里有 469 次（23.5%）含有 `2`。把每次 `Pair` 和 `Unpair` 中的每个原子都计为一次移动，程序共移动原子 28 次；若每次移动的丢失概率为 1%，预计约有 $1 - 0.99^{28} \approx 25\%$ 的采样至少丢失一个原子。
+  status: machine
+- id: e0858691f131201b
+  en: The tree deliberately couples atoms that are far apart. Layer 1 entangles atoms `0` and `4`; layer 2 needs `0` with `2` and `4` with `6`; layer 3 needs `0` with `1`. Atom `0` therefore needs three partners, which no fixed one-dimensional layout can provide, because each site in a line has at most two neighbours.
+  zh: 这棵树有意耦合相距较远的原子。第 1 层纠缠原子 `0` 和 `4`；第 2 层需要 `0` 与 `2`、`4` 与 `6` 相互作用；第 3 层需要 `0` 与 `1` 相互作用。因此原子 `0` 需要三个伙伴，而任何固定的一维布局都无法满足，因为直线上的每个位置最多只有两个邻居。
   status: machine
