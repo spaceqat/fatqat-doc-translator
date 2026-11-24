@@ -278,3 +278,7 @@
   en: To read which sites still contain atoms, request `final_classical_state` and call [`Result.get_classical_state()`][fatqat.Result.get_classical_state]. For a final quantum state from a lossy run, request `final_state=True` with `shots=1`.
   zh: 要查看运行结束时哪些位置仍有原子，可请求 `final_classical_state`，再调用 [`Result.get_classical_state()`][fatqat.Result.get_classical_state]。如果要读取存在原子丢失时的最终量子态，请设 `shots=1` 并请求 `final_state=True`。
   status: machine
+- id: 0f58d1acc9f25572
+  en: With the Numba runtime and `statevector`, counts-only runs with several shots, including those with `Put` and `Loss`, accept `shot_parallelism="threads"`.
+  zh: 使用 Numba 运行时和 `statevector` 时，仅返回计数的多次 shot 运行支持 `shot_parallelism="threads"`，包括含有 `Put` 和 `Loss` 的运行。
+  status: machine
