@@ -81,5 +81,4 @@ sweeping fixes inside a translation PR.
 `UPSTREAM_COMMIT` record the source for each translator branch. Main tracks
 upstream main; a release branch keeps its release source pin. Do not replace
 main with a release snapshot. Read ONBOARDING.md before configuring scheduling.
-Recurring execution and automatic publication have not been enabled by the
-current setup work. Never copy subscription credentials to public CI caches.
+Never copy subscription credentials to public CI caches.

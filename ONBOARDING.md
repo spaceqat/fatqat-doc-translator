@@ -29,8 +29,7 @@ The English Read the Docs project is `fatqat`:
 https://fatqat.readthedocs.io/en/latest/.
 
 The local build and version pinning are implemented. The scheduled GitHub
-sync workflow has been removed; updates no longer create branches automatically.
-The replacement scheduler and automatic publisher are not enabled yet.
+sync workflow has been removed; scheduled translation runs on a separate server.
 
 ## Hosting
 

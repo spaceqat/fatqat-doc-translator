@@ -78,4 +78,4 @@ language/version URLs; each language is built directly at its version root.
 
 See [ONBOARDING.md](ONBOARDING.md) for RTD configuration, version handling, and the
 subscription-based scheduling proposal. The legacy GitHub sync workflow has been
-removed. Recurring execution and automatic publication are not enabled.
+removed; scheduled translation runs on a separate server.
