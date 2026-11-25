@@ -190,3 +190,7 @@
   en: To read which sites still contain atoms, request `final_classical_state` and call [`Result.get_classical_state()`][fatqat.Result.get_classical_state]. For a final quantum state from a lossy run, request `final_state=True` with `shots=1`.
   ko: 실행 후 원자가 남아 있는 사이트를 확인하려면 `final_classical_state`를 요청하고 [`Result.get_classical_state()`][fatqat.Result.get_classical_state]를 호출합니다. 손실이 있는 실행의 최종 양자 상태는 `shots=1`에서 `final_state=True`를 요청해 읽습니다.
   status: machine
+- id: 0f58d1acc9f25572
+  en: With the Numba runtime and `statevector`, counts-only runs with several shots, including those with `Put` and `Loss`, accept `shot_parallelism="threads"`.
+  ko: Numba 런타임과 `statevector`를 사용할 때, 카운트만 반환하는 여러 샷의 실행은 `shot_parallelism="threads"`를 지원합니다. `Put`과 `Loss`가 포함된 실행도 해당됩니다.
+  status: machine
